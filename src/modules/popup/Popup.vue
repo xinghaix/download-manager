@@ -1,3 +1,4 @@
+<!--suppress JSDeprecatedSymbols -->
 <template>
   <div class="home">
     <el-input class="search" size="mini" placeholder="请输入内容"
@@ -50,7 +51,6 @@
     </div>
 
     <div class="footer">
-
     </div>
   </div>
 </template>
@@ -160,9 +160,7 @@ export default {
 
     // 从磁盘中删除文件
     remove (item) {
-      try {
-        chrome.downloads.removeFile(item.id, () => this.erase(item))
-      } catch (e) {}
+      chrome.downloads.removeFile(item.id, () => this.erase(item))
     },
 
     // 从列表中删除文件

@@ -1,5 +1,8 @@
 # download-manager
 
+**chrome webstore**
+https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei
+
 ## Project setup
 ```
 npm install
