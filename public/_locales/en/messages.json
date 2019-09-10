@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "Download Manager",
+    "description": "Extension name"
+  },
+  "extDesc": {
+   "message": "A Download Manager for Google Chrome",
+   "description": "Extension description"
+  }
+}

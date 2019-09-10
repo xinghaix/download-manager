@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "下载管理器",
+    "description": "插件名称"
+  },
+  "extDesc": {
+    "message": "方便管理下载的文件",
+    "description": "插件描述"
+  }
+}

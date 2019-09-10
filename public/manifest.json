@@ -1,0 +1,29 @@
+{
+  "name": "__MSG_extName__",
+  "description": "__MSG_extDesc__",
+  "version": "0.1",
+  "manifest_version": 2,
+  "icons": {
+    "19": "img/icon19.png",
+    "38": "img/icon38.png",
+    "128": "img/icon128.png"
+  },
+  "browser_action": {
+    "default_icon": {
+     "19": "img/icon19.png",
+     "38": "img/icon38.png"
+    },
+    "default_title": "__MSG_extDesc__",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "persistent": true,
+    "page": "index.html"
+  },
+  "options_page": "options.html",
+  "default_locale": "zh_CN",
+  "optional_permissions": ["management"],
+  "permissions": ["downloads", "downloads.open", "downloads.shelf"],
+  "homepage_url": "https://github.com/zishuangzhu/download-manager",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
