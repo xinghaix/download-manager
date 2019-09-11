@@ -34,13 +34,15 @@ export default {
       this.anyInProgress = false
       chrome.downloads.search({}, (items) => {
         items.forEach((item) => {
-          // this.beforeHandler(item)
+          this.beforeHandler(item)
+          // console.log(item)
           if (item.state === 'in_progress') {
             this.anyInProgress = true
           }
         })
 
-        chrome.runtime.sendMessage(JSON.stringify(items))
+        // 发送数据到popup
+        // chrome.runtime.sendMessage(JSON.stringify(items))
 
         if (this.anyInProgress && this.tid < 0) {
           while (this.tid < 0) {
