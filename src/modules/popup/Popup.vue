@@ -2,7 +2,7 @@
 <template>
   <div class="home">
     <div class="header">
-      <el-input class="search" size="mini" placeholder="请输入内容"
+      <el-input class="search" size="mini" placeholder="请输入文件名称"
                 suffix-icon="el-icon-search" v-model="searchContent">
       </el-input>
       <div class="header-operator">
@@ -256,9 +256,14 @@ export default {
   .header {
     margin: 6px 6px 0 6px;
   }
-  .header .search {
+
+  .search {
     width: 200px;
   }
+  .search >>> .el-input__inner {
+    border-radius: 16px;
+  }
+
   .header .header-button {
     line-height: 2;
     margin-right: 18px;
