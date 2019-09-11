@@ -262,6 +262,11 @@ export default {
   }
   .search >>> .el-input__inner {
     border-radius: 16px;
+    height: 24px;
+    line-height: 24px;
+  }
+  .search >>> .el-input--mini.el-input__icon {
+    line-height: 24px;
   }
 
   .header .header-button {
