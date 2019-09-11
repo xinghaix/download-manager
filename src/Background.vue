@@ -32,17 +32,15 @@ export default {
     downloadProgress () {
       this.tid = -1
       this.anyInProgress = false
-      chrome.downloads.search({}, (items) => {
+      chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
         items.forEach((item) => {
-          this.beforeHandler(item)
-          // console.log(item)
           if (item.state === 'in_progress') {
             this.anyInProgress = true
           }
         })
 
         // 发送数据到popup
-        // chrome.runtime.sendMessage(JSON.stringify(items))
+        chrome.runtime.sendMessage(JSON.stringify(items))
 
         if (this.anyInProgress && this.tid < 0) {
           while (this.tid < 0) {
@@ -50,20 +48,6 @@ export default {
           }
         }
       })
-    },
-
-    beforeHandler (item) {
-      if (item.filename) {
-        // 将长文件名转成短文件名
-        item.basename = item.filename.substring(Math.max(
-          item.filename.lastIndexOf('\\'),
-          item.filename.lastIndexOf('/')
-        ) + 1)
-
-        // 获取文件图标
-        item.iconUrl = null
-        chrome.downloads.getFileIcon(item.id, { size: 32 }, (iconUrl) => { item.iconUrl = iconUrl })
-      }
     }
   }
 }
