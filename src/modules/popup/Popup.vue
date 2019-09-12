@@ -154,7 +154,6 @@ export default {
           this.beforeHandler(item)
         })
         this.downloadItems = items
-        console.log(this.downloadItems)
       })
     },
 
