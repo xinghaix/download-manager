@@ -6,5 +6,9 @@
   "extDesc": {
     "message": "方便管理下载的文件",
     "description": "插件描述"
+  },
+  "searchPlaceholder": {
+    "message": "请输入文件名称",
+    "description": "搜索框提示内容"
   }
 }
