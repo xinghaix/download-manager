@@ -2,7 +2,7 @@
 Google Chrome Download Manager Plugin  
 Click on the plugin icon to see the status of all downloaded files.
 
-**[简体中文](./README.md) | [English](./docs/README_EN.md)**
+**[简体中文](../README.md) | [English](docs/README_EN.md)**
 
 ### **Future plan**
 1. Configurable
@@ -13,7 +13,7 @@ Click on the plugin icon to see the status of all downloaded files.
 
 **Latest version**：0.4
 
-![img](./docs/1.png)
+![img](../docs/img/1.png)
 
 ### **Build & Package**
 ```
