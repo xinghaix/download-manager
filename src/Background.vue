@@ -12,12 +12,18 @@ export default {
     chrome.downloads.onCreated.addListener(() => {
       this.downloadProgress()
     })
-    this.downloadProgress()
   },
   data () {
     return {
       anyInProgress: false,
-      tid: -1
+      tid: -1,
+      downloadingNumber: 0
+    }
+  },
+  watch: {
+    // 只有当下载文件数量有改动时才重新设置图标badge
+    downloadingNumber (val) {
+      this.setBrowserBadge(val)
     }
   },
   methods: {
@@ -33,11 +39,16 @@ export default {
       this.tid = -1
       this.anyInProgress = false
       chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
+        let downloadingNumber = 0
         items.forEach((item) => {
           if (item.state === 'in_progress') {
+            downloadingNumber++
             this.anyInProgress = true
           }
         })
+
+        // icon右小角显示正在下载中的文件数量
+        this.downloadingNumber = downloadingNumber
 
         // 发送数据到popup
         chrome.runtime.sendMessage(JSON.stringify(items))
@@ -48,6 +59,18 @@ export default {
           }
         }
       })
+    },
+
+    setBrowserBadge (number) {
+      let text = ''
+      if (number > 0) {
+        if (number >= 100) {
+          text = '99+'
+        } else {
+          text = number.toString()
+        }
+      }
+      chrome.browserAction.setBadgeText({text: text})
     }
   }
 }

@@ -2,18 +2,18 @@
 <template>
   <div class="home">
     <div class="header">
-      <el-input class="search" size="mini" placeholder="请输入文件名称"
+      <el-input class="search" size="mini" :placeholder="loadI18nMessage('searchPlaceholder')"
                 suffix-icon="el-icon-search" v-model="searchContent">
       </el-input>
       <div class="header-operator">
-        <button class="header-button icon-button">
-          <i class="el-icon-circle-close" @click="eraseAll"></i>
+        <button class="header-button icon-button" @click="eraseAll">
+          <i class="el-icon-circle-close"></i>
         </button>
-        <button class="header-button icon-button">
-          <i class="el-icon-folder" @click="openFolder"></i>
+        <button class="header-button icon-button" @click="openFolder">
+          <i class="el-icon-folder"></i>
         </button>
-        <button class="header-button icon-button">
-          <i class="el-icon-setting" @click="openOptions"></i>
+        <button class="header-button icon-button" @click="openOptions">
+          <i class="el-icon-setting"></i>
         </button>
       </div>
     </div>
@@ -22,7 +22,7 @@
         <div class="file" :class="shouldBeGray(item)" v-for="item in downloadItems" :key="item">
           <div class="icon">
             <el-progress class="progress" type="circle" stroke-width="3" width="42"
-                         v-show="item.state === 'in_progress'"
+                         :status="item.paused ? 'warning' : ''" v-show="item.state === 'in_progress'"
                          :percentage="getPercentage(item)"></el-progress>
             <img :class="shouldBeGray(item)" :src="item.iconUrl" alt="" draggable="false"/>
           </div>
@@ -48,14 +48,17 @@
             </template>
           </div>
           <div class="operator">
-            <button class="icon-button" v-show="openable(item)">
-              <i class="el-icon-folder" @click="showInFolder(item)"></i>
+            <button class="icon-button" v-show="openable(item)" @click="showInFolder(item)">
+              <i class="el-icon-folder"></i>
             </button>
-            <button class="icon-button" v-show="removable(item)">
-              <i class="el-icon-delete" @click="remove(item)"></i>
+            <button class="icon-button" v-show="item.state === 'in_progress'" @click="pauseOrResume(item)">
+              <i :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"></i>
             </button>
-            <button class="icon-button">
-              <i class="el-icon-close" @click="erase(item)"></i>
+            <button class="icon-button" v-show="removable(item)" @click="remove(item)">
+              <i class="el-icon-delete"></i>
+            </button>
+            <button class="icon-button" @click="erase(item)">
+              <i class="el-icon-close"></i>
             </button>
           </div>
         </div>
@@ -68,6 +71,7 @@
 
 <script>
 /* eslint-disable no-undef,no-return-assign */
+// noinspection JSUnusedGlobalSymbols
 export default {
   name: 'Popup',
   mounted () {
@@ -82,14 +86,17 @@ export default {
           let tmpItem = this.getItem(item.id)
           if (tmpItem) {
             tmpItem.filename = item.filename
-            tmpItem.error = item.error
-            tmpItem.estimatedEndTime = item.estimatedEndTime
             this.beforeHandler(tmpItem)
+            tmpItem.error = item.error ? item.error : null
+            tmpItem.estimatedEndTime = item.estimatedEndTime ? item.estimatedEndTime : null
+            // 记录上一次接收的文件大小，以便于统一计算2种下载情况下的下载速度
+            tmpItem.previousBytesReceived = tmpItem.bytesReceived
             tmpItem.bytesReceived = item.bytesReceived
             tmpItem.totalBytes = item.totalBytes
             tmpItem.state = item.state
           } else {
             this.beforeHandler(item)
+            item.previousBytesReceived = 0
             // 插入到第一个位置
             this.downloadItems.splice(0, 0, item)
           }
@@ -225,14 +232,23 @@ export default {
       })
     },
 
+    pauseOrResume (item) {
+      if (item.paused) {
+        this.resume(item)
+      } else {
+        this.pause(item)
+      }
+    },
+
+
     // 暂停正在下载中的文件
     pause (item) {
-      chrome.downloads.pause(item.id)
+      chrome.downloads.pause(item.id, () => { item.paused = true })
     },
 
     // 恢复已经暂停下载中的文件
     resume (item) {
-      chrome.downloads.resume(item.id)
+      chrome.downloads.resume(item.id, () => { item.paused = false })
     },
 
     // 取消正在下载中的文件
@@ -256,7 +272,7 @@ export default {
     },
 
     getFormattedSize (bytes) {
-      if (bytes < 0) {
+      if (bytes <= 0) {
         return 0 + 'B'
       }
       const kbSize = bytes / 1024
@@ -280,10 +296,17 @@ export default {
       return !item.exists || item.error ? 'gray' : 'normal'
     },
 
+    // 获取文件实时下载速度
     getSpeed (item) {
-      const current = new Date().getTime()
-      const start = new Date(item.startTime).getTime()
-      return this.getFormattedSize(item.bytesReceived / (current - start) * 1000) + '/s'
+      // 文件下载有两种情况
+      // 一种是确定文件的总大小
+      if (item.totalBytes !== 0) {
+        let remainingTime = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
+        return this.getFormattedSize((item.totalBytes - item.bytesReceived) / remainingTime) + '/s'
+      } else {
+        // 另一种是文件大小不确定【每200ms计算一次，有时可能为0，精度较差】
+        return this.getFormattedSize((item.bytesReceived - item.previousBytesReceived) / 0.4) + '/s'
+      }
     },
 
     remaining (item) {
@@ -340,11 +363,11 @@ export default {
 <style scoped rel="stylesheet/css">
   .home {
     width: 360px;
-    height: 400px;
+    height: 374px;
   }
 
   .header {
-    margin: 6px 6px 0 6px;
+    margin: 9px 6px 0 6px;
   }
 
   .search {
@@ -361,7 +384,7 @@ export default {
 
   .header .header-button {
     line-height: 2;
-    margin-right: 18px;
+    margin-left: 6px;
   }
   .header .header-button i {
     font-size: 17px;
@@ -391,7 +414,7 @@ export default {
   }
 
   .content {
-    margin-top: 8px;
+    margin-top: 4px;
     height: 340px;
     /*min-height: 50px;*/
     /*max-height: 340px;*/
@@ -520,7 +543,9 @@ export default {
     margin-right: 9px;
   }
   .speed {
-    margin-left: 36px;
+    position: absolute;
+    top: 42px;
+    right: 124px;
   }
 
   .operator {
@@ -529,7 +554,7 @@ export default {
     right: 4px;
     background-color: #fff;
     height: 28px;
-    line-height: 34px;
+    line-height: 36px;
     z-index: 10;
   }
 
