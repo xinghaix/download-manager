@@ -13,7 +13,7 @@ Click on the plugin icon to see the status of all downloaded files.
 
 **Latest version**：0.4
 
-![img](../docs/img/1.png)
+<img src="../docs/img/1.png" width="320" hegiht="420" alt=""/>
 
 ### **Build & Package**
 ```
