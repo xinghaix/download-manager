@@ -1,5 +1,5 @@
 <template>
-  <h1>options</h1>
+  <h1>options (developing...)</h1>
 </template>
 
 <script>
