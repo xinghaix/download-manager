@@ -13,7 +13,7 @@
 
 **最新版本**：0.4
 
-![img](docs/img/1.png)
+<img src="docs/img/1.png" width="320" hegiht="420" alt=""/>
 
 ### **编译打包**
 ```
