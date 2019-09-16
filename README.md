@@ -1,32 +1,30 @@
-# download-manager
+# **download-manager**
+谷歌浏览器下载管理器插件  
+点击插件图标即可查看所有下载文件状态
 
-**chrome webstore**
-https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei
+**简体中文 | [English]()**
 
-## Project setup
+### **未来计划**
+1. 可配置化
+2. 自定义主题
+
+### **Info**
+[谷歌浏览器插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)  
+
+**最新版本**：0.4
+
+![img](docs/1.png)
+
+### **编译打包**
 ```
+# 加载依赖
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
+# 编译打包
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 帮助
+有任何问题请提Issues  
+或者  
+发送消息到我的邮箱`xinghaixuanwo@outlook.com`
