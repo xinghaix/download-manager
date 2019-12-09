@@ -2,6 +2,7 @@
   <div id="app"></div>
 </template>
 
+<!--suppress JSUnresolvedVariable, JSUnresolvedFunction, UnterminatedStatementJS -->
 <script>
 /* eslint-disable no-undef */
 export default {
@@ -17,7 +18,11 @@ export default {
     return {
       anyInProgress: false,
       tid: -1,
-      downloadingNumber: 0
+      downloadingNumber: 0,
+      downloadMessage: {
+        type: 'download',
+        data: []
+      }
     }
   },
   watch: {
@@ -34,7 +39,7 @@ export default {
       }
     },
 
-    // 文件下载进度条
+    // 文件下载进度
     downloadProgress () {
       this.tid = -1
       this.anyInProgress = false
@@ -50,8 +55,11 @@ export default {
         // icon右小角显示正在下载中的文件数量
         this.downloadingNumber = downloadingNumber
 
+        // 使用vue.set更新数据
+        this.$set(this.downloadMessage, 'data', items);
+
         // 发送数据到popup
-        chrome.runtime.sendMessage(JSON.stringify(items))
+        chrome.runtime.sendMessage(JSON.stringify(this.downloadMessage))
 
         if (this.anyInProgress && this.tid < 0) {
           while (this.tid < 0) {
@@ -61,6 +69,7 @@ export default {
       })
     },
 
+    // 设置图标右上角显示的正在下载中文件的数量
     setBrowserBadge (number) {
       let text = ''
       if (number > 0) {

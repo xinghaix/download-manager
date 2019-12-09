@@ -1,4 +1,3 @@
-<!--suppress JSDeprecatedSymbols -->
 <template>
   <div class="home">
     <div class="header">
@@ -7,13 +6,13 @@
       </el-input>
       <div class="header-operator">
         <button class="header-button icon-button" @click="eraseAll">
-          <i class="el-icon-circle-close"></i>
+          <i class="el-icon-circle-close"/>
         </button>
         <button class="header-button icon-button" @click="openFolder">
-          <i class="el-icon-folder"></i>
+          <i class="el-icon-folder"/>
         </button>
         <button class="header-button icon-button" @click="openOptions">
-          <i class="el-icon-setting"></i>
+          <i class="el-icon-setting"/>
         </button>
       </div>
     </div>
@@ -23,7 +22,7 @@
           <div class="icon">
             <el-progress class="progress" type="circle" stroke-width="3" width="42"
                          :status="item.paused ? 'warning' : ''" v-show="item.state === 'in_progress'"
-                         :percentage="getPercentage(item)"></el-progress>
+                         :percentage="getPercentage(item)"/>
             <img :class="shouldBeGray(item)" :src="item.iconUrl" alt="" draggable="false"/>
           </div>
           <div class="file-content">
@@ -49,16 +48,16 @@
           </div>
           <div class="operator">
             <button class="icon-button" v-show="openable(item)" @click="showInFolder(item)">
-              <i class="el-icon-folder"></i>
+              <i class="el-icon-folder"/>
             </button>
             <button class="icon-button" v-show="item.state === 'in_progress'" @click="pauseOrResume(item)">
-              <i :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"></i>
+              <i :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"/>
             </button>
             <button class="icon-button" v-show="removable(item)" @click="remove(item)">
-              <i class="el-icon-delete"></i>
+              <i class="el-icon-delete"/>
             </button>
             <button class="icon-button" @click="erase(item)">
-              <i class="el-icon-close"></i>
+              <i class="el-icon-close"/>
             </button>
           </div>
         </div>
@@ -69,10 +68,10 @@
   </div>
 </template>
 
+<!--suppress UnterminatedStatementJS, JSUnresolvedVariable, ES6ModulesDependencies, JSUnresolvedFunction -->
 <script>
-/* eslint-disable no-undef,no-return-assign */
-// noinspection JSUnusedGlobalSymbols
-export default {
+  /* eslint-disable no-undef */
+  export default {
   name: 'Popup',
   mounted () {
     // 获取下载文件信息
@@ -80,28 +79,35 @@ export default {
 
     // 接收来自background发来的数据
     chrome.runtime.onMessage.addListener((message) => {
-      JSON.parse(message).forEach((item) => {
-        // 在刚创建下载时，文件名称会为空
-        if (item.filename) {
-          let tmpItem = this.getItem(item.id)
-          if (tmpItem) {
-            tmpItem.filename = item.filename
-            this.beforeHandler(tmpItem)
-            tmpItem.error = item.error ? item.error : null
-            tmpItem.estimatedEndTime = item.estimatedEndTime ? item.estimatedEndTime : null
-            // 记录上一次接收的文件大小，以便于统一计算2种下载情况下的下载速度
-            tmpItem.previousBytesReceived = tmpItem.bytesReceived
-            tmpItem.bytesReceived = item.bytesReceived
-            tmpItem.totalBytes = item.totalBytes
-            tmpItem.state = item.state
-          } else {
-            this.beforeHandler(item)
-            item.previousBytesReceived = 0
-            // 插入到第一个位置
-            this.downloadItems.splice(0, 0, item)
+      let received = JSON.parse(message);
+
+      if (received.type === 'download') {
+        // data中存放自定义的从background传过来的下载信息
+        received.data.forEach((item) => {
+          // 在刚创建下载时，文件名称会为空
+          if (item.filename) {
+            let tmpItem = this.getItem(item.id)
+            if (tmpItem) {
+              tmpItem.filename = item.filename
+              this.beforeHandler(tmpItem)
+              tmpItem.error = item.error ? item.error : null
+              tmpItem.estimatedEndTime = item.estimatedEndTime ? item.estimatedEndTime : null
+              // 记录上一次接收的文件大小，以便于统一计算2种下载情况下的下载速度
+              tmpItem.previousBytesReceived = tmpItem.bytesReceived
+              tmpItem.bytesReceived = item.bytesReceived
+              tmpItem.totalBytes = item.totalBytes
+              tmpItem.state = item.state
+            } else {
+              this.beforeHandler(item)
+              item.previousBytesReceived = 0
+              // 插入到第一个位置
+              this.downloadItems.splice(0, 0, item)
+            }
           }
-        }
-      })
+        })
+      } else {
+        console.log(received)
+      }
     })
 
     // 如果其他插件或者谷歌浏览器下载界面清除下载文件时，同步搜索数据
@@ -215,6 +221,18 @@ export default {
       chrome.downloads.show(item.id)
     },
 
+    maybeAcceptDanger(item) {
+      if ((item.state !== 'in_progress')
+              || (item.danger === 'safe')
+              || (item.danger === 'accepted')) {
+        return;
+      }
+
+      chrome.downloads.acceptDanger(item.id, () => {
+
+      })
+    },
+
     // 从磁盘中删除文件
     remove (item) {
       chrome.downloads.removeFile(item.id, () => this.erase(item))
@@ -232,6 +250,7 @@ export default {
       })
     },
 
+    // 暂停或恢复下载
     pauseOrResume (item) {
       if (item.paused) {
         this.resume(item)
@@ -239,7 +258,6 @@ export default {
         this.pause(item)
       }
     },
-
 
     // 暂停正在下载中的文件
     pause (item) {
@@ -301,8 +319,12 @@ export default {
       // 文件下载有两种情况
       // 一种是确定文件的总大小
       if (item.totalBytes !== 0) {
-        let remainingTime = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
-        return this.getFormattedSize((item.totalBytes - item.bytesReceived) / remainingTime) + '/s'
+        let speed = '0B'
+        if (item.estimatedEndTime) {
+          let remainingTime = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
+          speed = this.getFormattedSize((item.totalBytes - item.bytesReceived) / remainingTime);
+        }
+        return speed + '/s';
       } else {
         // 另一种是文件大小不确定【每200ms计算一次，有时可能为0，精度较差】
         return this.getFormattedSize((item.bytesReceived - item.previousBytesReceived) / 0.4) + '/s'
