@@ -28,7 +28,7 @@
           <div class="file-content">
             <span @click="openfile(item)" class="filename"
                   :class="shouldBeGray(item)">{{item.basename}}</span>
-            <span @click="openUrl(item)" class="file-url">{{item.url}}</span>
+            <span @click="openUrl(item)" class="file-url">{{item.finalUrl}}</span>
             <template v-if="item.state === 'in_progress'">
               <span class="receivedSize info">{{getFormattedSize(item.bytesReceived)}}</span>
               <template v-if="item.totalBytes !== 0">
@@ -71,7 +71,6 @@
 <!--suppress UnterminatedStatementJS, JSUnresolvedVariable, ES6ModulesDependencies, JSUnresolvedFunction -->
 <script>
   /* eslint-disable no-undef */
-  import storage from "../../utils/storage";
   export default {
   name: 'Popup',
   mounted () {
@@ -99,6 +98,7 @@
               tmpItem.bytesReceived = item.bytesReceived
               tmpItem.totalBytes = item.totalBytes
               tmpItem.state = item.state
+              tmpItem.danger = item.danger
             } else {
               this.beforeHandler(item)
               item.previousBytesReceived = 0
@@ -107,8 +107,6 @@
             }
           }
         })
-      } else {
-        console.log(received)
       }
     })
 
@@ -178,6 +176,43 @@
       this.maybeAcceptDanger(item)
     },
 
+    /**
+     * 会弹出一个框狂，提示是否接受下载危险的文件
+     * 可能接受危险文件下载
+     *  DangerType
+     *     file
+     *      下载项的文件名可疑。
+     *     url
+     *       下载项的 URL 已知是恶意的。
+     *     content
+     *       已下载的文件已知是恶意的。
+     *     uncommon
+     *       下载项的 URL 不常见，可能有风险。
+     *     host
+     *       下载项来自已知发布恶意软件的主机，可能有风险。
+     *     unwanted
+     *       下载项可能不是所需要的或者不安全，例如它可能会更改浏览器或计算机设置。
+     *     safe
+     *       下载项对用户的计算机没有已知风险。
+     *     accepted
+     *       用户已经接受了有风险的下载
+     */
+    maybeAcceptDanger(item) {
+      if ((item.state !== 'in_progress')
+          || (item.danger === 'safe')
+          || (item.danger === 'accepted')
+          || item.acceptingDanger) {
+        return
+      }
+
+      console.log('before: id  ', item.id, ' acceptingDanger ', item.acceptingDanger)
+      item.acceptingDanger = true
+      chrome.downloads.acceptDanger(item.id, () => {
+        item.acceptingDanger = false
+        console.log('after: id  ', item.id, ' acceptingDanger ', item.acceptingDanger)
+      })
+    },
+
     // 将长文件名转成短文件名
     handleBasename (item) {
       if (item.filename) {
@@ -222,21 +257,6 @@
     // 在资源管理器中显示文件
     showInFolder (item) {
       chrome.downloads.show(item.id)
-    },
-
-    // 可能接受危险文件下载
-    maybeAcceptDanger(item) {
-      if ((item.state !== 'in_progress')
-              || (item.danger === 'safe')
-              || (item.danger === 'accepted')) {
-        return;
-      }
-      // 从浏览器存储中读取配置，是否接口下载危险文件
-      storage.getAcceptDanger(result => {
-        if (result) {
-          chrome.downloads.acceptDanger(item.id)
-        }
-      })
     },
 
     // 从磁盘中删除文件
