@@ -71,6 +71,7 @@
 <!--suppress UnterminatedStatementJS, JSUnresolvedVariable, ES6ModulesDependencies, JSUnresolvedFunction -->
 <script>
   /* eslint-disable no-undef */
+  import storage from "../../utils/storage";
   export default {
   name: 'Popup',
   mounted () {
@@ -86,6 +87,7 @@
         received.data.forEach((item) => {
           // 在刚创建下载时，文件名称会为空
           if (item.filename) {
+            // 查看是否存在已经保存的下载的文件
             let tmpItem = this.getItem(item.id)
             if (tmpItem) {
               tmpItem.filename = item.filename
@@ -100,7 +102,7 @@
             } else {
               this.beforeHandler(item)
               item.previousBytesReceived = 0
-              // 插入到第一个位置
+              // 插入到首位显示
               this.downloadItems.splice(0, 0, item)
             }
           }
@@ -173,6 +175,7 @@
     beforeHandler (item) {
       this.handleBasename(item)
       this.handleFileIcon(item)
+      this.maybeAcceptDanger(item)
     },
 
     // 将长文件名转成短文件名
@@ -221,15 +224,18 @@
       chrome.downloads.show(item.id)
     },
 
+    // 可能接受危险文件下载
     maybeAcceptDanger(item) {
       if ((item.state !== 'in_progress')
               || (item.danger === 'safe')
               || (item.danger === 'accepted')) {
         return;
       }
-
-      chrome.downloads.acceptDanger(item.id, () => {
-
+      // 从浏览器存储中读取配置，是否接口下载危险文件
+      storage.getAcceptDanger(result => {
+        if (result) {
+          chrome.downloads.acceptDanger(item.id)
+        }
       })
     },
 

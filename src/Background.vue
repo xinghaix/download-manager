@@ -5,11 +5,21 @@
 <!--suppress JSUnresolvedVariable, JSUnresolvedFunction, UnterminatedStatementJS -->
 <script>
 /* eslint-disable no-undef */
+import storage from "./utils/storage";
 export default {
   name: 'app',
+  // 插件初始化配置
   mounted () {
+    // 插件设置默认启用同步
+    storage.setSync(true)
+
+    // 默认接受下载危险文件
+    storage.setAcceptDanger(true)
+
+    // 取消下载时浏览器下方出现的下载信息按钮
     this.disableDownloadBottom()
-    // 在文件下载开始时添加
+
+    // 在文件下载开始时添加监听器
     chrome.downloads.onCreated.addListener(() => {
       this.downloadProgress()
     })
