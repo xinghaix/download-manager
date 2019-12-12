@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="header">
-      <el-input class="search" size="mini" :placeholder="loadI18nMessage('searchPlaceholder')"
+      <el-input class="search" size="mini" :placeholder="searchPlaceholder"
                 suffix-icon="el-icon-search" v-model="searchContent">
       </el-input>
       <div class="header-operator">
@@ -71,6 +71,8 @@
 <!--suppress UnterminatedStatementJS, JSUnresolvedVariable, ES6ModulesDependencies, JSUnresolvedFunction -->
 <script>
   /* eslint-disable no-undef */
+  import common from "../../utils/common"
+
   export default {
   name: 'Popup',
   mounted () {
@@ -121,7 +123,8 @@
   data () {
     return {
       searchContent: '',
-      downloadItems: []
+      downloadItems: [],
+      searchPlaceholder: common.loadI18nMessage('searchPlaceholder')
     }
   },
   watch: {
@@ -147,10 +150,6 @@
     }
   },
   methods: {
-    loadI18nMessage (msg) {
-      return chrome.i18n.getMessage(msg)
-    },
-
     getItem (id) {
       for (let item of this.downloadItems) {
         if (item.id === id) {

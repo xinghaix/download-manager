@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extName__",
   "description": "__MSG_extDesc__",
-  "version": "0.4",
+  "version": "0.5.0",
   "manifest_version": 2,
   "icons": {
     "19": "img/icon19.png",
@@ -21,7 +21,7 @@
     "page": "background.html"
   },
   "options_page": "options.html",
-  "default_locale": "zh_CN",
+  "default_locale": "en",
   "optional_permissions": ["management"],
   "permissions": ["downloads", "downloads.open", "downloads.shelf", "storage"],
   "homepage_url": "https://github.com/zishuangzhu/download-manager",

@@ -10,5 +10,13 @@
   "searchPlaceholder": {
     "message": "请输入文件名称",
     "description": "搜索框提示内容"
+  },
+  "settingsTitle": {
+    "message": "设置",
+    "description": "个人设置"
+  },
+  "aboutTitle": {
+    "message": "关于",
+    "description": "关于插件的一些额外的信息"
   }
 }

@@ -5,13 +5,12 @@
 <!--suppress JSUnresolvedVariable, JSUnresolvedFunction, UnterminatedStatementJS -->
 <script>
 /* eslint-disable no-undef */
-import storage from "./utils/storage";
+import storage from "./utils/storage"
 export default {
   name: 'app',
   // 插件初始化配置
   mounted () {
-    // 插件设置默认启用同步
-    storage.setSync(true)
+    storage.defaultSettings()
 
     // 取消下载时浏览器下方出现的下载信息按钮
     this.disableDownloadBottom()
@@ -27,10 +26,6 @@ export default {
       tid: -1,
       downloadingNumber: 0,
       dangerousDownloadingNumber: 0,
-      dangerousMessage: {
-        type: 'danger',
-        data: []
-      },
       downloadMessage: {
         type: 'download',
         data: []

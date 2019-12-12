@@ -10,8 +10,12 @@ const storage = {
       return false
     }
   },
-  // 是否同步设置
-  // 利用chrome.storage API实现登录谷歌账户时能够异地同步设置数据
+
+  /**
+   * 是否同步设置
+   * 利用chrome.storage API实现登录谷歌账户时能够异地同步设置数据
+   * @param value
+   */
   setSync(value) {
     chrome.storage.sync.set({'sync': this.parseBoolean(value)})
   },
@@ -21,7 +25,23 @@ const storage = {
     })
   },
 
-  // 是否接受下载危险的文件
+  /**
+   * 设置语言
+   * @param language
+   */
+  setLanguage(language) {
+    chrome.storage.sync.set({'language': language})
+  },
+  getLanguage(callback) {
+    chrome.storage.sync.get(['language'], (result) => {
+      callback(result.language)
+    })
+  },
+
+  /**
+   * 设置是否接受下载危险的文件
+   * @param value
+   */
   setAcceptDanger(value) {
     this.getSync(result => {
       if (result) {
@@ -44,6 +64,19 @@ const storage = {
       }
     })
   },
+
+  /**
+   * 当获取配置为null时，实现一些默认设置
+   * 只需要执行一次
+   */
+  defaultSettings() {
+    this.getSync(value => {
+      if (typeof value === 'undefined' || value === null) {
+        // 插件设置默认启用同步
+        storage.setSync(true)
+      }
+    })
+  }
 
 }
 

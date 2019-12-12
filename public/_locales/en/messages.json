@@ -10,5 +10,13 @@
   "searchPlaceholder": {
     "message": "Please enter a file name",
     "description": "Search box prompt content"
+  },
+  "settingsTitle": {
+    "message": "setting",
+    "description": "Personal settings"
+  },
+  "aboutTitle": {
+    "message": "about",
+    "description": "Some information about the plugin"
   }
 }
