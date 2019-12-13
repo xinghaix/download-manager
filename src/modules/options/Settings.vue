@@ -11,12 +11,26 @@
       <el-divider/>
       <div class="item">
         <div class="content">
-          <div class="setting-title">鼠标左键点击可在新界面打开下载链接</div>
+          <span class="setting-title">鼠标右键点击文件名时复制到剪切板</span>
+        </div>
+        <el-switch class="switch" v-model="copyFileName" active-color="#409EFF" inactive-color="#bdc1c6"/>
+      </div>
+      <el-divider/>
+      <div class="item">
+        <div class="content">
+          <div class="setting-title">鼠标左键点击下载链接时可在新界面打开</div>
         </div>
         <el-switch class="switch" v-model="openUrl" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
+      <el-divider/>
+      <div class="item">
+        <div class="content">
+          <span class="setting-title">鼠标右键点击下载链接时复制到剪切板</span>
+        </div>
+        <el-switch class="switch" v-model="copyFileUrl" active-color="#409EFF" inactive-color="#bdc1c6"/>
+      </div>
     </el-card>
-    <h2 class="title">同步设置</h2>
+    <h2 class="title">同步</h2>
     <el-card class="box-card" shadow="hover">
       <div class="item">
         <div class="content">
@@ -45,6 +59,8 @@
     data() {
       return {
         openFile: true,
+        copyFileName: true,
+        copyFileUrl: true,
         openUrl: true,
         isSync: true
       }
@@ -79,7 +95,6 @@
     height: 32px;
     line-height: 32px;
     font-size: 14px;
-    cursor: pointer;
   }
   .item .content {
     display: inline-block;
