@@ -7,10 +7,6 @@
    "message": "A Download Manager for Google Chrome",
    "description": "Extension description"
   },
-  "searchPlaceholder": {
-    "message": "Please enter a file name",
-    "description": "Search box prompt content"
-  },
   "settingsTitle": {
     "message": "setting",
     "description": "Personal settings"

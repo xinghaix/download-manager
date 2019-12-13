@@ -1,9 +1,7 @@
 <template>
   <div class="home">
     <div class="header">
-      <el-input class="search" size="mini" :placeholder="searchPlaceholder"
-                suffix-icon="el-icon-search" v-model="searchContent">
-      </el-input>
+      <el-input class="search" size="mini" suffix-icon="el-icon-search" v-model="searchContent"/>
       <div class="header-operator">
         <button class="header-button icon-button" @click="eraseAll">
           <i class="el-icon-circle-close"/>
@@ -71,8 +69,6 @@
 <!--suppress UnterminatedStatementJS, JSUnresolvedVariable, ES6ModulesDependencies, JSUnresolvedFunction -->
 <script>
   /* eslint-disable no-undef */
-  import common from "../../utils/common"
-
   export default {
   name: 'Popup',
   mounted () {
@@ -123,8 +119,7 @@
   data () {
     return {
       searchContent: '',
-      downloadItems: [],
-      searchPlaceholder: common.loadI18nMessage('searchPlaceholder')
+      downloadItems: []
     }
   },
   watch: {
@@ -243,7 +238,7 @@
 
     // 在新标签页中打开下载文件链接
     openUrl (item) {
-      chrome.tabs.create({ url: item.url })
+      chrome.tabs.create({ url: item.finalUrl })
     },
 
     // 打开文件

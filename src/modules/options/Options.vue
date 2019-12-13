@@ -6,21 +6,21 @@
       <!-- 侧边栏header -->
       <div class="aside-header">
         <img :src="`${publicPath}img/icon38-white.png`"
-             :class="isCollapse ? 'true' : 'false'" class="icon" alt=""/>
+             :class="isCollapse ? 'true' : 'false'" class="icon" alt="" draggable="false"/>
         <span v-show="!isCollapse" class="title">{{extensionName}}</span>
       </div>
       <!-- 侧边栏菜单 -->
       <div class="aside-menu-div">
         <el-scrollbar class="side-scrollbar">
-          <el-menu class="side-menu" default-active="#settings"
+          <el-menu class="side-menu" :default-active="selectedIndex" @select="handleSideSelect"
                    :collapse="isCollapse" :collapse-transition=false>
             <el-menu-item index="#settings">
               <i class="iconfont el-icon-s-tools"/>
-              <span slot="title">{{settingsTile}}</span>
+              <span slot="title">{{settingsTitle}}</span>
             </el-menu-item>
-            <el-menu-item index="#info">
+            <el-menu-item index="#about">
               <i class="iconfont el-icon-info"/>
-              <span slot="title">{{aboutTile}}</span>
+              <span slot="title">{{aboutTitle}}</span>
             </el-menu-item>
           </el-menu>
         </el-scrollbar>
@@ -32,12 +32,11 @@
       </div>
     </el-aside>
     <el-container class="main-container">
-      <el-main class="main-content">
-        <el-scrollbar class="content-scrollbar">
-
-        </el-scrollbar>
-      </el-main>
-      <el-backtop target=".main-content .el-scrollbar__wrap"/>
+      <el-scrollbar class="content-scrollbar">
+        <Settings :title="settingsTitle" class="content-item" v-show="selectedIndex === '#settings'"/>
+        <About :title="aboutTitle" class="content-item" v-show="selectedIndex === '#about'"/>
+      </el-scrollbar>
+      <el-backtop target=".main-container .el-scrollbar__wrap"/>
     </el-container>
   </el-container>
 </template>
@@ -47,20 +46,29 @@
   /* eslint-disable no-undef */
   import storage from "../../utils/storage"
   import common from "../../utils/common"
+  import Settings from "./Settings";
+  import About from "./About";
   export default {
   name: 'Options',
+  components: { Settings, About },
   mounted() {
   },
   data() {
     return {
       publicPath: process.env.BASE_URL,
       isCollapse: false,
+      selectedIndex: '#settings',
       extensionName: common.loadI18nMessage('extName'),
-      settingsTile: common.loadI18nMessage('settingsTitle'),
-      aboutTile: common.loadI18nMessage('aboutTitle'),
+      settingsTitle: common.loadI18nMessage('settingsTitle'),
+      aboutTitle: common.loadI18nMessage('aboutTitle'),
     }
   },
   methods: {
+    // 当侧边栏菜单被选中时的回调事件
+    handleSideSelect(index) {
+      this.selectedIndex = index;
+    },
+
     setSync(value) {
       storage.setSync(value)
     }
@@ -86,6 +94,7 @@
     display: inline-block;
     height: 56px;
     color: rgba(255, 255, 255, 1);
+    user-select: none;
   }
   .aside-header .icon {
     float: left;
@@ -215,6 +224,7 @@
   /* 右侧中间区域 */
   .main-container {
     height: calc(100vh);
+    margin: 0 auto;
   }
   /* 中间区域 滚动条 */
   .content-scrollbar {
@@ -227,7 +237,11 @@
     overflow-y: scroll;
   }
   .content-scrollbar >>> .el-scrollbar__bar.is-vertical {
-    width: 6px;
-    right: 0;
+    width: 8px;
+    right: 2px;
+  }
+  .content-item {
+    width: 600px;
+    height: 100%;
   }
 </style>
