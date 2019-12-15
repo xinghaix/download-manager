@@ -2,7 +2,7 @@
 <template>
   <el-container class="home">
     <!-- 侧边栏 -->
-    <el-aside class="el-aside" :style="{ width: isCollapse ? '60px' : '132px' }">
+    <el-aside class="el-aside" :style="{ width: isCollapse ? '60px' : '192px' }">
       <!-- 侧边栏header -->
       <div class="aside-header">
         <img :src="`${publicPath}img/icon38-white.png`"
