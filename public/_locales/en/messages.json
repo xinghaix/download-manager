@@ -8,11 +8,27 @@
    "description": "Extension description"
   },
   "settingsTitle": {
-    "message": "setting",
+    "message": "settings",
     "description": "Personal settings"
   },
   "aboutTitle": {
     "message": "about",
     "description": "Some information about the plugin"
+  },
+  "second": {
+    "message": "{} second left",
+    "description": "remaining time display"
+  },
+  "minute": {
+    "message": "{} minute left",
+    "description": "remaining time display"
+  },
+  "hour": {
+    "message": "{} hour left",
+    "description": "remaining time display"
+  },
+  "day": {
+    "message": "{} day left",
+    "description": "remaining time display"
   }
 }

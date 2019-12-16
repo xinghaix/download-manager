@@ -69,6 +69,8 @@
 <!--suppress UnterminatedStatementJS, JSUnresolvedVariable, ES6ModulesDependencies, JSUnresolvedFunction -->
 <script>
   /* eslint-disable no-undef */
+  import common from "../../utils/common";
+
   export default {
   name: 'Popup',
   mounted () {
@@ -119,7 +121,12 @@
   data () {
     return {
       searchContent: '',
-      downloadItems: []
+      downloadItems: [],
+      second: common.loadI18nMessage('second'),
+      minute: common.loadI18nMessage('minute'),
+      hour: common.loadI18nMessage('hour'),
+      day: common.loadI18nMessage('day'),
+      isEnglish: chrome.i18n.getUILanguage().startsWith('en')
     }
   },
   watch: {
@@ -353,12 +360,14 @@
 
     remaining (item) {
       if (!item.estimatedEndTime) {
-        return '剩余0秒'
+        return '剩余0s'
       }
 
       // 预估剩余时间 - 当前时间 = 剩余时间 (ms)
       let remaining = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
-      if (remaining < 60) {
+      if (remaining <= 0) {
+        remaining = '0秒'
+      } else if (remaining < 60) {
         remaining = remaining.toFixed(0) + '秒'
       } else {
         remaining = remaining / 60

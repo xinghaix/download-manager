@@ -14,5 +14,21 @@
   "aboutTitle": {
     "message": "关于",
     "description": "关于插件的一些额外的信息"
+  },
+  "second": {
+    "message": "剩余{}秒",
+    "description": "剩余时间显示"
+  },
+  "minute": {
+    "message": "剩余{}分钟",
+    "description": "剩余时间显示"
+  },
+  "hour": {
+    "message": "剩余{}小时",
+    "description": "剩余时间显示"
+  },
+  "day": {
+    "message": "剩余{}天",
+    "description": "剩余时间显示"
   }
 }
