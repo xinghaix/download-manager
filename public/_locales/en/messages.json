@@ -30,5 +30,21 @@
   "day": {
     "message": "{} day left",
     "description": "remaining time display"
+  },
+  "closeTooltip": {
+    "message": "stop showing text prompt box",
+    "description": "On the download management page, when the mouse is moved over the button, the text prompt box stops showing"
+  },
+  "clearList": {
+    "message": "clear list",
+    "description": "Clear download file list"
+  },
+  "openDownloadFolder": {
+    "message": "open download folder",
+    "description": "Open the download folder in Explorer"
+  },
+  "openSettings": {
+    "message": "plugin settings",
+    "description": "Open plugin settings in a new tab"
   }
 }
