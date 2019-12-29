@@ -15,6 +15,12 @@ export default {
     // 取消下载时浏览器下方出现的下载信息按钮
     this.disableDownloadBottom()
 
+    // 初始查询
+    this.downloadProgress()
+
+    this.handleDownloadingNumber(0)
+    this.handleDangerousDownloadingNumber(0)
+
     // 在文件下载开始时添加监听器
     chrome.downloads.onCreated.addListener(() => {
       this.downloadProgress()
@@ -35,16 +41,10 @@ export default {
   watch: {
     // 只有当下载文件数量有改动时才重新设置图标badge
     downloadingNumber (val) {
-      this.setBrowserBadge(val)
+      this.handleDownloadingNumber(val)
     },
     dangerousDownloadingNumber (val) {
-      if (val > 0) {
-        // 在下载危险文件时，将图标正在下载中的数字背景设置为红色
-        chrome.browserAction.setBadgeBackgroundColor({color: '#FF0000'})
-      } else {
-        // 确认下载危险文件时，将图标正在下载中的数字背景重新设置为蓝色
-        chrome.browserAction.setBadgeBackgroundColor({color: '#4285F4'})
-      }
+      this.handleDangerousDownloadingNumber(val)
     }
   },
   methods: {
@@ -55,8 +55,23 @@ export default {
       }
     },
 
-    // 文件下载进度
+    handleDownloadingNumber(num) {
+      localStorage.setItem(new Date().getTime().toString() + '-downloading-watch', val)
+      this.setBrowserBadge(num <= 0 ? '' : num)
+    },
 
+    handleDangerousDownloadingNumber(num) {
+      localStorage.setItem(new Date().getTime().toString() + '-danger-watch', num)
+      if (num > 0) {
+        // 在下载危险文件时，将图标正在下载中的数字背景设置为红色
+        chrome.browserAction.setBadgeBackgroundColor({color: '#FF0000'})
+      } else {
+        // 确认下载危险文件时，将图标正在下载中的数字背景重新设置为蓝色
+        chrome.browserAction.setBadgeBackgroundColor({color: '#4285F4'})
+      }
+    },
+
+    // 文件下载进度
     downloadProgress() {
       this.tid = -1
       this.anyInProgress = false
@@ -78,6 +93,8 @@ export default {
         this.downloadingNumber = downloadingNumber
 
         this.dangerousDownloadingNumber = dangerousDownloadingNumber
+
+        localStorage.setItem(new Date().getTime().toString(), this.dangerousDownloadingNumber)
 
         // 使用vue.set更新数据
         this.$set(this.downloadMessage, 'data', items)

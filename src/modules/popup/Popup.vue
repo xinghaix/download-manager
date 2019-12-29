@@ -24,9 +24,12 @@
             <img :class="shouldBeGray(item)" :src="item.iconUrl" alt="" draggable="false"/>
           </div>
           <div class="file-content">
-            <span @click="openfile(item)" class="filename"
-                  :class="shouldBeGray(item)">{{item.basename}}</span>
-            <span @click="openUrl(item)" class="file-url">{{item.finalUrl}}</span>
+            <span class="filename" :class="shouldBeGray(item)"
+                  @click="openfile(item)"
+                  @contextmenu.prevent="copyToClipboard(item.basename)">{{item.basename}}</span>
+            <span class="file-url"
+                  @click="openUrl(item)"
+                  @contextmenu.prevent="copyToClipboard(item.finalUrl)">{{item.finalUrl}}</span>
             <template v-if="item.state === 'in_progress'">
               <span class="receivedSize info">{{getFormattedSize(item.bytesReceived)}}</span>
               <template v-if="item.totalBytes !== 0">
@@ -405,6 +408,20 @@
           pattern = pattern.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) :
             (("00" + o[k]).substr(("" + o[k]).length)))
       return pattern
+    },
+
+    /**
+     * 复制内容到剪切板
+     * @param text String 需要复制到剪切板的内容，字符串类型
+     */
+    copyToClipboard(text) {
+      if (text) {
+        this.$copyText(text).then(e => {
+          console.log('copied', e)
+        }, e => {
+          console.log('failed to copy', e)
+        })
+      }
     }
   }
 }
