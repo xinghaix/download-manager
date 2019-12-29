@@ -30,5 +30,21 @@
   "day": {
     "message": "剩余{}天",
     "description": "剩余时间显示"
+  },
+  "closeTooltip": {
+    "message": "停止显示文字提示框",
+    "description": "在下载管理页面上鼠标移动到按钮上时，停止显示文字提示框"
+  },
+  "clearList": {
+    "message": "清空列表",
+    "description": "清空下载文件列表"
+  },
+  "openDownloadFolder": {
+    "message": "打开下载文件夹",
+    "description": "在资源管理器中打开下载文件夹"
+  },
+  "openSettings": {
+    "message": "插件设置",
+    "description": "在新标签页打开插件设置"
   }
 }

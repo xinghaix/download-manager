@@ -3,15 +3,21 @@
     <div class="header">
       <el-input class="search" size="mini" suffix-icon="el-icon-search" v-model="searchContent"/>
       <div class="header-operator">
-        <button class="header-button icon-button" @click="eraseAll">
-          <i class="el-icon-circle-close"/>
-        </button>
-        <button class="header-button icon-button" @click="openFolder">
-          <i class="el-icon-folder"/>
-        </button>
-        <button class="header-button icon-button" @click="openOptions">
-          <i class="el-icon-setting"/>
-        </button>
+        <el-tooltip :disabled="closeToolTip" :content="clearListContent" placement="bottom" effect="light">
+          <button class="header-button icon-button" @click="eraseAll">
+            <i class="el-icon-circle-close"/>
+          </button>
+        </el-tooltip>
+        <el-tooltip :disabled="closeToolTip" :content="openDownloadFolderContent" placement="bottom" effect="light">
+          <button class="header-button icon-button" @click="openFolder">
+            <i class="el-icon-folder"/>
+          </button>
+        </el-tooltip>
+        <el-tooltip :disabled="closeToolTip" :content="openSettingsContent" placement="bottom" effect="light">
+          <button class="header-button icon-button" @click="openOptions">
+            <i class="el-icon-setting"/>
+          </button>
+        </el-tooltip>
       </div>
     </div>
     <div class="content">
@@ -125,11 +131,17 @@
     return {
       searchContent: '',
       downloadItems: [],
+
       second: common.loadI18nMessage('second'),
       minute: common.loadI18nMessage('minute'),
       hour: common.loadI18nMessage('hour'),
       day: common.loadI18nMessage('day'),
-      isEnglish: chrome.i18n.getUILanguage().startsWith('en')
+
+      clearListContent: common.loadI18nMessage('clearList'),
+      openDownloadFolderContent: common.loadI18nMessage('openDownloadFolder'),
+      openSettingsContent: common.loadI18nMessage('openSettings'),
+
+      closeToolTip: false,
     }
   },
   watch: {
@@ -436,6 +448,7 @@
 
   .header {
     margin: 9px 6px 0 6px;
+    display: inline-block;
   }
 
   .search {
@@ -459,6 +472,11 @@
   }
   .header .header-operator {
     float: right;
+  }
+  .header .header-button:hover i {
+    color: black;
+    font-weight: bold;
+    transition: .2s;
   }
 
   .icon-button {
@@ -628,5 +646,10 @@
 
   .footer {
     /*height: 6px;*/
+  }
+
+  body >>> .el-tooltip__popper {
+    padding: 4px;
+    font-size: 6px;
   }
 </style>
