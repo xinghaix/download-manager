@@ -46,5 +46,85 @@
   "openSettings": {
     "message": "插件设置",
     "description": "在新标签页打开插件设置"
+  },
+  "openFileInFolder": {
+    "message": "打开文件夹",
+    "description": "在文件夹中打开文件"
+  },
+  "pause": {
+    "message": "暂停",
+    "description": "暂停下载"
+  },
+  "resume": {
+    "message": "恢复下载",
+    "description": "恢复下载处在暂停中的文件"
+  },
+  "delete": {
+    "message": "删除",
+    "description": "从磁盘中删除文件"
+  },
+  "erase": {
+    "message": "取消",
+    "description": "取消下载或在列表清除文件"
+  },
+  "copied": {
+    "message": "已复制",
+    "description": "已经复制到剪切板"
+  },
+  "downloadSetting": {
+    "message": "下载",
+    "description": "插件设置说明"
+  },
+  "leftClickFileSetting": {
+    "message": "鼠标左键点击文件名时打开文件",
+    "description": "插件设置说明"
+  },
+  "rightClickFileSetting": {
+    "message": "鼠标右键点击文件名时复制到剪切板",
+    "description": "插件设置说明"
+  },
+  "leftClickUrlSetting": {
+    "message": "鼠标左键点击下载链接时可在新界面打开",
+    "description": "插件设置说明"
+  },
+  "rightClickUrlSetting": {
+    "message": "鼠标右键点击下载链接时复制到剪切板",
+    "description": "插件设置说明"
+  },
+  "showTooltipSetting": {
+    "message": "鼠标移动到按钮上时显示提示信息",
+    "description": "插件设置说明"
+  },
+  "syncSetting": {
+    "message": "同步",
+    "description": "插件设置说明"
+  },
+  "pluginSyncSetting": {
+    "message": "同步插件设置",
+    "description": "插件设置说明"
+  },
+  "pluginSyncDetailedSetting": {
+    "message": "鼠标左键点击文件名时打开文件",
+    "description": "已登录谷歌账号时，可在不同的基于谷歌内核的浏览器之间同步插件设置"
+  },
+  "aboutTile": {
+    "message": "关于",
+    "description": "关于标签页说明"
+  },
+  "starAbout1": {
+    "message": "觉得不错，去",
+    "description": "关于标签页说明"
+  },
+  "pluginShopAbout": {
+    "message": "应用商店",
+    "description": "关于标签页说明"
+  },
+  "starAbout2": {
+    "message": "评个分吧",
+    "description": "关于标签页说明"
+  },
+  "versionAbout": {
+    "message": "版本历史",
+    "description": "关于标签页说明"
   }
 }

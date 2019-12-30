@@ -16,35 +16,115 @@
     "description": "Some information about the plugin"
   },
   "second": {
-    "message": "{} second left",
+    "message": "{} seconds left",
     "description": "remaining time display"
   },
   "minute": {
-    "message": "{} minute left",
+    "message": "{} minutes left",
     "description": "remaining time display"
   },
   "hour": {
-    "message": "{} hour left",
+    "message": "{} hours left",
     "description": "remaining time display"
   },
   "day": {
-    "message": "{} day left",
+    "message": "{} days left",
     "description": "remaining time display"
   },
   "closeTooltip": {
     "message": "stop showing text prompt box",
-    "description": "On the download management page, when the mouse is moved over the button, the text prompt box stops showing"
+    "description": "on the download management page, when the mouse is moved over the button, the text prompt box stops showing"
   },
   "clearList": {
     "message": "clear list",
-    "description": "Clear download file list"
+    "description": "clear download file list"
   },
   "openDownloadFolder": {
     "message": "open download folder",
-    "description": "Open the download folder in Explorer"
+    "description": "open the download folder in Explorer"
   },
   "openSettings": {
     "message": "plugin settings",
-    "description": "Open plugin settings in a new tab"
+    "description": "open plugin settings in a new tab"
+  },
+  "openFileInFolder": {
+    "message": "open folder",
+    "description": "open file in folder"
+  },
+  "pause": {
+    "message": "pause",
+    "description": "pause download"
+  },
+  "resume": {
+    "message": "resume download",
+    "description": "resume downloading a suspended file"
+  },
+  "delete": {
+    "message": "delete",
+    "description": "delete file from disk"
+  },
+  "erase": {
+    "message": "cancel",
+    "description": "cancel download or clear file from list"
+  },
+  "copied": {
+    "message": "copied",
+    "description": "copied to clipboard"
+  },
+  "downloadSetting": {
+    "message": "Download",
+    "description": "plugin setting instructions"
+  },
+  "leftClickFileSetting": {
+    "message": "Open the file when clicking the file name with the left mouse button",
+    "description": "plugin setting instructions"
+  },
+  "rightClickFileSetting": {
+    "message": "Copy to clipboard when right click on file name",
+    "description": "plugin setting instructions"
+  },
+  "leftClickUrlSetting": {
+    "message": "Open the link when clicking the download link",
+    "description": "plugin setting instructions"
+  },
+  "rightClickUrlSetting": {
+    "message": "Copy to clipboard when right click on download link",
+    "description": "plugin setting instructions"
+  },
+  "showTooltipSetting": {
+    "message": "Display a prompt message when the mouse moves over the button",
+    "description": "plugin setting instructions"
+  },
+  "syncSetting": {
+    "message": "Sync",
+    "description": "plugin setting instructions"
+  },
+  "pluginSyncSetting": {
+    "message": "Sync plugin settings",
+    "description": "plugin setting instructions"
+  },
+  "pluginSyncDetailedSetting": {
+    "message": "When you have logged in to your Google account, you can synchronize plugin settings between different Google Kernel-based browsers",
+    "description": "plugin setting instructions"
+  },
+  "aboutTile": {
+    "message": "About",
+    "description": "about tab description"
+  },
+  "starAbout1": {
+    "message": "If you feel good, go to the",
+    "description": "about tab description"
+  },
+  "pluginShopAbout": {
+    "message": "app store",
+    "description": "about tab description"
+  },
+  "starAbout2": {
+    "message": "and rate it",
+    "description": "about tab description"
+  },
+  "versionAbout": {
+    "message": "Version",
+    "description": "about tab description"
   }
 }
