@@ -6,12 +6,12 @@
         <div class="item">
           <i class="iconfont el-icon-info"/>
           <span class="prefix">{{extName}}</span>
-          <a class="suffix link" href="https://github.com/zishuangzhu/download-manager">Github</a>
+          <a class="suffix link" @click="openUrl(githubUrl)">Github</a>
         </div>
         <div class="item">
           <i class="iconfont el-icon-star-on"/>
           <span class="prefix">{{starAbout1}}
-            <a class="link" href="https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei">{{pluginShopAbout}}</a>
+            <a class="link" @click="openUrl(chromePluginShopUrl)">{{pluginShopAbout}}</a>
             {{starAbout2}}
           </span>
         </div>
@@ -54,14 +54,20 @@
 </template>
 
 <script>
+  /* eslint-disable no-undef */
+
   import common from "../../utils/common";
 
   export default {
     name: "About",
     props: {
       title: String
-    },data() {
+    },
+    data() {
       return {
+        githubUrl: 'https://github.com/zishuangzhu/download-manager',
+        chromePluginShopUrl: 'https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei',
+
         extName: common.loadI18nMessage('extName'),
         aboutTile: common.loadI18nMessage('aboutTile'),
         starAbout1: common.loadI18nMessage('starAbout1'),
@@ -69,6 +75,12 @@
         starAbout2: common.loadI18nMessage('starAbout2'),
         versionAbout: common.loadI18nMessage('versionAbout'),
       }
+    },
+    methods: {
+      // 在新标签页中打开下载文件链接
+      openUrl (url) {
+        chrome.tabs.create({ url: url })
+      },
     }
   }
 </script>
@@ -135,6 +147,8 @@
   }
   .about-card .item .link {
     color: #ff8740;
+    cursor: pointer;
+    text-decoration: underline;
   }
 
     /* 版本历史信息 卡片 */
