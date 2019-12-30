@@ -104,8 +104,8 @@
     "description": "插件设置说明"
   },
   "pluginSyncDetailedSetting": {
-    "message": "鼠标左键点击文件名时打开文件",
-    "description": "已登录谷歌账号时，可在不同的基于谷歌内核的浏览器之间同步插件设置"
+    "message": "已登录谷歌账号时，可在不同的基于谷歌内核的浏览器之间同步插件设置",
+    "description": "插件设置说明"
   },
   "aboutTile": {
     "message": "关于",
