@@ -95,6 +95,34 @@
     "message": "鼠标移动到按钮上时显示提示信息",
     "description": "插件设置说明"
   },
+  "notificationSetting": {
+    "message": "通知",
+    "description": "插件设置说明"
+  },
+  "downloadNotificationSetting": {
+    "message": "下载通知",
+    "description": "插件设置说明"
+  },
+  "downloadNotificationSetting1": {
+    "message": "关闭",
+    "description": "插件设置说明"
+  },
+  "downloadNotificationSetting2": {
+    "message": "下载开始",
+    "description": "插件设置说明"
+  },
+  "downloadNotificationSetting3": {
+    "message": "下载完成",
+    "description": "插件设置说明"
+  },
+  "downloadNotificationSetting4": {
+    "message": "下载警告",
+    "description": "插件设置说明"
+  },
+  "downloadCompletionToneSetting": {
+    "message": "下载完成提示音",
+    "description": "插件设置说明"
+  },
   "syncSetting": {
     "message": "同步",
     "description": "插件设置说明"

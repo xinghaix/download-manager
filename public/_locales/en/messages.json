@@ -95,6 +95,34 @@
     "message": "Display a prompt message when the mouse moves over the button",
     "description": "plugin setting instructions"
   },
+  "notificationSetting": {
+    "message": "Notification",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationSetting": {
+    "message": "Download notification",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationSetting1": {
+    "message": "close",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationSetting2": {
+    "message": "started",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationSetting3": {
+    "message": "completed",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationSetting4": {
+    "message": "warning",
+    "description": "plugin setting instructions"
+  },
+  "downloadCompletionToneSetting": {
+    "message": "Download completion tone",
+    "description": "plugin setting instructions"
+  },
   "syncSetting": {
     "message": "Sync",
     "description": "plugin setting instructions"
