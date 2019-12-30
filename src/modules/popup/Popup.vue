@@ -259,11 +259,9 @@
         return
       }
 
-      console.log('before: id  ', item.id, ' acceptingDanger ', item.acceptingDanger)
       item.acceptingDanger = true
       chrome.downloads.acceptDanger(item.id, () => {
         item.acceptingDanger = false
-        console.log('after: id  ', item.id, ' acceptingDanger ', item.acceptingDanger)
       })
     },
 
