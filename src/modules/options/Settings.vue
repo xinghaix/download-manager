@@ -3,28 +3,28 @@
     <h2 class="title">{{downloadSetting}}</h2>
     <el-card class="box-card" shadow="hover">
       <div class="item">
-        <div class="content" @click="openFile = !openFile">
+        <div class="content" @click="leftClickFile = !leftClickFile">
           <span class="setting-title">{{leftClickFileSetting}}</span>
         </div>
         <el-switch class="switch" v-model="leftClickFile" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
       <el-divider/>
       <div class="item">
-        <div class="content" @click="copyFileName = !copyFileName">
+        <div class="content" @click="rightClickFile = !rightClickFile">
           <span class="setting-title">{{rightClickFileSetting}}</span>
         </div>
         <el-switch class="switch" v-model="rightClickFile" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
       <el-divider/>
       <div class="item">
-        <div class="content" @click="openUrl = !openUrl">
+        <div class="content" @click="leftClickUrl = !leftClickUrl">
           <div class="setting-title">{{leftClickUrlSetting}}</div>
         </div>
         <el-switch class="switch" v-model="leftClickUrl" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
       <el-divider/>
       <div class="item">
-        <div class="content" @click="copyFileUrl = !copyFileUrl">
+        <div class="content" @click="rightClickUrl = !rightClickUrl">
           <span class="setting-title">{{rightClickUrlSetting}}</span>
         </div>
         <el-switch class="switch" v-model="rightClickUrl" active-color="#409EFF" inactive-color="#bdc1c6"/>

@@ -89,7 +89,7 @@
   components: { Tip },
   mounted () {
     // 初始化插件设置
-    storage.getcloseTooltip(value => this.closeTooltip = !value)
+    storage.getCloseTooltip(value => this.closeTooltip = value)
     storage.getLeftClickFile(value => this.leftClickFile = value)
     storage.getRightClickFile(value => this.rightClickFile = value)
     storage.getLeftClickUrl(value => this.leftClickUrl = value)
