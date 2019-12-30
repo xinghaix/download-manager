@@ -3,15 +3,15 @@
     <div class="header">
       <el-input class="search" size="mini" suffix-icon="el-icon-search" v-model="searchContent"/>
       <div class="header-operator">
-        <el-tooltip :disabled="closeToolTip" :content="clearListContent"
+        <el-tooltip :disabled="closeTooltip" :content="clearListContent"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
             <i class="header-button icon-button el-icon-circle-close" @click="eraseAll"/>
         </el-tooltip>
-        <el-tooltip :disabled="closeToolTip" :content="openDownloadFolderContent"
+        <el-tooltip :disabled="closeTooltip" :content="openDownloadFolderContent"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
             <i class="header-button icon-button el-icon-folder" @click="openFolder"/>
         </el-tooltip>
-        <el-tooltip :disabled="closeToolTip" :content="openSettingsContent"
+        <el-tooltip :disabled="closeTooltip" :content="openSettingsContent"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
             <i class="header-button icon-button el-icon-setting" @click="openOptions"/>
         </el-tooltip>
@@ -51,20 +51,20 @@
             </template>
           </div>
           <div class="content-operator">
-            <el-tooltip :disabled="closeToolTip" :content="openFileInFolderContent"
+            <el-tooltip :disabled="closeTooltip" :content="openFileInFolderContent"
                         placement="top" effect="dark" popper-class="tooltip" :enterable="false">
               <i class="icon-button el-icon-folder" v-show="openable(item)" @click="showInFolder(item)"/>
             </el-tooltip>
-            <el-tooltip :disabled="closeToolTip" :content="item.paused ? resumeContent : pauseContent"
+            <el-tooltip :disabled="closeTooltip" :content="item.paused ? resumeContent : pauseContent"
                         placement="top" effect="dark" popper-class="tooltip" :enterable="false">
               <i v-show="item.state === 'in_progress'" @click="pauseOrResume(item)"
                  class="icon-button" :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"/>
             </el-tooltip>
-            <el-tooltip :disabled="closeToolTip" :content="deleteContent"
+            <el-tooltip :disabled="closeTooltip" :content="deleteContent"
                         placement="top" effect="dark" popper-class="tooltip" :enterable="false">
               <i class="icon-button el-icon-delete" v-show="removable(item)" @click="remove(item)"/>
             </el-tooltip>
-            <el-tooltip :disabled="closeToolTip" :content="eraseContent"
+            <el-tooltip :disabled="closeTooltip" :content="eraseContent"
                         placement="top" effect="dark" popper-class="tooltip" :enterable="false">
               <i class="icon-button el-icon-close" @click="erase(item)"/>
             </el-tooltip>
@@ -89,7 +89,7 @@
   components: { Tip },
   mounted () {
     // 初始化插件设置
-    storage.getCloseTooltip(value => this.showTooltip = !value)
+    storage.getcloseTooltip(value => this.closeTooltip = !value)
     storage.getLeftClickFile(value => this.leftClickFile = value)
     storage.getRightClickFile(value => this.rightClickFile = value)
     storage.getLeftClickUrl(value => this.leftClickUrl = value)
@@ -175,7 +175,7 @@
 
       // 插件设置
       // 鼠标移动到按钮上时是否展示提示信息
-      closeToolTip: true,
+      closeTooltip: true,
       leftClickFile: true,
       leftClickUrl: true,
       rightClickFile: true,
