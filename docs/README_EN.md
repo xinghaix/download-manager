@@ -9,7 +9,7 @@ Click on the plugin icon to see the status of all downloaded files.
 2. Download files can be paused, resumed, cancelled, deleted
 3. Search all downloaded files
 4. When prompted to download a dangerous file
-5. Configuration [Currently it's just a simple interface...]
+5. Right click to copy file name and download link to clipboard
 
 ### **Future plan**
 1. Custom theme
@@ -17,10 +17,14 @@ Click on the plugin icon to see the status of all downloaded files.
 ### **Info**
 [Chrome Webstore Plugin Address](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-**Latest version**：0.5.1
-new features:
-1. When downloading a dangerous file, a prompt box will be displayed to confirm the download
-2. Improve Chinese and English display
+**Latest version**：0.6.0
+
+new feature：
+1. Added the function of right-click copy file name and download link to clipboard
+2. Added the function of displaying text prompts when the mouse moves to the button
+
+modification：
+1. Continue to improve Chinese and English display
 
 <img src="../docs/img/1.png" width="320" hegiht="420" alt=""/>
 
