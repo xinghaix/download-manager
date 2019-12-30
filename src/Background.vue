@@ -56,12 +56,10 @@ export default {
     },
 
     handleDownloadingNumber(num) {
-      localStorage.setItem(new Date().getTime().toString() + '-downloading-watch', val)
       this.setBrowserBadge(num <= 0 ? '' : num)
     },
 
     handleDangerousDownloadingNumber(num) {
-      localStorage.setItem(new Date().getTime().toString() + '-danger-watch', num)
       if (num > 0) {
         // 在下载危险文件时，将图标正在下载中的数字背景设置为红色
         chrome.browserAction.setBadgeBackgroundColor({color: '#FF0000'})
@@ -93,8 +91,6 @@ export default {
         this.downloadingNumber = downloadingNumber
 
         this.dangerousDownloadingNumber = dangerousDownloadingNumber
-
-        localStorage.setItem(new Date().getTime().toString(), this.dangerousDownloadingNumber)
 
         // 使用vue.set更新数据
         this.$set(this.downloadMessage, 'data', items)

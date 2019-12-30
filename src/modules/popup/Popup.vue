@@ -1,22 +1,19 @@
 <template>
-  <div class="home">
+  <div class="home" id="home">
     <div class="header">
       <el-input class="search" size="mini" suffix-icon="el-icon-search" v-model="searchContent"/>
       <div class="header-operator">
-        <el-tooltip :disabled="closeToolTip" :content="clearListContent" placement="bottom" effect="light">
-          <button class="header-button icon-button" @click="eraseAll">
-            <i class="el-icon-circle-close"/>
-          </button>
+        <el-tooltip :disabled="closeToolTip" :content="clearListContent"
+                    placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
+            <i class="header-button icon-button el-icon-circle-close" @click="eraseAll"/>
         </el-tooltip>
-        <el-tooltip :disabled="closeToolTip" :content="openDownloadFolderContent" placement="bottom" effect="light">
-          <button class="header-button icon-button" @click="openFolder">
-            <i class="el-icon-folder"/>
-          </button>
+        <el-tooltip :disabled="closeToolTip" :content="openDownloadFolderContent"
+                    placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
+            <i class="header-button icon-button el-icon-folder" @click="openFolder"/>
         </el-tooltip>
-        <el-tooltip :disabled="closeToolTip" :content="openSettingsContent" placement="bottom" effect="light">
-          <button class="header-button icon-button" @click="openOptions">
-            <i class="el-icon-setting"/>
-          </button>
+        <el-tooltip :disabled="closeToolTip" :content="openSettingsContent"
+                    placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
+            <i class="header-button icon-button el-icon-setting" @click="openOptions"/>
         </el-tooltip>
       </div>
     </div>
@@ -31,11 +28,11 @@
           </div>
           <div class="file-content">
             <span class="filename" :class="shouldBeGray(item)"
-                  @click="openfile(item)"
-                  @contextmenu.prevent="copyToClipboard(item.basename)">{{item.basename}}</span>
+                  @click="leftClickFile && openfile(item)"
+                  @contextmenu.prevent="rightClickFile && copyToClipboard(item.basename, $event)">{{item.basename}}</span>
             <span class="file-url"
-                  @click="openUrl(item)"
-                  @contextmenu.prevent="copyToClipboard(item.finalUrl)">{{item.finalUrl}}</span>
+                  @click="leftClickUrl && openUrl(item)"
+                  @contextmenu.prevent="rightClickUrl && copyToClipboard(item.finalUrl, $event)">{{item.finalUrl}}</span>
             <template v-if="item.state === 'in_progress'">
               <span class="receivedSize info">{{getFormattedSize(item.bytesReceived)}}</span>
               <template v-if="item.totalBytes !== 0">
@@ -53,36 +50,51 @@
               <span class="startTime info">{{dateFormat(item.startTime, 'MM/dd hh:mm')}}</span>
             </template>
           </div>
-          <div class="operator">
-            <button class="icon-button" v-show="openable(item)" @click="showInFolder(item)">
-              <i class="el-icon-folder"/>
-            </button>
-            <button class="icon-button" v-show="item.state === 'in_progress'" @click="pauseOrResume(item)">
-              <i :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"/>
-            </button>
-            <button class="icon-button" v-show="removable(item)" @click="remove(item)">
-              <i class="el-icon-delete"/>
-            </button>
-            <button class="icon-button" @click="erase(item)">
-              <i class="el-icon-close"/>
-            </button>
+          <div class="content-operator">
+            <el-tooltip :disabled="closeToolTip" :content="openFileInFolderContent"
+                        placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+              <i class="icon-button el-icon-folder" v-show="openable(item)" @click="showInFolder(item)"/>
+            </el-tooltip>
+            <el-tooltip :disabled="closeToolTip" :content="item.paused ? resumeContent : pauseContent"
+                        placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+              <i v-show="item.state === 'in_progress'" @click="pauseOrResume(item)"
+                 class="icon-button" :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"/>
+            </el-tooltip>
+            <el-tooltip :disabled="closeToolTip" :content="deleteContent"
+                        placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+              <i class="icon-button el-icon-delete" v-show="removable(item)" @click="remove(item)"/>
+            </el-tooltip>
+            <el-tooltip :disabled="closeToolTip" :content="eraseContent"
+                        placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+              <i class="icon-button el-icon-close" @click="erase(item)"/>
+            </el-tooltip>
           </div>
         </div>
       </el-scrollbar>
+      <el-backtop target=".content .el-scrollbar__wrap" visibilityHeight="100"/>
+      <tip :text="copiedContent" :x="tipX" :y="tipY"/>
     </div>
-
-    <div class="footer"></div>
   </div>
 </template>
 
 <!--suppress UnterminatedStatementJS, JSUnresolvedVariable, ES6ModulesDependencies, JSUnresolvedFunction -->
 <script>
   /* eslint-disable no-undef */
-  import common from "../../utils/common";
+  import common from "../../utils/common"
+  import Tip from "./Tip"
+  import storage from "../../utils/storage";
 
   export default {
   name: 'Popup',
+  components: { Tip },
   mounted () {
+    // 初始化插件设置
+    storage.getCloseTooltip(value => this.showTooltip = !value)
+    storage.getLeftClickFile(value => this.leftClickFile = value)
+    storage.getRightClickFile(value => this.rightClickFile = value)
+    storage.getLeftClickUrl(value => this.leftClickUrl = value)
+    storage.getRightClickUrl(value => this.rightClickUrl = value)
+
     // 获取下载文件信息
     this.render()
 
@@ -126,22 +138,48 @@
         this.erase(item)
       }
     })
+
+    // 当组件一开始为创建时，tooltip显示内容无法通过I18N读取说明，只能是加载时默认初始化一次
+    this.openFileInFolderContent = common.loadI18nMessage('openFileInFolder')
+    this.pauseContent = common.loadI18nMessage('pause')
+    this.resumeContent = common.loadI18nMessage('resume')
+    this.deleteContent = common.loadI18nMessage('delete')
+    this.eraseContent = common.loadI18nMessage('erase')
   },
   data () {
     return {
       searchContent: '',
       downloadItems: [],
 
-      second: common.loadI18nMessage('second'),
-      minute: common.loadI18nMessage('minute'),
-      hour: common.loadI18nMessage('hour'),
-      day: common.loadI18nMessage('day'),
+      secondContent: common.loadI18nMessage('second'),
+      minuteContent: common.loadI18nMessage('minute'),
+      hourContent: common.loadI18nMessage('hour'),
+      dayContent: common.loadI18nMessage('day'),
 
       clearListContent: common.loadI18nMessage('clearList'),
       openDownloadFolderContent: common.loadI18nMessage('openDownloadFolder'),
       openSettingsContent: common.loadI18nMessage('openSettings'),
 
-      closeToolTip: false,
+      openFileInFolderContent: '',
+      pauseContent: '',
+      resumeContent: '',
+      deleteContent: '',
+      eraseContent: '',
+
+
+
+      // 复制文件名和文件链接时的弹框设置
+      tipX: 0,
+      tipY: 0,
+      copiedContent: common.loadI18nMessage('copied'),
+
+      // 插件设置
+      // 鼠标移动到按钮上时是否展示提示信息
+      closeToolTip: true,
+      leftClickFile: true,
+      leftClickUrl: true,
+      rightClickFile: true,
+      rightClickUrl: true,
     }
   },
   watch: {
@@ -375,42 +413,48 @@
 
     remaining (item) {
       if (!item.estimatedEndTime) {
-        return '剩余0s'
+        return this.secondContent.replace('{}', 0)
       }
 
       // 预估剩余时间 - 当前时间 = 剩余时间 (ms)
       let remaining = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
       if (remaining <= 0) {
-        remaining = '0秒'
+        return this.secondContent.replace('{}', remaining)
       } else if (remaining < 60) {
-        remaining = remaining.toFixed(0) + '秒'
+        return this.secondContent.replace('{}', remaining.toFixed(0))
       } else {
         remaining = remaining / 60
         if (remaining < 60) {
-          remaining = remaining.toFixed(0) + '分钟'
+          return this.minuteContent.replace('{}', remaining.toFixed(0))
         } else {
           remaining = remaining / 60
           if (remaining < 24) {
-            remaining = remaining.toFixed(0) + '小时'
+            return this.minuteContent.replace('{}', remaining.toFixed(0))
           } else {
-            remaining = (remaining / 24).toFixed(0) + '天'
+            return this.minuteContent.replace('{}', (remaining / 24).toFixed(0))
           }
         }
       }
-      return '剩余' + remaining
     },
 
     // 日期格式化
     dateFormat (time, pattern) {
       const date = new Date(time)
       const o = {
-        "M+" : date.getMonth() + 1,                   //月份
-        "d+" : date.getDate(),                        //日
-        "h+" : date.getHours(),                       //小时
-        "m+" : date.getMinutes(),                     //分
-        "s+" : date.getSeconds(),                     //秒
-        "q+" : Math.floor((date.getMonth() + 3) / 3), //季度
-        "S"  : date.getMilliseconds()                 //毫秒
+        // 月份
+        "M+" : date.getMonth() + 1,
+        // 日
+        "d+" : date.getDate(),
+        // 小时
+        "h+" : date.getHours(),
+        // 分
+        "m+" : date.getMinutes(),
+        // 秒
+        "s+" : date.getSeconds(),
+        // 季度
+        "q+" : Math.floor((date.getMonth() + 3) / 3),
+        // 毫秒
+        "S"  : date.getMilliseconds()
       }
 
       if(/(y+)/.test(pattern))
@@ -425,12 +469,14 @@
     /**
      * 复制内容到剪切板
      * @param text String 需要复制到剪切板的内容，字符串类型
+     * @param event 鼠标事件
      */
-    copyToClipboard(text) {
+    copyToClipboard(text, event) {
+      this.tipX = event.clientX
+      this.tipY = event.clientY
       if (text) {
-        this.$copyText(text).then(e => {
-          console.log('copied', e)
-        }, e => {
+        this.$copyText(text).then(() => {}, e => {
+          // todo
           console.log('failed to copy', e)
         })
       }
@@ -440,10 +486,10 @@
 </script>
 
 <!--suppress CssUnusedSymbol -->
-<style scoped rel="stylesheet/css">
+<style scoped rel="stylesheet/scss">
   .home {
     width: 360px;
-    height: 374px;
+    height: 377px;
   }
 
   .header {
@@ -463,37 +509,21 @@
     line-height: 24px;
   }
 
-  .header .header-button {
-    line-height: 2;
-    margin-left: 6px;
-  }
-  .header .header-button i {
-    font-size: 17px;
-  }
   .header .header-operator {
     float: right;
-  }
-  .header .header-button:hover i {
-    color: black;
-    font-weight: bold;
-    transition: .2s;
+    margin-left: 64px;
   }
 
   .icon-button {
-    line-height: 1.5;
-    width: 16px;
-    border: none;
-    background: none;
-    outline: 0;
-    margin-right: 8px;
+    margin: 4px 0 0 10px;
+    display: inline-block;
     cursor: pointer;
-  }
-  .icon-button i {
+    font-size: 17px;
     color: grey;
-    font-size: 14px;
+    -webkit-transition: .2s;
     transition: .2s;
   }
-  .icon-button i:hover {
+  .icon-button:hover {
     color: black;
     font-weight: bold;
     transition: .2s;
@@ -502,8 +532,6 @@
   .content {
     margin-top: 4px;
     height: 340px;
-    /*min-height: 50px;*/
-    /*max-height: 340px;*/
   }
 
   .content-scrollbar {
@@ -516,7 +544,7 @@
     overflow-y: scroll;
   }
   .content-scrollbar >>> .el-scrollbar__bar.is-vertical {
-    width: 4px;
+    width: 6px;
     right: 0;
   }
 
@@ -546,7 +574,7 @@
   .icon {
     text-align: center;
     line-height: 86px;
-    width: 54px;
+    width: 52px;
     height: 100%;
     border-right: 1px solid #ebeef5;
     float: left;
@@ -567,14 +595,14 @@
   .progress {
     position: absolute;
     top: 15px;
-    left: 6px;
+    left: 5px;
   }
   .progress >>> .el-progress__text {
     display: none;
   }
 
   .file-content {
-    width: 280px;
+    width: 286px;
     height: 100%;
     float: right;
   }
@@ -583,7 +611,7 @@
     display: block;
     margin-top: 9px;
     padding-right: 8px;
-    height: 16px;
+    height: 18px;
     font-weight: bold;
     color: #3a8ee6;
     white-space: nowrap;
@@ -602,8 +630,7 @@
   .file-url {
     display: block;
     padding-right: 8px;
-    margin-top: 1px;
-    height: 16px;
+    height: 18px;
     color: gray;
     white-space: nowrap;
     overflow: hidden;
@@ -630,26 +657,28 @@
   }
   .speed {
     position: absolute;
-    top: 42px;
+    top: 45px;
     right: 124px;
   }
 
-  .operator {
+  /* 内容栏 操作按钮 父元素*/
+  .content-operator {
     position: absolute;
     top: 0;
-    right: 4px;
+    right: 8px;
     background-color: #fff;
     height: 28px;
     line-height: 36px;
-    z-index: 10;
+    z-index: 1;
+  }
+  /* 内容栏 操作按钮*/
+  .content-operator .icon-button {
+    font-size: 14px!important;
   }
 
-  .footer {
-    /*height: 6px;*/
+  .content >>> .el-backtop {
+    right: 16px!important;
+    bottom: 20px!important;
   }
 
-  body >>> .el-tooltip__popper {
-    padding: 4px;
-    font-size: 6px;
-  }
 </style>

@@ -6,28 +6,28 @@
         <div class="content" @click="openFile = !openFile">
           <span class="setting-title">{{leftClickFileSetting}}</span>
         </div>
-        <el-switch class="switch" v-model="openFile" active-color="#409EFF" inactive-color="#bdc1c6"/>
+        <el-switch class="switch" v-model="leftClickFile" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
       <el-divider/>
       <div class="item">
         <div class="content" @click="copyFileName = !copyFileName">
           <span class="setting-title">{{rightClickFileSetting}}</span>
         </div>
-        <el-switch class="switch" v-model="copyFileName" active-color="#409EFF" inactive-color="#bdc1c6"/>
+        <el-switch class="switch" v-model="rightClickFile" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
       <el-divider/>
       <div class="item">
         <div class="content" @click="openUrl = !openUrl">
           <div class="setting-title">{{leftClickUrlSetting}}</div>
         </div>
-        <el-switch class="switch" v-model="openUrl" active-color="#409EFF" inactive-color="#bdc1c6"/>
+        <el-switch class="switch" v-model="leftClickUrl" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
       <el-divider/>
       <div class="item">
         <div class="content" @click="copyFileUrl = !copyFileUrl">
           <span class="setting-title">{{rightClickUrlSetting}}</span>
         </div>
-        <el-switch class="switch" v-model="copyFileUrl" active-color="#409EFF" inactive-color="#bdc1c6"/>
+        <el-switch class="switch" v-model="rightClickUrl" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
       <el-divider/>
       <div class="item">
@@ -65,27 +65,39 @@
       },
 
       showTooltip (val) {
-        console.log('settings tooltip', val)
-        storage.setCloseTooltip(val)
-      }
+        storage.setCloseTooltip(!val)
+      },
+
+      leftClickFile (val) {
+        storage.setLeftClickFile(val)
+      },
+
+      rightClickFile (val) {
+        storage.setRightClickFile(val)
+      },
+
+      leftClickUrl (val) {
+        storage.setLeftClickUrl(val)
+      },
+
+      rightClickUrl (val) {
+        storage.setRightClickUrl(val)
+      },
     },
     mounted() {
-      storage.getSync((value) => {
-        this.isSync = value
-      })
-
-      storage.getCloseTooltip((value) => {
-        console.log(value)
-        this.showTooltip = !value
-      })
-
+      storage.getSync(value => this.isSync = value)
+      storage.getCloseTooltip(value => this.showTooltip = !value)
+      storage.getLeftClickFile(value => this.leftClickFile = value)
+      storage.getRightClickFile(value => this.rightClickFile = value)
+      storage.getLeftClickUrl(value => this.leftClickUrl = value)
+      storage.getRightClickUrl(value => this.rightClickUrl = value)
     },
     data() {
       return {
-        openFile: true,
-        copyFileName: true,
-        copyFileUrl: true,
-        openUrl: true,
+        leftClickFile: true,
+        leftClickUrl: true,
+        rightClickFile: true,
+        rightClickUrl: true,
         showTooltip: false,
         isSync: true,
 
