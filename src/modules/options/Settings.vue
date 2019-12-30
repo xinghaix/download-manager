@@ -1,41 +1,48 @@
 <template>
   <div class="home">
-    <h2 class="title">下载</h2>
+    <h2 class="title">{{downloadSetting}}</h2>
     <el-card class="box-card" shadow="hover">
       <div class="item">
-        <div class="content">
-          <span class="setting-title">鼠标左键点击文件名时打开文件</span>
+        <div class="content" @click="openFile = !openFile">
+          <span class="setting-title">{{leftClickFileSetting}}</span>
         </div>
         <el-switch class="switch" v-model="openFile" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
       <el-divider/>
       <div class="item">
-        <div class="content">
-          <span class="setting-title">鼠标右键点击文件名时复制到剪切板</span>
+        <div class="content" @click="copyFileName = !copyFileName">
+          <span class="setting-title">{{rightClickFileSetting}}</span>
         </div>
         <el-switch class="switch" v-model="copyFileName" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
       <el-divider/>
       <div class="item">
-        <div class="content">
-          <div class="setting-title">鼠标左键点击下载链接时可在新界面打开</div>
+        <div class="content" @click="openUrl = !openUrl">
+          <div class="setting-title">{{leftClickUrlSetting}}</div>
         </div>
         <el-switch class="switch" v-model="openUrl" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
       <el-divider/>
       <div class="item">
-        <div class="content">
-          <span class="setting-title">鼠标右键点击下载链接时复制到剪切板</span>
+        <div class="content" @click="copyFileUrl = !copyFileUrl">
+          <span class="setting-title">{{rightClickUrlSetting}}</span>
         </div>
         <el-switch class="switch" v-model="copyFileUrl" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
+      <el-divider/>
+      <div class="item">
+        <div class="content" @click="showTooltip = !showTooltip">
+          <span class="setting-title">{{showTooltipSetting}}</span>
+        </div>
+        <el-switch class="switch" v-model="showTooltip" active-color="#409EFF" inactive-color="#bdc1c6"/>
+      </div>
     </el-card>
-    <h2 class="title">同步</h2>
+    <h2 class="title">{{syncSetting}}</h2>
     <el-card class="box-card" shadow="hover">
       <div class="item">
-        <div class="content">
-          <span class="setting-title description">同步插件设置</span>
-          <span class="setting-description">已登录谷歌账号时，可在不同的基于谷歌内核的浏览器之间同步插件设置</span>
+        <div class="content" @click="isSync = !isSync">
+          <span class="setting-title description">{{pluginSyncSetting}}</span>
+          <span class="setting-description">{{pluginSyncDetailedSetting}}</span>
         </div>
         <el-switch class="switch description" v-model="isSync" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
@@ -45,6 +52,7 @@
 
 <script>
   import storage from "../../utils/storage";
+  import common from "../../utils/common";
 
   export default {
     name: "Settings",
@@ -52,9 +60,25 @@
       title: String
     },
     watch: {
-      isSync(val) {
+      isSync (val) {
         storage.setSync(val)
+      },
+
+      showTooltip (val) {
+        console.log('settings tooltip', val)
+        storage.setCloseTooltip(val)
       }
+    },
+    mounted() {
+      storage.getSync((value) => {
+        this.isSync = value
+      })
+
+      storage.getCloseTooltip((value) => {
+        console.log(value)
+        this.showTooltip = !value
+      })
+
     },
     data() {
       return {
@@ -62,7 +86,18 @@
         copyFileName: true,
         copyFileUrl: true,
         openUrl: true,
-        isSync: true
+        showTooltip: false,
+        isSync: true,
+
+        downloadSetting: common.loadI18nMessage('downloadSetting'),
+        leftClickFileSetting: common.loadI18nMessage('leftClickFileSetting'),
+        rightClickFileSetting: common.loadI18nMessage('rightClickFileSetting'),
+        leftClickUrlSetting: common.loadI18nMessage('leftClickUrlSetting'),
+        rightClickUrlSetting: common.loadI18nMessage('rightClickUrlSetting'),
+        showTooltipSetting: common.loadI18nMessage('showTooltipSetting'),
+        syncSetting: common.loadI18nMessage('syncSetting'),
+        pluginSyncSetting: common.loadI18nMessage('pluginSyncSetting'),
+        pluginSyncDetailedSetting: common.loadI18nMessage('pluginSyncDetailedSetting'),
       }
     },
     methods: {
@@ -122,6 +157,9 @@
   }
   .item .switch:not(.description) {
     top: -2px;
+  }
+  .item:hover {
+    cursor: pointer;
   }
 
   .box-card >>> .el-divider--horizontal {

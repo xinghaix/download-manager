@@ -1,23 +1,34 @@
 <template>
   <div class="home">
-    <h2 class="about title">关于</h2>
+    <h2 class="about title">{{aboutTile}}</h2>
     <el-card class="about-card box-card" shadow="hover">
       <div class="text">
         <div class="item">
           <i class="iconfont el-icon-info"/>
-          <span class="prefix">下载管理器插件</span>
+          <span class="prefix">{{extName}}</span>
           <a class="suffix link" href="https://github.com/zishuangzhu/download-manager">Github</a>
         </div>
         <div class="item">
           <i class="iconfont el-icon-star-on"/>
-          <span class="prefix">觉得不错，去
-            <a class="link" href="https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei">应用商店</a>
-            评个分吧
+          <span class="prefix">{{starAbout1}}
+            <a class="link" href="https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei">{{pluginShopAbout}}</a>
+            {{starAbout2}}
           </span>
         </div>
       </div>
     </el-card>
-    <h2 class="version-header title">版本历史</h2>
+    <h2 class="version-header title">{{versionAbout}}</h2>
+    <el-card class="version-card box-card" shadow="hover">
+      <div slot="header" class="card-header">
+        <span class="version">0.6.0</span>
+        <span class="date"><i class="el-icon-date"/>2019-12-30</span>
+      </div>
+      <div class="text">
+        <div class="item">1. 新增 右键复制文件名和下载链接到剪切板的功能</div>
+        <div class="item">2. 新增 鼠标移动到按钮时显示文字提示的功能</div>
+        <div class="item">3. 继续完善中文和英文显示</div>
+      </div>
+    </el-card>
     <el-card class="version-card box-card" shadow="hover">
       <div slot="header" class="card-header">
         <span class="version">0.5.1</span>
@@ -43,11 +54,22 @@
 </template>
 
 <script>
+  import common from "../../utils/common";
+
   export default {
     name: "About",
     props: {
       title: String
-    },
+    },data() {
+      return {
+        extName: common.loadI18nMessage('extName'),
+        aboutTile: common.loadI18nMessage('aboutTile'),
+        starAbout1: common.loadI18nMessage('starAbout1'),
+        pluginShopAbout: common.loadI18nMessage('pluginShopAbout'),
+        starAbout2: common.loadI18nMessage('starAbout2'),
+        versionAbout: common.loadI18nMessage('versionAbout'),
+      }
+    }
   }
 </script>
 
