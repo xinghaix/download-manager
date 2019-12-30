@@ -20,7 +20,7 @@
     <h2 class="version-header title">{{versionAbout}}</h2>
     <el-card class="version-card box-card" shadow="hover">
       <div slot="header" class="card-header">
-        <span class="version">0.6.1</span>
+        <span class="version">0.6.2</span>
         <span class="date"><i class="el-icon-date"/>2019-12-30</span>
       </div>
       <div class="text">
