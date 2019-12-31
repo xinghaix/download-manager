@@ -18,38 +18,17 @@
       </div>
     </el-card>
     <h2 class="version-header title">{{versionAbout}}</h2>
-    <el-card class="version-card box-card" shadow="hover">
-      <div slot="header" class="card-header">
-        <span class="version">0.6.2</span>
-        <span class="date"><i class="el-icon-date"/>2019-12-30</span>
-      </div>
-      <div class="text">
-        <div class="item">1. 新增 右键复制文件名和下载链接到剪切板的功能</div>
-        <div class="item">2. 新增 鼠标移动到按钮时显示文字提示的功能</div>
-        <div class="item">3. 继续完善中文和英文显示</div>
-      </div>
-    </el-card>
-    <el-card class="version-card box-card" shadow="hover">
-      <div slot="header" class="card-header">
-        <span class="version">0.5.1</span>
-        <span class="date"><i class="el-icon-date"/>2019-12-13</span>
-      </div>
-      <div class="text">
-        <div class="item">1. 下载危险文件时会显示是否确认下载的提示框</div>
-        <div class="item">2. 完善中文和英文显示</div>
-      </div>
-    </el-card>
-    <el-card class="version-card box-card" shadow="hover">
-      <div slot="header" class="card-header">
-        <span class="version">0.4</span>
-        <span class="date"><i class="el-icon-date"/>2019-09-30</span>
-      </div>
-      <div class="text">
-        <div class="item">1. 下载文件百分比进度显示</div>
-        <div class="item">2. 下载文件可暂停、恢复下载、取消、删除</div>
-        <div class="item">3. 搜索所有已经下载的文件</div>
-      </div>
-    </el-card>
+    <template v-for="versionData in versionList">
+      <el-card class="version-card box-card" shadow="hover" v-bind:key="versionData">
+        <div slot="header" class="card-header">
+          <span class="version">{{versionData.version}}</span>
+          <span class="date"><i class="el-icon-date"/>{{versionData.date}}</span>
+        </div>
+        <div class="text" v-for="tip in versionData.data" v-bind:key="tip">
+          <div class="item">{{tip}}</div>
+        </div>
+      </el-card>
+    </template>
   </div>
 </template>
 
@@ -74,6 +53,13 @@
         pluginShopAbout: common.loadI18nMessage('pluginShopAbout'),
         starAbout2: common.loadI18nMessage('starAbout2'),
         versionAbout: common.loadI18nMessage('versionAbout'),
+
+        versionList: [
+          JSON.parse(common.loadI18nMessage('version0_7_0')),
+          JSON.parse(common.loadI18nMessage('version0_6_2')),
+          JSON.parse(common.loadI18nMessage('version0_5_1')),
+          JSON.parse(common.loadI18nMessage('version0_4')),
+        ],
       }
     },
     methods: {

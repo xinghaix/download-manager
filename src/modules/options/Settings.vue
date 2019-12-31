@@ -41,7 +41,7 @@
     <h2 class="title">{{notificationSetting}}</h2>
     <el-card class="box-card" shadow="hover">
       <div class="item">
-        <div class="content" style="cursor: auto!important;width: 275px!important">
+        <div class="content" style="cursor: auto!important;width: 274px!important">
           <span class="setting-title">{{downloadNotificationSetting}}</span>
         </div>
         <div class="switch">

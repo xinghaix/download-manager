@@ -140,7 +140,7 @@
     "description": "about tab description"
   },
   "starAbout1": {
-    "message": "If you feel good, go to the",
+    "message": "If you think this plugin is good, please go to the",
     "description": "about tab description"
   },
   "pluginShopAbout": {
@@ -154,5 +154,21 @@
   "versionAbout": {
     "message": "Version",
     "description": "about tab description"
+  },
+  "version0_7_0": {
+    "message": "{\"version\": \"0.7.0\", \"date\": \"2020-01-01\",\"data\": [\"1. Added notification during download\",\"2. Added download completion tone\",\"3. Chinese and English display of all pages\"]}",
+    "description": "Version Description"
+  },
+  "version0_6_2": {
+    "message": "{\"version\": \"0.6.2\", \"date\": \"2019-12-30\",\"data\": [\"1. Added the function of right-click to copy file name and download link to clipboard\",\"2. Added the function of displaying text prompts when the mouse moves to the button\",\"3. Continue to improve Chinese and English display\"]}",
+    "description": "Version Description"
+  },
+  "version0_5_1": {
+    "message": "{\"version\": \"0.5.1\", \"date\": \"2019-12-13\",\"data\": [\"1. When downloading a dangerous file, a prompt box will be displayed to confirm the download\",\"2. Improve Chinese and English display\"]}",
+    "description": "Version Description"
+  },
+  "version0_4": {
+    "message": "{\"version\": \"0.4\", \"date\": \"2019-09-30\",\"data\": [\"1. Download file percentage progress display\",\"2. Download files can be paused, resumed, cancelled, deleted\",\"3. Search all downloaded files\"]}",
+    "description": "Version Description"
   }
 }
