@@ -18,14 +18,14 @@
 ### **Info**
 [谷歌浏览器插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-#### **最新版本**：0.6.0
+#### **最新版本**：0.7.0
 
 新增功能：
-1. 新增右键复制文件名和下载链接到剪切板的功能
-2. 新增鼠标移动到按钮时显示文字提示的功能
+1. 下载过程中通知
+2. 下载完成提示音
 
 完善：
-1. 继续完善中文和英文显示
+1. 全部页面实现中英文显示
 
 
 <img src="docs/img/1.png" width="320" hegiht="420" alt=""/>
