@@ -112,33 +112,49 @@
           this.downloadCompletedNotification = false
           this.downloadWarningNotification = false
         }
+        storage.setCloseDownloadNotification(val)
       },
 
       downloadStartedNotification (val) {
         if (val) {
           this.closeDownloadNotification = false
         }
+        storage.setDownloadStartedNotification(val)
       },
 
       downloadCompletedNotification (val) {
         if (val) {
           this.closeDownloadNotification = false
         }
+        storage.setDownloadCompletedNotification(val)
       },
 
       downloadWarningNotification (val) {
         if (val) {
           this.closeDownloadNotification = false
         }
+        storage.setDownloadWarningNotification(val)
       },
+
+      downloadCompletionTone (val) {
+        storage.setDownloadCompletionTone(val)
+      }
     },
     mounted() {
-      storage.getSync(value => this.isSync = value)
-      storage.getCloseTooltip(value => this.showTooltip = !value)
+      // 获取插件设置
       storage.getLeftClickFile(value => this.leftClickFile = value)
       storage.getRightClickFile(value => this.rightClickFile = value)
       storage.getLeftClickUrl(value => this.leftClickUrl = value)
       storage.getRightClickUrl(value => this.rightClickUrl = value)
+      storage.getCloseTooltip(value => this.showTooltip = !value)
+
+      storage.getCloseDownloadNotification(value => this.closeDownloadNotification = value)
+      storage.getDownloadStartedNotification(value => this.downloadStartedNotification = value)
+      storage.getDownloadCompletedNotification(value => this.downloadCompletedNotification = value)
+      storage.getDownloadWarningNotification(value => this.downloadWarningNotification = value)
+      storage.getDownloadCompletionTone(value => this.downloadCompletionTone = value)
+
+      storage.getSync(value => this.isSync = value)
     },
     data() {
       return {
@@ -147,12 +163,14 @@
         rightClickFile: true,
         rightClickUrl: true,
         showTooltip: false,
-        isSync: true,
-        downloadCompletionTone: false,
+
         closeDownloadNotification: true,
         downloadStartedNotification: false,
         downloadCompletedNotification: false,
         downloadWarningNotification: false,
+        downloadCompletionTone: false,
+
+        isSync: true,
 
         downloadSetting: common.loadI18nMessage('downloadSetting'),
         leftClickFileSetting: common.loadI18nMessage('leftClickFileSetting'),
@@ -160,6 +178,7 @@
         leftClickUrlSetting: common.loadI18nMessage('leftClickUrlSetting'),
         rightClickUrlSetting: common.loadI18nMessage('rightClickUrlSetting'),
         showTooltipSetting: common.loadI18nMessage('showTooltipSetting'),
+
         notificationSetting: common.loadI18nMessage('notificationSetting'),
         downloadNotificationSetting: common.loadI18nMessage('downloadNotificationSetting'),
         downloadNotificationSetting1: common.loadI18nMessage('downloadNotificationSetting1'),
@@ -167,6 +186,7 @@
         downloadNotificationSetting3: common.loadI18nMessage('downloadNotificationSetting3'),
         downloadNotificationSetting4: common.loadI18nMessage('downloadNotificationSetting4'),
         downloadCompletionToneSetting: common.loadI18nMessage('downloadCompletionToneSetting'),
+
         syncSetting: common.loadI18nMessage('syncSetting'),
         pluginSyncSetting: common.loadI18nMessage('pluginSyncSetting'),
         pluginSyncDetailedSetting: common.loadI18nMessage('pluginSyncDetailedSetting'),
