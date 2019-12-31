@@ -40,15 +40,14 @@
     </el-card>
     <h2 class="title">{{notificationSetting}}</h2>
     <el-card class="box-card" shadow="hover">
-      <div class="item">
-        <div class="content" style="cursor: auto!important;width: 274px!important">
+      <div class="item" style="cursor: auto!important;">
+        <div class="content" style="width: 300px!important">
           <span class="setting-title">{{downloadNotificationSetting}}</span>
         </div>
         <div class="switch">
-          <el-checkbox-button :label="downloadNotificationSetting1" v-model="closeDownloadNotification"/>
-          <el-checkbox-button :label="downloadNotificationSetting2" v-model="downloadStartedNotification"/>
-          <el-checkbox-button :label="downloadNotificationSetting3" v-model="downloadCompletedNotification"/>
-          <el-checkbox-button :label="downloadNotificationSetting4" v-model="downloadWarningNotification"/>
+          <el-checkbox-button :label="downloadNotificationSetting1" v-model="downloadStartedNotification"/>
+          <el-checkbox-button :label="downloadNotificationSetting2" v-model="downloadCompletedNotification"/>
+          <el-checkbox-button :label="downloadNotificationSetting3" v-model="downloadWarningNotification"/>
         </div>
       </div>
       <el-divider/>
@@ -106,33 +105,15 @@
         storage.setRightClickUrl(val)
       },
 
-      closeDownloadNotification (val) {
-        if (val) {
-          this.downloadStartedNotification = false
-          this.downloadCompletedNotification = false
-          this.downloadWarningNotification = false
-        }
-        storage.setCloseDownloadNotification(val)
-      },
-
       downloadStartedNotification (val) {
-        if (val) {
-          this.closeDownloadNotification = false
-        }
         storage.setDownloadStartedNotification(val)
       },
 
       downloadCompletedNotification (val) {
-        if (val) {
-          this.closeDownloadNotification = false
-        }
         storage.setDownloadCompletedNotification(val)
       },
 
       downloadWarningNotification (val) {
-        if (val) {
-          this.closeDownloadNotification = false
-        }
         storage.setDownloadWarningNotification(val)
       },
 
@@ -148,7 +129,6 @@
       storage.getRightClickUrl(value => this.rightClickUrl = value)
       storage.getCloseTooltip(value => this.showTooltip = !value)
 
-      storage.getCloseDownloadNotification(value => this.closeDownloadNotification = value)
       storage.getDownloadStartedNotification(value => this.downloadStartedNotification = value)
       storage.getDownloadCompletedNotification(value => this.downloadCompletedNotification = value)
       storage.getDownloadWarningNotification(value => this.downloadWarningNotification = value)
@@ -164,7 +144,6 @@
         rightClickUrl: true,
         showTooltip: false,
 
-        closeDownloadNotification: true,
         downloadStartedNotification: false,
         downloadCompletedNotification: false,
         downloadWarningNotification: false,
@@ -184,7 +163,6 @@
         downloadNotificationSetting1: common.loadI18nMessage('downloadNotificationSetting1'),
         downloadNotificationSetting2: common.loadI18nMessage('downloadNotificationSetting2'),
         downloadNotificationSetting3: common.loadI18nMessage('downloadNotificationSetting3'),
-        downloadNotificationSetting4: common.loadI18nMessage('downloadNotificationSetting4'),
         downloadCompletionToneSetting: common.loadI18nMessage('downloadCompletionToneSetting'),
 
         syncSetting: common.loadI18nMessage('syncSetting'),
@@ -218,43 +196,32 @@
     padding: 10px 16px;
   }
   .box-card .item {
-    display: inline-block;
-    height: 32px;
-    line-height: 32px;
+    display: table;
+    height: 100%;
     font-size: 14px;
+    width: 567px;
+    padding: 4px;
   }
-  .item .content {
-    display: inline-block;
-    width: 520px;
+  .box-card .item:hover {
+    cursor: pointer;
   }
-  .item .content .setting-title {
+  .box-card .item .content {
+    display: table-cell;
+    width: 500px;
+  }
+  .box-card .item .content .setting-title {
     display: block;
   }
-  .item .content .setting-title.description {
-    height: 22px;
-    line-height: 22px;
-  }
-  .item .content .setting-title:not(.description) {
-
-  }
-  .item .content .setting-description {
+  .box-card .item .content .setting-description {
     display: block;
     color: gray;
     font-size: 12px;
-    height: 16px;
-    line-height: 16px;
   }
-  .item .switch {
-    float: right;
-  }
-  .item .switch.description {
-    top: 9px!important;
-  }
-  .item .switch:not(.description) {
-    top: 6px;
-  }
-  .item:hover {
-    cursor: pointer;
+  .box-card .item .switch {
+    text-align: right;
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 4px;
   }
 
   .box-card >>> .el-divider--horizontal {
@@ -262,10 +229,9 @@
   }
 
   .item >>> .el-checkbox-button__inner {
-    padding: 7px 15px;
+    padding: 5px 17px;
     font-size: 12px;
     border-radius: 0;
-    margin-top: -5px;
   }
 
 </style>

@@ -111,7 +111,6 @@
             let tmpItem = this.getItem(item.id)
             if (tmpItem) {
               tmpItem.filename = item.filename
-              this.beforeHandler(tmpItem)
               tmpItem.error = item.error ? item.error : null
               tmpItem.estimatedEndTime = item.estimatedEndTime ? item.estimatedEndTime : null
               // 记录上一次接收的文件大小，以便于统一计算2种下载情况下的下载速度
@@ -120,8 +119,9 @@
               tmpItem.totalBytes = item.totalBytes
               tmpItem.state = item.state
               tmpItem.danger = item.danger
+              this.maybeAcceptDanger(tmpItem)
             } else {
-              this.beforeHandler(item)
+              this.maybeAcceptDanger(item)
               item.previousBytesReceived = 0
               // 插入到首位显示
               this.downloadItems.splice(0, 0, item)
@@ -166,8 +166,6 @@
       deleteContent: '',
       eraseContent: '',
 
-
-
       // 复制文件名和文件链接时的弹框设置
       tipX: 0,
       tipY: 0,
@@ -190,10 +188,9 @@
         this.downloadItems = []
         chrome.downloads.search({}, (items) => {
           items.forEach((item) => {
-            this.handleBasename(item)
+            common.beforeHandler(item)
             // 以小写字母模式模糊匹配搜索的字段
             if (item.basename.toLowerCase().indexOf(tmp) !== -1) {
-              this.handleFileIcon(item)
               // 将符合条件的数据加入到搜索结果列表
               this.downloadItems.push(item)
             }
@@ -218,16 +215,10 @@
     render () {
       chrome.downloads.search({}, (items) => {
         items.forEach((item) => {
-          this.beforeHandler(item)
+          common.beforeHandler(item)
         })
         this.downloadItems = items
       })
-    },
-
-    beforeHandler (item) {
-      this.handleBasename(item)
-      this.handleFileIcon(item)
-      this.maybeAcceptDanger(item)
     },
 
     /**
@@ -263,25 +254,6 @@
       chrome.downloads.acceptDanger(item.id, () => {
         item.acceptingDanger = false
       })
-    },
-
-    // 将长文件名转成短文件名
-    handleBasename (item) {
-      if (item.filename) {
-        item.basename = item.filename.substring(Math.max(
-          item.filename.lastIndexOf('\\'),
-          item.filename.lastIndexOf('/')
-        ) + 1)
-      }
-    },
-
-    // 获取文件图标
-    handleFileIcon (item) {
-      if (item.filename && !item.iconUrl) {
-        item.iconUrl = null
-        chrome.downloads.getFileIcon(item.id, { size: 32 },
-          (iconUrl) => { item.iconUrl = iconUrl })
-      }
     },
 
     // 打开默认下载目录

@@ -71,6 +71,18 @@
     "message": "已复制",
     "description": "已经复制到剪切板"
   },
+  "deleteNotification": {
+    "message": "删除通知",
+    "description": "删除通知按钮"
+  },
+  "downloadCompletedNotification": {
+    "message": "下载完成",
+    "description": "下载完成通知按钮"
+  },
+  "openFolderNotification": {
+    "message": "打开文件夹",
+    "description": "下载完成通知打开文件夹按钮"
+  },
   "downloadSetting": {
     "message": "下载",
     "description": "插件设置说明"
@@ -104,19 +116,15 @@
     "description": "插件设置说明"
   },
   "downloadNotificationSetting1": {
-    "message": "关闭",
+    "message": "开始",
     "description": "插件设置说明"
   },
   "downloadNotificationSetting2": {
-    "message": "下载开始",
+    "message": "完成",
     "description": "插件设置说明"
   },
   "downloadNotificationSetting3": {
-    "message": "下载完成",
-    "description": "插件设置说明"
-  },
-  "downloadNotificationSetting4": {
-    "message": "下载警告",
+    "message": "警告",
     "description": "插件设置说明"
   },
   "downloadCompletionToneSetting": {

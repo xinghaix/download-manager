@@ -71,6 +71,18 @@
     "message": "copied",
     "description": "copied to clipboard"
   },
+  "deleteNotification": {
+    "message": "Delete Notification",
+    "description": "Delete notification button"
+  },
+  "downloadCompletedNotification": {
+    "message": "Download Completed",
+    "description": "Download completion notification button"
+  },
+  "openFolderNotification": {
+    "message": "Open folder",
+    "description": "Download completion notification open folder button"
+  },
   "downloadSetting": {
     "message": "Download",
     "description": "plugin setting instructions"
@@ -104,19 +116,15 @@
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting1": {
-    "message": "close",
+    "message": "Started",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting2": {
-    "message": "started",
+    "message": "Completed",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting3": {
-    "message": "completed",
-    "description": "plugin setting instructions"
-  },
-  "downloadNotificationSetting4": {
-    "message": "warning",
+    "message": "Warned",
     "description": "plugin setting instructions"
   },
   "downloadCompletionToneSetting": {

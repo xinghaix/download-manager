@@ -14,19 +14,22 @@ const storage = {
   /**
    * 是否同步设置
    * 利用chrome.storage API实现登录谷歌账户时能够异地同步设置数据
-   * @param value
+   * @param value {boolean}
    */
   setSync(value) {
     chrome.storage.sync.set({'sync': this.parseBoolean(value)})
   },
+  /**
+   * @param callback {function}
+   */
   getSync(callback) {
     chrome.storage.sync.get(['sync'], result => callback(result.sync))
   },
 
   /**
    * 将同步和未同步时的方法统一包装下，方便使用
-   * @param key String
-   * @param callback function
+   * @param key {String}
+   * @param callback {function}
    */
   getItem(key, callback) {
     this.getSync(isSync => {
@@ -37,6 +40,11 @@ const storage = {
       }
     })
   },
+  /**
+   *
+   * @param key {String}
+   * @param value {boolean}
+   */
   setItem(key, value) {
     this.getSync(isSync => {
       if (isSync) {
@@ -49,118 +57,134 @@ const storage = {
 
   /**
    * 设置是否关闭tooltip
-   * @param value Boolean
+   * @param value {boolean}
    */
   setCloseTooltip(value) {
     this.setItem('close_tooltip', value)
   },
+  /**
+   * @param callback {function}
+   */
   getCloseTooltip(callback) {
     this.getItem('close_tooltip', callback)
   },
 
   /**
    * 是否关闭左键打开文件
-   * @param value Boolean
+   * @param value {boolean}
    */
   setLeftClickFile(value) {
     this.setItem('left_click_file', value)
   },
+  /**
+   * @param callback {function}
+   */
   getLeftClickFile(callback) {
     this.getItem('left_click_file', callback)
   },
 
   /**
    * 是否启用右键复制文件名
-   * @param value Boolean
+   * @param value {boolean}
    */
   setRightClickFile(value) {
     this.setItem('right_click_file', value)
   },
+  /**
+   * @param callback {function}
+   */
   getRightClickFile(callback) {
     this.getItem('right_click_file', callback)
   },
 
   /**
    * 是否启用左键打开文件下载链接
-   * @param value Boolean
+   * @param value {boolean}
    */
   setLeftClickUrl(value) {
     this.setItem('left_click_url', value)
   },
+  /**
+   * @param callback {function}
+   */
   getLeftClickUrl(callback) {
     this.getItem('left_click_url', callback)
   },
 
   /**
    * 是否启用右键复制下载链接
-   * @param value Boolean
+   * @param value {boolean}
    */
   setRightClickUrl(value) {
     this.setItem('right_click_url', value)
   },
+  /**
+   * @param callback {function}
+   */
   getRightClickUrl(callback) {
     this.getItem('right_click_url', callback)
   },
 
   /**
-   * 是否关闭下载过程中的通知消息
-   * @param value
-   */
-  setCloseDownloadNotification(value) {
-    this.setItem('close_download_notification', value)
-  },
-  getCloseDownloadNotification(callback) {
-    this.getItem('close_download_notification', callback)
-  },
-
-  /**
    * 下载开始时是否通知消息
-   * @param value
+   * @param value {boolean}
    */
   setDownloadStartedNotification(value) {
     this.setItem('download_started_notification', value)
   },
+  /**
+   * @param callback {function}
+   */
   getDownloadStartedNotification(callback) {
     this.getItem('download_started_notification', callback)
   },
 
   /**
    * 下载完成时是否通知消息
-   * @param value
+   * @param value {boolean}
    */
   setDownloadCompletedNotification(value) {
     this.setItem('download_completed_notification', value)
   },
+  /**
+   * @param callback {function}
+   */
   getDownloadCompletedNotification(callback) {
     this.getItem('download_completed_notification', callback)
   },
 
   /**
    * 下载有危险文件时是否通知消息
-   * @param value
+   * @param value {boolean}
    */
   setDownloadWarningNotification(value) {
     this.setItem('download_warning_notification', value)
   },
+  /**
+   * @param callback {function}
+   */
   getDownloadWarningNotification(callback) {
     this.getItem('download_warning_notification', callback)
   },
 
   /**
    * 下载完成后是否声音提示
-   * @param value
+   * @param value {boolean}
    */
   setDownloadCompletionTone(value) {
     this.setItem('download_completion_tone', value)
   },
+  /**
+   * @param callback {function}
+   */
   getDownloadCompletionTone(callback) {
     this.getItem('download_completion_tone', callback)
   },
 
   /**
    * 如果对应key的value为null的话，就设置默认的value
-   * @param key
-   * @param defaultValue
+   * @param key {String}
+   * @param defaultValue {boolean}
    */
   setDefaultIfNull(key, defaultValue) {
     this.getItem(key, value => {
