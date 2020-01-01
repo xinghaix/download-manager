@@ -583,6 +583,7 @@
     padding-right: 8px;
     height: 18px;
     font-weight: bold;
+    font-size: 12px;
     color: #3a8ee6;
     white-space: nowrap;
     overflow: hidden;
@@ -601,6 +602,7 @@
     display: block;
     padding-right: 8px;
     height: 18px;
+    font-size: 12px;
     color: gray;
     white-space: nowrap;
     overflow: hidden;
