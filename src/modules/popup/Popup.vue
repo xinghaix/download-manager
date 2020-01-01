@@ -389,7 +389,7 @@
       // 预估剩余时间 - 当前时间 = 剩余时间 (ms)
       let remaining = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
       if (remaining <= 0) {
-        return this.secondContent.replace('{}', remaining)
+        return this.secondContent.replace('{}', 0)
       } else if (remaining < 60) {
         return this.secondContent.replace('{}', remaining.toFixed(0))
       } else {
