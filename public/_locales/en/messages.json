@@ -164,7 +164,7 @@
     "description": "about tab description"
   },
   "version0_7_0": {
-    "message": "{\"version\": \"0.7.0\", \"date\": \"2020-01-01\",\"data\": [\"1. Added notification during download\",\"2. Added download completion tone\",\"3. Chinese and English display of all pages\"]}",
+    "message": "{\"version\": \"0.7.1\", \"date\": \"2020-01-01\",\"data\": [\"1. Added notification during download\",\"2. Added download completion tone\",\"3. Chinese and English display of all pages\"]}",
     "description": "Version Description"
   },
   "version0_6_2": {

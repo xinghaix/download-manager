@@ -10,6 +10,8 @@ Click on the plugin icon to see the status of all downloaded files.
 3. Search all downloaded files
 4. When prompted to download a dangerous file
 5. Right click to copy file name and download link to clipboard
+6. Notification during download
+7. Download completion tone
 
 ### **Future plan**
 1. Custom theme
@@ -17,7 +19,7 @@ Click on the plugin icon to see the status of all downloaded files.
 ### **Info**
 [Chrome Webstore Plugin Address](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-**Latest version**：0.7.0
+**Latest version**：0.7.1
 
 new feature：
 1. Notification during download
