@@ -104,30 +104,38 @@
 
       if (received.type === 'download') {
         // data中存放自定义的从background传过来的下载信息
+        // 为了解决闪烁问题，此处不能直接调用请求chrome下载文件的方法
         received.data.forEach((item) => {
           // 在刚创建下载时，文件名称会为空
           if (item.filename) {
-            // 查看是否存在已经保存的下载的文件
-            let tmpItem = this.getItem(item.id)
-            if (tmpItem) {
-              tmpItem.filename = item.filename
-              tmpItem.error = item.error ? item.error : null
-              tmpItem.estimatedEndTime = item.estimatedEndTime ? item.estimatedEndTime : null
-              // 记录上一次接收的文件大小，以便于统一计算2种下载情况下的下载速度
-              tmpItem.previousBytesReceived = tmpItem.bytesReceived
-              tmpItem.bytesReceived = item.bytesReceived
-              tmpItem.totalBytes = item.totalBytes
-              tmpItem.state = item.state
-              tmpItem.danger = item.danger
-              this.maybeAcceptDanger(tmpItem)
-            } else {
-              this.maybeAcceptDanger(item)
-              item.previousBytesReceived = 0
-              // 插入到首位显示
-              this.downloadItems.splice(0, 0, item)
+            // 当搜索框存在内容时，此时也要搜索下载中的文件
+            if (this.searchContent === '' || item.basename.toLowerCase().indexOf(this.searchContent) !== -1) {
+              // 查看是否存在已经保存的下载的文件
+              let tmpItem = this.getItem(item.id)
+              if (tmpItem) {
+                tmpItem.filename = item.filename
+                tmpItem.error = item.error ? item.error : null
+                tmpItem.estimatedEndTime = item.estimatedEndTime ? item.estimatedEndTime : null
+                // 记录上一次接收的文件大小，以便于统一计算2种下载情况下的下载速度
+                tmpItem.previousBytesReceived = tmpItem.bytesReceived
+                tmpItem.bytesReceived = item.bytesReceived
+                tmpItem.totalBytes = item.totalBytes
+                tmpItem.state = item.state
+                tmpItem.danger = item.danger
+                common.handleFileIcon(tmpItem)
+                this.maybeAcceptDanger(tmpItem)
+              } else {
+                common.handleFileIcon(tmpItem)
+                this.maybeAcceptDanger(item)
+                item.previousBytesReceived = 0
+                // 插入到首位显示
+                this.downloadItems.splice(0, 0, item)
+              }
             }
           }
         })
+        // 按照下载开始时间降序排列
+        this.downloadItems.sort((a, b) => b.startTime - a.startTime)
       }
     })
 
@@ -186,7 +194,7 @@
       if (tmp !== '') {
         // 如果搜索内容不为空，那么先把列表内容清空
         this.downloadItems = []
-        chrome.downloads.search({}, (items) => {
+        chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
           items.forEach((item) => {
             common.beforeHandler(item)
             // 以小写字母模式模糊匹配搜索的字段
@@ -213,7 +221,7 @@
 
     // 获取所有下载文件列表
     render () {
-      chrome.downloads.search({}, (items) => {
+      chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
         items.forEach((item) => {
           common.beforeHandler(item)
         })
