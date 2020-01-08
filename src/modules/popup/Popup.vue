@@ -125,7 +125,7 @@
                 common.handleFileIcon(tmpItem)
                 this.maybeAcceptDanger(tmpItem)
               } else {
-                common.handleFileIcon(tmpItem)
+                common.handleFileIcon(item)
                 this.maybeAcceptDanger(item)
                 item.previousBytesReceived = 0
                 // 插入到首位显示
