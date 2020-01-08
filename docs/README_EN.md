@@ -19,14 +19,11 @@ Click on the plugin icon to see the status of all downloaded files.
 ### **Info**
 [Chrome Webstore Plugin Address](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-**Latest version**：0.7.1
+**Latest version**：0.7.3
 
-new feature：
-1. Notification during download
-2. Download completion tone
-
-modification：
-1. Chinese and English display on all pages
+fix:
+1. The download file and the downloaded file are sorted incorrectly
+2. Searching files while downloading always shows all files
 
 <img src="../docs/img/1.png" width="320" hegiht="420" alt=""/>
 

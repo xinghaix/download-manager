@@ -20,14 +20,11 @@
 ### **Info**
 [谷歌浏览器插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-#### **最新版本**：0.7.1
+#### **最新版本**：0.7.3
 
-新增功能：
-1. 下载过程中通知
-2. 下载完成提示音
-
-完善：
-1. 全部页面实现中英文显示
+修复：
+1. 下载文件与已经下载好的文件排序错误问题
+2. 下载时搜索文件总是显示所有文件的问题
 
 
 <img src="docs/img/1.png" width="320" hegiht="420" alt=""/>
