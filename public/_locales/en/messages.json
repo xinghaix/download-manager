@@ -63,6 +63,10 @@
     "message": "delete",
     "description": "delete file from disk"
   },
+  "retry": {
+    "message": "retry",
+    "description": "download again"
+  },
   "erase": {
     "message": "cancel",
     "description": "cancel download or clear file from list"

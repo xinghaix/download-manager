@@ -64,6 +64,10 @@
                         placement="top" effect="dark" popper-class="tooltip" :enterable="false">
               <i class="icon-button el-icon-delete" v-show="removable(item)" @click="remove(item)"/>
             </el-tooltip>
+            <el-tooltip :disabled="closeTooltip" :content="retryContent"
+                        placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+              <i class="icon-button el-icon-refresh-right" v-show="retryable(item)" @click="retry(item)"/>
+            </el-tooltip>
             <el-tooltip :disabled="closeTooltip" :content="eraseContent"
                         placement="top" effect="dark" popper-class="tooltip" :enterable="false">
               <i class="icon-button el-icon-close" @click="erase(item)"/>
@@ -152,6 +156,7 @@
     this.pauseContent = common.loadI18nMessage('pause')
     this.resumeContent = common.loadI18nMessage('resume')
     this.deleteContent = common.loadI18nMessage('delete')
+    this.retryContent = common.loadI18nMessage('retry')
     this.eraseContent = common.loadI18nMessage('erase')
   },
   data () {
@@ -172,6 +177,7 @@
       pauseContent: '',
       resumeContent: '',
       deleteContent: '',
+      retryContent: '',
       eraseContent: '',
 
       // 复制文件名和文件链接时的弹框设置
@@ -224,6 +230,7 @@
       chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
         items.forEach(item => {
           common.beforeHandler(item)
+          console.log(item)
         })
         this.downloadItems = items
       })
@@ -327,7 +334,18 @@
       chrome.downloads.resume(item.id, () => { item.paused = false })
     },
 
-    // 取消正在下载中的文件
+    /**
+     * 重新下载文件
+     * @param item {Object}
+     */
+    retry(item) {
+      chrome.downloads.download({url: item.url})
+    },
+
+    /**
+     * 取消正在下载中的文件
+     * @param item {Object}
+     */
     cancel (item) {
       chrome.downloads.cancel(item.id)
     },
@@ -340,6 +358,14 @@
     // 可从磁盘中删除
     removable (item) {
       return item.state === 'complete' && item.exists
+    },
+
+    /**
+     * 是否可以重新下载
+     * @param item {Object}
+     */
+    retryable (item) {
+      return item.state === 'interrupted'
     },
 
     // 获取文件下载进度

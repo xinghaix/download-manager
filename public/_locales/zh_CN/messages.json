@@ -63,6 +63,10 @@
     "message": "删除",
     "description": "从磁盘中删除文件"
   },
+  "retry": {
+    "message": "重试",
+    "description": "重新下载"
+  },
   "erase": {
     "message": "取消",
     "description": "取消下载或在列表清除文件"
