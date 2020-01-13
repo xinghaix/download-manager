@@ -37,7 +37,7 @@ const common = {
    */
   getCustomFileIcon(item) {
     return new Promise(resolve => {
-      if (!item.iconUrl) {
+      if (item.filename && !item.iconUrl) {
         chrome.downloads.getFileIcon(item.id, { size: 32 }, iconUrl => {
           resolve(iconUrl)
         })
