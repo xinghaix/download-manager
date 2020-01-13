@@ -118,6 +118,7 @@
               let tmpItem = this.getItem(item.id)
               if (tmpItem) {
                 tmpItem.filename = item.filename
+                tmpItem.basename = item.basename
                 tmpItem.error = item.error ? item.error : null
                 tmpItem.estimatedEndTime = item.estimatedEndTime ? item.estimatedEndTime : null
                 // 记录上一次接收的文件大小，以便于统一计算2种下载情况下的下载速度
@@ -126,10 +127,10 @@
                 tmpItem.totalBytes = item.totalBytes
                 tmpItem.state = item.state
                 tmpItem.danger = item.danger
-                common.handleFileIcon(tmpItem)
+                common.beforeHandler(tmpItem)
                 this.maybeAcceptDanger(tmpItem)
               } else {
-                common.handleFileIcon(item)
+                common.beforeHandler(item)
                 this.maybeAcceptDanger(item)
                 item.previousBytesReceived = 0
                 // 插入到首位显示
