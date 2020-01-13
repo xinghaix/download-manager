@@ -224,7 +224,6 @@
       chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
         items.forEach(item => {
           common.beforeHandler(item)
-          console.log(item.iconUrl)
         })
         this.downloadItems = items
       })
