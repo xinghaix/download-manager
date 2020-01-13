@@ -55,6 +55,7 @@
         versionAbout: common.loadI18nMessage('versionAbout'),
 
         versionList: [
+          JSON.parse(common.loadI18nMessage('version0_8_0')),
           JSON.parse(common.loadI18nMessage('version0_7_0')),
           JSON.parse(common.loadI18nMessage('version0_6_2')),
           JSON.parse(common.loadI18nMessage('version0_5_1')),

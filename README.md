@@ -20,11 +20,13 @@
 ### **Info**
 [谷歌浏览器插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-#### **最新版本**：0.7.3
+#### **最新版本**：0.8.0
 
-修复：
-1. 下载文件与已经下载好的文件排序错误问题
-2. 下载时搜索文件总是显示所有文件的问题
+新增
+1. 中断文件重新下载的功能
+
+优化
+1. 下载危险文件时的界面显示和操作流程
 
 
 <img src="docs/img/1.png" width="320" hegiht="420" alt=""/>

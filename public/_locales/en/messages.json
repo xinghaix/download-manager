@@ -179,6 +179,10 @@
     "message": "Version",
     "description": "about tab description"
   },
+  "version0_8_0": {
+    "message": "{\"version\": \"0.8.0\", \"date\": \"2020-01-13\",\"data\": [\"1. Add Ability to interrupt file re-download\",\"2. optimization Interface display and operation flow when downloading dangerous files\"]}",
+    "description": "Version Description"
+  },
   "version0_7_0": {
     "message": "{\"version\": \"0.7.1\", \"date\": \"2020-01-01\",\"data\": [\"1. Added notification during download\",\"2. Added download completion tone\",\"3. Chinese and English display of all pages\"]}",
     "description": "Version Description"
