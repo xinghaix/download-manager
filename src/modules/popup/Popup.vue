@@ -22,7 +22,7 @@
         <div class="file" :class="shouldBeGray(item)" v-for="item in downloadItems" :key="item">
           <div class="icon">
             <el-progress class="progress" type="circle" stroke-width="3" width="42"
-                         :status="item.paused ? 'warn' : ''" v-show="item.state === 'in_progress'"
+                         :status="item.paused ? 'warning' : ''" v-show="item.state === 'in_progress'"
                          :percentage="getPercentage(item)"/>
             <img :src="item.iconUrl" alt="" draggable="false"/>
           </div>
