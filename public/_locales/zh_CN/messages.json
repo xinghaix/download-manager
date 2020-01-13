@@ -67,6 +67,18 @@
     "message": "重试",
     "description": "重新下载"
   },
+  "dangerDescription": {
+    "message": "该文件可能会损害您的计算机",
+    "description": "该文件可能会损害您的计算机"
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "取消下载危险文件"
+  },
+  "reserve": {
+    "message": "保留",
+    "description": "保留危险文件"
+  },
   "erase": {
     "message": "取消",
     "description": "取消下载或在列表清除文件"

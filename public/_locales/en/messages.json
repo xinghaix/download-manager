@@ -67,6 +67,18 @@
     "message": "retry",
     "description": "download again"
   },
+  "dangerDescription": {
+    "message": "The file may harm your pc",
+    "description": "The file may harm your computer"
+  },
+  "cancel": {
+    "message": "discard",
+    "description": "Cancel download of dangerous files"
+  },
+  "reserve": {
+    "message": "keep",
+    "description": "Keep dangerous files"
+  },
   "erase": {
     "message": "cancel",
     "description": "cancel download or clear file from list"

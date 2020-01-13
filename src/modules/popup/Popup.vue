@@ -22,7 +22,7 @@
         <div class="file" :class="shouldBeGray(item)" v-for="item in downloadItems" :key="item">
           <div class="icon">
             <el-progress class="progress" type="circle" stroke-width="3" width="42"
-                         :status="item.paused ? 'warning' : ''" v-show="item.state === 'in_progress'"
+                         :status="item.paused ? 'warn' : ''" v-show="item.state === 'in_progress'"
                          :percentage="getPercentage(item)"/>
             <img :src="item.iconUrl" alt="" draggable="false"/>
           </div>
@@ -33,22 +33,48 @@
             <span class="file-url"
                   @click="leftClickUrl && openUrl(item)"
                   @contextmenu.prevent="rightClickUrl && copyToClipboard(item.finalUrl, $event)">{{item.finalUrl}}</span>
-            <template v-if="item.state === 'in_progress'">
-              <span class="receivedSize info">{{getFormattedSize(item.bytesReceived)}}</span>
-              <template v-if="item.totalBytes !== 0">
-                <span class="divider info">|</span>
-                <span class="size info">{{getFormattedSize(item.totalBytes)}}</span>
-                <span class="speed info">{{getSpeed(item)}}</span>
-                <span class="remaining info">{{remaining(item)}}</span>
+            <div class="info">
+              <template v-if="item.state === 'in_progress'">
+                <template v-if="dangerous(item)">
+                  <div class="cell left danger">
+                    <span class="description small-size">{{dangerDescription}}</span>
+                  </div>
+                  <div class="cell right danger">
+                    <button class="cancel button small-size" @click="cancel(item)">{{cancelContent}}</button>
+                    <button class="accept button small-size" @click="acceptDanger(item)">{{reserveContent}}</button>
+                  </div>
+                </template>
+                <template v-else-if="item.totalBytes !== 0">
+                  <div class="cell left common">
+                    <span class="receivedSize small-size">{{getFormattedSize(item.bytesReceived)}}</span>
+                    <span class="divider small-size">|</span>
+                    <span class="size small-size">{{getFormattedSize(item.totalBytes)}}</span>
+                  </div>
+                  <div class="cell middle common">
+                    <span class="speed small-size">{{getSpeed(item)}}</span>
+                  </div>
+                  <div class="cell right common">
+                    <span class="remaining small-size">{{remaining(item)}}</span>
+                  </div>
+                </template>
+                <template v-else>
+                  <div class="cell left common">
+                    <span class="receivedSize small-size">{{getFormattedSize(item.bytesReceived)}}</span>
+                  </div>
+                  <div class="cell right common">
+                    <span class="speed small-size">{{getSpeed(item)}}</span>
+                  </div>
+                </template>
               </template>
               <template v-else>
-                <span class="speed info">{{getSpeed(item)}}</span>
+                <div class="cell left common">
+                  <span class="size small-size" v-show="item.totalBytes !== 0">{{getFormattedSize(item.totalBytes)}}</span>
+                </div>
+                <div class="cell right common">
+                  <span class="startTime small-size">{{dateFormat(item.startTime, 'MM/dd hh:mm')}}</span>
+                </div>
               </template>
-            </template>
-            <template v-else>
-              <span class="size info" v-show="item.totalBytes !== 0">{{getFormattedSize(item.totalBytes)}}</span>
-              <span class="startTime info">{{dateFormat(item.startTime, 'MM/dd hh:mm')}}</span>
-            </template>
+            </div>
           </div>
           <div class="content-operator">
             <el-tooltip :disabled="closeTooltip" :content="openFileInFolderContent"
@@ -66,7 +92,7 @@
             </el-tooltip>
             <el-tooltip :disabled="closeTooltip" :content="retryContent"
                         placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-              <i class="icon-button el-icon-refresh-right" v-show="retryable(item)" @click="retry(item)"/>
+              <i class="icon-button el-icon-refresh-right" v-show="retryable(item)" @click="retryDownload(item)"/>
             </el-tooltip>
             <el-tooltip :disabled="closeTooltip" :content="eraseContent"
                         placement="top" effect="dark" popper-class="tooltip" :enterable="false">
@@ -128,10 +154,8 @@
                 tmpItem.state = item.state
                 tmpItem.danger = item.danger
                 common.beforeHandler(tmpItem)
-                this.maybeAcceptDanger(tmpItem)
               } else {
                 common.beforeHandler(item)
-                this.maybeAcceptDanger(item)
                 item.previousBytesReceived = 0
                 // 插入到首位显示
                 this.downloadItems.splice(0, 0, item)
@@ -173,6 +197,9 @@
       clearListContent: common.loadI18nMessage('clearList'),
       openDownloadFolderContent: common.loadI18nMessage('openDownloadFolder'),
       openSettingsContent: common.loadI18nMessage('openSettings'),
+      dangerDescription: common.loadI18nMessage('dangerDescription'),
+      cancelContent: common.loadI18nMessage('cancel'),
+      reserveContent: common.loadI18nMessage('reserve'),
 
       openFileInFolderContent: '',
       pauseContent: '',
@@ -238,7 +265,7 @@
     },
 
     /**
-     * 会弹出一个框狂，提示是否接受下载危险的文件
+     * 会弹出一个弹框，提示是否接受下载危险的文件
      * 可能接受危险文件下载
      *  DangerType
      *     file
@@ -270,6 +297,42 @@
       chrome.downloads.acceptDanger(item.id, () => {
         item.acceptingDanger = false
       })
+    },
+
+    /**
+     * 接受下载危险文件
+     *
+     * 会弹出一个弹框，提示是否接受下载危险的文件
+     * 可能接受危险文件下载
+     *  DangerType
+     *     file
+     *      下载项的文件名可疑。
+     *     url
+     *       下载项的 URL 已知是恶意的。
+     *     content
+     *       已下载的文件已知是恶意的。
+     *     uncommon
+     *       下载项的 URL 不常见，可能有风险。
+     *     host
+     *       下载项来自已知发布恶意软件的主机，可能有风险。
+     *     unwanted
+     *       下载项可能不是所需要的或者不安全，例如它可能会更改浏览器或计算机设置。
+     *     safe
+     *       下载项对用户的计算机没有已知风险。
+     *     accepted
+     *       用户已经接受了有风险的下载
+     * @param item {Object}
+     */
+    acceptDanger(item) {
+      chrome.downloads.acceptDanger(item.id)
+    },
+
+    /**
+     * 是否是正在下载危险文件
+     * @param item {Object}
+     */
+    dangerous(item) {
+      return item.state === 'in_progress' && item.danger !== 'safe' && item.danger !== 'accepted'
     },
 
     // 打开默认下载目录
@@ -339,7 +402,7 @@
      * 重新下载文件
      * @param item {Object}
      */
-    retry(item) {
+    retryDownload(item) {
       chrome.downloads.download({url: item.url})
     },
 
@@ -538,7 +601,7 @@
     margin-top: 4px;
     height: 340px;
   }
-
+  /* 下载文件区域滚动条 */
   .content-scrollbar {
     height: 100%;
     width: 100%;
@@ -553,6 +616,7 @@
     right: 0;
   }
 
+  /* 下载文件 */
   .file {
     border-radius: 4px;
     border: 1px solid #ebeef5;
@@ -566,16 +630,10 @@
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     user-select: none;
   }
-  .file .icon-button {
-    display: none;
-  }
-  .file:hover .icon-button {
-    display: inline-block;
-  }
   .file.gray {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, .1);
   }
-
+  /* 文件图标 */
   .file .icon {
     text-align: center;
     line-height: 86px;
@@ -596,7 +654,7 @@
     filter: grayscale(100%);
     opacity: 0.7;
   }
-
+  /* 图标上面的进度条 */
   .file .progress {
     position: absolute;
     top: 15px;
@@ -605,18 +663,18 @@
   .file .progress >>> .el-progress__text {
     display: none;
   }
-
+  /* 文件内容 */
   .file .file-content {
-    width: 286px;
+    width: 278px;
     height: 100%;
     float: right;
+    padding: 6px 8px 0 0;
   }
-
+  /* 文件名称 */
   .file .filename {
     display: block;
-    margin-top: 9px;
-    padding-right: 8px;
-    height: 18px;
+    height: 19px;
+    line-height: 19px;
     font-weight: bold;
     font-size: 12px;
     color: #3a8ee6;
@@ -624,7 +682,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .filename:hover {
+  .file .filename:hover {
     cursor: pointer;
   }
   .file.gray .filename {
@@ -632,11 +690,11 @@
     color: gray;
     text-decoration: line-through;
   }
-
+  /* 文件下载链接 */
   .file .file-url {
     display: block;
-    padding-right: 8px;
-    height: 18px;
+    height: 19px;
+    line-height: 19px;
     font-size: 12px;
     color: gray;
     white-space: nowrap;
@@ -646,32 +704,83 @@
   .file .file-url:hover {
     cursor: pointer;
   }
-
+  /* 文件信息栏 */
   .file .info {
-    display: inline-block;
-    margin-top: 8px;
+    width: 100%;
+    height: 24px;
+    display: table;
     color: gray;
-    font-size: 11px;
-    font-family: Consolas, serif;
   }
-  .file .divider {
+  .file .info .small-size {
+    transition: none;
+    font-size: 12px;
+    -webkit-transform-origin-x: 0;
+    -webkit-transform: scale(.9);
+    font-family: Consolas, Microsoft YaHei, serif;
+  }
+  /* 已下载的大小 */
+  .file .info .divider {
     width: 16px;
     text-align: center;
+    padding: 0 4px;
   }
-  .file .remaining, .startTime {
-    float: right;
-    margin-right: 9px;
+  .file .info .cell {
+    display: table-cell;
+    vertical-align: middle;
   }
-  .file .speed {
-    position: absolute;
-    top: 45px;
-    right: 124px;
+  .file .info .left {
+    text-align: left;
   }
-
+  .file .info .left.danger {
+    width: 176px;
+  }
+  .file .info .left.common {
+    width: 110px;
+  }
+  .file .info .middle {
+    text-align: center;
+  }
+  .file .info .middle.common {
+    width: 72px;
+  }
+  .file .info .right {
+    text-align: right;
+  }
+  /* 下载危险文件时的操作 */
+  .file .info .danger .description {
+    color: #ec0000;
+    line-height: 16px;
+  }
+  .file .info .danger .button {
+    outline: 0;
+    border-radius: 4px;
+    height: 20px;
+    line-height: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  .file .info .danger .cancel {
+    color: #fff;
+    background-color: #1a73e8;
+    border: 1px solid #1a73e8;
+  }
+  .file .info .danger .button.cancel:hover {
+    border-color: #63a5e8;
+    background-color: #63a5e8;
+  }
+  .file .info .danger .accept {
+    color: #1a73e8;
+    background-color: #fff;
+    border: 1px solid #dadce0;
+    margin-right: -5px;
+  }
+  .file .info .danger .button.accept:hover {
+    background-color: #d2e3fc;
+  }
   /* 内容栏 操作按钮 父元素*/
-  .content-operator {
+  .file .content-operator {
     position: absolute;
-    top: 0;
+    top: -2px;
     right: 8px;
     background-color: #fff;
     height: 28px;
@@ -679,8 +788,12 @@
     z-index: 1;
   }
   /* 内容栏 操作按钮*/
-  .content-operator .icon-button {
+  .file .content-operator .icon-button {
     font-size: 14px!important;
+    display: none;
+  }
+  .file:hover .content-operator .icon-button {
+    display: inline-block;
   }
 
   .content >>> .el-backtop {
