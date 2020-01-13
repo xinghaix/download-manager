@@ -148,7 +148,7 @@ export default {
         if (item.basename) {
           this.notificationList.push(notificationId)
           this.getIcon(item, () => {
-            storage.getDownloadStartedNotification(value => {
+            storage.getDownloadStartedNotification().then(value => {
               if (value) {
                 chrome.notifications.getPermissionLevel(level => {
                   if (level === 'granted') {
@@ -175,7 +175,7 @@ export default {
         if (item.basename) {
           this.notificationList.push(notificationId)
           this.getIcon(item, () => {
-            storage.getDownloadCompletedNotification(value => {
+            storage.getDownloadCompletedNotification().then(value => {
               if (value) {
                 chrome.notifications.getPermissionLevel(level => {
                   if (level === 'granted') {
@@ -191,7 +191,7 @@ export default {
               }
             })
 
-            storage.getDownloadCompletionTone(value => {
+            storage.getDownloadCompletionTone().then(value => {
               if (value) {
                 this.audio.play()
               }
@@ -207,7 +207,7 @@ export default {
         if (item.basename) {
           this.notificationList.push(notificationId)
           this.getIcon(item, () => {
-            storage.getDownloadWarningNotification(value => {
+            storage.getDownloadWarningNotification().then(value => {
               if (value) {
                 chrome.notifications.getPermissionLevel(level => {
                   if (level === 'granted') {
@@ -272,9 +272,9 @@ export default {
      */
     getIcon(item, callback) {
       if (item.iconUrl) {
-        callback(item.iconUrl)
+        callback()
       } else {
-        chrome.downloads.getFileIcon(item.id, { size: 32 }, iconUrl => {
+        common.getCustomFileIcon(item).then(iconUrl => {
           item.iconUrl = iconUrl
           callback()
         })

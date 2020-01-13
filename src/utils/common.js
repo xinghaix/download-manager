@@ -31,15 +31,27 @@ const common = {
   },
 
   /**
+   * 获取文件图标
+   * @param item {Object}
+   * @return {Promise<Object>}
+   */
+  getCustomFileIcon(item) {
+    return new Promise(resolve => {
+      if (item.filename && !item.iconUrl) {
+        chrome.downloads.getFileIcon(item.id, { size: 32 }, iconUrl => resolve(iconUrl))
+      }
+    })
+  },
+
+  /**
    * 异步获取文件图标
    * @param item {Object}
    */
   handleFileIcon (item) {
-    if (item.filename && !item.iconUrl) {
+    this.getCustomFileIcon(item).then(iconUrl => {
       item.iconUrl = null
-      chrome.downloads.getFileIcon(item.id, { size: 32 },
-        (iconUrl) => { item.iconUrl = iconUrl })
-    }
+      item.iconUrl = iconUrl
+    })
   },
 
 }

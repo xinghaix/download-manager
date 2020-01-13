@@ -1,6 +1,6 @@
 <!--suppress UnterminatedStatementJS -->
 <template>
-  <div class="home">
+  <div class="home" v-if="show">
     <h2 class="title">{{downloadSetting}}</h2>
     <el-card class="box-card" shadow="hover">
       <div class="item">
@@ -121,23 +121,27 @@
         storage.setDownloadCompletionTone(val)
       }
     },
-    mounted() {
+    async mounted() {
       // 获取插件设置
-      storage.getLeftClickFile(value => this.leftClickFile = value)
-      storage.getRightClickFile(value => this.rightClickFile = value)
-      storage.getLeftClickUrl(value => this.leftClickUrl = value)
-      storage.getRightClickUrl(value => this.rightClickUrl = value)
-      storage.getCloseTooltip(value => this.showTooltip = !value)
+      this.leftClickFile = await storage.getLeftClickFile()
+      this.rightClickFile = await storage.getRightClickFile()
+      this.leftClickUrl = await storage.getLeftClickUrl()
+      this.rightClickUrl = await storage.getRightClickUrl()
+      this.showTooltip = ! await storage.getCloseTooltip()
 
-      storage.getDownloadStartedNotification(value => this.downloadStartedNotification = value)
-      storage.getDownloadCompletedNotification(value => this.downloadCompletedNotification = value)
-      storage.getDownloadWarningNotification(value => this.downloadWarningNotification = value)
-      storage.getDownloadCompletionTone(value => this.downloadCompletionTone = value)
+      this.downloadStartedNotification = await storage.getDownloadStartedNotification()
+      this.downloadCompletedNotification = await storage.getDownloadCompletedNotification()
+      this.downloadWarningNotification = await storage.getDownloadWarningNotification()
+      this.downloadCompletionTone = await storage.getDownloadCompletionTone()
 
-      storage.getSync(value => this.isSync = value)
+      this.isSync = await storage.getSync()
+
+      this.show = true
     },
     data() {
       return {
+        show: false,
+
         leftClickFile: true,
         leftClickUrl: true,
         rightClickFile: true,

@@ -87,19 +87,19 @@
   export default {
   name: 'Popup',
   components: { Tip },
-  mounted () {
+  async mounted () {
     // 初始化插件设置
-    storage.getCloseTooltip(value => this.closeTooltip = value)
-    storage.getLeftClickFile(value => this.leftClickFile = value)
-    storage.getRightClickFile(value => this.rightClickFile = value)
-    storage.getLeftClickUrl(value => this.leftClickUrl = value)
-    storage.getRightClickUrl(value => this.rightClickUrl = value)
+    this.closeTooltip = await storage.getCloseTooltip()
+    this.leftClickFile = await storage.getLeftClickFile()
+    this.rightClickFile = await storage.getRightClickFile()
+    this.leftClickUrl = await storage.getLeftClickUrl()
+    this.rightClickUrl = await storage.getRightClickUrl()
 
     // 获取下载文件信息
     this.render()
 
     // 接收来自background发来的数据
-    chrome.runtime.onMessage.addListener((message) => {
+    chrome.runtime.onMessage.addListener(message => {
       let received = JSON.parse(message);
 
       if (received.type === 'download') {
@@ -391,13 +391,13 @@
 
     remaining (item) {
       if (!item.estimatedEndTime) {
-        return this.secondContent.replace('{}', 0)
+        return this.secondContent.replace('{}', '0')
       }
 
       // 预估剩余时间 - 当前时间 = 剩余时间 (ms)
       let remaining = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
       if (remaining <= 0) {
-        return this.secondContent.replace('{}', 0)
+        return this.secondContent.replace('{}', '0')
       } else if (remaining < 60) {
         return this.secondContent.replace('{}', remaining.toFixed(0))
       } else {

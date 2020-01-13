@@ -44,7 +44,6 @@
 <!--suppress JSUnresolvedVariable, UnterminatedStatementJS -->
 <script>
   /* eslint-disable no-undef */
-  import storage from "../../utils/storage"
   import common from "../../utils/common"
   import Settings from "./Settings";
   import About from "./About";
@@ -67,10 +66,6 @@
     // 当侧边栏菜单被选中时的回调事件
     handleSideSelect(index) {
       this.selectedIndex = index;
-    },
-
-    setSync(value) {
-      storage.setSync(value)
     }
   }
 }

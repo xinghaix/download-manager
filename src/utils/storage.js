@@ -20,38 +20,44 @@ const storage = {
     chrome.storage.sync.set({'sync': this.parseBoolean(value)})
   },
   /**
-   * @param callback {function}
+   * 获取同步设置
+   * @return {Promise}
    */
-  getSync(callback) {
-    chrome.storage.sync.get(['sync'], result => callback(result.sync))
+  getSync() {
+    return new Promise(resolve => {
+      chrome.storage.sync.get(['sync'], result => resolve(result.sync))
+    })
   },
 
   /**
+   * 设置配置
    * 将同步和未同步时的方法统一包装下，方便使用
-   * @param key {String}
-   * @param callback {function}
-   */
-  getItem(key, callback) {
-    this.getSync(isSync => {
-      if (isSync) {
-        chrome.storage.sync.get([key], result => callback(result[key]))
-      } else {
-        chrome.storage.local.get([key], result => callback(result[key]))
-      }
-    })
-  },
-  /**
-   *
    * @param key {String}
    * @param value {boolean}
    */
   setItem(key, value) {
-    this.getSync(isSync => {
+    this.getSync().then(isSync => {
       if (isSync) {
         chrome.storage.sync.set({[key]: this.parseBoolean(value)})
       } else {
         chrome.storage.local.set({[key]: this.parseBoolean(value)})
       }
+    })
+  },
+  /**
+   * 将同步和未同步时的方法统一包装下，方便使用
+   * @param key {String}
+   * @return {Promise}
+   */
+  getItem(key) {
+    return new Promise(resolve => {
+      this.getSync().then(result => {
+        if (result) {
+          chrome.storage.sync.get([key], result => resolve(result[key]))
+        } else {
+          chrome.storage.local.get([key], result => resolve(result[key]))
+        }
+      })
     })
   },
 
@@ -63,10 +69,10 @@ const storage = {
     this.setItem('close_tooltip', value)
   },
   /**
-   * @param callback {function}
+   * @return {Promise}
    */
-  getCloseTooltip(callback) {
-    this.getItem('close_tooltip', callback)
+  getCloseTooltip() {
+    return this.getItem('close_tooltip')
   },
 
   /**
@@ -77,10 +83,10 @@ const storage = {
     this.setItem('left_click_file', value)
   },
   /**
-   * @param callback {function}
+   * @return {Promise}
    */
-  getLeftClickFile(callback) {
-    this.getItem('left_click_file', callback)
+  getLeftClickFile() {
+    return this.getItem('left_click_file')
   },
 
   /**
@@ -91,10 +97,10 @@ const storage = {
     this.setItem('right_click_file', value)
   },
   /**
-   * @param callback {function}
+   * @return {Promise}
    */
-  getRightClickFile(callback) {
-    this.getItem('right_click_file', callback)
+  getRightClickFile() {
+    return this.getItem('right_click_file')
   },
 
   /**
@@ -105,10 +111,10 @@ const storage = {
     this.setItem('left_click_url', value)
   },
   /**
-   * @param callback {function}
+   * @return {Promise}
    */
-  getLeftClickUrl(callback) {
-    this.getItem('left_click_url', callback)
+  getLeftClickUrl() {
+    return this.getItem('left_click_url')
   },
 
   /**
@@ -119,10 +125,10 @@ const storage = {
     this.setItem('right_click_url', value)
   },
   /**
-   * @param callback {function}
+   * @return {Promise}
    */
-  getRightClickUrl(callback) {
-    this.getItem('right_click_url', callback)
+  getRightClickUrl() {
+    return this.getItem('right_click_url')
   },
 
   /**
@@ -133,10 +139,10 @@ const storage = {
     this.setItem('download_started_notification', value)
   },
   /**
-   * @param callback {function}
+   * @return {Promise}
    */
-  getDownloadStartedNotification(callback) {
-    this.getItem('download_started_notification', callback)
+  getDownloadStartedNotification() {
+    return this.getItem('download_started_notification')
   },
 
   /**
@@ -147,10 +153,10 @@ const storage = {
     this.setItem('download_completed_notification', value)
   },
   /**
-   * @param callback {function}
+   * @return {Promise}
    */
-  getDownloadCompletedNotification(callback) {
-    this.getItem('download_completed_notification', callback)
+  getDownloadCompletedNotification() {
+    return this.getItem('download_completed_notification')
   },
 
   /**
@@ -161,10 +167,10 @@ const storage = {
     this.setItem('download_warning_notification', value)
   },
   /**
-   * @param callback {function}
+   * @return {Promise}
    */
-  getDownloadWarningNotification(callback) {
-    this.getItem('download_warning_notification', callback)
+  getDownloadWarningNotification() {
+    return this.getItem('download_warning_notification')
   },
 
   /**
@@ -175,10 +181,10 @@ const storage = {
     this.setItem('download_completion_tone', value)
   },
   /**
-   * @param callback {function}
+   * @return {Promise}
    */
-  getDownloadCompletionTone(callback) {
-    this.getItem('download_completion_tone', callback)
+  getDownloadCompletionTone() {
+    return this.getItem('download_completion_tone')
   },
 
   /**
@@ -187,7 +193,7 @@ const storage = {
    * @param defaultValue {boolean}
    */
   setDefaultIfNull(key, defaultValue) {
-    this.getItem(key, value => {
+    this.getItem(key).then(value => {
       if (typeof value === 'undefined' || value === null) {
         this.setItem(key, defaultValue)
       }
