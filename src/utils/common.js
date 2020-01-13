@@ -37,8 +37,10 @@ const common = {
    */
   getCustomFileIcon(item) {
     return new Promise(resolve => {
-      if (item.filename && !item.iconUrl) {
-        chrome.downloads.getFileIcon(item.id, { size: 32 }, iconUrl => resolve(iconUrl))
+      if (!item.iconUrl) {
+        chrome.downloads.getFileIcon(item.id, { size: 32 }, iconUrl => {
+          resolve(iconUrl)
+        })
       }
     })
   },
@@ -48,8 +50,12 @@ const common = {
    * @param item {Object}
    */
   handleFileIcon (item) {
-    this.getCustomFileIcon(item).then(iconUrl => {
+    if (item.filename && !item.iconUrl) {
+      // 置空，让后续改变可以被vue监控到
       item.iconUrl = null
+    }
+
+    this.getCustomFileIcon(item).then(iconUrl => {
       item.iconUrl = iconUrl
     })
   },

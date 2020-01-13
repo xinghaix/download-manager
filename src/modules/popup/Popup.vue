@@ -24,10 +24,10 @@
             <el-progress class="progress" type="circle" stroke-width="3" width="42"
                          :status="item.paused ? 'warning' : ''" v-show="item.state === 'in_progress'"
                          :percentage="getPercentage(item)"/>
-            <img :class="shouldBeGray(item)" :src="item.iconUrl" alt="" draggable="false"/>
+            <img :src="item.iconUrl" alt="" draggable="false"/>
           </div>
           <div class="file-content">
-            <span class="filename" :class="shouldBeGray(item)"
+            <span class="filename"
                   @click="leftClickFile && openfile(item)"
                   @contextmenu.prevent="rightClickFile && copyToClipboard(item.basename, $event)">{{item.basename}}</span>
             <span class="file-url"
@@ -195,7 +195,7 @@
         // 如果搜索内容不为空，那么先把列表内容清空
         this.downloadItems = []
         chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
-          items.forEach((item) => {
+          items.forEach(item => {
             common.beforeHandler(item)
             // 以小写字母模式模糊匹配搜索的字段
             if (item.basename.toLowerCase().indexOf(tmp) !== -1) {
@@ -222,8 +222,9 @@
     // 获取所有下载文件列表
     render () {
       chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
-        items.forEach((item) => {
+        items.forEach(item => {
           common.beforeHandler(item)
+          console.log(item.iconUrl)
         })
         this.downloadItems = items
       })
@@ -549,7 +550,7 @@
     box-shadow: 0 0 0 0 rgba(0, 0, 0, .1);
   }
 
-  .icon {
+  .file .icon {
     text-align: center;
     line-height: 86px;
     width: 52px;
@@ -557,35 +558,35 @@
     border-right: 1px solid #ebeef5;
     float: left;
   }
-  .icon img {
+  .file .icon img {
     height: 24px;
     width: 24px;
   }
-  .icon img:not([src]) {
+  .file .icon img:not([src]) {
     opacity: 0;
   }
-  .icon img.gray {
+  .file.gray .icon img {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
     opacity: 0.7;
   }
 
-  .progress {
+  .file .progress {
     position: absolute;
     top: 15px;
     left: 5px;
   }
-  .progress >>> .el-progress__text {
+  .file .progress >>> .el-progress__text {
     display: none;
   }
 
-  .file-content {
+  .file .file-content {
     width: 286px;
     height: 100%;
     float: right;
   }
 
-  .filename {
+  .file .filename {
     display: block;
     margin-top: 9px;
     padding-right: 8px;
@@ -600,13 +601,13 @@
   .filename:hover {
     cursor: pointer;
   }
-  .filename.gray {
+  .file.gray .filename {
     cursor: auto;
     color: gray;
     text-decoration: line-through;
   }
 
-  .file-url {
+  .file .file-url {
     display: block;
     padding-right: 8px;
     height: 18px;
@@ -616,26 +617,26 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .file-url:hover {
+  .file .file-url:hover {
     cursor: pointer;
   }
 
-  .info {
+  .file .info {
     display: inline-block;
     margin-top: 8px;
     color: gray;
     font-size: 11px;
     font-family: Consolas, serif;
   }
-  .divider {
+  .file .divider {
     width: 16px;
     text-align: center;
   }
-  .remaining, .startTime {
+  .file .remaining, .startTime {
     float: right;
     margin-right: 9px;
   }
-  .speed {
+  .file .speed {
     position: absolute;
     top: 45px;
     right: 124px;
