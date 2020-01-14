@@ -13,7 +13,7 @@ install:
 before_script:
 
 script:
-  - vue-cli-service build
+  - npm run build
 
 after_script:
 
