@@ -44,7 +44,7 @@
     },
     data() {
       return {
-        githubUrl: 'https://github.com/zishuangzhu/download-manager',
+        githubUrl: 'https://github.com/xinghaixuanwo/download-manager',
         chromePluginShopUrl: 'https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei',
 
         extName: common.loadI18nMessage('extName'),
