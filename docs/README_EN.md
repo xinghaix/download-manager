@@ -1,11 +1,12 @@
 # **download-manager**
-![build](https://api.travis-ci.org/xinghaixuanwo/download-manager.svg?branch=master)
+[![build](https://api.travis-ci.org/xinghaixuanwo/download-manager.svg?branch=master)](https://www.travis-ci.org/xinghaixuanwo/download-manager)
 
 [![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/ofpglhlcdbjdhlacgbljnildhajfmlei.svg?style=flat-square&label=Chrome%20Web%20Store)](https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei)
 [![Chrome Web Store Users](https://img.shields.io/chrome-web-store/d/ofpglhlcdbjdhlacgbljnildhajfmlei.svg?style=flat-square&label=Users)](https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei)
 [![Chrome Web Store Rating](https://img.shields.io/chrome-web-store/rating/ofpglhlcdbjdhlacgbljnildhajfmlei.svg?style=flat-square&label=Rating)](https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
 Google Chrome Download Manager Plugin
+
 Click on the plugin icon to see the status of all downloaded files.
 
 **[简体中文](../README.md) | [English](docs/README_EN.md)**
