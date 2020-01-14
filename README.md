@@ -1,7 +1,11 @@
 # **download-manager**
 ![build](https://api.travis-ci.org/xinghaixuanwo/download-manager.svg?branch=master)
 
-谷歌浏览器下载管理器插件  
+[![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/ofpglhlcdbjdhlacgbljnildhajfmlei.svg?style=flat-square&label=Chrome%20Web%20Store)](https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei)
+[![Chrome Web Store Users](https://img.shields.io/chrome-web-store/d/ofpglhlcdbjdhlacgbljnildhajfmlei.svg?style=flat-square&label=Users)](https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei)
+[![Chrome Web Store Rating](https://img.shields.io/chrome-web-store/rating/ofpglhlcdbjdhlacgbljnildhajfmlei.svg?style=flat-square&label=Rating)](https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei)
+
+谷歌浏览器下载管理器插件
 点击插件图标即可查看所有下载文件状态
 
 **[简体中文](../README.md) | [English](docs/README_EN.md)**
