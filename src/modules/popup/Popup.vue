@@ -68,10 +68,10 @@
               </template>
               <template v-else>
                 <div class="cell left common">
-                  <span class="size small-size" v-show="item.totalBytes !== 0">{{getFormattedSize(item.totalBytes)}}</span>
+                  <span class="size small-size">{{getFormattedSize(item.totalBytes)}}</span>
                 </div>
                 <div class="cell right common">
-                  <span class="startTime small-size">{{dateFormat(item.startTime, 'MM/dd hh:mm')}}</span>
+                  <span class="endTime small-size">{{dateFormat(item.endTime || item.startTime, 'MM/dd hh:mm')}}</span>
                 </div>
               </template>
             </div>
@@ -134,7 +134,7 @@
 
       if (received.type === 'download') {
         // data中存放自定义的从background传过来的下载信息
-        // 为了解决闪烁问题，此处不能直接调用请求chrome下载文件的方法
+        // 为了解决文件图标闪烁问题，此处不能直接调用请求chrome下载文件的方法
         received.data.forEach((item) => {
           // 在刚创建下载时，文件名称会为空
           if (item.filename) {
@@ -145,6 +145,7 @@
               if (tmpItem) {
                 tmpItem.filename = item.filename
                 tmpItem.basename = item.basename
+                common.beforeHandler(tmpItem)
                 tmpItem.error = item.error ? item.error : null
                 tmpItem.estimatedEndTime = item.estimatedEndTime ? item.estimatedEndTime : null
                 // 记录上一次接收的文件大小，以便于统一计算2种下载情况下的下载速度
@@ -153,7 +154,6 @@
                 tmpItem.totalBytes = item.totalBytes
                 tmpItem.state = item.state
                 tmpItem.danger = item.danger
-                common.beforeHandler(tmpItem)
               } else {
                 common.beforeHandler(item)
                 item.previousBytesReceived = 0
@@ -244,7 +244,7 @@
     }
   },
   methods: {
-    getItem (id) {
+    getItem(id) {
       for (let item of this.downloadItems) {
         if (item.id === id) {
           return item
@@ -254,48 +254,12 @@
     },
 
     // 获取所有下载文件列表
-    render () {
+    render() {
       chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
         items.forEach(item => {
           common.beforeHandler(item)
-          console.log(item)
         })
         this.downloadItems = items
-      })
-    },
-
-    /**
-     * 会弹出一个弹框，提示是否接受下载危险的文件
-     * 可能接受危险文件下载
-     *  DangerType
-     *     file
-     *      下载项的文件名可疑。
-     *     url
-     *       下载项的 URL 已知是恶意的。
-     *     content
-     *       已下载的文件已知是恶意的。
-     *     uncommon
-     *       下载项的 URL 不常见，可能有风险。
-     *     host
-     *       下载项来自已知发布恶意软件的主机，可能有风险。
-     *     unwanted
-     *       下载项可能不是所需要的或者不安全，例如它可能会更改浏览器或计算机设置。
-     *     safe
-     *       下载项对用户的计算机没有已知风险。
-     *     accepted
-     *       用户已经接受了有风险的下载
-     */
-    maybeAcceptDanger(item) {
-      if ((item.state !== 'in_progress')
-          || (item.danger === 'safe')
-          || (item.danger === 'accepted')
-          || item.acceptingDanger) {
-        return
-      }
-
-      item.acceptingDanger = true
-      chrome.downloads.acceptDanger(item.id, () => {
-        item.acceptingDanger = false
       })
     },
 
@@ -474,8 +438,8 @@
         }
         return speed + '/s';
       } else {
-        // 另一种是文件大小不确定【每200ms计算一次，有时可能为0，精度较差】
-        return this.getFormattedSize((item.bytesReceived - item.previousBytesReceived) / 0.4) + '/s'
+        // 另一种是文件大小不确定【每300ms计算一次，有时可能为0，精度较差】
+        return this.getFormattedSize((item.bytesReceived - item.previousBytesReceived) / (0.3 * 1.6)) + '/s'
       }
     },
 

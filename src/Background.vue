@@ -136,7 +136,7 @@ export default {
 
         if (this.anyInProgress && this.tid < 0) {
           while (this.tid < 0) {
-            this.tid = setTimeout(this.downloadProgress, 200)
+            this.tid = setTimeout(this.downloadProgress, 300)
           }
         }
       })
