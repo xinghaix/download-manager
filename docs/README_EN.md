@@ -1,5 +1,5 @@
 # **download-manager**
-https://api.travis-ci.org/xinghaixuanwo/download-manager.svg?branch=master
+![build](https://api.travis-ci.org/xinghaixuanwo/download-manager.svg?branch=master)
 
 Google Chrome Download Manager Plugin
 Click on the plugin icon to see the status of all downloaded files.

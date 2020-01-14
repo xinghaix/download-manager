@@ -1,5 +1,5 @@
 # **download-manager**
-https://api.travis-ci.org/xinghaixuanwo/download-manager.svg?branch=master
+![build](https://api.travis-ci.org/xinghaixuanwo/download-manager.svg?branch=master)
 
 谷歌浏览器下载管理器插件
 点击插件图标即可查看所有下载文件状态
