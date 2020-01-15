@@ -23,7 +23,7 @@
           <div class="icon">
             <el-progress class="progress" type="circle" stroke-width="3" width="42"
                          :status="item.paused ? 'warning' : ''" v-show="item.state === 'in_progress'"
-                         :percentage="getPercentage(item)"/>
+                         :percentage="getPercentage(item)" :show-text="false"/>
             <img :src="item.iconUrl" alt="" draggable="false"/>
           </div>
           <div class="file-content">
@@ -306,7 +306,7 @@
 
     // 打开
     openOptions () {
-      chrome.tabs.create({ url: chrome.extension.getURL('options.html') })
+      chrome.runtime.openOptionsPage()
     },
 
     // 在新标签页中打开下载文件链接
