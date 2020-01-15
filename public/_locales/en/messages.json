@@ -147,6 +147,22 @@
     "message": "Download completion tone",
     "description": "plugin setting instructions"
   },
+  "shortcutSetting": {
+    "message": "shortcut",
+    "description": "plugin setting instructions"
+  },
+  "openPopupSetting": {
+    "message": "Activate the extension",
+    "description": "plugin setting instructions"
+  },
+  "openPopupDetailsSetting": {
+    "message": "Please click",
+    "description": "plugin setting details instructions"
+  },
+  "chromePluginShortcutDescSetting": {
+    "message": "Shortcut Settings",
+    "description": "plugin setting instructions"
+  },
   "syncSetting": {
     "message": "Sync",
     "description": "plugin setting instructions"
@@ -157,6 +173,10 @@
   },
   "pluginSyncDetailedSetting": {
     "message": "When you have logged in to your Google account, you can synchronize plugin settings between different Google Kernel-based browsers",
+    "description": "plugin setting details instructions"
+  },
+  "notSyncSetting": {
+    "message": "This setting will not be synchronized",
     "description": "plugin setting instructions"
   },
   "aboutTile": {

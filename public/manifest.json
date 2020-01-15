@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extName__",
   "description": "__MSG_extDesc__",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "manifest_version": 2,
   "icons": {
     "19": "img/icon19.png",
@@ -20,11 +20,30 @@
     "persistent": true,
     "page": "background.html"
   },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Z",
+        "mac": "Command+Z"
+      },
+      "description" : "__MSG_openPopupSetting__"
+    }
+  },
   "options_page": "options.html",
   "default_locale": "en",
   "optional_permissions": ["management"],
-  "permissions": ["downloads", "downloads.open", "downloads.shelf", "storage", "notifications"],
+  "permissions": [
+    "downloads",
+    "downloads.open",
+    "downloads.shelf",
+    "storage",
+    "notifications",
+    "tabs",
+    "activeTab",
+    "*://*/*",
+    "file:///*"
+  ],
   "homepage_url": "https://github.com/xinghaixuanwo/download-manager",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "minimum_chrome_version": "35"
+  "minimum_chrome_version": "39"
 }

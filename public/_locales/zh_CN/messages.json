@@ -147,6 +147,22 @@
     "message": "下载完成提示音",
     "description": "插件设置说明"
   },
+  "shortcutSetting": {
+    "message": "快捷键",
+    "description": "插件设置说明"
+  },
+  "openPopupSetting": {
+    "message": "激活该扩展程序",
+    "description": "插件设置说明"
+  },
+  "openPopupDetailsSetting": {
+    "message": "请点击",
+    "description": "插件设置细节说明"
+  },
+  "chromePluginShortcutDescSetting": {
+    "message": "快捷键设置",
+    "description": "插件设置说明"
+  },
   "syncSetting": {
     "message": "同步",
     "description": "插件设置说明"
@@ -155,8 +171,12 @@
     "message": "同步插件设置",
     "description": "插件设置说明"
   },
-  "pluginSyncDetailedSetting": {
+  "pluginSyncDetailsSetting": {
     "message": "已登录谷歌账号时，可在不同的基于谷歌内核的浏览器之间同步插件设置",
+    "description": "插件设置细节说明"
+  },
+  "notSyncSetting": {
+    "message": "该设置不会被同步",
     "description": "插件设置说明"
   },
   "aboutTile": {

@@ -5,7 +5,7 @@
       <div class="text">
         <div class="item">
           <i class="iconfont el-icon-info"/>
-          <span class="prefix">{{extName}}</span>
+          <span class="prefix">{{extName + "  -  " + version}}</span>
           <a class="suffix link" @click="openUrl(githubUrl)">Github</a>
         </div>
         <div class="item">
@@ -47,7 +47,9 @@
         githubUrl: 'https://github.com/xinghaixuanwo/download-manager',
         chromePluginShopUrl: 'https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei',
 
-        extName: common.loadI18nMessage('extName'),
+        extName: chrome.runtime.getManifest().name,
+        version: chrome.runtime.getManifest().version,
+
         aboutTile: common.loadI18nMessage('aboutTile'),
         starAbout1: common.loadI18nMessage('starAbout1'),
         pluginShopAbout: common.loadI18nMessage('pluginShopAbout'),
