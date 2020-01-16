@@ -5,8 +5,12 @@
       <div class="text">
         <div class="item">
           <i class="iconfont el-icon-info"/>
-          <span class="prefix">{{extName + "  -  " + version}}</span>
+          <span class="prefix">{{extName}}</span>
           <a class="suffix link" @click="openUrl(githubUrl)">Github</a>
+        </div>
+        <div class="item">
+          <i class="iconfont el-icon-s-promotion"/>
+          <span class="prefix version">{{version}}</span>
         </div>
         <div class="item">
           <i class="iconfont el-icon-star-on"/>
@@ -91,13 +95,9 @@
     width: 600px;
     margin-bottom: 36px;
   }
-  .box-card .card-header:before,
-  .box-card .card-header:after {
+  .box-card .card-header {
     display: table;
-    content: "";
-  }
-  .box-card .card-header:after {
-    clear: both
+    width: 100%;
   }
   .box-card >>> .el-card__header {
     padding: 8px 20px;
@@ -105,35 +105,46 @@
   .box-card >>> .el-card__body {
     padding: 16px 20px 10px 20px;
   }
-  .box-card .card-header {
-    display: inline-block;
-    line-height: 24px;
-  }
   .box-card .text {
     font-size: 14px;
   }
   .box-card .item {
-    margin-bottom: 6px;
+    display: table;
+    width: 100%;
+    height: 26px;
   }
-
-  /* 关于信息 卡片 */
-  .about-card .item .prefix {
-    width: 487px;
+  /* 关于 卡片 */
+  .box-card.about-card .item {
     font-weight: bold;
-    display: inline-block;
   }
-  .about-card .item .suffix {
-    font-weight: bold;
-    display: inline-block;
-  }
+  /* 图标 */
   .about-card .item .iconfont {
+    display: table-cell;
     font-size: 16px;
-    margin-right: 12px;
+    width: 22px;
     color: #409EFF;
+    vertical-align: middle;
   }
   .about-card .item .iconfont.el-icon-star-on {
     font-size: 17px!important;
   }
+  /* 关于信息 卡片 */
+  .about-card .item .prefix {
+    font-weight: bold;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+  }
+  .about-card .item {
+    padding-left: 2px;
+  }
+  .about-card .item .suffix {
+    font-weight: bold;
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  /* 链接 */
   .about-card .item .link {
     color: #ff8740;
     cursor: pointer;
@@ -141,18 +152,21 @@
   }
 
     /* 版本历史信息 卡片 */
-  .version-card .version {
-    color: #000;
-    font-weight: 700;
-    font-size: 16px;
-    width: 482px;
-    display: inline-block;
+  .version-card .card-header span {
+    display: table-cell;
+    font-weight: bold;
+    vertical-align: middle;
+    font-family: Consolas, Microsoft YaHei, sans-serif;
   }
-  .version-card .date {
-    display: inline-block;
+  .version-card .card-header .version {
+    font-size: 14px;
+    text-align: left;
   }
-  .version-card .date .el-icon-date{
+  .version-card .card-header .date {
+    font-size: 13px;
+    text-align: right;
+  }
+  .version-card .card-header .date .el-icon-date {
     margin-right: 4px;
   }
-
 </style>

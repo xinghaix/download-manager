@@ -293,7 +293,7 @@
     background-color: #ececec;
     border-radius: 4px;
     padding: 4px 12px;
-    font-family: Consolas,Microsoft YaHei,serif;
+    font-family: Consolas, Microsoft YaHei, sans-serif;
   }
 
   .box-card >>> .el-divider--horizontal {

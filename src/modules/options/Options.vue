@@ -75,6 +75,7 @@
 <style scoped rel="stylesheet/css">
   .home {
     margin: 0 auto;
+    font-family: Segoe UI, Microsoft YaHei, sans-serif;
   }
 
   /* 侧边栏 */
