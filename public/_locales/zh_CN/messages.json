@@ -35,6 +35,14 @@
     "message": "停止显示文字提示框",
     "description": "在下载管理页面上鼠标移动到按钮上时，停止显示文字提示框"
   },
+  "newDownload": {
+    "message": "新建下载",
+    "description": "新建下载文件"
+  },
+  "newDownloadPlaceholder": {
+    "message": "请输入下载链接! Enter键下载文件",
+    "description": "请输入下载链接"
+  },
   "clearList": {
     "message": "清空列表",
     "description": "清空下载文件列表"

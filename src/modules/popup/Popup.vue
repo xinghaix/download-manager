@@ -3,9 +3,21 @@
     <div class="header">
       <el-input class="search" size="mini" suffix-icon="el-icon-search" v-model="searchContent"/>
       <div class="header-operator">
+        <el-popover ref="openDownload" placement="bottom" width="322" trigger="click"
+                    v-model="showPopover" @hide="downloadUrl = ''" @after-enter="handleShowPopover">
+          <el-input type="textarea" :clearable="true" resize="none"
+            :autosize="{ minRows: 1, maxRows: 4}"
+            :placeholder="newDownloadPlaceholder"
+            v-model="downloadUrl" @keydown.native="enterToDownload($event, downloadUrl)">
+          </el-input>
+        </el-popover>
+        <el-tooltip :disabled="closeTooltip && popoverIsShow" :content="newDownloadContent"
+                    placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
+          <i class="header-button icon-button el-icon-circle-plus-outline" v-popover:openDownload/>
+        </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="clearListContent"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
-            <i class="header-button icon-button el-icon-circle-close" @click="eraseAll"/>
+            <i class="header-button icon-button el-icon-brush" @click="eraseAll"/>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="openDownloadFolderContent"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
@@ -19,87 +31,93 @@
     </div>
     <div class="content">
       <el-scrollbar class="content-scrollbar">
-        <div class="file" :class="shouldBeGray(item)" v-for="item in downloadItems" :key="item">
-          <div class="icon">
-            <el-progress class="progress" type="circle" stroke-width="3" width="42"
-                         :status="item.paused ? 'warning' : ''" v-show="item.state === 'in_progress'"
-                         :percentage="getPercentage(item)" :show-text="false"/>
-            <img :src="item.iconUrl" alt="" draggable="false"/>
-          </div>
-          <div class="file-content">
-            <span class="filename"
-                  @click="leftClickFile && openfile(item)"
-                  @contextmenu.prevent="rightClickFile && copyToClipboard(item.basename, $event)">{{item.basename}}</span>
-            <span class="file-url"
-                  @click="leftClickUrl && openUrl(item)"
-                  @contextmenu.prevent="rightClickUrl && copyToClipboard(item.finalUrl, $event)">{{item.finalUrl}}</span>
-            <div class="info">
-              <template v-if="item.state === 'in_progress'">
-                <template v-if="dangerous(item)">
-                  <div class="cell left danger">
-                    <span class="description small-size">{{dangerDescription}}</span>
-                  </div>
-                  <div class="cell right danger">
-                    <button class="cancel button small-size" @click="cancel(item)">{{cancelContent}}</button>
-                    <button class="accept button small-size" @click="acceptDanger(item)">{{reserveContent}}</button>
-                  </div>
-                </template>
-                <template v-else-if="item.totalBytes !== 0">
-                  <div class="cell left common">
-                    <span class="receivedSize small-size">{{getFormattedSize(item.bytesReceived)}}</span>
-                    <span class="divider small-size">|</span>
-                    <span class="size small-size">{{getFormattedSize(item.totalBytes)}}</span>
-                  </div>
-                  <div class="cell middle common">
-                    <span class="speed small-size">{{getSpeed(item)}}</span>
-                  </div>
-                  <div class="cell right common">
-                    <span class="remaining small-size">{{remaining(item)}}</span>
-                  </div>
-                </template>
-                <template v-else>
-                  <div class="cell left common">
-                    <span class="receivedSize small-size">{{getFormattedSize(item.bytesReceived)}}</span>
-                  </div>
-                  <div class="cell right common">
-                    <span class="speed small-size">{{getSpeed(item)}}</span>
-                  </div>
-                </template>
-              </template>
-              <template v-else>
-                <div class="cell left common">
-                  <span class="size small-size">{{getFormattedSize(item.totalBytes)}}</span>
+        <transition-group name="flip-list" tag="ul">
+          <template v-for="(item, index) in downloadItems" :key="item">
+            <div class="file" :class="shouldBeGray(item)" :key="item">
+              <div class="icon">
+                <el-progress class="progress" type="circle" stroke-width="3" width="42"
+                             :status="item.paused ? 'warning' : ''" v-show="item.state === 'in_progress'"
+                             :percentage="getPercentage(item)" :show-text="false"/>
+                <img :src="item.iconUrl" alt="" draggable="false"/>
+              </div>
+              <div class="file-content">
+                <span class="filename"
+                      @click="leftClickFile && openfile(item)"
+                      @contextmenu.prevent="rightClickFile && copyToClipboard(item.basename, $event)">{{item.basename}}</span>
+                <span class="file-url"
+                      @click="leftClickUrl && openUrl(item)"
+                      @contextmenu.prevent="rightClickUrl && copyToClipboard(item.finalUrl, $event)">{{item.finalUrl}}</span>
+                <div class="info">
+                  <template v-if="item.state === 'in_progress'">
+                    <template v-if="dangerous(item)">
+                      <div class="cell left danger">
+                        <span class="description small-size">{{dangerDescription}}</span>
+                      </div>
+                      <div class="cell right danger">
+                        <button class="cancel button small-size" @click="cancel(item)">{{cancelContent}}</button>
+                        <button class="accept button small-size" @click="acceptDanger(item)">{{reserveContent}}</button>
+                      </div>
+                    </template>
+                    <template v-else-if="item.totalBytes !== 0">
+                      <div class="cell left common">
+                        <span class="receivedSize small-size">{{getFormattedSize(item.bytesReceived)}}</span>
+                        <span class="divider small-size">|</span>
+                        <span class="size small-size">{{getFormattedSize(item.totalBytes)}}</span>
+                      </div>
+                      <div class="cell middle common">
+                        <span class="speed small-size">{{getSpeed(item)}}</span>
+                      </div>
+                      <div class="cell right common">
+                        <span class="remaining small-size">{{remaining(item)}}</span>
+                      </div>
+                    </template>
+                    <template v-else>
+                      <div class="cell left common">
+                        <span class="receivedSize small-size">{{getFormattedSize(item.bytesReceived)}}</span>
+                      </div>
+                      <div class="cell right common">
+                        <span class="speed small-size">{{getSpeed(item)}}</span>
+                      </div>
+                    </template>
+                  </template>
+                  <template v-else>
+                    <div class="cell left common">
+                      <span class="size small-size">{{getFormattedSize(item.totalBytes)}}</span>
+                    </div>
+                    <div class="cell right common">
+                      <span class="endTime small-size">{{dateFormat(item.endTime || item.startTime, 'MM/dd hh:mm')}}</span>
+                    </div>
+                  </template>
                 </div>
-                <div class="cell right common">
-                  <span class="endTime small-size">{{dateFormat(item.endTime || item.startTime, 'MM/dd hh:mm')}}</span>
+              </div>
+              <div class="content-operator-wrapper">
+                <div class="content-operator">
+                  <el-tooltip :disabled="closeTooltip" :content="openFileInFolderContent"
+                              placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+                    <i class="icon-button el-icon-folder" v-show="openable(item)" @click="showInFolder(item)"/>
+                  </el-tooltip>
+                  <el-tooltip :disabled="closeTooltip" :content="item.paused ? resumeContent : pauseContent"
+                              placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+                    <i v-show="item.state === 'in_progress'" @click="pauseOrResume(item)"
+                       class="icon-button" :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"/>
+                  </el-tooltip>
+                  <el-tooltip :disabled="closeTooltip" :content="deleteContent"
+                              placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+                    <i class="icon-button el-icon-delete" v-show="removable(item)" @click="remove(item)"/>
+                  </el-tooltip>
+                  <el-tooltip :disabled="closeTooltip" :content="retryContent"
+                              placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+                    <i class="icon-button el-icon-refresh-right" v-show="retryable(item)" @click="retryDownload(item)"/>
+                  </el-tooltip>
+                  <el-tooltip :disabled="closeTooltip" :content="eraseContent"
+                              placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+                    <i class="icon-button el-icon-close" @click="erase(item)"/>
+                  </el-tooltip>
                 </div>
-              </template>
+              </div>
             </div>
-          </div>
-          <div class="content-operator">
-            <el-tooltip :disabled="closeTooltip" :content="openFileInFolderContent"
-                        placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-              <i class="icon-button el-icon-folder" v-show="openable(item)" @click="showInFolder(item)"/>
-            </el-tooltip>
-            <el-tooltip :disabled="closeTooltip" :content="item.paused ? resumeContent : pauseContent"
-                        placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-              <i v-show="item.state === 'in_progress'" @click="pauseOrResume(item)"
-                 class="icon-button" :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"/>
-            </el-tooltip>
-            <el-tooltip :disabled="closeTooltip" :content="deleteContent"
-                        placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-              <i class="icon-button el-icon-delete" v-show="removable(item)" @click="remove(item)"/>
-            </el-tooltip>
-            <el-tooltip :disabled="closeTooltip" :content="retryContent"
-                        placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-              <i class="icon-button el-icon-refresh-right" v-show="retryable(item)" @click="retryDownload(item)"/>
-            </el-tooltip>
-            <el-tooltip :disabled="closeTooltip" :content="eraseContent"
-                        placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-              <i class="icon-button el-icon-close" @click="erase(item)"/>
-            </el-tooltip>
-          </div>
-        </div>
+          </template>
+        </transition-group>
       </el-scrollbar>
       <el-backtop target=".content .el-scrollbar__wrap" visibilityHeight="100"/>
       <tip :text="copiedContent" :x="tipX" :y="tipY"/>
@@ -110,9 +128,9 @@
 <!--suppress UnterminatedStatementJS, JSUnresolvedVariable, ES6ModulesDependencies, JSUnresolvedFunction -->
 <script>
   /* eslint-disable no-undef */
-  import common from "../../utils/common"
-  import Tip from "./Tip"
-  import storage from "../../utils/storage";
+  import common from '../../utils/common'
+  import Tip from '../../components/Tip'
+  import storage from '../../utils/storage'
 
   export default {
   name: 'Popup',
@@ -183,10 +201,12 @@
     this.deleteContent = common.loadI18nMessage('delete')
     this.retryContent = common.loadI18nMessage('retry')
     this.eraseContent = common.loadI18nMessage('erase')
+    this.newDownloadContent = common.loadI18nMessage('newDownload')
   },
   data () {
     return {
       searchContent: '',
+      downloadUrl: '',
       downloadItems: [],
 
       secondContent: common.loadI18nMessage('second'),
@@ -207,6 +227,10 @@
       deleteContent: '',
       retryContent: '',
       eraseContent: '',
+      newDownloadContent: '',
+      newDownloadPlaceholder: common.loadI18nMessage('newDownloadPlaceholder'),
+
+      showPopover: false,
 
       // 复制文件名和文件链接时的弹框设置
       tipX: 0,
@@ -223,6 +247,9 @@
     }
   },
   watch: {
+    /**
+     *
+     */
     searchContent (val) {
       const tmp = val.trim().toLowerCase()
       if (tmp !== '') {
@@ -256,10 +283,11 @@
     // 获取所有下载文件列表
     render() {
       chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
-        items.forEach(item => {
+        this.downloadItems = []
+        for (let item of items) {
           common.beforeHandler(item)
-        })
-        this.downloadItems = items
+          this.downloadItems.push(item)
+        }
       })
     },
 
@@ -367,7 +395,47 @@
      * @param item {Object}
      */
     retryDownload(item) {
-      chrome.downloads.download({url: item.url})
+      this.download(item.url)
+    },
+
+    /**
+     * 下载文件
+     * @param event {Event}
+     * @param url {String}
+     */
+    enterToDownload(event, url) {
+      if (event && event.keyCode === 13) {
+        // 浏览器阻止默认事件兼容
+        if (event.preventDefault) {
+          event.preventDefault()
+        } else {
+          window.event.value = false
+        }
+
+        this.download(url)
+        this.showPopover = false
+      }
+    },
+
+    handleShowPopover() {
+      const elements = document.getElementsByClassName('el-textarea__inner')
+      if (elements && elements[0]) {
+        elements[0].focus()
+      }
+    },
+
+    /**
+     * 下载文件
+     * @param url {String}
+     */
+    download(url) {
+      if (url && url !== '') {
+        chrome.downloads.download({url: url.trim()}, () => {
+          if (chrome.runtime.lastError) {
+            // todo
+          }
+        })
+      }
     },
 
     /**
@@ -401,8 +469,13 @@
       return item.totalBytes > 0 ? parseInt((100 * item.bytesReceived / item.totalBytes).toString()) : 0
     },
 
+    /**
+     * 格式化网速
+     * @param bytes {Number}
+     * @return {String}
+     */
     getFormattedSize (bytes) {
-      if (bytes <= 0) {
+      if (!bytes || bytes <= 0) {
         return 0 + 'B'
       }
       const kbSize = bytes / 1024
@@ -543,7 +616,7 @@
 
   .header .header-operator {
     float: right;
-    margin-left: 64px;
+    margin-left: 40px;
   }
 
   .icon-button {
@@ -576,7 +649,7 @@
     overflow-y: scroll;
   }
   .content-scrollbar >>> .el-scrollbar__bar.is-vertical {
-    width: 6px;
+    width: 5px;
     right: 0;
   }
 
@@ -742,27 +815,43 @@
     background-color: #d2e3fc;
   }
   /* 内容栏 操作按钮 父元素*/
-  .file .content-operator {
+  .file .content-operator-wrapper {
     position: absolute;
     top: -2px;
-    right: 8px;
-    background-color: #fff;
+    right: 6px;
     height: 28px;
     line-height: 36px;
+    width: 92px;
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, #fff 24%);
     z-index: 1;
   }
-  /* 内容栏 操作按钮*/
+  .file .content-operator {
+    position: relative;
+    float: right;
+  }
   .file .content-operator .icon-button {
     font-size: 14px!important;
+  }
+  /* 内容栏 操作按钮*/
+  .file .content-operator-wrapper {
     display: none;
   }
-  .file:hover .content-operator .icon-button {
+  .file:hover .content-operator-wrapper {
     display: inline-block;
   }
 
   .content >>> .el-backtop {
     right: 16px!important;
     bottom: 20px!important;
+    width: 34px;
+    height: 34px;
+  }
+
+  .content ul {
+    padding: 0;
+  }
+  .flip-list-move {
+    transition: transform .7s;
   }
 
 </style>

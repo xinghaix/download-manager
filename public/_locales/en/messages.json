@@ -35,6 +35,14 @@
     "message": "stop showing text prompt box",
     "description": "on the download management page, when the mouse is moved over the button, the text prompt box stops showing"
   },
+  "newDownload": {
+    "message": "new download",
+    "description": "new download"
+  },
+  "newDownloadPlaceholder": {
+    "message": "Please enter the download link! Press Enter to download file",
+    "description": "Please enter the download link"
+  },
   "clearList": {
     "message": "clear list",
     "description": "clear download file list"
