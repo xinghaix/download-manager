@@ -136,9 +136,6 @@
     text-align: left;
     vertical-align: middle;
   }
-  .about-card .item {
-    padding-left: 2px;
-  }
   .about-card .item .suffix {
     font-weight: bold;
     display: table-cell;
