@@ -19,6 +19,7 @@ Click on the plugin icon to see the status of all downloaded files.
 5. Right click to copy file name and download link to clipboard
 6. Notification during download
 7. Download completion tone
+8. Shortcut
 
 ### **Future plan**
 1. Custom theme
@@ -26,13 +27,13 @@ Click on the plugin icon to see the status of all downloaded files.
 ### **Info**
 [Chrome Webstore Plugin Address](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-**Latest version**：0.8.0
+**Latest version**：0.8.4
 
 Add
-1. Ability to interrupt file re-download
+1. Shortcut
 
 optimization
-1. Interface display and operation flow when downloading dangerous files
+1. Settings interface display
 
 <img src="../docs/img/1.png" width="320" hegiht="420" alt=""/>
 

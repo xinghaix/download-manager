@@ -199,6 +199,10 @@
     "message": "Version",
     "description": "about tab description"
   },
+  "version0_8_4": {
+    "message": "{\"version\": \"0.8.4\", \"date\": \"2020-01-16\",\"data\": [\"1. Add shortcut\",\"2. Optimization setting interface display\"]}",
+    "description": "版本说明"
+  },
   "version0_8_0": {
     "message": "{\"version\": \"0.8.0\", \"date\": \"2020-01-13\",\"data\": [\"1. Add Ability to interrupt file re-download\",\"2. optimization Interface display and operation flow when downloading dangerous files\"]}",
     "description": "Version Description"

@@ -20,6 +20,7 @@
 5. 右键复制文件名和下载链接到剪切板
 6. 下载过程中通知
 7. 下载完成提示音
+8. 快捷键
 
 ### **未来计划**
 1. 自定义主题
@@ -27,13 +28,13 @@
 ### **Info**
 [谷歌浏览器插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-#### **最新版本**：0.8.0
+#### **最新版本**：0.8.4
 
 新增
-1. 中断文件重新下载的功能
+1. 快捷键功能
 
 优化
-1. 下载危险文件时的界面显示和操作流程
+1. 设置界面显示
 
 
 <img src="docs/img/1.png" width="320" hegiht="420" alt=""/>
