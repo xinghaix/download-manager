@@ -336,28 +336,7 @@
             }
           })
         })
-      },
-
-      /**
-       * 在页面里发送开始下载消息通知
-       * @param item {Object} downloadItem
-       */
-      sendDownloadStartMessage(item) {
-        this.getCurrentTab().then(tab => {
-          chrome.tabs.executeScript(tab.id, {
-              // code: this.$notify.info({
-              //   title: '下载开始',
-              //   message: item.filename
-              // })
-              code: window.alert("下载开始! " + item.filename)
-            }, () => {
-            // 可能某些页面没有权限执行脚本
-            if (chrome.runtime.lastError) {
-              // todo
-            }
-          })
-        })
-      },
+      }
 
     }
   }
