@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2 class="about title">{{aboutTile}}</h2>
+    <h2 class="about title">{{i18data.aboutTile}}</h2>
     <el-card class="about-card box-card" shadow="hover">
       <div class="text">
         <div class="item">
@@ -14,21 +14,21 @@
         </div>
         <div class="item">
           <i class="iconfont el-icon-star-on"/>
-          <span class="prefix">{{starAbout1}}
-            <a class="link" @click="openUrl(chromePluginShopUrl)">{{pluginShopAbout}}</a>
-            {{starAbout2}}
+          <span class="prefix">{{i18data.starAbout1}}
+            <a class="link" @click="openUrl(chromePluginShopUrl)">{{i18data.pluginShopAbout}}</a>
+            {{i18data.starAbout2}}
           </span>
         </div>
       </div>
     </el-card>
-    <h2 class="version-header title">{{versionAbout}}</h2>
+    <h2 class="version-header title">{{i18data.versionAbout}}</h2>
     <template v-for="versionData in versionList">
-      <el-card class="version-card box-card" shadow="hover" v-bind:key="versionData">
+      <el-card class="version-card box-card" shadow="hover" v-bind:key="data = JSON.parse(versionData)">
         <div slot="header" class="card-header">
-          <span class="version">{{versionData.version}}</span>
-          <span class="date"><i class="el-icon-date"/>{{versionData.date}}</span>
+          <span class="version">{{data.version}}</span>
+          <span class="date"><i class="el-icon-date"/>{{data.date}}</span>
         </div>
-        <div class="text" v-for="tip in versionData.data" v-bind:key="tip">
+        <div class="text" v-for="tip in data.data" v-bind:key="tip">
           <div class="item">{{tip}}</div>
         </div>
       </el-card>
@@ -38,13 +38,10 @@
 
 <script>
   /* eslint-disable no-undef */
-
-  import common from "../../utils/common";
-
   export default {
     name: "About",
     props: {
-      title: String
+      i18data: Object
     },
     data() {
       return {
@@ -54,20 +51,7 @@
         extName: chrome.runtime.getManifest().name,
         version: chrome.runtime.getManifest().version,
 
-        aboutTile: common.loadI18nMessage('aboutTile'),
-        starAbout1: common.loadI18nMessage('starAbout1'),
-        pluginShopAbout: common.loadI18nMessage('pluginShopAbout'),
-        starAbout2: common.loadI18nMessage('starAbout2'),
-        versionAbout: common.loadI18nMessage('versionAbout'),
-
-        versionList: [
-          JSON.parse(common.loadI18nMessage('version0_8_4')),
-          JSON.parse(common.loadI18nMessage('version0_8_0')),
-          JSON.parse(common.loadI18nMessage('version0_7_0')),
-          JSON.parse(common.loadI18nMessage('version0_6_2')),
-          JSON.parse(common.loadI18nMessage('version0_5_1')),
-          JSON.parse(common.loadI18nMessage('version0_4')),
-        ],
+        versionList: this.i18data.versionList,
       }
     },
     methods: {

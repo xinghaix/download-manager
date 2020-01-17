@@ -4,6 +4,7 @@
   "version": "0.8.5",
   "manifest_version": 2,
   "icons": {
+    "16": "img/icon16.png",
     "19": "img/icon19.png",
     "38": "img/icon38.png",
     "128": "img/icon128.png"
@@ -37,7 +38,8 @@
     "downloads.open",
     "downloads.shelf",
     "storage",
-    "notifications"
+    "notifications",
+    "contextMenus"
   ],
   "homepage_url": "https://github.com/xinghaixuanwo/download-manager",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",

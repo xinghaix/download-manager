@@ -4,26 +4,27 @@
       <el-input class="search" size="mini" suffix-icon="el-icon-search" v-model="searchContent"/>
       <div class="header-operator">
         <el-popover ref="openDownload" placement="bottom" width="322" trigger="click"
-                    v-model="showPopover" @hide="downloadUrl = ''" @after-enter="handleShowPopover">
+                    v-model="showPopover" @after-enter="textareaFocus">
           <el-input type="textarea" :clearable="true" resize="none"
             :autosize="{ minRows: 1, maxRows: 4}"
-            :placeholder="newDownloadPlaceholder"
+            :placeholder="i18data.newDownloadPlaceholder"
             v-model="downloadUrl" @keydown.native="enterToDownload($event, downloadUrl)">
           </el-input>
         </el-popover>
-        <el-tooltip :disabled="closeTooltip && popoverIsShow" :content="newDownloadContent"
+        <div class="musk" v-if="showMusk" @click="() => {this.showMusk = false;this.showPopover = false}"/>
+        <el-tooltip :disabled="closeTooltip" :content="i18data.newDownload"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
           <i class="header-button icon-button el-icon-circle-plus-outline" v-popover:openDownload/>
         </el-tooltip>
-        <el-tooltip :disabled="closeTooltip" :content="clearListContent"
+        <el-tooltip :disabled="closeTooltip" :content="i18data.clearList"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
             <i class="header-button icon-button el-icon-brush" @click="eraseAll"/>
         </el-tooltip>
-        <el-tooltip :disabled="closeTooltip" :content="openDownloadFolderContent"
+        <el-tooltip :disabled="closeTooltip" :content="i18data.openDownloadFolder"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
             <i class="header-button icon-button el-icon-folder" @click="openFolder"/>
         </el-tooltip>
-        <el-tooltip :disabled="closeTooltip" :content="openSettingsContent"
+        <el-tooltip :disabled="closeTooltip" :content="i18data.openSettings"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
             <i class="header-button icon-button el-icon-setting" @click="openOptions"/>
         </el-tooltip>
@@ -92,24 +93,24 @@
               </div>
               <div class="content-operator-wrapper">
                 <div class="content-operator">
-                  <el-tooltip :disabled="closeTooltip" :content="openFileInFolderContent"
+                  <el-tooltip :disabled="closeTooltip" :content="i18data.openFileInFolder"
                               placement="top" effect="dark" popper-class="tooltip" :enterable="false">
                     <i class="icon-button el-icon-folder" v-show="openable(item)" @click="showInFolder(item)"/>
                   </el-tooltip>
-                  <el-tooltip :disabled="closeTooltip" :content="item.paused ? resumeContent : pauseContent"
+                  <el-tooltip :disabled="closeTooltip" :content="item.paused ? i18data.resume : i18data.pause"
                               placement="top" effect="dark" popper-class="tooltip" :enterable="false">
                     <i v-show="item.state === 'in_progress'" @click="pauseOrResume(item)"
                        class="icon-button" :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"/>
                   </el-tooltip>
-                  <el-tooltip :disabled="closeTooltip" :content="deleteContent"
+                  <el-tooltip :disabled="closeTooltip" :content="i18data.delete"
                               placement="top" effect="dark" popper-class="tooltip" :enterable="false">
                     <i class="icon-button el-icon-delete" v-show="removable(item)" @click="remove(item)"/>
                   </el-tooltip>
-                  <el-tooltip :disabled="closeTooltip" :content="retryContent"
+                  <el-tooltip :disabled="closeTooltip" :content="i18data.retry"
                               placement="top" effect="dark" popper-class="tooltip" :enterable="false">
                     <i class="icon-button el-icon-refresh-right" v-show="retryable(item)" @click="retryDownload(item)"/>
                   </el-tooltip>
-                  <el-tooltip :disabled="closeTooltip" :content="eraseContent"
+                  <el-tooltip :disabled="closeTooltip" :content="i18data.erase"
                               placement="top" effect="dark" popper-class="tooltip" :enterable="false">
                     <i class="icon-button el-icon-close" @click="erase(item)"/>
                   </el-tooltip>
@@ -120,7 +121,7 @@
         </transition-group>
       </el-scrollbar>
       <el-backtop target=".content .el-scrollbar__wrap" visibilityHeight="100"/>
-      <tip :text="copiedContent" :x="tipX" :y="tipY"/>
+      <tip :text="i18data.copied" :x="tipX" :y="tipY"/>
     </div>
   </div>
 </template>
@@ -194,48 +195,21 @@
       }
     })
 
-    // 当组件一开始为创建时，tooltip显示内容无法通过I18N读取说明，只能是加载时默认初始化一次
-    this.openFileInFolderContent = common.loadI18nMessage('openFileInFolder')
-    this.pauseContent = common.loadI18nMessage('pause')
-    this.resumeContent = common.loadI18nMessage('resume')
-    this.deleteContent = common.loadI18nMessage('delete')
-    this.retryContent = common.loadI18nMessage('retry')
-    this.eraseContent = common.loadI18nMessage('erase')
-    this.newDownloadContent = common.loadI18nMessage('newDownload')
   },
   data () {
     return {
       searchContent: '',
       downloadUrl: '',
       downloadItems: [],
+      showMusk: false,
 
-      secondContent: common.loadI18nMessage('second'),
-      minuteContent: common.loadI18nMessage('minute'),
-      hourContent: common.loadI18nMessage('hour'),
-      dayContent: common.loadI18nMessage('day'),
-
-      clearListContent: common.loadI18nMessage('clearList'),
-      openDownloadFolderContent: common.loadI18nMessage('openDownloadFolder'),
-      openSettingsContent: common.loadI18nMessage('openSettings'),
-      dangerDescription: common.loadI18nMessage('dangerDescription'),
-      cancelContent: common.loadI18nMessage('cancel'),
-      reserveContent: common.loadI18nMessage('reserve'),
-
-      openFileInFolderContent: '',
-      pauseContent: '',
-      resumeContent: '',
-      deleteContent: '',
-      retryContent: '',
-      eraseContent: '',
-      newDownloadContent: '',
-      newDownloadPlaceholder: common.loadI18nMessage('newDownloadPlaceholder'),
+      i18data: common.i18data,
 
       showPopover: false,
 
       // 复制文件名和文件链接时的弹框设置
       tipX: 0,
       tipY: 0,
-      copiedContent: common.loadI18nMessage('copied'),
 
       // 插件设置
       // 鼠标移动到按钮上时是否展示提示信息
@@ -248,7 +222,7 @@
   },
   watch: {
     /**
-     *
+     * 搜索框内容改变时触发
      */
     searchContent (val) {
       const tmp = val.trim().toLowerCase()
@@ -267,6 +241,19 @@
         })
       } else {
         this.render()
+      }
+    },
+
+    /**
+     * 手动下载文件弹框展示或取消时触发
+     * @param val {Boolean}
+     */
+    showPopover(val) {
+      if (val) {
+        this.showMusk = true
+      } else {
+        this.downloadUrl = ''
+        this.showMusk = false
       }
     }
   },
@@ -412,29 +399,15 @@
           window.event.value = false
         }
 
-        this.download(url)
+        common.download(url)
         this.showPopover = false
       }
     },
 
-    handleShowPopover() {
+    textareaFocus() {
       const elements = document.getElementsByClassName('el-textarea__inner')
       if (elements && elements[0]) {
         elements[0].focus()
-      }
-    },
-
-    /**
-     * 下载文件
-     * @param url {String}
-     */
-    download(url) {
-      if (url && url !== '') {
-        chrome.downloads.download({url: url.trim()}, () => {
-          if (chrome.runtime.lastError) {
-            // todo
-          }
-        })
       }
     },
 
@@ -518,25 +491,25 @@
 
     remaining (item) {
       if (!item.estimatedEndTime) {
-        return this.secondContent.replace('{}', '0')
+        return this.i18data.second.replace('{}', '0')
       }
 
       // 预估剩余时间 - 当前时间 = 剩余时间 (ms)
       let remaining = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
       if (remaining <= 0) {
-        return this.secondContent.replace('{}', '0')
+        return this.i18data.second.replace('{}', '0')
       } else if (remaining < 60) {
-        return this.secondContent.replace('{}', remaining.toFixed(0))
+        return this.i18data.second.replace('{}', remaining.toFixed(0))
       } else {
         remaining = remaining / 60
         if (remaining < 60) {
-          return this.minuteContent.replace('{}', remaining.toFixed(0))
+          return this.i18data.minute.replace('{}', remaining.toFixed(0))
         } else {
           remaining = remaining / 60
           if (remaining < 24) {
-            return this.minuteContent.replace('{}', remaining.toFixed(0))
+            return this.i18data.minute.replace('{}', remaining.toFixed(0))
           } else {
-            return this.minuteContent.replace('{}', (remaining / 24).toFixed(0))
+            return this.i18data.minute.replace('{}', (remaining / 24).toFixed(0))
           }
         }
       }
@@ -618,7 +591,19 @@
     float: right;
     margin-left: 40px;
   }
+  /* 显示手动下载文件弹框时的遮蔽层 */
+  .header .header-operator .musk {
+    z-index: 100;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .2;
+    background: #000;
+  }
 
+  /* 图标按钮 */
   .icon-button {
     margin: 4px 0 0 10px;
     display: inline-block;
@@ -634,6 +619,7 @@
     transition: .2s;
   }
 
+  /* 下载内容区域 */
   .content {
     margin-top: 4px;
     height: 340px;
@@ -851,7 +837,7 @@
     padding: 0;
   }
   .flip-list-move {
-    transition: transform .7s;
+    transition: transform .3s;
   }
 
 </style>

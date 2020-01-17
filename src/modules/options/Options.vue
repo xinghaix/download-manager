@@ -7,7 +7,7 @@
       <div class="aside-header">
         <img :src="`${publicPath}img/icon38-white.png`"
              :class="isCollapse ? 'true' : 'false'" class="icon" alt="" draggable="false"/>
-        <span v-show="!isCollapse" class="title">{{extensionName}}</span>
+        <span v-show="!isCollapse" class="title">{{i18data.extensionName}}</span>
       </div>
       <!-- 侧边栏菜单 -->
       <div class="aside-menu-div">
@@ -16,11 +16,11 @@
                    :collapse="isCollapse" :collapse-transition=false>
             <el-menu-item index="#settings">
               <i class="iconfont el-icon-s-tools"/>
-              <span slot="title">{{settingsTitle}}</span>
+              <span slot="title">{{i18data.settingsTitle}}</span>
             </el-menu-item>
             <el-menu-item index="#about">
               <i class="iconfont el-icon-info"/>
-              <span slot="title">{{aboutTitle}}</span>
+              <span slot="title">{{i18data.aboutTitle}}</span>
             </el-menu-item>
           </el-menu>
         </el-scrollbar>
@@ -33,8 +33,8 @@
     </el-aside>
     <el-container class="main-container">
       <el-scrollbar class="content-scrollbar">
-        <Settings :title="settingsTitle" class="content-item" v-show="selectedIndex === '#settings'"/>
-        <About :title="aboutTitle" class="content-item" v-show="selectedIndex === '#about'"/>
+        <Settings :i18data="i18data" class="content-item" v-show="selectedIndex === '#settings'"/>
+        <About :i18data="i18data" class="content-item" v-show="selectedIndex === '#about'"/>
       </el-scrollbar>
       <el-backtop target=".main-container .el-scrollbar__wrap"/>
     </el-container>
@@ -45,8 +45,9 @@
 <script>
   /* eslint-disable no-undef */
   import common from "../../utils/common"
-  import Settings from "./Settings";
-  import About from "./About";
+  import Settings from "./Settings"
+  import About from "./About"
+
   export default {
   name: 'Options',
   components: { Settings, About },
@@ -57,9 +58,8 @@
       publicPath: process.env.BASE_URL,
       isCollapse: false,
       selectedIndex: '#settings',
-      extensionName: common.loadI18nMessage('extName'),
-      settingsTitle: common.loadI18nMessage('settingsTitle'),
-      aboutTitle: common.loadI18nMessage('aboutTitle'),
+
+      i18data: common.i18data,
     }
   },
   methods: {

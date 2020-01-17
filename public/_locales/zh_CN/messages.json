@@ -95,6 +95,26 @@
     "message": "已复制",
     "description": "已经复制到剪切板"
   },
+  "prefixMenus": {
+    "message": "下载该",
+    "description": "上下文下载菜单浅前缀显示"
+  },
+  "link": {
+    "message": "链接",
+    "description": "上下文下载菜单显示"
+  },
+  "image": {
+    "message": "图片",
+    "description": "上下文下载菜单显示"
+  },
+  "audio": {
+    "message": "音频",
+    "description": "上下文下载菜单显示"
+  },
+  "video": {
+    "message": "视频",
+    "description": "上下文下载菜单显示"
+  },
   "deleteNotification": {
     "message": "删除通知",
     "description": "删除通知按钮"
@@ -130,6 +150,18 @@
   "showTooltipSetting": {
     "message": "鼠标移动到按钮上时显示提示信息",
     "description": "插件设置说明"
+  },
+  "contextMenus": {
+    "message": "上下文菜单",
+    "description": "插件设置说明"
+  },
+  "downloadContextMenusSetting": {
+    "message": "下载菜单",
+    "description": "插件设置说明"
+  },
+  "downloadContextMenusDescSetting": {
+    "message": "支持的文件类型: ",
+    "description": "插件设置细节说明"
   },
   "notificationSetting": {
     "message": "通知",
@@ -207,8 +239,8 @@
     "message": "版本历史",
     "description": "关于标签页说明"
   },
-  "version0_8_4": {
-    "message": "{\"version\": \"0.8.4\", \"date\": \"2020-01-16\",\"data\": [\"1. 新增 快捷键功能\",\"2. 优化 设置界面显示\"]}",
+  "version0_8_5": {
+    "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-17\",\"data\": [\"1. 新增 快捷键功能\",\"2. 新增 手动下载文件功能\",\"3. 新增 右键下载菜单\",\"4. 优化 设置界面显示\"]}",
     "description": "版本说明"
   },
   "version0_8_0": {

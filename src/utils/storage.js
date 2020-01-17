@@ -188,6 +188,20 @@ const storage = {
   },
 
   /**
+   * 浏览器手动下载文件的上下文菜单
+   * @param value {boolean}
+   */
+  setDownloadContextMenus(value) {
+    this.setItem('download_context_menus', value)
+  },
+  /**
+   * @return {Promise}
+   */
+  getDownloadContextMenus() {
+    return this.getItem('download_context_menus')
+  },
+
+  /**
    * 如果对应key的value为null的话，就设置默认的value
    * @param key {String}
    * @param defaultValue {boolean}
@@ -220,6 +234,8 @@ const storage = {
     this.setDefaultIfNull('download_warning_notification', false)
     // 插件默认关闭下载完成提示音
     this.setDefaultIfNull('download_completion_tone', false)
+    // 插件默认创建下载文件上下文菜单
+    this.setDefaultIfNull('download_context_menus', true)
   }
 
 }

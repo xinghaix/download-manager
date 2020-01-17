@@ -6,7 +6,7 @@
 <script>
   /* eslint-disable no-undef */
   import storage from "./utils/storage"
-  import common from "./utils/common";
+  import common from "./utils/common"
 
   export default {
     name: 'app',
@@ -20,7 +20,9 @@
       this.handleDownloadingNumber(0)
       this.handleDangerousDownloadingNumber(0)
 
-      // 下载通知中按钮事件
+      /**
+       * 下载通知中按钮事件
+       */
       chrome.notifications.onButtonClicked.addListener((notificationId, index) => {
         chrome.notifications.clear(notificationId);
 
@@ -30,7 +32,9 @@
         }
       })
 
-      // 在文件下载开始时添加监听器
+      /**
+       * 在文件下载开始时添加监听器
+       */
       chrome.downloads.onCreated.addListener((item) => {
         // 浏览器突然停止时，下载中的文件被终止，但是再次打开时此处会出现interrupted的item，所以过滤掉
         if (item.state === 'in_progress') {
@@ -38,9 +42,51 @@
         }
       })
 
-      // 如果其他插件或者谷歌浏览器下载界面清除下载文件时，同步搜索数据
+      /**
+       * 如果其他插件或者谷歌浏览器下载界面清除下载文件时，同步搜索数据
+       */
       chrome.downloads.onErased.addListener((id) => {
         this.deleteAllDownloadNotificationId(id)
+      })
+
+      /**
+       * 在安装插件时创建浏览器上下文菜单
+       */
+      chrome.runtime.onInstalled.addListener(() => {
+        storage.getDownloadContextMenus().then(result => {
+          if (result) {
+            this.createDownloadContextMenus()
+          }
+        })
+      })
+
+      /**
+       * 当点击下载菜单时触发
+       */
+      chrome.contextMenus.onClicked.addListener((info) => {
+        console.log(info)
+        let url = ''
+        if (info.menuItemId === 'download-link') {
+          url = info.linkUrl
+        } else {
+          url = info.srcUrl
+        }
+        common.download(url)
+      })
+
+      /**
+       * 接受从popup和options传过来的消息
+       */
+      chrome.runtime.onMessage.addListener(message => {
+        let received = JSON.parse(message);
+
+        if (received.type === 'downloadMenus') {
+          if (received.data) {
+            this.createDownloadContextMenus()
+          } else {
+            this.removeDownloadContextMenus()
+          }
+        }
       })
     },
     data() {
@@ -54,17 +100,13 @@
           data: []
         },
 
+        i18data: common.i18data,
+
         audio: new Audio('audio/completed.wav'),
 
         notificationList: [],
 
-        deleteNotification: common.loadI18nMessage('deleteNotification'),
-        downloadCompletedNotification: common.loadI18nMessage('downloadCompletedNotification'),
-        openFolderNotification: common.loadI18nMessage('openFolderNotification'),
-
-        downloadNotificationSetting1: common.loadI18nMessage('downloadNotificationSetting1'),
-        downloadNotificationSetting2: common.loadI18nMessage('downloadNotificationSetting2'),
-        downloadNotificationSetting3: common.loadI18nMessage('downloadNotificationSetting3'),
+        contextDownloadMenus: ['link', 'image', 'audio', 'video']
       }
     },
     watch: {
@@ -84,6 +126,36 @@
         if (chrome.downloads.setShelfEnabled) {
           chrome.downloads.setShelfEnabled(false)
         }
+      },
+
+      /**
+       * 创建下载相关的上下文菜单
+       */
+      createDownloadContextMenus() {
+        this.contextDownloadMenus.forEach(menus => {
+          chrome.contextMenus.create({
+            'id': 'download-' + menus,
+            'title': this.i18data.prefixMenus + this.i18data[menus],
+            'contexts': [menus]
+          }, () => {
+            if (chrome.runtime.lastError) {
+              // todo
+            }
+          })
+        })
+      },
+
+      /**
+       * 删除下载相关的上下文菜单
+       */
+      removeDownloadContextMenus() {
+        this.contextDownloadMenus.forEach(menus => {
+          chrome.contextMenus.remove('download' + menus, () => {
+            if (chrome.runtime.lastError) {
+              // todo
+            }
+          })
+        })
       },
 
       /**
@@ -168,9 +240,9 @@
                       chrome.notifications.create(notificationId, {
                           type: 'basic',
                           iconUrl: item.iconUrl || 'img/icon19.png',
-                          title: this.downloadNotificationSetting1,
+                          title: this.i18data.downloadNotificationSetting1,
                           message: item.basename,
-                          buttons: [{title: this.deleteNotification}]
+                          buttons: [{title: this.i18data.deleteNotification}]
                         },
                         // eslint-disable-next-line no-unused-vars
                         returnId => {
@@ -198,9 +270,9 @@
                       chrome.notifications.create(notificationId, {
                           type: 'basic',
                           iconUrl: item.iconUrl || 'img/icon19.png',
-                          title: this.downloadNotificationSetting2,
+                          title: this.i18data.downloadNotificationSetting2,
                           message: item.basename,
-                          buttons: [{title: this.deleteNotification}, {title: this.openFolderNotification}]
+                          buttons: [{title: this.i18data.deleteNotification}, {title: this.i18data.openFolderNotification}]
                         },
                         // eslint-disable-next-line no-unused-vars
                         returnId => {
@@ -233,9 +305,9 @@
                       chrome.notifications.create(notificationId, {
                           type: 'basic',
                           iconUrl: item.iconUrl || 'img/icon19.png',
-                          title: this.downloadNotificationSetting3,
+                          title: this.i18data.downloadNotificationSetting3,
                           message: item.basename,
-                          buttons: [{title: this.deleteNotification}]
+                          buttons: [{title: this.i18data.deleteNotification}]
                         },
                         // eslint-disable-next-line no-unused-vars
                         returnId => {
@@ -323,20 +395,6 @@
         }
         chrome.browserAction.setBadgeText({text: text})
       },
-
-      /**
-       * 获取当前正在活动的页面
-       * @return {Promise<Object>}
-       */
-      getCurrentTab() {
-        return new Promise(resolve => {
-          chrome.tabs.query({active: true, currentWindow: true}, tabs => {
-            if (tabs && tabs.length > 0) {
-              resolve(tabs[0])
-            }
-          })
-        })
-      }
 
     }
   }

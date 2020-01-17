@@ -95,6 +95,26 @@
     "message": "copied",
     "description": "copied to clipboard"
   },
+  "prefixMenus": {
+    "message": "Download this",
+    "description": "context download prefix menus display"
+  },
+  "link": {
+    "message": "link",
+    "description": "context download menus display"
+  },
+  "image": {
+    "message": "image",
+    "description": "context download menus display"
+  },
+  "audio": {
+    "message": "audio",
+    "description": "context download menus display"
+  },
+  "video": {
+    "message": "video",
+    "description": "context download menus display"
+  },
   "deleteNotification": {
     "message": "Delete Notification",
     "description": "Delete notification button"
@@ -131,6 +151,18 @@
     "message": "Display a prompt message when the mouse moves over the button",
     "description": "plugin setting instructions"
   },
+  "contextMenus": {
+    "message": "Context menu",
+    "description": "plugin setting instructions"
+  },
+  "downloadContextMenusSetting": {
+    "message": "Download menu",
+    "description": "plugin setting instructions"
+  },
+  "downloadContextMenusDescSetting": {
+    "message": "Supported file types: ",
+    "description": "plugin setting details instructions"
+  },
   "notificationSetting": {
     "message": "Notification",
     "description": "plugin setting instructions"
@@ -156,7 +188,7 @@
     "description": "plugin setting instructions"
   },
   "shortcutSetting": {
-    "message": "shortcut",
+    "message": "Shortcut",
     "description": "plugin setting instructions"
   },
   "openPopupSetting": {
@@ -207,8 +239,8 @@
     "message": "Version",
     "description": "about tab description"
   },
-  "version0_8_4": {
-    "message": "{\"version\": \"0.8.4\", \"date\": \"2020-01-16\",\"data\": [\"1. Add shortcut\",\"2. Optimization setting interface display\"]}",
+  "version0_8_5": {
+    "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-17\",\"data\": [\"1. Add shortcut\",\"2. Add download files manually\",\"3. Add right-click download menu\",\"4. Optimization setting interface display\"]}",
     "description": "版本说明"
   },
   "version0_8_0": {
