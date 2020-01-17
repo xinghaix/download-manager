@@ -69,7 +69,7 @@
     line-height: 14px;
     height: 15px;
     border-radius: 4px;
-    font-size: 9px;
+    font-size: 12px;
     color: #ffffff;
     background: #303133;
     -webkit-transform-origin-x: 0;

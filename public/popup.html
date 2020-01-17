@@ -14,7 +14,7 @@
     /* 覆盖vue子组件popper样式 */
     .tooltip {
       padding: 4px!important;
-      font-size: 10px!important;
+      font-size: 12px!important;
       transition: none;
       -webkit-transform-origin-x: 0;
       -webkit-transform: scale(.9);
@@ -25,25 +25,37 @@
       resize: none;
     }
     textarea::-webkit-input-placeholder {
+      font-family: Segoe UI, Microsoft YaHei, sans-serif;
       font-size: 14px;
     }
     textarea:-moz-placeholder {
+      font-family: Segoe UI, Microsoft YaHei, sans-serif;
       font-size: 14px;
     }
     textarea::-moz-placeholder {
+      font-family: Segoe UI, Microsoft YaHei, sans-serif;
       font-size: 14px;
     }
     textarea::-ms-input-placeholder {
+      font-family: Segoe UI, Microsoft YaHei, sans-serif;
       font-size: 14px;
     }
     textarea::-webkit-scrollbar {
       width: 5px;
       background-color: transparent;
     }
+    textarea::-webkit-scrollbar:hover {
+      cursor: pointer;
+    }
     textarea::-webkit-scrollbar-thumb {
-      -webkit-box-shadow: inset 0 0 6px rgba(144,147,153,.5);
-      background-color: rgba(144,147,153,.3);
+      background-color: rgba(144, 147, 153, .3);
       border-radius: 4px;
+    }
+    textarea::-webkit-scrollbar-thumb:hover {
+      cursor: pointer;
+    }
+    textarea::-webkit-scrollbar-thumb:window-inactive {
+      background-color: rgba(157, 165, 183, 0.7);
     }
   </style>
 </html>
