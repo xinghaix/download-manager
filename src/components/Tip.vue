@@ -1,7 +1,7 @@
 <template>
   <span class="tip"
-        :style="{ left: (x + 4) + 'px', top: (y - 12) + 'px', zIndex: zIndex }"
-        v-show="showTip">
+        :style="{ left: (position.x + 4) + 'px', top: (position.y - 12) + 'px', zIndex: zIndex }"
+        v-if="showTip">
     {{text}}
   </span>
 </template>
@@ -14,8 +14,18 @@
         type: String,
         default: ''
       },
-      x: Number,
-      y: Number,
+      position: {
+        type: Object,
+        default: () => {
+          return {
+            x: 0,
+            y: 0
+          }
+        },
+        validator: (value) => {
+          return value.x && value.y && value.x instanceof Number && value.y instanceof Number
+        }
+      },
       timeout: {
         type: Number,
         default: 600
@@ -23,6 +33,10 @@
       zIndex: {
         type: Number,
         default: 100
+      },
+      showTip: {
+        type: Boolean,
+        default: false
       }
     },
     mounted() {
@@ -32,15 +46,17 @@
     },
     data() {
       return {
-        showTip: false,
         timeoutId: null
       }
     },
     watch: {
-      x () {
-        this.render()
-      },
-      y () {
+      position (val) {
+        if (val.x < 0) {
+          val.x = 0
+        }
+        if (val.y < 0) {
+          val.y = 0
+        }
         this.render()
       }
     },
