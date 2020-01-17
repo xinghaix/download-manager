@@ -52,11 +52,11 @@
                   <template v-if="item.state === 'in_progress'">
                     <template v-if="dangerous(item)">
                       <div class="cell left danger">
-                        <span class="description small-size">{{dangerDescription}}</span>
+                        <span class="description small-size">{{i18data.dangerDescription}}</span>
                       </div>
                       <div class="cell right danger">
-                        <button class="cancel button small-size" @click="cancel(item)">{{cancelContent}}</button>
-                        <button class="accept button small-size" @click="acceptDanger(item)">{{reserveContent}}</button>
+                        <button class="cancel button small-size" @click="cancel(item)">{{i18data.cancel}}</button>
+                        <button class="accept button small-size" @click="acceptDanger(item)">{{i18data.reserve}}</button>
                       </div>
                     </template>
                     <template v-else-if="item.totalBytes !== 0">

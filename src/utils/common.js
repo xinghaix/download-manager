@@ -108,7 +108,7 @@ const common = {
     this.i18data.retry = this.loadI18nMessage('retry')
     this.i18data.erase = this.loadI18nMessage('erase')
 
-    // popup 下载文件文件
+    // popup 下载危险文件
     this.i18data.dangerDescription = this.loadI18nMessage('dangerDescription')
     this.i18data.cancel = this.loadI18nMessage('cancel')
     this.i18data.reserve = this.loadI18nMessage('reserve')
