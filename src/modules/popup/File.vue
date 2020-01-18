@@ -1,3 +1,4 @@
+<!--suppress JSUnresolvedVariable, UnterminatedStatementJS -->
 <template>
   <div class="file" v-if="show" :class="shouldBeGray(item)" :key="item">
     <div class="icon">
@@ -7,12 +8,12 @@
       <img :src="item.iconUrl" alt="" draggable="false"/>
     </div>
     <div class="file-content">
-    <span class="filename"
-          @click="leftClickFile && openfile(item)"
-          @contextmenu.prevent="rightClickFile && copyToClipboard(item.basename, $event)">{{item.basename}}</span>
+      <span class="filename"
+            @click="leftClickFile && openfile(item)"
+            @contextmenu.prevent="rightClickFile && copyToClipboard1(item.basename, $event)">{{item.basename}}</span>
       <span class="file-url"
             @click="leftClickUrl && openUrl(item)"
-            @contextmenu.prevent="rightClickUrl && copyToClipboard(item.finalUrl, $event)">{{item.finalUrl}}</span>
+            @contextmenu.prevent="rightClickUrl && copyToClipboard1(item.finalUrl, $event)">{{item.finalUrl}}</span>
       <div class="info">
         <template v-if="item.state === 'in_progress'">
           <template v-if="dangerous(item)">
@@ -84,6 +85,7 @@
   </div>
 </template>
 
+<!--suppress JSUnresolvedFunction -->
 <script>
   /* eslint-disable no-undef */
   export default {
@@ -143,6 +145,16 @@
       }
     },
     methods: {
+      copyToClipboard1(text, event) {
+        if (event) {
+          console.log(event)
+          try {
+            this.copyToClipboard(text, {x: event.pageX, y: event.pageY})
+          } catch (e) {
+            // todo
+          }
+        }
+      },
       /**
        * 接受下载危险文件
        *
@@ -372,7 +384,7 @@
 <style rel="stylesheet/scss" scoped>
   /* 下载文件 */
   .file {
-    width: 346px;
+    width: 350px;
     height: 70px;
     margin: 6px 6px 8px 6px;
     border-radius: 4px;

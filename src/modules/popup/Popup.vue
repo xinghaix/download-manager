@@ -8,7 +8,7 @@
           <el-input type="textarea" :clearable="true" resize="none"
             :autosize="{ minRows: 1, maxRows: 4 }"
             :placeholder="i18data.newDownloadPlaceholder"
-            v-model="downloadUrl" @keydown.native="enterToDownload($event, downloadUrl)">
+            v-model="downloadUrl" @keydown.enter.native.prevent="enterToDownload(downloadUrl)">
           </el-input>
         </el-popover>
         <div class="musk" v-if="showMusk" @click="() => {this.showMusk = false;this.showPopover = false}"/>
@@ -97,14 +97,24 @@
               } else {
                 common.beforeHandler(item)
                 item.previousBytesReceived = 0
-                // 插入到首位显示
-                this.downloadItems.splice(0, 0, item)
+
+                let noInsert = true
+                for (let i = 0, len = this.downloadItems.length; i < len; i++) {
+                  if (item.startTime >= this.downloadItems[i].startTime) {
+                    // 按照下载开始时间降序排列
+                    this.downloadItems.splice(i, 0, item)
+                    noInsert = true
+                    break
+                  }
+                }
+                if (noInsert) {
+                  this.downloadItems.push(item)
+                }
               }
             }
           }
         })
-        // 按照下载开始时间降序排列
-        this.downloadItems.sort((a, b) => b.startTime - a.startTime)
+        // this.downloadItems.sort((a, b) => b.startTime - a.startTime)
       }
     })
 
@@ -200,24 +210,13 @@
       })
     },
 
-
     /**
      * 下载文件
-     * @param event {Event}
      * @param url {String}
      */
-    enterToDownload(event, url) {
-      if (event && event.keyCode === 13) {
-        // 浏览器阻止默认事件兼容
-        if (event.preventDefault) {
-          event.preventDefault()
-        } else {
-          window.event.value = false
-        }
-
-        common.download(url)
-        this.showPopover = false
-      }
+    enterToDownload(url) {
+      this.showPopover = false
+      common.download(url)
     },
 
     /**
@@ -270,22 +269,16 @@
     /**
      * 复制内容到剪切板
      * @param text {String} 需要复制到剪切板的内容，字符串类型
-     * @param event {Event}
+     * @param tipPosition {Object}
      */
-    copyToClipboard(text, event) {
-      console.log(event, event.getBoundingClientRect)
-      if (event) {
-        this.tipPosition = {
-          x: event.x,
-          y: event.y
-        }
-        if (text) {
-          this.$copyText(text).then(() => {
-          }, e => {
-            // todo
-            console.log('failed to copy', e)
-          })
-        }
+    copyToClipboard(text, tipPosition) {
+      this.tipPosition = tipPosition
+      if (text) {
+        this.$copyText(text).then(() => {
+        }, e => {
+          // todo
+          console.log('failed to copy', e)
+        })
       }
     },
   }
@@ -295,7 +288,7 @@
 <!--suppress CssUnusedSymbol -->
 <style scoped rel="stylesheet/scss">
   .home {
-    width: 360px;
+    width: 365px;
     height: 377px;
   }
 
@@ -318,7 +311,7 @@
 
   .header .header-operator {
     float: right;
-    margin-left: 40px;
+    margin-left: 45px;
   }
   /* 显示手动下载文件弹框时的遮蔽层 */
   .header .header-operator .musk {
@@ -383,10 +376,10 @@
     padding: 0;
   }
   .flip-list-move {
-    transition: transform .3s;
+    transition: transform .2s;
   }
   .file {
-    transition: all .3s;
+    transition: all .2s;
   }
   .flip-list-enter, .flip-list-leave-to {
     opacity: 0;

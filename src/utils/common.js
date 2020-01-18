@@ -66,8 +66,9 @@ const common = {
    * @param url {String}
    */
   download(url) {
-    if (url && url !== '') {
-      chrome.downloads.download({url: url.trim()}, () => {
+    if (url) {
+      let trimUrl = url.trim()
+      trimUrl !== '' && chrome.downloads.download({url: trimUrl}, () => {
         if (chrome.runtime.lastError) {
           // todo
         }
