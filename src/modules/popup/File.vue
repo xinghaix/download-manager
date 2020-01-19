@@ -1,5 +1,6 @@
 <!--suppress JSUnresolvedVariable, UnterminatedStatementJS -->
 <template>
+  <transition class="transition" enter-active-class="transition-enter" leave-active-class="transition-leave">
   <div class="file" v-if="show" :class="shouldBeGray(item)" :key="item">
     <div class="icon">
       <el-progress class="progress" type="circle" stroke-width="3" width="42"
@@ -10,10 +11,10 @@
     <div class="file-content">
       <span class="filename"
             @click="leftClickFile && openfile(item)"
-            @contextmenu.prevent="rightClickFile && copyToClipboard1(item.basename, $event)">{{item.basename}}</span>
+            @contextmenu.prevent="rightClickFile && copyToClipboard(item.basename, $event)">{{item.basename}}</span>
       <span class="file-url"
             @click="leftClickUrl && openUrl(item)"
-            @contextmenu.prevent="rightClickUrl && copyToClipboard1(item.finalUrl, $event)">{{item.finalUrl}}</span>
+            @contextmenu.prevent="rightClickUrl && copyToClipboard(item.finalUrl, $event)">{{item.finalUrl}}</span>
       <div class="info">
         <template v-if="item.state === 'in_progress'">
           <template v-if="dangerous(item)">
@@ -83,6 +84,7 @@
       </div>
     </div>
   </div>
+  </transition>
 </template>
 
 <!--suppress JSUnresolvedFunction -->
@@ -145,16 +147,6 @@
       }
     },
     methods: {
-      copyToClipboard1(text, event) {
-        if (event) {
-          console.log(event)
-          try {
-            this.copyToClipboard(text, {x: event.pageX, y: event.pageY})
-          } catch (e) {
-            // todo
-          }
-        }
-      },
       /**
        * 接受下载危险文件
        *
@@ -396,11 +388,9 @@
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     user-select: none;
   }
-
   .file.gray {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, .1);
   }
-
   /* 文件图标 */
   .file .icon {
     text-align: center;
@@ -410,29 +400,24 @@
     border-right: 1px solid #ebeef5;
     float: left;
   }
-
   .file .icon img {
     height: 24px;
     width: 24px;
   }
-
   .file .icon img:not([src]) {
     opacity: 0;
   }
-
   .file.gray .icon img {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
     opacity: 0.7;
   }
-
   /* 图标上面的进度条 */
   .file .progress {
     position: absolute;
     top: 15px;
     left: 5px;
   }
-
   .file .progress >>> .el-progress__text {
     display: none;
   }
@@ -618,5 +603,32 @@
     color: black;
     font-weight: bold;
     transition: .2s;
+  }
+
+  /* 动画效果 */
+  .transition-enter {
+    animation: enter .2s ease alternate forwards;
+  }
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+  .transition-leave {
+    animation: leave .2s ease alternate forwards;
+  }
+  @keyframes leave {
+    from {
+      transform: translateX(0px);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(160px);
+    }
   }
 </style>

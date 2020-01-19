@@ -32,13 +32,11 @@
     </div>
     <div class="content">
       <el-scrollbar class="content-scrollbar">
-        <transition-group name="flip-list" tag="ul">
-          <file v-for="(item, index) in downloadItems" :key="item" class="file"
-                :item="item" :timeout="((index+1) / 4) * 180"
-                :erase="erase" :copyToClipboard="copyToClipboard"
-                :i18data="i18data" :close-tooltip="closeTooltip" :left-click-file="leftClickFile"
-                :left-click-url="leftClickUrl" :right-click-file="rightClickFile" :right-click-url="rightClickUrl"/>
-        </transition-group>
+        <file v-for="(item, index) in downloadItems" :key="item" class="file"
+              :item="item" :timeout="((index+1) / 4) * 180"
+              :erase="erase" :copyToClipboard="copyToClipboard"
+              :i18data="i18data" :close-tooltip="closeTooltip" :left-click-file="leftClickFile"
+              :left-click-url="leftClickUrl" :right-click-file="rightClickFile" :right-click-url="rightClickUrl"/>
       </el-scrollbar>
       <el-backtop target=".content .el-scrollbar__wrap" visibilityHeight="100"/>
       <tip :text="i18data.copied" :position="tipPosition"/>
@@ -269,15 +267,18 @@
     /**
      * 复制内容到剪切板
      * @param text {String} 需要复制到剪切板的内容，字符串类型
-     * @param tipPosition {Object}
+     * @param event {MouseEvent}
      */
-    copyToClipboard(text, tipPosition) {
-      this.tipPosition = tipPosition
+    copyToClipboard(text, event) {
       if (text) {
         this.$copyText(text).then(() => {
+          // 复制成功时，更新并显示已复制的弹框
+          if (event) {
+            this.tipPosition = { x: event.pageX, y: event.pageY }
+          }
         }, e => {
           // todo
-          console.log('failed to copy', e)
+          console.error('failed to copy', e)
         })
       }
     },
@@ -364,29 +365,12 @@
     display: none;
   }
 
+  /* 返回顶部按钮 */
   .content >>> .el-backtop {
     right: 16px!important;
     bottom: 20px!important;
     width: 34px;
     height: 34px;
-  }
-
-  /* 动画效果 */
-  .content ul {
-    padding: 0;
-  }
-  .flip-list-move {
-    transition: transform .2s;
-  }
-  .file {
-    transition: all .2s;
-  }
-  .flip-list-enter, .flip-list-leave-to {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  .flip-list-leave-active {
-    position: absolute;
   }
 
 </style>
