@@ -63,6 +63,7 @@ const common = {
 
   /**
    * 下载文件
+   * 有时候当下载频率较高时，谷歌浏览器会自动阻止下载多个文件，需要等待几秒后才能再次下载文件
    * @param url {String}
    */
   download(url) {
