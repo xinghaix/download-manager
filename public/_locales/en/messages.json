@@ -240,7 +240,7 @@
     "description": "about tab description"
   },
   "version0_8_5": {
-    "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-17\",\"data\": [\"1. Add shortcut\",\"2. Add download files manually\",\"3. Add right-click download menu\",\"4. Optimization setting interface display\"]}",
+    "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-19\",\"data\": [\"1. Add shortcut\",\"2. Add download files manually\",\"3. Add right-click download menu\",\"4. Optimization setting interface display\"]}",
     "description": "版本说明"
   },
   "version0_8_0": {
