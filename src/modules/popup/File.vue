@@ -442,11 +442,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
   .file .filename:hover {
     cursor: pointer;
   }
-
   .file.gray .filename {
     cursor: auto;
     color: gray;
@@ -464,7 +462,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
   .file .file-url:hover {
     cursor: pointer;
   }
@@ -476,7 +473,6 @@
     display: table;
     color: gray;
   }
-
   .file .info .small-size {
     transition: none;
     font-size: 12px;
@@ -491,32 +487,25 @@
     text-align: center;
     padding: 0 4px;
   }
-
   .file .info .cell {
     display: table-cell;
     vertical-align: middle;
   }
-
   .file .info .left {
     text-align: left;
   }
-
   .file .info .left.danger {
     width: 176px;
   }
-
   .file .info .left.common {
     width: 110px;
   }
-
   .file .info .middle {
     text-align: center;
   }
-
   .file .info .middle.common {
     width: 72px;
   }
-
   .file .info .right {
     text-align: right;
   }
@@ -526,7 +515,6 @@
     color: #ec0000;
     line-height: 16px;
   }
-
   .file .info .danger .button {
     outline: 0;
     border-radius: 4px;
@@ -535,25 +523,21 @@
     border: none;
     cursor: pointer;
   }
-
   .file .info .danger .cancel {
     color: #fff;
     background-color: #1a73e8;
     border: 1px solid #1a73e8;
   }
-
   .file .info .danger .button.cancel:hover {
     border-color: #63a5e8;
     background-color: #63a5e8;
   }
-
   .file .info .danger .accept {
     color: #1a73e8;
     background-color: #fff;
     border: 1px solid #dadce0;
     margin-right: -5px;
   }
-
   .file .info .danger .button.accept:hover {
     background-color: #d2e3fc;
   }
@@ -569,12 +553,10 @@
     background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, #fff 24%);
     z-index: 1;
   }
-
   .file .content-operator {
     position: relative;
     float: right;
   }
-
   .file .content-operator .icon-button {
     font-size: 14px !important;
   }
@@ -583,7 +565,6 @@
   .file .content-operator-wrapper {
     display: none;
   }
-
   .file:hover .content-operator-wrapper {
     display: inline-block;
   }
@@ -598,7 +579,6 @@
     -webkit-transition: .2s;
     transition: .2s;
   }
-
   .icon-button:hover {
     color: black;
     font-weight: bold;
@@ -612,7 +592,7 @@
   @keyframes enter {
     from {
       opacity: 0;
-      transform: translateX(-100px);
+      transform: translateX(-80px);
     }
     to {
       opacity: 1;

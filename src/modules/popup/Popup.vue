@@ -48,9 +48,9 @@
 <script>
   /* eslint-disable no-undef */
   import common from '../../utils/common'
+  import storage from '../../utils/storage'
   import File from './File'
   import Tip from '../../components/Tip'
-  import storage from '../../utils/storage'
 
   export default {
   name: 'Popup',
@@ -101,7 +101,7 @@
                   if (item.startTime >= this.downloadItems[i].startTime) {
                     // 按照下载开始时间降序排列
                     this.downloadItems.splice(i, 0, item)
-                    noInsert = true
+                    noInsert = false
                     break
                   }
                 }
@@ -112,7 +112,6 @@
             }
           }
         })
-        // this.downloadItems.sort((a, b) => b.startTime - a.startTime)
       }
     })
 
