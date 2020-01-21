@@ -31,15 +31,10 @@ Click on the plugin icon to see the status of all downloaded files.
 ### **Info**
 [Chrome Webstore Plugin Address](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-**Latest version**：0.8.5
-
-Add
-1. Shortcut
-2. Download the file manually
-3. Right-click download menu
+**Latest version**：0.8.6
 
 optimization
-1. Settings interface display
+1. Circular progress bar display
 
 <img src="../docs/img/1.png" width="320" hegiht="420" alt=""/>
 

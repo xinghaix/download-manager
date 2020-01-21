@@ -32,16 +32,10 @@
 ### **Info**
 [谷歌浏览器插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-#### **最新版本**：0.8.5
-
-新增
-1. 快捷键功能
-2. 手动下载文件功能
-3. 右键下载菜单
+#### **最新版本**：0.8.6
 
 优化
-1. 设置界面显示
-
+1. 环形进度条显示
 
 <img src="docs/img/1.png" width="320" hegiht="420" alt=""/>
 
