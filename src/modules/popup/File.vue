@@ -92,7 +92,8 @@
 <!--suppress JSUnresolvedFunction -->
 <script>
   /* eslint-disable no-undef */
-  import Progress from "./Progress";
+  import Progress from "./Progress"
+  import common from "../../utils/common"
   export default {
     name: "File",
       components: { Progress },
@@ -237,7 +238,7 @@
        * @param item {Object}
        */
       retryDownload(item) {
-        this.download(item.url)
+        common.download(item.url)
       },
 
       /**
