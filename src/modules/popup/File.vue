@@ -3,9 +3,11 @@
   <transition class="transition" enter-active-class="transition-enter" leave-active-class="transition-leave">
   <div class="file" v-if="show" :class="shouldBeGray(item)" :key="item">
     <div class="icon">
-      <el-progress class="progress" type="circle" stroke-width="3" width="42"
-                   :status="item.paused ? 'warning' : ''" v-show="item.state === 'in_progress'"
-                   :percentage="getPercentage(item)" :show-text="false"/>
+      <Progress v-if="item.state === 'in_progress'" class="progress"
+                :width="42"
+                :loop="item.totalBytes === 0"
+                :paused="item.paused"
+                :percentage="getPercentage(item)"/>
       <img :src="item.iconUrl" alt="" draggable="false"/>
     </div>
     <div class="file-content">
@@ -90,9 +92,11 @@
 <!--suppress JSUnresolvedFunction -->
 <script>
   /* eslint-disable no-undef */
+  import Progress from "./Progress";
   export default {
     name: "File",
-    props: {
+      components: { Progress },
+      props: {
       item: {
         type: Object,
         required: true
@@ -417,9 +421,6 @@
     position: absolute;
     top: 15px;
     left: 5px;
-  }
-  .file .progress >>> .el-progress__text {
-    display: none;
   }
 
   /* 文件内容 */
