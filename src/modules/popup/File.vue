@@ -1,91 +1,91 @@
 <!--suppress JSUnresolvedVariable, UnterminatedStatementJS -->
 <template>
   <transition class="transition" enter-active-class="transition-enter" leave-active-class="transition-leave">
-  <div class="file" v-if="show" :class="shouldBeGray(item)" :key="item">
-    <div class="icon">
-      <Progress v-if="item.state === 'in_progress'" class="progress"
-                :width="42"
-                :loop="item.totalBytes === 0"
-                :paused="item.paused"
-                :percentage="getPercentage(item)"/>
-      <img :src="item.iconUrl" alt="" draggable="false"/>
-    </div>
-    <div class="file-content">
-      <span class="filename"
-            @click="leftClickFile && openfile(item)"
-            @contextmenu.prevent="rightClickFile && copyToClipboard(item.basename, $event)">{{item.basename}}</span>
-      <span class="file-url"
-            @click="leftClickUrl && openUrl(item)"
-            @contextmenu.prevent="rightClickUrl && copyToClipboard(item.finalUrl, $event)">{{item.finalUrl}}</span>
-      <div class="info">
-        <template v-if="item.state === 'in_progress'">
-          <template v-if="dangerous(item)">
-            <div class="cell left danger">
-              <span class="description small-size">{{i18data.dangerDescription}}</span>
-            </div>
-            <div class="cell right danger">
-              <button class="cancel button small-size" @click="cancel(item)">{{i18data.cancel}}</button>
-              <button class="accept button small-size" @click="acceptDanger(item)">{{i18data.reserve}}</button>
-            </div>
-          </template>
-          <template v-else-if="item.totalBytes !== 0">
-            <div class="cell left common">
-              <span class="receivedSize small-size">{{getFormattedSize(item.bytesReceived)}}</span>
-              <span class="divider small-size">|</span>
-              <span class="size small-size">{{getFormattedSize(item.totalBytes)}}</span>
-            </div>
-            <div class="cell middle common">
-              <span class="speed small-size">{{getSpeed(item)}}</span>
-            </div>
-            <div class="cell right common">
-              <span class="remaining small-size">{{remaining(item)}}</span>
-            </div>
+    <div class="file" v-if="show" :class="shouldBeGray(item)" :key="item">
+      <div class="icon">
+        <Progress v-if="item.state === 'in_progress'" class="progress"
+                  :width="42"
+                  :loop="item.totalBytes === 0"
+                  :paused="item.paused"
+                  :percentage="getPercentage(item)"/>
+        <img :src="item.iconUrl" alt="" draggable="false"/>
+      </div>
+      <div class="file-content">
+        <span class="filename"
+              @click="leftClickFile && openfile(item)"
+              @contextmenu.prevent="rightClickFile && copyToClipboard(item.basename, $event)">{{item.basename}}</span>
+        <span class="file-url"
+              @click="leftClickUrl && openUrl(item)"
+              @contextmenu.prevent="rightClickUrl && copyToClipboard(item.finalUrl, $event)">{{item.finalUrl}}</span>
+        <div class="info">
+          <template v-if="item.state === 'in_progress'">
+            <template v-if="dangerous(item)">
+              <div class="cell left danger">
+                <span class="description small-size">{{i18data.dangerDescription}}</span>
+              </div>
+              <div class="cell right danger">
+                <button class="cancel button small-size" @click="cancel(item)">{{i18data.cancel}}</button>
+                <button class="accept button small-size" @click="acceptDanger(item)">{{i18data.reserve}}</button>
+              </div>
+            </template>
+            <template v-else-if="item.totalBytes !== 0">
+              <div class="cell left common">
+                <span class="receivedSize small-size">{{getFormattedSize(item.bytesReceived)}}</span>
+                <span class="divider small-size">|</span>
+                <span class="size small-size">{{getFormattedSize(item.totalBytes)}}</span>
+              </div>
+              <div class="cell middle common">
+                <span class="speed small-size">{{getSpeed(item)}}</span>
+              </div>
+              <div class="cell right common">
+                <span class="remaining small-size">{{remaining(item)}}</span>
+              </div>
+            </template>
+            <template v-else>
+              <div class="cell left common">
+                <span class="receivedSize small-size">{{getFormattedSize(item.bytesReceived)}}</span>
+              </div>
+              <div class="cell right common">
+                <span class="speed small-size">{{getSpeed(item)}}</span>
+              </div>
+            </template>
           </template>
           <template v-else>
             <div class="cell left common">
-              <span class="receivedSize small-size">{{getFormattedSize(item.bytesReceived)}}</span>
+              <span class="size small-size">{{getFormattedSize(item.totalBytes)}}</span>
             </div>
             <div class="cell right common">
-              <span class="speed small-size">{{getSpeed(item)}}</span>
+              <span class="endTime small-size">{{dateFormat(item.endTime || item.startTime, 'MM/dd hh:mm')}}</span>
             </div>
           </template>
-        </template>
-        <template v-else>
-          <div class="cell left common">
-            <span class="size small-size">{{getFormattedSize(item.totalBytes)}}</span>
-          </div>
-          <div class="cell right common">
-            <span class="endTime small-size">{{dateFormat(item.endTime || item.startTime, 'MM/dd hh:mm')}}</span>
-          </div>
-        </template>
+        </div>
+      </div>
+      <div class="content-operator-wrapper">
+        <div class="content-operator">
+          <el-tooltip :disabled="closeTooltip" :content="i18data.openFileInFolder"
+                      placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+            <i class="icon-button el-icon-folder" v-show="openable(item)" @click="showInFolder(item)"/>
+          </el-tooltip>
+          <el-tooltip :disabled="closeTooltip" :content="item.paused ? i18data.resume : i18data.pause"
+                      placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+            <i v-show="item.state === 'in_progress'" @click="pauseOrResume(item)"
+               class="icon-button" :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"/>
+          </el-tooltip>
+          <el-tooltip :disabled="closeTooltip" :content="i18data.delete"
+                      placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+            <i class="icon-button el-icon-delete" v-show="removable(item)" @click="remove(item)"/>
+          </el-tooltip>
+          <el-tooltip :disabled="closeTooltip" :content="i18data.retry"
+                      placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+            <i class="icon-button el-icon-refresh-right" v-show="retryable(item)" @click="retryDownload(item)"/>
+          </el-tooltip>
+          <el-tooltip :disabled="closeTooltip" :content="i18data.erase"
+                      placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+            <i class="icon-button el-icon-close" @click="erase(item)"/>
+          </el-tooltip>
+        </div>
       </div>
     </div>
-    <div class="content-operator-wrapper">
-      <div class="content-operator">
-        <el-tooltip :disabled="closeTooltip" :content="i18data.openFileInFolder"
-                    placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="icon-button el-icon-folder" v-show="openable(item)" @click="showInFolder(item)"/>
-        </el-tooltip>
-        <el-tooltip :disabled="closeTooltip" :content="item.paused ? i18data.resume : i18data.pause"
-                    placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <i v-show="item.state === 'in_progress'" @click="pauseOrResume(item)"
-             class="icon-button" :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"/>
-        </el-tooltip>
-        <el-tooltip :disabled="closeTooltip" :content="i18data.delete"
-                    placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="icon-button el-icon-delete" v-show="removable(item)" @click="remove(item)"/>
-        </el-tooltip>
-        <el-tooltip :disabled="closeTooltip" :content="i18data.retry"
-                    placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="icon-button el-icon-refresh-right" v-show="retryable(item)" @click="retryDownload(item)"/>
-        </el-tooltip>
-        <el-tooltip :disabled="closeTooltip" :content="i18data.erase"
-                    placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="icon-button el-icon-close" @click="erase(item)"/>
-        </el-tooltip>
-      </div>
-    </div>
-  </div>
   </transition>
 </template>
 
@@ -96,8 +96,8 @@
   import common from "../../utils/common"
   export default {
     name: "File",
-      components: { Progress },
-      props: {
+    components: { Progress },
+    props: {
       item: {
         type: Object,
         required: true
