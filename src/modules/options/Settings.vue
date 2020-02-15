@@ -226,10 +226,15 @@
             if (commands) {
               commands.forEach(command => {
                 if (command && command.name === '_execute_browser_action') {
-                  resolve(command.shortcut)
+                  if (command.shortcut) {
+                    resolve(command.shortcut)
+                  } else {
+                    resolve('--')
+                  }
                 }
               })
             }
+            resolve('--')
           })
         })
       },
