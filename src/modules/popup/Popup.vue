@@ -227,11 +227,13 @@
     },
 
     /**
-     * 清空列表所有文件
+     * 清空列表所有文件，除了正在下载的文件
      */
     eraseAll() {
       this.downloadItems.forEach((item) => {
-        this.erase(item)
+        if (item.state && item.state !== 'in_progress') {
+          this.erase(item)
+        }
       })
     },
 
