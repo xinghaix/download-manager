@@ -26,7 +26,10 @@ Click on the plugin icon to see the status of all downloaded files.
 10. Right-click download menu
 
 ### **Future plan**
-1. Custom theme
+The following plans are in no particular order
+1. More language support, including: Japanese, German, French, Spanish, etc.
+2. Icon show download animation
+3. Customize icon and icon color
 
 ### **Info**
 [Chrome Webstore Plugin Address](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
