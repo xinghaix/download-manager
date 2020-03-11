@@ -26,8 +26,11 @@
 9. 手动下载文件功能
 10. 右键下载菜单
 
-### **未来计划**
-1. 自定义主题
+### **未来计划**  
+以下计划排名不分先后：  
+1. 更多语言支持，包括：日语，德语，法语，西班牙语等
+2. 图标显示下载动画
+3. 自定义修改图标以及图标颜色
 
 ### **Info**
 [谷歌浏览器插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
