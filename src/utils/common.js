@@ -176,6 +176,7 @@ const common = {
 
     // options about 版本列表
     this.i18data.versionList = [
+      this.loadI18nMessage('version0_9_0'),
       this.loadI18nMessage('version0_8_5'),
       this.loadI18nMessage('version0_8_0'),
       this.loadI18nMessage('version0_7_0'),
