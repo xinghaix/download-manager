@@ -1,0 +1,286 @@
+{
+  "extName": {
+    "message": "Download Manager",
+    "description": "Nom du plug-in"
+  },
+  "extDesc": {
+    "message": "Faciliter la gestion des fichiers téléchargés",
+    "description": "Description du plug-in"
+  },
+  "settingsTitle": {
+    "message": "La mise en place",
+    "description": "Cadre personnel"
+  },
+  "aboutTitle": {
+    "message": "En ce qui concerne",
+    "description": "Quelques informations complémentaires sur les plugins"
+  },
+  "second": {
+    "message": "résiduelle{}sec",
+    "description": "Affichage du temps résiduel"
+  },
+  "minute": {
+    "message": "résiduelle{}min",
+    "description": "Affichage du temps résiduel"
+  },
+  "hour": {
+    "message": "résiduelle{}hour",
+    "description": "Affichage du temps résiduel"
+  },
+  "day": {
+    "message": "résiduelle{}day",
+    "description": "Affichage du temps résiduel"
+  },
+  "closeTooltip": {
+    "message": "Arrêtez d’afficher le message message",
+    "description": "Lorsque la souris passe sur le bouton sur la page de gestion du téléchargement, arrêtez d’afficher la boîte de questions de texte"
+  },
+  "newDownload": {
+    "message": "Nouveau téléchargement",
+    "description": "Nouveau fichier téléchargé"
+  },
+  "newDownloadPlaceholder": {
+    "message": "Entrez le lien de téléchargement! Enter Touches pour télécharger des fichiers",
+    "description": "Entrez le lien de téléchargement"
+  },
+  "clearList": {
+    "message": "Vider la liste",
+    "description": "Vider la liste des fichiers téléchargés"
+  },
+  "openDownloadFolder": {
+    "message": "Ouvrir le fichier de téléchargement",
+    "description": "Ouvrez le dossier de téléchargement dans l’explorateur"
+  },
+  "openSettings": {
+    "message": "Réglage des encrassements",
+    "description": "Ouvrez la configuration du plug-in dans la nouvelle tab"
+  },
+  "openFileInFolder": {
+    "message": "Ouverture d’un dossier",
+    "description": "Ouvrez le fichier dans le dossier"
+  },
+  "pause": {
+    "message": "La suspension",
+    "description": "Suspension du téléchargement"
+  },
+  "resume": {
+    "message": "Récupération du téléchargement",
+    "description": "Reprend les fichiers dont le téléchargement est suspendu"
+  },
+  "delete": {
+    "message": "supprimé",
+    "description": "Effacer un fichier de la disquette"
+  },
+  "retry": {
+    "message": "recommencer",
+    "description": "Nouveau téléchargement"
+  },
+  "dangerDescription": {
+    "message": "Ce fichier peut nuire à votre ordinateur",
+    "description": "Ce fichier peut nuire à votre ordinateur"
+  },
+  "cancel": {
+    "message": "La suppression des",
+    "description": "Annuler le téléchargement des fichiers dangereux"
+  },
+  "reserve": {
+    "message": "Les réserves",
+    "description": "Conservation des documents de danger"
+  },
+  "erase": {
+    "message": "La suppression des",
+    "description": "Annuler le téléchargement ou effacer les fichiers de la liste"
+  },
+  "copied": {
+    "message": "A été reproduit",
+    "description": "Il a été copié sur la tôle cisaillante"
+  },
+  "prefixMenus": {
+    "message": "Télécharger cette",
+    "description": "Le préfixe léger du menu de téléchargement contextuel est affiché"
+  },
+  "link": {
+    "message": "link",
+    "description": "Le préfixe léger du menu de téléchargement contextuel est affiché"
+  },
+  "image": {
+    "message": "image",
+    "description": "Le préfixe léger du menu de téléchargement contextuel est affiché"
+  },
+  "audio": {
+    "message": "audio",
+    "description": "Le préfixe léger du menu de téléchargement contextuel est affiché"
+  },
+  "video": {
+    "message": "video",
+    "description": "Le préfixe léger du menu de téléchargement contextuel est affiché"
+  },
+  "deleteNotification": {
+    "message": "Notification de suppression",
+    "description": "Bouton pour supprimer la notification"
+  },
+  "downloadCompletedNotification": {
+    "message": "Téléchargement complet",
+    "description": "Le bouton de la notification de fin de téléchargement"
+  },
+  "openFolderNotification": {
+    "message": "Ouverture d’un dossier",
+    "description": "Le bouton ouverture de la fiche ouvre la notification de fin de téléchargement"
+  },
+  "downloadSetting": {
+    "message": "Le téléchargement",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "leftClickFileSetting": {
+    "message": "Ouvrir le fichier en cliquant sur le nom du fichier avec le bouton gauche de la souris",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "rightClickFileSetting": {
+    "message": "Cliquer à droite sur le nom du fichier pour copier sur le clipboard",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "leftClickUrlSetting": {
+    "message": "Vous pouvez l’ouvrir dans la nouvelle interface en cliquant sur le lien de téléchargement avec le bouton gauche de la souris",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "rightClickUrlSetting": {
+    "message": "Cliquer à droite sur le lien de téléchargement en copiant sur la plaque de coupure",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "showTooltipSetting": {
+    "message": "Un message d’avertissement est affiché lorsque la souris passe sur le bouton",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "contextMenus": {
+    "message": "Menus contextuels",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "downloadContextMenusSetting": {
+    "message": "Menu de téléchargement",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "downloadContextMenusDescSetting": {
+    "message": "Le type de fichier supporté: ",
+    "description": "Description détaillée de la mise en place du plug-in"
+  },
+  "notificationSetting": {
+    "message": "La notification",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "downloadNotificationSetting": {
+    "message": "Notifications téléchargées",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "downloadNotificationSetting1": {
+    "message": "Start",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "downloadNotificationSetting2": {
+    "message": "Completed",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "downloadNotificationSetting3": {
+    "message": "Warned",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "downloadCompletionToneSetting": {
+    "message": "Télécharger le message final",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "shortcutSetting": {
+    "message": "Touches de raccourcissement",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "openPopupSetting": {
+    "message": "Activer cette extension",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "openPopupDetailsSetting": {
+    "message": "Veuillez cliquer sur",
+    "description": "Description détaillée de la mise en place du plug-in"
+  },
+  "chromePluginShortcutDescSetting": {
+    "message": "Réglage des touches de raccourcissement",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "syncSetting": {
+    "message": "La synchronisation",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "pluginSyncSetting": {
+    "message": "Réglage du plug-in synchrone",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "pluginSyncDetailsSetting": {
+    "message": "Lorsque vous êtes connecté à un compte google, vous pouvez synchroniser les configurations du plug-in entre les différents browsers basés sur le noyau de google",
+    "description": "Description détaillée de la mise en place du plug-in"
+  },
+  "notSyncSetting": {
+    "message": "Le réglage ne sera pas synchronisé",
+    "description": "Instructions pour le réglage du plug-in"
+  },
+  "themeTitle": {
+    "message": "Le thème",
+    "description": "Notes explicatives sur l’étiquette thématique"
+  },
+  "iconTitle": {
+    "message": "Les icônes",
+    "description": "Notes explicatives sur l’étiquette thématique"
+  },
+  "iconColorSetting": {
+    "message": "Personnaliser la couleur de l’icône",
+    "description": "Notes explicatives sur l’étiquette thématique"
+  },
+  "el_colorpicker_confirm": {
+    "message": "déterminer",
+    "description": "Notes explicatives sur l’étiquette thématique - Element-UI Sélecteur de couleur"
+  },
+  "el_colorpicker_clear": {
+    "message": "vider",
+    "description": "Notes explicatives sur l’étiquette thématique - Element-UI Sélecteur de couleur"
+  },
+  "starAbout1": {
+    "message": "Se sent bien，aller",
+    "description": "En ce qui concerne les instructions relatives à l’étiquette"
+  },
+  "pluginShopAbout": {
+    "message": "App Store",
+    "description": "En ce qui concerne les instructions relatives à l’étiquette"
+  },
+  "starAbout2": {
+    "message": "Faites un score",
+    "description": "En ce qui concerne les instructions relatives à l’étiquette"
+  },
+  "versionAbout": {
+    "message": "Historique de la version",
+    "description": "En ce qui concerne les instructions relatives à l’étiquette"
+  },
+  "version0_9_0": {
+    "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. Personnaliser la couleur de l’icône du plug-in\",\"2. Plus de soutien linguistique\"]}",
+    "description": "Description de la version"
+  },
+  "version0_8_5": {
+    "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-19\",\"data\": [\"1. Nouvelle fonction de raccourcissement des touches\",\"2. Nouvelle fonction de téléchargement manuel de fichiers\",\"3. Un nouveau menu de téléchargement a été ajouté\",\"4. Optimisation de l’affichage de l’interface de réglage\"]}",
+    "description": "Description de la version"
+  },
+  "version0_8_0": {
+    "message": "{\"version\": \"0.8.0\", \"date\": \"2020-01-13\",\"data\": [\"1. Une nouvelle fonction pour interrompre le nouveau téléchargement du fichier a été ajoutée\",\"2. Optimisation de la présentation de l’interface et des procédures opérationnelles lors du téléchargement des fichiers dangereux\"]}",
+    "description": "Description de la version"
+  },
+  "version0_7_0": {
+    "message": "{\"version\": \"0.7.1\", \"date\": \"2020-01-01\",\"data\": [\"1. Nouvelle notification en cours de téléchargement\",\"2. Un nouveau message d’avertissement pour l’achèvement du téléchargement a été ajouté\",\"3. Toutes les pages sont affichées en chinois et en anglais\"]}",
+    "description": "Description de la version"
+  },
+  "version0_6_2": {
+    "message": "{\"version\": \"0.6.2\", \"date\": \"2019-12-30\",\"data\": [\"1. Ajouter la fonction de cliquer à droite pour copier le nom du fichier et télécharger le lien vers le clipper board\",\"2. Ajouter la fonction d’affichage de messages textuels lorsque la souris passe sur un bouton\",\"3. Continuer à améliorer la présentation en chinois et en anglais\"]}",
+    "description": "Description de la version"
+  },
+  "version0_5_1": {
+    "message": "{\"version\": \"0.5.1\", \"date\": \"2019-12-13\",\"data\": [\"1. Lors du téléchargement d’un fichier dangereux, une boîte à questions est affichée pour confirmer ou non le téléchargement\",\"2. Amélioration de la présentation en chinois et en anglais\"]}",
+    "description": "Description de la version"
+  },
+  "version0_4": {
+    "message": "{\"version\": \"0.4\", \"date\": \"2019-09-30\",\"data\": [\"1. Le pourcentage de fichiers téléchargés est affiché\",\"2. Les fichiers téléchargés peuvent être suspendus, repris, annulés ou effacés\",\"3. Recherche tous les fichiers déjà téléchargés\"]}",
+    "description": "Description de la version"
+  }
+}

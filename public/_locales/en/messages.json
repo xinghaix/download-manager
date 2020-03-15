@@ -8,11 +8,11 @@
    "description": "Extension description"
   },
   "settingsTitle": {
-    "message": "settings",
+    "message": "Settings",
     "description": "Personal settings"
   },
   "aboutTitle": {
-    "message": "about",
+    "message": "About",
     "description": "Some information about the plugin"
   },
   "second": {
@@ -219,9 +219,25 @@
     "message": "This setting will not be synchronized",
     "description": "plugin setting instructions"
   },
-  "aboutTile": {
-    "message": "About",
-    "description": "about tab description"
+  "themeTitle": {
+    "message": "Theme",
+    "description": "Theme Tab Description"
+  },
+  "iconTitle": {
+    "message": "Icon",
+    "description": "Theme Tab Description"
+  },
+  "iconColorSetting": {
+    "message": "Custom icon color",
+    "description": "Theme Tab Description"
+  },
+  "el_colorpicker_confirm": {
+    "message": "OK",
+    "description": "Theme Tab Description - Element-UI colorPicker"
+  },
+  "el_colorpicker_clear": {
+    "message": "Clear",
+    "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "starAbout1": {
     "message": "If you like this plugin, please go to the",
@@ -239,9 +255,13 @@
     "message": "Version",
     "description": "about tab description"
   },
+  "version0_9_0": {
+    "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. Custom icon color\",\"2. More language supported\"]}",
+    "description": "Version Description"
+  },
   "version0_8_5": {
     "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-19\",\"data\": [\"1. Add shortcut\",\"2. Add download files manually\",\"3. Add right-click download menu\",\"4. Optimization setting interface display\"]}",
-    "description": "版本说明"
+    "description": "Version Description"
   },
   "version0_8_0": {
     "message": "{\"version\": \"0.8.0\", \"date\": \"2020-01-13\",\"data\": [\"1. Add Ability to interrupt file re-download\",\"2. optimization Interface display and operation flow when downloading dangerous files\"]}",

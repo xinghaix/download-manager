@@ -1,0 +1,286 @@
+{
+  "extName": {
+    "message": "Download Manager",
+    "description": "Название плагина"
+  },
+  "extDesc": {
+    "message": "Удобно управлять загруженными файлами",
+    "description": "Описание плагина"
+  },
+  "settingsTitle": {
+    "message": "Настроить",
+    "description": "Персональные настройки"
+  },
+  "aboutTitle": {
+    "message": "на",
+    "description": "Некоторая дополнительная информация о плагине"
+  },
+  "second": {
+    "message": "прибавочный{}sec",
+    "description": "Отображение оставшегося времени"
+  },
+  "minute": {
+    "message": "прибавочный{}min",
+    "description": "Отображение оставшегося времени"
+  },
+  "hour": {
+    "message": "прибавочный{}hour",
+    "description": "Отображение оставшегося времени"
+  },
+  "day": {
+    "message": "прибавочный{}day",
+    "description": "Отображение оставшегося времени"
+  },
+  "closeTooltip": {
+    "message": "Хватит показывать текстовый шарик",
+    "description": "При наведении курсора мыши на кнопку на странице управления загрузкой окно текстового сообщения перестает отображаться"
+  },
+  "newDownload": {
+    "message": "Новая загрузка",
+    "description": "Новый файл для скачивания"
+  },
+  "newDownloadPlaceholder": {
+    "message": "Пожалуйста, введите ссылку для загрузки! Войдите, чтобы скачать файл",
+    "description": "Пожалуйста, введите ссылку для скачивания"
+  },
+  "clearList": {
+    "message": "Очистить список",
+    "description": "Очистить список файлов для скачивания"
+  },
+  "openDownloadFolder": {
+    "message": "Открыть папку загрузки",
+    "description": "Откройте папку загрузки в проводнике"
+  },
+  "openSettings": {
+    "message": "Настройки плагина",
+    "description": "Открыть настройки плагина в новой вкладке"
+  },
+  "openFileInFolder": {
+    "message": "Открыть папку",
+    "description": "Открыть файл в папке"
+  },
+  "pause": {
+    "message": "пауза",
+    "description": "暂停下载"
+  },
+  "resume": {
+    "message": "Возобновить загрузку",
+    "description": "Возобновить загрузку приостановленного файла"
+  },
+  "delete": {
+    "message": "Удалить",
+    "description": "Удалить файлы с диска"
+  },
+  "retry": {
+    "message": "Retry",
+    "description": "Загрузите снова"
+  },
+  "dangerDescription": {
+    "message": "Файл может повредить ваш компьютер",
+    "description": "Файл может повредить ваш компьютер"
+  },
+  "cancel": {
+    "message": "отменен",
+    "description": "Отменить загрузку опасных файлов"
+  },
+  "reserve": {
+    "message": "удержание",
+    "description": "Храните опасные файлы"
+  },
+  "erase": {
+    "message": "отменен",
+    "description": "Отменить загрузку или очистить файлы из списка"
+  },
+  "copied": {
+    "message": "скопированный",
+    "description": "Скопировано в буфер обмена"
+  },
+  "prefixMenus": {
+    "message": "Скачать это",
+    "description": "Контекстное меню загрузки отображает мелкий префикс"
+  },
+  "link": {
+    "message": "link",
+    "description": "контекстное меню загрузки"
+  },
+  "image": {
+    "message": "image",
+    "description": "Загрузка меню в контекст"
+  },
+  "audio": {
+    "message": "audio",
+    "description": "Загрузка меню в контекст"
+  },
+  "video": {
+    "message": "video",
+    "description": "Загрузка меню в контекст"
+  },
+  "deleteNotification": {
+    "message": "Удалите уведомление.",
+    "description": "Удалить тревожную кнопку"
+  },
+  "downloadCompletedNotification": {
+    "message": "Загрузка завершена.",
+    "description": "Загрузка завершена"
+  },
+  "openFolderNotification": {
+    "message": "Откройте папку.",
+    "description": "Загрузка завершена. Откройте папку"
+  },
+  "downloadSetting": {
+    "message": "загрузк",
+    "description": "Инструкция к плагину"
+  },
+  "leftClickFileSetting": {
+    "message": "Мышь открывает файл, когда нажимает на имя файла",
+    "description": "Инструкция к плагину"
+  },
+  "rightClickFileSetting": {
+    "message": "Мышь копирует файл, когда нажимает на имя файла",
+    "description": "Инструкция к плагину"
+  },
+  "leftClickUrlSetting": {
+    "message": "Мыши могут быть открыты в новом интерфейсе, когда нажимают на левую клавишу, чтобы загрузить ссылку",
+    "description": "Инструкция к плагину"
+  },
+  "rightClickUrlSetting": {
+    "message": "Мышь копирует на скрижаль, когда нажимает на ссылку",
+    "description": "Инструкция к плагину"
+  },
+  "showTooltipSetting": {
+    "message": "Маус показывает сигнал, когда нажимает кнопку",
+    "description": "Инструкция к плагину"
+  },
+  "contextMenus": {
+    "message": "Контекстное меню",
+    "description": "Инструкция к плагину"
+  },
+  "downloadContextMenusSetting": {
+    "message": "Скачай меню.",
+    "description": "Инструкция к плагину"
+  },
+  "downloadContextMenusDescSetting": {
+    "message": "Поддержива тип файл: ",
+    "description": "Детали плагина говорят сами за себя"
+  },
+  "notificationSetting": {
+    "message": "сообщ",
+    "description": "Инструкция к плагину"
+  },
+  "downloadNotificationSetting": {
+    "message": "Загрузка.",
+    "description": "Инструкция к плагину"
+  },
+  "downloadNotificationSetting1": {
+    "message": "нача",
+    "description": "Инструкция к плагину"
+  },
+  "downloadNotificationSetting2": {
+    "message": "законч",
+    "description": "Инструкция к плагину"
+  },
+  "downloadNotificationSetting3": {
+    "message": "предупред",
+    "description": "Инструкция к плагину"
+  },
+  "downloadCompletionToneSetting": {
+    "message": "Загрузка завершена",
+    "description": "Инструкция к плагину"
+  },
+  "shortcutSetting": {
+    "message": "Ключ.",
+    "description": "Инструкция к плагину"
+  },
+  "openPopupSetting": {
+    "message": "Активирова дополнительн программ",
+    "description": "Инструкция к плагину"
+  },
+  "openPopupDetailsSetting": {
+    "message": "Нажмите.",
+    "description": "Детали плагина говорят сами за себя"
+  },
+  "chromePluginShortcutDescSetting": {
+    "message": "Настройка быстрого ключа",
+    "description": "Инструкция к плагину"
+  },
+  "syncSetting": {
+    "message": "синхронизирова",
+    "description": "Инструкция к плагину"
+  },
+  "pluginSyncSetting": {
+    "message": "Синхронизируйте плагины",
+    "description": "Инструкция к плагину"
+  },
+  "pluginSyncDetailsSetting": {
+    "message": "При зачислении на аккаунт в google можно синхронизировать плагины между различными браузерами, основанными на ядра google",
+    "description": "Детали плагина говорят сами за себя"
+  },
+  "notSyncSetting": {
+    "message": "Настройка не синхронизируется",
+    "description": "Инструкция к плагину"
+  },
+  "themeTitle": {
+    "message": "тем",
+    "description": "Инструкция на странице лейбла"
+  },
+  "iconTitle": {
+    "message": "иконк",
+    "description": "Инструкция на странице лейбла"
+  },
+  "iconColorSetting": {
+    "message": "Самоопределение цвета иконы",
+    "description": "Инструкция на странице лейбла"
+  },
+  "el_colorpicker_confirm": {
+    "message": "увер",
+    "description": "Инструкция на странице лейбла - Element-UI Цветовой искатель"
+  },
+  "el_colorpicker_clear": {
+    "message": "очист",
+    "description": "Инструкция на странице лейбла - Element-UI Цветовой искатель"
+  },
+  "starAbout1": {
+    "message": "Хорошо, иди",
+    "description": "О инструкциях на странице ярлыков"
+  },
+  "pluginShopAbout": {
+    "message": "Магазин приложений",
+    "description": "О инструкциях на странице ярлыков"
+  },
+  "starAbout2": {
+    "message": "оценивай",
+    "description": "О инструкциях на странице ярлыков"
+  },
+  "versionAbout": {
+    "message": "Верс истор",
+    "description": "О инструкциях на странице ярлыков"
+  },
+  "version0_9_0": {
+    "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. Определение цвета иконы плагина\",\"2. Больше лингвистической поддержки.\"]}",
+    "description": "Описание версии"
+  },
+  "version0_8_5": {
+    "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-19\",\"data\": [\"1. Новая функция быстрого ключа\",\"2. Новые функции загрузки файлов вручную\",\"3. Новый правый ключ загружает меню\",\"4. Отображение интерфейса оптимизации\"]}",
+    "description": "Описание версии"
+  },
+  "version0_8_0": {
+    "message": "{\"version\": \"0.8.0\", \"date\": \"2020-01-13\",\"data\": [\"1. Работа по перезагрузке новых прерывающих файлов能\",\"2. Оптимизация интерфейса, отображающего и функционирующего процесса при загрузке опасных файлов\"]}",
+    "description": "Описание версии"
+  },
+  "version0_7_0": {
+    "message": "{\"version\": \"0.7.1\", \"date\": \"2020-01-01\",\"data\": [\"1. Уведомление в процессе загрузки\",\"2. Загрузка завершена\",\"3. Полное отображение страницы на китайском и английском языке\"]}",
+    "description": "Описание версии"
+  },
+  "version0_6_2": {
+    "message": "{\"version\": \"0.6.2\", \"date\": \"2019-12-30\",\"data\": [\"1. Новый правый ключ копирует имя файла и загружает ссылку на функции доски\",\"2. Новые мыши показывают функции текстового сигнала, когда двигаются к кнопке\",\"3. Продолжайте совершенствовать китайскую и английскую диспозицию\"]}",
+    "description": "Описание версии"
+  },
+  "version0_5_1": {
+    "message": "{\"version\": \"0.5.1\", \"date\": \"2019-12-13\",\"data\": [\"1. При загрузке опасного файла отображается, подтверждена ли загрузка\",\"2. Усовершенствовать китайскую и английскую диспозицию\"]}",
+    "description": "Описание версии"
+  },
+  "version0_4": {
+    "message": "{\"version\": \"0.4\", \"date\": \"2019-09-30\",\"data\": [\"1. Загрузка файла в процентах показана\",\"2. Загрузка файлов может быть приостановлена, восстановлена, отменена, удалена\",\"3. Обыщите все уже загруженные файлы\"]}",
+    "description": "Описание версии"
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "extName": {
+    "message": "Download Manager",
+    "description": "Modul namen"
+  },
+  "extDesc": {
+    "message": "Downloads zu verwalten",
+    "description": "Modul beschreiben"
+  },
+  "settingsTitle": {
+    "message": "die",
+    "description": "Personen die"
+  },
+  "aboutTitle": {
+    "message": "über",
+    "description": "Einige zusätzliche informationen zum modul"
+  },
+  "second": {
+    "message": "noch{}sec",
+    "description": "Restzeit angezeigt."
+  },
+  "minute": {
+    "message": "noch{}min",
+    "description": "Restzeit angezeigt."
+  },
+  "hour": {
+    "message": "noch{}hour",
+    "description": "Restzeit angezeigt."
+  },
+  "day": {
+    "message": "noch{}day",
+    "description": "Restzeit angezeigt."
+  },
+  "closeTooltip": {
+    "message": "Zeigen sie keine texteingaben mehr an",
+    "description": "Eingabefelder werden angehalten, wenn die maus über die seite lädt"
+  },
+  "newDownload": {
+    "message": "Neu.",
+    "description": "Neue downloads starten"
+  },
+  "newDownloadPlaceholder": {
+    "message": "Bitte geben sie den link ein! Enter Datei laden",
+    "description": "Bitte geben sie den link ein"
+  },
+  "clearList": {
+    "message": "! Liste",
+    "description": "Dateien löschen"
+  },
+  "openDownloadFolder": {
+    "message": "Lade den ordner ab.",
+    "description": "Öffnen sie den ordner für die downloads im ressourcen"
+  },
+  "openSettings": {
+    "message": "Modul die",
+    "description": "Einrichten, um ein modul auf der neuen karteikarte zu öffnen"
+  },
+  "openFileInFolder": {
+    "message": "Ordner öffnen.",
+    "description": "Datei in den ordner öffnen"
+  },
+  "pause": {
+    "message": "für",
+    "description": "Für."
+  },
+  "resume": {
+    "message": "Wieder.",
+    "description": "Das herunterladen in lauflost wieder herstellen"
+  },
+  "delete": {
+    "message": "gelöscht",
+    "description": "Dateien vom speichermedium löschen"
+  },
+  "retry": {
+    "message": "erneut",
+    "description": "Apps noch einmal"
+  },
+  "dangerDescription": {
+    "message": "Herunterladen gefährlicher dateien",
+    "description": "Die datei wird ihrem computer schaden"
+  },
+  "cancel": {
+    "message": "absagen",
+    "description": "Das herunterladen der gefährlichen dateien abbrechen"
+  },
+  "reserve": {
+    "message": "behalten",
+    "description": "Gefährliche daten behalten."
+  },
+  "erase": {
+    "message": "absagen",
+    "description": "Das herunterladen Oder das löschen Von dateien in der liste beenden"
+  },
+  "copied": {
+    "message": "Ist kopiert",
+    "description": "Die exakte kopie ist in der zwischenablage"
+  },
+  "prefixMenus": {
+    "message": "Runtergeladen soll",
+    "description": "Kontext -playback anzeigen der menüs ups"
+  },
+  "link": {
+    "message": "link",
+    "description": "Kontext-herunterladen zum anzeigen"
+  },
+  "image": {
+    "message": "image",
+    "description": "Kontext-herunterladen zum anzeigen"
+  },
+  "audio": {
+    "message": "audio",
+    "description": "Kontext-herunterladen zum anzeigen"
+  },
+  "video": {
+    "message": "video",
+    "description": "Kontext-herunterladen zum anzeigen"
+  },
+  "deleteNotification": {
+    "message": "Gelöscht.",
+    "description": "Knopf löschen"
+  },
+  "downloadCompletedNotification": {
+    "message": "Runtergeladen.",
+    "description": "Download des befehls"
+  },
+  "openFolderNotification": {
+    "message": "Ordner öffnen.",
+    "description": "Ordner öffnen zur eingabe der botschaft"
+  },
+  "downloadSetting": {
+    "message": "runtergeladen",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "leftClickFileSetting": {
+    "message": "Datei öffnen, wenn die linke maustaste auf einen dateinamen klicken",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "rightClickFileSetting": {
+    "message": "Dateien werden kopiert, wenn mit der rechten maustaste auf den namen der datei klicken",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "leftClickUrlSetting": {
+    "message": "Öffnet sich eine neue seite, indem sie mit der linken maustaste auf den link zum download klicken",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "rightClickUrlSetting": {
+    "message": "Mit der rechten maustaste auf den link zum herunterladen der verknüpfung kopieren",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "showTooltipSetting": {
+    "message": "Tipp anzeigen, wenn der mauszeiger über den knöpfen zieht",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "contextMenus": {
+    "message": "Das kontextmenü",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "downloadContextMenusSetting": {
+    "message": "Runtergeladen menü",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "downloadContextMenusDescSetting": {
+    "message": "Die art Von dateien, die unterstützt werden: ",
+    "description": "插件设置细节说明"
+  },
+  "notificationSetting": {
+    "message": "Notification",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "downloadNotificationSetting": {
+    "message": "Загрузка.",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "downloadNotificationSetting1": {
+    "message": "нача",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "downloadNotificationSetting2": {
+    "message": "fertig",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "downloadNotificationSetting3": {
+    "message": "warnen",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "downloadCompletionToneSetting": {
+    "message": "Download abgeschlossen",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "shortcutSetting": {
+    "message": "kurzbefehl",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "openPopupSetting": {
+    "message": "Startet das zusatzprogramm",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "openPopupDetailsSetting": {
+    "message": "klicken",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "chromePluginShortcutDescSetting": {
+    "message": "Tastenkombination einschalten",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "syncSetting": {
+    "message": "mit",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "pluginSyncSetting": {
+    "message": "Synchronisation einrichten",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "pluginSyncDetailsSetting": {
+    "message": "Wenn sie sich an den google account eingegeben haben, können sie browsers synchronisieren, die sich auf verschiedene google-basierte browser beziehen",
+    "description": "Eine genaue beschreibung der modul einstellungen"
+  },
+  "notSyncSetting": {
+    "message": "Diese einstellung synchronisiert nicht",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "themeTitle": {
+    "message": "thema",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "iconTitle": {
+    "message": "symbole",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "iconColorSetting": {
+    "message": "Definierte farben für symbole",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "el_colorpicker_confirm": {
+    "message": "OK",
+    "description": "Das fach design erscheint auf der vorderseite - Element-UI Der farbwähler."
+  },
+  "el_colorpicker_clear": {
+    "message": "Clear",
+    "description": "Das fach design erscheint auf der vorderseite - Element-UI Der farbwähler."
+  },
+  "starAbout1": {
+    "message": "If you like this plugin, please go to the",
+    "description": "Dazu die karteikarten"
+  },
+  "pluginShopAbout": {
+    "message": "App Store",
+    "description": "Dazu die karteikarten"
+  },
+  "starAbout2": {
+    "message": "and rate it!",
+    "description": "Dazu die karteikarten"
+  },
+  "versionAbout": {
+    "message": "Version geschichte",
+    "description": "Dazu die karteikarten"
+  },
+  "version0_9_0": {
+    "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. Die farbe des benutzerdefinierten modul\",\"2. Mehr unterstützung zum thema sprache\"]}",
+    "description": "Version"
+  },
+  "version0_8_5": {
+    "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-19\",\"data\": [\"1. Geben sie einen kurzbefehl ein\",\"2. Funktionen zum manuellen download hinzufügen\",\"3. Fügen sie das menü mit der rechten maustaste zum herunterladen ein\",\"4. Ist eine optimierung der einstellungen in der schnittstelle\"]}",
+    "description": "Version"
+  },
+  "version0_8_0": {
+    "message": "{\"version\": \"0.8.0\", \"date\": \"2020-01-13\",\"data\": [\"1. Datei zum erneuten herunterladen hinzufügen funktion deaktivieren\",\"2. Die schnittstelle und den bedienungsprozess beim herunterladen Von gefährlichen dateien optimieren\"]}",
+    "description": "Version"
+  },
+  "version0_7_0": {
+    "message": "{\"version\": \"0.7.1\", \"date\": \"2020-01-01\",\"data\": [\"1. Ankündigung beim hinzufügen des download-prozesses\",\"2. Zum eingeben des sticks hinzufügen\",\"3. Alle seiten sind in englisch erhältlich\"]}",
+    "description": "Version"
+  },
+  "version0_6_2": {
+    "message": "{\"version\": \"0.6.2\", \"date\": \"2019-12-30\",\"data\": [\"1. Dateien mit der rechten maustaste kopieren und dateien zum herunterladen Von verknüpfungen in der zwischenablage laden\",\"2. Eingabezeichen anzeigen, wenn sie die maus über den knopf bewegen\",\"3. Die ausgabe wird auf chinesisch und englisch weiter verfeinert\"]}",
+    "description": "Version"
+  },
+  "version0_5_1": {
+    "message": "{\"version\": \"0.5.1\", \"date\": \"2019-12-13\",\"data\": [\"1. Beim herunterladen der gefährlichen datei erscheint ein eingabefeld für die bestätigung des herunterladens\",\"2. Verbessern sie die chinesisch - und englischdarbietung\"]}",
+    "description": "Version"
+  },
+  "version0_4": {
+    "message": "{\"version\": \"0.4\", \"date\": \"2019-09-30\",\"data\": [\"1. Prozent der dateien downloaden\",\"2. Dateien zum herunterladen können angehalten, wiederhergestellt, gesperrt und gelöscht werden\",\"3. Nach allen heruntergeladenen dateien suchen\"]}",
+    "description": "Version"
+  }
+}

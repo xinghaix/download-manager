@@ -1,0 +1,286 @@
+{
+  "extName": {
+    "message": "Download Manager",
+    "description": "プラグイン名"
+  },
+  "extDesc": {
+    "message": "ダウンロードしたファイルを便利に管理",
+    "description": "プラグインの説明"
+  },
+  "settingsTitle": {
+    "message": "設定する",
+    "description": "個人設定"
+  },
+  "aboutTitle": {
+    "message": "について",
+    "description": "プラグインに関する追加情報"
+  },
+  "second": {
+    "message": "残り{}sec",
+    "description": "残り時間表示"
+  },
+  "minute": {
+    "message": "残り{}min",
+    "description": "残り時間表示"
+  },
+  "hour": {
+    "message": "残り{}hour",
+    "description": "残り時間表示"
+  },
+  "day": {
+    "message": "残り{}day",
+    "description": "残り時間表示"
+  },
+  "closeTooltip": {
+    "message": "テキストバルーンの表示を停止",
+    "description": "ダウンロード管理ページのボタンの上にマウスを移動すると、テキストメッセージボックスの表示が停止する"
+  },
+  "newDownload": {
+    "message": "新しいダウンロード",
+    "description": "新しいダウンロードファイル"
+  },
+  "newDownloadPlaceholder": {
+    "message": "ダウンロードリンクを入力してください！ファイルをダウンロードするにはEnterキーを押してください",
+    "description": "ダウンロードリンクを入力してください"
+  },
+  "clearList": {
+    "message": "リストをクリア",
+    "description": "ダウンロードファイルリストをクリア"
+  },
+  "openDownloadFolder": {
+    "message": "ダウンロードフォルダを開く",
+    "description": "エクスプローラーでダウンロードフォルダーを開く"
+  },
+  "openSettings": {
+    "message": "プラグイン設定",
+    "description": "新しいタブでプラグイン設定を開く"
+  },
+  "openFileInFolder": {
+    "message": "フォルダーを開く",
+    "description": "フォルダー内のファイルを開く"
+  },
+  "pause": {
+    "message": "一時停止",
+    "description": "ダウンロードを一時停止"
+  },
+  "resume": {
+    "message": "ダウンロードを再開",
+    "description": "一時停止中のファイルのダウンロードを再開します"
+  },
+  "delete": {
+    "message": "削除",
+    "description": "ディスクからファイルを削除する"
+  },
+  "retry": {
+    "message": "再試行",
+    "description": "再度ダウンロード"
+  },
+  "dangerDescription": {
+    "message": "危険なファイルをダウンロードする",
+    "description": "ファイルがコンピューターに損害を与える可能性があります"
+  },
+  "cancel": {
+    "message": "キャンセルする",
+    "description": "危険なファイルのダウンロードをキャンセルする"
+  },
+  "reserve": {
+    "message": "保つ",
+    "description": "危険なファイルを保管する"
+  },
+  "erase": {
+    "message": "キャンセルする",
+    "description": "ダウンロードをキャンセルするか、リストからファイルを消去します"
+  },
+  "copied": {
+    "message": "コピー済み",
+    "description": "クリップボードにコピーしました"
+  },
+  "prefixMenus": {
+    "message": "これをダウンロード",
+    "description": "コンテキストダウンロードメニューのプレフィックス表示"
+  },
+  "link": {
+    "message": "link",
+    "description": "コンテキストダウンロードメニューの表示"
+  },
+  "image": {
+    "message": "image",
+    "description": "コンテキストダウンロードメニューの表示"
+  },
+  "audio": {
+    "message": "audio",
+    "description": "コンテキストダウンロードメニューの表示"
+  },
+  "video": {
+    "message": "video",
+    "description": "コンテキストダウンロードメニューの表示"
+  },
+  "deleteNotification": {
+    "message": "通知を削除",
+    "description": "通知ボタンを削除"
+  },
+  "downloadCompletedNotification": {
+    "message": "ダウンロード完了",
+    "description": "ダウンロード完了通知ボタン"
+  },
+  "openFolderNotification": {
+    "message": "フォルダーを開く",
+    "description": "ダウンロード完了通知フォルダを開くボタン"
+  },
+  "downloadSetting": {
+    "message": "ダウンロードする",
+    "description": "プラグインの設定手順"
+  },
+  "leftClickFileSetting": {
+    "message": "マウスの左ボタンでファイル名をクリックするとファイルが開きます",
+    "description": "プラグインの設定手順"
+  },
+  "rightClickFileSetting": {
+    "message": "マウスの右ボタンでファイル名をクリックするとクリップボードにコピーされる",
+    "description": "プラグインの設定手順"
+  },
+  "leftClickUrlSetting": {
+    "message": "マウスの左ボタンでダウンロードリンクをクリックすると、新しい画面で開くことができる",
+    "description": "プラグインの設定手順"
+  },
+  "rightClickUrlSetting": {
+    "message": "ダウンロードしたリンクをマウスの右ボタンでクリックするとクリップボードにコピーされる",
+    "description": "プラグインの設定手順"
+  },
+  "showTooltipSetting": {
+    "message": "マウスがボタンに移動すると提示情報が表示される",
+    "description": "プラグインの設定手順"
+  },
+  "contextMenus": {
+    "message": "コンテキストメニュー",
+    "description": "プラグインの設定手順"
+  },
+  "downloadContextMenusSetting": {
+    "message": "ダウンロードメニュー",
+    "description": "プラグインの設定手順"
+  },
+  "downloadContextMenusDescSetting": {
+    "message": "サポートされているファイル形式: ",
+    "description": "プラグイン設定の詳細"
+  },
+  "notificationSetting": {
+    "message": "お知らせ",
+    "description": "プラグインの設定手順"
+  },
+  "downloadNotificationSetting": {
+    "message": "ダウンロード通知",
+    "description": "プラグインの設定手順"
+  },
+  "downloadNotificationSetting1": {
+    "message": "開始する",
+    "description": "プラグインの設定手順"
+  },
+  "downloadNotificationSetting2": {
+    "message": "完了",
+    "description": "プラグインの設定手順"
+  },
+  "downloadNotificationSetting3": {
+    "message": "警告",
+    "description": "プラグインの設定手順"
+  },
+  "downloadCompletionToneSetting": {
+    "message": "ダウンロード完了トーン",
+    "description": "プラグインの設定手順"
+  },
+  "shortcutSetting": {
+    "message": "ショートカット",
+    "description": "プラグインの設定手順"
+  },
+  "openPopupSetting": {
+    "message": "拡張機能を有効にする",
+    "description": "プラグインの設定手順"
+  },
+  "openPopupDetailsSetting": {
+    "message": "クリックしてください",
+    "description": "プラグインの設定手順"
+  },
+  "chromePluginShortcutDescSetting": {
+    "message": "ショートカット設定",
+    "description": "プラグインの設定手順"
+  },
+  "syncSetting": {
+    "message": "同期する",
+    "description": "プラグインの設定手順"
+  },
+  "pluginSyncSetting": {
+    "message": "同期プラグイン設定",
+    "description": "プラグインの設定手順"
+  },
+  "pluginSyncDetailsSetting": {
+    "message": "Googleアカウントにログインすると、異なるGoogleカーネルベースのブラウザ間でプラグイン設定を同期できます",
+    "description": "プラグインの設定手順"
+  },
+  "notSyncSetting": {
+    "message": "この設定は同期されません",
+    "description": "プラグインの設定手順"
+  },
+  "themeTitle": {
+    "message": "件名",
+    "description": "プラグインの設定手順"
+  },
+  "iconTitle": {
+    "message": "アイコン",
+    "description": "プラグインの設定手順"
+  },
+  "iconColorSetting": {
+    "message": "カスタムアイコンの色",
+    "description": "プラグインの設定手順"
+  },
+  "el_colorpicker_confirm": {
+    "message": "OK",
+    "description": "トピックタブの説明 - Element-UI colorPicker"
+  },
+  "el_colorpicker_clear": {
+    "message": "Clear",
+    "description": "トピックタブの説明 - Element-UI 颜色选择器"
+  },
+  "starAbout1": {
+    "message": "気分がいい、行く",
+    "description": "タブの説明について"
+  },
+  "pluginShopAbout": {
+    "message": "App Store",
+    "description": "タブの説明について"
+  },
+  "starAbout2": {
+    "message": "評価してください",
+    "description": "タブの説明について"
+  },
+  "versionAbout": {
+    "message": "バージョン履歴",
+    "description": "タブの説明について"
+  },
+  "version0_9_0": {
+    "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. プラグインアイコンの色をカスタマイズする\",\"2. より多くの言語サポート\"]}",
+    "description": "リリースノート"
+  },
+  "version0_8_5": {
+    "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-19\",\"data\": [\"1. 新しいショートカットキー機能\",\"2. 手動ファイルダウンロード機能を追加\",\"3. 右クリックダウンロードメニューを追加\",\"4. 設定インターフェイスの表示を最適化する\"]}",
+    "description": "リリースノート"
+  },
+  "version0_8_0": {
+    "message": "{\"version\": \"0.8.0\", \"date\": \"2020-01-13\",\"data\": [\"1. ファイルの再ダウンロードを中断する機能が追加されました\",\"2. 危険なファイルをダウンロードする際のインターフェース表示と操作プロセスを最適化する\"]}",
+    "description": "リリースノート"
+  },
+  "version0_7_0": {
+    "message": "{\"version\": \"0.7.1\", \"date\": \"2020-01-01\",\"data\": [\"1. ダウンロード中に通知を追加しました\",\"2. ダウンロード完了トーンを追加\",\"3. すべてのページに中国語と英語が表示されます\"]}",
+    "description": "リリースノート"
+  },
+  "version0_6_2": {
+    "message": "{\"version\": \"0.6.2\", \"date\": \"2019-12-30\",\"data\": [\"1. コピーファイル名を右クリックし、クリップボードへのリンクをダウンロードする機能を追加しました\",\"2. マウスがボタンに移動したときにテキストプロンプトを表示する機能を追加しました\",\"3. 中国語と英語の表示を改善し続ける\"]}",
+    "description": "リリースノート"
+  },
+  "version0_5_1": {
+    "message": "{\"version\": \"0.5.1\", \"date\": \"2019-12-13\",\"data\": [\"1. 危険なファイルをダウンロードするとき、ダウンロードを確認するプロンプトボックスが表示されます\",\"2. 中国語と英語の表示を改善する\"]}",
+    "description": "リリースノート"
+  },
+  "version0_4": {
+    "message": "{\"version\": \"0.4\", \"date\": \"2019-09-30\",\"data\": [\"1. ダウンロードファイルの割合の進行状況の表示\",\"2. ダウンロードファイルは一時停止、再開、キャンセル、削除できます\",\"3. ダウンロードしたすべてのファイルを検索する\"]}",
+    "description": "リリースノート"
+  }
+}

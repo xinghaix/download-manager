@@ -219,9 +219,25 @@
     "message": "该设置不会被同步",
     "description": "插件设置说明"
   },
-  "aboutTile": {
-    "message": "关于",
-    "description": "关于标签页说明"
+  "themeTitle": {
+    "message": "主题",
+    "description": "主题标签页说明"
+  },
+  "iconTitle": {
+    "message": "图标",
+    "description": "主题标签页说明"
+  },
+  "iconColorSetting": {
+    "message": "自定义图标颜色",
+    "description": "主题标签页说明"
+  },
+  "el_colorpicker_confirm": {
+    "message": "确定",
+    "description": "主题标签页说明 - Element-UI 颜色选择器"
+  },
+  "el_colorpicker_clear": {
+    "message": "清空",
+    "description": "主题标签页说明 - Element-UI 颜色选择器"
   },
   "starAbout1": {
     "message": "觉得不错，去",
@@ -238,6 +254,10 @@
   "versionAbout": {
     "message": "版本历史",
     "description": "关于标签页说明"
+  },
+  "version0_9_0": {
+    "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. 自定义插件图标的颜色\",\"2. 更多语言支持\"]}",
+    "description": "版本说明"
   },
   "version0_8_5": {
     "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-19\",\"data\": [\"1. 新增 快捷键功能\",\"2. 新增 手动下载文件功能\",\"3. 新增 右键下载菜单\",\"4. 优化 设置界面显示\"]}",
