@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2 class="about title">{{i18data.aboutTile}}</h2>
+    <h2 class="about title">{{i18data.aboutTitle}}</h2>
     <el-card class="about-card box-card" shadow="hover">
       <div class="text">
         <div class="item">

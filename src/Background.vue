@@ -7,12 +7,17 @@
   /* eslint-disable no-undef */
   import storage from "./utils/storage"
   import common from "./utils/common"
+  import icon from "./utils/icon"
 
   export default {
     name: 'app',
     // 插件初始化配置
-    mounted() {
-      storage.defaultSettings()
+    async mounted() {
+      // 默认设置
+      await storage.defaultSettings()
+
+      // 设置图标颜色
+      icon.setBrowserActionIcon(await storage.getIconColor())
 
       // 取消下载时浏览器下方出现的下载信息按钮
       this.disableDownloadBottom()

@@ -128,6 +128,7 @@ const common = {
     // options 侧边栏
     this.i18data.extensionName = this.loadI18nMessage('extName')
     this.i18data.settingsTitle = this.loadI18nMessage('settingsTitle')
+    this.i18data.themeTitle = this.loadI18nMessage('themeTitle')
     this.i18data.aboutTitle = this.loadI18nMessage('aboutTitle')
 
     // options settings 下载设置
@@ -163,8 +164,11 @@ const common = {
     this.i18data.pluginSyncDetailsSetting = this.loadI18nMessage('pluginSyncDetailsSetting')
     this.i18data.notSyncSetting = this.loadI18nMessage('notSyncSetting')
 
+    // options theme 主题设置
+    this.i18data.iconTitle = this.loadI18nMessage('iconTitle')
+    this.i18data.iconColorSetting = this.loadI18nMessage('iconColorSetting')
+
     // options about 关于
-    this.i18data.aboutTile = this.loadI18nMessage('aboutTile')
     this.i18data.starAbout1 = this.loadI18nMessage('starAbout1')
     this.i18data.pluginShopAbout = this.loadI18nMessage('pluginShopAbout')
     this.i18data.starAbout2 = this.loadI18nMessage('starAbout2')

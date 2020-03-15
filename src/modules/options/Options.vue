@@ -18,6 +18,10 @@
               <i class="iconfont el-icon-s-tools"/>
               <span slot="title">{{i18data.settingsTitle}}</span>
             </el-menu-item>
+            <el-menu-item index="#theme">
+              <i class="iconfont el-icon-takeaway-box"/>
+              <span slot="title">{{i18data.themeTitle}}</span>
+            </el-menu-item>
             <el-menu-item index="#about">
               <i class="iconfont el-icon-info"/>
               <span slot="title">{{i18data.aboutTitle}}</span>
@@ -34,6 +38,7 @@
     <el-container class="main-container">
       <el-scrollbar class="content-scrollbar">
         <Settings :i18data="i18data" class="content-item" v-show="selectedIndex === '#settings'"/>
+        <Theme :i18data="i18data" class="content-item" v-show="selectedIndex === '#theme'"/>
         <About :i18data="i18data" class="content-item" v-show="selectedIndex === '#about'"/>
       </el-scrollbar>
       <el-backtop target=".main-container .el-scrollbar__wrap"/>
@@ -47,10 +52,11 @@
   import common from "../../utils/common"
   import Settings from "./Settings"
   import About from "./About"
+  import Theme from "./Theme";
 
   export default {
   name: 'Options',
-  components: { Settings, About },
+  components: {Theme, Settings, About },
   mounted() {
   },
   data() {

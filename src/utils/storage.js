@@ -33,14 +33,14 @@ const storage = {
    * 设置配置
    * 将同步和未同步时的方法统一包装下，方便使用
    * @param key {String}
-   * @param value {boolean}
+   * @param value
    */
   setItem(key, value) {
     this.getSync().then(isSync => {
       if (isSync) {
-        chrome.storage.sync.set({[key]: this.parseBoolean(value)})
+        chrome.storage.sync.set({[key]: value})
       } else {
-        chrome.storage.local.set({[key]: this.parseBoolean(value)})
+        chrome.storage.local.set({[key]: value})
       }
     })
   },
@@ -202,25 +202,40 @@ const storage = {
   },
 
   /**
+   * 设置图标颜色
+   * @param value {String}
+   */
+  setIconColor(value) {
+    this.setItem('icon_color', value)
+  },
+  /**
+   * @return {Promise}
+   */
+  getIconColor() {
+    return this.getItem('icon_color')
+  },
+
+  /**
    * 如果对应key的value为null的话，就设置默认的value
    * @param key {String}
-   * @param defaultValue {boolean}
+   * @param defaultValue
    */
-  setDefaultIfNull(key, defaultValue) {
-    this.getItem(key).then(value => {
-      if (typeof value === 'undefined' || value === null) {
-        this.setItem(key, defaultValue)
-      }
-    })
+  async setDefaultIfNull(key, defaultValue) {
+    let value = await this.getItem(key)
+    if (typeof value === 'undefined' || value === null) {
+      this.setItem(key, defaultValue)
+    }
   },
 
   /**
    * 当获取配置为null时，提前设置默认配置
    * 只需要执行一次
    */
-  defaultSettings() {
+  async defaultSettings() {
     // 插件设置默认启用同步
     this.setDefaultIfNull('sync', true)
+    // 图标默认颜色
+    this.setDefaultIfNull('icon_color', '#000000')
     // 插件设置默认不展示提示信息
     this.setDefaultIfNull('close_tooltip', true)
     this.setDefaultIfNull('left_click_file', true)
