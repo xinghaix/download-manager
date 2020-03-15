@@ -24,20 +24,25 @@ Click on the plugin icon to see the status of all downloaded files.
 8. Shortcut
 9. Download the file manually
 10. Right-click download menu
+11. Custom icon color
 
-### **Future plan**
-The following plans are in no particular order
-1. More language support, including: Japanese, German, French, Spanish, etc.
-2. Icon show download animation
-3. Customize icon and icon color
+### **Supported Language**
+简体中文、English、Japanese、German、Russian、French
+
+This is translated using Google, if you have better Suggestions, please send email or create Issues!
+
+### **Future Plan**    
+1. Icon displays download animation
 
 ### **Info**
-[Chrome Webstore Plugin Address](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
+[Chrome Web Store](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-**Latest version**：0.8.6
+#### **最新版本**：0.9.0
+What's new：
+1. Custom icon color
 
-optimization
-1. Circular progress bar display
+Optimization：
+1. More language supported
 
 <img src="../docs/img/1.png" width="320" hegiht="420" alt=""/>
 

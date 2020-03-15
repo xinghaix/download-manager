@@ -25,20 +25,28 @@
 8. 快捷键
 9. 手动下载文件功能
 10. 右键下载菜单
+11. 自定义图标颜色
+
+### **支持的语言**
+简体中文、English、Japanese、German、Russian、French
+
+这是使用谷歌翻译后的结果，如果您有更好的建议，请发邮件或创建Issues!
+
 
 ### **未来计划**  
 以下计划排名不分先后：  
-1. 更多语言支持，包括：日语，德语，法语，西班牙语等
-2. 图标显示下载动画
-3. 自定义修改图标以及图标颜色
+1. 图标显示下载动画
 
 ### **Info**
 [谷歌浏览器插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-#### **最新版本**：0.8.6
+#### **最新版本**：0.9.0
+新增：
+1. 自定义图标颜色
 
-优化
-1. 环形进度条显示
+优化：
+1. 更多语言支持
+
 
 <img src="docs/img/1.png" width="320" hegiht="420" alt=""/>
 
