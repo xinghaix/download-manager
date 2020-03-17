@@ -15,7 +15,7 @@
         <div class="item">
           <i class="iconfont el-icon-star-on"/>
           <span class="prefix">{{i18data.starAbout1}}
-            <a class="link" @click="openUrl(chromePluginShopUrl)">{{i18data.pluginShopAbout}}</a>
+            <a class="link" @click="openPluginShop">{{i18data.pluginShopAbout}}</a>
             {{i18data.starAbout2}}
           </span>
         </div>
@@ -46,6 +46,7 @@
     data() {
       return {
         githubUrl: 'https://github.com/xinghaixuanwo/download-manager',
+        edgePluginShopUrl: 'https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic',
         chromePluginShopUrl: 'https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei',
 
         extName: chrome.runtime.getManifest().name,
@@ -55,6 +56,13 @@
       }
     },
     methods: {
+      // 打开插件商店链接
+      openPluginShop() {
+        // 如果浏览器是新版Edge浏览器，那么将商店链接指向Edge商店
+        let url = window.navigator.userAgent.toLowerCase().indexOf('edg') > 0
+          ? this.edgePluginShopUrl : this.chromePluginShopUrl
+        this.openUrl(url)
+      },
       // 在新标签页中打开下载文件链接
       openUrl (url) {
         chrome.tabs.create({ url: url })
