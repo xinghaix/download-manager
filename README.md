@@ -37,8 +37,9 @@
 以下计划排名不分先后：  
 1. 图标显示下载动画
 2. 解决重试下载失败文件变成新创建下载的问题
-2. 适配深色模式
-3. 自定义下载面板主题
+3. 适配深色模式
+4. 自定义下载面板主题
+5. 新增代理设置
 
 ### **Info**
 [谷歌浏览器插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
