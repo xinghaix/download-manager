@@ -39,7 +39,8 @@
     "downloads.shelf",
     "storage",
     "notifications",
-    "contextMenus"
+    "contextMenus",
+    "background"
   ],
   "homepage_url": "https://github.com/xinghaixuanwo/download-manager",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
