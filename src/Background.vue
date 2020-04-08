@@ -17,7 +17,8 @@
       await storage.defaultSettings()
 
       // 设置图标颜色
-      icon.setBrowserActionIcon(await storage.getIconColor())
+      this.settings.iconColor = await storage.getIconColor()
+      icon.setBrowserActionIcon(this.settings.iconColor)
 
       // 取消下载时浏览器下方出现的下载信息按钮
       this.disableDownloadBottom()
@@ -111,7 +112,12 @@
 
         notificationList: [],
 
-        contextDownloadMenus: ['link', 'image', 'audio', 'video']
+        contextDownloadMenus: ['link', 'image', 'audio', 'video'],
+
+        settings: {
+          iconColor: '#000',
+          iconScrollColor: '#ffa500'
+        }
       }
     },
     watch: {
@@ -121,6 +127,13 @@
       },
       dangerousDownloadingNumber(val) {
         this.handleDangerousDownloadingNumber(val)
+      },
+      anyInProgress(val) {
+        if (val) {
+          icon.startRunning(this.settings.iconColor, this.settings.iconScrollColor)
+        } else {
+          icon.restoreDefaultIcon(this.settings.iconColor)
+        }
       }
     },
     methods: {
@@ -190,15 +203,15 @@
        */
       downloadProgress() {
         this.tid = -1
-        this.anyInProgress = false
         chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
           let downloadingNumber = 0
           let dangerousDownloadingNumber = 0
+          let anyInProgress = false
           items.forEach((item) => {
             common.beforeHandler(item)
             if (item.state === 'in_progress') {
               downloadingNumber++
-              this.anyInProgress = true
+              anyInProgress = true
 
               this.handleDownloadStartedNotification(item)
 
@@ -212,6 +225,8 @@
               this.deleteAllDownloadNotificationId(item.id)
             }
           })
+
+          this.anyInProgress = anyInProgress
 
           // icon右小角显示正在下载中的文件数量
           this.downloadingNumber = downloadingNumber

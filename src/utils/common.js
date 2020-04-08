@@ -77,6 +77,14 @@ const common = {
     }
   },
 
+  /**
+   * 检测系统是否是深色模式
+   * @return {boolean}
+   */
+  isInDarkMode() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  },
+
   // 翻译数据
   i18data: {},
 
