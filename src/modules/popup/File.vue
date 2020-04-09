@@ -93,7 +93,7 @@
 <script>
   /* eslint-disable no-undef */
   import Progress from "./Progress"
-  import common from "../../utils/common"
+
   export default {
     name: "File",
     components: { Progress },
@@ -128,6 +128,10 @@
       },
       rightClickUrl: {
         type: Boolean,
+        required: true
+      },
+      render: {
+        type: Function(),
         required: true
       },
       erase: {
@@ -230,6 +234,7 @@
       resume(item) {
         chrome.downloads.resume(item.id, () => {
           item.paused = false
+          this.render()
         })
       },
 
@@ -238,7 +243,8 @@
        * @param item {Object}
        */
       retryDownload(item) {
-        common.download(item.url)
+        this.resume(item)
+        // common.download(item.url)
       },
 
       /**

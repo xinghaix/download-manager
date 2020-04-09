@@ -34,7 +34,7 @@
       <el-scrollbar class="content-scrollbar">
         <file v-for="(item, index) in downloadItems" :key="item" class="file"
               :item="item" :timeout="((index+1) / 4) * 180"
-              :erase="erase" :copyToClipboard="copyToClipboard"
+              :render="render" :erase="erase" :copyToClipboard="copyToClipboard"
               :i18data="i18data" :close-tooltip="closeTooltip" :left-click-file="leftClickFile"
               :left-click-url="leftClickUrl" :right-click-file="rightClickFile" :right-click-url="rightClickUrl"/>
       </el-scrollbar>

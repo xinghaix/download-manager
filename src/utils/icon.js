@@ -2,7 +2,7 @@ const icon = {
 
   message: {
     offset: 0,
-    running: false
+    running: true
   },
 
   /**
@@ -91,7 +91,7 @@ const icon = {
     ctx.bezierCurveTo(904.13233438, 479.27838535, 911.22942237, 498.79515254, 900.58513906, 509.43943584)
     ctx.closePath()
 
-    if (loop) {
+    if (loop && this.message.running) {
       // 绘制下载滚动动画
       let gradient = ctx.createLinearGradient(320, 160, 320, 900)
 
