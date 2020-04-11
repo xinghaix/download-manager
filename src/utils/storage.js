@@ -174,17 +174,45 @@ const storage = {
   },
 
   /**
-   * 下载完成后是否声音提示
+   * 下载开始时是否声音提示
    * @param value {boolean}
    */
-  setDownloadCompletionTone(value) {
-    this.setItem('download_completion_tone', value)
+  setDownloadStartedTone(value) {
+    this.setItem('download_started_tone', value)
   },
   /**
    * @return {Promise}
    */
-  getDownloadCompletionTone() {
-    return this.getItem('download_completion_tone')
+  getDownloadStartedTone() {
+    return this.getItem('download_started_tone')
+  },
+
+  /**
+   * 下载完成后是否声音提示
+   * @param value {boolean}
+   */
+  setDownloadCompletedTone(value) {
+    this.setItem('download_completed_tone', value)
+  },
+  /**
+   * @return {Promise}
+   */
+  getDownloadCompletedTone() {
+    return this.getItem('download_completed_tone')
+  },
+
+  /**
+   * 下载危险文件时是否声音提示
+   * @param value {boolean}
+   */
+  setDownloadWarningTone(value) {
+    this.setItem('download_warning_tone', value)
+  },
+  /**
+   * @return {Promise}
+   */
+  getDownloadWarningTone() {
+    return this.getItem('download_warning_tone')
   },
 
   /**
@@ -216,6 +244,20 @@ const storage = {
   },
 
   /**
+   * 设置图标下载动画颜色
+   * @param value {String}
+   */
+  setIconDownloadingColor(value) {
+    this.setItem('icon_downloading_color', value)
+  },
+  /**
+   * @return {Promise}
+   */
+  getIconDownloadingColor() {
+    return this.getItem('icon_downloading_color')
+  },
+
+  /**
    * 如果对应key的value为null的话，就设置默认的value
    * @param key {String}
    * @param defaultValue
@@ -233,24 +275,28 @@ const storage = {
    */
   async defaultSettings() {
     // 插件设置默认启用同步
-    this.setDefaultIfNull('sync', true)
+    await this.setDefaultIfNull('sync', true)
     // 图标默认颜色
-    this.setDefaultIfNull('icon_color', '#000000')
+    await this.setDefaultIfNull('icon_color', '#000000')
+    await this.setDefaultIfNull('icon_downloading_color', '#ffa500')
     // 插件设置默认不展示提示信息
-    this.setDefaultIfNull('close_tooltip', true)
-    this.setDefaultIfNull('left_click_file', true)
-    this.setDefaultIfNull('right_click_file', true)
-    this.setDefaultIfNull('left_click_url', true)
-    this.setDefaultIfNull('right_click_url', true)
+    await this.setDefaultIfNull('close_tooltip', true)
+    await this.setDefaultIfNull('left_click_file', true)
+    await this.setDefaultIfNull('right_click_file', true)
+    await this.setDefaultIfNull('left_click_url', true)
+    await this.setDefaultIfNull('right_click_url', true)
     // 插件默认关闭下载过程中的通知
-    this.setDefaultIfNull('close_download_notification', true)
-    this.setDefaultIfNull('download_started_notification', false)
-    this.setDefaultIfNull('download_completed_notification', false)
-    this.setDefaultIfNull('download_warning_notification', false)
+    await this.setDefaultIfNull('close_download_notification', true)
+    await this.setDefaultIfNull('download_started_notification', false)
+    await this.setDefaultIfNull('download_completed_notification', false)
+    await this.setDefaultIfNull('download_warning_notification', false)
+    await this.setDefaultIfNull('download_started_tone', false)
+    await this.setDefaultIfNull('download_completed_tone', false)
+    await this.setDefaultIfNull('download_warning_tone', false)
     // 插件默认关闭下载完成提示音
-    this.setDefaultIfNull('download_completion_tone', false)
+    await this.setDefaultIfNull('download_completion_tone', false)
     // 插件默认创建下载文件上下文菜单
-    this.setDefaultIfNull('download_context_menus', true)
+    await this.setDefaultIfNull('download_context_menus', true)
   }
 
 }

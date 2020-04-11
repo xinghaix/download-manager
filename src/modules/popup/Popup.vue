@@ -18,7 +18,11 @@
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.clearList"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
-            <i class="header-button icon-button el-icon-brush" @click="eraseAll"/>
+          <el-popconfirm :title="i18data.clearList" @onConfirm="eraseAll"
+                         :confirmButtonText="i18data.clearPopConfirmText"
+                         :cancelButtonText="i18data.clearPopCancelText">
+            <i class="header-button icon-button el-icon-brush" slot="reference"/>
+          </el-popconfirm>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openDownloadFolder"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">

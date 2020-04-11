@@ -69,11 +69,15 @@
         </div>
       </div>
       <el-divider/>
-      <div class="item pointer">
-        <div class="content" @click="downloadCompletionTone = !downloadCompletionTone">
-          <span class="setting-title">{{i18data.downloadCompletionToneSetting}}</span>
+      <div class="item">
+        <div class="content">
+          <span class="setting-title">{{i18data.downloadToneSetting}}</span>
         </div>
-        <el-switch class="switch" v-model="downloadCompletionTone" active-color="#409EFF" inactive-color="#bdc1c6"/>
+        <div class="switch width">
+          <el-checkbox-button :label="i18data.downloadNotificationSetting1" v-model="downloadStartedTone"/>
+          <el-checkbox-button :label="i18data.downloadNotificationSetting2" v-model="downloadCompletedTone"/>
+          <el-checkbox-button :label="i18data.downloadNotificationSetting3" v-model="downloadWarningTone"/>
+        </div>
       </div>
     </el-card>
 
@@ -128,15 +132,12 @@
       leftClickFile (val) {
         storage.setLeftClickFile(val)
       },
-
       rightClickFile (val) {
         storage.setRightClickFile(val)
       },
-
       leftClickUrl (val) {
         storage.setLeftClickUrl(val)
       },
-
       rightClickUrl (val) {
         storage.setRightClickUrl(val)
       },
@@ -150,18 +151,22 @@
       downloadStartedNotification (val) {
         storage.setDownloadStartedNotification(val)
       },
-
       downloadCompletedNotification (val) {
         storage.setDownloadCompletedNotification(val)
       },
-
       downloadWarningNotification (val) {
         storage.setDownloadWarningNotification(val)
       },
 
-      downloadCompletionTone (val) {
-        storage.setDownloadCompletionTone(val)
-      }
+      downloadStartedTone (val) {
+        storage.setDownloadStartedTone(val)
+      },
+      downloadCompletedTone (val) {
+        storage.setDownloadCompletedTone(val)
+      },
+      downloadWarningTone (val) {
+        storage.setDownloadWarningTone(val)
+      },
     },
     async mounted() {
       // 获取插件设置
@@ -177,7 +182,6 @@
       this.downloadStartedNotification = await storage.getDownloadStartedNotification()
       this.downloadCompletedNotification = await storage.getDownloadCompletedNotification()
       this.downloadWarningNotification = await storage.getDownloadWarningNotification()
-      this.downloadCompletionTone = await storage.getDownloadCompletionTone()
       // 快捷键设置
       this.openPopupShortcut = await this.getOpenPopupShortcut()
       // 同步设置
@@ -205,7 +209,9 @@
         downloadStartedNotification: false,
         downloadCompletedNotification: false,
         downloadWarningNotification: false,
-        downloadCompletionTone: false,
+        downloadStartedTone: false,
+        downloadCompletedTone: false,
+        downloadWarningTone: false,
 
         // 快捷键设置
         openPopupShortcut: 'Ctrl+Z',
@@ -281,7 +287,7 @@
   }
   .box-card .item .content {
     display: table-cell;
-    width: 500px;
+    width: 490px;
   }
   .box-card .item .content .setting-title {
     display: block;
@@ -303,7 +309,7 @@
     padding-right: 4px;
   }
   .box-card .item .switch.width {
-    width: 362px;
+    width: 364px;
   }
   .box-card .item .code {
     background-color: #ececec;
@@ -317,6 +323,7 @@
 
   .box-card >>> .el-divider--horizontal {
     margin: 10px 0!important;
+    height: 0.5px!important;
   }
 
   .item >>> .el-checkbox-button__inner {

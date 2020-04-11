@@ -17,8 +17,8 @@
       await storage.defaultSettings()
 
       // 设置图标颜色
-      this.settings.iconColor = await storage.getIconColor()
-      icon.setBrowserActionIcon(this.settings.iconColor)
+      this.iconColor = await storage.getIconColor()
+      icon.setBrowserActionIcon(this.iconColor)
 
       // 取消下载时浏览器下方出现的下载信息按钮
       this.disableDownloadBottom()
@@ -70,8 +70,7 @@
        * 当点击下载菜单时触发
        */
       chrome.contextMenus.onClicked.addListener((info) => {
-        console.log(info)
-        let url = ''
+        let url
         if (info.menuItemId === 'download-link') {
           url = info.linkUrl
         } else {
@@ -108,16 +107,15 @@
 
         i18data: common.i18data,
 
-        audio: new Audio('audio/completed.wav'),
+        startedAudio: new Audio('audio/start.mp3'),
+        completedAudio: new Audio('audio/completed.wav'),
+        warningAudio: new Audio('audio/warning.mp3'),
 
         notificationList: [],
 
         contextDownloadMenus: ['link', 'image', 'audio', 'video'],
 
-        settings: {
-          iconColor: '#000',
-          iconScrollColor: '#ffa500'
-        }
+        iconColor: '#000',
       }
     },
     watch: {
@@ -125,14 +123,18 @@
       downloadingNumber(val) {
         this.handleDownloadingNumber(val)
       },
+
       dangerousDownloadingNumber(val) {
         this.handleDangerousDownloadingNumber(val)
       },
+
       anyInProgress(val) {
         if (val) {
-          icon.startRunning(this.settings.iconColor, this.settings.iconScrollColor)
+          storage.getIconDownloadingColor().then(result => {
+            icon.startRunning(this.iconColor, result)
+          })
         } else {
-          icon.restoreDefaultIcon(this.settings.iconColor)
+          icon.restoreDefaultIcon(this.iconColor)
         }
       }
     },
@@ -271,6 +273,12 @@
                   })
                 }
               })
+
+              storage.getDownloadStartedTone().then(value => {
+                if (value) {
+                  this.startedAudio.play()
+                }
+              })
             })
           }
         }
@@ -302,9 +310,9 @@
                 }
               })
 
-              storage.getDownloadCompletionTone().then(value => {
+              storage.getDownloadCompletedTone().then(value => {
                 if (value) {
-                  this.audio.play()
+                  this.completedAudio.play()
                 }
               })
             })
@@ -334,6 +342,12 @@
                         })
                     }
                   })
+                }
+              })
+
+              storage.getDownloadWarningTone().then(value => {
+                if (value) {
+                  this.warningAudio.play()
                 }
               })
             })

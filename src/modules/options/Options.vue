@@ -49,15 +49,16 @@
 <!--suppress JSUnresolvedVariable, UnterminatedStatementJS -->
 <script>
   /* eslint-disable no-undef */
-  import common from "../../utils/common"
-  import Settings from "./Settings"
-  import About from "./About"
-  import Theme from "./Theme";
+  import common from '../../utils/common'
+  import Settings from './Settings'
+  import About from './About'
+  import Theme from './Theme'
 
   export default {
   name: 'Options',
-  components: {Theme, Settings, About },
+  components: { Theme, Settings, About },
   mounted() {
+    document.title = this.i18data.settingsTitle + ' - ' + this.i18data.extensionName
   },
   data() {
     return {

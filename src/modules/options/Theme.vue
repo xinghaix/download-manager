@@ -7,7 +7,16 @@
           <span class="setting-title">{{i18data.iconColorSetting}}</span>
         </div>
         <div class="switch">
-          <el-color-picker :value="iconColor" @change="colorChange"/>
+          <el-color-picker :value="iconColor" @change="iconColorChange"/>
+        </div>
+      </div>
+      <el-divider/>
+      <div class="item">
+        <div class="content">
+          <span class="setting-title">{{i18data.iconDownloadingColorSetting}}</span>
+        </div>
+        <div class="switch">
+          <el-color-picker :value="iconDownloadingColor" @change="iconDownloadingColorChange"/>
         </div>
       </div>
     </el-card>
@@ -24,27 +33,40 @@
       i18data: Object
     },
     async mounted() {
-      this.iconColor = await storage.getItem('icon_color')
+      this.iconColor = await storage.getIconColor()
+      this.iconDownloadingColor = await storage.getIconDownloadingColor()
       this.show = true
     },
     data: function () {
       return {
         show: false,
         iconColor: '#000000',
+        iconDownloadingColor: '#ffa500'
       }
     },
     methods: {
       /**
-       * 当颜色更改时，设置插件图标颜色
+       * 当图标颜色更改时，设置插件图标颜色
        * @param val {String}
        */
-      colorChange(val) {
+      iconColorChange(val) {
         // 设置图标颜色
         icon.setBrowserActionIcon(val)
         // 同步到设置
         storage.setIconColor(val)
 
         this.iconColor = val
+      },
+
+      /**
+       * 当图标下载动画颜色更改时，设置插件图标下载动画颜色
+       * @param val {String}
+       */
+      iconDownloadingColorChange(val) {
+        // 同步到设置
+        storage.setIconDownloadingColor(val)
+
+        this.iconDownloadingColor = val
       }
     }
   }
@@ -118,6 +140,7 @@
 
   .box-card >>> .el-divider--horizontal {
     margin: 10px 0!important;
+    height: 0.5px!important;
   }
 
 </style>

@@ -5,12 +5,8 @@
       <div class="text">
         <div class="item">
           <i class="iconfont el-icon-info"/>
-          <span class="prefix">{{extName}}</span>
+          <span class="prefix">{{extName}}<span class="version">{{version}}</span></span>
           <a class="suffix link" @click="openUrl(githubUrl)">Github</a>
-        </div>
-        <div class="item">
-          <i class="iconfont el-icon-s-promotion"/>
-          <span class="prefix version">{{version}}</span>
         </div>
         <div class="item">
           <i class="iconfont el-icon-star-on"/>
@@ -45,7 +41,7 @@
     },
     data() {
       return {
-        githubUrl: 'https://github.com/xinghaixuanwo/download-manager',
+        githubUrl: 'https://github.com/xinghaix/download-manager',
         edgePluginShopUrl: 'https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic',
         chromePluginShopUrl: 'https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei',
 
@@ -109,6 +105,7 @@
   /* 关于 卡片 */
   .box-card.about-card .item {
     font-weight: bold;
+    padding: 3px 0;
   }
   /* 图标 */
   .about-card .item .iconfont {
@@ -133,6 +130,14 @@
     display: table-cell;
     text-align: right;
     vertical-align: middle;
+  }
+  .about-card .item .version {
+    background-color: rgb(228, 231, 237);
+    padding: 1px 6px;
+    margin-left: 4px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-family: consolas, Microsoft YaHei, sans-serif;
   }
   /* 链接 */
   .about-card .item .link {

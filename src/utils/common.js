@@ -93,9 +93,6 @@ const common = {
     this.i18data.deleteNotification = this.loadI18nMessage('deleteNotification')
     this.i18data.downloadCompletedNotification = this.loadI18nMessage('downloadCompletedNotification')
     this.i18data.openFolderNotification = this.loadI18nMessage('openFolderNotification')
-    this.i18data.downloadNotificationSetting1 = this.loadI18nMessage('downloadNotificationSetting1')
-    this.i18data.downloadNotificationSetting2 = this.loadI18nMessage('downloadNotificationSetting2')
-    this.i18data.downloadNotificationSetting3 = this.loadI18nMessage('downloadNotificationSetting3')
 
     // popup 顶栏tooltip
     this.i18data.newDownload = this.loadI18nMessage('newDownload')
@@ -117,12 +114,12 @@ const common = {
     this.i18data.delete = this.loadI18nMessage('delete')
     this.i18data.retry = this.loadI18nMessage('retry')
     this.i18data.erase = this.loadI18nMessage('erase')
-
+    this.i18data.clearPopConfirmText = this.loadI18nMessage('el_popconfirm_confirmButtonText')
+    this.i18data.clearPopCancelText = this.loadI18nMessage('el_popconfirm_cancelButtonText')
     // popup 下载危险文件
     this.i18data.dangerDescription = this.loadI18nMessage('dangerDescription')
     this.i18data.cancel = this.loadI18nMessage('cancel')
     this.i18data.reserve = this.loadI18nMessage('reserve')
-
     // popup 右键复制
     this.i18data.copied = this.loadI18nMessage('copied')
 
@@ -158,7 +155,7 @@ const common = {
     this.i18data.downloadNotificationSetting1 = this.loadI18nMessage('downloadNotificationSetting1')
     this.i18data.downloadNotificationSetting2 = this.loadI18nMessage('downloadNotificationSetting2')
     this.i18data.downloadNotificationSetting3 = this.loadI18nMessage('downloadNotificationSetting3')
-    this.i18data.downloadCompletionToneSetting = this.loadI18nMessage('downloadCompletionToneSetting')
+    this.i18data.downloadToneSetting = this.loadI18nMessage('downloadToneSetting')
 
     // options settings 快捷键设置
     this.i18data.shortcutSetting = this.loadI18nMessage('shortcutSetting')
@@ -175,6 +172,7 @@ const common = {
     // options theme 主题设置
     this.i18data.iconTitle = this.loadI18nMessage('iconTitle')
     this.i18data.iconColorSetting = this.loadI18nMessage('iconColorSetting')
+    this.i18data.iconDownloadingColorSetting = this.loadI18nMessage('iconDownloadingColorSetting')
 
     // options about 关于
     this.i18data.starAbout1 = this.loadI18nMessage('starAbout1')
@@ -184,6 +182,7 @@ const common = {
 
     // options about 版本列表
     this.i18data.versionList = [
+      this.loadI18nMessage('version0_9_1'),
       this.loadI18nMessage('version0_9_0'),
       this.loadI18nMessage('version0_8_5'),
       this.loadI18nMessage('version0_8_0'),
