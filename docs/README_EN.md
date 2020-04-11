@@ -32,17 +32,25 @@ Click on the plugin icon to see the status of all downloaded files.
 This is translated using Google, if you have better Suggestions, please send email or create Issues!
 
 ### **Future Plan**    
-1. Icon displays download animation
+The following features are developed in order 😂:
+1. The icon shows the download animation
+2. Solve the problem that the file that failed to retry downloading becomes a newly created download
+3. Adapt to dark mode
+4. Customize the download panel theme
+5. New proxy settings
+6. Obsessive-compulsive disorder series: only display the name of the downloaded file, the download panel stops showing the flying in and flying out animation
 
 ### **Info**
 [Chrome Web Store](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-#### **最新版本**：0.9.0
-What's new：
-1. Custom icon color
+#### **最新版本**：0.9.1
+What's New:
+1. Display download animation on plugin icon
+2. After the clear button of the download panel is pressed, a second prompt message is added
+3. When the download starts and the warning can also be turned on separately
 
-Optimization：
-1. More language supported
+Optimization:
+1. Russian translation
 
 <img src="../docs/img/1.png" width="320" hegiht="420" alt=""/>
 

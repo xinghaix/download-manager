@@ -45,12 +45,14 @@
 ### **Info**
 [谷歌浏览器插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-#### **最新版本**：0.9.0
+#### **最新版本**：0.9.1
 新增：
-1. 自定义图标颜色
+1. 在插件图标上显示下载动画
+2. 下载面板清空按钮按下之后新增二次提示信息
+3. 下载开始和警告时也可分别开启提示音
 
 优化：
-1. 更多语言支持
+1. 俄语翻译
 
 
 <img src="docs/img/1.png" width="320" hegiht="420" alt=""/>

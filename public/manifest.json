@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extName__",
   "description": "__MSG_extDesc__",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "manifest_version": 2,
   "icons": {
     "16": "img/icon16.png",
@@ -42,7 +42,7 @@
     "contextMenus",
     "background"
   ],
-  "homepage_url": "https://github.com/xinghaixuanwo/download-manager",
+  "homepage_url": "https://github.com/xinghaix/download-manager",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "minimum_chrome_version": "39"
 }
