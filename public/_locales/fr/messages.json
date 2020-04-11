@@ -183,8 +183,8 @@
     "message": "Warned",
     "description": "Instructions pour le réglage du plug-in"
   },
-  "downloadCompletionToneSetting": {
-    "message": "Télécharger le message final",
+  "downloadToneSetting": {
+    "message": "Télécharger le rappel",
     "description": "Instructions pour le réglage du plug-in"
   },
   "shortcutSetting": {
@@ -242,6 +242,14 @@
   "el_colorpicker_clear": {
     "message": "vider",
     "description": "Notes explicatives sur l’étiquette thématique - Element-UI Sélecteur de couleur"
+  },
+  "el_popconfirm_confirmButtonText": {
+    "message": "déterminer",
+    "description": "Effacer la liste - Element-UI PopConfirm"
+  },
+  "el_popconfirm_cancelButtonText": {
+    "message": "Annuler",
+    "description": "Effacer la liste - Element-UI PopConfirm"
   },
   "starAbout1": {
     "message": "Se sent bien，aller",

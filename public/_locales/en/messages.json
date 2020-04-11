@@ -183,8 +183,8 @@
     "message": "Warned",
     "description": "plugin setting instructions"
   },
-  "downloadCompletionToneSetting": {
-    "message": "Download completion tone",
+  "downloadToneSetting": {
+    "message": "Download tone",
     "description": "plugin setting instructions"
   },
   "shortcutSetting": {
@@ -242,6 +242,14 @@
   "el_colorpicker_clear": {
     "message": "Clear",
     "description": "Theme Tab Description - Element-UI colorPicker"
+  },
+  "el_popconfirm_confirmButtonText": {
+    "message": "OK",
+    "description": "Clear list - Element-UI PopConfirm"
+  },
+  "el_popconfirm_cancelButtonText": {
+    "message": "Cancel",
+    "description": "Clear list - Element-UI PopConfirm"
   },
   "starAbout1": {
     "message": "If you like this plugin, please go to the",

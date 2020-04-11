@@ -183,8 +183,8 @@
     "message": "警告",
     "description": "插件设置说明"
   },
-  "downloadCompletionToneSetting": {
-    "message": "下载完成提示音",
+  "downloadToneSetting": {
+    "message": "下载提示音",
     "description": "插件设置说明"
   },
   "shortcutSetting": {
@@ -242,6 +242,14 @@
   "el_colorpicker_clear": {
     "message": "清空",
     "description": "主题标签页说明 - Element-UI 颜色选择器"
+  },
+  "el_popconfirm_confirmButtonText": {
+    "message": "确定",
+    "description": "清空列表 - Element-UI PopConfirm"
+  },
+  "el_popconfirm_cancelButtonText": {
+    "message": "取消",
+    "description": "清空列表 - Element-UI PopConfirm"
   },
   "starAbout1": {
     "message": "觉得不错，去",

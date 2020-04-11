@@ -172,19 +172,19 @@
     "description": "Инструкция к плагину"
   },
   "downloadNotificationSetting1": {
-    "message": "началась",
+    "message": "started",
     "description": "Инструкция к плагину"
   },
   "downloadNotificationSetting2": {
-    "message": "закончилась",
+    "message": "completed",
     "description": "Инструкция к плагину"
   },
   "downloadNotificationSetting3": {
-    "message": "предупреждение",
+    "message": "warning",
     "description": "Инструкция к плагину"
   },
-  "downloadCompletionToneSetting": {
-    "message": "Воспроизводить звук при завершении загрузки",
+  "downloadToneSetting": {
+    "message": "Скачать напоминание",
     "description": "Инструкция к плагину"
   },
   "shortcutSetting": {
@@ -243,6 +243,14 @@
     "message": "Очистить",
     "description": "Инструкция на странице лейбла - Element-UI Цветовой искатель"
   },
+  "el_popconfirm_confirmButtonText": {
+    "message": "Ок",
+    "description": "Очистить список - Element-UI PopConfirm"
+  },
+  "el_popconfirm_cancelButtonText": {
+    "message": "отменен",
+    "description": "Очистить список - Element-UI PopConfirm"
+  },
   "starAbout1": {
     "message": "Если вам нравится плагин перейдите в",
     "description": "О инструкциях на странице ярлыков"
@@ -272,7 +280,7 @@
     "description": "Описание версии"
   },
   "version0_8_0": {
-    "message": "{\"version\": \"0.8.0\", \"date\": \"2020-01-13\",\"data\": [\"1. Работа по перезагрузке новых прерывающих файлов能\",\"2. Оптимизация интерфейса, отображающего и функционирующего процесса при загрузке опасных файлов\"]}",
+    "message": "{\"version\": \"0.8.0\", \"date\": \"2020-01-13\",\"data\": [\"1. Работа по перезагрузке новых прерывающих файлов\",\"2. Оптимизация интерфейса, отображающего и функционирующего процесса при загрузке опасных файлов\"]}",
     "description": "Описание версии"
   },
   "version0_7_0": {

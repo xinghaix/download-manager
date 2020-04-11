@@ -183,8 +183,8 @@
     "message": "警告",
     "description": "プラグインの設定手順"
   },
-  "downloadCompletionToneSetting": {
-    "message": "ダウンロード完了トーン",
+  "downloadToneSetting": {
+    "message": "リマインダーをダウンロード",
     "description": "プラグインの設定手順"
   },
   "shortcutSetting": {
@@ -242,6 +242,14 @@
   "el_colorpicker_clear": {
     "message": "Clear",
     "description": "トピックタブの説明 - Element-UI 颜色选择器"
+  },
+  "el_popconfirm_confirmButtonText": {
+    "message": "OK",
+    "description": "リストをクリア - Element-UI PopConfirm"
+  },
+  "el_popconfirm_cancelButtonText": {
+    "message": "Cancel",
+    "description": "リストをクリア - Element-UI PopConfirm"
   },
   "starAbout1": {
     "message": "気分がいい、行く",

@@ -183,8 +183,8 @@
     "message": "warnen",
     "description": "Modul einrichten -beschreibung"
   },
-  "downloadCompletionToneSetting": {
-    "message": "Download abgeschlossen",
+  "downloadToneSetting": {
+    "message": "Erinnerung herunterladen",
     "description": "Modul einrichten -beschreibung"
   },
   "shortcutSetting": {
@@ -242,6 +242,14 @@
   "el_colorpicker_clear": {
     "message": "Clear",
     "description": "Das fach design erscheint auf der vorderseite - Element-UI Der farbwähler."
+  },
+  "el_popconfirm_confirmButtonText": {
+    "message": "OK",
+    "description": "Liste löschen - Element-UI PopConfirm"
+  },
+  "el_popconfirm_cancelButtonText": {
+    "message": "Cancel",
+    "description": "Liste löschen - Element-UI PopConfirm"
   },
   "starAbout1": {
     "message": "If you like this plugin, please go to the",
