@@ -231,6 +231,10 @@
     "message": "Personnaliser la couleur de l’icône",
     "description": "Notes explicatives sur l’étiquette thématique"
   },
+  "iconDownloadingColorSetting": {
+    "message": "Couleur d'animation de téléchargement d'icône personnalisée",
+    "description": "Notes explicatives sur l’étiquette thématique"
+  },
   "el_colorpicker_confirm": {
     "message": "déterminer",
     "description": "Notes explicatives sur l’étiquette thématique - Element-UI Sélecteur de couleur"
@@ -254,6 +258,10 @@
   "versionAbout": {
     "message": "Historique de la version",
     "description": "En ce qui concerne les instructions relatives à l’étiquette"
+  },
+  "version0_9_1": {
+    "message": "{\"version\": \"0.9.1\", \"date\": \"2020-04-11\",\"data\": [\"1. Ajout d'une animation de téléchargement d'icône (après l'ajout d'une animation de progression du téléchargement circulaire)\",\"2. Mettre à jour le russe\",\"3. Résoudre certains problèmes historiques\"]}",
+    "description": "Description de la version"
   },
   "version0_9_0": {
     "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. Personnaliser la couleur de l’icône du plug-in\",\"2. Plus de soutien linguistique\"]}",

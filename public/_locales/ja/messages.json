@@ -231,6 +231,10 @@
     "message": "カスタムアイコンの色",
     "description": "プラグインの設定手順"
   },
+  "iconDownloadingColorSetting": {
+    "message": "カスタムアイコンダウンロードアニメーションの色",
+    "description": "プラグインの設定手順"
+  },
   "el_colorpicker_confirm": {
     "message": "OK",
     "description": "トピックタブの説明 - Element-UI colorPicker"
@@ -254,6 +258,10 @@
   "versionAbout": {
     "message": "バージョン履歴",
     "description": "タブの説明について"
+  },
+  "version0_9_1": {
+    "message": "{\"version\": \"0.9.1\", \"date\": \"2020-04-11\",\"data\": [\"1. 追加されたアイコンダウンロードアニメーション（リングダウンロードの進行状況アニメーションは将来追加される予定です）\",\"2. ロシア語を更新\",\"3. いくつかの歴史的な問題を解決します\"]}",
+    "description": "リリースノート"
   },
   "version0_9_0": {
     "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. プラグインアイコンの色をカスタマイズする\",\"2. より多くの言語サポート\"]}",

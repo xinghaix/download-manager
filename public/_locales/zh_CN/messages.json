@@ -231,6 +231,10 @@
     "message": "自定义图标颜色",
     "description": "主题标签页说明"
   },
+  "iconDownloadingColorSetting": {
+    "message": "自定义图标下载动画颜色",
+    "description": "主题标签页说明"
+  },
   "el_colorpicker_confirm": {
     "message": "确定",
     "description": "主题标签页说明 - Element-UI 颜色选择器"
@@ -254,6 +258,10 @@
   "versionAbout": {
     "message": "版本历史",
     "description": "关于标签页说明"
+  },
+  "version0_9_1": {
+    "message": "{\"version\": \"0.9.1\", \"date\": \"2020-04-11\",\"data\": [\"1. 新增图标下载动画（后续将新增环形下载进度动画）\",\"2. 更新俄语\",\"3. 解决部分历史遗留问题\"]}",
+    "description": "版本说明"
   },
   "version0_9_0": {
     "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. 自定义插件图标的颜色\",\"2. 更多语言支持\"]}",

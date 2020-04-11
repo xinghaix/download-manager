@@ -231,6 +231,10 @@
     "message": "Definierte farben für symbole",
     "description": "Das fach design erscheint auf der vorderseite"
   },
+  "iconDownloadingColorSetting": {
+    "message": "Benutzerdefinierte Symbol Download Animation Farbe",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
   "el_colorpicker_confirm": {
     "message": "OK",
     "description": "Das fach design erscheint auf der vorderseite - Element-UI Der farbwähler."
@@ -254,6 +258,10 @@
   "versionAbout": {
     "message": "Version geschichte",
     "description": "Dazu die karteikarten"
+  },
+  "version0_9_1": {
+    "message": "{\"version\": \"0.9.1\", \"date\": \"2020-04-11\",\"data\": [\"1. Symbol-Download-Animation hinzugefügt (die Ring-Download-Fortschrittsanimation wird später hinzugefügt)\",\"2. Russisch aktualisieren\",\"3. Einige vom Verlauf übrig gebliebene Probleme lösen\"]}",
+    "description": "Version"
   },
   "version0_9_0": {
     "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. Die farbe des benutzerdefinierten modul\",\"2. Mehr unterstützung zum thema sprache\"]}",
