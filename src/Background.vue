@@ -17,8 +17,8 @@
       await storage.defaultSettings()
 
       // 设置图标颜色
-      this.iconColor = await storage.getIconColor()
-      icon.setBrowserActionIcon(this.iconColor)
+      let iconColor = await storage.getIconColor()
+      icon.setBrowserActionIcon(iconColor)
 
       // 取消下载时浏览器下方出现的下载信息按钮
       this.disableDownloadBottom()
@@ -114,8 +114,6 @@
         notificationList: [],
 
         contextDownloadMenus: ['link', 'image', 'audio', 'video'],
-
-        iconColor: '#000',
       }
     },
     watch: {
@@ -130,11 +128,15 @@
 
       anyInProgress(val) {
         if (val) {
-          storage.getIconDownloadingColor().then(result => {
-            icon.startRunning(this.iconColor, result)
+          storage.getIconColor().then(iconColor => {
+            storage.getIconDownloadingColor().then(iconDownloadingColor => {
+              icon.startRunning(iconColor, iconDownloadingColor)
+            })
           })
         } else {
-          icon.restoreDefaultIcon(this.iconColor)
+          storage.getIconColor().then(iconColor => {
+            icon.restoreDefaultIcon(iconColor)
+          })
         }
       }
     },
