@@ -43,7 +43,7 @@ The following features are developed in order 😂:
 ### **Info**
 [Chrome Web Store](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-#### **最新版本**：0.9.1
+#### **Latest Version**：0.9.2
 What's New:
 1. Display download animation on plugin icon
 2. After the clear button of the download panel is pressed, a second prompt message is added
