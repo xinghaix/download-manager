@@ -343,9 +343,9 @@
           } else {
             remaining = remaining / 60
             if (remaining < 24) {
-              return this.i18data.minute.replace('{}', remaining.toFixed(0))
+              return this.i18data.hour.replace('{}', remaining.toFixed(0))
             } else {
-              return this.i18data.minute.replace('{}', (remaining / 24).toFixed(0))
+              return this.i18data.day.replace('{}', (remaining / 24).toFixed(0))
             }
           }
         }
