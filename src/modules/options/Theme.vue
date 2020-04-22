@@ -7,7 +7,7 @@
           <span class="setting-title">{{i18data.iconColorSetting}}</span>
         </div>
         <div class="switch">
-          <el-color-picker :value="iconColor" @change="iconColorChange"/>
+          <el-color-picker :value="iconColor" size="small" @change="iconColorChange"/>
         </div>
       </div>
       <el-divider/>
@@ -16,7 +16,37 @@
           <span class="setting-title">{{i18data.iconDownloadingColorSetting}}</span>
         </div>
         <div class="switch">
-          <el-color-picker :value="iconDownloadingColor" @change="iconDownloadingColorChange"/>
+          <el-color-picker :value="iconDownloadingColor" size="small" @change="iconDownloadingColorChange"/>
+        </div>
+      </div>
+    </el-card>
+
+    <h2 class="about title">下载面板</h2>
+    <el-card class="box-card" shadow="hover">
+      <div class="item custom">
+        <div class="content">
+          <span class="setting-title">主题</span>
+        </div>
+        <div class="themes">
+          <div class="theme white"
+               :class="theme === 'white' ? 'selected' : ''"
+               @click="setDownloadTheme('white')">
+            <div v-show="theme === 'white'">
+              <div class="selected-background"></div>
+              <div class="selected"></div>
+            </div>
+          </div>
+          <div class="theme dark"
+               :class="theme === 'dark' ? 'selected' : ''"
+               @click="setDownloadTheme('dark')">
+            <div v-show="theme === 'dark'">
+              <div class="selected-background"></div>
+              <div class="selected"></div>
+            </div>
+          </div>
+          <div class="theme custom">
+            <div class="message">自定义主题，敬请期待！</div>
+          </div>
         </div>
       </div>
     </el-card>
@@ -41,7 +71,9 @@
       return {
         show: false,
         iconColor: '#000000',
-        iconDownloadingColor: '#ffa500'
+        iconDownloadingColor: '#ffa500',
+
+        theme: 'white'
       }
     },
     methods: {
@@ -67,6 +99,10 @@
         storage.setIconDownloadingColor(val)
 
         this.iconDownloadingColor = val
+      },
+
+      setDownloadTheme(theme) {
+        this.theme = theme
       }
     }
   }
@@ -136,6 +172,70 @@
   }
   .box-card .item .setting-description .code {
     margin-left: 4px;
+  }
+  /* 自定义下载面板主题 */
+  .box-card .item.custom {
+    display: block;
+  }
+  .box-card .item .themes {
+    margin-top: 16px;
+  }
+  .box-card .item .theme {
+    display: inline-block;
+    vertical-align: top;
+    width: 180px;
+    height: 200px;
+    border-radius: 4px;
+    border: 1px solid #e8e8e8;
+    position: relative;
+  }
+  .box-card .item .theme.white,
+  .box-card .item .theme.dark {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  .box-card .item .theme.white:hover,
+  .box-card .item .theme.dark:hover,
+  .box-card .item .theme.selected {
+    border-color: #008efc;
+  }
+  .box-card .item .theme.white {
+    background: url(/img/white.png) no-repeat;
+    background-size: 100% 100%;
+  }
+  .box-card .item .theme.dark {
+    background: url(/img/white.png) no-repeat;
+    background-size: 100% 100%;
+  }
+  .box-card .item .theme.custom {
+    font-size: 12px;
+    text-align: center;
+  }
+  .box-card .item .theme.custom .message {
+    margin-top: 81px;
+    color: #009688;
+    word-wrap: break-word;
+    font-weight: bold;
+    padding: 0 18px;
+  }
+  .box-card .item .theme .selected-background {
+    height: 24px;
+    left: auto;
+    right: -8px;
+    top: -14px;
+    width: 24px;
+    position: absolute;
+    background-color: white;
+  }
+  .box-card .item .theme .selected {
+    height: 26px;
+    left: auto;
+    right: -8px;
+    top: -14px;
+    width: 24px;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDQ4IDQ4IiBmaWxsPSIjNDI4NUY0Ij48cGF0aCBkPSJNMCAwaDQ4djQ4SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTI0IDRDMTIuOTUgNCA0IDEyLjk1IDQgMjRjMCAxMS4wNCA4Ljk1IDIwIDIwIDIwIDExLjA0IDAgMjAtOC45NiAyMC0yMCAwLTExLjA1LTguOTYtMjAtMjAtMjB6bS00IDMwTDEwIDI0bDIuODMtMi44M0wyMCAyOC4zNGwxNS4xNy0xNS4xN0wzOCAxNiAyMCAzNHoiLz48L3N2Zz4=) no-repeat 50%;
+    background-size: 28px 28px;
+    position: absolute;
   }
 
   .box-card >>> .el-divider--horizontal {
