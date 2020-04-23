@@ -61,11 +61,11 @@
   components: { File, Tip },
   async mounted () {
     // 初始化插件设置
-    this.closeTooltip = await storage.getCloseTooltip()
-    this.leftClickFile = await storage.getLeftClickFile()
-    this.rightClickFile = await storage.getRightClickFile()
-    this.leftClickUrl = await storage.getLeftClickUrl()
-    this.rightClickUrl = await storage.getRightClickUrl()
+    this.closeTooltip = await storage.get('close_tooltip')
+    this.leftClickFile = await storage.get('left_click_file')
+    this.rightClickFile = await storage.get('right_click_file')
+    this.leftClickUrl = await storage.get('left_click_url')
+    this.rightClickUrl = await storage.get('right_click_url')
 
     // 获取下载文件信息
     this.render()

@@ -63,8 +63,8 @@
       i18data: Object
     },
     async mounted() {
-      this.iconColor = await storage.getIconColor()
-      this.iconDownloadingColor = await storage.getIconDownloadingColor()
+      this.iconColor = await storage.get('icon_color')
+      this.iconDownloadingColor = await storage.get('icon_downloading_color')
       this.show = true
     },
     data: function () {
@@ -85,7 +85,7 @@
         // 设置图标颜色
         icon.setBrowserActionIcon(val)
         // 同步到设置
-        storage.setIconColor(val)
+        storage.set('icon_color', val)
 
         this.iconColor = val
       },
@@ -96,7 +96,7 @@
        */
       iconDownloadingColorChange(val) {
         // 同步到设置
-        storage.setIconDownloadingColor(val)
+        storage.set('icon_downloading_color', val)
 
         this.iconDownloadingColor = val
       },

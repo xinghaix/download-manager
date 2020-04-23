@@ -122,70 +122,72 @@
     },
     watch: {
       isSync (val) {
-        storage.setSync(val)
+        storage.set('sync', val)
       },
 
       showTooltip (val) {
-        storage.setCloseTooltip(!val)
+        storage.set('close_tooltip', !val)
       },
-
       leftClickFile (val) {
-        storage.setLeftClickFile(val)
+        storage.set('left_click_file', val)
       },
       rightClickFile (val) {
-        storage.setRightClickFile(val)
+        storage.set('right_click_file', val)
       },
       leftClickUrl (val) {
-        storage.setLeftClickUrl(val)
+        storage.set('left_click_url', val)
       },
       rightClickUrl (val) {
-        storage.setRightClickUrl(val)
+        storage.set('right_click_url', val)
       },
 
       downloadContextMenus (val) {
-        storage.setDownloadContextMenus(val)
+        storage.set('download_context_menus', val)
         // eslint-disable-next-line no-undef
         chrome.runtime.sendMessage(JSON.stringify({type: 'downloadMenus', data: val}))
       },
 
       downloadStartedNotification (val) {
-        storage.setDownloadStartedNotification(val)
+        storage.set('download_started_notification', val)
       },
       downloadCompletedNotification (val) {
-        storage.setDownloadCompletedNotification(val)
+        storage.set('download_completed_notification', val)
       },
       downloadWarningNotification (val) {
-        storage.setDownloadWarningNotification(val)
+        storage.set('download_warning_notification', val)
       },
 
       downloadStartedTone (val) {
-        storage.setDownloadStartedTone(val)
+        storage.set('download_started_tone', val)
       },
       downloadCompletedTone (val) {
-        storage.setDownloadCompletedTone(val)
+        storage.set('download_completed_tone', val)
       },
       downloadWarningTone (val) {
-        storage.setDownloadWarningTone(val)
+        storage.set('download_warning_tone', val)
       },
     },
     async mounted() {
       // 获取插件设置
       // 下载设置
-      this.leftClickFile = await storage.getLeftClickFile()
-      this.rightClickFile = await storage.getRightClickFile()
-      this.leftClickUrl = await storage.getLeftClickUrl()
-      this.rightClickUrl = await storage.getRightClickUrl()
-      this.showTooltip = ! await storage.getCloseTooltip()
+      this.leftClickFile = await storage.get('left_click_file')
+      this.rightClickFile = await storage.get('right_click_file')
+      this.leftClickUrl = await storage.get('left_click_url')
+      this.rightClickUrl = await storage.get('right_click_url')
+      this.showTooltip = ! await storage.get('close_tooltip')
       // 上下文菜单设置
-      this.downloadContextMenus = await storage.getDownloadContextMenus()
+      this.downloadContextMenus = await storage.get('download_context_menus')
       // 通知设置
-      this.downloadStartedNotification = await storage.getDownloadStartedNotification()
-      this.downloadCompletedNotification = await storage.getDownloadCompletedNotification()
-      this.downloadWarningNotification = await storage.getDownloadWarningNotification()
+      this.downloadStartedNotification = await storage.get('download_started_notification')
+      this.downloadCompletedNotification = await storage.get('download_completed_notification')
+      this.downloadWarningNotification = await storage.get('download_warning_notification')
+      this.downloadStartedTone = await storage.get('download_started_tone')
+      this.downloadCompletedTone = await storage.get('download_completed_tone')
+      this.downloadWarningTone = await storage.get('download_warning_tone')
       // 快捷键设置
       this.openPopupShortcut = await this.getOpenPopupShortcut()
       // 同步设置
-      this.isSync = await storage.getSync()
+      this.isSync = await storage.get('sync')
 
       this.show = true
     },

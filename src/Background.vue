@@ -17,7 +17,7 @@
       await storage.defaultSettings()
 
       // 设置图标颜色
-      let iconColor = await storage.getIconColor()
+      let iconColor = await storage.get('icon_color')
       icon.setBrowserActionIcon(iconColor)
 
       // 取消下载时浏览器下方出现的下载信息按钮
@@ -59,7 +59,7 @@
        * 在安装插件时创建浏览器上下文菜单
        */
       chrome.runtime.onInstalled.addListener(() => {
-        storage.getDownloadContextMenus().then(result => {
+        storage.get('download_context_menus').then(result => {
           if (result) {
             this.createDownloadContextMenus()
           }
@@ -128,13 +128,13 @@
 
       anyInProgress(val) {
         if (val) {
-          storage.getIconColor().then(iconColor => {
-            storage.getIconDownloadingColor().then(iconDownloadingColor => {
+          storage.get('icon_color').then(iconColor => {
+            storage.get('icon_downloading_color').then(iconDownloadingColor => {
               icon.startRunning(iconColor, iconDownloadingColor)
             })
           })
         } else {
-          storage.getIconColor().then(iconColor => {
+          storage.get('icon_color').then(iconColor => {
             icon.restoreDefaultIcon(iconColor)
           })
         }
@@ -257,7 +257,7 @@
           if (item.basename) {
             this.notificationList.push(notificationId)
             this.getIcon(item, () => {
-              storage.getDownloadStartedNotification().then(value => {
+              storage.get('download_started_notification').then(value => {
                 if (value) {
                   chrome.notifications.getPermissionLevel(level => {
                     if (level === 'granted') {
@@ -276,7 +276,7 @@
                 }
               })
 
-              storage.getDownloadStartedTone().then(value => {
+              storage.get('download_started_tone').then(value => {
                 if (value) {
                   this.startedAudio.play()
                 }
@@ -293,7 +293,7 @@
           if (item.basename) {
             this.notificationList.push(notificationId)
             this.getIcon(item, () => {
-              storage.getDownloadCompletedNotification().then(value => {
+              storage.get('download_completed_notification').then(value => {
                 if (value) {
                   chrome.notifications.getPermissionLevel(level => {
                     if (level === 'granted') {
@@ -312,7 +312,7 @@
                 }
               })
 
-              storage.getDownloadCompletedTone().then(value => {
+              storage.get('download_completed_tone').then(value => {
                 if (value) {
                   this.completedAudio.play()
                 }
@@ -328,7 +328,7 @@
           if (item.basename) {
             this.notificationList.push(notificationId)
             this.getIcon(item, () => {
-              storage.getDownloadWarningNotification().then(value => {
+              storage.get('download_warning_notification').then(value => {
                 if (value) {
                   chrome.notifications.getPermissionLevel(level => {
                     if (level === 'granted') {
@@ -347,7 +347,7 @@
                 }
               })
 
-              storage.getDownloadWarningTone().then(value => {
+              storage.get('download_warning_tone').then(value => {
                 if (value) {
                   this.warningAudio.play()
                 }
