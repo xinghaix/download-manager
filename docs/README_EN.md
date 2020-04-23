@@ -27,12 +27,18 @@ Click on the plugin icon to see the status of all downloaded files.
 11. Custom icon color
 
 ### **Supported Language**
-简体中文、English、Japanese、German、Russian、French
+`简体中文`、`English`、`Japanese`、`German`、`Russian`、`French`
 
-This is translated using Google, if you have better Suggestions, please send email or create Issues!
+This is the result of using Google Translate. 
+If you have better suggestions, please create Issues or email!
+
+**Steps:**
+1. Location of all translation files: public/_locales/\*\*/*.json
+2. Enter the corresponding language directory
+3. Copy, download or Pull Request modified files. It will be in next version as soon as possible after checking.
 
 ### **Future Plan**    
-The following features are developed in order 😂:
+The following features are developing in order 😂:
 1. The icon shows the download animation
 2. Solve the problem that the file that failed to retry downloading becomes a newly created download
 3. Adapt to dark mode

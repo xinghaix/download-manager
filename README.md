@@ -28,10 +28,14 @@
 11. 自定义图标颜色
 
 ### **支持的语言**
-简体中文、English、Japanese、German、Russian、French
+`简体中文`、`English`、`Japanese`、`German`、`Russian`、`French`
 
-这是使用谷歌翻译后的结果，如果您有更好的建议，请发邮件或创建Issues!
+这是使用谷歌翻译后的结果，如果您有更好的建议，请创建Issues或发邮件!
 
+**步骤：**
+1. 所有翻译文件位置：public/_locales/\*\*/*.json
+2. 进入对应语言的目录
+3. 复制、下载或者Pull Request修改后的文件，我会在检查核对后尽快上线
 
 ### **未来计划**  
 以下计划按先后顺序依次开发😂：  
@@ -53,7 +57,6 @@
 
 优化：
 1. 俄语翻译
-
 
 <img src="docs/img/1.png" width="320" hegiht="420" alt=""/>
 
