@@ -30,7 +30,7 @@
         <div class="themes">
           <div class="theme white"
                :class="theme === 'white' ? 'selected' : ''"
-               @click="setDownloadTheme('white')">
+               @click="setDownloadPanelTheme('white')">
             <div v-show="theme === 'white'">
               <div class="selected-background"></div>
               <div class="selected"></div>
@@ -38,7 +38,7 @@
           </div>
           <div class="theme dark"
                :class="theme === 'dark' ? 'selected' : ''"
-               @click="setDownloadTheme('dark')">
+               @click="setDownloadPanelTheme('dark')">
             <div v-show="theme === 'dark'">
               <div class="selected-background"></div>
               <div class="selected"></div>
@@ -65,6 +65,7 @@
     async mounted() {
       this.iconColor = await storage.get('icon_color')
       this.iconDownloadingColor = await storage.get('icon_downloading_color')
+      this.theme = await storage.get('download_panel_theme')
       this.show = true
     },
     data: function () {
@@ -73,7 +74,7 @@
         iconColor: '#000000',
         iconDownloadingColor: '#ffa500',
 
-        theme: 'white'
+        theme: 'white',
       }
     },
     methods: {
@@ -101,7 +102,15 @@
         this.iconDownloadingColor = val
       },
 
-      setDownloadTheme(theme) {
+      /**
+       * 设置下载面板主题
+       *
+       * @param theme {String} white、dark、custom
+       */
+      setDownloadPanelTheme(theme) {
+        // 同步到设置
+        storage.set('download_panel_theme', theme)
+
         this.theme = theme
       }
     }
@@ -183,10 +192,10 @@
   .box-card .item .theme {
     display: inline-block;
     vertical-align: top;
-    width: 180px;
+    width: 178px;
     height: 200px;
     border-radius: 4px;
-    border: 1px solid #e8e8e8;
+    border: 2px solid #e8e8e8;
     position: relative;
   }
   .box-card .item .theme.white,
@@ -204,7 +213,7 @@
     background-size: 100% 100%;
   }
   .box-card .item .theme.dark {
-    background: url(/img/white.png) no-repeat;
+    background: url(/img/dark.png) no-repeat;
     background-size: 100% 100%;
   }
   .box-card .item .theme.custom {
@@ -226,6 +235,7 @@
     width: 24px;
     position: absolute;
     background-color: white;
+    border-radius: 12px;
   }
   .box-card .item .theme .selected {
     height: 26px;

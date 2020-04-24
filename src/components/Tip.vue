@@ -86,8 +86,8 @@
     height: 15px;
     border-radius: 4px;
     font-size: 12px;
-    color: #ffffff;
-    background: #303133;
+    color: var(--tip-color);
+    background: var(--tip-background-color);
     -webkit-transform-origin-x: 0;
     -webkit-transform: scale(0.9);
   }
