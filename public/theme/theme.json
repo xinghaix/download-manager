@@ -72,7 +72,7 @@
 
     "--popover-musk-background-color": "#8e8e8e",
     "--popover-color": "#d4d4d4",
-    "--popover-background-color": "red",
+    "--popover-background-color": "#7b7b7b",
     "--popover-border-color": "#747475",
     "--popover-textarea-color": "#afafaf",
     "--popover-textarea-background-color": "#525252",

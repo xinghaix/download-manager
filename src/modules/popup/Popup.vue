@@ -68,9 +68,9 @@
       }))[theme]
 
       let bodyStyle = document.querySelector('body').style
-      Object.keys(themeData).forEach(key => {
+      for (let key in themeData) {
         bodyStyle.setProperty(key, themeData[key])
-      })
+      }
     },
     async mounted() {
       // 初始化插件设置
@@ -303,6 +303,7 @@
   }
 </script>
 
+<!--suppress CssUnusedSymbol -->
 <style rel="stylesheet/scss">
   /* 覆盖vue子组件popper样式 */
   body .tooltip {
@@ -316,7 +317,8 @@
   }
   body .tooltip .popper__arrow,
   body .tooltip .popper__arrow:after {
-    border-bottom-color: #1a73e8;
+    border-bottom-color: var(--tooltip-background-color)!important;
+    border-top-color: var(--tooltip-background-color)!important;
   }
 
   body .el-popover {
@@ -338,13 +340,9 @@
     font-size: 11px;
     border-radius: 3px;
   }
-  body .el-popper[x-placement^=top] .popper__arrow,
-  body .el-popper[x-placement^=top] .popper__arrow:after {
-    border-bottom-color: var(--popover-background-color);
-  }
-  body .el-popper[x-placement^=bottom] .popper__arrow,
-  body .el-popper[x-placement^=bottom] .popper__arrow:after {
-    border-bottom-color: var(--popover-background-color);
+  body .el-popper .popper__arrow,
+  body .el-popper .popper__arrow:after {
+    border-bottom-color: var(--popover-background-color)!important;
   }
 
   body .el-textarea textarea {
@@ -411,7 +409,6 @@
   .header .search {
     width: 200px;
   }
-
   .header .search >>> .el-input__inner {
     border-radius: 16px;
     height: 24px;
@@ -420,12 +417,10 @@
     color: var(--header-search-color);
     border-color: var(--header-search-border-color);
   }
-
   .header .search >>> .el-input__inner:hover,
   .header .search >>> .el-input__inner:focus {
     border-color: var(--header-search-hover-border-color);
   }
-
   .header .search >>> .el-input__icon.el-icon-search {
     line-height: 24px;
   }
@@ -457,7 +452,6 @@
     -webkit-transition: .2s;
     transition: .2s;
   }
-
   .icon-button:hover {
     color: var(--header-icon-hover-color);
     font-weight: bold;
@@ -476,17 +470,14 @@
     width: 100%;
     overflow: hidden;
   }
-
   .content-scrollbar >>> .el-scrollbar__wrap {
     overflow: hidden;
     overflow-y: scroll;
   }
-
   .content-scrollbar >>> .el-scrollbar__bar.is-vertical {
     width: 5px;
     right: 0;
   }
-
   .content-scrollbar >>> .el-scrollbar__bar.is-horizontal {
     display: none;
   }
