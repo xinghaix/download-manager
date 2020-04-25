@@ -276,7 +276,7 @@
     "description": "关于标签页说明"
   },
   "version1_0_0": {
-    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. 新增黑色主题（主题文件：/**/chrome/**/Extensions/your extension id/version/theme/theme.json。大家可以自行更改，后续将新增自定义主题功能）\",\"2. 更新法语翻译\"]}",
+    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. 新增暗黑主题（主题文件：/**/chrome/**/Extensions/your extension id/version/theme/theme.json。大家可以自行更改，后续将新增自定义主题功能）\",\"2. 更新法语翻译\"]}",
     "description": "版本说明"
   },
   "version0_9_1": {
