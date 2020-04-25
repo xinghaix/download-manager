@@ -39,24 +39,23 @@ If you have better suggestions, please create Issues or email!
 
 ### **Future Plan**    
 The following features are developing in order 😂:
-1. The icon shows the download animation
+1. More animation that the icon shows the download status
 2. Solve the problem that the file that failed to retry downloading becomes a newly created download
-3. Adapt to dark mode
-4. Customize the download panel theme
-5. New proxy settings
-6. Obsessive-compulsive disorder series: only display the name of the downloaded file, the download panel stops showing the flying in and flying out animation
+3. Proxy settings
+4. Obsessive-compulsive disorder series: only display the name of the downloaded file, the download panel stops showing the flying in and flying out animation
+5. Customize the download panel theme
 
 ### **Info**
 [Chrome Web Store](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
 #### **Latest Version**：0.9.2
 What's New:
-1. Display download animation on plugin icon
-2. After the clear button of the download panel is pressed, a second prompt message is added
-3. When the download starts and the warning can also be turned on separately
+1. Dark Mode is coming!  
+The theme file：[`public/theme/theme.json`](https://github.com/xinghaix/download-manager/blob/master/public/theme/theme.json)  
+You can change it yourself, or upload your own theme file here, I will check it carefully as soon as possible and it will be next version.
 
 Optimization:
-1. Russian translation
+1. Update French translation
 
 <img src="../docs/img/1.png" width="320" hegiht="420" alt=""/>
 
