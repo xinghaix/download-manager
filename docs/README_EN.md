@@ -52,7 +52,7 @@ The following features are developing in order 😂:
 What's New:
 1. Dark Mode is coming!  
 The theme file：[`public/theme/theme.json`](https://github.com/xinghaix/download-manager/blob/master/public/theme/theme.json)  
-You can change it yourself, or upload your own theme file here, I will check it carefully as soon as possible and it will be next version.
+You can change it yourself, or upload your own theme file here. It will be in next version after checking.
 
 Optimization:
 1. Update French translation
@@ -69,6 +69,6 @@ npm run build
 ```
 
 ### Help
-If you have any questions, please create issues
-Or
-send a email `xinghaixuanwo@outlook.com`
+If you have any questions or ideas, please create issues
+or
+send email to me `xinghaixuanwo@outlook.com`
