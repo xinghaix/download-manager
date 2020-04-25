@@ -235,6 +235,14 @@
     "message": "Custom icon download animation color",
     "description": "Theme Tab Description"
   },
+  "downloadPanelTitle": {
+    "message": "Download panel",
+    "description": "Theme Tab Description"
+  },
+  "downloadPanelThemeCustomDescription": {
+    "message": "Custom theme, stay tuned!",
+    "description": "Theme Tab Description"
+  },
   "el_colorpicker_confirm": {
     "message": "OK",
     "description": "Theme Tab Description - Element-UI colorPicker"
@@ -266,6 +274,10 @@
   "versionAbout": {
     "message": "Version",
     "description": "about tab description"
+  },
+  "version1_0_0": {
+    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. Added dark mode theme (The theme file: /**/chrome/**/Extensions/your extension id/version/theme/theme.json. You can change it yourself, and I will add a custom theme function in the future)\",\"2. Update French translation\"]}",
+    "description": "Version Description"
   },
   "version0_9_1": {
     "message": "{\"version\": \"0.9.1\", \"date\": \"2020-04-11\",\"data\": [\"1. Added icon download animation (the ring download progress animation will be added later)\",\"2. Update Russian\",\"3. Solve some historical problems\"]}",

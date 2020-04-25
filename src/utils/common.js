@@ -173,6 +173,8 @@ const common = {
     this.i18data.iconTitle = this.loadI18nMessage('iconTitle')
     this.i18data.iconColorSetting = this.loadI18nMessage('iconColorSetting')
     this.i18data.iconDownloadingColorSetting = this.loadI18nMessage('iconDownloadingColorSetting')
+    this.i18data.downloadPanelTitle = this.loadI18nMessage('downloadPanelTitle')
+    this.i18data.downloadPanelThemeCustomDescription = this.loadI18nMessage('downloadPanelThemeCustomDescription')
 
     // options about 关于
     this.i18data.starAbout1 = this.loadI18nMessage('starAbout1')
@@ -182,6 +184,7 @@ const common = {
 
     // options about 版本列表
     this.i18data.versionList = [
+      this.loadI18nMessage('version1_0_0'),
       this.loadI18nMessage('version0_9_1'),
       this.loadI18nMessage('version0_9_0'),
       this.loadI18nMessage('version0_8_5'),

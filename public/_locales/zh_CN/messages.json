@@ -235,6 +235,14 @@
     "message": "自定义图标下载动画颜色",
     "description": "主题标签页说明"
   },
+  "downloadPanelTitle": {
+    "message": "下载面板",
+    "description": "主题标签页说明"
+  },
+  "downloadPanelThemeCustomDescription": {
+    "message": "自定义主题，敬请期待！",
+    "description": "主题标签页说明"
+  },
   "el_colorpicker_confirm": {
     "message": "确定",
     "description": "主题标签页说明 - Element-UI 颜色选择器"
@@ -266,6 +274,10 @@
   "versionAbout": {
     "message": "版本历史",
     "description": "关于标签页说明"
+  },
+  "version1_0_0": {
+    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. 新增黑色主题（主题文件：/**/chrome/**/Extensions/your extension id/version/theme/theme.json。大家可以自行更改，后续将新增自定义主题功能）\",\"2. 更新法语翻译\"]}",
+    "description": "版本说明"
   },
   "version0_9_1": {
     "message": "{\"version\": \"0.9.1\", \"date\": \"2020-04-11\",\"data\": [\"1. 新增图标下载动画（后续将新增环形下载进度动画）\",\"2. 更新俄语\",\"3. 解决部分历史遗留问题\"]}",

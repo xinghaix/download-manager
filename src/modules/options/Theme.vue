@@ -21,11 +21,11 @@
       </div>
     </el-card>
 
-    <h2 class="about title">下载面板</h2>
+    <h2 class="about title">{{i18data.downloadPanelTitle}}</h2>
     <el-card class="box-card" shadow="hover">
       <div class="item custom">
         <div class="content">
-          <span class="setting-title">主题</span>
+          <span class="setting-title">{{i18data.themeTitle}}</span>
         </div>
         <div class="themes">
           <div class="theme white"
@@ -45,7 +45,7 @@
             </div>
           </div>
           <div class="theme custom">
-            <div class="message">自定义主题，敬请期待！</div>
+            <div class="message">{{i18data.downloadPanelThemeCustomDescription}}</div>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
     async mounted() {
       this.iconColor = await storage.get('icon_color')
       this.iconDownloadingColor = await storage.get('icon_downloading_color')
-      this.theme = await storage.get('download_panel_theme')
+      this.theme = this.checkTheme(await storage.get('download_panel_theme'))
       this.show = true
     },
     data: function () {
@@ -102,12 +102,23 @@
         this.iconDownloadingColor = val
       },
 
+      checkTheme(theme) {
+        if (!theme || (theme !== 'white'
+          && theme !== 'dark'
+          && theme !== 'custom')) {
+          return 'custom'
+        }
+        return theme
+      },
+
       /**
        * 设置下载面板主题
        *
        * @param theme {String} white、dark、custom
        */
       setDownloadPanelTheme(theme) {
+        theme = this.checkTheme(theme)
+
         // 同步到设置
         storage.set('download_panel_theme', theme)
 
@@ -231,7 +242,7 @@
     height: 24px;
     left: auto;
     right: -8px;
-    top: -14px;
+    top: -15px;
     width: 24px;
     position: absolute;
     background-color: white;

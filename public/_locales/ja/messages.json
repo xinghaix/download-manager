@@ -235,6 +235,14 @@
     "message": "カスタムアイコンダウンロードアニメーションの色",
     "description": "プラグインの設定手順"
   },
+  "downloadPanelTitle": {
+    "message": "ダウンロードパネル",
+    "description": "プラグインの設定手順"
+  },
+  "downloadPanelThemeCustomDescription": {
+    "message": "カスタムテーマ、お楽しみに！",
+    "description": "プラグインの設定手順"
+  },
   "el_colorpicker_confirm": {
     "message": "OK",
     "description": "トピックタブの説明 - Element-UI colorPicker"
@@ -266,6 +274,10 @@
   "versionAbout": {
     "message": "バージョン履歴",
     "description": "タブの説明について"
+  },
+  "version1_0_0": {
+    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. 黒のテーマを追加（テーマファイル：/**/chrome/**/Extensions/your extension id/version/theme/theme.json。自分で変更することができ、将来的にカスタムテーマ関数を追加します）\",\"2. フランス語の翻訳を更新する\"]}",
+    "description": "リリースノート"
   },
   "version0_9_1": {
     "message": "{\"version\": \"0.9.1\", \"date\": \"2020-04-11\",\"data\": [\"1. 追加されたアイコンダウンロードアニメーション（リングダウンロードの進行状況アニメーションは将来追加される予定です）\",\"2. ロシア語を更新\",\"3. いくつかの歴史的な問題を解決します\"]}",

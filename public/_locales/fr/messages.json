@@ -235,6 +235,14 @@
     "message": "Personnaliser la couleur d'animation de l'icône pendant le téléchargement",
     "description": "Description de l'onglet Thème"
   },
+  "downloadPanelTitle": {
+    "message": "Panneau de téléchargement",
+    "description": "Description de l'onglet Thème"
+  },
+  "downloadPanelThemeCustomDescription": {
+    "message": "Thème personnalisé, restez à l'écoute!",
+    "description": "Description de l'onglet Thème"
+  },
   "el_colorpicker_confirm": {
     "message": "OK",
     "description": "Description de l'onglet Thème - Element-UI colorPicker"
@@ -266,6 +274,10 @@
   "versionAbout": {
     "message": "Version",
     "description": "description de l'onglet A propos"
+  },
+  "version1_0_0": {
+    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. Thème noir ajouté (fichier de thème: /**/chrome/**/Extensions/your extension id/version/theme/theme.json. Vous pouvez le modifier vous-même et vous ajouterez une fonction de thème personnalisé plus tard)\",\"2. Mettre à jour la traduction française\"]}",
+    "description": "Version Description"
   },
   "version0_9_1": {
     "message": "{\"version\": \"0.9.1\", \"date\": \"2020-04-11\",\"data\": [\"1. Ajout d'une animation de l'icône de téléchargement (l'animation de progression du téléchargement de l'anneau sera ajoutée plus tard)\",\"2. Mise à jour de la langue Russe\",\"3. Résolution de certains problèmes persistents\"]}",

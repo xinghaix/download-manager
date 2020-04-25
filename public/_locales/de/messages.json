@@ -235,6 +235,14 @@
     "message": "Benutzerdefinierte Symbol Download Animation Farbe",
     "description": "Das fach design erscheint auf der vorderseite"
   },
+  "downloadPanelTitle": {
+    "message": "Panel herunterladen",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "downloadPanelThemeCustomDescription": {
+    "message": "Benutzerdefiniertes Thema, bleiben Sie dran!",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
   "el_colorpicker_confirm": {
     "message": "OK",
     "description": "Das fach design erscheint auf der vorderseite - Element-UI Der farbwähler."
@@ -266,6 +274,10 @@
   "versionAbout": {
     "message": "Version geschichte",
     "description": "Dazu die karteikarten"
+  },
+  "version1_0_0": {
+    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. Fügen Sie ein schwarzes Thema hinzu (Themendatei: /**/chrome/**/Extensions/your extension id/version/theme/theme.json. Sie können es selbst ändern und eine benutzerdefinierte Designfunktion wird in Zukunft hinzugefügt.)\",\"2. Aktualisieren Sie die französische Übersetzung\"]}",
+    "description": "Version"
   },
   "version0_9_1": {
     "message": "{\"version\": \"0.9.1\", \"date\": \"2020-04-11\",\"data\": [\"1. Symbol-Download-Animation hinzugefügt (die Ring-Download-Fortschrittsanimation wird später hinzugefügt)\",\"2. Russisch aktualisieren\",\"3. Einige vom Verlauf übrig gebliebene Probleme lösen\"]}",
