@@ -1,0 +1,82 @@
+{
+  "white": {
+    "--background-color": "#fff",
+
+    "--header-search-color": "#606266",
+    "--header-search-background-color": "#fff",
+    "--header-search-border-color": "#dcdfe6",
+    "--header-search-hover-border-color": "#409eff",
+
+    "--header-icon-color": "#808080",
+    "--header-icon-hover-color": "#000",
+    "--header-icon-popconfirm-color": "#a6a6a6",
+    "--header-icon-popconfirm-arrow-top": "-7px",
+    "--header-icon-popconfirm-border-color": "#5a5a5a",
+
+    "--content-file-color": "#3a3a3a",
+    "--content-file-border-color": "#ebeef5",
+    "--content-file-filename-color": "#3a8ee6",
+    "--content-file-filename-gray-color": "#808080",
+    "--content-file-background-color": "#fff",
+    "--content-file-icon-border-right-color": "#ebeef5",
+    "--content-file-content-color": "#bababa",
+    "--content-file-content-filename": "#488fd9",
+    "--content-file-operator-color": "#b3b3b3",
+    "--content-file-operator-hover-color": "#d7d7d7",
+
+    "--tip-color": "#fff",
+    "--tip-background-color": "#303133",
+
+    "--tooltip-color": "#fff",
+    "--tooltip-background-color": "#303133",
+
+    "--popover-musk-background-color": "#000",
+    "--popover-color": "#fff",
+    "--popover-background-color": "#fff",
+    "--popover-border-color": "#606266",
+    "--popover-textarea-color": "#606266",
+    "--popover-textarea-background-color": "#fff",
+    "--popover-textarea-focus-border-color": "#409eff",
+    "--popover-textarea-placeholder-color": "#909399"
+  },
+  "dark": {
+    "--background-color": "#35363a",
+
+    "--header-search-color": "#bcbcbc",
+    "--header-search-background-color": "#595959",
+    "--header-search-border-color": "#595959",
+    "--header-search-hover-border-color": "#409eff",
+
+    "--header-icon-color": "#9b9b9b",
+    "--header-icon-hover-color": "#b3b3b3",
+    "--header-icon-popconfirm-color": "#a6a6a6",
+    "--header-icon-popconfirm-arrow-top": "-7px",
+    "--header-icon-popconfirm-border-color": "#5a5a5a",
+
+    "--content-file-color": "#a0a0a0",
+    "--content-file-border-color": "#6b6b6b",
+    "--content-file-filename-color": "#3598ff",
+    "--content-file-filename-gray-color": "#c1c1c1",
+    "--content-file-background-color": "#595959",
+    "--content-file-icon-border-right-color": "#727272",
+    "--content-file-content-color": "#bababa",
+    "--content-file-content-filename": "#488fd9",
+    "--content-file-operator-color": "#b3b3b3",
+    "--content-file-operator-hover-color": "#d7d7d7",
+
+    "--tip-color": "#fff",
+    "--tip-background-color": "#35363a",
+
+    "--tooltip-color": "#505050",
+    "--tooltip-background-color": "#a0a0a0",
+
+    "--popover-musk-background-color": "#8e8e8e",
+    "--popover-color": "#d4d4d4",
+    "--popover-background-color": "red",
+    "--popover-border-color": "#747475",
+    "--popover-textarea-color": "#afafaf",
+    "--popover-textarea-background-color": "#525252",
+    "--popover-textarea-focus-border-color": "#2f96ff",
+    "--popover-textarea-placeholder-color": "#868686"
+  }
+}

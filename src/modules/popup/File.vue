@@ -141,7 +141,7 @@
       copyToClipboard: {
         type: Function(),
         required: true
-      },
+      }
     },
     mounted() {
       if (this.timeout > 0) {
@@ -391,10 +391,10 @@
     height: 70px;
     margin: 6px 6px 8px 6px;
     border-radius: 4px;
-    border: 1px solid #ebeef5;
-    background-color: #fff;
+    border: 1px solid var(--content-file-border-color);
+    background-color: var(--content-file-background-color);
     overflow: hidden;
-    color: #303133;
+    color: var(--content-file-color);
     position: relative;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     user-select: none;
@@ -408,7 +408,7 @@
     line-height: 86px;
     width: 52px;
     height: 100%;
-    border-right: 1px solid #ebeef5;
+    border-right: 1px solid var(--content-file-icon-border-right-color);
     float: left;
   }
   .file .icon img {
@@ -445,7 +445,7 @@
     line-height: 19px;
     font-weight: bold;
     font-size: 12px;
-    color: #3a8ee6;
+    color: var(--content-file-filename-color);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -455,7 +455,7 @@
   }
   .file.gray .filename {
     cursor: auto;
-    color: gray;
+    color: var(--content-file-filename-gray-color);
     text-decoration: line-through;
   }
 
@@ -465,7 +465,6 @@
     height: 19px;
     line-height: 19px;
     font-size: 12px;
-    color: gray;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -479,7 +478,6 @@
     width: 100%;
     height: 24px;
     display: table;
-    color: gray;
   }
   .file .info .small-size {
     transition: none;
@@ -558,7 +556,7 @@
     height: 28px;
     line-height: 36px;
     width: 92px;
-    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, #fff 24%);
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, var(--content-file-background-color) 24%);
     z-index: 1;
   }
   .file .content-operator {
@@ -583,12 +581,12 @@
     display: inline-block;
     cursor: pointer;
     font-size: 17px;
-    color: grey;
+    color: var(--header-icon-color);
     -webkit-transition: .2s;
     transition: .2s;
   }
   .icon-button:hover {
-    color: black;
+    color: var(--header-icon-hover-color);
     font-weight: bold;
     transition: .2s;
   }
