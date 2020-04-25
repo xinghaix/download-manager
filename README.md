@@ -69,6 +69,6 @@ npm run build
 ```
 
 ### 帮助
-有任何问题请提Issues
+有任何问题请创建Issues
 或者
-发送消息到我的邮箱`xinghaixuanwo@outlook.com`
+给我发送邮件[`xinghaixuanwo@outlook.com`](xinghaixuanwo@outlook.com)

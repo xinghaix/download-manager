@@ -35,7 +35,7 @@ If you have better suggestions, please create Issues or email!
 **Steps:**
 1. Location of all translation files: public/_locales/\*\*/*.json
 2. Enter the corresponding language directory
-3. Copy, download or Pull Request modified files. It will be in next version as soon as possible after checking.
+3. Copy, download or Pull Request modified files. It will be in next version after checking.
 
 ### **Future Plan**    
 The following features are developing in order 😂:
