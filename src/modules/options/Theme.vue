@@ -1,13 +1,41 @@
 <template>
   <div class="home" v-if="show">
+    <h2 class="about title">{{i18data.themeTitle}}</h2>
+    <el-card class="box-card" shadow="hover">
+      <div class="item">
+        <div class="content" @click="setThemeAdaptation(!enableThemeAdaptation)">
+          <span class="setting-title">{{i18data.themeAdaptation}}</span>
+          <span class="setting-description">{{i18data.themeAdaptationDescription}}</span>
+        </div>
+        <div class="switch width">
+          <el-radio-group v-model="theme" size="mini">
+            <el-radio-button label="auto">{{i18data.themeAdaptationOption1}}</el-radio-button>
+            <el-radio-button label="light">{{i18data.themeAdaptationOption2}}</el-radio-button>
+            <el-radio-button label="dark">{{i18data.themeAdaptationOption3}}</el-radio-button>
+          </el-radio-group>
+        </div>
+      </div>
+    </el-card>
+
     <h2 class="about title">{{i18data.iconTitle}}</h2>
     <el-card class="box-card" shadow="hover">
       <div class="item">
         <div class="content">
           <span class="setting-title">{{i18data.iconColorSetting}}</span>
         </div>
-        <div class="switch">
-          <el-color-picker :value="iconColor" size="small" @change="iconColorChange"/>
+        <div class="switch width icon">
+          <el-tooltip :content="i18data.themeAdaptationOption2 + i18data.themeTitle"
+                      placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+            <el-color-picker :value="iconColor['light']" size="small"
+                             :class="theme === 'light' || theme === 'auto' ? 'color' : ''"
+                             @change="iconColorChange($event, 'light')"/>
+          </el-tooltip>
+          <el-tooltip :content="i18data.themeAdaptationOption3 + i18data.themeTitle"
+                      placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+            <el-color-picker :value="iconColor['dark']" size="small"
+                             :class="theme === 'dark' || theme === 'auto' ? 'color' : ''"
+                             @change="iconColorChange($event, 'dark')"/>
+          </el-tooltip>
         </div>
       </div>
       <el-divider/>
@@ -15,8 +43,19 @@
         <div class="content">
           <span class="setting-title">{{i18data.iconDownloadingColorSetting}}</span>
         </div>
-        <div class="switch">
-          <el-color-picker :value="iconDownloadingColor" size="small" @change="iconDownloadingColorChange"/>
+        <div class="switch width icon">
+          <el-tooltip :content="i18data.themeAdaptationOption2 + i18data.themeTitle"
+                      placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+            <el-color-picker :value="iconDownloadingColor['light']" size="small"
+                             :class="theme === 'light' || theme === 'auto' ? 'color' : ''"
+                             @change="iconDownloadingColorChange($event, 'light')"/>
+          </el-tooltip>
+          <el-tooltip :content="i18data.themeAdaptationOption3 + i18data.themeTitle"
+                      placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+            <el-color-picker :value="iconDownloadingColor['dark']" size="small"
+                             :class="theme === 'dark' || theme === 'auto' ? 'color' : ''"
+                             @change="iconDownloadingColorChange($event, 'dark')"/>
+          </el-tooltip>
         </div>
       </div>
     </el-card>
@@ -28,18 +67,18 @@
           <span class="setting-title">{{i18data.themeTitle}}</span>
         </div>
         <div class="themes">
-          <div class="theme white"
-               :class="theme === 'white' ? 'selected' : ''"
-               @click="setDownloadPanelTheme('white')">
-            <div v-show="theme === 'white'">
+          <div class="theme light"
+               :class="downloadPanelTheme === 'light' || theme === 'auto' ? 'selected' : ''"
+               @click="setDownloadPanelTheme('light')">
+            <div v-show="downloadPanelTheme === 'light' || theme === 'auto'">
               <div class="selected-background"></div>
               <div class="selected"></div>
             </div>
           </div>
           <div class="theme dark"
-               :class="theme === 'dark' ? 'selected' : ''"
+               :class="downloadPanelTheme === 'dark' || theme === 'auto' ? 'selected' : ''"
                @click="setDownloadPanelTheme('dark')">
-            <div v-show="theme === 'dark'">
+            <div v-show="downloadPanelTheme === 'dark' || theme === 'auto'">
               <div class="selected-background"></div>
               <div class="selected"></div>
             </div>
@@ -63,71 +102,85 @@
       i18data: Object
     },
     async mounted() {
+      this.theme = await storage.get('theme')
+
       this.iconColor = await storage.get('icon_color')
       this.iconDownloadingColor = await storage.get('icon_downloading_color')
-      this.theme = this.checkTheme(await storage.get('download_panel_theme'))
+
+      this.downloadPanelTheme = await storage.get('download_panel_theme')
+
       this.show = true
     },
     data: function () {
       return {
         show: false,
-        iconColor: '#000000',
-        iconDownloadingColor: '#ffa500',
 
-        theme: 'white',
+        theme: 'light',
+
+        iconColor: {
+          'light': '#000000',
+          'dark': '#989898'
+        },
+        iconDownloadingColor: {
+          'light': '#00d032',
+          'dark': '#ffa500'
+        },
+
+        downloadPanelTheme: 'light',
+      }
+    },
+    watch: {
+      /**
+       * 设置主题自适应。包含图标和下载面板
+       *
+       * @param val {String} light、dark、auto
+       */
+      theme(val) {
+        storage.set('theme', val)
+        // 同时设置下载面板主题
+        this.setDownloadPanelTheme(val)
       }
     },
     methods: {
       /**
        * 当图标颜色更改时，设置插件图标颜色
        * @param val {String}
+       * @param type {String}
        */
-      iconColorChange(val) {
+      iconColorChange(val, type) {
+        this.iconColor[type] = val
         // 设置图标颜色
         icon.setBrowserActionIcon(val)
         // 同步到设置
-        storage.set('icon_color', val)
-
-        this.iconColor = val
+        storage.set('icon_color', this.iconColor)
       },
 
       /**
        * 当图标下载动画颜色更改时，设置插件图标下载动画颜色
        * @param val {String}
+       * @param type {String}
        */
-      iconDownloadingColorChange(val) {
+      iconDownloadingColorChange(val, type) {
+        this.iconDownloadingColor[type] = val
         // 同步到设置
-        storage.set('icon_downloading_color', val)
-
-        this.iconDownloadingColor = val
-      },
-
-      checkTheme(theme) {
-        if (!theme || (theme !== 'white'
-          && theme !== 'dark'
-          && theme !== 'custom')) {
-          return 'custom'
-        }
-        return theme
+        storage.set('icon_downloading_color', this.iconDownloadingColor)
       },
 
       /**
        * 设置下载面板主题
        *
-       * @param theme {String} white、dark、custom
+       * @param theme {String} light、dark、custom
        */
       setDownloadPanelTheme(theme) {
-        theme = this.checkTheme(theme)
-
         // 同步到设置
         storage.set('download_panel_theme', theme)
-
-        this.theme = theme
+        this.downloadPanelTheme = theme
       }
     }
   }
 </script>
 
+<!--suppress CssUnusedSymbol -->
 <style scoped rel="stylesheet/css">
   .home {
     height: 100%;
@@ -184,6 +237,12 @@
   .box-card .item .switch.width {
     width: 362px;
   }
+  .box-card .item .switch.icon >>> .el-color-picker:first-child {
+    margin-right: 16px;
+  }
+  .box-card .item .switch.icon >>> .el-color-picker.color .el-color-picker__trigger {
+    border-color: #5ba2ff;
+  }
   .box-card .item .code {
     background-color: #ececec;
     border-radius: 4px;
@@ -209,18 +268,18 @@
     border: 2px solid #e8e8e8;
     position: relative;
   }
-  .box-card .item .theme.white,
+  .box-card .item .theme.light,
   .box-card .item .theme.dark {
     margin-right: 10px;
     cursor: pointer;
   }
-  .box-card .item .theme.white:hover,
+  .box-card .item .theme.light:hover,
   .box-card .item .theme.dark:hover,
   .box-card .item .theme.selected {
     border-color: #008efc;
   }
-  .box-card .item .theme.white {
-    background: url(/img/white.png) no-repeat;
+  .box-card .item .theme.light {
+    background: url(/img/light.png) no-repeat;
     background-size: 100% 100%;
   }
   .box-card .item .theme.dark {
@@ -257,6 +316,12 @@
     background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDQ4IDQ4IiBmaWxsPSIjNDI4NUY0Ij48cGF0aCBkPSJNMCAwaDQ4djQ4SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTI0IDRDMTIuOTUgNCA0IDEyLjk1IDQgMjRjMCAxMS4wNCA4Ljk1IDIwIDIwIDIwIDExLjA0IDAgMjAtOC45NiAyMC0yMCAwLTExLjA1LTguOTYtMjAtMjAtMjB6bS00IDMwTDEwIDI0bDIuODMtMi44M0wyMCAyOC4zNGwxNS4xNy0xNS4xN0wzOCAxNiAyMCAzNHoiLz48L3N2Zz4=) no-repeat 50%;
     background-size: 28px 28px;
     position: absolute;
+  }
+
+  .box-card >>> .el-radio-button__inner {
+    padding: 5px 17px;
+    font-size: 12px;
+    border-radius: 0 !important;
   }
 
   .box-card >>> .el-divider--horizontal {

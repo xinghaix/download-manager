@@ -223,6 +223,26 @@
     "message": "主题",
     "description": "主题标签页说明"
   },
+  "themeAdaptation": {
+    "message": "主题自适应",
+    "description": "主题标签页说明"
+  },
+  "themeAdaptationDescription": {
+    "message": "根据系统的颜色模式自适应显示亮色和暗黑主题，包含图标和下载面板。",
+    "description": "主题标签页说明"
+  },
+  "themeAdaptationOption1": {
+    "message": "自动",
+    "description": "主题标签页说明"
+  },
+  "themeAdaptationOption2": {
+    "message": "亮色",
+    "description": "主题标签页说明"
+  },
+  "themeAdaptationOption3": {
+    "message": "暗黑",
+    "description": "主题标签页说明"
+  },
   "iconTitle": {
     "message": "图标",
     "description": "主题标签页说明"

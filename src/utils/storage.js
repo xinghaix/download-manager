@@ -41,7 +41,7 @@ const storage = {
    */
   async setDefaultIfNull(key, defaultValue) {
     let value = await this.get(key)
-    if (typeof value === 'undefined' || value === null) {
+    if (value === null || typeof value === 'undefined') {
       this.set(key, defaultValue)
     }
   },
@@ -53,12 +53,34 @@ const storage = {
   async defaultSettings() {
     // 插件设置默认启用同步
     await this.setDefaultIfNull('sync', true)
-    // 图标默认颜色
-    await this.setDefaultIfNull('icon_color', '#000000')
-    await this.setDefaultIfNull('icon_downloading_color', '#ffa500')
-    // 下载面板主题，默认为白色
+    // 主题 - 主题自适应
+    await this.setDefaultIfNull('theme', 'auto')
+
+    // 主题 - 图标默认颜色
+    // 为了解决之前存储的是字符串类型，这里提前设置下
+    let iconColor = await this.get('icon_color')
+    if (iconColor === null
+      || typeof iconColor === 'undefined'
+      || typeof iconColor === 'string') {
+      await this.set('icon_color', {
+        'light': '#000000',
+        'dark': '#989898'
+      })
+    }
+    // 主题 - 下载中图标默认颜色
+    let iconDownloadingColor = await this.get('icon_downloading_color')
+    if (iconDownloadingColor === null
+      || typeof iconDownloadingColor === 'undefined'
+      || typeof iconDownloadingColor === 'string') {
+      this.set('icon_downloading_color', {
+        'light': '#00d032',
+        'dark': '#ffa500'
+      })
+    }
+
+    // 主题 - 下载面板主题，默认为白色
     await this.setDefaultIfNull('download_panel_theme', 'white')
-    // 插件设置默认不展示提示信息
+    // 设置 - 下载 - 插件设置默认不展示提示信息
     await this.setDefaultIfNull('close_tooltip', true)
     await this.setDefaultIfNull('left_click_file', true)
     await this.setDefaultIfNull('right_click_file', true)

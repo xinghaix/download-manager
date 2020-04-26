@@ -16,9 +16,29 @@
       // 默认设置
       await storage.defaultSettings()
 
+      // 获取主题
+      let theme = await storage.get('theme')
+      if (theme && theme === 'auto') {
+        theme = common.isInDarkMode() ? 'dark' : 'light'
+      }
       // 设置图标颜色
-      let iconColor = await storage.get('icon_color')
+      let iconColor = (await storage.get('icon_color'))[theme]
       icon.setBrowserActionIcon(iconColor)
+
+      // 监听浏览器的颜色模式
+      if (window.matchMedia) {
+        this.mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
+        this.mediaQueryList.addEventListener('change', (e) => {
+          console.log(e, e.matches)
+          this.isInDarkMode = e.matches
+          storage.get('theme').then(theme => {
+            if (theme && theme === 'auto') {
+              theme = this.isInDarkMode ? 'dark' : 'light'
+              this.setIcon(this.anyInProgress, theme)
+            }
+          })
+        });
+      }
 
       // 取消下载时浏览器下方出现的下载信息按钮
       this.disableDownloadBottom()
@@ -96,6 +116,8 @@
     },
     data() {
       return {
+        mediaQueryList: {},
+
         anyInProgress: false,
         tid: -1,
         downloadingNumber: 0,
@@ -114,6 +136,8 @@
         notificationList: [],
 
         contextDownloadMenus: ['link', 'image', 'audio', 'video'],
+
+        isInDarkMode: false
       }
     },
     watch: {
@@ -127,20 +151,35 @@
       },
 
       anyInProgress(val) {
-        if (val) {
+        storage.get('theme').then(theme => {
+          if (theme && theme === 'auto') {
+            theme = this.isInDarkMode ? 'dark' : 'light'
+          }
+
+          this.setIcon(val, theme)
+        })
+      }
+    },
+    methods: {
+      /**
+       * 获取图标颜色
+       * @param running {Boolean} 是否正在下载文件
+       * @param theme {String} 主题
+       */
+      setIcon(running, theme) {
+        if (running) {
           storage.get('icon_color').then(iconColor => {
             storage.get('icon_downloading_color').then(iconDownloadingColor => {
-              icon.startRunning(iconColor, iconDownloadingColor)
+              icon.startRunning(iconColor[theme], iconDownloadingColor[theme])
             })
           })
         } else {
           storage.get('icon_color').then(iconColor => {
-            icon.restoreDefaultIcon(iconColor)
+            icon.restoreDefaultIcon(iconColor[theme])
           })
         }
-      }
-    },
-    methods: {
+      },
+
       /**
        * 禁用每次下载时页面浏览器下方的下载进度提示
        */

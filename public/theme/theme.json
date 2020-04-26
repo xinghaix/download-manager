@@ -1,5 +1,5 @@
 {
-  "white": {
+  "light": {
     "--background-color": "#fff",
 
     "--header-search-color": "#606266",

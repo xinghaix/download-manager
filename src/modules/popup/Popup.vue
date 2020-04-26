@@ -60,17 +60,26 @@
     name: 'Popup',
     components: {File, Tip},
     async beforeCreate() {
-      // 获取主题类型。共3种，white、dark、custom
-      let theme = await storage.get('download_panel_theme')
+      // 获取主题类型。共3种，light、dark、auto
+      let theme = await storage.get('theme')
+      // 获取下载面板主题类型。共3种，light、dark、custom
+      let downloadPanelTheme = await storage.get('download_panel_theme')
+
+      // 如果主题是自适应的话，就根据浏览器的颜色模式匹配主题
+      if (theme === 'auto') {
+        downloadPanelTheme = common.isInDarkMode() ? 'dark' : 'light'
+      }
       // 从本地json文件中获取主题数据
       let themeData = (await new Promise(resolve => {
         fetch('/theme/theme.json').then(r => resolve(r.json()))
-      }))[theme]
+      }))[downloadPanelTheme]
+
+      console.log(downloadPanelTheme, theme, themeData)
 
       let bodyStyle = document.querySelector('body').style
-      for (let key in themeData) {
+      Object.keys(themeData).forEach(key => {
         bodyStyle.setProperty(key, themeData[key])
-      }
+      })
     },
     async mounted() {
       // 初始化插件设置

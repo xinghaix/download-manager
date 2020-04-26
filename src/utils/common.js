@@ -82,7 +82,7 @@ const common = {
    * @return {boolean}
    */
   isInDarkMode() {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   },
 
   // 翻译数据
@@ -171,6 +171,11 @@ const common = {
 
     // options theme 主题设置
     this.i18data.iconTitle = this.loadI18nMessage('iconTitle')
+    this.i18data.themeAdaptation = this.loadI18nMessage('themeAdaptation')
+    this.i18data.themeAdaptationDescription = this.loadI18nMessage('themeAdaptationDescription')
+    this.i18data.themeAdaptationOption1 = this.loadI18nMessage('themeAdaptationOption1')
+    this.i18data.themeAdaptationOption2 = this.loadI18nMessage('themeAdaptationOption2')
+    this.i18data.themeAdaptationOption3 = this.loadI18nMessage('themeAdaptationOption3')
     this.i18data.iconColorSetting = this.loadI18nMessage('iconColorSetting')
     this.i18data.iconDownloadingColorSetting = this.loadI18nMessage('iconDownloadingColorSetting')
     this.i18data.downloadPanelTitle = this.loadI18nMessage('downloadPanelTitle')
