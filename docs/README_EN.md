@@ -25,6 +25,7 @@ Click on the plugin icon to see the status of all downloaded files.
 9. Download the file manually
 10. Right-click download menu
 11. Custom icon color
+12. Custom theme
 
 ### **Supported Language**
 `简体中文`、`English`、`Japanese`、`German`、`Russian`、`French`
@@ -48,11 +49,12 @@ The following features are developing in order 😂:
 ### **Info**
 [Chrome Web Store](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-#### **Latest Version**：0.9.2
+#### **Latest Version**：1.0.1
 What's New:
 1. Dark Mode is coming!  
 The theme file：[`public/theme/theme.json`](https://github.com/xinghaix/download-manager/blob/master/public/theme/theme.json)  
 You can change it yourself, or upload your own theme file here. It will be in next version after checking.
+2. Theme follows the browser color mode adaptive
 
 Optimization:
 1. Update French translation

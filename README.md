@@ -26,6 +26,7 @@
 9. 手动下载文件功能
 10. 右键下载菜单
 11. 自定义图标颜色
+12. 自定义主题
 
 ### **支持的语言**
 `简体中文`、`English`、`Japanese`、`German`、`Russian`、`French`
@@ -48,11 +49,12 @@
 ### **Info**
 [谷歌浏览器插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)
 
-#### **最新版本**：1.0.0
+#### **最新版本**：1.0.1
 新增：
 1. 暗黑模式。  
 主题文件位于：[`public/theme/theme.json`](https://github.com/xinghaix/download-manager/blob/master/public/theme/theme.json)  
 大家可以自行更改，也可上传自己的主题文件到这里，我会认真核对然后尽快上线
+2. 主题跟随浏览器颜色模式自适应
 
 优化：
 1. 法语翻译
