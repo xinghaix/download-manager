@@ -64,6 +64,7 @@
 
       this.handleDownloadingNumber(0)
       this.handleDangerousDownloadingNumber(0)
+      this.downloadProgress()
 
       /**
        * 下载通知中按钮事件
