@@ -95,6 +95,7 @@
 <script>
   import icon from '../../utils/icon'
   import storage from '../../utils/storage'
+  import common from "../../utils/common";
 
   export default {
     name: "Theme",
@@ -149,8 +150,11 @@
        */
       iconColorChange(val, type) {
         this.iconColor[type] = val
-        // 设置图标颜色
-        icon.setBrowserActionIcon(val)
+        let theme = common.isInDarkMode() ? 'dark' : 'light'
+        if ((this.theme === 'auto' && theme === type ) || this.theme === type) {
+          // 设置图标颜色
+          icon.setBrowserActionIcon(val)
+        }
         // 同步到设置
         storage.set('icon_color', this.iconColor)
       },
