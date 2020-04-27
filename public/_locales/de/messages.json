@@ -223,6 +223,26 @@
     "message": "thema",
     "description": "Das fach design erscheint auf der vorderseite"
   },
+  "themeAdaptation": {
+    "message": "Themenanpassung",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeAdaptationDescription": {
+    "message": "Zeigen Sie je nach Farbmodus des Systems adaptiv helle und dunkle Themen an, einschließlich Symbole und Download-Bereich.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeAdaptationOption1": {
+    "message": "Automatisch",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeAdaptationOption2": {
+    "message": "Licht",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeAdaptationOption3": {
+    "message": "Dunkel",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
   "iconTitle": {
     "message": "symbole",
     "description": "Das fach design erscheint auf der vorderseite"

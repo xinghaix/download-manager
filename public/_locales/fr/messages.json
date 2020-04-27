@@ -223,6 +223,26 @@
     "message": "Thème",
     "description": "Description de l'onglet Thème"
   },
+  "themeAdaptation": {
+    "message": "Adaptation thématique",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeAdaptationDescription": {
+    "message": "Selon le mode couleur du système, affichez de manière adaptative les thèmes lumineux et sombres, y compris les icônes et le panneau de téléchargement.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeAdaptationOption1": {
+    "message": "Automatique",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeAdaptationOption2": {
+    "message": "Lumière",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeAdaptationOption3": {
+    "message": "Sombre",
+    "description": "Description de l'onglet Thème"
+  },
   "iconTitle": {
     "message": "Icône",
     "description": "Description de l'onglet Thème"

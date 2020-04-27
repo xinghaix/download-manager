@@ -223,6 +223,26 @@
     "message": "件名",
     "description": "プラグインの設定手順"
   },
+  "themeAdaptation": {
+    "message": "テーマ適応",
+    "description": "ラグインの設定手順"
+  },
+  "themeAdaptationDescription": {
+    "message": "システムのカラーモードに応じて、アイコンやダウンロードパネルなどの明るいテーマと暗いテーマを適応的に表示します。",
+    "description": "ラグインの設定手順"
+  },
+  "themeAdaptationOption1": {
+    "message": "自動",
+    "description": "ラグインの設定手順"
+  },
+  "themeAdaptationOption2": {
+    "message": "軽い",
+    "description": "ラグインの設定手順"
+  },
+  "themeAdaptationOption3": {
+    "message": "濃い",
+    "description": "ラグインの設定手順"
+  },
   "iconTitle": {
     "message": "アイコン",
     "description": "プラグインの設定手順"

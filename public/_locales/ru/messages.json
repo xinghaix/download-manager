@@ -223,6 +223,26 @@
     "message": "Темы",
     "description": "Инструкция на странице лейбла"
   },
+  "themeAdaptation": {
+    "message": "Тема адаптации",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeAdaptationDescription": {
+    "message": "Согласно цветовому режиму системы, адаптивно отображаются яркие и темные темы, в том числе значки и панель загрузки.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeAdaptationOption1": {
+    "message": "auto",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeAdaptationOption2": {
+    "message": "light",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeAdaptationOption3": {
+    "message": "dark",
+    "description": "Инструкция на странице лейбла"
+  },
   "iconTitle": {
     "message": "Иконка",
     "description": "Инструкция на странице лейбла"

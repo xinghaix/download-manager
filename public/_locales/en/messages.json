@@ -223,6 +223,26 @@
     "message": "Theme",
     "description": "Theme Tab Description"
   },
+  "themeAdaptation": {
+    "message": "Theme adaptation",
+    "description": "Theme Tab Description"
+  },
+  "themeAdaptationDescription": {
+    "message": "According to the color mode of the system, adaptively display bright and dark themes, including icons and download panel.",
+    "description": "Theme Tab Description"
+  },
+  "themeAdaptationOption1": {
+    "message": "auto",
+    "description": "Theme Tab Description"
+  },
+  "themeAdaptationOption2": {
+    "message": "light",
+    "description": "Theme Tab Description"
+  },
+  "themeAdaptationOption3": {
+    "message": "dark",
+    "description": "Theme Tab Description"
+  },
   "iconTitle": {
     "message": "Icon",
     "description": "Theme Tab Description"
