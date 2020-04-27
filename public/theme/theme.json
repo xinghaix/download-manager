@@ -31,9 +31,10 @@
     "--tooltip-background-color": "#303133",
 
     "--popover-musk-background-color": "#000",
-    "--popover-color": "#fff",
+
+    "--popover-color": "#606266",
     "--popover-background-color": "#fff",
-    "--popover-border-color": "#606266",
+    "--popover-border-color": "#ebeef5",
     "--popover-textarea-color": "#606266",
     "--popover-textarea-background-color": "#fff",
     "--popover-textarea-focus-border-color": "#409eff",
@@ -71,6 +72,7 @@
     "--tooltip-background-color": "#a0a0a0",
 
     "--popover-musk-background-color": "#8e8e8e",
+
     "--popover-color": "#d4d4d4",
     "--popover-background-color": "#7b7b7b",
     "--popover-border-color": "#747475",

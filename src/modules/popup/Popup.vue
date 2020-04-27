@@ -373,7 +373,9 @@
     font-size: 11px;
     border-radius: 3px;
   }
-  body .el-popper .popper__arrow,
+  body .el-popper .popper__arrow {
+    border-bottom-color: var(--popover-border-color)!important;
+  }
   body .el-popper .popper__arrow:after {
     border-bottom-color: var(--popover-background-color)!important;
   }
