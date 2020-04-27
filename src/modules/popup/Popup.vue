@@ -70,16 +70,22 @@
         downloadPanelTheme = common.isInDarkMode() ? 'dark' : 'light'
       }
       // 从本地json文件中获取主题数据
-      let themeData = (await new Promise(resolve => {
+      this.themeData = await new Promise(resolve => {
         fetch('/theme/theme.json').then(r => resolve(r.json()))
-      }))[downloadPanelTheme]
-
-      console.log(downloadPanelTheme, theme, themeData)
-
-      let bodyStyle = document.querySelector('body').style
-      Object.keys(themeData).forEach(key => {
-        bodyStyle.setProperty(key, themeData[key])
       })
+      // 设置下载面板主题
+      this.setTheme(downloadPanelTheme)
+
+      // 监听浏览器的颜色模式
+      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', (e) => {
+        storage.get('theme').then(theme => {
+          if (theme && theme === 'auto') {
+            this.setTheme(e.matches ? 'dark' : 'light')
+          }
+        })
+      })
+
     },
     async mounted() {
       // 初始化插件设置
@@ -169,7 +175,9 @@
         leftClickFile: true,
         leftClickUrl: true,
         rightClickFile: true,
-        rightClickUrl: true
+        rightClickUrl: true,
+
+        themeData: {}
       }
     },
     watch: {
@@ -308,6 +316,22 @@
           })
         }
       },
+
+      /**
+       * 设置下载面板主题
+       * @param theme 两种类型：dark，light
+       */
+      setTheme(theme) {
+        if (!theme) {
+          theme = 'light'
+        }
+
+        let bodyStyle = document.querySelector('body').style
+        let panelThemeData = this.themeData[theme]
+        Object.keys(panelThemeData).forEach(key => {
+          bodyStyle.setProperty(key, panelThemeData[key])
+        })
+      }
     }
   }
 </script>

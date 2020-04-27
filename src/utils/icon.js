@@ -2,7 +2,14 @@ const icon = {
 
   message: {
     offset: 0,
-    running: true
+    running: true,
+    color: '',
+    runningColor: ''
+  },
+
+  setColor(color, runningColor) {
+    this.message.color = color
+    this.message.runningColor = runningColor
   },
 
   /**
@@ -10,7 +17,8 @@ const icon = {
    * @param color {String} 颜色
    */
   setBrowserActionIcon(color) {
-    let imageData = this.drawIcon(color, 'black', false)
+    this.setColor(color, 'black')
+    let imageData = this.drawIcon(this.message.color, this.message.runningColor, false)
     if (imageData) {
       chrome.browserAction.setIcon({imageData: imageData})
     }
@@ -22,14 +30,15 @@ const icon = {
    * @param color2 {String} 图标颜色2。下载文件时的图标滚动颜色
    */
   setRunningBrowserActionIcon(color1, color2) {
+    this.setColor(color1, color2)
     setTimeout(() => {
-      let imageData = this.drawIcon(color1, color2, true)
+      let imageData = this.drawIcon(this.message.color, this.message.runningColor, true)
       if (imageData) {
         chrome.browserAction.setIcon({imageData: imageData})
       }
 
       if (this.message.running) {
-        this.setRunningBrowserActionIcon(color1, color2)
+        this.setRunningBrowserActionIcon(this.message.color, this.message.runningColor)
       }
     }, 80)
   },
@@ -40,8 +49,9 @@ const icon = {
    * @param color2 {String} 图标颜色2。下载文件时的图标滚动颜色
    */
   startRunning(color1, color2) {
+    this.setColor(color1, color2)
     icon.message.running = true
-    icon.setRunningBrowserActionIcon(color1, color2)
+    icon.setRunningBrowserActionIcon(this.message.color, this.message.runningColor)
   },
 
   /**
@@ -56,8 +66,9 @@ const icon = {
    * @param color {String} 颜色
    */
   restoreDefaultIcon(color) {
+    this.message.color = color
     icon.message.running = false
-    this.setBrowserActionIcon(color)
+    this.setBrowserActionIcon(this.message.color)
   },
 
   /**
@@ -97,21 +108,21 @@ const icon = {
 
       let v1 = this.message.offset
       if (v1 <= 0.6) {
-        gradient.addColorStop(0, color2)
-        gradient.addColorStop(v1, color2)
-        gradient.addColorStop(v1, color1)
-        gradient.addColorStop(1, color1)
+        gradient.addColorStop(0, this.message.runningColor)
+        gradient.addColorStop(v1, this.message.runningColor)
+        gradient.addColorStop(v1, this.message.color)
+        gradient.addColorStop(1, this.message.color)
       } else {
         let v2 = v1 - 0.6
-        gradient.addColorStop(0, color1)
-        gradient.addColorStop(v2, color2)
+        gradient.addColorStop(0, this.message.color)
+        gradient.addColorStop(v2, this.message.runningColor)
         if (v2 < 0.4) {
           // "#00A213"
-          gradient.addColorStop(v1, color2)
-          gradient.addColorStop(v1, color1)
-          gradient.addColorStop(1, color1)
+          gradient.addColorStop(v1, this.message.runningColor)
+          gradient.addColorStop(v1, this.message.color)
+          gradient.addColorStop(1, this.message.color)
         } else {
-          gradient.addColorStop(1, color2)
+          gradient.addColorStop(1, this.message.runningColor)
         }
       }
 
@@ -121,7 +132,7 @@ const icon = {
 
       ctx.fillStyle = gradient
     } else {
-      ctx.fillStyle = color1
+      ctx.fillStyle = this.message.color
     }
 
     ctx.fill()

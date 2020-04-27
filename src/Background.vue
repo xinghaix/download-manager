@@ -12,7 +12,7 @@
   export default {
     name: 'app',
     // 插件初始化配置
-    async mounted() {
+    async beforeCreate() {
       // 默认设置
       await storage.defaultSettings()
 
@@ -22,23 +22,42 @@
         theme = common.isInDarkMode() ? 'dark' : 'light'
       }
       // 设置图标颜色
-      let iconColor = (await storage.get('icon_color'))[theme]
-      icon.setBrowserActionIcon(iconColor)
+      icon.setBrowserActionIcon((await storage.get('icon_color'))[theme])
 
       // 监听浏览器的颜色模式
-      if (window.matchMedia) {
-        this.mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
-        this.mediaQueryList.addEventListener('change', (e) => {
-          console.log(e, e.matches)
-          this.isInDarkMode = e.matches
+      // window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+      //   .addEventListener('change', (e) => {
+      //   console.log(e, e.matches)
+      //   this.isInDarkMode = e.matches
+      //   storage.get('theme').then(theme => {
+      //     if (theme && theme === 'auto') {
+      //       theme = this.isInDarkMode ? 'dark' : 'light'
+      //       this.setIcon(this.anyInProgress, theme)
+      //     }
+      //   })
+      // });
+
+      // 由于上述的监听无法在chrome extension的background.html中使用，所以不得不采用以下方式每秒定时获取浏览器的颜色模式。
+      setInterval(() => {
+        let isDark = common.isInDarkMode()
+        if (this.isInDarkMode !== isDark) {
+          this.isInDarkMode = isDark
           storage.get('theme').then(theme => {
             if (theme && theme === 'auto') {
               theme = this.isInDarkMode ? 'dark' : 'light'
-              this.setIcon(this.anyInProgress, theme)
+              storage.get('icon_color').then(iconColor => {
+                if (this.anyInProgress) {
+                  storage.get('icon_downloading_color').then(iconDownloadingColor => {
+                    icon.setColor(iconColor[theme], iconDownloadingColor[theme])
+                  })
+                } else {
+                  icon.setBrowserActionIcon(iconColor[theme])
+                }
+              })
             }
           })
-        });
-      }
+        }
+      }, 800)
 
       // 取消下载时浏览器下方出现的下载信息按钮
       this.disableDownloadBottom()
@@ -156,30 +175,21 @@
             theme = this.isInDarkMode ? 'dark' : 'light'
           }
 
-          this.setIcon(val, theme)
+          if (val) {
+            storage.get('icon_color').then(iconColor => {
+              storage.get('icon_downloading_color').then(iconDownloadingColor => {
+                icon.startRunning(iconColor[theme], iconDownloadingColor[theme])
+              })
+            })
+          } else {
+            storage.get('icon_color').then(iconColor => {
+              icon.restoreDefaultIcon(iconColor[theme])
+            })
+          }
         })
       }
     },
     methods: {
-      /**
-       * 获取图标颜色
-       * @param running {Boolean} 是否正在下载文件
-       * @param theme {String} 主题
-       */
-      setIcon(running, theme) {
-        if (running) {
-          storage.get('icon_color').then(iconColor => {
-            storage.get('icon_downloading_color').then(iconDownloadingColor => {
-              icon.startRunning(iconColor[theme], iconDownloadingColor[theme])
-            })
-          })
-        } else {
-          storage.get('icon_color').then(iconColor => {
-            icon.restoreDefaultIcon(iconColor[theme])
-          })
-        }
-      },
-
       /**
        * 禁用每次下载时页面浏览器下方的下载进度提示
        */
