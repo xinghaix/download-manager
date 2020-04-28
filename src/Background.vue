@@ -133,6 +133,25 @@
           }
         }
       })
+
+      // 接收来自popup和options发来的数据
+      chrome.runtime.onMessage.addListener(message => {
+        let received = JSON.parse(message);
+        if (received.type) {
+          switch (received.type) {
+            case 'icon_color':
+              if (this.anyInProgress) {
+                icon.message.color = received.data
+              } else {
+                icon.setBrowserActionIcon(received.data)
+              }
+              break
+            case 'icon_downloading_color':
+              icon.message.runningColor = received.data
+              break
+          }
+        }
+      })
     },
     data() {
       return {
@@ -179,7 +198,7 @@
           if (val) {
             storage.get('icon_color').then(iconColor => {
               storage.get('icon_downloading_color').then(iconDownloadingColor => {
-                icon.startRunning(iconColor[theme], iconDownloadingColor[theme])
+                icon.setRunningBrowserActionIcon(iconColor[theme], iconDownloadingColor[theme])
               })
             })
           } else {

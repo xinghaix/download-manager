@@ -26,15 +26,15 @@
         <div class="switch width icon">
           <el-tooltip :content="i18data.themeAdaptationOption2 + i18data.themeTitle"
                       placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-            <el-color-picker :value="iconColor['light']" size="small"
+            <el-color-picker :value="iconColor['icon_color']['light']" size="small"
                              :class="theme === 'light' || theme === 'auto' ? 'color' : ''"
-                             @change="iconColorChange($event, 'light')"/>
+                             @change="setIconColor($event, 'icon_color', 'light')"/>
           </el-tooltip>
           <el-tooltip :content="i18data.themeAdaptationOption3 + i18data.themeTitle"
                       placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-            <el-color-picker :value="iconColor['dark']" size="small"
+            <el-color-picker :value="iconColor['icon_color']['dark']" size="small"
                              :class="theme === 'dark' || theme === 'auto' ? 'color' : ''"
-                             @change="iconColorChange($event, 'dark')"/>
+                             @change="setIconColor($event, 'icon_color', 'dark')"/>
           </el-tooltip>
         </div>
       </div>
@@ -46,15 +46,15 @@
         <div class="switch width icon">
           <el-tooltip :content="i18data.themeAdaptationOption2 + i18data.themeTitle"
                       placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-            <el-color-picker :value="iconDownloadingColor['light']" size="small"
+            <el-color-picker :value="iconColor['icon_downloading_color']['light']" size="small"
                              :class="theme === 'light' || theme === 'auto' ? 'color' : ''"
-                             @change="iconDownloadingColorChange($event, 'light')"/>
+                             @change="setIconColor($event, 'icon_downloading_color', 'light')"/>
           </el-tooltip>
           <el-tooltip :content="i18data.themeAdaptationOption3 + i18data.themeTitle"
                       placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-            <el-color-picker :value="iconDownloadingColor['dark']" size="small"
+            <el-color-picker :value="iconColor['icon_downloading_color']['dark']" size="small"
                              :class="theme === 'dark' || theme === 'auto' ? 'color' : ''"
-                             @change="iconDownloadingColorChange($event, 'dark')"/>
+                             @change="setIconColor($event, 'icon_downloading_color', 'dark')"/>
           </el-tooltip>
         </div>
       </div>
@@ -105,8 +105,8 @@
     async mounted() {
       this.theme = await storage.get('theme')
 
-      this.iconColor = await storage.get('icon_color')
-      this.iconDownloadingColor = await storage.get('icon_downloading_color')
+      this.iconColor.icon_color = await storage.get('icon_color')
+      this.iconColor.icon_downloading_color = await storage.get('icon_downloading_color')
 
       this.downloadPanelTheme = await storage.get('download_panel_theme')
 
@@ -119,55 +119,86 @@
         theme: 'light',
 
         iconColor: {
-          'light': '#000000',
-          'dark': '#989898'
-        },
-        iconDownloadingColor: {
-          'light': '#00d032',
-          'dark': '#ffa500'
+          icon_color: {
+            'light': '#000000',
+            'dark': '#989898'
+          },
+          icon_downloading_color: {
+            'light': '#00d032',
+            'dark': '#ffa500'
+          },
         },
 
         downloadPanelTheme: 'light',
+
+        should: {
+          dark: ['a-l', 'l-a', 'l-d', 'd-l'],
+          light: ['a-d', 'l-d', 'd-a', 'd-l']
+        }
       }
     },
     watch: {
       /**
        * 设置主题自适应。包含图标和下载面板
        *
-       * @param val {String} light、dark、auto
+       * @param val {String} 更新后的数据。light、dark、auto
+       * @param oldVal {String} 更新前的数据。light、dark、auto
        */
-      theme(val) {
+      theme(val, oldVal) {
+        console.log(val, oldVal)
         storage.set('theme', val)
+
         // 同时设置下载面板主题
         this.setDownloadPanelTheme(val)
+
+        let systemTheme = common.isInDarkMode() ? 'dark' : 'light'
+        if (systemTheme === 'dark') {
+          if (!((!(oldVal === 'auto' && val === 'dark')) && (!(oldVal === 'dark' && val === 'auto')))) {
+            this.sendIconColorToBackground(val === 'auto' ? systemTheme : val)
+          }
+        } else {
+          if (!((!(oldVal === 'auto' && val === 'light')) && (!(oldVal === 'light' && val === 'auto')))) {
+            this.sendIconColorToBackground(val === 'auto' ? systemTheme : val)
+          }
+        }
       }
     },
     methods: {
       /**
-       * 当图标颜色更改时，设置插件图标颜色
-       * @param val {String}
-       * @param type {String}
+       * 当图标颜色更改时，设置插件图标颜色和下载时图标颜色
+       *
+       * @param val {String} 16进制颜色值
+       * @param type {String} 设置名。2种，icon_color、icon_downloading_color
+       * @param theme {String} 主题：2种，dark，light
        */
-      iconColorChange(val, type) {
-        this.iconColor[type] = val
-        let theme = common.isInDarkMode() ? 'dark' : 'light'
-        if ((this.theme === 'auto' && theme === type ) || this.theme === type) {
-          // 设置图标颜色
-          icon.setBrowserActionIcon(val)
+      setIconColor(val, type, theme) {
+        this.iconColor[type][theme] = val
+
+        let tmpTheme = common.isInDarkMode() ? 'dark' : 'light'
+        if ((this.theme === 'auto' && tmpTheme === theme ) || this.theme === theme) {
+          // 发送图标颜色数据到background，由background设置图标颜色
+          chrome.runtime.sendMessage(JSON.stringify({
+            type: type,
+            data: val
+          }))
         }
+
         // 同步到设置
-        storage.set('icon_color', this.iconColor)
+        storage.set(type, this.iconColor[type])
       },
 
-      /**
-       * 当图标下载动画颜色更改时，设置插件图标下载动画颜色
-       * @param val {String}
-       * @param type {String}
-       */
-      iconDownloadingColorChange(val, type) {
-        this.iconDownloadingColor[type] = val
-        // 同步到设置
-        storage.set('icon_downloading_color', this.iconDownloadingColor)
+      sendIconColorToBackground(theme) {
+        // 发送图标颜色数据到background，由background设置图标颜色
+        chrome.runtime.sendMessage(JSON.stringify({
+          type: 'icon_color',
+          data: this.iconColor.icon_color[theme]
+        }))
+
+        // 发送图标颜色数据到background，由background设置图标颜色
+        chrome.runtime.sendMessage(JSON.stringify({
+          type: 'icon_downloading_color',
+          data: this.iconColor.icon_downloading_color[theme]
+        }))
       },
 
       /**

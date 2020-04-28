@@ -2,7 +2,7 @@ const icon = {
 
   message: {
     offset: 0,
-    running: true,
+    running: false,
     color: '',
     runningColor: ''
   },
@@ -17,10 +17,12 @@ const icon = {
    * @param color {String} 颜色
    */
   setBrowserActionIcon(color) {
-    this.setColor(color, 'black')
-    let imageData = this.drawIcon(this.message.color, this.message.runningColor, false)
-    if (imageData) {
-      chrome.browserAction.setIcon({imageData: imageData})
+    this.message.color = color
+    if (!this.message.running) {
+      let imageData = this.drawIcon(this.message.color, this.message.runningColor, false)
+      if (imageData) {
+        chrome.browserAction.setIcon({imageData: imageData})
+      }
     }
   },
 
@@ -31,8 +33,9 @@ const icon = {
    */
   setRunningBrowserActionIcon(color1, color2) {
     this.setColor(color1, color2)
+    this.message.running = true
     setTimeout(() => {
-      let imageData = this.drawIcon(this.message.color, this.message.runningColor, true)
+      let imageData = this.drawIcon(this.message.color, this.message.runningColor, this.message.running)
       if (imageData) {
         chrome.browserAction.setIcon({imageData: imageData})
       }
