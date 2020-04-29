@@ -93,9 +93,10 @@
 </template>
 
 <script>
-  import icon from '../../utils/icon'
+  /* eslint-disable no-undef */
+
   import storage from '../../utils/storage'
-  import common from "../../utils/common";
+  import common from '../../utils/common'
 
   export default {
     name: "Theme",
@@ -145,7 +146,6 @@
        * @param oldVal {String} 更新前的数据。light、dark、auto
        */
       theme(val, oldVal) {
-        console.log(val, oldVal)
         storage.set('theme', val)
 
         // 同时设置下载面板主题
@@ -153,11 +153,11 @@
 
         let systemTheme = common.isInDarkMode() ? 'dark' : 'light'
         if (systemTheme === 'dark') {
-          if (!((!(oldVal === 'auto' && val === 'dark')) && (!(oldVal === 'dark' && val === 'auto')))) {
+          if (!(oldVal === 'auto' && val === 'dark') && !(oldVal === 'dark' && val === 'auto')) {
             this.sendIconColorToBackground(val === 'auto' ? systemTheme : val)
           }
         } else {
-          if (!((!(oldVal === 'auto' && val === 'light')) && (!(oldVal === 'light' && val === 'auto')))) {
+          if (!(oldVal === 'auto' && val === 'light') && !(oldVal === 'light' && val === 'auto')) {
             this.sendIconColorToBackground(val === 'auto' ? systemTheme : val)
           }
         }
