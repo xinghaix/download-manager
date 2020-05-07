@@ -96,17 +96,6 @@
       })
 
       /**
-       * 在安装插件时创建浏览器上下文菜单
-       */
-      chrome.runtime.onInstalled.addListener(() => {
-        storage.get('download_context_menus').then(result => {
-          if (result) {
-            this.createDownloadContextMenus()
-          }
-        })
-      })
-
-      /**
        * 当点击下载菜单时触发
        */
       chrome.contextMenus.onClicked.addListener((info) => {
@@ -120,25 +109,24 @@
       })
 
       /**
-       * 接受从popup和options传过来的消息
+       * 在启动浏览器时创建浏览器上下文菜单
        */
-      chrome.runtime.onMessage.addListener(message => {
-        let received = JSON.parse(message);
-
-        if (received.type === 'downloadMenus') {
-          if (received.data) {
-            this.createDownloadContextMenus()
-          } else {
-            this.removeDownloadContextMenus()
-          }
-        }
+      storage.get('download_context_menus').then(result => {
+        result ? this.createDownloadContextMenus() : this.removeDownloadContextMenus()
       })
 
-      // 接收来自popup和options发来的数据
+      /**
+       * 接收来自popup和options发来的数据
+       */
       chrome.runtime.onMessage.addListener(message => {
         let received = JSON.parse(message);
         if (received.type) {
           switch (received.type) {
+            // 创建或者取消上下文菜单
+            case 'downloadMenus':
+              received.data ? this.createDownloadContextMenus() : this.removeDownloadContextMenus()
+              break
+            // 设置图标颜色
             case 'icon_color':
               if (this.anyInProgress) {
                 icon.message.color = received.data
@@ -146,6 +134,7 @@
                 icon.setBrowserActionIcon(received.data)
               }
               break
+            // 设置下载中图标颜色
             case 'icon_downloading_color':
               icon.message.runningColor = received.data
               break
@@ -221,6 +210,7 @@
 
       /**
        * 创建下载相关的上下文菜单
+       * 由于存在id字段，所以不存在重复创建的问题
        */
       createDownloadContextMenus() {
         this.contextDownloadMenus.forEach(menus => {
@@ -241,7 +231,7 @@
        */
       removeDownloadContextMenus() {
         this.contextDownloadMenus.forEach(menus => {
-          chrome.contextMenus.remove('download' + menus, () => {
+          chrome.contextMenus.remove('download-' + menus, () => {
             if (chrome.runtime.lastError) {
               // todo
             }
