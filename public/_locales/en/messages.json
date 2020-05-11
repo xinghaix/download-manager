@@ -96,7 +96,7 @@
     "description": "copied to clipboard"
   },
   "prefixMenus": {
-    "message": "Download this",
+    "message": "Download the ",
     "description": "context download prefix menus display"
   },
   "link": {

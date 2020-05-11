@@ -96,7 +96,7 @@
     "description": "copié dans le presse-papier"
   },
   "prefixMenus": {
-    "message": "Téléchargez ceci",
+    "message": "Téléchargez ceci ",
     "description": "affichage des menus contextuels de téléchargement"
   },
   "link": {
