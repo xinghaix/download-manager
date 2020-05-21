@@ -85,6 +85,10 @@ const common = {
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   },
 
+  isInEdge() {
+    return window.navigator.userAgent.toLowerCase().indexOf('edg') > 0
+  },
+
   // 翻译数据
   i18data: {},
 

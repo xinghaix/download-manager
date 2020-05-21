@@ -296,7 +296,7 @@
     "description": "タブの説明について"
   },
   "version1_0_0": {
-    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. 黒のテーマを追加（テーマファイル：/**/chrome/**/Extensions/your extension id/version/theme/theme.json。自分で変更することができ、将来的にカスタムテーマ関数を追加します）\",\"2. フランス語の翻訳を更新する\"]}",
+    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. 黒のテーマを追加（テーマファイル：/**/Extensions/your extension id/version/theme/theme.json。自分で変更することができ、将来的にカスタムテーマ関数を追加します）\",\"2. フランス語の翻訳を更新する\"]}",
     "description": "リリースノート"
   },
   "version0_9_1": {

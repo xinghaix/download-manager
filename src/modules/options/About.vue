@@ -34,6 +34,8 @@
 
 <script>
   /* eslint-disable no-undef */
+  import common from '../../utils/common'
+
   export default {
     name: "About",
     props: {
@@ -55,8 +57,7 @@
       // 打开插件商店链接
       openPluginShop() {
         // 如果浏览器是新版Edge浏览器，那么将商店链接指向Edge商店
-        let url = window.navigator.userAgent.toLowerCase().indexOf('edg') > 0
-          ? this.edgePluginShopUrl : this.chromePluginShopUrl
+        let url = common.isInEdge() ? this.edgePluginShopUrl : this.chromePluginShopUrl
         this.openUrl(url)
       },
       // 在新标签页中打开下载文件链接

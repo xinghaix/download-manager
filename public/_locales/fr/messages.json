@@ -296,7 +296,7 @@
     "description": "description de l'onglet A propos"
   },
   "version1_0_0": {
-    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. Thème noir ajouté (fichier de thème: /**/chrome/**/Extensions/your extension id/version/theme/theme.json. Vous pouvez le modifier vous-même et vous ajouterez une fonction de thème personnalisé plus tard)\",\"2. Mettre à jour la traduction française\"]}",
+    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. Thème noir ajouté (fichier de thème: /**/Extensions/your extension id/version/theme/theme.json. Vous pouvez le modifier vous-même et vous ajouterez une fonction de thème personnalisé plus tard)\",\"2. Mettre à jour la traduction française\"]}",
     "description": "Version Description"
   },
   "version0_9_1": {

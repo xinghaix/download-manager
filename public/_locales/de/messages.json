@@ -296,7 +296,7 @@
     "description": "Dazu die karteikarten"
   },
   "version1_0_0": {
-    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. Fügen Sie ein schwarzes Thema hinzu (Themendatei: /**/chrome/**/Extensions/your extension id/version/theme/theme.json. Sie können es selbst ändern und eine benutzerdefinierte Designfunktion wird in Zukunft hinzugefügt.)\",\"2. Aktualisieren Sie die französische Übersetzung\"]}",
+    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. Fügen Sie ein schwarzes Thema hinzu (Themendatei: /**/Extensions/your extension id/version/theme/theme.json. Sie können es selbst ändern und eine benutzerdefinierte Designfunktion wird in Zukunft hinzugefügt.)\",\"2. Aktualisieren Sie die französische Übersetzung\"]}",
     "description": "Version"
   },
   "version0_9_1": {
