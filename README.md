@@ -13,6 +13,7 @@
 
 **[简体中文](../README.md) | [English](docs/README_EN.md)**
 
+### [隐私政策说明](docs/Privacy.md)
 
 ### **功能**
 1. 下载文件百分比进度显示

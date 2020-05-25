@@ -13,6 +13,8 @@ Click on the plugin icon to see the status of all downloaded files.
 
 **[简体中文](../README.md) | [English](docs/README_EN.md)**
 
+### [隐私政策说明](docs/Privacy.md)
+
 ### **Features**
 1. Download file percentage progress display
 2. Download files can be paused, resumed, cancelled, deleted
