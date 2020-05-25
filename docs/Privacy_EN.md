@@ -2,7 +2,7 @@
 ### download-manager
 A download manager plugin for browsers based on the Chronium kernel
 
-**[简体中文](docs/Privacy.md) | [English](docs/Privacy_EN.md)**
+**[简体中文](Privacy.md) | [English](Privacy_EN.md)**
 
 ## 1 Statement
 **In addition to synchronizing plugin settings 

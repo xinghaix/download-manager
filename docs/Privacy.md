@@ -2,7 +2,7 @@
 #### download-manager
 适用基于Chronium内核的浏览器一个下载管理器插件
 
-**[简体中文](docs/Privacy.md) | [English](docs/Privacy_EN.md)**
+**[简体中文](Privacy.md) | [English](Privacy_EN.md)**
 
 ## 1. 声明
 **除了同步插件设置（可在插件设置页面中选择关闭，之后插件设置将保存在浏览器本地存储），该插件不会上传你的任何个人信息到任何第三方机构**
