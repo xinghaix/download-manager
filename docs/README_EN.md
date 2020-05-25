@@ -13,7 +13,7 @@ Click on the plugin icon to see the status of all downloaded files.
 
 **[简体中文](../README.md) | [English](README_EN.md)**
 
-### [隐私政策说明](Privacy_EN.md)
+### [Privacy Policy](Privacy_EN.md)
 
 ### **Features**
 1. Download file percentage progress display
