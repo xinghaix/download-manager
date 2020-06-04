@@ -13,10 +13,10 @@
 Google Chrome Download Manager Plugin  
 Click on the plugin icon to see the status of all downloaded files.
 
-**[简体中文](../README.md) | [English](README_EN.md)**
+### **[简体中文](../README.md) | [English](README_EN.md)**
 
-[Chrome Web Store](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)  
-[Microsoft Edge Add-on](https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic)
+[Chrome Web Store](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei) 、
+[Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic)
 
 ### [Privacy Policy](Privacy_EN.md)
 

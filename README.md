@@ -13,10 +13,10 @@
 谷歌浏览器下载管理器插件  
 点击插件图标即可查看所有下载文件状态
 
-**[简体中文](../README.md) | [English](docs/README_EN.md)**
+### **[简体中文](../README.md) | [English](docs/README_EN.md)**
 
-[Chrome 插件地址](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei)  
-[Microsoft Edge 插件地址](https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic)
+[Chrome Web Store](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei) 、
+[Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic)
 
 ### [隐私政策说明](docs/Privacy.md)
 
