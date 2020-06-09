@@ -59,6 +59,10 @@
     "message": "Ordner öffnen.",
     "description": "Datei in den ordner öffnen"
   },
+  "openFile": {
+    "message": "öffne einen Ordner",
+    "description": "öffne einen Ordner"
+  },
   "pause": {
     "message": "für",
     "description": "Für."

@@ -97,6 +97,7 @@ const common = {
     this.i18data.deleteNotification = this.loadI18nMessage('deleteNotification')
     this.i18data.downloadCompletedNotification = this.loadI18nMessage('downloadCompletedNotification')
     this.i18data.openFolderNotification = this.loadI18nMessage('openFolderNotification')
+    this.i18data.openFile = this.loadI18nMessage('openFile')
 
     // popup 顶栏tooltip
     this.i18data.newDownload = this.loadI18nMessage('newDownload')

@@ -59,6 +59,10 @@
     "message": "ouvrir le dossier",
     "description": "ouvrir le fichier dans le dossier"
   },
+  "openFile": {
+    "message": "ouvrir un fichier",
+    "description": "ouvrir un fichier"
+  },
   "pause": {
     "message": "pause",
     "description": "mettre en pause le téléchargement"

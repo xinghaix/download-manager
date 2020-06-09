@@ -35,7 +35,7 @@
       //       this.setIcon(this.anyInProgress, theme)
       //     }
       //   })
-      // });
+      // })
 
       // 由于上述的监听无法在chrome extension的background.html中使用，所以不得不采用以下方式每秒定时获取浏览器的颜色模式。
       setInterval(() => {
@@ -72,9 +72,15 @@
       chrome.notifications.onButtonClicked.addListener((notificationId, index) => {
         chrome.notifications.clear(notificationId);
 
-        if (index === 1 && notificationId.indexOf('completed') >= 0) {
-          // 下载完成通知中第二个按钮是在资源管理器中显示文件位置
-          chrome.downloads.show(parseInt(notificationId.substring(0, notificationId.indexOf('-'))))
+        if (notificationId.indexOf('completed') >= 0) {
+          let fileId = parseInt(notificationId.substring(0, notificationId.indexOf('-')))
+          if (index === 0) {
+            // 下载完成通知中第一个按钮是打开文件
+            chrome.downloads.open(fileId)
+          } else if (index === 1) {
+            // 下载完成通知中第二个按钮是在资源管理器中显示文件位置
+            chrome.downloads.show(fileId)
+          }
         }
       })
 
@@ -361,7 +367,7 @@
                           iconUrl: item.iconUrl || 'img/icon19.png',
                           title: this.i18data.downloadNotificationSetting2,
                           message: item.basename,
-                          buttons: [{title: this.i18data.deleteNotification}, {title: this.i18data.openFolderNotification}]
+                          buttons: [{title: this.i18data.openFile}, {title: this.i18data.openFolderNotification}]
                         },
                         // eslint-disable-next-line no-unused-vars
                         returnId => {

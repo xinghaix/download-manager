@@ -59,6 +59,10 @@
     "message": "Открыть папку",
     "description": "Открыть файл в папке"
   },
+  "openFile": {
+    "message": "открыть файл",
+    "description": "открыть файл"
+  },
   "pause": {
     "message": "Пауза",
     "description": "Приостановить загрузку"

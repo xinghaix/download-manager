@@ -59,6 +59,10 @@
     "message": "フォルダーを開く",
     "description": "フォルダー内のファイルを開く"
   },
+  "openFile": {
+    "message": "ファイルを開く",
+    "description": "ファイルを開く"
+  },
   "pause": {
     "message": "一時停止",
     "description": "ダウンロードを一時停止"

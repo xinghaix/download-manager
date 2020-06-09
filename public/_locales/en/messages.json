@@ -59,6 +59,10 @@
     "message": "open folder",
     "description": "open file in folder"
   },
+  "openFile": {
+    "message": "Open file",
+    "description": "open file"
+  },
   "pause": {
     "message": "pause",
     "description": "pause download"

@@ -59,6 +59,10 @@
     "message": "打开文件夹",
     "description": "在文件夹中打开文件"
   },
+  "openFile": {
+    "message": "打开文件",
+    "description": "打开文件"
+  },
   "pause": {
     "message": "暂停",
     "description": "暂停下载"
