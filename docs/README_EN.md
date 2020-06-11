@@ -54,15 +54,10 @@ The following features are developing in order 😂:
 5. Customize the download panel theme
 
 ### **Info**
-#### **Latest Version**：1.0.1
+#### **Latest Version**：1.0.6
 What's New:
-1. Dark Mode is coming!  
-The theme file：[`public/theme/theme.json`](https://github.com/xinghaix/download-manager/blob/master/public/theme/theme.json)  
-You can change it yourself, or upload your own theme file here. It will be in next version after checking.
-2. Theme follows the browser color mode adaptive
-
-Optimization:
-1. Update French translation
+1. After the completion of the notification to open a new file open button
+2. The icon adds download progress animation
 
 <img src="../docs/img/1.png" width="320" hegiht="420" alt=""/>
 

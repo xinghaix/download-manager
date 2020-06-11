@@ -54,15 +54,11 @@
 
 ### **Info**
 
-#### **最新版本**：1.0.5
+#### **最新版本**：1.0.6
 新增：
-1. 暗黑模式。  
-主题文件位于：[`public/theme/theme.json`](https://github.com/xinghaix/download-manager/blob/master/public/theme/theme.json)  
-大家可以自行更改，也可上传自己的主题文件到这里，我会认真核对然后尽快上线
-2. 主题跟随浏览器颜色模式自适应
+1. 下完成后通知新增打开文件按钮
+2. 图标新增下载进度动画
 
-优化：
-1. 法语翻译
 
 <img src="docs/img/1.png" width="320" hegiht="420" alt=""/>
 
