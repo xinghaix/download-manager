@@ -22,7 +22,7 @@
         theme = common.isInDarkMode() ? 'dark' : 'light'
       }
       // 设置图标颜色
-      icon.setBrowserActionIcon((await storage.get('icon_color'))[theme])
+      icon.setBrowserActionIcon((await storage.get('icon_color'))[theme], false)
 
       // 监听浏览器的颜色模式
       // window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
@@ -137,7 +137,7 @@
               if (this.anyInProgress) {
                 icon.message.color = received.data
               } else {
-                icon.setBrowserActionIcon(received.data)
+                icon.setBrowserActionIcon(received.data, false)
               }
               break
             // 设置下载中图标颜色
@@ -156,6 +156,7 @@
         tid: -1,
         downloadingNumber: 0,
         dangerousDownloadingNumber: 0,
+        progress: -1,
         downloadMessage: {
           type: 'download',
           data: []
@@ -193,7 +194,7 @@
           if (val) {
             storage.get('icon_color').then(iconColor => {
               storage.get('icon_downloading_color').then(iconDownloadingColor => {
-                icon.setRunningBrowserActionIcon(iconColor[theme], iconDownloadingColor[theme])
+                icon.setRunningBrowserActionIcon(iconColor[theme], iconDownloadingColor[theme], val, this.progress)
               })
             })
           } else {
@@ -276,6 +277,9 @@
           let downloadingNumber = 0
           let dangerousDownloadingNumber = 0
           let anyInProgress = false
+          let greaterThanZeroNumber = 0
+          let totalProgress = 0
+
           items.forEach((item) => {
             common.beforeHandler(item)
             if (item.state === 'in_progress') {
@@ -288,6 +292,12 @@
                 dangerousDownloadingNumber++
                 this.handleDownloadWarningNotification(item)
               }
+
+              let progress = this.getProgress(item)
+              if (progress !== -1) {
+                greaterThanZeroNumber++
+                totalProgress += progress
+              }
             } else if (item.state === 'complete') {
               this.handleDownloadCompletedNotification(item)
             } else {
@@ -296,6 +306,14 @@
           })
 
           this.anyInProgress = anyInProgress
+
+          // 设置当前所有下载文件总体进度
+          if (greaterThanZeroNumber > 0) {
+            this.progress = totalProgress / greaterThanZeroNumber
+          } else {
+            this.progress = -1
+          }
+          icon.message.progress = this.progress
 
           // icon右小角显示正在下载中的文件数量
           this.downloadingNumber = downloadingNumber
@@ -497,6 +515,15 @@
         chrome.browserAction.setBadgeText({text: text})
       },
 
+      /**
+       * 获取文件下载进度
+       * @param item
+       * @return {number} 下载文件可以提前获取大小的，进度为：0-1（double类型）；不能获取大小的，默认为-1
+       */
+      getProgress(item) {
+        return item.totalBytes != null && item.totalBytes > 0 ?
+          (1.0 * item.bytesReceived / item.totalBytes).toFixed(2) : -1
+      }
     }
   }
 </script>
