@@ -385,7 +385,7 @@
                           iconUrl: item.iconUrl || 'img/icon19.png',
                           title: this.i18data.downloadNotificationSetting2,
                           message: item.basename,
-                          buttons: [{title: this.i18data.openFile}, {title: this.i18data.openFolderNotification}]
+                          buttons: [{title: this.i18data.openFile}, {title: this.i18data.openFolderNotification}, {title: this.i18data.deleteNotification}]
                         },
                         // eslint-disable-next-line no-unused-vars
                         returnId => {
