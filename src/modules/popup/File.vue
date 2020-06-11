@@ -316,7 +316,9 @@
           let speed = '0B'
           if (item.estimatedEndTime) {
             let remainingTime = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
-            speed = this.getFormattedSize((item.totalBytes - item.bytesReceived) / remainingTime);
+            if (!isNaN(remainingTime)) {
+              speed = this.getFormattedSize((item.totalBytes - item.bytesReceived) / remainingTime);
+            }
           }
           return speed + '/s';
         } else {
@@ -332,7 +334,7 @@
 
         // 预估剩余时间 - 当前时间 = 剩余时间 (ms)
         let remaining = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
-        if (remaining <= 0) {
+        if (isNaN(remaining) || remaining <= 0) {
           return this.i18data.second.replace('{}', '0')
         } else if (remaining < 60) {
           return this.i18data.second.replace('{}', remaining.toFixed(0))
