@@ -278,7 +278,7 @@
           let dangerousDownloadingNumber = 0
           let anyInProgress = false
           let greaterThanZeroNumber = 0
-          let totalProgress = 0
+          let totalProgress = 0.0
 
           items.forEach((item) => {
             common.beforeHandler(item)
@@ -522,7 +522,7 @@
        */
       getProgress(item) {
         return item.totalBytes != null && item.totalBytes > 0 ?
-          (1.0 * item.bytesReceived / item.totalBytes).toFixed(2) : -1
+          parseFloat((1.0 * item.bytesReceived / item.totalBytes).toFixed(2)) : -1
       }
     }
   }
