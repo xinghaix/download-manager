@@ -557,7 +557,7 @@
     right: 6px;
     height: 28px;
     line-height: 36px;
-    width: 92px;
+    padding-left: 16px;
     background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, var(--content-file-background-color) 24%);
     z-index: 1;
   }

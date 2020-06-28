@@ -53,13 +53,14 @@
 
 ### **Info**
 
-#### **最新版本**：1.0.6
+#### **最新版本**：1.0.8
 新增：
-1. 下完成后通知新增打开文件按钮
-2. 图标新增下载进度动画
+1. 清空列表按钮新增下拉菜单
+2. 优化界面显示
 
 
-<img src="docs/img/1.png" width="320" hegiht="420" alt=""/>
+<img src="docs/img/Popup_zh_CN.png" width="320" hegiht="420" alt=""/>
+<img src="docs/img/Settings_zh_CN.png" width="320" hegiht="420" alt=""/>
 
 ### **编译打包**
 ```

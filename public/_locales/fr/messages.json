@@ -43,9 +43,21 @@
     "message": "Veuillez saisir le lien de téléchargement ! Appuyez sur Entrée pour télécharger le fichier",
     "description": "Veuillez saisir le lien de téléchargement"
   },
-  "clearList": {
+  "clearAll": {
     "message": "effacer la liste",
-    "description": "effacer la liste des fichiers à télécharger"
+    "description": "Effacer le menu déroulant du bouton"
+  },
+  "deleteAll": {
+    "message": "Supprimer tout du disque",
+    "description": "Effacer le menu déroulant du bouton"
+  },
+  "clearFailed": {
+    "message": "Impossible d'effacer le téléchargement",
+    "description": "Effacer le menu déroulant du bouton"
+  },
+  "clearAbsent": {
+    "message": "Le fichier d'effacement n'existe pas",
+    "description": "Effacer le menu déroulant du bouton"
   },
   "openDownloadFolder": {
     "message": "ouvrir le dossier de téléchargement",

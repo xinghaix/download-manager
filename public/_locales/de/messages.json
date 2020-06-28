@@ -43,9 +43,21 @@
     "message": "Bitte geben sie den link ein! Enter Datei laden",
     "description": "Bitte geben sie den link ein"
   },
-  "clearList": {
+  "clearAll": {
     "message": "! Liste",
-    "description": "Dateien löschen"
+    "description": "Dropdown-Menü der Schaltfläche löschen"
+  },
+  "deleteAll": {
+    "message": "Löschen Sie alle von der Festplatte",
+    "description": "Dropdown-Menü der Schaltfläche löschen"
+  },
+  "clearFailed": {
+    "message": "Download konnte nicht gelöscht werden",
+    "description": "Dropdown-Menü der Schaltfläche löschen"
+  },
+  "clearAbsent": {
+    "message": "Datei löschen existiert nicht",
+    "description": "Dropdown-Menü der Schaltfläche löschen"
   },
   "openDownloadFolder": {
     "message": "Lade den ordner ab.",

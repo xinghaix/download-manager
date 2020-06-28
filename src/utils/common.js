@@ -101,10 +101,14 @@ const common = {
 
     // popup 顶栏tooltip
     this.i18data.newDownload = this.loadI18nMessage('newDownload')
-    this.i18data.clearList = this.loadI18nMessage('clearList')
     this.i18data.openDownloadFolder = this.loadI18nMessage('openDownloadFolder')
     this.i18data.openSettings = this.loadI18nMessage('openSettings')
     this.i18data.newDownloadPlaceholder = this.loadI18nMessage('newDownloadPlaceholder')
+    // 清除按钮下拉菜单
+    this.i18data.clearAll = this.loadI18nMessage('clearAll')
+    this.i18data.deleteAll = this.loadI18nMessage('deleteAll')
+    this.i18data.clearFailed = this.loadI18nMessage('clearFailed')
+    this.i18data.clearAbsent = this.loadI18nMessage('clearAbsent')
 
     // 网速显示
     this.i18data.second = this.loadI18nMessage('second')

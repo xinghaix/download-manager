@@ -43,9 +43,21 @@
     "message": "请输入下载链接! Enter键下载文件",
     "description": "请输入下载链接"
   },
-  "clearList": {
+  "clearAll": {
     "message": "清空列表",
-    "description": "清空下载文件列表"
+    "description": "清除按钮下拉菜单"
+  },
+  "deleteAll": {
+    "message": "从磁盘删除所有",
+    "description": "清除按钮下拉菜单"
+  },
+  "clearFailed": {
+    "message": "清除下载失败",
+    "description": "清除按钮下拉菜单"
+  },
+  "clearAbsent": {
+    "message": "清除文件不存在",
+    "description": "清除按钮下拉菜单"
   },
   "openDownloadFolder": {
     "message": "打开下载文件夹",

@@ -43,9 +43,21 @@
     "message": "ダウンロードリンクを入力してください！ファイルをダウンロードするにはEnterキーを押してください",
     "description": "ダウンロードリンクを入力してください"
   },
-  "clearList": {
+  "clearAll": {
     "message": "リストをクリア",
-    "description": "ダウンロードファイルリストをクリア"
+    "description": "クリアボタンのドロップダウンメニュー"
+  },
+  "deleteAll": {
+    "message": "ディスクからすべて削除",
+    "description": "クリアボタンのドロップダウンメニュー"
+  },
+  "clearFailed": {
+    "message": "ダウンロードをクリアできませんでした",
+    "description": "クリアボタンのドロップダウンメニュー"
+  },
+  "clearAbsent": {
+    "message": "クリアファイルが存在しません",
+    "description": "クリアボタンのドロップダウンメニュー"
   },
   "openDownloadFolder": {
     "message": "ダウンロードフォルダを開く",

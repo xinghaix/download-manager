@@ -43,9 +43,21 @@
     "message": "Please enter the download link! Press Enter to download file",
     "description": "Please enter the download link"
   },
-  "clearList": {
+  "clearAll": {
     "message": "clear list",
-    "description": "clear download file list"
+    "description": "Clear button dropdown menu"
+  },
+  "deleteAll": {
+    "message": "delete all from disk",
+    "description": "Clear button dropdown menu"
+  },
+  "clearFailed": {
+    "message": "clear failed tasks",
+    "description": "Clear button dropdown menu"
+  },
+  "clearAbsent": {
+    "message": "clear absent tasks",
+    "description": "Clear button dropdown menu"
   },
   "openDownloadFolder": {
     "message": "open download folder",

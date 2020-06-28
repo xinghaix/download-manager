@@ -53,12 +53,13 @@ The following features are developing in order 😂:
 4. Proxy settings
 
 ### **Info**
-#### **Latest Version**：1.0.6
+#### **Latest Version**：1.0.7
 What's New:
-1. After the completion of the notification to open a new file open button
-2. The icon adds download progress animation
+1. Add a drop-down menu to the empty list button
+2. Optimize the interface display
 
-<img src="../docs/img/1.png" width="320" hegiht="420" alt=""/>
+<img src="../docs/img/Popup_EN.png.png" width="320" hegiht="420" alt=""/>
+<img src="../docs/img/Settings_EN.png" width="320" hegiht="420" alt=""/>
 
 ### **Build & Package**
 ```

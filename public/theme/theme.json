@@ -7,6 +7,14 @@
     "--header-search-border-color": "#dcdfe6",
     "--header-search-hover-border-color": "#409eff",
 
+    "--header-dropdown-menu-background-color": "#fff",
+    "--header-dropdown-menu-border-color": "#ebeef5",
+    "--header-dropdown-menu-item-color": "#606266",
+    "--header-dropdown-menu-item-background-color": "#ecf5ff",
+    "--header-dropdown-menu-item-border-color": "#66b1ff",
+    "--header-dropdown-menu-item-hover-color": "#66b1ff",
+    "--header-dropdown-menu-item-hover-background-color": "#ecf5ff",
+
     "--header-icon-color": "#808080",
     "--header-icon-hover-color": "#000",
     "--header-icon-popconfirm-color": "#a6a6a6",
@@ -47,6 +55,14 @@
     "--header-search-background-color": "#595959",
     "--header-search-border-color": "#595959",
     "--header-search-hover-border-color": "#409eff",
+
+    "--header-dropdown-menu-background-color": "#35363a",
+    "--header-dropdown-menu-border-color": "#616161",
+    "--header-dropdown-menu-item-color": "#9a9a9a",
+    "--header-dropdown-menu-item-background-color": "#fff",
+    "--header-dropdown-menu-item-border-color": "#616161",
+    "--header-dropdown-menu-item-hover-color": "#f5f5f5",
+    "--header-dropdown-menu-item-hover-background-color": "#226ece",
 
     "--header-icon-color": "#9b9b9b",
     "--header-icon-hover-color": "#b3b3b3",

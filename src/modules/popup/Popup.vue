@@ -16,13 +16,22 @@
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
           <i class="header-button icon-button el-icon-circle-plus-outline" v-popover:openDownload/>
         </el-tooltip>
-        <el-tooltip :disabled="closeTooltip" :content="i18data.clearList"
+        <el-tooltip :disabled="closeTooltip" :content="i18data.clearAll"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
-          <el-popconfirm :title="i18data.clearList" @onConfirm="eraseAll"
-                         :confirmButtonText="i18data.clearPopConfirmText"
-                         :cancelButtonText="i18data.clearPopCancelText">
-            <i class="header-button icon-button el-icon-brush" slot="reference"/>
-          </el-popconfirm>
+<!--          <el-popconfirm :title="i18data.clearList" @onConfirm="eraseAll"-->
+<!--                         :confirmButtonText="i18data.clearPopConfirmText"-->
+<!--                         :cancelButtonText="i18data.clearPopCancelText">-->
+<!--            <i class="header-button icon-button el-icon-brush" slot="reference"/>-->
+<!--          </el-popconfirm>-->
+          <el-dropdown trigger="click" @command="clearDropdownCommand">
+            <span class="el-dropdown-link"><i class="header-button icon-button el-icon-brush"/></span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="clearAll">{{i18data.clearAll}}</el-dropdown-item>
+              <el-dropdown-item command="deleteAll">{{i18data.deleteAll}}</el-dropdown-item>
+              <el-dropdown-item command="clearFailed">{{i18data.clearFailed}}</el-dropdown-item>
+              <el-dropdown-item command="clearAbsent">{{i18data.clearAbsent}}</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openDownloadFolder"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
@@ -299,6 +308,35 @@
       },
 
       /**
+       * header栏 - 清除按钮点击事件
+       * @param command {String}
+       */
+      clearDropdownCommand(command) {
+        this.downloadItems.forEach((item) => {
+          if (item.state && item.state !== 'in_progress') {
+            switch (command) {
+              case 'clearAll':
+                this.erase(item)
+                break
+              case 'deleteAll':
+                if (item.exists) {
+                  chrome.downloads.removeFile(item.id, () => this.erase(item))
+                } else {
+                  this.erase(item)
+                }
+                break
+              case 'clearFailed':
+                item.error && this.erase(item)
+                break
+              case 'clearAbsent':
+                !item.exists && this.erase(item)
+                break
+            }
+          }
+        })
+      },
+
+      /**
        * 复制内容到剪切板
        * @param text {String} 需要复制到剪切板的内容，字符串类型
        * @param event {MouseEvent}
@@ -311,7 +349,6 @@
               this.tipPosition = {x: event.pageX, y: event.pageY}
             }
           }, e => {
-            // todo
             console.error('failed to copy', e)
           })
         }
@@ -380,6 +417,10 @@
     border-bottom-color: var(--popover-background-color)!important;
   }
 
+  .el-dropdown-menu.el-popper[x-placement^=bottom] .popper__arrow:after {
+    border-bottom-color: var(--header-dropdown-menu-background-color)!important;
+  }
+
   body .el-textarea textarea {
     font-family: Segoe UI, Microsoft YaHei, sans-serif;
     resize: none;
@@ -436,8 +477,7 @@
   }
 
   .header {
-    margin: 9px 6px 0 6px;
-    display: inline-block;
+    padding: 9px 3px 0 6px;
   }
 
   /* header栏输入框 */
@@ -462,7 +502,11 @@
 
   .header .header-operator {
     float: right;
-    margin-left: 45px;
+    display: table;
+  }
+  .header .header-button {
+    display: table-cell;
+    padding: 3px 5px;
   }
 
   /* 显示手动下载文件弹框时的遮蔽层 */
@@ -479,8 +523,6 @@
 
   /* 图标按钮 */
   .icon-button {
-    margin: 4px 0 0 10px;
-    display: inline-block;
     cursor: pointer;
     font-size: 17px;
     color: var(--header-icon-color);
@@ -491,6 +533,26 @@
     color: var(--header-icon-hover-color);
     font-weight: bold;
     transition: .2s;
+  }
+
+  /* 清除按钮下拉菜单 */
+  .el-dropdown-menu.el-popper {
+    padding: 4px 0;
+    margin: 5px 0;
+    background-color: var(--header-dropdown-menu-background-color);
+    border-color: var(--header-dropdown-menu-border-color);
+  }
+  .el-dropdown-menu.el-popper .el-dropdown-menu__item {
+    line-height: 28px;
+    padding: 0 10px;
+    margin: 0;
+    font-size: 12px;
+    color: var(--header-dropdown-menu-item-color);
+  }
+  .el-dropdown-menu.el-popper .el-dropdown-menu__item:focus,
+  .el-dropdown-menu.el-popper .el-dropdown-menu__item:not(.is-disabled):hover {
+    background-color: var(--header-dropdown-menu-item-hover-background-color);
+    color: var(--header-dropdown-menu-item-hover-color);
   }
 
   /* 下载内容区域 */
