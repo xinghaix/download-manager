@@ -38,7 +38,7 @@ Click on the plugin icon to see the status of all downloaded files.
 `简体中文`、`English`、`Japanese`、`German`、`Russian`、`French`
 
 This is the result of using Google Translate. 
-If you have better suggestions, please create Issues or email!
+If you have better suggestions, please create Issues or send emails!
 
 **Steps:**
 1. Location of all translation files: public/_locales/\*\*/*.json
@@ -47,11 +47,10 @@ If you have better suggestions, please create Issues or email!
 
 ### **Future Plan**    
 The following features are developing in order 😂:
-1. More animation that the icon shows the download status
-2. Solve the problem that the file that failed to retry downloading becomes a newly created download
-3. Proxy settings
-4. Obsessive-compulsive disorder series: only display the name of the downloaded file, the download panel stops showing the flying in and flying out animation
-5. Customize the download panel theme
+1. Solve the problem that the file that failed to retry downloading becomes a newly created download
+2. Customize the download panel theme
+3. Obsessive-compulsive disorder series: only display the name of the downloaded file, the download panel stops showing the flying in and flying out animation
+4. Proxy settings
 
 ### **Info**
 #### **Latest Version**：1.0.6
