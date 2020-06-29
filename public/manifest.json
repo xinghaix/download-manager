@@ -24,8 +24,8 @@
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+Z",
-        "mac": "Command+Z"
+        "default": "Alt+X",
+        "mac": "Alt+X"
       },
       "description" : "__MSG_openPopupSetting__"
     }
