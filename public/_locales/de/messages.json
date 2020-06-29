@@ -139,6 +139,14 @@
     "message": "Runtergeladen.",
     "description": "Download des befehls"
   },
+  "downloadStartedNotification": {
+    "message": "Download starten",
+    "description": "Benachrichtigung herunterladen"
+  },
+  "downloadWarnNotification": {
+    "message": "Warnung herunterladen",
+    "description": "Benachrichtigung herunterladen"
+  },
   "openFolderNotification": {
     "message": "Ordner öffnen.",
     "description": "Ordner öffnen zur eingabe der botschaft"

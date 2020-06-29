@@ -137,7 +137,15 @@
   },
   "downloadCompletedNotification": {
     "message": "下载完成",
-    "description": "下载完成通知按钮"
+    "description": "下载通知"
+  },
+  "downloadStartedNotification": {
+    "message": "下载开始",
+    "description": "下载通知"
+  },
+  "downloadWarnNotification": {
+    "message": "下载警告",
+    "description": "下载通知"
   },
   "openFolderNotification": {
     "message": "打开文件夹",

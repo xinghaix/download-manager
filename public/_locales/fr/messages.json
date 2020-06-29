@@ -139,6 +139,14 @@
     "message": "Téléchargement terminé",
     "description": "Bouton de notification de fin de téléchargement"
   },
+  "downloadStartedNotification": {
+    "message": "Début du téléchargement",
+    "description": "Télécharger la notification"
+  },
+  "downloadWarnNotification": {
+    "message": "Télécharger l'avertissement",
+    "description": "Télécharger la notification"
+  },
   "openFolderNotification": {
     "message": "Ouvrir le dossier",
     "description": "Bouton d'ouverture du dossier de notification de fin de téléchargement"

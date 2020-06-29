@@ -139,6 +139,14 @@
     "message": "ダウンロード完了",
     "description": "ダウンロード完了通知ボタン"
   },
+  "downloadStartedNotification": {
+    "message": "ダウンロード開始",
+    "description": "ダウンロード通知"
+  },
+  "downloadWarnNotification": {
+    "message": "警告をダウンロード",
+    "description": "ダウンロード通知"
+  },
   "openFolderNotification": {
     "message": "フォルダーを開く",
     "description": "ダウンロード完了通知フォルダを開くボタン"

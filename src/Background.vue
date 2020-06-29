@@ -347,7 +347,7 @@
                       chrome.notifications.create(notificationId, {
                           type: 'basic',
                           iconUrl: item.iconUrl || 'img/icon19.png',
-                          title: this.i18data.downloadNotificationSetting1,
+                          title: this.i18data.downloadStartedNotification,
                           message: item.basename,
                           buttons: [{title: this.i18data.deleteNotification}]
                         },
@@ -383,7 +383,7 @@
                       chrome.notifications.create(notificationId, {
                           type: 'basic',
                           iconUrl: item.iconUrl || 'img/icon19.png',
-                          title: this.i18data.downloadNotificationSetting2,
+                          title: this.i18data.downloadCompletedNotification,
                           message: item.basename,
                           buttons: [{title: this.i18data.openFile}, {title: this.i18data.openFolderNotification}]
                         },
@@ -418,7 +418,7 @@
                       chrome.notifications.create(notificationId, {
                           type: 'basic',
                           iconUrl: item.iconUrl || 'img/icon19.png',
-                          title: this.i18data.downloadNotificationSetting3,
+                          title: this.i18data.downloadWarnNotification,
                           message: item.basename,
                           buttons: [{title: this.i18data.deleteNotification}]
                         },

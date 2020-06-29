@@ -139,6 +139,14 @@
     "message": "Download Completed",
     "description": "Download completion notification button"
   },
+  "downloadStartedNotification": {
+    "message": "Download started",
+    "description": "Download notification"
+  },
+  "downloadWarnNotification": {
+    "message": "Download warning",
+    "description": "Download notification"
+  },
   "openFolderNotification": {
     "message": "Open folder",
     "description": "Download completion notification open folder button"

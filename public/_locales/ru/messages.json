@@ -139,6 +139,14 @@
     "message": "Загрузка завершена",
     "description": "Загрузка завершена"
   },
+  "downloadStartedNotification": {
+    "message": "Начало загрузки",
+    "description": "Скачать уведомление"
+  },
+  "downloadWarnNotification": {
+    "message": "Скачать предупреждение",
+    "description": "Скачать уведомление"
+  },
   "openFolderNotification": {
     "message": "Открыть в папке",
     "description": "Загрузка завершена. Открыть в папке"

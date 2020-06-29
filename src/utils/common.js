@@ -96,6 +96,8 @@ const common = {
     // background 通知
     this.i18data.deleteNotification = this.loadI18nMessage('deleteNotification')
     this.i18data.downloadCompletedNotification = this.loadI18nMessage('downloadCompletedNotification')
+    this.i18data.downloadStartedNotification = this.loadI18nMessage('downloadStartedNotification')
+    this.i18data.downloadWarnNotification = this.loadI18nMessage('downloadWarnNotification')
     this.i18data.openFolderNotification = this.loadI18nMessage('openFolderNotification')
     this.i18data.openFile = this.loadI18nMessage('openFile')
 
