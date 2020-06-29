@@ -53,10 +53,12 @@ The following features are developing in order 😂:
 4. Proxy settings
 
 ### **Info**
-#### **Latest Version**：1.0.7
+#### **Latest Version**：1.0.9
 What's New:
-1. Add a drop-down menu to the empty list button
-2. Optimize the interface display
+1. Download notification retention time setting
+
+Fix:
+1. Solve the problem that some file download notifications do not appear
 
 <img src="../docs/img/Popup_EN.png.png" width="320" hegiht="420" alt=""/>
 <img src="../docs/img/Settings_EN.png" width="320" hegiht="420" alt=""/>
