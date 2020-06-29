@@ -207,6 +207,10 @@
     "message": "警告",
     "description": "插件设置说明"
   },
+  "downloadNotificationReservedTimeSetting": {
+    "message": "下载通知保留时间（秒）",
+    "description": "插件设置说明"
+  },
   "downloadToneSetting": {
     "message": "下载提示音",
     "description": "插件设置说明"

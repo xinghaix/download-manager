@@ -207,6 +207,10 @@
     "message": "warning",
     "description": "Инструкция к плагину"
   },
+  "downloadNotificationReservedTimeSetting": {
+    "message": "Время хранения уведомлений о загрузке (в секундах)",
+    "description": "Инструкция к плагину"
+  },
   "downloadToneSetting": {
     "message": "Скачать напоминание",
     "description": "Инструкция к плагину"

@@ -207,6 +207,10 @@
     "message": "warnen",
     "description": "Modul einrichten -beschreibung"
   },
+  "downloadNotificationReservedTimeSetting": {
+    "message": "Aufbewahrungszeit für Download-Benachrichtigungen (Sekunden)",
+    "description": "Modul einrichten -beschreibung"
+  },
   "downloadToneSetting": {
     "message": "Erinnerung herunterladen",
     "description": "Modul einrichten -beschreibung"

@@ -42,6 +42,8 @@ const common = {
         chrome.downloads.getFileIcon(item.id, {size: 32}, iconUrl => {
           resolve(iconUrl)
         })
+      } else {
+        resolve(item.iconUrl)
       }
     })
   },
@@ -166,6 +168,7 @@ const common = {
     this.i18data.downloadNotificationSetting1 = this.loadI18nMessage('downloadNotificationSetting1')
     this.i18data.downloadNotificationSetting2 = this.loadI18nMessage('downloadNotificationSetting2')
     this.i18data.downloadNotificationSetting3 = this.loadI18nMessage('downloadNotificationSetting3')
+    this.i18data.downloadNotificationReservedTimeSetting = this.loadI18nMessage('downloadNotificationReservedTimeSetting')
     this.i18data.downloadToneSetting = this.loadI18nMessage('downloadToneSetting')
 
     // options settings 快捷键设置

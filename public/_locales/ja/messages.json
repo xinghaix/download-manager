@@ -207,6 +207,10 @@
     "message": "警告",
     "description": "プラグインの設定手順"
   },
+  "downloadNotificationReservedTimeSetting": {
+    "message": "ダウンロード通知保持時間（秒）",
+    "description": "プラグインの設定手順"
+  },
   "downloadToneSetting": {
     "message": "リマインダーをダウンロード",
     "description": "プラグインの設定手順"

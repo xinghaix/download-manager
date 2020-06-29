@@ -207,6 +207,10 @@
     "message": "Alerte",
     "description": "instructions de configuration du plugin"
   },
+  "downloadNotificationReservedTimeSetting": {
+    "message": "Durée de rétention des notifications de téléchargement (secondes)",
+    "description": "Instructions de configuration du plug-in"
+  },
   "downloadToneSetting": {
     "message": "Son de téléchargement",
     "description": "instructions de configuration du plugin"

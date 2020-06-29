@@ -93,6 +93,7 @@ const storage = {
     await this.setDefaultIfNull('download_warning_notification', false)
     await this.setDefaultIfNull('download_started_tone', false)
     await this.setDefaultIfNull('download_completed_tone', false)
+    await this.setDefaultIfNull('download_notification_reserved_time', 10)
     await this.setDefaultIfNull('download_warning_tone', false)
     // 插件默认关闭下载完成提示音
     await this.setDefaultIfNull('download_completion_tone', false)

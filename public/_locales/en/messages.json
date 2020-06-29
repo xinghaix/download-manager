@@ -207,6 +207,10 @@
     "message": "Warned",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationReservedTimeSetting": {
+    "message": "Download notification retention time (second)",
+    "description": "plugin setting instructions"
+  },
   "downloadToneSetting": {
     "message": "Download tone",
     "description": "plugin setting instructions"

@@ -71,6 +71,16 @@
       <el-divider/>
       <div class="item">
         <div class="content">
+          <span class="setting-title">{{i18data.downloadNotificationReservedTimeSetting}}</span>
+        </div>
+        <div class="switch width">
+          <el-input-number v-model="downloadNotificationReservedTime" :controls="false"
+                           class="reserved_time" :max="43200" size="mini"></el-input-number>
+        </div>
+      </div>
+      <el-divider/>
+      <div class="item">
+        <div class="content">
           <span class="setting-title">{{i18data.downloadToneSetting}}</span>
         </div>
         <div class="switch width">
@@ -113,148 +123,155 @@
 </template>
 
 <script>
-  import storage from "../../utils/storage"
+import storage from "../../utils/storage"
 
-  export default {
-    name: "Settings",
-    props: {
-      i18data: Object
+export default {
+  name: "Settings",
+  props: {
+    i18data: Object
+  },
+  watch: {
+    isSync(val) {
+      storage.set('sync', val)
     },
-    watch: {
-      isSync (val) {
-        storage.set('sync', val)
-      },
 
-      showTooltip (val) {
-        storage.set('close_tooltip', !val)
-      },
-      leftClickFile (val) {
-        storage.set('left_click_file', val)
-      },
-      rightClickFile (val) {
-        storage.set('right_click_file', val)
-      },
-      leftClickUrl (val) {
-        storage.set('left_click_url', val)
-      },
-      rightClickUrl (val) {
-        storage.set('right_click_url', val)
-      },
-
-      downloadContextMenus (val) {
-        storage.set('download_context_menus', val)
-        // eslint-disable-next-line no-undef
-        chrome.runtime.sendMessage(JSON.stringify({type: 'downloadMenus', data: val}))
-      },
-
-      downloadStartedNotification (val) {
-        storage.set('download_started_notification', val)
-      },
-      downloadCompletedNotification (val) {
-        storage.set('download_completed_notification', val)
-      },
-      downloadWarningNotification (val) {
-        storage.set('download_warning_notification', val)
-      },
-
-      downloadStartedTone (val) {
-        storage.set('download_started_tone', val)
-      },
-      downloadCompletedTone (val) {
-        storage.set('download_completed_tone', val)
-      },
-      downloadWarningTone (val) {
-        storage.set('download_warning_tone', val)
-      },
+    showTooltip(val) {
+      storage.set('close_tooltip', !val)
     },
-    async mounted() {
-      // 获取插件设置
-      // 下载设置
-      this.leftClickFile = await storage.get('left_click_file')
-      this.rightClickFile = await storage.get('right_click_file')
-      this.leftClickUrl = await storage.get('left_click_url')
-      this.rightClickUrl = await storage.get('right_click_url')
-      this.showTooltip = ! await storage.get('close_tooltip')
-      // 上下文菜单设置
-      this.downloadContextMenus = await storage.get('download_context_menus')
-      // 通知设置
-      this.downloadStartedNotification = await storage.get('download_started_notification')
-      this.downloadCompletedNotification = await storage.get('download_completed_notification')
-      this.downloadWarningNotification = await storage.get('download_warning_notification')
-      this.downloadStartedTone = await storage.get('download_started_tone')
-      this.downloadCompletedTone = await storage.get('download_completed_tone')
-      this.downloadWarningTone = await storage.get('download_warning_tone')
-      // 快捷键设置
-      this.openPopupShortcut = await this.getOpenPopupShortcut()
-      // 同步设置
-      this.isSync = await storage.get('sync')
-
-      this.show = true
+    leftClickFile(val) {
+      storage.set('left_click_file', val)
     },
-    data() {
-      return {
-        show: false,
-
-        chromePluginShortcutSettingUrl: 'chrome://extensions/shortcuts',
-
-        // 下载设置
-        leftClickFile: true,
-        leftClickUrl: true,
-        rightClickFile: true,
-        rightClickUrl: true,
-        showTooltip: false,
-
-        // 上下文菜单
-        downloadContextMenus: true,
-
-        // 通知设置
-        downloadStartedNotification: false,
-        downloadCompletedNotification: false,
-        downloadWarningNotification: false,
-        downloadStartedTone: false,
-        downloadCompletedTone: false,
-        downloadWarningTone: false,
-
-        // 快捷键设置
-        openPopupShortcut: 'Ctrl+Z',
-
-        // 同步设置
-        isSync: true,
-      }
+    rightClickFile(val) {
+      storage.set('right_click_file', val)
     },
-    methods: {
-      /**
-       * 获取打开插件弹框的快捷键
-       * @return {Promise<String>}
-       */
-      getOpenPopupShortcut() {
-        return new Promise(resolve => {
-          // eslint-disable-next-line no-undef
-          chrome.commands.getAll(commands => {
-            if (commands) {
-              commands.forEach(command => {
-                if (command && command.name === '_execute_browser_action') {
-                  if (command.shortcut) {
-                    resolve(command.shortcut)
-                  } else {
-                    resolve('--')
-                  }
-                }
-              })
-            }
-            resolve('--')
-          })
-        })
-      },
+    leftClickUrl(val) {
+      storage.set('left_click_url', val)
+    },
+    rightClickUrl(val) {
+      storage.set('right_click_url', val)
+    },
 
-      // 在新标签页中打开下载文件链接
-      openUrl (url) {
-        // eslint-disable-next-line no-undef
-        chrome.tabs.create({ url: url })
-      },
+    downloadContextMenus(val) {
+      storage.set('download_context_menus', val)
+      // eslint-disable-next-line no-undef
+      chrome.runtime.sendMessage(JSON.stringify({type: 'downloadMenus', data: val}))
+    },
 
+    downloadStartedNotification(val) {
+      storage.set('download_started_notification', val)
+    },
+    downloadCompletedNotification(val) {
+      storage.set('download_completed_notification', val)
+    },
+    downloadWarningNotification(val) {
+      storage.set('download_warning_notification', val)
+    },
+
+    downloadStartedTone(val) {
+      storage.set('download_started_tone', val)
+    },
+    downloadCompletedTone(val) {
+      storage.set('download_completed_tone', val)
+    },
+    downloadWarningTone(val) {
+      storage.set('download_warning_tone', val)
+    },
+
+    downloadNotificationReservedTime(val) {
+      storage.set('download_notification_reserved_time', val)
     }
+  },
+  async mounted() {
+    // 获取插件设置
+    // 下载设置
+    this.leftClickFile = await storage.get('left_click_file')
+    this.rightClickFile = await storage.get('right_click_file')
+    this.leftClickUrl = await storage.get('left_click_url')
+    this.rightClickUrl = await storage.get('right_click_url')
+    this.showTooltip = !await storage.get('close_tooltip')
+    // 上下文菜单设置
+    this.downloadContextMenus = await storage.get('download_context_menus')
+    // 通知设置
+    this.downloadStartedNotification = await storage.get('download_started_notification')
+    this.downloadCompletedNotification = await storage.get('download_completed_notification')
+    this.downloadWarningNotification = await storage.get('download_warning_notification')
+    this.downloadStartedTone = await storage.get('download_started_tone')
+    this.downloadCompletedTone = await storage.get('download_completed_tone')
+    this.downloadWarningTone = await storage.get('download_warning_tone')
+    this.downloadNotificationReservedTime = await storage.get('download_notification_reserved_time')
+    // 快捷键设置
+    this.openPopupShortcut = await this.getOpenPopupShortcut()
+    // 同步设置
+    this.isSync = await storage.get('sync')
+
+    this.show = true
+  },
+  data() {
+    return {
+      show: false,
+
+      chromePluginShortcutSettingUrl: 'chrome://extensions/shortcuts',
+
+      // 下载设置
+      leftClickFile: true,
+      leftClickUrl: true,
+      rightClickFile: true,
+      rightClickUrl: true,
+      showTooltip: false,
+
+      // 上下文菜单
+      downloadContextMenus: true,
+
+      // 通知设置
+      downloadStartedNotification: false,
+      downloadCompletedNotification: false,
+      downloadWarningNotification: false,
+      downloadStartedTone: false,
+      downloadCompletedTone: false,
+      downloadWarningTone: false,
+      // 通知保留时间
+      downloadNotificationReservedTime: 10,
+
+      // 快捷键设置
+      openPopupShortcut: 'Alt+X',
+
+      // 同步设置
+      isSync: true,
+    }
+  },
+  methods: {
+    /**
+     * 获取打开插件弹框的快捷键
+     * @return {Promise<String>}
+     */
+    getOpenPopupShortcut() {
+      return new Promise(resolve => {
+        // eslint-disable-next-line no-undef
+        chrome.commands.getAll(commands => {
+          if (commands) {
+            commands.forEach(command => {
+              if (command && command.name === '_execute_browser_action') {
+                if (command.shortcut) {
+                  resolve(command.shortcut)
+                } else {
+                  resolve('--')
+                }
+              }
+            })
+          }
+          resolve('--')
+        })
+      })
+    },
+
+    // 在新标签页中打开下载文件链接
+    openUrl(url) {
+      // eslint-disable-next-line no-undef
+      chrome.tabs.create({url: url})
+    },
+
   }
+}
 </script>
 
 <!--suppress CssUnusedSymbol -->
@@ -290,6 +307,7 @@
   .box-card .item .content {
     display: table-cell;
     width: 490px;
+    vertical-align: middle;
   }
   .box-card .item .content .setting-title {
     display: block;
@@ -321,6 +339,13 @@
   }
   .box-card .item .setting-description .code {
     margin-left: 4px;
+  }
+
+  .reserved_time {
+    width: 90px;
+  }
+  .reserved_time >>> .el-input__inner {
+    border-radius: 0;
   }
 
   .box-card >>> .el-divider--horizontal {

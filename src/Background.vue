@@ -51,7 +51,7 @@
                     icon.setColor(iconColor[theme], iconDownloadingColor[theme])
                   })
                 } else {
-                  icon.setBrowserActionIcon(iconColor[theme])
+                  icon.setBrowserActionIcon(iconColor[theme], false)
                 }
               })
             }
@@ -337,35 +337,32 @@
       handleDownloadStartedNotification(item) {
         let notificationId = item.id + '-started'
         if (this.notificationList.indexOf(notificationId) < 0) {
-          if (item.basename) {
-            this.notificationList.push(notificationId)
-            this.getIcon(item, () => {
-              storage.get('download_started_notification').then(value => {
-                if (value) {
-                  chrome.notifications.getPermissionLevel(level => {
-                    if (level === 'granted') {
-                      chrome.notifications.create(notificationId, {
-                          type: 'basic',
-                          iconUrl: item.iconUrl || 'img/icon19.png',
-                          title: this.i18data.downloadStartedNotification,
-                          message: item.basename,
-                          buttons: [{title: this.i18data.deleteNotification}]
-                        },
-                        // eslint-disable-next-line no-unused-vars
-                        returnId => {
-                        })
+          this.notificationList.push(notificationId)
+          this.getIcon(item, (iconUrl) => {
+            storage.get('download_started_notification').then(value => {
+              if (value) {
+                chrome.notifications.getPermissionLevel(level => {
+                  if (level === 'granted') {
+                    let option = {
+                      type: 'basic',
+                      iconUrl: iconUrl || 'img/icon19.png',
+                      title: this.i18data.downloadStartedNotification,
+                      message: item.basename || item.url,
+                      buttons: [{title: this.i18data.deleteNotification}]
                     }
-                  })
-                }
-              })
-
-              storage.get('download_started_tone').then(value => {
-                if (value) {
-                  this.startedAudio.play()
-                }
-              })
+                    chrome.notifications.create(notificationId, option,
+                      returnId => this.closeNotification(returnId, option))
+                  }
+                })
+              }
             })
-          }
+
+            storage.get('download_started_tone').then(value => {
+              if (value) {
+                this.startedAudio.play()
+              }
+            })
+          })
         }
       },
 
@@ -373,70 +370,64 @@
         let notificationId = item.id + '-completed'
         if (this.notificationList.indexOf(notificationId) < 0
           && this.notificationList.indexOf(item.id + '-started') >= 0) {
-          if (item.basename) {
-            this.notificationList.push(notificationId)
-            this.getIcon(item, () => {
-              storage.get('download_completed_notification').then(value => {
-                if (value) {
-                  chrome.notifications.getPermissionLevel(level => {
-                    if (level === 'granted') {
-                      chrome.notifications.create(notificationId, {
-                          type: 'basic',
-                          iconUrl: item.iconUrl || 'img/icon19.png',
-                          title: this.i18data.downloadCompletedNotification,
-                          message: item.basename,
-                          buttons: [{title: this.i18data.openFile}, {title: this.i18data.openFolderNotification}]
-                        },
-                        // eslint-disable-next-line no-unused-vars
-                        returnId => {
-                        })
+          this.notificationList.push(notificationId)
+          this.getIcon(item, (iconUrl) => {
+            storage.get('download_completed_notification').then(value => {
+              if (value) {
+                chrome.notifications.getPermissionLevel(level => {
+                  if (level === 'granted') {
+                    let option = {
+                      type: 'basic',
+                      iconUrl: iconUrl || 'img/icon19.png',
+                      title: this.i18data.downloadCompletedNotification,
+                      message: item.basename || item.url,
+                      buttons: [{title: this.i18data.openFile}, {title: this.i18data.openFolderNotification}]
                     }
-                  })
-                }
-              })
-
-              storage.get('download_completed_tone').then(value => {
-                if (value) {
-                  this.completedAudio.play()
-                }
-              })
+                    chrome.notifications.create(notificationId, option,
+                      returnId => this.closeNotification(returnId, option))
+                  }
+                })
+              }
             })
-          }
+
+            storage.get('download_completed_tone').then(value => {
+              if (value) {
+                this.completedAudio.play()
+              }
+            })
+          })
         }
       },
 
       handleDownloadWarningNotification(item) {
         let notificationId = item.id + '-warning'
         if (this.notificationList.indexOf(notificationId) < 0) {
-          if (item.basename) {
-            this.notificationList.push(notificationId)
-            this.getIcon(item, () => {
-              storage.get('download_warning_notification').then(value => {
-                if (value) {
-                  chrome.notifications.getPermissionLevel(level => {
-                    if (level === 'granted') {
-                      chrome.notifications.create(notificationId, {
-                          type: 'basic',
-                          iconUrl: item.iconUrl || 'img/icon19.png',
-                          title: this.i18data.downloadWarnNotification,
-                          message: item.basename,
-                          buttons: [{title: this.i18data.deleteNotification}]
-                        },
-                        // eslint-disable-next-line no-unused-vars
-                        returnId => {
-                        })
+          this.notificationList.push(notificationId)
+          this.getIcon(item, (iconUrl) => {
+            storage.get('download_warning_notification').then(value => {
+              if (value) {
+                chrome.notifications.getPermissionLevel(level => {
+                  if (level === 'granted') {
+                    let option = {
+                      type: 'basic',
+                      iconUrl: iconUrl || 'img/icon19.png',
+                      title: this.i18data.downloadWarnNotification,
+                      message: item.basename || item.url,
+                      buttons: [{title: this.i18data.deleteNotification}]
                     }
-                  })
-                }
-              })
-
-              storage.get('download_warning_tone').then(value => {
-                if (value) {
-                  this.warningAudio.play()
-                }
-              })
+                    chrome.notifications.create(notificationId, option,
+                      returnId => this.closeNotification(returnId, option))
+                  }
+                })
+              }
             })
-          }
+
+            storage.get('download_warning_tone').then(value => {
+              if (value) {
+                this.warningAudio.play()
+              }
+            })
+          })
         }
       },
 
@@ -484,17 +475,42 @@
       },
 
       /**
+       * 在指定时间后关闭通知
+       * @param id {String} chrome浏览器通知唯一ID
+       * @param option {Object}
+       */
+      closeNotification(id, option) {
+        storage.get('download_notification_reserved_time').then(value => {
+          if (value !== null && typeof value == 'number' && value >= 0) {
+            setTimeout(() => {
+              chrome.notifications.clear(id, wasCleared => {
+                // 在Win10中，无法清除移入操作中心的通知。等待官方后续解决
+                // https://bugs.chromium.org/p/chromium/issues/detail?id=973776
+                // 暂时通过创建相同ID的通知然后立刻取消操作来代替清除操作，但也仅尝试操作一次
+                if (!wasCleared) {
+                  chrome.notifications.getPermissionLevel(level => {
+                    if (level === 'granted') {
+                      chrome.notifications.create(id, option, returnId => chrome.notifications.clear(returnId))
+                    }
+                  })
+                }
+              })
+            }, value * 1000)
+          }
+        })
+      },
+
+      /**
        * 获取文件图标
        * @param item {Object}
        * @param callback {function}
        */
       getIcon(item, callback) {
         if (item.iconUrl) {
-          callback()
+          callback(item.iconUrl)
         } else {
           common.getCustomFileIcon(item).then(iconUrl => {
-            item.iconUrl = iconUrl
-            callback()
+            callback(iconUrl)
           })
         }
       },
