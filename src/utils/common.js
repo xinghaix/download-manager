@@ -227,6 +227,7 @@ const common = {
     this.i18data.iconDownloadingColorSetting = this.loadI18nMessage('iconDownloadingColorSetting')
     this.i18data.downloadPanelTitle = this.loadI18nMessage('downloadPanelTitle')
     this.i18data.downloadPanelThemeCustomDescription = this.loadI18nMessage('downloadPanelThemeCustomDescription')
+    this.i18data.pageSize = this.loadI18nMessage('pageSize')
 
     // options about 关于
     this.i18data.starAbout1 = this.loadI18nMessage('starAbout1')

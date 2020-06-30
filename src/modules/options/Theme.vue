@@ -62,6 +62,19 @@
 
     <h2 class="about title">{{i18data.downloadPanelTitle}}</h2>
     <el-card class="box-card" shadow="hover">
+      <div class="item">
+        <div class="content">
+          <span class="setting-title">{{i18data.pageSize}}</span>
+        </div>
+        <div class="switch width page-size">
+
+          <el-input-number v-model="downloadPanelPageSize.width" :controls="false"
+                           :min="330" :max="800" size="mini"></el-input-number>
+          <el-input-number v-model="downloadPanelPageSize.height" :controls="false"
+                           :min="300" :max="600" size="mini"></el-input-number>
+        </div>
+      </div>
+      <el-divider/>
       <div class="item custom">
         <div class="content">
           <span class="setting-title">{{i18data.themeTitle}}</span>
@@ -111,6 +124,8 @@
 
       this.downloadPanelTheme = await storage.get('download_panel_theme')
 
+      this.downloadPanelPageSize = await storage.get('download_panel_page_size')
+
       this.show = true
     },
     data: function () {
@@ -132,9 +147,9 @@
 
         downloadPanelTheme: 'light',
 
-        should: {
-          dark: ['a-l', 'l-a', 'l-d', 'd-l'],
-          light: ['a-d', 'l-d', 'd-a', 'd-l']
+        downloadPanelPageSize: {
+          width: '400',
+          height: '420'
         }
       }
     },
@@ -161,6 +176,13 @@
             this.sendIconColorToBackground(val === 'auto' ? systemTheme : val)
           }
         }
+      },
+
+      downloadPanelPageSize: {
+        handler(val) {
+          storage.set('download_panel_page_size', val)
+        },
+        deep: true
       }
     },
     methods: {
@@ -351,6 +373,14 @@
     background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDQ4IDQ4IiBmaWxsPSIjNDI4NUY0Ij48cGF0aCBkPSJNMCAwaDQ4djQ4SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTI0IDRDMTIuOTUgNCA0IDEyLjk1IDQgMjRjMCAxMS4wNCA4Ljk1IDIwIDIwIDIwIDExLjA0IDAgMjAtOC45NiAyMC0yMCAwLTExLjA1LTguOTYtMjAtMjAtMjB6bS00IDMwTDEwIDI0bDIuODMtMi44M0wyMCAyOC4zNGwxNS4xNy0xNS4xN0wzOCAxNiAyMCAzNHoiLz48L3N2Zz4=) no-repeat 50%;
     background-size: 28px 28px;
     position: absolute;
+  }
+
+  .page-size >>> .el-input-number {
+    width: 70px;
+    margin-left: -1px;
+  }
+  .page-size >>> .el-input__inner {
+    border-radius: 0;
   }
 
   .box-card >>> .el-radio-button__inner {

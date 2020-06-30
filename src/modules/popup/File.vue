@@ -389,9 +389,9 @@
 <style rel="stylesheet/scss" scoped>
   /* 下载文件 */
   .file {
-    width: 350px;
     height: 70px;
-    margin: 6px 6px 8px 6px;
+    margin-bottom: 8px;
+    margin-right: 7px;
     border-radius: 4px;
     border: 1px solid var(--content-file-border-color);
     background-color: var(--content-file-background-color);
@@ -434,8 +434,7 @@
 
   /* 文件内容 */
   .file .file-content {
-    width: 278px;
-    height: 100%;
+    width: calc(100% - 70px);
     float: right;
     padding: 6px 8px 0 0;
   }

@@ -295,6 +295,10 @@
     "message": "下载面板",
     "description": "主题标签页说明"
   },
+  "pageSize": {
+    "message": "页面大小（宽度、高度）",
+    "description": "主题标签页说明"
+  },
   "downloadPanelThemeCustomDescription": {
     "message": "自定义主题，敬请期待！",
     "description": "主题标签页说明"

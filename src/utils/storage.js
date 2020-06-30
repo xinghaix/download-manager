@@ -70,6 +70,7 @@ const storage = {
 
     // 主题 - 下载面板主题，默认为白色
     await this.setDefaultIfNull('download_panel_theme', 'white')
+    await this.setDefaultIfNull('download_panel_page_size', {width: 400, height: 420})
     // 设置 - 下载 - 插件设置默认不展示提示信息
     await this.setDefaultIfNull('close_tooltip', true)
     await this.setDefaultIfNull('left_click_file', true)

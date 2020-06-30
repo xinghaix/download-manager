@@ -50,7 +50,7 @@
       }
     },
     watch: {
-      position (val) {
+      position(val) {
         if (val.x < 0) {
           val.x = 0
         }

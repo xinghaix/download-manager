@@ -1,5 +1,5 @@
 <template>
-  <div class="home" id="home">
+  <div class="home" id="home" :style="{width: downloadPanelPageSize.width + 'px',height: downloadPanelPageSize.height + 'px'}">
     <div class="header">
       <el-input class="search" size="mini" suffix-icon="el-icon-search" v-model="searchContent"/>
       <div class="header-operator">
@@ -38,6 +38,7 @@
         </el-tooltip>
       </div>
     </div>
+<!--    <div class="content" :style="{height: 'calc(' + downloadPanelPageSize.maxHeight + 'px - 37px)'}">-->
     <div class="content">
       <el-scrollbar class="content-scrollbar">
         <file v-for="(item, index) in downloadItems" :key="item" class="file"
@@ -64,6 +65,8 @@
     name: 'Popup',
     components: {File, Tip},
     async beforeCreate() {
+      // 获取页面大小
+      this.downloadPanelPageSize = await storage.get('download_panel_page_size')
       // 获取主题类型。共3种，light、dark、auto
       let theme = await storage.get('theme')
       // 获取下载面板主题类型。共3种，light、dark、custom
@@ -89,7 +92,6 @@
           }
         })
       })
-
     },
     async mounted() {
       // 初始化插件设置
@@ -161,6 +163,11 @@
     },
     data() {
       return {
+        downloadPanelPageSize: {
+          width: '400',
+          height: '420'
+        },
+
         searchContent: '',
         downloadUrl: '',
         downloadItems: [],
@@ -466,8 +473,6 @@
 <!--suppress CssUnusedSymbol -->
 <style scoped rel="stylesheet/scss">
   .home {
-    width: 365px;
-    height: 377px;
     background-color: var(--background-color);
   }
 
@@ -552,8 +557,8 @@
 
   /* 下载内容区域 */
   .content {
-    margin-top: 4px;
-    height: 340px;
+    height: calc(100% - 45px);
+    padding: 6px 1px 0 6px;
   }
 
   /* 下载文件区域滚动条 */
