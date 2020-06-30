@@ -84,11 +84,11 @@
     "description": "恢复下载处在暂停中的文件"
   },
   "delete": {
-    "message": "删除",
+    "message": "从磁盘删除",
     "description": "从磁盘中删除文件"
   },
   "retry": {
-    "message": "重试",
+    "message": "重新下载",
     "description": "重新下载"
   },
   "dangerDescription": {
@@ -104,7 +104,7 @@
     "description": "保留危险文件"
   },
   "erase": {
-    "message": "取消",
+    "message": "从列表移除",
     "description": "取消下载或在列表清除文件"
   },
   "copied": {
@@ -213,6 +213,14 @@
   },
   "downloadToneSetting": {
     "message": "下载提示音",
+    "description": "插件设置说明"
+  },
+  "downloadNotificationRemainVisibleSetting": {
+    "message": "下载通知保持可见",
+    "description": "插件设置说明"
+  },
+  "downloadNotificationRemainVisibleDescSetting": {
+    "message": "在用户激活或关闭通知之前，通知在屏幕上保持可见。Chrome 50 版本之后可用",
     "description": "插件设置说明"
   },
   "shortcutSetting": {

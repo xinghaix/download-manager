@@ -215,6 +215,14 @@
     "message": "Скачать напоминание",
     "description": "Инструкция к плагину"
   },
+  "downloadNotificationRemainVisibleSetting": {
+    "message": "Уведомления о загрузке остаются видимыми",
+    "description": "Инструкция к плагину"
+  },
+  "downloadNotificationRemainVisibleDescSetting": {
+    "message": "Уведомление остается видимым на экране, пока пользователь не активирует или не деактивирует уведомление.Доступно после Chrome 50",
+    "description": "Инструкция к плагину"
+  },
   "shortcutSetting": {
     "message": "Быстрая клавиша",
     "description": "Инструкция к плагину"

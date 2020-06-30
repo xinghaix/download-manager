@@ -215,6 +215,14 @@
     "message": "リマインダーをダウンロード",
     "description": "プラグインの設定手順"
   },
+  "downloadNotificationRemainVisibleSetting": {
+    "message": "ダウンロード通知は表示されたままです",
+    "description": "プラグインの設定手順"
+  },
+  "downloadNotificationRemainVisibleDescSetting": {
+    "message": "ユーザーが通知をアクティブ化または非アクティブ化するまで、通知は画面に表示されたままになります。Chrome 50以降で利用可能",
+    "description": "プラグインの設定手順"
+  },
   "shortcutSetting": {
     "message": "ショートカット",
     "description": "プラグインの設定手順"

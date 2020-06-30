@@ -215,6 +215,14 @@
     "message": "Download tone",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationRemainVisibleSetting": {
+    "message": "Download notifications remain visible",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationRemainVisibleDescSetting": {
+    "message": "Indicates that the notification should remain visible on screen until the user activates or dismisses the notification. Since Chrome 50.",
+    "description": "plugin setting instructions"
+  },
   "shortcutSetting": {
     "message": "Shortcut",
     "description": "plugin setting instructions"

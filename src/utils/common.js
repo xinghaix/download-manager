@@ -80,6 +80,37 @@ const common = {
   },
 
   /**
+   * 获取chrome版本
+   * @return {{patch: number, major: number, minor: number, build: number}|undefined}
+   */
+  getChromeVersion() {
+    let pieces = navigator.userAgent.match(/Chrom(?:e|ium)\/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/)
+    if (pieces == null || pieces.length !== 5) {
+      return undefined
+    }
+    pieces = pieces.map(piece => parseInt(piece, 10))
+    return {
+      major: pieces[1],
+      minor: pieces[2],
+      build: pieces[3],
+      patch: pieces[4]
+    }
+  },
+
+  /**
+   * 校验chrome版本是否大于指定数值
+   * @param version {Number}
+   * @return {boolean}
+   */
+  chromeVersionGreaterThan(version) {
+    if (version && typeof version === 'number') {
+      let currentVersion = this.getChromeVersion()
+      return currentVersion && currentVersion.major >= version
+    }
+    return false
+  },
+
+  /**
    * 检测系统是否是深色模式
    * @return {boolean}
    */
@@ -169,6 +200,8 @@ const common = {
     this.i18data.downloadNotificationSetting2 = this.loadI18nMessage('downloadNotificationSetting2')
     this.i18data.downloadNotificationSetting3 = this.loadI18nMessage('downloadNotificationSetting3')
     this.i18data.downloadNotificationReservedTimeSetting = this.loadI18nMessage('downloadNotificationReservedTimeSetting')
+    this.i18data.downloadNotificationRemainVisibleSetting = this.loadI18nMessage('downloadNotificationRemainVisibleSetting')
+    this.i18data.downloadNotificationRemainVisibleDescSetting = this.loadI18nMessage('downloadNotificationRemainVisibleDescSetting')
     this.i18data.downloadToneSetting = this.loadI18nMessage('downloadToneSetting')
 
     // options settings 快捷键设置

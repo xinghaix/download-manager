@@ -215,6 +215,14 @@
     "message": "Son de téléchargement",
     "description": "instructions de configuration du plugin"
   },
+  "downloadNotificationRemainVisibleSetting": {
+    "message": "Les notifications de téléchargement restent visibles",
+    "description": "Instructions de configuration du plug-in"
+  },
+  "downloadNotificationRemainVisibleDescSetting": {
+    "message": "La notification reste visible à l'écran jusqu'à ce que l'utilisateur active ou désactive la notification.Disponible après Chrome 50",
+    "description": "Instructions de configuration du plug-in"
+  },
   "shortcutSetting": {
     "message": "Raccourci",
     "description": "instructions de configuration du plugin"

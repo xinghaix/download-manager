@@ -343,15 +343,19 @@
               if (value) {
                 chrome.notifications.getPermissionLevel(level => {
                   if (level === 'granted') {
-                    let option = {
-                      type: 'basic',
-                      iconUrl: iconUrl || 'img/icon19.png',
-                      title: this.i18data.downloadStartedNotification,
-                      message: item.basename || item.url,
-                      buttons: [{title: this.i18data.deleteNotification}]
-                    }
-                    chrome.notifications.create(notificationId, option,
-                      returnId => this.closeNotification(returnId, option))
+                    storage.get('download_notification_remain_visible').then(visible => {
+                      let option = {
+                        type: 'basic',
+                        priority: 2,
+                        iconUrl: iconUrl || 'img/icon19.png',
+                        title: this.i18data.downloadStartedNotification,
+                        message: item.basename || item.url,
+                        buttons: [{title: this.i18data.deleteNotification}]
+                      }
+                      visible && common.chromeVersionGreaterThan(50) && (option.requireInteraction = true)
+                      chrome.notifications.create(notificationId, option,
+                        returnId => this.closeNotification(returnId, option, visible))
+                    })
                   }
                 })
               }
@@ -376,15 +380,19 @@
               if (value) {
                 chrome.notifications.getPermissionLevel(level => {
                   if (level === 'granted') {
-                    let option = {
-                      type: 'basic',
-                      iconUrl: iconUrl || 'img/icon19.png',
-                      title: this.i18data.downloadCompletedNotification,
-                      message: item.basename || item.url,
-                      buttons: [{title: this.i18data.openFile}, {title: this.i18data.openFolderNotification}]
-                    }
-                    chrome.notifications.create(notificationId, option,
-                      returnId => this.closeNotification(returnId, option))
+                    storage.get('download_notification_remain_visible').then(visible => {
+                      let option = {
+                        type: 'basic',
+                        priority: 2,
+                        iconUrl: iconUrl || 'img/icon19.png',
+                        title: this.i18data.downloadCompletedNotification,
+                        message: item.basename || item.url,
+                        buttons: [{title: this.i18data.openFile}, {title: this.i18data.openFolderNotification}]
+                      }
+                      visible && common.chromeVersionGreaterThan(50) && (option.requireInteraction = true)
+                      chrome.notifications.create(notificationId, option,
+                        returnId => this.closeNotification(returnId, option, visible))
+                    })
                   }
                 })
               }
@@ -408,15 +416,19 @@
               if (value) {
                 chrome.notifications.getPermissionLevel(level => {
                   if (level === 'granted') {
-                    let option = {
-                      type: 'basic',
-                      iconUrl: iconUrl || 'img/icon19.png',
-                      title: this.i18data.downloadWarnNotification,
-                      message: item.basename || item.url,
-                      buttons: [{title: this.i18data.deleteNotification}]
-                    }
-                    chrome.notifications.create(notificationId, option,
-                      returnId => this.closeNotification(returnId, option))
+                    storage.get('download_notification_remain_visible').then(visible => {
+                      let option = {
+                        type: 'basic',
+                        priority: 2,
+                        iconUrl: iconUrl || 'img/icon19.png',
+                        title: this.i18data.downloadWarnNotification,
+                        message: item.basename || item.url,
+                        buttons: [{title: this.i18data.deleteNotification}]
+                      }
+                      visible && common.chromeVersionGreaterThan(50) && (option.requireInteraction = true)
+                      chrome.notifications.create(notificationId, option,
+                        returnId => this.closeNotification(returnId, option, visible))
+                    })
                   }
                 })
               }
@@ -478,8 +490,9 @@
        * 在指定时间后关闭通知
        * @param id {String} chrome浏览器通知唯一ID
        * @param option {Object}
+       * @param visible {boolean}
        */
-      closeNotification(id, option) {
+      closeNotification(id, option, visible) {
         storage.get('download_notification_reserved_time').then(value => {
           if (value !== null && typeof value == 'number' && value >= 0) {
             setTimeout(() => {
@@ -490,6 +503,7 @@
                 if (!wasCleared) {
                   chrome.notifications.getPermissionLevel(level => {
                     if (level === 'granted') {
+                      visible && common.chromeVersionGreaterThan(50) && (option.requireInteraction = false)
                       chrome.notifications.create(id, option, returnId => chrome.notifications.clear(returnId))
                     }
                   })

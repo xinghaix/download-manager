@@ -8,28 +8,18 @@ const storage = {
    * @param value
    */
   set(key, value) {
-    chrome.storage.sync.get('sync', isSync => {
-      if (isSync) {
-        chrome.storage.sync.set({[key]: value})
-      } else {
-        chrome.storage.local.set({[key]: value})
-      }
-    })
+    chrome.storage.sync.get('sync', isSync => chrome.storage[isSync ? 'sync' : 'local'].set({[key]: value}))
   },
 
   /**
    * 将同步和未同步时的方法统一包装下，方便使用
-   * @param key {String}
+   * @param keys {String}
    * @return {Promise}
    */
-  get(key) {
+  get(keys) {
     return new Promise(resolve => {
       chrome.storage.sync.get('sync', isSync => {
-        if (isSync) {
-          chrome.storage.sync.get([key], result => resolve(result[key]))
-        } else {
-          chrome.storage.local.get([key], result => resolve(result[key]))
-        }
+        chrome.storage[isSync ? 'sync' : 'local'].get([keys], result => resolve(result[keys]))
       })
     })
   },
@@ -94,6 +84,7 @@ const storage = {
     await this.setDefaultIfNull('download_started_tone', false)
     await this.setDefaultIfNull('download_completed_tone', false)
     await this.setDefaultIfNull('download_notification_reserved_time', 10)
+    await this.setDefaultIfNull('download_notification_remain_visible', false)
     await this.setDefaultIfNull('download_warning_tone', false)
     // 插件默认关闭下载完成提示音
     await this.setDefaultIfNull('download_completion_tone', false)

@@ -215,6 +215,14 @@
     "message": "Erinnerung herunterladen",
     "description": "Modul einrichten -beschreibung"
   },
+  "downloadNotificationRemainVisibleSetting": {
+    "message": "Download-Benachrichtigungen bleiben sichtbar",
+    "description": "Modul einrichten -beschreibung"
+  },
+  "downloadNotificationRemainVisibleDescSetting": {
+    "message": "Die Benachrichtigung bleibt auf dem Bildschirm sichtbar, bis der Benutzer die Benachrichtigung aktiviert oder deaktiviert.Verfügbar nach Chrome 50",
+    "description": "Modul einrichten -beschreibung"
+  },
   "shortcutSetting": {
     "message": "kurzbefehl",
     "description": "Modul einrichten -beschreibung"

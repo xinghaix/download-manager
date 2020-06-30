@@ -79,6 +79,15 @@
         </div>
       </div>
       <el-divider/>
+      <div class="item pointer" :class="chromeVersionGreaterThan50 ? 'true' : 'false'">
+        <div class="content" @click="chromeVersionGreaterThan50 && (downloadNotificationRemainVisible = !downloadNotificationRemainVisible)">
+          <span class="setting-title">{{i18data.downloadNotificationRemainVisibleSetting}}</span>
+          <span class="setting-description">{{i18data.downloadNotificationRemainVisibleDescSetting}}</span>
+        </div>
+        <el-switch class="switch" v-model="downloadNotificationRemainVisible"
+                   active-color="#409EFF" inactive-color="#bdc1c6" :disabled="!chromeVersionGreaterThan50"/>
+      </div>
+      <el-divider/>
       <div class="item">
         <div class="content">
           <span class="setting-title">{{i18data.downloadToneSetting}}</span>
@@ -123,7 +132,8 @@
 </template>
 
 <script>
-import storage from "../../utils/storage"
+import storage from '../../utils/storage'
+import common from '../../utils/common'
 
 export default {
   name: "Settings",
@@ -179,6 +189,9 @@ export default {
 
     downloadNotificationReservedTime(val) {
       storage.set('download_notification_reserved_time', val)
+    },
+    downloadNotificationRemainVisible(val) {
+      storage.set('download_notification_remain_visible', val)
     }
   },
   async mounted() {
@@ -199,11 +212,15 @@ export default {
     this.downloadCompletedTone = await storage.get('download_completed_tone')
     this.downloadWarningTone = await storage.get('download_warning_tone')
     this.downloadNotificationReservedTime = await storage.get('download_notification_reserved_time')
+    this.downloadNotificationRemainVisible = await storage.get('download_notification_remain_visible')
     // 快捷键设置
     this.openPopupShortcut = await this.getOpenPopupShortcut()
     // 同步设置
     this.isSync = await storage.get('sync')
 
+    this.chromeVersionGreaterThan50 = common.chromeVersionGreaterThan(50)
+
+    // 开始渲染页面
     this.show = true
   },
   data() {
@@ -231,12 +248,15 @@ export default {
       downloadWarningTone: false,
       // 通知保留时间
       downloadNotificationReservedTime: 10,
+      downloadNotificationRemainVisible: false,
 
       // 快捷键设置
       openPopupShortcut: 'Alt+X',
 
       // 同步设置
       isSync: true,
+
+      chromeVersionGreaterThan50: true
     }
   },
   methods: {
@@ -303,6 +323,9 @@ export default {
   }
   .box-card .item.pointer:hover {
     cursor: pointer;
+  }
+  .box-card .item.false:hover {
+    cursor: not-allowed!important;
   }
   .box-card .item .content {
     display: table-cell;

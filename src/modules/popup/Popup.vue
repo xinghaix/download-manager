@@ -18,11 +18,6 @@
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.clearAll"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
-<!--          <el-popconfirm :title="i18data.clearList" @onConfirm="eraseAll"-->
-<!--                         :confirmButtonText="i18data.clearPopConfirmText"-->
-<!--                         :cancelButtonText="i18data.clearPopCancelText">-->
-<!--            <i class="header-button icon-button el-icon-brush" slot="reference"/>-->
-<!--          </el-popconfirm>-->
           <el-dropdown trigger="click" @command="clearDropdownCommand">
             <span class="el-dropdown-link"><i class="header-button icon-button el-icon-brush"/></span>
             <el-dropdown-menu slot="dropdown">
