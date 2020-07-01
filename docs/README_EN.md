@@ -55,10 +55,8 @@ The following features are developing in order 😂:
 ### **Info**
 #### **Latest Version**：1.0.9
 What's New:
-1. Download notification retention time setting
-
-Fix:
-1. Solve the problem that some file download notifications do not appear
+1. Download notifications can remain on the screen
+2. Customize the download panel page size. Settings -> Theme -> Download panel
 
 <img src="../docs/img/Popup_EN.png.png" width="320" hegiht="420" alt=""/>
 <img src="../docs/img/Settings_EN.png" width="320" hegiht="420" alt=""/>
