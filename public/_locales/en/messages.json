@@ -84,7 +84,7 @@
     "description": "resume downloading a suspended file"
   },
   "delete": {
-    "message": "delete",
+    "message": "delete from disk",
     "description": "delete file from disk"
   },
   "retry": {
@@ -104,7 +104,7 @@
     "description": "Keep dangerous files"
   },
   "erase": {
-    "message": "cancel",
+    "message": "remove from list",
     "description": "cancel download or clear file from list"
   },
   "copied": {
@@ -293,6 +293,10 @@
   },
   "downloadPanelTitle": {
     "message": "Download panel",
+    "description": "Theme Tab Description"
+  },
+  "pageSize": {
+    "message": "Page size (width, height)",
     "description": "Theme Tab Description"
   },
   "downloadPanelThemeCustomDescription": {

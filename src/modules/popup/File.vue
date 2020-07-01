@@ -390,7 +390,7 @@
   /* 下载文件 */
   .file {
     height: 70px;
-    margin-bottom: 8px;
+    margin-top: 8px;
     margin-right: 7px;
     border-radius: 4px;
     border: 1px solid var(--content-file-border-color);
@@ -400,6 +400,9 @@
     position: relative;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     user-select: none;
+  }
+  .file:first-child{
+    margin-top: 0!important;
   }
   .file.gray {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, .1);

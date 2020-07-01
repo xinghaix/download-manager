@@ -84,7 +84,7 @@
     "description": "reprendre le téléchargement d'un fichier suspendu"
   },
   "delete": {
-    "message": "supprimer",
+    "message": "Supprimer du disque",
     "description": "supprimer le fichier du disque"
   },
   "retry": {
@@ -104,7 +104,7 @@
     "description": "Gardez les fichiers dangereux"
   },
   "erase": {
-    "message": "annuler",
+    "message": "Retirer de la liste",
     "description": "annuler le téléchargement ou effacer le fichier de la liste"
   },
   "copied": {
@@ -293,6 +293,10 @@
   },
   "downloadPanelTitle": {
     "message": "Panneau de téléchargement",
+    "description": "Description de l'onglet Thème"
+  },
+  "pageSize": {
+    "message": "Taille de la page (largeur, hauteur)",
     "description": "Description de l'onglet Thème"
   },
   "downloadPanelThemeCustomDescription": {

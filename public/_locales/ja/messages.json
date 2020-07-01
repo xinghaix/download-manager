@@ -84,7 +84,7 @@
     "description": "一時停止中のファイルのダウンロードを再開します"
   },
   "delete": {
-    "message": "削除",
+    "message": "ディスクから削除",
     "description": "ディスクからファイルを削除する"
   },
   "retry": {
@@ -104,7 +104,7 @@
     "description": "危険なファイルを保管する"
   },
   "erase": {
-    "message": "キャンセルする",
+    "message": "リストから削除する",
     "description": "ダウンロードをキャンセルするか、リストからファイルを消去します"
   },
   "copied": {
@@ -293,6 +293,10 @@
   },
   "downloadPanelTitle": {
     "message": "ダウンロードパネル",
+    "description": "プラグインの設定手順"
+  },
+  "pageSize": {
+    "message": "ページサイズ（幅、高さ）",
     "description": "プラグインの設定手順"
   },
   "downloadPanelThemeCustomDescription": {

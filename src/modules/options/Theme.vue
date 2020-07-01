@@ -67,7 +67,6 @@
           <span class="setting-title">{{i18data.pageSize}}</span>
         </div>
         <div class="switch width page-size">
-
           <el-input-number v-model="downloadPanelPageSize.width" :controls="false"
                            :min="330" :max="800" size="mini"></el-input-number>
           <el-input-number v-model="downloadPanelPageSize.height" :controls="false"

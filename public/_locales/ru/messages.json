@@ -84,7 +84,7 @@
     "description": "Возобновить загрузку"
   },
   "delete": {
-    "message": "Удалить",
+    "message": "Удалить с диска",
     "description": "Удалить файлы с диска"
   },
   "retry": {
@@ -104,7 +104,7 @@
     "description": "Продолжить загрузку опасного файла"
   },
   "erase": {
-    "message": "Отменить",
+    "message": "Убрать из списка",
     "description": "Отменить загрузку или убрать файл из списка"
   },
   "copied": {
@@ -293,6 +293,10 @@
   },
   "downloadPanelTitle": {
     "message": "Панель загрузки",
+    "description": "Инструкция на странице лейбла"
+  },
+  "pageSize": {
+    "message": "Размер страницы (ширина, высота)",
     "description": "Инструкция на странице лейбла"
   },
   "downloadPanelThemeCustomDescription": {

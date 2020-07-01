@@ -84,7 +84,7 @@
     "description": "Das herunterladen in lauflost wieder herstellen"
   },
   "delete": {
-    "message": "gelöscht",
+    "message": "Von der Festplatte löschen",
     "description": "Dateien vom speichermedium löschen"
   },
   "retry": {
@@ -104,7 +104,7 @@
     "description": "Gefährliche daten behalten."
   },
   "erase": {
-    "message": "absagen",
+    "message": "Aus Liste entfernen",
     "description": "Das herunterladen Oder das löschen Von dateien in der liste beenden"
   },
   "copied": {
@@ -293,6 +293,10 @@
   },
   "downloadPanelTitle": {
     "message": "Panel herunterladen",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "pageSize": {
+    "message": "Seitengröße (Breite, Höhe)",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "downloadPanelThemeCustomDescription": {

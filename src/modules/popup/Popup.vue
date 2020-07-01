@@ -1,5 +1,5 @@
 <template>
-  <div class="home" id="home" :style="{width: downloadPanelPageSize.width + 'px',height: downloadPanelPageSize.height + 'px'}">
+  <div class="home" id="home" :style="{width: downloadPanelPageSize.width + 'px',height: downloadPanelPageSize.height - 1 + 'px'}">
     <div class="header">
       <el-input class="search" size="mini" suffix-icon="el-icon-search" v-model="searchContent"/>
       <div class="header-operator">
@@ -42,7 +42,7 @@
     <div class="content">
       <el-scrollbar class="content-scrollbar">
         <file v-for="(item, index) in downloadItems" :key="item" class="file"
-              :item="item" :timeout="((index+1) / 4) * 180"
+              :item="item" :timeout="((index+1) / 4) * 100"
               :render="render" :erase="erase" :copyToClipboard="copyToClipboard"
               :i18data="i18data" :close-tooltip="closeTooltip" :left-click-file="leftClickFile"
               :left-click-url="leftClickUrl" :right-click-file="rightClickFile" :right-click-url="rightClickUrl"/>
@@ -66,7 +66,8 @@
     components: {File, Tip},
     async beforeCreate() {
       // 获取页面大小
-      this.downloadPanelPageSize = await storage.get('download_panel_page_size')
+      this.checkPageSize(await storage.get('download_panel_page_size'))
+
       // 获取主题类型。共3种，light、dark、auto
       let theme = await storage.get('theme')
       // 获取下载面板主题类型。共3种，light、dark、custom
@@ -229,6 +230,28 @@
       }
     },
     methods: {
+      checkPageSize(downloadPanelPageSize) {
+        if (downloadPanelPageSize) {
+          let width = downloadPanelPageSize.width
+          if (width < 330) {
+            width = 330
+          }
+          if (width > 800) {
+            width = 800
+          }
+          this.downloadPanelPageSize.width = width
+
+          let height = downloadPanelPageSize.height
+          if (height < 300) {
+            height = 300
+          }
+          if (height > 600) {
+            height = 600
+          }
+          this.downloadPanelPageSize.height = height
+        }
+      },
+
       getItem(id) {
         for (let item of this.downloadItems) {
           if (item.id === id) {
@@ -557,8 +580,9 @@
 
   /* 下载内容区域 */
   .content {
-    height: calc(100% - 45px);
-    padding: 6px 1px 0 6px;
+    height: calc(100% - 48px);
+    /*padding: 8px 1px 0 6px;*/
+    margin: 8px 1px 0 6px;
   }
 
   /* 下载文件区域滚动条 */
