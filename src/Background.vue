@@ -327,9 +327,7 @@
           chrome.runtime.sendMessage(JSON.stringify(this.downloadMessage))
 
           if (this.anyInProgress && this.tid < 0) {
-            while (this.tid < 0) {
-              this.tid = setTimeout(this.downloadProgress, 300)
-            }
+            this.tid = setTimeout(this.downloadProgress, 300)
           }
         })
       },
