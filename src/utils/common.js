@@ -138,6 +138,7 @@ const common = {
     this.i18data.newDownload = this.loadI18nMessage('newDownload')
     this.i18data.openDownloadFolder = this.loadI18nMessage('openDownloadFolder')
     this.i18data.openSettings = this.loadI18nMessage('openSettings')
+    this.i18data.openHome = this.loadI18nMessage('openHome')
     this.i18data.newDownloadPlaceholder = this.loadI18nMessage('newDownloadPlaceholder')
     // 清除按钮下拉菜单
     this.i18data.clearAll = this.loadI18nMessage('clearAll')

@@ -67,6 +67,10 @@
     "message": "plugin settings",
     "description": "open plugin settings in a new tab"
   },
+  "openHome": {
+    "message": "Open downloads page",
+    "description": "Open the browser's default download page in a new tab"
+  },
   "openFileInFolder": {
     "message": "open folder",
     "description": "open file in folder"

@@ -68,7 +68,7 @@
         </div>
         <div class="switch width page-size">
           <el-input-number v-model="downloadPanelPageSize.width" :controls="false"
-                           :min="330" :max="800" size="mini"></el-input-number>
+                           :min="350" :max="800" size="mini"></el-input-number>
           <el-input-number v-model="downloadPanelPageSize.height" :controls="false"
                            :min="300" :max="600" size="mini"></el-input-number>
         </div>

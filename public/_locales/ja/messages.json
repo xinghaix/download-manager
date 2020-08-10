@@ -67,6 +67,10 @@
     "message": "プラグイン設定",
     "description": "新しいタブでプラグイン設定を開く"
   },
+  "openHome": {
+    "message": "ダウンロードページを開く",
+    "description": "ブラウザのデフォルトのダウンロードページを新しいタブで開く"
+  },
   "openFileInFolder": {
     "message": "フォルダーを開く",
     "description": "フォルダー内のファイルを開く"

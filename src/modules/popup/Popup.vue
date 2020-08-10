@@ -14,7 +14,7 @@
         <div class="musk" v-if="showMusk" @click="() => {this.showMusk = false;this.showPopover = false}"/>
         <el-tooltip :disabled="closeTooltip" :content="i18data.newDownload"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="header-button icon-button el-icon-circle-plus-outline" v-popover:openDownload/>
+          <i class="header-button icon-button el-icon-download" v-popover:openDownload/>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.clearAll"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
@@ -32,13 +32,17 @@
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
           <i class="header-button icon-button el-icon-folder" @click="openFolder"/>
         </el-tooltip>
+        <el-tooltip :disabled="closeTooltip" :content="i18data.openHome"
+                    placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
+          <i class="header-button icon-button el-icon-position" @click="openHome"/>
+        </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openSettings"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
           <i class="header-button icon-button el-icon-setting" @click="openOptions"/>
         </el-tooltip>
       </div>
     </div>
-<!--    <div class="content" :style="{height: 'calc(' + downloadPanelPageSize.maxHeight + 'px - 37px)'}">-->
+
     <div class="content">
       <el-scrollbar class="content-scrollbar">
         <file v-for="(item, index) in downloadItems" :key="item" class="file"
@@ -164,6 +168,8 @@
     },
     data() {
       return {
+        chromeDownloadPageUrl: 'chrome://downloads',
+
         downloadPanelPageSize: {
           width: '400',
           height: '420'
@@ -233,8 +239,8 @@
       checkPageSize(downloadPanelPageSize) {
         if (downloadPanelPageSize) {
           let width = downloadPanelPageSize.width
-          if (width < 330) {
-            width = 330
+          if (width < 350) {
+            width = 350
           }
           if (width > 800) {
             width = 800
@@ -309,6 +315,13 @@
        */
       openFolder() {
         chrome.downloads.showDefaultFolder()
+      },
+
+      /**
+       * 打开浏览器默认下载页
+       */
+      openHome() {
+        chrome.tabs.create({url: this.chromeDownloadPageUrl})
       },
 
       /**

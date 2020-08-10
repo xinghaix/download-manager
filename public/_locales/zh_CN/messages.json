@@ -67,6 +67,10 @@
     "message": "插件设置",
     "description": "在新标签页打开插件设置"
   },
+  "openHome": {
+    "message": "打开下载页",
+    "description": "在新标签页打开浏览器默认下载页"
+  },
   "openFileInFolder": {
     "message": "打开文件夹",
     "description": "在文件夹中打开文件"

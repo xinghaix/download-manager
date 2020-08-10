@@ -67,6 +67,10 @@
     "message": "Modul die",
     "description": "Einrichten, um ein modul auf der neuen karteikarte zu öffnen"
   },
+  "openHome": {
+    "message": "Download-Seite öffnen",
+    "description": "Öffnen Sie die Standard-Download-Seite des Browsers in einem neuen Tab"
+  },
   "openFileInFolder": {
     "message": "Ordner öffnen.",
     "description": "Datei in den ordner öffnen"

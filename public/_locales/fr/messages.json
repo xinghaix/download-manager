@@ -67,6 +67,10 @@
     "message": "paramètres du plugin",
     "description": "ouvrir les paramètres du plugin dans un nouvel onglet"
   },
+  "openHome": {
+    "message": "Ouvrir la page de téléchargement",
+    "description": "Ouvrez la page de téléchargement par défaut du navigateur dans un nouvel onglet"
+  },
   "openFileInFolder": {
     "message": "ouvrir le dossier",
     "description": "ouvrir le fichier dans le dossier"
