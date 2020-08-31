@@ -46,7 +46,7 @@ const icon = {
         this.setRunningBrowserActionIcon(this.message.color,
           this.message.runningColor, this.message.running, this.message.progress)
       }
-    }, 80)
+    }, 400)
   },
 
   /**

@@ -44,14 +44,15 @@
     </div>
 
     <div class="content">
-      <el-scrollbar class="content-scrollbar">
-        <file v-for="(item, index) in downloadItems" :key="item" class="file"
-              :item="item" :timeout="((index+1) / 4) * 100"
-              :render="render" :erase="erase" :copyToClipboard="copyToClipboard"
-              :i18data="i18data" :close-tooltip="closeTooltip" :left-click-file="leftClickFile"
-              :left-click-url="leftClickUrl" :right-click-file="rightClickFile" :right-click-url="rightClickUrl"/>
-      </el-scrollbar>
-      <el-backtop target=".content .el-scrollbar__wrap" visibilityHeight="100"/>
+      <RecycleScroller id="vue-recycle-scroller" :items="downloadItems" :item-size="78" key-field="id" v-slot="{ item }">
+        <transition class="transition" enter-active-class="transition-enter" leave-active-class="transition-leave">
+          <file class="file" :item="item" v-if="item.show"
+                :render="render" :erase="erase" :copyToClipboard="copyToClipboard"
+                :i18data="i18data" :close-tooltip="closeTooltip" :left-click-file="leftClickFile"
+                :left-click-url="leftClickUrl" :right-click-file="rightClickFile" :right-click-url="rightClickUrl"/>
+        </transition>
+      </RecycleScroller>
+      <el-backtop target=".content #vue-recycle-scroller" visibilityHeight="70"/>
       <tip :text="i18data.copied" :position="tipPosition"/>
     </div>
   </div>
@@ -116,45 +117,47 @@
         if (received.type === 'download') {
           // data中存放自定义的从background传过来的下载信息
           // 为了解决文件图标闪烁问题，此处不能直接调用请求chrome下载文件的方法
-          received.data.forEach((item) => {
+          for (let i = 0, len1 = received.data.length; i < len1; i++) {
+            let item = received.data[i]
             // 在刚创建下载时，文件名称会为空
             if (item.filename) {
               // 当搜索框存在内容时，此时也要搜索下载中的文件
-              if (this.searchContent === '' || item.basename.toLowerCase().indexOf(this.searchContent) !== -1) {
-                // 查看是否存在已经保存的下载的文件
-                let tmpItem = this.getItem(item.id)
-                if (tmpItem) {
-                  tmpItem.filename = item.filename
-                  tmpItem.basename = item.basename
-                  common.beforeHandler(tmpItem)
-                  tmpItem.error = item.error ? item.error : null
-                  tmpItem.estimatedEndTime = item.estimatedEndTime ? item.estimatedEndTime : null
-                  // 记录上一次接收的文件大小，以便于统一计算2种下载情况下的下载速度
-                  tmpItem.previousBytesReceived = tmpItem.bytesReceived
-                  tmpItem.bytesReceived = item.bytesReceived
-                  tmpItem.totalBytes = item.totalBytes
-                  tmpItem.state = item.state
-                  tmpItem.danger = item.danger
-                } else {
-                  common.beforeHandler(item)
-                  item.previousBytesReceived = 0
+              item.show = this.searchContent === '' || item.basename.toLowerCase().indexOf(this.searchContent) > -1
 
-                  let noInsert = true
-                  for (let i = 0, len = this.downloadItems.length; i < len; i++) {
-                    if (item.startTime >= this.downloadItems[i].startTime) {
-                      // 按照下载开始时间降序排列
-                      this.downloadItems.splice(i, 0, item)
-                      noInsert = false
-                      break
-                    }
+              // 查看是否存在已经保存的下载的文件
+              let tmpItem = this.getItem(item.id)
+              if (tmpItem) {
+                tmpItem.filename = item.filename
+                tmpItem.basename = item.basename
+                common.beforeHandler(tmpItem)
+                tmpItem.error = item.error ? item.error : null
+                tmpItem.estimatedEndTime = item.estimatedEndTime ? item.estimatedEndTime : null
+                // 记录上一次接收的文件大小，以便于统一计算2种下载情况下的下载速度
+                tmpItem.previousBytesReceived = tmpItem.bytesReceived
+                tmpItem.bytesReceived = item.bytesReceived
+                tmpItem.totalBytes = item.totalBytes
+                tmpItem.state = item.state
+                tmpItem.danger = item.danger
+                tmpItem.show = item.show
+              } else {
+                common.beforeHandler(item)
+                item.previousBytesReceived = 0
+
+                let noInsert = true
+                for (let j = 0, len2 = this.downloadItems.length; j < len2; j++) {
+                  if (item.startTime >= this.downloadItems[i].startTime) {
+                    // 按照下载开始时间降序排列
+                    this.downloadItems.splice(i, 0, item)
+                    noInsert = false
+                    break
                   }
-                  if (noInsert) {
-                    this.downloadItems.push(item)
-                  }
+                }
+                if (noInsert) {
+                  this.downloadItems.push(item)
                 }
               }
             }
-          })
+          }
         }
       })
 
@@ -203,22 +206,12 @@
        * 搜索框内容改变时触发
        */
       searchContent(val) {
-        const tmp = val.trim().toLowerCase()
-        if (tmp !== '') {
-          // 如果搜索内容不为空，那么先把列表内容清空
-          this.downloadItems = []
-          chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
-            items.forEach(item => {
-              common.beforeHandler(item)
-              // 以小写字母模式模糊匹配搜索的字段
-              if (item.basename.toLowerCase().indexOf(tmp) !== -1) {
-                // 将符合条件的数据加入到搜索结果列表
-                this.downloadItems.push(item)
-              }
-            })
-          })
-        } else {
-          this.render()
+        let tmp = val.trim().toLowerCase()
+        for (let i = 0, len = this.downloadItems.length; i < len; i++) {
+          let item = this.downloadItems[i]
+          common.beforeHandler(item)
+          // 以小写字母模式模糊匹配搜索的字段
+          item.show = tmp === '' || item.basename.toLowerCase().indexOf(tmp) > -1
         }
       },
 
@@ -259,7 +252,8 @@
       },
 
       getItem(id) {
-        for (let item of this.downloadItems) {
+        for (let i = 0, len = this.downloadItems.length; i < len; i++) {
+          let item = this.downloadItems[i]
           if (item.id === id) {
             return item
           }
@@ -273,8 +267,10 @@
       render() {
         chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
           this.downloadItems = []
-          for (let item of items) {
+          for (let i = 0, len = items.length; i < len; i++) {
+            let item = items[i]
             common.beforeHandler(item)
+            item.show = true
             this.downloadItems.push(item)
           }
         })
@@ -303,11 +299,12 @@
        * 清空列表所有文件，除了正在下载的文件
        */
       eraseAll() {
-        this.downloadItems.forEach((item) => {
+        for (let i = 0, len = this.downloadItems.length; i < len; i++) {
+          let item = this.downloadItems[i]
           if (item.state && item.state !== 'in_progress') {
             this.erase(item)
           }
-        })
+        }
       },
 
       /**
@@ -350,7 +347,8 @@
        * @param command {String}
        */
       clearDropdownCommand(command) {
-        this.downloadItems.forEach((item) => {
+        for (let i = 0, len = this.downloadItems.length; i < len; i++) {
+          let item = this.downloadItems[i]
           if (item.state && item.state !== 'in_progress') {
             switch (command) {
               case 'clearAll':
@@ -371,7 +369,7 @@
                 break
             }
           }
-        })
+        }
       },
 
       /**
@@ -526,11 +524,12 @@
     line-height: 24px;
     background-color: var(--header-search-background-color);
     color: var(--header-search-color);
-    border-color: var(--header-search-border-color);
+    border-color: var(--header-search-border-color)!important;
+    transition: border-color 0ms;
   }
   .header .search >>> .el-input__inner:hover,
   .header .search >>> .el-input__inner:focus {
-    border-color: var(--header-search-hover-border-color);
+    border-color: var(--header-search-hover-border-color)!important;
   }
   .header .search >>> .el-input__icon.el-icon-search {
     line-height: 24px;
@@ -594,26 +593,29 @@
   /* 下载内容区域 */
   .content {
     height: calc(100% - 48px);
-    /*padding: 8px 1px 0 6px;*/
-    margin: 8px 1px 0 6px;
+    margin: 8px 2px 0 6px;
   }
 
-  /* 下载文件区域滚动条 */
-  .content-scrollbar {
+  /* 滚动条样式 */
+  .content >>> .vue-recycle-scroller::-webkit-scrollbar { /*滚动条整体样式*/
+    width: 8px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 8px;
+    scrollbar-arrow-color: red;
+  }
+  .content >>> .vue-recycle-scroller::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
+  }
+  .content >>> .vue-recycle-scroller::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 4px rgba(123, 123, 123, 0.2);;
+    background: var(--scrollbar-thumb-background-color);
+  }
+  .content >>> .vue-recycle-scroller::-webkit-scrollbar-track { /*滚动条里面轨道*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 4px transparent;
+  }
+  .content >>> .vue-recycle-scroller {
     height: 100%;
-    width: 100%;
-    overflow: hidden;
-  }
-  .content-scrollbar >>> .el-scrollbar__wrap {
-    overflow: hidden;
-    overflow-y: scroll;
-  }
-  .content-scrollbar >>> .el-scrollbar__bar.is-vertical {
-    width: 5px;
-    right: 0;
-  }
-  .content-scrollbar >>> .el-scrollbar__bar.is-horizontal {
-    display: none;
   }
 
   /* 返回顶部按钮 */

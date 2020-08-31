@@ -269,7 +269,8 @@ export default {
         // eslint-disable-next-line no-undef
         chrome.commands.getAll(commands => {
           if (commands) {
-            commands.forEach(command => {
+            for (let i = 0, len = commands.length; i < len; i++) {
+              let command = commands[i]
               if (command && command.name === '_execute_browser_action') {
                 if (command.shortcut) {
                   resolve(command.shortcut)
@@ -277,7 +278,7 @@ export default {
                   resolve('--')
                 }
               }
-            })
+            }
           }
           resolve('--')
         })

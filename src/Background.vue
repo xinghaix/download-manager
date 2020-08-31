@@ -220,7 +220,8 @@
        * 由于存在id字段，所以不存在重复创建的问题
        */
       createDownloadContextMenus() {
-        this.contextDownloadMenus.forEach(menus => {
+        for (let i = 0, len = this.contextDownloadMenus.length; i < len; i++) {
+          let menus = this.contextDownloadMenus[i]
           chrome.contextMenus.create({
             'id': 'download-' + menus,
             'title': this.i18data.prefixMenus + this.i18data[menus],
@@ -230,20 +231,21 @@
               // todo
             }
           })
-        })
+        }
       },
 
       /**
        * 删除下载相关的上下文菜单
        */
       removeDownloadContextMenus() {
-        this.contextDownloadMenus.forEach(menus => {
+        for (let i = 0, len = this.contextDownloadMenus.length; i < len; i++) {
+          let menus = this.contextDownloadMenus[i]
           chrome.contextMenus.remove('download-' + menus, () => {
             if (chrome.runtime.lastError) {
               // todo
             }
           })
-        })
+        }
       },
 
       /**
@@ -280,7 +282,8 @@
           let greaterThanZeroNumber = 0
           let totalProgress = 0.0
 
-          items.forEach((item) => {
+          for (let i = 0, len = items.length; i < len; i++) {
+            let item = items[i]
             common.beforeHandler(item)
             if (item.state === 'in_progress') {
               downloadingNumber++
@@ -303,7 +306,7 @@
             } else {
               this.deleteAllDownloadNotificationId(item.id)
             }
-          })
+          }
 
           this.anyInProgress = anyInProgress
 
@@ -313,11 +316,12 @@
           } else {
             this.progress = -1
           }
+          // 更新icon进度
           icon.message.progress = this.progress
 
           // icon右小角显示正在下载中的文件数量
           this.downloadingNumber = downloadingNumber
-
+          // 危险文件下载数量
           this.dangerousDownloadingNumber = dangerousDownloadingNumber
 
           // 使用vue.set更新数据
@@ -327,7 +331,7 @@
           chrome.runtime.sendMessage(JSON.stringify(this.downloadMessage))
 
           if (this.anyInProgress && this.tid < 0) {
-            this.tid = setTimeout(this.downloadProgress, 300)
+            this.tid = setTimeout(this.downloadProgress, 400)
           }
         })
       },

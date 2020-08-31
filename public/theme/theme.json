@@ -46,7 +46,9 @@
     "--popover-textarea-color": "#606266",
     "--popover-textarea-background-color": "#fff",
     "--popover-textarea-focus-border-color": "#409eff",
-    "--popover-textarea-placeholder-color": "#909399"
+    "--popover-textarea-placeholder-color": "#909399",
+
+    "--scrollbar-thumb-background-color": "hsla(0, 0%, 66%, .2)"
   },
   "dark": {
     "--background-color": "#35363a",
@@ -70,9 +72,9 @@
     "--header-icon-popconfirm-arrow-top": "-7px",
     "--header-icon-popconfirm-border-color": "#5a5a5a",
 
-    "--content-file-color": "#a0a0a0",
+    "--content-file-color": "#bfbfbf",
     "--content-file-border-color": "#6b6b6b",
-    "--content-file-filename-color": "#3598ff",
+    "--content-file-filename-color": "#2e95ff",
     "--content-file-filename-gray-color": "#c1c1c1",
     "--content-file-background-color": "#595959",
     "--content-file-icon-border-right-color": "#727272",
@@ -95,6 +97,8 @@
     "--popover-textarea-color": "#afafaf",
     "--popover-textarea-background-color": "#525252",
     "--popover-textarea-focus-border-color": "#2f96ff",
-    "--popover-textarea-placeholder-color": "#868686"
+    "--popover-textarea-placeholder-color": "#868686",
+
+    "--scrollbar-thumb-background-color": "hsla(0, 0%, 78%, .2)"
   }
 }
