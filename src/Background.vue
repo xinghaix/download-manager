@@ -63,7 +63,7 @@
       this.disableDownloadBottom()
 
       this.handleDownloadingNumber(0)
-      this.handleDangerousDownloadingNumber(0)
+      this.handleDangerousDownloading(false)
       this.downloadProgress()
 
       /**
@@ -153,9 +153,9 @@
         mediaQueryList: {},
 
         anyInProgress: false,
+        anyInDangerous: false,
         tid: -1,
         downloadingNumber: 0,
-        dangerousDownloadingNumber: 0,
         progress: -1,
         downloadMessage: {
           type: 'download',
@@ -181,10 +181,6 @@
         this.handleDownloadingNumber(val)
       },
 
-      dangerousDownloadingNumber(val) {
-        this.handleDangerousDownloadingNumber(val)
-      },
-
       anyInProgress(val) {
         storage.get('theme').then(theme => {
           if (theme && theme === 'auto') {
@@ -203,6 +199,14 @@
             })
           }
         })
+      },
+
+      anyInDangerous(val) {
+        this.handleDangerousDownloading(val)
+      },
+
+      progress(val) {
+        icon.message.progress = val
       }
     },
     methods: {
@@ -253,21 +257,17 @@
        * @param num {Number}
        */
       handleDownloadingNumber(num) {
-        this.setBrowserBadge(num <= 0 ? '' : num)
+        this.setBrowserBadge(num <= 0 ? 0 : num)
       },
 
       /**
        * 处理正在下载危险文件的数量
-       * @param num {Number}
+       * @param anyInDangerous {Boolean}
        */
-      handleDangerousDownloadingNumber(num) {
-        if (num > 0) {
-          // 在下载危险文件时，将图标正在下载中的数字背景设置为红色
-          chrome.browserAction.setBadgeBackgroundColor({color: '#FF0000'})
-        } else {
-          // 确认下载危险文件时，将图标正在下载中的数字背景重新设置为蓝色
-          chrome.browserAction.setBadgeBackgroundColor({color: '#4285F4'})
-        }
+      handleDangerousDownloading(anyInDangerous) {
+        // 在下载危险文件时，将图标正在下载中的数字背景设置为红色
+        // 确认下载危险文件时，将图标正在下载中的数字背景重新设置为蓝色
+        chrome.browserAction.setBadgeBackgroundColor({color: anyInDangerous ? '#FF0000' : '#4285F4'})
       },
 
       /**
@@ -275,15 +275,15 @@
        */
       downloadProgress() {
         this.tid = -1
-        chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
+        // chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
+        chrome.downloads.search({}, (items) => {
           let downloadingNumber = 0
-          let dangerousDownloadingNumber = 0
           let anyInProgress = false
+          let anyInDangerous = false
           let greaterThanZeroNumber = 0
           let totalProgress = 0.0
 
-          for (let i = 0, len = items.length; i < len; i++) {
-            let item = items[i]
+          items.forEach(item => {
             common.beforeHandler(item)
             if (item.state === 'in_progress') {
               downloadingNumber++
@@ -292,7 +292,7 @@
               this.handleDownloadStartedNotification(item)
 
               if ((item.danger !== 'safe') && (item.danger !== 'accepted')) {
-                dangerousDownloadingNumber++
+                anyInDangerous = true
                 this.handleDownloadWarningNotification(item)
               }
 
@@ -306,9 +306,14 @@
             } else {
               this.deleteAllDownloadNotificationId(item.id)
             }
-          }
+          })
+          // for (let i = 0, len = items.length; i < len; i++) {
+          //   let item = items[i]
+          //
+          // }
 
           this.anyInProgress = anyInProgress
+          this.anyInDangerous = anyInDangerous
 
           // 设置当前所有下载文件总体进度
           if (greaterThanZeroNumber > 0) {
@@ -316,13 +321,9 @@
           } else {
             this.progress = -1
           }
-          // 更新icon进度
-          icon.message.progress = this.progress
 
           // icon右小角显示正在下载中的文件数量
           this.downloadingNumber = downloadingNumber
-          // 危险文件下载数量
-          this.dangerousDownloadingNumber = dangerousDownloadingNumber
 
           // 使用vue.set更新数据
           this.$set(this.downloadMessage, 'data', items)
@@ -538,8 +539,8 @@
       setBrowserBadge(number) {
         let text = ''
         if (number > 0) {
-          if (number >= 100) {
-            text = '99+'
+          if (number >= 1000) {
+            text = '999+'
           } else {
             text = number.toString()
           }
