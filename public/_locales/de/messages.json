@@ -179,6 +179,10 @@
     "message": "Tipp anzeigen, wenn der mauszeiger über den knöpfen zieht",
     "description": "Modul einrichten -beschreibung"
   },
+  "enableAnimation": {
+    "message": "Öffnen Sie die Animation zum Ein- und Ausziehen",
+    "description": "Modul einrichten -beschreibung"
+  },
   "contextMenus": {
     "message": "Das kontextmenü",
     "description": "Modul einrichten -beschreibung"

@@ -179,6 +179,10 @@
     "message": "Afficher un message d'invite lorsque la souris passe sur le bouton",
     "description": "instructions de configuration du plugin"
   },
+  "enableAnimation": {
+    "message": "Ouvrir un fichier d'animation entrant et sortant",
+    "description": "instructions de configuration du plugin"
+  },
   "contextMenus": {
     "message": "Menu contextuel",
     "description": "instructions de configuration du plugin"

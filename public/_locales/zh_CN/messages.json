@@ -179,6 +179,10 @@
     "message": "鼠标移动到按钮上时显示提示信息",
     "description": "插件设置说明"
   },
+  "enableAnimation": {
+    "message": "开启文件移入移出动画",
+    "description": "插件设置说明"
+  },
   "contextMenus": {
     "message": "上下文菜单",
     "description": "插件设置说明"
