@@ -4,7 +4,7 @@
     "description": "Nom de l'extension"
   },
   "extDesc": {
-   "message": "Gestion facile des fichiers téléchargés",
+   "message": "Gestion facile des téléchargements de fichiers",
    "description": "Description de l'extension"
   },
   "settingsTitle": {
@@ -16,27 +16,27 @@
     "description": "Quelques informations sur le plugin"
   },
   "second": {
-    "message": "{} secondes restantes",
+    "message": "Reste {} secondes",
     "description": "affichage du temps restant"
   },
   "minute": {
-    "message": "{} minutes restantes",
+    "message": "Reste {} minutes",
     "description": "affichage du temps restant"
   },
   "hour": {
-    "message": "{} heures restantes",
+    "message": "Reste {} heures",
     "description": "affichage du temps restant"
   },
   "day": {
-    "message": "{} jours restants",
+    "message": "Reste {} jours",
     "description": "affichage du temps restant"
   },
   "closeTooltip": {
-    "message": "ne plus afficher la boîte de dialogue de texte",
+    "message": "Ne pas afficher les info-bulles",
     "description": "sur la page de gestion des téléchargements, lorsque la souris est déplacée sur le bouton, la boîte de dialogue de texte cesse de s'afficher"
   },
   "newDownload": {
-    "message": "nouveau téléchargement",
+    "message": "Nouveau téléchargement",
     "description": "nouveau téléchargement"
   },
   "newDownloadPlaceholder": {
@@ -44,47 +44,47 @@
     "description": "Veuillez saisir le lien de téléchargement"
   },
   "clearAll": {
-    "message": "effacer la liste",
-    "description": "Effacer le menu déroulant du bouton"
+    "message": "Effacer la liste",
+    "description": "Menu déroulant du bouton Effacer"
   },
   "deleteAll": {
     "message": "Supprimer tout du disque",
-    "description": "Effacer le menu déroulant du bouton"
+    "description": "Menu déroulant du bouton Effacer"
   },
   "clearFailed": {
-    "message": "Impossible d'effacer le téléchargement",
-    "description": "Effacer le menu déroulant du bouton"
+    "message": "Effacer les téléchargement échoués",
+    "description": "Menu déroulant du bouton Effacer"
   },
   "clearAbsent": {
-    "message": "Le fichier d'effacement n'existe pas",
-    "description": "Effacer le menu déroulant du bouton"
+    "message": "Effacer les fichiers absents",
+    "description": "Menu déroulant du bouton Effacer"
   },
   "openDownloadFolder": {
-    "message": "ouvrir le dossier de téléchargement",
+    "message": "Ouvrir le dossier de téléchargement",
     "description": "ouvrir le dossier de téléchargement dans l'Explorateur"
   },
   "openSettings": {
-    "message": "paramètres du plugin",
+    "message": "Paramètres du plugin",
     "description": "ouvrir les paramètres du plugin dans un nouvel onglet"
   },
   "openHome": {
     "message": "Ouvrir la page de téléchargement",
-    "description": "Ouvrez la page de téléchargement par défaut du navigateur dans un nouvel onglet"
+    "description": "Ouvrez la page de téléchargement dans un nouvel onglet du navigateur par défaut"
   },
   "openFileInFolder": {
-    "message": "ouvrir le dossier",
+    "message": "Ouvrir le dossier",
     "description": "ouvrir le fichier dans le dossier"
   },
   "openFile": {
-    "message": "ouvrir un fichier",
-    "description": "ouvrir un fichier"
+    "message": "Ouvrir le fichier",
+    "description": "ouvrir le fichier"
   },
   "pause": {
-    "message": "pause",
+    "message": "Pause",
     "description": "mettre en pause le téléchargement"
   },
   "resume": {
-    "message": "reprendre le téléchargement",
+    "message": "Reprendre le téléchargement",
     "description": "reprendre le téléchargement d'un fichier suspendu"
   },
   "delete": {
@@ -92,7 +92,7 @@
     "description": "supprimer le fichier du disque"
   },
   "retry": {
-    "message": "réessayez",
+    "message": "Réessayez",
     "description": "télécharger à nouveau"
   },
   "dangerDescription": {
@@ -100,11 +100,11 @@
     "description": "Le fichier peut endommager votre ordinateur"
   },
   "cancel": {
-    "message": "annuler",
+    "message": "Annuler",
     "description": "Annuler le téléchargement de fichiers dangereux"
   },
   "reserve": {
-    "message": "conserver",
+    "message": "Conserver",
     "description": "Gardez les fichiers dangereux"
   },
   "erase": {
@@ -112,11 +112,11 @@
     "description": "annuler le téléchargement ou effacer le fichier de la liste"
   },
   "copied": {
-    "message": "copié",
+    "message": "Copié",
     "description": "copié dans le presse-papier"
   },
   "prefixMenus": {
-    "message": "Téléchargez ceci ",
+    "message": "Téléchargez ceci : ",
     "description": "affichage des menus contextuels de téléchargement"
   },
   "link": {
@@ -137,7 +137,7 @@
   },
   "deleteNotification": {
     "message": "Supprimer la notification",
-    "description": "Supprimer le bouton de notification"
+    "description": "Bouton Supprimer la notification"
   },
   "downloadCompletedNotification": {
     "message": "Téléchargement terminé",
@@ -145,11 +145,11 @@
   },
   "downloadStartedNotification": {
     "message": "Début du téléchargement",
-    "description": "Télécharger la notification"
+    "description": "Notification de téléchargement"
   },
   "downloadWarnNotification": {
-    "message": "Télécharger l'avertissement",
-    "description": "Télécharger la notification"
+    "message": "Avertissement de téléchargement",
+    "description": "Notification de téléchargement"
   },
   "openFolderNotification": {
     "message": "Ouvrir le dossier",
@@ -176,11 +176,11 @@
     "description": "instructions de configuration du plugin"
   },
   "showTooltipSetting": {
-    "message": "Afficher un message d'invite lorsque la souris passe sur le bouton",
+    "message": "Afficher une info-bulle explicative lorsque la souris passe sur le bouton",
     "description": "instructions de configuration du plugin"
   },
   "enableAnimation": {
-    "message": "Ouvrir un fichier d'animation entrant et sortant",
+    "message": "Activer l'animation de fichier entrant et sortant",
     "description": "instructions de configuration du plugin"
   },
   "contextMenus": {
@@ -193,7 +193,7 @@
   },
   "downloadContextMenusDescSetting": {
     "message": "Types de fichiers pris en charge : ",
-    "description": "plugin setting details instructions"
+    "description": "instructions de configuration du plugin"
   },
   "notificationSetting": {
     "message": "Notification",
@@ -216,7 +216,7 @@
     "description": "instructions de configuration du plugin"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "Durée de rétention des notifications de téléchargement (secondes)",
+    "message": "Durée d'affichage des notifications de téléchargement (secondes)",
     "description": "Instructions de configuration du plug-in"
   },
   "downloadToneSetting": {
@@ -240,8 +240,8 @@
     "description": "instructions de configuration du plugin"
   },
   "openPopupDetailsSetting": {
-    "message": "Veuillez Cliquer",
-    "description": "plugin setting details instructions"
+    "message": "Cliquez ici",
+    "description": "instructions de configuration du plugin"
   },
   "chromePluginShortcutDescSetting": {
     "message": "Paramètres de raccourci",
@@ -252,11 +252,11 @@
     "description": "instructions de configuration du plugin"
   },
   "pluginSyncSetting": {
-    "message": "Paramètres du plugin de synchronisation",
+    "message": "Synchronisation des paramètres du plugin",
     "description": "instructions de configuration du plugin"
   },
   "pluginSyncDetailedSetting": {
-    "message": "When you have logged in to your Google account, you can synchronize plugin settings between different Google Kernel-based browsers",
+    "message": "Quand vous êtes connéctés à votre compte Google, vous pouvez synchroniser les réglages du plugin entre vos différents navigateurs basés sur le Kernel Google",
     "description": "instructions détaillées des paramètres du plugin"
   },
   "notSyncSetting": {
@@ -268,11 +268,11 @@
     "description": "Description de l'onglet Thème"
   },
   "themeAdaptation": {
-    "message": "Adaptation thématique",
+    "message": "Choix du thème",
     "description": "Description de l'onglet Thème"
   },
   "themeAdaptationDescription": {
-    "message": "Selon le mode couleur du système, affichez de manière adaptative les thèmes lumineux et sombres, y compris les icônes et le panneau de téléchargement.",
+    "message": "Selon le mode couleur du système, affichez de manière adaptative les thèmes clairs et sombres, y compris les icônes et le panneau de téléchargement.",
     "description": "Description de l'onglet Thème"
   },
   "themeAdaptationOption1": {
@@ -280,7 +280,7 @@
     "description": "Description de l'onglet Thème"
   },
   "themeAdaptationOption2": {
-    "message": "Lumière",
+    "message": "Clair",
     "description": "Description de l'onglet Thème"
   },
   "themeAdaptationOption3": {
