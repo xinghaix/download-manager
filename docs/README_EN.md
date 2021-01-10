@@ -56,7 +56,7 @@ The following features are developing in order 😂:
 4. Proxy settings
 
 ### **7. Info**
-#### **7.1. Latest Version**：1.1.2
+#### **7.1. Latest Version**：1.1.3
 What's New:
 1. Download notifications can remain on the screen
 2. Customize the download panel page size. Settings -> Theme -> Download panel
