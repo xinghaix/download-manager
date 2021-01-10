@@ -88,7 +88,6 @@
        * 在文件下载开始时添加监听器
        */
       chrome.downloads.onCreated.addListener(item => {
-        console.log(item)
         // 浏览器突然停止时，下载中的文件被终止，但是再次打开时此处会出现interrupted的item，所以过滤掉
         if (item.state === 'in_progress') {
           this.downloadProgress()
