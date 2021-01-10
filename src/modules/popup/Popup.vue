@@ -1,5 +1,6 @@
 <template>
-  <div class="home" id="home" :style="{width: downloadPanelPageSize.width + 'px',height: downloadPanelPageSize.height - 1 + 'px'}">
+  <div class="home" id="home" :style="{width: downloadPanelPageSize.width + 'px',
+                                      height: downloadPanelPageSize.height - 1 + 'px'}">
     <div class="header">
       <el-input class="search" size="mini" suffix-icon="el-icon-search" v-model="searchContent"/>
       <div class="header-operator">
@@ -44,9 +45,11 @@
     </div>
 
     <div class="content">
-      <RecycleScroller id="vue-recycle-scroller" :items="downloadItems" :item-size="78" key-field="id" v-slot="{ item }">
-        <transition class="transition" enter-active-class="transition-enter" leave-active-class="transition-leave">
-          <file class="file" :item="item" v-if="item.show"
+      <RecycleScroller id="vue-recycle-scroller" :items="downloadItems"
+                       :item-size="78" key-field="id" v-slot="{ item }">
+        <transition :enter-active-class="enableAnimation ? 'transition-enter' : ''"
+                    :leave-active-class="enableAnimation ? 'transition-leave' : ''">
+          <file class="file" :item="item" :key="item.id"
                 :render="render" :erase="erase" :copyToClipboard="copyToClipboard"
                 :i18data="i18data" :close-tooltip="closeTooltip" :left-click-file="leftClickFile"
                 :left-click-url="leftClickUrl" :right-click-file="rightClickFile" :right-click-url="rightClickUrl"/>
@@ -106,6 +109,8 @@
       this.rightClickFile = await storage.get('right_click_file')
       this.leftClickUrl = await storage.get('left_click_url')
       this.rightClickUrl = await storage.get('right_click_url')
+      // 开启文件移入移出动画
+      this.enableAnimation = await storage.get('enable_animation')
 
       // 获取下载文件信息
       this.render()
@@ -197,6 +202,7 @@
         leftClickUrl: true,
         rightClickFile: true,
         rightClickUrl: true,
+        enableAnimation: false,
 
         themeData: {}
       }
@@ -626,4 +632,30 @@
     height: 34px;
   }
 
+  /* 动画效果 */
+  .transition-enter {
+    animation: enter .3s ease alternate forwards;
+  }
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateX(-80px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+  .transition-leave {
+    animation: leave .1s ease alternate forwards;
+  }
+  @keyframes leave {
+    from {
+      transform: translateX(0px);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(160px);
+    }
+  }
 </style>

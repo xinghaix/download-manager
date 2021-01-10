@@ -37,6 +37,13 @@
         </div>
         <el-switch class="switch" v-model="showTooltip" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
+      <el-divider/>
+      <div class="item pointer">
+        <div class="content" @click="enableAnimation = !enableAnimation">
+          <span class="setting-title">{{i18data.enableAnimation}}</span>
+        </div>
+        <el-switch class="switch" v-model="enableAnimation" active-color="#409EFF" inactive-color="#bdc1c6"/>
+      </div>
     </el-card>
 
     <h2 class="title">{{i18data.contextMenus}}</h2>
@@ -160,6 +167,9 @@ export default {
     rightClickUrl(val) {
       storage.set('right_click_url', val)
     },
+    enableAnimation(val) {
+      storage.set('enable_animation', val)
+    },
 
     downloadContextMenus(val) {
       storage.set('download_context_menus', val)
@@ -202,6 +212,7 @@ export default {
     this.leftClickUrl = await storage.get('left_click_url')
     this.rightClickUrl = await storage.get('right_click_url')
     this.showTooltip = !await storage.get('close_tooltip')
+    this.enableAnimation = await storage.get('enable_animation')
     // 上下文菜单设置
     this.downloadContextMenus = await storage.get('download_context_menus')
     // 通知设置
@@ -235,6 +246,7 @@ export default {
       rightClickFile: true,
       rightClickUrl: true,
       showTooltip: false,
+      enableAnimation: false,
 
       // 上下文菜单
       downloadContextMenus: true,

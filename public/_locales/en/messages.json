@@ -179,6 +179,10 @@
     "message": "Display a prompt message when the mouse moves over the button",
     "description": "plugin setting instructions"
   },
+  "enableAnimation": {
+    "message": "Enable file moving in and out animation",
+    "description": "plugin setting instructions"
+  },
   "contextMenus": {
     "message": "Context menu",
     "description": "plugin setting instructions"

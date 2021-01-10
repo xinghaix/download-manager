@@ -179,6 +179,10 @@
     "message": "マウスがボタンに移動すると提示情報が表示される",
     "description": "プラグインの設定手順"
   },
+  "enableAnimation": {
+    "message": "アニメーションが出入りするファイルを開く",
+    "description": "プラグインの設定手順"
+  },
   "contextMenus": {
     "message": "コンテキストメニュー",
     "description": "プラグインの設定手順"

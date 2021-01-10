@@ -77,6 +77,7 @@ const storage = {
     await this.setDefaultIfNull('right_click_file', true)
     await this.setDefaultIfNull('left_click_url', true)
     await this.setDefaultIfNull('right_click_url', true)
+    await this.setDefaultIfNull('enable_animation', false)
     // 插件默认关闭下载过程中的通知
     await this.setDefaultIfNull('close_download_notification', true)
     await this.setDefaultIfNull('download_started_notification', false)

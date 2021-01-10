@@ -1,6 +1,6 @@
 <!--suppress JSUnresolvedVariable, UnterminatedStatementJS -->
 <template>
-  <div class="file" :class="shouldBeGray(item)" :key="item">
+  <div class="file" :class="shouldBeGray(item)">
     <div class="icon">
       <Progress v-if="item.state === 'in_progress'" class="progress"
                 :width="42"
@@ -577,32 +577,5 @@
     color: var(--header-icon-hover-color);
     font-weight: bold;
     transition: .2s;
-  }
-
-  /* 动画效果 */
-  .transition-enter {
-    animation: enter .2s ease alternate forwards;
-  }
-  @keyframes enter {
-    from {
-      opacity: 0;
-      transform: translateX(-80px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0px);
-    }
-  }
-  .transition-leave {
-    animation: leave .2s ease alternate forwards;
-  }
-  @keyframes leave {
-    from {
-      transform: translateX(0px);
-    }
-    to {
-      opacity: 0;
-      transform: translateX(160px);
-    }
   }
 </style>

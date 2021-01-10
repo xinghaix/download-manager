@@ -188,6 +188,7 @@ const common = {
     this.i18data.leftClickUrlSetting = this.loadI18nMessage('leftClickUrlSetting')
     this.i18data.rightClickUrlSetting = this.loadI18nMessage('rightClickUrlSetting')
     this.i18data.showTooltipSetting = this.loadI18nMessage('showTooltipSetting')
+    this.i18data.enableAnimation = this.loadI18nMessage('enableAnimation')
 
     // options settings 上下文菜单
     this.i18data.contextMenus = this.loadI18nMessage('contextMenus')

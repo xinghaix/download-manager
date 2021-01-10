@@ -1,5 +1,6 @@
 # **download-manager**
 [![build](https://img.shields.io/travis/xinghaix/download-manager/master?style=flat-square)](https://www.travis-ci.org/xinghaix/download-manager)
+![release](https://img.shields.io/github/v/release/xinghaix/download-manager.svg?include_prereleases&style=flat-square)
 ![language](https://img.shields.io/badge/language-Vue.js-forestgreen.svg?style=flat-square)
 [![Hex.pm](https://img.shields.io/github/license/xinghaix/download-manager?style=flat-square)](https://github.com/xinghaix/download-manager/blob/master/LICENSE)
 
@@ -13,14 +14,16 @@
 Google Chrome Download Manager Plugin  
 Click on the plugin icon to see the status of all downloaded files.
 
-### **[简体中文](../README.md) | [English](README_EN.md)**
+### 1. Language
+**[简体中文](../README.md) | [English](README_EN.md)**
 
+### 2. Download
 [Chrome Web Store](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei) 、
 [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic)
 
-### [Privacy Policy](Privacy_EN.md)
+### 3. [Privacy Policy](Privacy_EN.md)
 
-### **Features**
+### **4. Features**
 1. Download file percentage progress display
 2. Download files can be paused, resumed, cancelled, deleted
 3. Search all downloaded files
@@ -34,7 +37,7 @@ Click on the plugin icon to see the status of all downloaded files.
 11. Custom icon color
 12. Custom theme
 
-### **Supported Language**
+### **5. Supported Language**
 `简体中文`、`English`、`Japanese`、`German`、`Russian`、`French`
 
 This is the result of using Google Translate. 
@@ -45,15 +48,15 @@ If you have better suggestions, please create Issues or send emails!
 2. Enter the corresponding language directory
 3. Copy, download or Pull Request modified files. It will be in next version after checking.
 
-### **Future Plan**    
+### **6. Future Plan**    
 The following features are developing in order 😂:
 1. Solve the problem that the file that failed to retry downloading becomes a newly created download
 2. Customize the download panel theme
 3. Obsessive-compulsive disorder series: only display the name of the downloaded file, the download panel stops showing the flying in and flying out animation
 4. Proxy settings
 
-### **Info**
-#### **Latest Version**：1.0.9
+### **7. Info**
+#### **7.1. Latest Version**：1.1.2
 What's New:
 1. Download notifications can remain on the screen
 2. Customize the download panel page size. Settings -> Theme -> Download panel
@@ -61,7 +64,7 @@ What's New:
 <img src="../docs/img/Popup_EN.png.png" width="320" hegiht="420" alt=""/>
 <img src="../docs/img/Settings_EN.png" width="320" hegiht="420" alt=""/>
 
-### **Build & Package**
+### **8. Build & Package**
 ```
 # Load dependency
 npm install
@@ -70,7 +73,7 @@ npm install
 npm run build
 ```
 
-### Help
+### 9. Help
 If you have any questions or ideas, please create issues
 or
 send email to me `xinghaixuanwo@outlook.com`
