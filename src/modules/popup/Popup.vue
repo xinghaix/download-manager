@@ -117,7 +117,8 @@
         if (received.type === 'download') {
           // data中存放自定义的从background传过来的下载信息
           // 为了解决文件图标闪烁问题，此处不能直接调用请求chrome下载文件的方法
-          received.data.forEach(item => {
+          for (let i = 0, len1 = received.data.length; i < len1; i++) {
+            let item = received.data[i]
             // 在刚创建下载时，文件名称会为空
             if (item.filename) {
               // 当搜索框存在内容时，此时也要搜索下载中的文件
@@ -141,27 +142,22 @@
               } else {
                 common.beforeHandler(item)
                 item.previousBytesReceived = 0
-                this.downloadItems.push(item)
 
-                // let noInsert = true
-                // for (let j = 0, len2 = this.downloadItems.length; j < len2; j++) {
-                //   if (item.startTime >= this.downloadItems[i].startTime) {
-                //     // 按照下载开始时间降序排列
-                //     this.downloadItems.splice(i, 0, item)
-                //     noInsert = false
-                //     break
-                //   }
-                // }
-                // if (noInsert) {
-                //   this.downloadItems.push(item)
-                // }
+                let noInsert = true
+                for (let j = 0, len2 = this.downloadItems.length; j < len2; j++) {
+                  if (item.startTime >= this.downloadItems[j].startTime) {
+                    // 按照下载开始时间降序排列
+                    this.downloadItems.splice(j, 0, item)
+                    noInsert = false
+                    break
+                  }
+                }
+                if (noInsert) {
+                  this.downloadItems.push(item)
+                }
               }
             }
-          })
-          // for (let i = 0, len1 = received.data.length; i < len1; i++) {
-          //   let item = received.data[i]
-          //
-          // }
+          }
         }
       })
 
@@ -597,13 +593,13 @@
   /* 下载内容区域 */
   .content {
     height: calc(100% - 48px);
-    margin: 8px 2px 0 6px;
+    margin: 8px 0 0 6px;
   }
 
   /* 滚动条样式 */
   .content >>> .vue-recycle-scroller::-webkit-scrollbar { /*滚动条整体样式*/
-    width: 8px; /*高宽分别对应横竖滚动条的尺寸*/
-    height: 8px;
+    width: 7px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 7px;
     scrollbar-arrow-color: red;
   }
   .content >>> .vue-recycle-scroller::-webkit-scrollbar-thumb:hover {
