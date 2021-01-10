@@ -338,45 +338,5 @@
   "starAbout2": {
     "message": "et notez-le",
     "description": "description de l'onglet A propos"
-  },
-  "versionAbout": {
-    "message": "Version",
-    "description": "description de l'onglet A propos"
-  },
-  "version1_0_0": {
-    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. Thème noir ajouté (fichier de thème: /**/Extensions/your extension id/version/theme/theme.json. Vous pouvez le modifier vous-même et vous ajouterez une fonction de thème personnalisé plus tard)\",\"2. Mettre à jour la traduction française\"]}",
-    "description": "Version Description"
-  },
-  "version0_9_1": {
-    "message": "{\"version\": \"0.9.1\", \"date\": \"2020-04-11\",\"data\": [\"1. Ajout d'une animation de l'icône de téléchargement (l'animation de progression du téléchargement de l'anneau sera ajoutée plus tard)\",\"2. Mise à jour de la langue Russe\",\"3. Résolution de certains problèmes persistents\"]}",
-    "description": "Version Description"
-  },
-  "version0_9_0": {
-    "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. Couleur d'icône personnalisée\",\"2. Plus de langues prises en charge\"]}",
-    "description": "Version Description"
-  },
-  "version0_8_5": {
-    "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-19\",\"data\": [\"1. Ajout du raccourci de lancement de l'extension\",\"2. Ajout des fichiers à télécharger manuellement\",\"3. Ajout d'un menu de téléchargement par clic droit\",\"4. Affichage de l'interface d'optimisation des réglages\"]}",
-    "description": "Version Description"
-  },
-  "version0_8_0": {
-    "message": "{\"version\": \"0.8.0\", \"date\": \"2020-01-13\",\"data\": [\"1. Ajout de la possibilité d'interrompre le re-téléchargement du fichier\",\"2. Optimisation de l'affichage de l'interface et du flux d'opérations lors du téléchargement de fichiers dangereux\"]}",
-    "description": "Version Description"
-  },
-  "version0_7_0": {
-    "message": "{\"version\": \"0.7.1\", \"date\": \"2020-01-01\",\"data\": [\"1. Ajout d'une notification pendant le téléchargement\",\"2. Ajout d'un son de fin de téléchargement\",\"3. Affichage de toutes les pages en chinois et en anglais\"]}",
-    "description": "Version Description"
-  },
-  "version0_6_2": {
-    "message": "{\"version\": \"0.6.2\", \"date\": \"2019-12-30\",\"data\": [\"1. Ajout de la fonction de clic droit pour copier le nom du fichier et le lien de téléchargement dans le presse-papiers\",\"2. Ajout de la fonction d'affichage des invites de texte lorsque la souris se déplace sur le bouton\",\"3. Nouvelles améliorations de l'affichage du chinois et de l'anglais\"]}",
-    "description": "Version Description"
-  },
-  "version0_5_1": {
-    "message": "{\"version\": \"0.5.1\", \"date\": \"2019-12-13\",\"data\": [\"1. Lors du téléchargement d'un fichier dangereux, une boîte de dialogue s'affiche pour confirmer le téléchargement\",\"2. Amélioration de l'affichage du chinois et de l'anglais\"]}",
-    "description": "Version Description"
-  },
-  "version0_4": {
-    "message": "{\"version\": \"0.4\", \"date\": \"2019-09-30\",\"data\": [\"1. Affichage de la progression du pourcentage de téléchargement du fichier\",\"2. Les fichiers téléchargés peuvent être suspendus, repris, annulés, supprimés\",\"3. Rechercher tous les fichiers téléchargés\"]}",
-    "description": "Version Description"
   }
 }

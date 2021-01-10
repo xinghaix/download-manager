@@ -17,18 +17,6 @@
         </div>
       </div>
     </el-card>
-    <h2 class="version-header title">{{i18data.versionAbout}}</h2>
-    <template v-for="versionData in versionList">
-      <el-card class="version-card box-card" shadow="hover" v-bind:key="data = JSON.parse(versionData)">
-        <div slot="header" class="card-header">
-          <span class="version">{{data.version}}</span>
-          <span class="date"><i class="el-icon-date"/>{{data.date}}</span>
-        </div>
-        <div class="text" v-for="tip in data.data" v-bind:key="tip">
-          <div class="item">{{tip}}</div>
-        </div>
-      </el-card>
-    </template>
   </div>
 </template>
 
@@ -49,8 +37,6 @@
 
         extName: chrome.runtime.getManifest().name,
         version: chrome.runtime.getManifest().version,
-
-        versionList: this.i18data.versionList,
       }
     },
     methods: {

@@ -236,19 +236,6 @@ const common = {
     this.i18data.pluginShopAbout = this.loadI18nMessage('pluginShopAbout')
     this.i18data.starAbout2 = this.loadI18nMessage('starAbout2')
     this.i18data.versionAbout = this.loadI18nMessage('versionAbout')
-
-    // options about 版本列表
-    this.i18data.versionList = [
-      this.loadI18nMessage('version1_0_0'),
-      this.loadI18nMessage('version0_9_1'),
-      this.loadI18nMessage('version0_9_0'),
-      this.loadI18nMessage('version0_8_5'),
-      this.loadI18nMessage('version0_8_0'),
-      this.loadI18nMessage('version0_7_0'),
-      this.loadI18nMessage('version0_6_2'),
-      this.loadI18nMessage('version0_5_1'),
-      this.loadI18nMessage('version0_4'),
-    ]
   }
 
 }

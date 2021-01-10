@@ -338,45 +338,5 @@
   "starAbout2": {
     "message": "and rate it!",
     "description": "Dazu die karteikarten"
-  },
-  "versionAbout": {
-    "message": "Version geschichte",
-    "description": "Dazu die karteikarten"
-  },
-  "version1_0_0": {
-    "message": "{\"version\": \"1.0.0\", \"date\": \"2020-04-25\",\"data\": [\"1. Fügen Sie ein schwarzes Thema hinzu (Themendatei: /**/Extensions/your extension id/version/theme/theme.json. Sie können es selbst ändern und eine benutzerdefinierte Designfunktion wird in Zukunft hinzugefügt.)\",\"2. Aktualisieren Sie die französische Übersetzung\"]}",
-    "description": "Version"
-  },
-  "version0_9_1": {
-    "message": "{\"version\": \"0.9.1\", \"date\": \"2020-04-11\",\"data\": [\"1. Symbol-Download-Animation hinzugefügt (die Ring-Download-Fortschrittsanimation wird später hinzugefügt)\",\"2. Russisch aktualisieren\",\"3. Einige vom Verlauf übrig gebliebene Probleme lösen\"]}",
-    "description": "Version"
-  },
-  "version0_9_0": {
-    "message": "{\"version\": \"0.9.0\", \"date\": \"2020-03-15\",\"data\": [\"1. Die farbe des benutzerdefinierten modul\",\"2. Mehr unterstützung zum thema sprache\"]}",
-    "description": "Version"
-  },
-  "version0_8_5": {
-    "message": "{\"version\": \"0.8.5\", \"date\": \"2020-01-19\",\"data\": [\"1. Geben sie einen kurzbefehl ein\",\"2. Funktionen zum manuellen download hinzufügen\",\"3. Fügen sie das menü mit der rechten maustaste zum herunterladen ein\",\"4. Ist eine optimierung der einstellungen in der schnittstelle\"]}",
-    "description": "Version"
-  },
-  "version0_8_0": {
-    "message": "{\"version\": \"0.8.0\", \"date\": \"2020-01-13\",\"data\": [\"1. Datei zum erneuten herunterladen hinzufügen funktion deaktivieren\",\"2. Die schnittstelle und den bedienungsprozess beim herunterladen Von gefährlichen dateien optimieren\"]}",
-    "description": "Version"
-  },
-  "version0_7_0": {
-    "message": "{\"version\": \"0.7.1\", \"date\": \"2020-01-01\",\"data\": [\"1. Ankündigung beim hinzufügen des download-prozesses\",\"2. Zum eingeben des sticks hinzufügen\",\"3. Alle seiten sind in englisch erhältlich\"]}",
-    "description": "Version"
-  },
-  "version0_6_2": {
-    "message": "{\"version\": \"0.6.2\", \"date\": \"2019-12-30\",\"data\": [\"1. Dateien mit der rechten maustaste kopieren und dateien zum herunterladen Von verknüpfungen in der zwischenablage laden\",\"2. Eingabezeichen anzeigen, wenn sie die maus über den knopf bewegen\",\"3. Die ausgabe wird auf chinesisch und englisch weiter verfeinert\"]}",
-    "description": "Version"
-  },
-  "version0_5_1": {
-    "message": "{\"version\": \"0.5.1\", \"date\": \"2019-12-13\",\"data\": [\"1. Beim herunterladen der gefährlichen datei erscheint ein eingabefeld für die bestätigung des herunterladens\",\"2. Verbessern sie die chinesisch - und englischdarbietung\"]}",
-    "description": "Version"
-  },
-  "version0_4": {
-    "message": "{\"version\": \"0.4\", \"date\": \"2019-09-30\",\"data\": [\"1. Prozent der dateien downloaden\",\"2. Dateien zum herunterladen können angehalten, wiederhergestellt, gesperrt und gelöscht werden\",\"3. Nach allen heruntergeladenen dateien suchen\"]}",
-    "description": "Version"
   }
 }
