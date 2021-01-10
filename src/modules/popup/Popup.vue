@@ -263,11 +263,6 @@
             return item
           }
         }
-        // this.downloadItems.forEach(item => {
-        //   if (item.id === id) {
-        //     return item
-        //   }
-        // })
         return null
       },
 
