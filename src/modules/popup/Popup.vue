@@ -213,12 +213,11 @@
        */
       searchContent(val) {
         let tmp = val.trim().toLowerCase()
-        for (let i = 0, len = this.downloadItems.length; i < len; i++) {
-          let item = this.downloadItems[i]
+        this.downloadItems.forEach(item => {
           common.beforeHandler(item)
           // 以小写字母模式模糊匹配搜索的字段
           item.show = tmp === '' || item.basename.toLowerCase().indexOf(tmp) > -1
-        }
+        })
       },
 
       /**
@@ -258,12 +257,17 @@
       },
 
       getItem(id) {
-        for (let i = 0, len = this.downloadItems.length; i < len; i++) {
+        for (let i = 0; i < this.downloadItems.length; i++) {
           let item = this.downloadItems[i]
           if (item.id === id) {
             return item
           }
         }
+        // this.downloadItems.forEach(item => {
+        //   if (item.id === id) {
+        //     return item
+        //   }
+        // })
         return null
       },
 
@@ -273,12 +277,11 @@
       render() {
         chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
           this.downloadItems = []
-          for (let i = 0, len = items.length; i < len; i++) {
-            let item = items[i]
+          items.forEach(item => {
             common.beforeHandler(item)
             item.show = true
             this.downloadItems.push(item)
-          }
+          })
         })
       },
 
@@ -305,12 +308,11 @@
        * 清空列表所有文件，除了正在下载的文件
        */
       eraseAll() {
-        for (let i = 0, len = this.downloadItems.length; i < len; i++) {
-          let item = this.downloadItems[i]
+        this.downloadItems.forEach(item => {
           if (item.state && item.state !== 'in_progress') {
             this.erase(item)
           }
-        }
+        })
       },
 
       /**
@@ -343,6 +345,7 @@
           for (let i = 0; i < this.downloadItems.length; i++) {
             if (this.downloadItems[i].id === item.id) {
               this.downloadItems.splice(i, 1)
+              break
             }
           }
         })
@@ -353,8 +356,7 @@
        * @param command {String}
        */
       clearDropdownCommand(command) {
-        for (let i = 0, len = this.downloadItems.length; i < len; i++) {
-          let item = this.downloadItems[i]
+        this.downloadItems.forEach(item => {
           if (item.state && item.state !== 'in_progress') {
             switch (command) {
               case 'clearAll':
@@ -375,7 +377,7 @@
                 break
             }
           }
-        }
+        })
       },
 
       /**
