@@ -7,6 +7,7 @@
 </template>
 
 <script>
+/* eslint-disable vue/no-mutating-props */
   export default {
     name: "Tip",
     props: {
