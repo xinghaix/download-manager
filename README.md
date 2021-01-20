@@ -79,4 +79,4 @@ npm run build
 ### 9. 帮助
 有任何问题请创建Issues
 或者
-给我发送邮件[`xinghaixuanwo@outlook.com`](xinghaixuanwo@outlook.com)
+给我发送<a href="mailto:xinghaixw@outlook.com">邮件</a>

@@ -76,4 +76,4 @@ npm run build
 ### 9. Help
 If you have any questions or ideas, please create issues
 or
-send email to me `xinghaixuanwo@outlook.com`
+send <a href="mailto:xinghaixw@outlook.com">email</a> to me
