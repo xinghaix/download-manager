@@ -8,11 +8,11 @@
     "description": "Modul beschreiben"
   },
   "settingsTitle": {
-    "message": "die",
+    "message": "Einstellungen",
     "description": "Personen die"
   },
   "aboutTitle": {
-    "message": "über",
+    "message": "Über",
     "description": "Einige zusätzliche informationen zum modul"
   },
   "second": {
@@ -72,67 +72,67 @@
     "description": "Öffnen Sie die Standard-Download-Seite des Browsers in einem neuen Tab"
   },
   "openFileInFolder": {
-    "message": "Ordner öffnen.",
-    "description": "Datei in den ordner öffnen"
+    "message": "Ordner öffnen",
+    "description": "Den Downloadordner öffnen"
   },
   "openFile": {
-    "message": "öffne einen Ordner",
-    "description": "öffne einen Ordner"
+    "message": "Datei öffnen",
+    "description": "Die Datei öffnen"
   },
   "pause": {
-    "message": "für",
-    "description": "Für."
+    "message": "Pause",
+    "description": "Download pausieren"
   },
   "resume": {
-    "message": "Wieder.",
-    "description": "Das herunterladen in lauflost wieder herstellen"
+    "message": "Fortsetzen",
+    "description": "Den Download fortsetzen"
   },
   "delete": {
-    "message": "Von der Festplatte löschen",
-    "description": "Dateien vom speichermedium löschen"
+    "message": "Löschen",
+    "description": "Datei löschen"
   },
   "retry": {
-    "message": "erneut",
-    "description": "Apps noch einmal"
+    "message": "Wiederholen",
+    "description": "Den Download erneuern"
   },
   "dangerDescription": {
-    "message": "Herunterladen gefährlicher dateien",
-    "description": "Die datei wird ihrem computer schaden"
+    "message": "Schädliche Datei",
+    "description": "Diese Datei ist potentiell schädlich"
   },
   "cancel": {
-    "message": "absagen",
-    "description": "Das herunterladen der gefährlichen dateien abbrechen"
+    "message": "Abbrechen",
+    "description": "Den Download abbrechen"
   },
   "reserve": {
-    "message": "behalten",
-    "description": "Gefährliche daten behalten."
+    "message": "Behalten",
+    "description": "Potentiell dchädliche Datei behalten"
   },
   "erase": {
-    "message": "Aus Liste entfernen",
-    "description": "Das herunterladen Oder das löschen Von dateien in der liste beenden"
+    "message": "Aus der Liste entfernen",
+    "description": "Den Download aus der Liste entfernen"
   },
   "copied": {
-    "message": "Ist kopiert",
-    "description": "Die exakte kopie ist in der zwischenablage"
+    "message": "Kopiert",
+    "description": "In die Zwischenablage kopiert"
   },
   "prefixMenus": {
     "message": "LLaden Sie die ",
     "description": "Kontext -playback anzeigen der menüs ups"
   },
   "link": {
-    "message": "link",
+    "message": "Link",
     "description": "Kontext-herunterladen zum anzeigen"
   },
   "image": {
-    "message": "image",
+    "message": "Bild",
     "description": "Kontext-herunterladen zum anzeigen"
   },
   "audio": {
-    "message": "audio",
+    "message": "Audio",
     "description": "Kontext-herunterladen zum anzeigen"
   },
   "video": {
-    "message": "video",
+    "message": "Video",
     "description": "Kontext-herunterladen zum anzeigen"
   },
   "deleteNotification": {
@@ -140,83 +140,83 @@
     "description": "Knopf löschen"
   },
   "downloadCompletedNotification": {
-    "message": "Runtergeladen.",
-    "description": "Download des befehls"
+    "message": "Download abgeschlossen",
+    "description": "Der Download ist fertiggestellt"
   },
   "downloadStartedNotification": {
-    "message": "Download starten",
-    "description": "Benachrichtigung herunterladen"
+    "message": "Download gestartet",
+    "description": "Der Download wurde gestartet"
   },
   "downloadWarnNotification": {
-    "message": "Warnung herunterladen",
+    "message": "Warnung",
     "description": "Benachrichtigung herunterladen"
   },
   "openFolderNotification": {
-    "message": "Ordner öffnen.",
+    "message": "Ordner öffnen",
     "description": "Ordner öffnen zur eingabe der botschaft"
   },
   "downloadSetting": {
-    "message": "runtergeladen",
+    "message": "Download",
     "description": "Modul einrichten -beschreibung"
   },
   "leftClickFileSetting": {
-    "message": "Datei öffnen, wenn die linke maustaste auf einen dateinamen klicken",
+    "message": "Datei mit Linksklick auf den Namen öffnen",
     "description": "Modul einrichten -beschreibung"
   },
   "rightClickFileSetting": {
-    "message": "Dateien werden kopiert, wenn mit der rechten maustaste auf den namen der datei klicken",
+    "message": "Datei mit Rechtsklick auf den Namen kopieren",
     "description": "Modul einrichten -beschreibung"
   },
   "leftClickUrlSetting": {
-    "message": "Öffnet sich eine neue seite, indem sie mit der linken maustaste auf den link zum download klicken",
+    "message": "Bei Linksklick auf den Link, dem Link in einer neuen Seite folgen",
     "description": "Modul einrichten -beschreibung"
   },
   "rightClickUrlSetting": {
-    "message": "Mit der rechten maustaste auf den link zum herunterladen der verknüpfung kopieren",
+    "message": "Bei Rechtsklick auf den Link, wird der Link in die Zwischenablage gelegt",
     "description": "Modul einrichten -beschreibung"
   },
   "showTooltipSetting": {
-    "message": "Tipp anzeigen, wenn der mauszeiger über den knöpfen zieht",
+    "message": "Tooltips anzeigen",
     "description": "Modul einrichten -beschreibung"
   },
   "enableAnimation": {
-    "message": "Öffnen Sie die Animation zum Ein- und Ausziehen",
+    "message": "Animationen aktivieren",
     "description": "Modul einrichten -beschreibung"
   },
   "contextMenus": {
-    "message": "Das kontextmenü",
+    "message": "Kontextmenü",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadContextMenusSetting": {
-    "message": "Runtergeladen menü",
+    "message": "Im Download Menü aktivieren",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Die art Von dateien, die unterstützt werden: ",
+    "message": "Arten von Dateien, die unterstützt werden: ",
     "description": "插件设置细节说明"
   },
   "notificationSetting": {
-    "message": "Notification",
+    "message": "Benachrichtigungen",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationSetting": {
-    "message": "Загрузка.",
+    "message": "Dowload-Benachrichtigungen",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationSetting1": {
-    "message": "нача",
+    "message": "Begonnen",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationSetting2": {
-    "message": "fertig",
+    "message": "Abgeschlossen",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationSetting3": {
-    "message": "warnen",
+    "message": "Warnung",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "Aufbewahrungszeit für Download-Benachrichtigungen (Sekunden)",
+    "message": "Anzeigedauer von Download-Benachrichtigungen (Sekunden)",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadToneSetting": {
@@ -228,19 +228,19 @@
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "Die Benachrichtigung bleibt auf dem Bildschirm sichtbar, bis der Benutzer die Benachrichtigung aktiviert oder deaktiviert.Verfügbar nach Chrome 50",
+    "message": "Die Benachrichtigung bleibt auf dem Bildschirm sichtbar, bis der Benutzer die Benachrichtigung aktiviert oder deaktiviert. Verfügbar ab Chrome 50",
     "description": "Modul einrichten -beschreibung"
   },
   "shortcutSetting": {
-    "message": "kurzbefehl",
+    "message": "Tastaturkürzel",
     "description": "Modul einrichten -beschreibung"
   },
   "openPopupSetting": {
-    "message": "Startet das zusatzprogramm",
+    "message": "Startet das Zusatzprogramm",
     "description": "Modul einrichten -beschreibung"
   },
   "openPopupDetailsSetting": {
-    "message": "klicken",
+    "message": "Hier klicken",
     "description": "Modul einrichten -beschreibung"
   },
   "chromePluginShortcutDescSetting": {
@@ -248,23 +248,23 @@
     "description": "Modul einrichten -beschreibung"
   },
   "syncSetting": {
-    "message": "mit",
+    "message": "Sync Einstellungen",
     "description": "Modul einrichten -beschreibung"
   },
   "pluginSyncSetting": {
-    "message": "Synchronisation einrichten",
+    "message": "Synchronisation einschalten",
     "description": "Modul einrichten -beschreibung"
   },
   "pluginSyncDetailsSetting": {
-    "message": "Wenn sie sich an den google account eingegeben haben, können sie browsers synchronisieren, die sich auf verschiedene google-basierte browser beziehen",
+    "message": "Wenn Sie einen Google Account haben können Sie die Einstellungen synchronisieren",
     "description": "Eine genaue beschreibung der modul einstellungen"
   },
   "notSyncSetting": {
-    "message": "Diese einstellung synchronisiert nicht",
+    "message": "Diese Einstellung wird nicht synchronisiert",
     "description": "Modul einrichten -beschreibung"
   },
   "themeTitle": {
-    "message": "thema",
+    "message": "Aussehen",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeAdaptation": {
@@ -280,7 +280,7 @@
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeAdaptationOption2": {
-    "message": "Licht",
+    "message": "Hell",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeAdaptationOption3": {
@@ -288,11 +288,11 @@
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "iconTitle": {
-    "message": "symbole",
+    "message": "Symbole",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "iconColorSetting": {
-    "message": "Definierte farben für symbole",
+    "message": "Definierte Farben für Symbole",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "iconDownloadingColorSetting": {
