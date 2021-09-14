@@ -19,7 +19,7 @@
 **[简体中文](../README.md) | [English](docs/README_EN.md)**
 
 ### 2. 下载安装
-[Chrome Web Store](https://chrome.google.com/webstore/detail/%E4%B8%8B%E8%BD%BD%E7%AE%A1%E7%90%86%E5%99%A8/ofpglhlcdbjdhlacgbljnildhajfmlei) 、
+[Chrome Web Store](https://chrome.google.com/webstore/detail/download-manager/ofpglhlcdbjdhlacgbljnildhajfmlei?hl=zh-CN) 、
 [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic)
 
 ### 3. [隐私政策说明](docs/Privacy.md)
