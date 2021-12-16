@@ -32,7 +32,7 @@
   },
   "options_page": "options.html",
   "default_locale": "en",
-  "optional_permissions": ["management"],
+  "optional_permissions": [""],
   "permissions": [
     "downloads",
     "downloads.open",
