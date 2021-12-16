@@ -10,8 +10,9 @@
   "dependencies": {
     "acorn": "^8.0.4",
     "babel-plugin-component": "^1.1.1",
-    "core-js": "^3.8.2",
+    "core-js": "^2.6.12",
     "element-ui": "^2.14.1",
+    "highlight.js": "^10.5.0",
     "kind-of": "^6.0.3",
     "minimist": "^1.2.5",
     "serialize-javascript": "^5.0.1",
@@ -20,13 +21,12 @@
     "vue-router": "^3.4.9",
     "vue-virtual-scroller": "^1.0.10",
     "vuex": "^3.6.0",
-    "highlight.js": "^10.5.0",
     "websocket-extensions": "^0.1.4"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.10",
-    "@vue/cli-plugin-eslint": "^4.5.10",
-    "@vue/cli-service": "^4.5.10",
+    "@vue/cli-plugin-babel": "^3.3.0",
+    "@vue/cli-plugin-eslint": "^4.5.15",
+    "@vue/cli-service": "^4.5.15",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.17.0",
     "eslint-plugin-import": "^2.22.1",

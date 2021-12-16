@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extName__",
   "description": "__MSG_extDesc__",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "manifest_version": 2,
   "icons": {
     "16": "img/icon16.png",
@@ -32,7 +32,6 @@
   },
   "options_page": "options.html",
   "default_locale": "en",
-  "optional_permissions": [""],
   "permissions": [
     "downloads",
     "downloads.open",
