@@ -14,7 +14,7 @@
     "element-ui": "^2.14.1",
     "highlight.js": "^10.5.0",
     "kind-of": "^6.0.3",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "serialize-javascript": "^5.0.1",
     "vue": "^2.6.12",
     "vue-clipboard2": "^0.3.1",
