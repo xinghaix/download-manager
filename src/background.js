@@ -2,6 +2,7 @@
 import storage from "./utils/storage.js"
 import common from "./utils/common.js"
 import icon from "./utils/icon.js"
+import { isDangerousDownload } from "./utils/downloadDanger.js"
 
 // 全局状态（Service Worker 重启时会丢失，需要从 storage 恢复）
 let state = {
@@ -18,13 +19,11 @@ const contextDownloadMenus = ['link', 'image', 'audio', 'video']
 
 // Service Worker 安装
 self.addEventListener('install', () => {
-  console.log('Download Manager Service Worker installing...')
   self.skipWaiting()
 })
 
 // Service Worker 激活
 self.addEventListener('activate', (event) => {
-  console.log('Download Manager Service Worker activated')
   event.waitUntil(initialize())
 })
 
@@ -160,13 +159,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 // 更新下载进度
 async function updateDownloadProgress() {
   if (state.progressTimer) return
-  
+
   state.progressTimer = setTimeout(async () => {
     state.progressTimer = null
-    
+
     try {
       const items = await chrome.downloads.search({ orderBy: ['-startTime'] })
-      
+
       let downloadingNumber = 0
       let anyInProgress = false
       let anyInDangerous = false
@@ -175,14 +174,14 @@ async function updateDownloadProgress() {
 
       for (const item of items) {
         common.beforeHandler(item)
-        
+
         if (item.state === 'in_progress') {
           downloadingNumber++
           anyInProgress = true
 
           await handleDownloadStartedNotification(item)
 
-          if ((item.danger !== 'safe') && (item.danger !== 'accepted')) {
+          if (isDangerousDownload(item)) {
             anyInDangerous = true
             await handleDownloadWarningNotification(item)
           }
@@ -261,10 +260,10 @@ async function handleDownloadStartedNotification(item) {
   const notificationId = item.id + '-started'
   if (state.notificationList.indexOf(notificationId) < 0) {
     state.notificationList.push(notificationId)
-    
+
     const iconUrl = await getIcon(item)
     const showNotification = await storage.get('download_started_notification')
-    
+
     if (showNotification) {
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
@@ -277,11 +276,11 @@ async function handleDownloadStartedNotification(item) {
           message: item.basename || item.url,
           buttons: [{ title: common.i18data.deleteNotification }]
         }
-        
+
         if (visible) {
           option.requireInteraction = true
         }
-        
+
         await chrome.notifications.create(notificationId, option)
         closeNotification(notificationId, option, visible)
       }
@@ -300,10 +299,10 @@ async function handleDownloadCompletedNotification(item) {
   if (state.notificationList.indexOf(notificationId) < 0 &&
       state.notificationList.indexOf(item.id + '-started') >= 0) {
     state.notificationList.push(notificationId)
-    
+
     const iconUrl = await getIcon(item)
     const showNotification = await storage.get('download_completed_notification')
-    
+
     if (showNotification) {
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
@@ -319,11 +318,11 @@ async function handleDownloadCompletedNotification(item) {
             { title: common.i18data.openFolderNotification }
           ]
         }
-        
+
         if (visible) {
           option.requireInteraction = true
         }
-        
+
         await chrome.notifications.create(notificationId, option)
         closeNotification(notificationId, option, visible)
       }
@@ -341,10 +340,10 @@ async function handleDownloadWarningNotification(item) {
   const notificationId = item.id + '-warning'
   if (state.notificationList.indexOf(notificationId) < 0) {
     state.notificationList.push(notificationId)
-    
+
     const iconUrl = await getIcon(item)
     const showNotification = await storage.get('download_warning_notification')
-    
+
     if (showNotification) {
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
@@ -357,11 +356,11 @@ async function handleDownloadWarningNotification(item) {
           message: item.basename || item.url,
           buttons: [{ title: common.i18data.deleteNotification }]
         }
-        
+
         if (visible) {
           option.requireInteraction = true
         }
-        
+
         await chrome.notifications.create(notificationId, option)
         closeNotification(notificationId, option, visible)
       }
@@ -503,11 +502,11 @@ async function playAudio(audioFile) {
 // 关闭通知
 async function closeNotification(id, option, visible) {
   const reservedTime = await storage.get('download_notification_reserved_time')
-  
+
   if (reservedTime !== null && typeof reservedTime === 'number' && reservedTime >= 0) {
     setTimeout(async () => {
       const wasCleared = await chrome.notifications.clear(id)
-      
+
       if (!wasCleared) {
         const level = await chrome.notifications.getPermissionLevel()
         if (level === 'granted') {
