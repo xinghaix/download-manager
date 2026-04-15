@@ -7,7 +7,11 @@ const common = {
    * @return {String}
    */
   loadI18nMessage(msg) {
-    return chrome.i18n.getMessage(msg)
+    if (typeof chrome !== 'undefined' && chrome.i18n && chrome.i18n.getMessage) {
+      const value = chrome.i18n.getMessage(msg)
+      return value || msg
+    }
+    return msg
   },
 
   /**
@@ -38,7 +42,7 @@ const common = {
    */
   getCustomFileIcon(item) {
     return new Promise(resolve => {
-      if (item.filename && !item.iconUrl) {
+      if (typeof chrome !== 'undefined' && chrome.downloads && item.filename && !item.iconUrl) {
         chrome.downloads.getFileIcon(item.id, {size: 32}, iconUrl => {
           resolve(iconUrl)
         })
@@ -69,10 +73,10 @@ const common = {
    * @param url {String}
    */
   download(url) {
-    if (url) {
+    if (url && typeof chrome !== 'undefined' && chrome.downloads) {
       let trimUrl = url.trim()
       trimUrl !== '' && chrome.downloads.download({url: trimUrl}, () => {
-        if (chrome.runtime.lastError) {
+        if (chrome.runtime && chrome.runtime.lastError) {
           // todo
         }
       })
@@ -112,14 +116,20 @@ const common = {
 
   /**
    * 检测系统是否是深色模式
+   * 注意：Service Worker 中无法直接检测，返回 false
    * @return {boolean}
    */
   isInDarkMode() {
+    // Service Worker 中没有 window 对象
+    if (typeof window === 'undefined') {
+      return false
+    }
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   },
 
   isInEdge() {
-    return window.navigator.userAgent.toLowerCase().indexOf('edg') > 0
+    // Service Worker 中 navigator.userAgent 可用
+    return navigator.userAgent.toLowerCase().indexOf('edg') > 0
   },
 
   // 翻译数据

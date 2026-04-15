@@ -13,18 +13,18 @@
       <div class="aside-menu-div">
         <el-scrollbar class="side-scrollbar">
           <el-menu class="side-menu" :default-active="selectedIndex" @select="handleSideSelect"
-                   :collapse="isCollapse" :collapse-transition=false>
+                   :collapse="isCollapse" :collapse-transition="false">
             <el-menu-item index="#settings">
-              <i class="iconfont el-icon-s-tools"/>
-              <span slot="title">{{i18data.settingsTitle}}</span>
+              <el-icon><Tools /></el-icon>
+              <template #title>{{i18data.settingsTitle}}</template>
             </el-menu-item>
             <el-menu-item index="#theme">
-              <i class="iconfont el-icon-takeaway-box"/>
-              <span slot="title">{{i18data.themeTitle}}</span>
+              <el-icon><TakeawayBox /></el-icon>
+              <template #title>{{i18data.themeTitle}}</template>
             </el-menu-item>
             <el-menu-item index="#about">
-              <i class="iconfont el-icon-info"/>
-              <span slot="title">{{i18data.aboutTitle}}</span>
+              <el-icon><InfoFilled /></el-icon>
+              <template #title>{{i18data.aboutTitle}}</template>
             </el-menu-item>
           </el-menu>
         </el-scrollbar>
@@ -32,13 +32,13 @@
       <!-- 侧边栏footer -->
       <!-- 折叠展开按钮 -->
       <div class="aside-footer" @click="isCollapse = !isCollapse">
-        <i :class="isCollapse ? 'right' : 'left'" class="iconfont el-icon-d-arrow-left"/>
+        <el-icon :class="isCollapse ? 'right' : 'left'" class="collapse-icon"><DArrowLeft /></el-icon>
       </div>
     </el-aside>
     <el-container class="main-container">
       <el-scrollbar class="content-scrollbar">
         <Settings :i18data="i18data" class="content-item" v-show="selectedIndex === '#settings'"/>
-        <Theme :i18data="i18data" class="content-item" v-show="selectedIndex === '#theme'"/>
+        <Theme :i18data="i18data" class="content-item content-item-wide" v-show="selectedIndex === '#theme'"/>
         <About :i18data="i18data" class="content-item" v-show="selectedIndex === '#about'"/>
       </el-scrollbar>
       <el-backtop target=".main-container .el-scrollbar__wrap"/>
@@ -49,33 +49,32 @@
 <!--suppress JSUnresolvedVariable, UnterminatedStatementJS -->
 <script>
   /* eslint-disable no-undef */
+  import { DArrowLeft, InfoFilled, TakeawayBox, Tools } from '@element-plus/icons-vue'
   import common from '../../utils/common'
   import Settings from './Settings'
   import About from './About'
   import Theme from './Theme'
 
   export default {
-  name: 'Options',
-  components: { Theme, Settings, About },
-  mounted() {
-    document.title = this.i18data.settingsTitle + ' - ' + this.i18data.extensionName
-  },
-  data() {
-    return {
-      publicPath: process.env.BASE_URL,
-      isCollapse: false,
-      selectedIndex: '#settings',
-
-      i18data: common.i18data,
-    }
-  },
-  methods: {
-    // 当侧边栏菜单被选中时的回调事件
-    handleSideSelect(index) {
-      this.selectedIndex = index;
+    name: 'Options',
+    components: { About, DArrowLeft, InfoFilled, Settings, TakeawayBox, Theme, Tools },
+    mounted() {
+      document.title = this.i18data.settingsTitle + ' - ' + this.i18data.extensionName
+    },
+    data() {
+      return {
+        publicPath: process.env.BASE_URL,
+        isCollapse: false,
+        selectedIndex: '#settings',
+        i18data: common.i18data
+      }
+    },
+    methods: {
+      handleSideSelect(index) {
+        this.selectedIndex = index
+      }
     }
   }
-}
 </script>
 
 <!--suppress CssUnusedSymbol -->
@@ -129,15 +128,15 @@
     width: 100%;
     overflow: hidden;
   }
-  .side-scrollbar >>> .el-scrollbar__wrap {
+  .side-scrollbar :deep(.el-scrollbar__wrap) {
     overflow: hidden;
     overflow-y: scroll;
   }
-  .side-scrollbar >>> .el-scrollbar__bar.is-vertical {
+  .side-scrollbar :deep(.el-scrollbar__bar.is-vertical) {
     width: 7px;
     right: 2px;
   }
-  .side-scrollbar >>> .el-scrollbar__bar.is-horizontal {
+  .side-scrollbar :deep(.el-scrollbar__bar.is-horizontal) {
     display: none!important;
   }
   /* 侧边栏菜单*/
@@ -161,20 +160,21 @@
     color: rgba(255, 255, 255, 1);
     background-color: rgba(61, 68, 84, 1);
   }
-  .side-menu >>> .el-submenu__title {
+  .side-menu :deep(.el-submenu__title) {
     color: rgba(255, 255, 255, 1);
     background-color: rgba(61, 68, 84, 1);
   }
-  .side-menu >>> .el-submenu__title span {
+  .side-menu :deep(.el-submenu__title span) {
     padding-left: 6px;
   }
-  .side-menu >>> .el-menu-item i:first-child {
+  .side-menu :deep(.el-menu-item .el-icon) {
     padding-right: 6px;
+    color: rgba(255,255,255,1);
   }
-  .side-menu >>> .el-menu-item span:first-child {
+  .side-menu :deep(.el-menu-item .el-menu-tooltip__trigger) {
     padding-left: 12px;
   }
-  .side-menu >>> .el-menu-item.is-active {
+  .side-menu :deep(.el-menu-item.is-active) {
     background-color: rgba(59, 85, 127, 1);
     color: rgba(174, 206, 255, 1);
     border-left: 3px solid rgba(87, 154, 255, 1);
@@ -183,14 +183,12 @@
     -webkit-transform: scaleY(1);
     transform: scaleY(1);
   }
-  .side-menu >>> .el-menu-item.is-active i {
+  .side-menu :deep(.el-menu-item.is-active .el-icon) {
     margin-left: -3px;
+    color: rgba(174, 206, 255, 1);
   }
-  .side-menu >>> .el-menu-item.is-active span:first-child {
+  .side-menu :deep(.el-menu-item.is-active .el-menu-tooltip__trigger) {
     margin-left: -3px;
-  }
-  .side-menu .iconfont {
-    color: rgba(255,255,255,1);
   }
   /* 侧边栏 折叠按钮 */
   .aside-footer {
@@ -201,23 +199,23 @@
   .aside-footer:hover {
     cursor: pointer;
   }
-  .aside-footer:hover .iconfont {
+  .aside-footer:hover .collapse-icon {
     color: rgba(174, 206, 255, 1);
   }
-  .aside-footer .iconfont {
+  .aside-footer .collapse-icon {
     color: rgba(255,255,255,1);
     font-size: 18px;
   }
-  .aside-footer .iconfont:hover {
+  .aside-footer .collapse-icon:hover {
     color: rgba(174, 206, 255, 1);
     font-size: 18px;
   }
-  .aside-footer .iconfont.right {
+  .aside-footer .collapse-icon.right {
     transition: .3s;
     transform-origin: center center;
     transform: rotateZ(180deg);
   }
-  .aside-footer .iconfont.left {
+  .aside-footer .collapse-icon.left {
     transition: .3s;
     transform-origin: center center;
     transform: rotateZ(0deg);
@@ -235,16 +233,19 @@
     width: 100%;
     overflow: hidden;
   }
-  .content-scrollbar >>> .el-scrollbar__wrap {
+  .content-scrollbar :deep(.el-scrollbar__wrap) {
     overflow: hidden;
     overflow-y: scroll;
   }
-  .content-scrollbar >>> .el-scrollbar__bar.is-vertical {
+  .content-scrollbar :deep(.el-scrollbar__bar.is-vertical) {
     width: 8px;
     right: 2px;
   }
   .content-item {
-    width: 600px;
-    height: 100%;
+    width: min(600px, 100%);
+    min-height: 100%;
+  }
+  .content-item-wide {
+    width: min(960px, 100%);
   }
 </style>

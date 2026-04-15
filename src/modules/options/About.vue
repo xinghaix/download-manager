@@ -4,12 +4,12 @@
     <el-card class="about-card box-card" shadow="hover">
       <div class="text">
         <div class="item">
-          <i class="iconfont el-icon-info"/>
+          <el-icon class="about-icon"><InfoFilled /></el-icon>
           <span class="prefix">{{extName}}<span class="version">{{version}}</span></span>
           <a class="suffix link" @click="openUrl(githubUrl)">Github</a>
         </div>
         <div class="item">
-          <i class="iconfont el-icon-star-on"/>
+          <el-icon class="about-icon star-icon"><StarFilled /></el-icon>
           <span class="prefix">{{i18data.starAbout1}}
             <a class="link" @click="openPluginShop">{{i18data.pluginShopAbout}}</a>
             {{i18data.starAbout2}}
@@ -22,21 +22,27 @@
 
 <script>
   /* eslint-disable no-undef */
+  import { InfoFilled, StarFilled } from '@element-plus/icons-vue'
   import common from '../../utils/common'
 
   export default {
-    name: "About",
+    name: 'About',
+    components: { InfoFilled, StarFilled },
     props: {
       i18data: Object
     },
     data() {
+      const manifest = typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.getManifest
+        ? chrome.runtime.getManifest()
+        : { name: 'download-manager', version: '' }
+
       return {
         githubUrl: 'https://github.com/xinghaix/download-manager',
         edgePluginShopUrl: 'https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic',
         chromePluginShopUrl: 'https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei',
 
-        extName: chrome.runtime.getManifest().name,
-        version: chrome.runtime.getManifest().version,
+        extName: manifest.name,
+        version: manifest.version,
       }
     },
     methods: {
@@ -47,8 +53,8 @@
         this.openUrl(url)
       },
       // 在新标签页中打开下载文件链接
-      openUrl (url) {
-        chrome.tabs.create({ url: url })
+      openUrl(url) {
+        chrome.tabs.create({ url })
       },
     }
   }
@@ -75,10 +81,10 @@
     display: table;
     width: 100%;
   }
-  .box-card >>> .el-card__header {
+  .box-card :deep(.el-card__header) {
     padding: 8px 20px;
   }
-  .box-card >>> .el-card__body {
+  .box-card :deep(.el-card__body) {
     padding: 16px 20px 10px 20px;
   }
   .box-card .text {
@@ -95,14 +101,14 @@
     padding: 3px 0;
   }
   /* 图标 */
-  .about-card .item .iconfont {
+  .about-card .item .about-icon {
     display: table-cell;
     font-size: 16px;
     width: 22px;
     color: #409EFF;
     vertical-align: middle;
   }
-  .about-card .item .iconfont.el-icon-star-on {
+  .about-card .item .about-icon.star-icon {
     font-size: 17px!important;
   }
   /* 关于信息 卡片 */
@@ -133,22 +139,4 @@
     text-decoration: underline;
   }
 
-    /* 版本历史信息 卡片 */
-  .version-card .card-header span {
-    display: table-cell;
-    font-weight: bold;
-    vertical-align: middle;
-    font-family: Consolas, Microsoft YaHei, sans-serif;
-  }
-  .version-card .card-header .version {
-    font-size: 14px;
-    text-align: left;
-  }
-  .version-card .card-header .date {
-    font-size: 13px;
-    text-align: right;
-  }
-  .version-card .card-header .date .el-icon-date {
-    margin-right: 4px;
-  }
 </style>

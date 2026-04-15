@@ -2,44 +2,54 @@
   <div class="home" id="home" :style="{width: downloadPanelPageSize.width + 'px',
                                       height: downloadPanelPageSize.height - 1 + 'px'}">
     <div class="header">
-      <el-input class="search" size="mini" suffix-icon="el-icon-search" v-model="searchContent"/>
+      <el-input class="search" size="small" v-model="searchContent">
+        <template #suffix>
+          <el-icon class="search-icon"><Search /></el-icon>
+        </template>
+      </el-input>
       <div class="header-operator">
-        <el-popover ref="openDownload" placement="bottom" width="342" trigger="click"
-                    v-model="showPopover" @after-enter="textareaFocus">
+        <el-popover ref="openDownload" placement="bottom" :width="342" trigger="click"
+                    v-model:visible="showPopover" @after-enter="textareaFocus">
           <el-input type="textarea" :clearable="true" resize="none"
                     :autosize="{ minRows: 1, maxRows: 4 }"
                     :placeholder="i18data.newDownloadPlaceholder"
-                    v-model="downloadUrl" @keydown.enter.native.prevent="enterToDownload(downloadUrl)">
+                    v-model="downloadUrl" @keydown.enter.prevent="enterToDownload(downloadUrl)">
           </el-input>
+          <template #reference>
+            <el-tooltip :disabled="closeTooltip" :content="i18data.newDownload"
+                        placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
+              <el-icon class="header-button icon-button"><Download /></el-icon>
+            </el-tooltip>
+          </template>
         </el-popover>
-        <div class="musk" v-if="showMusk" @click="() => {this.showMusk = false;this.showPopover = false}"/>
-        <el-tooltip :disabled="closeTooltip" :content="i18data.newDownload"
-                    placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="header-button icon-button el-icon-download" v-popover:openDownload/>
-        </el-tooltip>
+        <div class="musk" v-if="showMusk" @click="() => { this.showMusk = false; this.showPopover = false }"/>
         <el-tooltip :disabled="closeTooltip" :content="i18data.clearAll"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
-          <el-dropdown trigger="click" @command="clearDropdownCommand">
-            <span class="el-dropdown-link"><i class="header-button icon-button el-icon-brush"/></span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="clearAll">{{i18data.clearAll}}</el-dropdown-item>
-              <el-dropdown-item command="deleteAll">{{i18data.deleteAll}}</el-dropdown-item>
-              <el-dropdown-item command="clearFailed">{{i18data.clearFailed}}</el-dropdown-item>
-              <el-dropdown-item command="clearAbsent">{{i18data.clearAbsent}}</el-dropdown-item>
-            </el-dropdown-menu>
+          <el-dropdown class="header-dropdown" trigger="click" @command="clearDropdownCommand">
+            <span class="header-button header-dropdown-trigger">
+              <el-icon class="icon-button"><Brush /></el-icon>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="clearAll">{{i18data.clearAll}}</el-dropdown-item>
+                <el-dropdown-item command="deleteAll">{{i18data.deleteAll}}</el-dropdown-item>
+                <el-dropdown-item command="clearFailed">{{i18data.clearFailed}}</el-dropdown-item>
+                <el-dropdown-item command="clearAbsent">{{i18data.clearAbsent}}</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
           </el-dropdown>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openDownloadFolder"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="header-button icon-button el-icon-folder" @click="openFolder"/>
+          <el-icon class="header-button icon-button" @click="openFolder"><FolderOpened /></el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openHome"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="header-button icon-button el-icon-position" @click="openHome"/>
+          <el-icon class="header-button icon-button" @click="openHome"><Position /></el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openSettings"
                     placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="header-button icon-button el-icon-setting" @click="openOptions"/>
+          <el-icon class="header-button icon-button" @click="openOptions"><Setting /></el-icon>
         </el-tooltip>
       </div>
     </div>
@@ -56,7 +66,7 @@
         </transition>
       </RecycleScroller>
       <el-backtop target=".content #vue-recycle-scroller" visibilityHeight="70"/>
-      <tip :text="i18data.copied" :position="tipPosition"/>
+      <tip :text="i18data.copied" :position="tipPosition" v-model:showTip="showCopiedTip"/>
     </div>
   </div>
 </template>
@@ -72,34 +82,49 @@
   export default {
     name: 'Popup',
     components: {File, Tip},
-    async beforeCreate() {
+    async created() {
       // 获取页面大小
       this.checkPageSize(await storage.get('download_panel_page_size'))
 
-      // 获取主题类型。共3种，light、dark、auto
-      let theme = await storage.get('theme')
-      // 获取下载面板主题类型。共3种，light、dark、custom
-      let downloadPanelTheme = await storage.get('download_panel_theme')
-
-      // 如果主题是自适应的话，就根据浏览器的颜色模式匹配主题
-      if (theme === 'auto') {
-        downloadPanelTheme = common.isInDarkMode() ? 'dark' : 'light'
-      }
       // 从本地json文件中获取主题数据
+      const themeUrl = (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.getURL)
+        ? chrome.runtime.getURL('/theme/theme.json')
+        : '/theme/theme.json'
       this.themeData = await new Promise(resolve => {
-        fetch('/theme/theme.json').then(r => resolve(r.json()))
+        fetch(themeUrl).then(r => resolve(r.json()))
       })
-      // 设置下载面板主题
-      this.setTheme(downloadPanelTheme)
 
-      // 监听浏览器的颜色模式
-      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', (e) => {
-        storage.get('theme').then(theme => {
-          if (theme && theme === 'auto') {
-            this.setTheme(e.matches ? 'dark' : 'light')
+      await this.applyStoredTheme()
+
+      // 监听来自 Options 页面的主题变更消息
+      chrome.runtime.onMessage.addListener(message => {
+        try {
+          let received = JSON.parse(message);
+          if (received.type === 'ui_theme_changed') {
+            this.setTheme(received.data)
           }
-        })
+        } catch (e) {
+          // 忽略非 JSON 消息
+        }
+      })
+
+      // 监听浏览器的颜色模式（在自适应系列或未设置旧版 UI 主题时生效）
+      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', async (e) => {
+        const theme = await storage.get('theme')
+        if (theme !== 'auto') {
+          return
+        }
+
+        const uiThemeSeries = await storage.get('ui_theme_series')
+        let uiTheme = await storage.get('ui_theme')
+        if (uiThemeSeries && this.themeData && this.themeData[`${uiThemeSeries}-${e.matches ? 'dark' : 'light'}`]) {
+          this.setTheme(`${uiThemeSeries}-${e.matches ? 'dark' : 'light'}`)
+          return
+        }
+        if (!uiTheme) {
+          this.setTheme(e.matches ? 'dark' : 'light')
+        }
       })
     },
     async mounted() {
@@ -117,49 +142,43 @@
 
       // 接收来自background发来的数据
       chrome.runtime.onMessage.addListener(message => {
-        let received = JSON.parse(message);
+        if (typeof message !== 'string') {
+          return
+        }
+
+        let received
+        try {
+          received = JSON.parse(message)
+        } catch (e) {
+          return
+        }
 
         if (received.type === 'download') {
+          const incomingIds = new Set(received.data.map(item => item.id))
+          this.downloadItems = this.downloadItems.filter(item => incomingIds.has(item.id))
+
           // data中存放自定义的从background传过来的下载信息
           // 为了解决文件图标闪烁问题，此处不能直接调用请求chrome下载文件的方法
           for (let i = 0, len1 = received.data.length; i < len1; i++) {
             let item = received.data[i]
-            // 在刚创建下载时，文件名称会为空
-            if (item.filename) {
-              // 当搜索框存在内容时，此时也要搜索下载中的文件
-              item.show = this.searchContent === '' || item.basename.toLowerCase().indexOf(this.searchContent) > -1
+            let tmpItem = this.getItem(item.id)
 
-              // 查看是否存在已经保存的下载的文件
-              let tmpItem = this.getItem(item.id)
-              if (tmpItem) {
-                tmpItem.filename = item.filename
-                tmpItem.basename = item.basename
-                common.beforeHandler(tmpItem)
-                tmpItem.error = item.error ? item.error : null
-                tmpItem.estimatedEndTime = item.estimatedEndTime ? item.estimatedEndTime : null
-                // 记录上一次接收的文件大小，以便于统一计算2种下载情况下的下载速度
-                tmpItem.previousBytesReceived = tmpItem.bytesReceived
-                tmpItem.bytesReceived = item.bytesReceived
-                tmpItem.totalBytes = item.totalBytes
-                tmpItem.state = item.state
-                tmpItem.danger = item.danger
-                tmpItem.show = item.show
-              } else {
-                common.beforeHandler(item)
-                item.previousBytesReceived = 0
+            if (tmpItem) {
+              this.mergeDownloadItem(tmpItem, item)
+            } else if (item.filename) {
+              this.prepareDownloadItem(item)
 
-                let noInsert = true
-                for (let j = 0, len2 = this.downloadItems.length; j < len2; j++) {
-                  if (item.startTime >= this.downloadItems[j].startTime) {
-                    // 按照下载开始时间降序排列
-                    this.downloadItems.splice(j, 0, item)
-                    noInsert = false
-                    break
-                  }
+              let noInsert = true
+              for (let j = 0, len2 = this.downloadItems.length; j < len2; j++) {
+                if (item.startTime >= this.downloadItems[j].startTime) {
+                  // 按照下载开始时间降序排列
+                  this.downloadItems.splice(j, 0, item)
+                  noInsert = false
+                  break
                 }
-                if (noInsert) {
-                  this.downloadItems.push(item)
-                }
+              }
+              if (noInsert) {
+                this.downloadItems.push(item)
               }
             }
           }
@@ -168,10 +187,7 @@
 
       // 如果其他插件或者谷歌浏览器下载界面清除下载文件时，同步搜索数据
       chrome.downloads.onErased.addListener((id) => {
-        let item = this.getItem(id)
-        if (item) {
-          this.erase(item)
-        }
+        this.removeItemById(id)
       })
     },
     data() {
@@ -194,6 +210,7 @@
 
         // 复制文件名和文件链接时的弹框设置
         tipPosition: {x: 0, y: 0},
+        showCopiedTip: false,
 
         // 插件设置
         // 鼠标移动到按钮上时是否展示提示信息
@@ -204,7 +221,7 @@
         rightClickUrl: true,
         enableAnimation: false,
 
-        themeData: {}
+        themeData: null
       }
     },
     watch: {
@@ -234,6 +251,35 @@
       }
     },
     methods: {
+      async getStoredEffectiveMode() {
+        const theme = await storage.get('theme')
+        if (theme === 'dark' || theme === 'light') {
+          return theme
+        }
+        return common.isInDarkMode() ? 'dark' : 'light'
+      },
+      async getStoredThemeName() {
+        const effectiveMode = await this.getStoredEffectiveMode()
+        const uiThemeSeries = await storage.get('ui_theme_series')
+        const uiTheme = await storage.get('ui_theme')
+
+        if (uiThemeSeries && this.themeData && this.themeData[`${uiThemeSeries}-${effectiveMode}`]) {
+          return `${uiThemeSeries}-${effectiveMode}`
+        }
+
+        if (uiTheme && this.themeData && this.themeData[uiTheme]) {
+          return uiTheme
+        }
+
+        let downloadPanelTheme = await storage.get('download_panel_theme')
+        if (downloadPanelTheme !== 'dark' && downloadPanelTheme !== 'light') {
+          downloadPanelTheme = effectiveMode
+        }
+        return downloadPanelTheme
+      },
+      async applyStoredTheme() {
+        this.setTheme(await this.getStoredThemeName())
+      },
       checkPageSize(downloadPanelPageSize) {
         if (downloadPanelPageSize) {
           let width = downloadPanelPageSize.width
@@ -266,6 +312,28 @@
         return null
       },
 
+      removeItemById(id) {
+        this.downloadItems = this.downloadItems.filter(item => item.id !== id)
+      },
+
+      prepareDownloadItem(item) {
+        common.beforeHandler(item)
+        item.previousBytesReceived = item.previousBytesReceived || 0
+        item.error = item.error || null
+        item.estimatedEndTime = item.estimatedEndTime || null
+        item.endTime = item.endTime || null
+        item.exists = typeof item.exists === 'boolean' ? item.exists : true
+        item.paused = Boolean(item.paused)
+        item.show = this.searchContent === '' || item.basename.toLowerCase().indexOf(this.searchContent) > -1
+      },
+
+      mergeDownloadItem(target, source) {
+        const previousBytesReceived = target.bytesReceived || 0
+        Object.assign(target, source)
+        this.prepareDownloadItem(target)
+        target.previousBytesReceived = previousBytesReceived
+      },
+
       /**
        * 获取所有下载文件列表
        */
@@ -273,8 +341,10 @@
         chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
           this.downloadItems = []
           items.forEach(item => {
-            common.beforeHandler(item)
-            item.show = true
+            if (!item.filename) {
+              return
+            }
+            this.prepareDownloadItem(item)
             this.downloadItems.push(item)
           })
         })
@@ -337,12 +407,7 @@
        */
       erase(item) {
         chrome.downloads.erase({id: item.id}, () => {
-          for (let i = 0; i < this.downloadItems.length; i++) {
-            if (this.downloadItems[i].id === item.id) {
-              this.downloadItems.splice(i, 1)
-              break
-            }
-          }
+          this.removeItemById(item.id)
         })
       },
 
@@ -380,16 +445,19 @@
        * @param text {String} 需要复制到剪切板的内容，字符串类型
        * @param event {MouseEvent}
        */
-      copyToClipboard(text, event) {
-        if (text) {
-          this.$copyText(text).then(() => {
-            // 复制成功时，更新并显示已复制的弹框
-            if (event) {
-              this.tipPosition = {x: event.pageX, y: event.pageY}
-            }
-          }, e => {
-            console.error('failed to copy', e)
-          })
+      async copyToClipboard(text, event) {
+        if (!text) {
+          return
+        }
+
+        try {
+          await navigator.clipboard.writeText(text)
+          if (event) {
+            this.tipPosition = {x: event.pageX, y: event.pageY}
+          }
+          this.showCopiedTip = true
+        } catch (e) {
+          console.error('failed to copy', e)
         }
       },
 
@@ -402,8 +470,19 @@
           theme = 'light'
         }
 
+        // 确保 themeData 已加载
+        if (!this.themeData) {
+          console.warn('themeData not loaded yet, skipping setTheme');
+          return;
+        }
+
         let bodyStyle = document.querySelector('body').style
         let panelThemeData = this.themeData[theme]
+        if (!panelThemeData) {
+          console.warn(`Theme "${theme}" not found in themeData`);
+          return;
+        }
+        
         Object.keys(panelThemeData).forEach(key => {
           bodyStyle.setProperty(key, panelThemeData[key])
         })
@@ -415,19 +494,28 @@
 <!--suppress CssUnusedSymbol -->
 <style rel="stylesheet/scss">
   /* 覆盖vue子组件popper样式 */
-  body .tooltip {
+  body .tooltip,
+  body .tooltip.el-popper {
+    --el-popper-bg-color-dark: var(--tooltip-background-color);
+    --el-fill-color-blank: var(--tooltip-background-color);
+    --el-text-color-primary: var(--tooltip-background-color);
     background: var(--tooltip-background-color)!important;
     color: var(--tooltip-color)!important;
+    border-color: var(--tooltip-background-color)!important;
     padding: 4px!important;
     font-size: 12px!important;
     transition: none;
     -webkit-transform-origin-x: 0;
     -webkit-transform: scale(.9);
   }
-  body .tooltip .popper__arrow,
-  body .tooltip .popper__arrow:after {
-    border-bottom-color: var(--tooltip-background-color)!important;
-    border-top-color: var(--tooltip-background-color)!important;
+  body .tooltip .el-popper__arrow,
+  body .tooltip.el-popper .el-popper__arrow {
+    color: var(--tooltip-background-color)!important;
+  }
+  body .tooltip > .el-popper__arrow::before,
+  body .tooltip.el-popper > .el-popper__arrow::before {
+    background: var(--tooltip-background-color)!important;
+    border-color: var(--tooltip-background-color)!important;
   }
 
   body .el-popover {
@@ -438,26 +526,24 @@
     background-color: var(--popover-background-color);
     border-color: var(--popover-border-color);
   }
-  body .el-popper[x-placement^=bottom] {
+  body .el-popper[data-popper-placement^=bottom] {
     margin-top: 8px;
   }
   body .el-popconfirm .el-popconfirm__main {
     height: 0;
   }
-  body .el-popconfirm .el-button--mini {
+  body .el-popconfirm .el-button--small {
     padding: 2px 6px;
     font-size: 11px;
     border-radius: 3px;
   }
-  body .el-popper .popper__arrow {
-    border-bottom-color: var(--popover-border-color)!important;
-  }
-  body .el-popper .popper__arrow:after {
-    border-bottom-color: var(--popover-background-color)!important;
+  body .el-popper .el-popper__arrow::before {
+    background-color: var(--popover-background-color)!important;
+    border-color: var(--popover-border-color)!important;
   }
 
-  .el-dropdown-menu.el-popper[x-placement^=bottom] .popper__arrow:after {
-    border-bottom-color: var(--header-dropdown-menu-background-color)!important;
+  .el-dropdown__popper.el-popper[data-popper-placement^=bottom] .el-popper__arrow::before {
+    background-color: var(--header-dropdown-menu-background-color)!important;
   }
 
   body .el-textarea textarea {
@@ -521,30 +607,46 @@
   .header .search {
     width: 200px;
   }
-  .header .search >>> .el-input__inner {
+  .header .search :deep(.el-input__wrapper) {
     border-radius: 16px;
+    min-height: 24px;
+    background-color: var(--header-search-background-color);
+    box-shadow: 0 0 0 1px var(--header-search-border-color) inset !important;
+    transition: box-shadow 0ms;
+  }
+  .header .search :deep(.el-input__wrapper:hover),
+  .header .search :deep(.el-input__wrapper.is-focus) {
+    box-shadow: 0 0 0 1px var(--header-search-hover-border-color) inset !important;
+  }
+  .header .search :deep(.el-input__inner) {
     height: 24px;
     line-height: 24px;
-    background-color: var(--header-search-background-color);
     color: var(--header-search-color);
-    border-color: var(--header-search-border-color)!important;
-    transition: border-color 0ms;
   }
-  .header .search >>> .el-input__inner:hover,
-  .header .search >>> .el-input__inner:focus {
-    border-color: var(--header-search-hover-border-color)!important;
-  }
-  .header .search >>> .el-input__icon.el-icon-search {
+  .header .search .search-icon {
     line-height: 24px;
+    color: var(--header-search-color);
   }
 
   .header .header-operator {
     float: right;
-    display: table;
+    display: flex;
+    align-items: center;
   }
   .header .header-button {
-    display: table-cell;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 3px 5px;
+    vertical-align: middle;
+  }
+  .header .header-dropdown,
+  .header .header-dropdown-trigger {
+    display: inline-flex;
+    align-items: center;
+  }
+  .header .header-dropdown-trigger {
+    outline: none;
   }
 
   /* 显示手动下载文件弹框时的遮蔽层 */
@@ -600,29 +702,29 @@
   }
 
   /* 滚动条样式 */
-  .content >>> .vue-recycle-scroller::-webkit-scrollbar { /*滚动条整体样式*/
+  .content :deep(.vue-recycle-scroller::-webkit-scrollbar) { /*滚动条整体样式*/
     width: 7px; /*高宽分别对应横竖滚动条的尺寸*/
     height: 7px;
     scrollbar-arrow-color: red;
   }
-  .content >>> .vue-recycle-scroller::-webkit-scrollbar-thumb:hover {
+  .content :deep(.vue-recycle-scroller::-webkit-scrollbar-thumb:hover) {
     cursor: pointer;
   }
-  .content >>> .vue-recycle-scroller::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+  .content :deep(.vue-recycle-scroller::-webkit-scrollbar-thumb) { /*滚动条里面小方块*/
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 4px rgba(123, 123, 123, 0.2);;
+    -webkit-box-shadow: inset 0 0 4px rgba(123, 123, 123, 0.2);
     background: var(--scrollbar-thumb-background-color);
   }
-  .content >>> .vue-recycle-scroller::-webkit-scrollbar-track { /*滚动条里面轨道*/
+  .content :deep(.vue-recycle-scroller::-webkit-scrollbar-track) { /*滚动条里面轨道*/
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 4px transparent;
   }
-  .content >>> .vue-recycle-scroller {
+  .content :deep(.vue-recycle-scroller) {
     height: 100%;
   }
 
   /* 返回顶部按钮 */
-  .content >>> .el-backtop {
+  .content :deep(.el-backtop) {
     right: 16px !important;
     bottom: 20px !important;
     width: 34px;

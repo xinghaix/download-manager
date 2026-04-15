@@ -8,10 +8,10 @@
           <span class="setting-description">{{i18data.themeAdaptationDescription}}</span>
         </div>
         <div class="switch width">
-          <el-radio-group v-model="theme" size="mini">
-            <el-radio-button label="auto">{{i18data.themeAdaptationOption1}}</el-radio-button>
-            <el-radio-button label="light">{{i18data.themeAdaptationOption2}}</el-radio-button>
-            <el-radio-button label="dark">{{i18data.themeAdaptationOption3}}</el-radio-button>
+          <el-radio-group v-model="theme" size="small">
+            <el-radio-button value="auto">{{i18data.themeAdaptationOption1}}</el-radio-button>
+            <el-radio-button value="light">{{i18data.themeAdaptationOption2}}</el-radio-button>
+            <el-radio-button value="dark">{{i18data.themeAdaptationOption3}}</el-radio-button>
           </el-radio-group>
         </div>
       </div>
@@ -26,13 +26,13 @@
         <div class="switch width icon">
           <el-tooltip :content="i18data.themeAdaptationOption2 + i18data.themeTitle"
                       placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-            <el-color-picker :value="iconColor['icon_color']['light']" size="small"
+            <el-color-picker :model-value="iconColor['icon_color']['light']" size="small"
                              :class="theme === 'light' || theme === 'auto' ? 'color' : ''"
                              @change="setIconColor($event, 'icon_color', 'light')"/>
           </el-tooltip>
           <el-tooltip :content="i18data.themeAdaptationOption3 + i18data.themeTitle"
                       placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-            <el-color-picker :value="iconColor['icon_color']['dark']" size="small"
+            <el-color-picker :model-value="iconColor['icon_color']['dark']" size="small"
                              :class="theme === 'dark' || theme === 'auto' ? 'color' : ''"
                              @change="setIconColor($event, 'icon_color', 'dark')"/>
           </el-tooltip>
@@ -46,13 +46,13 @@
         <div class="switch width icon">
           <el-tooltip :content="i18data.themeAdaptationOption2 + i18data.themeTitle"
                       placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-            <el-color-picker :value="iconColor['icon_downloading_color']['light']" size="small"
+            <el-color-picker :model-value="iconColor['icon_downloading_color']['light']" size="small"
                              :class="theme === 'light' || theme === 'auto' ? 'color' : ''"
                              @change="setIconColor($event, 'icon_downloading_color', 'light')"/>
           </el-tooltip>
           <el-tooltip :content="i18data.themeAdaptationOption3 + i18data.themeTitle"
                       placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-            <el-color-picker :value="iconColor['icon_downloading_color']['dark']" size="small"
+            <el-color-picker :model-value="iconColor['icon_downloading_color']['dark']" size="small"
                              :class="theme === 'dark' || theme === 'auto' ? 'color' : ''"
                              @change="setIconColor($event, 'icon_downloading_color', 'dark')"/>
           </el-tooltip>
@@ -61,45 +61,122 @@
     </el-card>
 
     <h2 class="about title">{{i18data.downloadPanelTitle}}</h2>
-    <el-card class="box-card" shadow="hover">
-      <div class="item">
+    <el-card class="box-card theme-system-card" shadow="hover">
+      <div class="item compact-item">
         <div class="content">
           <span class="setting-title">{{i18data.pageSize}}</span>
+          <span class="setting-description">控制下载面板的宽高</span>
         </div>
         <div class="switch width page-size">
           <el-input-number v-model="downloadPanelPageSize.width" :controls="false"
-                           :min="350" :max="800" size="mini"></el-input-number>
+                           :min="350" :max="800" size="small"></el-input-number>
           <el-input-number v-model="downloadPanelPageSize.height" :controls="false"
-                           :min="300" :max="600" size="mini"></el-input-number>
+                           :min="300" :max="600" size="small"></el-input-number>
         </div>
       </div>
+
       <el-divider/>
-      <div class="item custom">
-        <div class="content">
-          <span class="setting-title">{{i18data.themeTitle}}</span>
+
+      <section class="theme-system-head">
+        <div class="theme-system-copy">
+          <div class="theme-system-title">主题设置 & 预览</div>
+          <div class="theme-system-desc">选择主题系列后立即生效，下方预览区展示 Popup 的实际界面效果。</div>
         </div>
-        <div class="themes">
-          <div class="theme light"
-               :class="downloadPanelTheme === 'light' || theme === 'auto' ? 'selected' : ''"
-               @click="setDownloadPanelTheme('light')">
-            <div v-show="downloadPanelTheme === 'light' || theme === 'auto'">
-              <div class="selected-background"></div>
-              <div class="selected"></div>
+        <div class="theme-selector-control theme-system-selector">
+          <span class="selector-label">主题列表</span>
+          <el-select v-model="selectedThemeSeriesKey" size="small" @change="handlePreviewSeriesChange">
+            <el-option v-for="series in themeSeries"
+                       :key="series.key"
+                       :label="series.title"
+                       :value="series.key"></el-option>
+          </el-select>
+        </div>
+      </section>
+
+      <section class="live-preview-shell">
+        <div class="preview-stage">
+          <div class="preview-stage-grid"></div>
+          <div class="preview-stage-head">
+            <div v-if="theme === 'auto'" class="preview-mode-switch" role="tablist" aria-label="Preview mode">
+              <button type="button"
+                      class="preview-mode-button"
+                      :class="{ active: previewMode === 'light' }"
+                      @click="setPreviewMode('light')">Light</button>
+              <button type="button"
+                      class="preview-mode-button"
+                      :class="{ active: previewMode === 'dark' }"
+                      @click="setPreviewMode('dark')">Dark</button>
+            </div>
+            <div v-else class="preview-mode-indicator">{{ getEffectiveMode() }}</div>
+          </div>
+          <div class="popup-preview-wrapper">
+            <div class="popup-preview"
+                 ref="popupPreview"
+                 :style="{
+                   width: fixedPreviewViewport.width + 'px',
+                   height: fixedPreviewViewport.height + 'px',
+                   ...previewThemeStyle
+                 }">
+              <div class="popup-shell">
+                <div class="home popup-home" :style="{ width: fixedPreviewViewport.width + 'px', height: popupBodyHeight + 'px' }">
+                  <div class="header popup-header">
+                    <div class="search popup-search">
+                      <div class="search-inner">
+                        <span class="search-placeholder">Search</span>
+                        <span class="search-icon">⌕</span>
+                      </div>
+                    </div>
+                    <div class="header-operator popup-header-operator">
+                      <el-icon class="header-button icon-button"><Download /></el-icon>
+                      <el-icon class="header-button icon-button"><Brush /></el-icon>
+                      <el-icon class="header-button icon-button"><FolderOpened /></el-icon>
+                      <el-icon class="header-button icon-button"><Position /></el-icon>
+                      <el-icon class="header-button icon-button"><Setting /></el-icon>
+                    </div>
+                  </div>
+
+                  <div class="content popup-content">
+                    <div class="preview-scroll" :style="{ maxHeight: previewContentHeight + 'px' }">
+                      <div class="file" v-for="file in previewFiles" :key="file.name" :class="file.previewClass">
+                        <div class="icon">
+                          <div class="progress-ring">
+                            <div class="progress-ring-inner">{{ file.percent }}</div>
+                          </div>
+                        </div>
+                        <div class="file-content">
+                          <span class="filename">{{ file.name }}</span>
+                          <span class="file-url">{{ file.url }}</span>
+                          <div class="info">
+                            <div class="cell left common">
+                              <span class="receivedSize small-size">{{ file.received }}</span>
+                              <span class="divider small-size">|</span>
+                              <span class="size small-size">{{ file.total }}</span>
+                            </div>
+                            <div class="cell middle common">
+                              <span class="speed small-size">{{ file.speed }}</span>
+                            </div>
+                            <div class="cell right common">
+                              <span class="remaining small-size">{{ file.status }}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="content-operator-wrapper">
+                          <div class="content-operator">
+                            <el-icon class="icon-button"><FolderOpened /></el-icon>
+                            <el-icon class="icon-button"><VideoPause /></el-icon>
+                            <el-icon class="icon-button"><RefreshRight /></el-icon>
+                            <el-icon class="icon-button"><Close /></el-icon>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="theme dark"
-               :class="downloadPanelTheme === 'dark' || theme === 'auto' ? 'selected' : ''"
-               @click="setDownloadPanelTheme('dark')">
-            <div v-show="downloadPanelTheme === 'dark' || theme === 'auto'">
-              <div class="selected-background"></div>
-              <div class="selected"></div>
-            </div>
-          </div>
-          <div class="theme custom">
-            <div class="message">{{i18data.downloadPanelThemeCustomDescription}}</div>
-          </div>
         </div>
-      </div>
+      </section>
     </el-card>
   </div>
 </template>
@@ -107,290 +184,1560 @@
 <script>
   /* eslint-disable no-undef */
 
+  import { Brush, Close, Download, FolderOpened, Position, RefreshRight, Setting, VideoPause } from '@element-plus/icons-vue'
   import storage from '../../utils/storage'
   import common from '../../utils/common'
 
+  const MIN_PREVIEW_WIDTH = 350
+  const MAX_PREVIEW_WIDTH = 800
+  const MIN_PREVIEW_HEIGHT = 300
+  const MAX_PREVIEW_HEIGHT = 600
+  const PREVIEW_FIXED_VIEWPORT_WIDTH = 400
+  const PREVIEW_FIXED_VIEWPORT_HEIGHT = 420
+
   export default {
-    name: "Theme",
+    name: 'Theme',
+    components: { Brush, Close, Download, FolderOpened, Position, RefreshRight, Setting, VideoPause },
     props: {
       i18data: Object
     },
     async mounted() {
-      this.theme = await storage.get('theme')
+      this.systemTheme = common.isInDarkMode() ? 'dark' : 'light'
+      this.uiTheme = await storage.get('ui_theme') || ''
+      this.uiThemeSeries = await storage.get('ui_theme_series') || ''
+      this.theme = await storage.get('theme') || 'auto'
 
-      this.iconColor.icon_color = await storage.get('icon_color')
-      this.iconColor.icon_downloading_color = await storage.get('icon_downloading_color')
+      const iconColor = await storage.get('icon_color')
+      this.iconColor.icon_color = {
+        light: '#000000',
+        dark: '#989898',
+        ...(iconColor || {})
+      }
 
-      this.downloadPanelTheme = await storage.get('download_panel_theme')
+      const iconDownloadingColor = await storage.get('icon_downloading_color')
+      this.iconColor.icon_downloading_color = {
+        light: '#00d032',
+        dark: '#ffa500',
+        ...(iconDownloadingColor || {})
+      }
 
-      this.downloadPanelPageSize = await storage.get('download_panel_page_size')
+      this.downloadPanelTheme = await storage.get('download_panel_theme') || 'light'
 
+      const pageSize = await storage.get('download_panel_page_size')
+      this.downloadPanelPageSize = {
+        width: 400,
+        height: 420,
+        ...(pageSize || {})
+      }
+
+      await this.loadThemeData()
+      this.initializeThemeSelection()
       this.show = true
     },
-    data: function () {
+    data() {
       return {
         show: false,
-
+        systemTheme: 'light',
+        uiTheme: '',
+        uiThemeSeries: '',
         theme: 'light',
-
         iconColor: {
           icon_color: {
-            'light': '#000000',
-            'dark': '#989898'
+            light: '#000000',
+            dark: '#989898'
           },
           icon_downloading_color: {
-            'light': '#00d032',
-            'dark': '#ffa500'
+            light: '#00d032',
+            dark: '#ffa500'
           },
         },
-
         downloadPanelTheme: 'light',
-
         downloadPanelPageSize: {
-          width: '400',
-          height: '420'
-        }
+          width: 400,
+          height: 420
+        },
+        themeData: null,
+        selectedThemeSeriesKey: 'basic',
+        previewMode: 'light',
+        previewFiles: [
+          {
+            name: 'download-manager-v3.zip',
+            url: 'github.com/xinghaix/download-manager/releases',
+            percent: '68%',
+            received: '2.4M',
+            total: '3.7M',
+            speed: '860K/s',
+            status: '13s',
+            previewClass: ''
+          },
+          {
+            name: 'design-assets.sketch',
+            url: 'cdn.example.com/assets/design-assets.sketch',
+            percent: '31%',
+            received: '1.1M',
+            total: '5.0M',
+            speed: '420K/s',
+            status: '48s',
+            previewClass: 'is-hovered'
+          },
+          {
+            name: 'notification-sound-pack.wav',
+            url: 'audio.example.com/ui/notification-sound-pack.wav',
+            percent: '92%',
+            received: '4.8M',
+            total: '5.0M',
+            speed: '1.2M/s',
+            status: '2s',
+            previewClass: ''
+          }
+        ],
+        themeSeries: [
+          {
+            key: 'terminal',
+            title: 'Terminal',
+            desc: '终端极客风。高对比、偏工具化，适合想要“工程感”的界面。',
+            options: [
+              { value: 'terminal-dark', previewClass: 'terminal-dark', label: 'Terminal Dark', mode: 'Dark', badge: 'High Contrast', note: '霓虹感、黑底、识别性强。' },
+              { value: 'terminal-light', previewClass: 'terminal-light', label: 'Terminal Light', mode: 'Light', badge: 'Clean CLI', note: '保留极客风，但更明亮克制。' }
+            ]
+          },
+          {
+            key: 'github',
+            title: 'GitHub',
+            desc: '开发者经典风。信息密度稳、专业感强，适合长期使用。',
+            options: [
+              { value: 'github-dark', previewClass: 'github-dark', label: 'GitHub Dark', mode: 'Dark', badge: 'Developer', note: '沉稳、熟悉、偏生产力。' },
+              { value: 'github-light', previewClass: 'github-light', label: 'GitHub Light', mode: 'Light', badge: 'Developer', note: '清爽、规整、接近平台化产品。' }
+            ]
+          },
+          {
+            key: 'claude',
+            title: 'Claude',
+            desc: '温暖优雅风。柔和米色系，适合更轻、更有呼吸感的视觉。',
+            options: [
+              { value: 'claude-dark', previewClass: 'claude-dark', label: 'Claude Dark', mode: 'Dark', badge: 'Warm', note: '深暖棕色调，更有情绪表达。' },
+              { value: 'claude-light', previewClass: 'claude-light', label: 'Claude Light', mode: 'Light', badge: 'Warm', note: '柔和纸感，观感更轻松。' }
+            ]
+          },
+          {
+            key: 'basic',
+            title: 'Basic',
+            desc: '简洁通用风。弱风格化，适合大众默认主题。',
+            options: [
+              { value: 'basic-dark', previewClass: 'basic-dark', label: 'Basic Dark', mode: 'Dark', badge: 'Balanced', note: '低调、通用、适合夜间。' },
+              { value: 'basic-light', previewClass: 'basic-light', label: 'Basic Light', mode: 'Light', badge: 'Balanced', note: '中性、干净、默认感强。' }
+            ]
+          }
+        ]
       }
     },
     watch: {
-      /**
-       * 设置主题自适应。包含图标和下载面板
-       *
-       * @param val {String} 更新后的数据。light、dark、auto
-       * @param oldVal {String} 更新前的数据。light、dark、auto
-       */
-      theme(val, oldVal) {
-        storage.set('theme', val)
+      async theme(val, oldVal) {
+        await storage.set('theme', val)
+        await this.setDownloadPanelTheme(val)
+        this.systemTheme = common.isInDarkMode() ? 'dark' : 'light'
+        this.syncPreviewModeWithTheme(val)
 
-        // 同时设置下载面板主题
-        this.setDownloadPanelTheme(val)
-
-        let systemTheme = common.isInDarkMode() ? 'dark' : 'light'
-        if (systemTheme === 'dark') {
+        const effective = val === 'auto' ? this.systemTheme : val
+        if (this.systemTheme === 'dark') {
           if (!(oldVal === 'auto' && val === 'dark') && !(oldVal === 'dark' && val === 'auto')) {
-            this.sendIconColorToBackground(val === 'auto' ? systemTheme : val)
+            this.sendIconColorToBackground(effective)
           }
         } else {
           if (!(oldVal === 'auto' && val === 'light') && !(oldVal === 'light' && val === 'auto')) {
-            this.sendIconColorToBackground(val === 'auto' ? systemTheme : val)
+            this.sendIconColorToBackground(effective)
           }
         }
-      },
 
+        if (this.uiThemeSeries) {
+          this.syncRuntimeThemePreview(this.uiThemeSeries)
+        }
+      },
       downloadPanelPageSize: {
         handler(val) {
-          storage.set('download_panel_page_size', val)
+          const normalizedSize = this.normalizePreviewSize(val)
+          if (normalizedSize.width !== val.width || normalizedSize.height !== val.height) {
+            this.downloadPanelPageSize = normalizedSize
+            return
+          }
+          storage.set('download_panel_page_size', normalizedSize)
         },
         deep: true
       }
     },
+    computed: {
+      enableThemeAdaptation() {
+        return this.theme === 'auto'
+      },
+      previewThemeStyle() {
+        if (!this.themeData) {
+          return {}
+        }
+        const themeName = this.getPreviewThemeName()
+        return this.themeData[themeName] || {}
+      },
+      normalizedPreviewSize() {
+        return this.normalizePreviewSize(this.downloadPanelPageSize)
+      },
+      fixedPreviewViewport() {
+        return {
+          width: PREVIEW_FIXED_VIEWPORT_WIDTH,
+          height: PREVIEW_FIXED_VIEWPORT_HEIGHT
+        }
+      },
+      popupBodyHeight() {
+        return this.fixedPreviewViewport.height - 1
+      },
+      previewContentHeight() {
+        return Math.max(this.popupBodyHeight - 48, 0)
+      }
+    },
     methods: {
-      /**
-       * 当图标颜色更改时，设置插件图标颜色和下载时图标颜色
-       *
-       * @param val {String} 16进制颜色值
-       * @param type {String} 设置名。2种，icon_color、icon_downloading_color
-       * @param theme {String} 主题：2种，dark，light
-       */
+      normalizePreviewSize(size) {
+        const width = Math.min(Math.max(Number(size?.width) || 400, MIN_PREVIEW_WIDTH), MAX_PREVIEW_WIDTH)
+        const height = Math.min(Math.max(Number(size?.height) || 420, MIN_PREVIEW_HEIGHT), MAX_PREVIEW_HEIGHT)
+        return { width, height }
+      },
+      setThemeAdaptation(enable) {
+        if (enable) {
+          this.theme = 'auto'
+          return
+        }
+        this.theme = common.isInDarkMode() ? 'dark' : 'light'
+      },
+      initializeThemeSelection() {
+        const initialSeriesKey = this.uiThemeSeries || this.getThemeSeriesKey(this.uiTheme) || 'basic'
+        this.uiThemeSeries = initialSeriesKey
+        this.selectedThemeSeriesKey = initialSeriesKey
+        this.syncPreviewModeWithTheme(this.theme)
+      },
+      getThemeSeriesKey(themeName) {
+        if (!themeName || typeof themeName !== 'string') {
+          return ''
+        }
+        return this.themeSeries.find(series => series.options.some(option => option.value === themeName))?.key || ''
+      },
+      getThemeNameByMode(seriesKey, mode) {
+        const series = this.themeSeries.find(item => item.key === seriesKey)
+        if (!series || !series.options.length) {
+          return mode
+        }
+        const matchedOption = series.options.find(option => option.mode.toLowerCase() === mode)
+        return (matchedOption || series.options[0]).value
+      },
+      syncPreviewModeWithTheme(theme) {
+        if (theme === 'auto') {
+          this.previewMode = 'light'
+          return
+        }
+        this.previewMode = theme === 'dark' ? 'dark' : 'light'
+      },
+      setPreviewMode(mode) {
+        if (this.theme !== 'auto') {
+          return
+        }
+        this.previewMode = mode === 'dark' ? 'dark' : 'light'
+      },
+      async handlePreviewSeriesChange() {
+        await this.applyUIThemeSeries(this.selectedThemeSeriesKey)
+      },
+      async applyUIThemeSeries(seriesKey) {
+        const normalizedSeriesKey = seriesKey || 'basic'
+        this.uiThemeSeries = normalizedSeriesKey
+        this.uiTheme = ''
+        await storage.set('ui_theme_series', normalizedSeriesKey)
+        await storage.set('ui_theme', '')
+        await this.syncRuntimeThemePreview(normalizedSeriesKey)
+      },
+      async syncRuntimeThemePreview(seriesKey) {
+        const themeName = this.getThemeNameByMode(seriesKey, this.getEffectiveMode())
+        await this.setDownloadPanelTheme(this.getEffectiveMode())
+
+        if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
+          chrome.runtime.sendMessage(JSON.stringify({
+            type: 'ui_theme_changed',
+            data: themeName
+          }), () => {
+            if (chrome.runtime.lastError) {
+              // ignore
+            }
+          })
+        }
+      },
+      getEffectiveMode() {
+        return this.theme === 'auto' ? this.systemTheme : this.theme
+      },
       setIconColor(val, type, theme) {
         this.iconColor[type][theme] = val
-
-        let tmpTheme = common.isInDarkMode() ? 'dark' : 'light'
-        if ((this.theme === 'auto' && tmpTheme === theme ) || this.theme === theme) {
-          // 发送图标颜色数据到background，由background设置图标颜色
+        const tmpTheme = common.isInDarkMode() ? 'dark' : 'light'
+        if (((this.theme === 'auto' && tmpTheme === theme) || this.theme === theme)
+          && typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
           chrome.runtime.sendMessage(JSON.stringify({
             type: type,
             data: val
           }))
         }
-
-        // 同步到设置
         storage.set(type, this.iconColor[type])
       },
-
       sendIconColorToBackground(theme) {
-        // 发送图标颜色数据到background，由background设置图标颜色
+        if (!(typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage)) {
+          return
+        }
         chrome.runtime.sendMessage(JSON.stringify({
           type: 'icon_color',
           data: this.iconColor.icon_color[theme]
         }))
-
-        // 发送图标颜色数据到background，由background设置图标颜色
         chrome.runtime.sendMessage(JSON.stringify({
           type: 'icon_downloading_color',
           data: this.iconColor.icon_downloading_color[theme]
         }))
       },
-
-      /**
-       * 设置下载面板主题
-       *
-       * @param theme {String} light、dark、custom
-       */
       setDownloadPanelTheme(theme) {
-        // 同步到设置
-        storage.set('download_panel_theme', theme)
         this.downloadPanelTheme = theme
+        return storage.set('download_panel_theme', theme)
+      },
+      async loadThemeData() {
+        try {
+          const url = (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.getURL)
+            ? chrome.runtime.getURL('/theme/theme.json')
+            : '/theme/theme.json'
+          const response = await fetch(url)
+          this.themeData = await response.json()
+        } catch (e) {
+          console.warn('Failed to load theme.json', e)
+          this.themeData = {}
+        }
+      },
+      getPreviewThemeName() {
+        const previewMode = this.theme === 'auto' ? this.previewMode : this.getEffectiveMode()
+        return this.getThemeNameByMode(this.selectedThemeSeriesKey, previewMode)
       }
     }
   }
 </script>
 
-<!--suppress CssUnusedSymbol -->
 <style scoped rel="stylesheet/css">
   .home {
     height: 100%;
     width: 100%;
+    max-width: 960px;
     padding: 20px;
+    box-sizing: border-box;
   }
 
   .title {
     font-size: 15px;
   }
 
-  /* 通用卡片样式 */
   .box-card {
-    width: 600px;
+    width: 100%;
+    max-width: 920px;
     margin-bottom: 36px;
+    border-radius: 18px;
+    box-sizing: border-box;
   }
-  .box-card >>> .el-card__body {
-    padding: 10px 16px;
+
+  .box-card :deep(.el-card__body) {
+    padding: 16px 18px;
   }
+
   .box-card .item {
     display: table;
     height: 100%;
     font-size: 14px;
-    width: 567px;
+    width: 100%;
     padding: 4px;
+    box-sizing: border-box;
   }
+
   .box-card .item.pointer:hover {
     cursor: pointer;
   }
+
   .box-card .item .content {
     display: table-cell;
     width: 500px;
     vertical-align: middle;
   }
+
   .box-card .item .content .setting-title {
     display: block;
+    font-weight: 600;
+    color: #20262e;
   }
+
   .box-card .item .content .setting-description {
     display: block;
-    color: gray;
+    color: #7b8694;
     font-size: 12px;
+    margin-top: 4px;
+    line-height: 1.55;
   }
+
   .box-card .item .content .link {
     color: #ff8740;
     cursor: pointer;
     text-decoration: underline;
   }
+
   .box-card .item .switch {
     text-align: right;
     display: table-cell;
     vertical-align: middle;
     padding-right: 4px;
   }
+
   .box-card .item .switch.width {
     width: 362px;
   }
-  .box-card .item .switch.icon >>> .el-color-picker:first-child {
+
+  .box-card .item .switch.icon :deep(.el-color-picker:first-child) {
     margin-right: 16px;
   }
-  .box-card .item .switch.icon >>> .el-color-picker.color .el-color-picker__trigger {
+
+  .box-card .item .switch.icon :deep(.el-color-picker.color .el-color-picker__trigger) {
     border-color: #5ba2ff;
   }
-  .box-card .item .code {
-    background-color: #ececec;
-    border-radius: 4px;
-    padding: 2px 6px;
-    font-family: Consolas, Microsoft YaHei, sans-serif;
-  }
-  .box-card .item .setting-description .code {
-    margin-left: 4px;
-  }
-  /* 自定义下载面板主题 */
-  .box-card .item.custom {
-    display: block;
-  }
-  .box-card .item .themes {
-    margin-top: 16px;
-  }
-  .box-card .item .theme {
-    display: inline-block;
-    vertical-align: top;
-    width: 178px;
-    height: 200px;
-    border-radius: 4px;
-    border: 2px solid #e8e8e8;
-    position: relative;
-  }
-  .box-card .item .theme.light,
-  .box-card .item .theme.dark {
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  .box-card .item .theme.light:hover,
-  .box-card .item .theme.dark:hover,
-  .box-card .item .theme.selected {
-    border-color: #008efc;
-  }
-  .box-card .item .theme.light {
-    background: url(/img/light.png) no-repeat;
-    background-size: 100% 100%;
-  }
-  .box-card .item .theme.dark {
-    background: url(/img/dark.png) no-repeat;
-    background-size: 100% 100%;
-  }
-  .box-card .item .theme.custom {
-    font-size: 12px;
-    text-align: center;
-  }
-  .box-card .item .theme.custom .message {
-    margin-top: 81px;
-    color: #009688;
-    word-wrap: break-word;
-    font-weight: bold;
-    padding: 0 18px;
-  }
-  .box-card .item .theme .selected-background {
-    height: 24px;
-    left: auto;
-    right: -8px;
-    top: -15px;
-    width: 24px;
-    position: absolute;
-    background-color: white;
-    border-radius: 12px;
-  }
-  .box-card .item .theme .selected {
-    height: 26px;
-    left: auto;
-    right: -8px;
-    top: -14px;
-    width: 24px;
-    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDQ4IDQ4IiBmaWxsPSIjNDI4NUY0Ij48cGF0aCBkPSJNMCAwaDQ4djQ4SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTI0IDRDMTIuOTUgNCA0IDEyLjk1IDQgMjRjMCAxMS4wNCA4Ljk1IDIwIDIwIDIwIDExLjA0IDAgMjAtOC45NiAyMC0yMCAwLTExLjA1LTguOTYtMjAtMjAtMjB6bS00IDMwTDEwIDI0bDIuODMtMi44M0wyMCAyOC4zNGwxNS4xNy0xNS4xN0wzOCAxNiAyMCAzNHoiLz48L3N2Zz4=) no-repeat 50%;
-    background-size: 28px 28px;
-    position: absolute;
-  }
 
-  .page-size >>> .el-input-number {
-    width: 70px;
-    margin-left: -1px;
-  }
-  .page-size >>> .el-input__inner {
-    border-radius: 0;
-  }
-
-  .box-card >>> .el-radio-button__inner {
-    padding: 5px 17px;
+  .box-card :deep(.el-radio-button__inner) {
+    padding: 6px 18px;
     font-size: 12px;
     border-radius: 0 !important;
   }
 
-  .box-card >>> .el-divider--horizontal {
-    margin: 10px 0!important;
-    height: 0.5px!important;
+  .box-card :deep(.el-divider--horizontal) {
+    margin: 14px 0 !important;
+    height: 0.5px !important;
   }
 
+  .compact-item {
+    align-items: center;
+  }
+
+  .page-size :deep(.el-input-number) {
+    width: 78px;
+    margin-left: 0;
+  }
+
+  .page-size :deep(.el-input-number + .el-input-number) {
+    margin-left: 8px;
+  }
+
+  .page-size :deep(.el-input__inner) {
+    border-radius: 10px;
+  }
+
+  .theme-system-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 18px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    border-radius: 18px;
+    border: 1px solid #e7ecf4;
+    background:
+      linear-gradient(135deg, rgba(123, 97, 255, 0.05) 0%, rgba(64, 158, 255, 0.04) 100%),
+      linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    flex-wrap: wrap;
+  }
+
+  .theme-system-copy {
+    flex: 1;
+    min-width: 260px;
+  }
+
+  .theme-system-title {
+    font-size: 15px;
+    line-height: 1.35;
+    font-weight: 600;
+    color: #20262e;
+  }
+
+  .theme-system-desc {
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 1.55;
+    color: #7b8694;
+    max-width: 560px;
+  }
+
+  .theme-meta-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .theme-meta-item {
+    min-width: 118px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #fbfcfe 0%, #f3f6fb 100%);
+    border: 1px solid #e7ecf4;
+  }
+
+  .meta-label {
+    display: block;
+    font-size: 11px;
+    color: #8a93a0;
+    margin-bottom: 4px;
+  }
+
+  .meta-value {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #20262e;
+    text-transform: capitalize;
+  }
+
+  .theme-hero-actions {
+    width: min(200px, 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .scale-panel {
+    border: 1px solid #e7ecf4;
+    background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+    border-radius: 16px;
+    padding: 12px 14px;
+  }
+
+  .fixed-panel {
+    min-height: 88px;
+  }
+
+  .scale-label,
+  .scale-value,
+  .scale-hint {
+    display: block;
+    font-size: 12px;
+    color: #5c6775;
+  }
+
+  .scale-label {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .scale-value {
+    margin-top: 4px;
+    font-weight: 700;
+    color: #20262e;
+  }
+
+  .scale-hint {
+    margin-top: 8px;
+    line-height: 1.5;
+    color: #7b8694;
+  }
+
+  .live-preview-shell {
+    margin-bottom: 22px;
+  }
+
+  .theme-system-selector {
+    width: min(240px, 100%);
+  }
+
+  .preview-stage {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    padding: 16px;
+    border: 1px solid #e7ecf4;
+    background: radial-gradient(circle at top left, #ffffff 0%, #f5f8ff 46%, #eef3fb 100%);
+    min-height: 420px;
+  }
+
+  .preview-stage-head {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .preview-stage-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.45;
+    background-image:
+      linear-gradient(rgba(125, 145, 180, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(125, 145, 180, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+
+  .preview-stage-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.84);
+    border: 1px solid rgba(160, 175, 201, 0.28);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5c6775;
+  }
+
+  .preview-mode-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(160, 175, 201, 0.3);
+    box-shadow: 0 10px 24px rgba(26, 38, 58, 0.08);
+  }
+
+  .preview-mode-button {
+    border: none;
+    background: transparent;
+    color: #647084;
+    height: 34px;
+    padding: 0 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .preview-mode-button.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, #2f6dff 0%, #7b61ff 100%);
+    box-shadow: 0 10px 20px rgba(82, 108, 255, 0.26);
+  }
+
+  .preview-mode-indicator {
+    display: inline-flex;
+    align-items: center;
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(160, 175, 201, 0.3);
+    color: #556173;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .popup-preview-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 430px;
+    padding: 8px 0 2px;
+    box-sizing: border-box;
+  }
+
+  .popup-preview {
+    transform-origin: top center;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 56px rgba(33, 43, 60, 0.16), 0 8px 24px rgba(33, 43, 60, 0.08);
+    position: relative;
+    background: var(--background-color, #ffffff);
+    color: var(--content-file-color, #20262e);
+  }
+
+  .preview-window-chrome {
+    height: 26px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 14px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(130, 145, 170, 0.12);
+  }
+
+  .preview-window-chrome span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(130, 145, 170, 0.28);
+  }
+
+  .preview-popup-header {
+    height: 74px;
+    padding: 16px 18px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--header-border-color, rgba(0,0,0,0.06));
+    background: var(--header-background-color, rgba(255,255,255,0.88));
+  }
+
+  .preview-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .preview-brand-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(135deg, #7b61ff 0%, #409eff 100%);
+    box-shadow: 0 10px 24px rgba(123, 97, 255, 0.28);
+  }
+
+  .brand-title {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--content-text-color, #20262e);
+  }
+
+  .brand-subtitle {
+    font-size: 11px;
+    text-transform: capitalize;
+    color: var(--secondary-text-color, #7b8694);
+    margin-top: 4px;
+  }
+
+  .preview-header-icons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .preview-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid var(--header-icon-border-color, rgba(0,0,0,0.08));
+    background: var(--header-icon-background-color, rgba(255,255,255,0.75));
+    color: var(--header-icon-color, inherit);
+  }
+
+  .preview-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 18px 0;
+  }
+
+  .preview-search {
+    flex: 1;
+    height: 40px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    background: var(--search-background-color, rgba(0, 0, 0, 0.04));
+    border: 1px solid var(--search-border-color, rgba(0, 0, 0, 0.05));
+  }
+
+  .preview-search-icon {
+    font-size: 13px;
+    margin-right: 10px;
+    opacity: 0.7;
+  }
+
+  .preview-search-input {
+    font-size: 13px;
+    color: var(--secondary-text-color, #7b8694);
+  }
+
+  .preview-toolbar-pill {
+    padding: 8px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--secondary-text-color, #7b8694);
+    background: var(--tag-background-color, rgba(0,0,0,0.04));
+    border: 1px solid var(--tag-border-color, rgba(0,0,0,0.05));
+  }
+
+  .preview-popup-content {
+    padding: 14px 18px 18px;
+  }
+
+  .preview-section-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--secondary-text-color, #8a93a0);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .preview-file {
+    position: relative;
+    min-height: 92px;
+    border-radius: 18px;
+    margin-bottom: 12px;
+    border: 1px solid var(--content-file-border-color, rgba(0,0,0,0.06));
+    background: var(--content-file-background-color, rgba(255,255,255,0.88));
+    display: flex;
+    align-items: stretch;
+    box-shadow: 0 8px 20px rgba(20, 26, 38, 0.05);
+    overflow: hidden;
+  }
+
+  .preview-file.is-active {
+    transform: translateY(0);
+  }
+
+  .preview-file-accent {
+    width: 4px;
+    background: var(--progress-bar-color, #409eff);
+  }
+
+  .preview-file-icon {
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--content-file-icon-color, inherit);
+  }
+
+  .preview-file-info {
+    flex: 1;
+    padding: 14px 12px 12px 0;
+    min-width: 0;
+  }
+
+  .preview-file-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .preview-file-name {
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--content-file-name-color, inherit);
+  }
+
+  .preview-file-percent {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--progress-bar-color, #409eff);
+  }
+
+  .preview-file-url {
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+    opacity: 0.78;
+    color: var(--content-file-url-color, inherit);
+  }
+
+  .preview-file-progress {
+    height: 6px;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    background: var(--progress-track-color, rgba(64, 158, 255, 0.14));
+  }
+
+  .preview-file-progress-bar {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--progress-bar-color, #409eff);
+  }
+
+  .preview-file-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--secondary-text-color, #7b8694);
+  }
+
+  .preview-file-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 12px 10px 0;
+  }
+
+  .preview-file-action {
+    width: 28px;
+    height: 28px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    background: var(--action-button-background-color, rgba(0,0,0,0.04));
+    color: var(--action-button-color, inherit);
+    border: 1px solid var(--action-button-border-color, rgba(0,0,0,0.05));
+  }
+
+  .preview-file-action.danger {
+    color: #ff5c5c;
+  }
+
+  .theme-series {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .series-group {
+    border-top: 1px solid #eef2f7;
+    padding-top: 20px;
+  }
+
+  .series-group:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .series-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .series-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #20262e;
+  }
+
+  .series-desc {
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #7b8694;
+  }
+
+  .theme-selector-control {
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .selector-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #5c6775;
+  }
+
+  .selection-meta-list {
+    margin-bottom: 0;
+  }
+
+  .theme-actions-row {
+    margin-top: 16px;
+  }
+
+  .theme-actions-hint {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #7b8694;
+  }
+
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .single-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-option {
+    position: relative;
+    padding: 14px;
+    border-radius: 20px;
+    border: 1px solid #e8edf5;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+    cursor: pointer;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+
+  .theme-option:hover {
+    transform: translateY(-3px);
+    border-color: #cdd8ea;
+    box-shadow: 0 18px 34px rgba(26, 38, 58, 0.08);
+  }
+
+  .theme-option.active {
+    border-color: rgba(123, 97, 255, 0.42);
+    box-shadow: 0 20px 40px rgba(123, 97, 255, 0.14);
+    background: linear-gradient(180deg, #ffffff 0%, #f7f4ff 100%);
+  }
+
+  .theme-option.previewing {
+    border-color: rgba(64, 158, 255, 0.34);
+    box-shadow: 0 16px 32px rgba(64, 158, 255, 0.12);
+  }
+
+  .theme-option.active::after {
+    content: '✓';
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #7b61ff 0%, #409eff 100%);
+    box-shadow: 0 8px 18px rgba(123, 97, 255, 0.28);
+  }
+
+  .option-topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .theme-badge,
+  .theme-state {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .theme-badge {
+    background: #f3f6fb;
+    color: #5c6775;
+    border: 1px solid #e1e7f0;
+  }
+
+  .theme-state {
+    background: rgba(123, 97, 255, 0.08);
+    color: #6f57ea;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .theme-preview {
+    width: 100%;
+    height: 122px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  .mini-ui {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  .mini-ui .preview-header {
+    height: 28px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    font-size: 9px;
+    font-weight: 700;
+    border-bottom: 1px solid;
+  }
+
+  .mini-ui .preview-item {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .mini-ui .preview-filename {
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  .mini-ui .preview-progress {
+    height: 5px;
+    border-radius: 999px;
+    margin-bottom: 5px;
+    overflow: hidden;
+  }
+
+  .mini-ui .preview-progress-bar {
+    height: 100%;
+  }
+
+  .mini-ui .preview-size {
+    font-size: 8px;
+    opacity: 0.8;
+  }
+
+  .theme-option-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .theme-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #20262e;
+  }
+
+  .theme-note {
+    font-size: 12px;
+    line-height: 1.55;
+    color: #7b8694;
+  }
+
+  .featured-group .theme-option {
+    padding: 16px;
+  }
+
+  .hero-option .theme-preview {
+    height: 132px;
+  }
+
+  .theme-preview.follow-mode {
+    background: linear-gradient(135deg, #f8fbff 0%, #eef3fb 100%);
+    color: #586474;
+  }
+
+  .theme-preview.follow-mode .preview-header {
+    background: rgba(255,255,255,0.58);
+    border-bottom-color: rgba(182, 193, 209, 0.8);
+  }
+
+  .theme-preview.follow-mode .preview-progress {
+    background: rgba(64, 158, 255, 0.16);
+  }
+
+  .theme-preview.follow-mode .preview-progress-bar {
+    background: #409eff;
+  }
+
+  .theme-preview.terminal-dark {
+    background: linear-gradient(135deg, #0a0e14 0%, #141b22 100%);
+    color: #00ff7a;
+    border-color: rgba(0, 255, 122, 0.2);
+  }
+
+  .theme-preview.terminal-dark .preview-header {
+    background: rgba(3, 10, 14, 0.88);
+    border-bottom-color: rgba(0, 255, 122, 0.25);
+  }
+
+  .theme-preview.terminal-dark .preview-progress {
+    background: rgba(0, 255, 122, 0.16);
+  }
+
+  .theme-preview.terminal-dark .preview-progress-bar {
+    background: #00ff7a;
+  }
+
+  .theme-preview.terminal-light {
+    background: linear-gradient(135deg, #eef7f1 0%, #dfece3 100%);
+    color: #0d7a46;
+    border-color: rgba(13, 122, 70, 0.16);
+  }
+
+  .theme-preview.terminal-light .preview-header {
+    background: rgba(255,255,255,0.6);
+    border-bottom-color: rgba(13, 122, 70, 0.2);
+  }
+
+  .theme-preview.terminal-light .preview-progress {
+    background: rgba(13, 122, 70, 0.14);
+  }
+
+  .theme-preview.terminal-light .preview-progress-bar {
+    background: #0d7a46;
+  }
+
+  .theme-preview.github-dark {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    color: #9ecbff;
+    border-color: rgba(88, 166, 255, 0.16);
+  }
+
+  .theme-preview.github-dark .preview-header {
+    background: rgba(13, 17, 23, 0.86);
+    border-bottom-color: rgba(88, 166, 255, 0.18);
+  }
+
+  .theme-preview.github-dark .preview-progress {
+    background: rgba(88, 166, 255, 0.16);
+  }
+
+  .theme-preview.github-dark .preview-progress-bar {
+    background: #58a6ff;
+  }
+
+  .theme-preview.github-light {
+    background: linear-gradient(135deg, #ffffff 0%, #f6f8fa 100%);
+    color: #0969da;
+    border-color: rgba(9, 105, 218, 0.12);
+  }
+
+  .theme-preview.github-light .preview-header {
+    background: rgba(255,255,255,0.86);
+    border-bottom-color: rgba(9, 105, 218, 0.16);
+  }
+
+  .theme-preview.github-light .preview-progress {
+    background: rgba(9, 105, 218, 0.12);
+  }
+
+  .theme-preview.github-light .preview-progress-bar {
+    background: #0969da;
+  }
+
+  .theme-preview.claude-dark {
+    background: linear-gradient(135deg, #241811 0%, #3d2418 100%);
+    color: #f3b394;
+    border-color: rgba(243, 179, 148, 0.15);
+  }
+
+  .theme-preview.claude-dark .preview-header {
+    background: rgba(36, 24, 17, 0.85);
+    border-bottom-color: rgba(243, 179, 148, 0.16);
+  }
+
+  .theme-preview.claude-dark .preview-progress {
+    background: rgba(243, 179, 148, 0.14);
+  }
+
+  .theme-preview.claude-dark .preview-progress-bar {
+    background: #cc785c;
+  }
+
+  .theme-preview.claude-light {
+    background: linear-gradient(135deg, #f7f1ea 0%, #eee5dc 100%);
+    color: #b4634a;
+    border-color: rgba(180, 99, 74, 0.12);
+  }
+
+  .theme-preview.claude-light .preview-header {
+    background: rgba(255, 251, 246, 0.78);
+    border-bottom-color: rgba(180, 99, 74, 0.14);
+  }
+
+  .theme-preview.claude-light .preview-progress {
+    background: rgba(204, 120, 92, 0.14);
+  }
+
+  .theme-preview.claude-light .preview-progress-bar {
+    background: #cc785c;
+  }
+
+  .theme-preview.basic-dark {
+    background: linear-gradient(135deg, #171c22 0%, #2a3340 100%);
+    color: #9dc5ff;
+    border-color: rgba(76, 140, 255, 0.16);
+  }
+
+  .theme-preview.basic-dark .preview-header {
+    background: rgba(23, 28, 34, 0.84);
+    border-bottom-color: rgba(76, 140, 255, 0.16);
+  }
+
+  .theme-preview.basic-dark .preview-progress {
+    background: rgba(76, 140, 255, 0.14);
+  }
+
+  .theme-preview.basic-dark .preview-progress-bar {
+    background: #4c8cff;
+  }
+
+  .theme-preview.basic-light {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    color: #3b82f6;
+    border-color: rgba(59, 130, 246, 0.12);
+  }
+
+  .theme-preview.basic-light .preview-header {
+    background: rgba(255,255,255,0.84);
+    border-bottom-color: rgba(59, 130, 246, 0.12);
+  }
+
+  .theme-preview.basic-light .preview-progress {
+    background: rgba(59, 130, 246, 0.12);
+  }
+
+  .theme-preview.basic-light .preview-progress-bar {
+    background: #3b82f6;
+  }
+
+  .popup-shell {
+    width: 100%;
+    height: 100%;
+    background: var(--background-color);
+  }
+
+  .popup-home {
+    background-color: var(--background-color);
+    overflow: hidden;
+  }
+
+  .popup-header {
+    padding: 9px 3px 0 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .popup-search {
+    width: 200px;
+  }
+
+  .popup-search .search-inner {
+    height: 24px;
+    border-radius: 16px;
+    background-color: var(--header-search-background-color);
+    color: var(--header-search-color);
+    border: 1px solid var(--header-search-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 0 12px;
+    font-size: 12px;
+    box-sizing: border-box;
+  }
+
+  .popup-search .search-placeholder {
+    opacity: 0.82;
+  }
+
+  .popup-search .search-icon {
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  .popup-header-operator {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .popup-header-operator .header-button {
+    display: inline-flex;
+    padding: 3px 5px;
+  }
+
+  .popup-header-operator .icon-button {
+    margin: 0;
+    font-size: 16px;
+    color: var(--header-icon-color);
+    transition: .2s;
+  }
+
+  .popup-content {
+    height: calc(100% - 48px);
+    margin: 8px 0 0 6px;
+  }
+
+  .preview-scroll {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+    box-sizing: border-box;
+  }
+
+  .popup-preview .file {
+    height: 70px;
+    border-radius: 4px;
+    margin-right: 3px;
+    margin-bottom: 8px;
+    border: 1px solid var(--content-file-border-color);
+    background-color: var(--content-file-background-color);
+    overflow: hidden;
+    color: var(--content-file-color);
+    position: relative;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    user-select: none;
+  }
+  .popup-preview .file.is-hovered .content-operator-wrapper {
+    display: inline-block;
+  }
+
+  .popup-preview .file .icon {
+    text-align: center;
+    line-height: 70px;
+    width: 52px;
+    height: 100%;
+    border-right: 1px solid var(--content-file-icon-border-right-color);
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .popup-preview .progress-ring {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--content-file-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--content-file-filename-color);
+    font-size: 9px;
+    font-weight: 700;
+    box-sizing: border-box;
+  }
+
+  .popup-preview .progress-ring-inner {
+    transform: scale(.95);
+  }
+
+  .popup-preview .file .file-content {
+    width: calc(100% - 70px);
+    float: right;
+    padding: 6px 8px 0 0;
+    box-sizing: border-box;
+  }
+
+  .popup-preview .file .filename {
+    display: block;
+    height: 19px;
+    line-height: 19px;
+    font-weight: bold;
+    font-size: 12px;
+    color: var(--content-file-filename-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .popup-preview .file .file-url {
+    display: block;
+    height: 19px;
+    line-height: 19px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--content-file-color);
+    opacity: 0.85;
+  }
+
+  .popup-preview .file .info {
+    width: 100%;
+    height: 24px;
+    display: table;
+  }
+
+  .popup-preview .file .info .small-size {
+    transition: none;
+    font-size: 12px;
+    -webkit-transform-origin-x: 0;
+    -webkit-transform: scale(.9);
+    font-family: Consolas, Microsoft YaHei, serif;
+  }
+
+  .popup-preview .file .info .cell {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .popup-preview .file .info .left {
+    text-align: left;
+  }
+
+  .popup-preview .file .info .left.common {
+    width: 110px;
+  }
+
+  .popup-preview .file .info .middle {
+    text-align: center;
+  }
+
+  .popup-preview .file .info .middle.common {
+    width: 72px;
+  }
+
+  .popup-preview .file .info .right {
+    text-align: right;
+  }
+
+  .popup-preview .file .info .divider {
+    width: 16px;
+    text-align: center;
+    padding: 0 4px;
+  }
+
+  .popup-preview .file .content-operator-wrapper {
+    position: absolute;
+    top: -2px;
+    right: 6px;
+    height: 28px;
+    line-height: 36px;
+    padding-left: 16px;
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, var(--content-file-background-color) 24%);
+    z-index: 1;
+    display: none;
+  }
+
+  .popup-preview .file .content-operator {
+    position: relative;
+    float: right;
+  }
+
+  .popup-preview .file .content-operator .icon-button {
+    margin: 4px 0 0 12px;
+    display: inline-block;
+    cursor: default;
+    font-size: 14px !important;
+    color: var(--header-icon-color);
+  }
 </style>

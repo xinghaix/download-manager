@@ -1,5 +1,5 @@
 # **download-manager**
-[![build](https://img.shields.io/travis/xinghaix/download-manager/master?style=flat-square)](https://www.travis-ci.org/xinghaix/download-manager)
+
 ![release](https://img.shields.io/github/v/release/xinghaix/download-manager.svg?include_prereleases&style=flat-square)
 ![language](https://img.shields.io/badge/language-Vue.js-forestgreen.svg?style=flat-square)
 [![Hex.pm](https://img.shields.io/github/license/xinghaix/download-manager?style=flat-square)](https://github.com/xinghaix/download-manager/blob/master/LICENSE)
@@ -11,20 +11,22 @@
 [![Microsoft Edge Version](https://img.shields.io/badge/dynamic/json?style=flat-square&label=Microsoft%20Edge%20Add-on&query=$.version&url=https://microsoftedge.microsoft.com/addons/getproductdetailsbycrxid/phalbpghhjknlmomkmimbamfceiddlic)](https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic)
 [![Microsoft Edge Rating](https://img.shields.io/badge/dynamic/json?style=flat-square&color=green&label=Rating&query=$.averageRating&suffix=%2F5&url=https://microsoftedge.microsoft.com/addons/getproductdetailsbycrxid/phalbpghhjknlmomkmimbamfceiddlic)](https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic)
 
-谷歌浏览器下载管理器插件  
+谷歌浏览器下载管理器插件
 点击插件图标即可查看所有下载文件状态
 
-
 ### 1. 语言
+
 **[简体中文](../README.md) | [English](docs/README_EN.md)**
 
 ### 2. 下载安装
+
 [Chrome Web Store](https://chrome.google.com/webstore/detail/download-manager/ofpglhlcdbjdhlacgbljnildhajfmlei?hl=zh-CN) 、
 [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic)
 
 ### 3. [隐私政策说明](docs/Privacy.md)
 
 ### **4. 功能**
+
 1. 下载文件百分比进度显示
 2. 下载文件可暂停、恢复下载、取消、删除、重试
 3. 搜索所有已经下载的文件
@@ -39,17 +41,21 @@
 12. 自定义主题
 
 ### **5. 支持的语言**
+
 `简体中文`、`English`、`Japanese`、`German`、`Russian`、`French`
 
 这是使用谷歌翻译后的结果，如果您有更好的建议，请创建Issues或发邮件!
 
 **步骤：**
+
 1. 所有翻译文件位置：public/_locales/\*\*/*.json
 2. 进入对应语言的目录
 3. 复制、下载或者Pull Request修改后的文件，我会在检查核对后尽快上线
 
-### **6. 未来计划**  
-以下计划按先后顺序依次开发😂：  
+### **6. 未来计划**
+
+以下计划按先后顺序依次开发😂：
+
 1. 解决重试下载失败文件变成新创建下载的问题
 2. 自定义下载面板主题
 3. 强迫症系列：只显示下载文件名称、下载面板停止显示飞入飞出动画
@@ -57,25 +63,28 @@
 
 ### **7. Info**
 
-#### **7.1. 最新版本**：1.1.3
-新增：
-1. 下载通知可一直保留在屏幕上
-2. 自定义下载面板页面大小。设置 -> 主题 -> 下载面板 
+#### **7.1. 最新版本**：1.2.1
 
+新增：
+
+1. 插件支持V3协议
+2. 完善主题设置，新增预览
 
 <img src="docs/img/Popup_zh_CN.png" width="320" hegiht="420" alt=""/>
 <img src="docs/img/Settings_zh_CN.png" width="320" hegiht="420" alt=""/>
 
 ### **8. 编译打包**
+
 ```
 # 加载依赖
-npm install
+pnpm install
 
 # 编译打包
-npm run build
+pnpm run build
 ```
 
 ### 9. 帮助
+
 有任何问题请创建Issues
 或者
 给我发送<a href="mailto:xinghaixw@outlook.com">邮件</a>
