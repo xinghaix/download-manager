@@ -1,5 +1,33 @@
 /* eslint-disable no-undef */
 
+const LOCAL_STORAGE_PREFIX = '__download_manager__'
+
+function hasChromeStorage() {
+  return typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync && chrome.storage.local
+}
+
+function getLocalKey(key) {
+  return `${LOCAL_STORAGE_PREFIX}:${key}`
+}
+
+function localGet(key) {
+  try {
+    const raw = localStorage.getItem(getLocalKey(key))
+    if (raw === null || typeof raw === 'undefined') return null
+    return JSON.parse(raw)
+  } catch (e) {
+    return null
+  }
+}
+
+function localSet(key, value) {
+  try {
+    localStorage.setItem(getLocalKey(key), JSON.stringify(value))
+  } catch (e) {
+    // ignore localStorage errors in non-extension dev environments
+  }
+}
+
 const storage = {
   /**
    * 设置配置
@@ -8,7 +36,17 @@ const storage = {
    * @param value
    */
   set(key, value) {
-    chrome.storage.sync.get('sync', isSync => chrome.storage[isSync ? 'sync' : 'local'].set({[key]: value}))
+    if (!hasChromeStorage()) {
+      localSet(key, value)
+      return Promise.resolve()
+    }
+
+    return new Promise(resolve => {
+      chrome.storage.sync.get('sync', result => {
+        const isSync = !!(result && result.sync)
+        chrome.storage[isSync ? 'sync' : 'local'].set({ [key]: value }, () => resolve())
+      })
+    })
   },
 
   /**
@@ -17,9 +55,14 @@ const storage = {
    * @return {Promise}
    */
   get(keys) {
+    if (!hasChromeStorage()) {
+      return Promise.resolve(localGet(keys))
+    }
+
     return new Promise(resolve => {
-      chrome.storage.sync.get('sync', isSync => {
-        chrome.storage[isSync ? 'sync' : 'local'].get([keys], result => resolve(result[keys]))
+      chrome.storage.sync.get('sync', result => {
+        const isSync = !!(result && result.sync)
+        chrome.storage[isSync ? 'sync' : 'local'].get([keys], result2 => resolve(result2[keys]))
       })
     })
   },
@@ -68,9 +111,9 @@ const storage = {
       })
     }
 
-    // 主题 - 下载面板主题，默认为白色
-    await this.setDefaultIfNull('download_panel_theme', 'white')
-    await this.setDefaultIfNull('download_panel_page_size', {width: 400, height: 420})
+    // 主题 - 下载面板主题，默认为亮色
+    await this.setDefaultIfNull('download_panel_theme', 'light')
+    await this.setDefaultIfNull('download_panel_page_size', { width: 400, height: 420 })
     // 设置 - 下载 - 插件设置默认不展示提示信息
     await this.setDefaultIfNull('close_tooltip', true)
     await this.setDefaultIfNull('left_click_file', true)
@@ -78,8 +121,6 @@ const storage = {
     await this.setDefaultIfNull('left_click_url', true)
     await this.setDefaultIfNull('right_click_url', true)
     await this.setDefaultIfNull('enable_animation', false)
-    // 插件默认关闭下载过程中的通知
-    await this.setDefaultIfNull('close_download_notification', true)
     await this.setDefaultIfNull('download_started_notification', false)
     await this.setDefaultIfNull('download_completed_notification', false)
     await this.setDefaultIfNull('download_warning_notification', false)
@@ -88,8 +129,6 @@ const storage = {
     await this.setDefaultIfNull('download_notification_reserved_time', 10)
     await this.setDefaultIfNull('download_notification_remain_visible', false)
     await this.setDefaultIfNull('download_warning_tone', false)
-    // 插件默认关闭下载完成提示音
-    await this.setDefaultIfNull('download_completion_tone', false)
     // 插件默认创建下载文件上下文菜单
     await this.setDefaultIfNull('download_context_menus', true)
   }

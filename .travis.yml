@@ -1,19 +1,19 @@
 language: node_js
 
 node_js:
-  - 12
+  - 18
 
 cache:
   directories:
     - node_modules
 
 install:
-  - npm install
+  - pnpm install
 
 before_script:
 
 script:
-  - npm run build
+  - pnpm run build
 
 after_script:
 

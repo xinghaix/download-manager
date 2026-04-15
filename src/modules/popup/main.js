@@ -1,18 +1,18 @@
-import Vue from 'vue'
-import ElementUI from 'element-ui'
+import { createApp } from 'vue'
+import ElementPlus from 'element-plus'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import Popup from './Popup.vue'
-import VueClipboard from 'vue-clipboard2'
 import VueVirtualScroller from 'vue-virtual-scroller'
+import 'element-plus/dist/index.css'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
-Vue.use(ElementUI)
-Vue.use(VueClipboard)
-Vue.use(VueVirtualScroller)
+const app = createApp(Popup)
 
-Vue.config.debug = false
-Vue.config.devtools = false
-Vue.config.productionTip = false
+app.use(ElementPlus)
+app.use(VueVirtualScroller)
 
-new Vue({
-  render: (h) => h(Popup)
-}).$mount('#app')
+Object.entries(ElementPlusIconsVue).forEach(([name, component]) => {
+  app.component(name, component)
+})
+
+app.mount('#app')

@@ -1,15 +1,15 @@
 {
   "name": "__MSG_extName__",
   "description": "__MSG_extDesc__",
-  "version": "1.1.4",
-  "manifest_version": 2,
+  "version": "1.2.1",
+  "manifest_version": 3,
   "icons": {
     "16": "img/icon16.png",
     "19": "img/icon19.png",
     "38": "img/icon38.png",
     "128": "img/icon128.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": {
      "19": "img/icon19.png",
      "38": "img/icon38.png"
@@ -18,11 +18,11 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "persistent": true,
-    "page": "background.html"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "commands": {
-    "_execute_browser_action": {
+    "_execute_action": {
       "suggested_key": {
         "default": "Alt+X",
         "mac": "Alt+X"
@@ -39,9 +39,12 @@
     "storage",
     "notifications",
     "contextMenus",
-    "background"
+    "offscreen",
+    "alarms"
   ],
   "homepage_url": "https://github.com/xinghaix/download-manager",
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-  "minimum_chrome_version": "39"
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "minimum_chrome_version": "109"
 }

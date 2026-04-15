@@ -1,14 +1,15 @@
-import Vue from 'vue'
-import ElementUI from 'element-ui'
+import { createApp } from 'vue'
+import ElementPlus from 'element-plus'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import Options from './Options.vue'
-import common from '../../utils/common'
+import 'element-plus/dist/index.css'
 
-Vue.use(ElementUI, {i18n: path => common.loadI18nMessage(path.replace(/\./g, '_'))})
+const app = createApp(Options)
 
-Vue.config.debug = false
-Vue.config.devtools = false
-Vue.config.productionTip = false
+app.use(ElementPlus)
 
-new Vue({
-  render: (h) => h(Options)
-}).$mount('#app')
+Object.entries(ElementPlusIconsVue).forEach(([name, component]) => {
+  app.component(name, component)
+})
+
+app.mount('#app')

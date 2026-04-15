@@ -63,24 +63,26 @@
       <div class="content-operator">
         <el-tooltip :disabled="closeTooltip" :content="i18data.openFileInFolder"
                     placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="icon-button el-icon-folder" v-show="openable(item)" @click="showInFolder(item)"/>
+          <el-icon class="icon-button" v-show="openable(item)" @click="showInFolder(item)"><FolderOpened /></el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="item.paused ? i18data.resume : i18data.pause"
                     placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <i v-show="item.state === 'in_progress'" @click="pauseOrResume(item)"
-             class="icon-button" :class="item.paused ? 'el-icon-video-play' : 'el-icon-video-pause'"/>
+          <el-icon v-show="item.state === 'in_progress'" @click="pauseOrResume(item)" class="icon-button">
+            <VideoPlay v-if="item.paused" />
+            <VideoPause v-else />
+          </el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.delete"
                     placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="icon-button el-icon-delete" v-show="removable(item)" @click="remove(item)"/>
+          <el-icon class="icon-button" v-show="removable(item)" @click="remove(item)"><Delete /></el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.retry"
                     placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="icon-button el-icon-refresh-right" v-show="retryable(item)" @click="retryDownload(item)"/>
+          <el-icon class="icon-button" v-show="retryable(item)" @click="retryDownload(item)"><RefreshRight /></el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.erase"
                     placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <i class="icon-button el-icon-close" @click="erase(item)"/>
+          <el-icon class="icon-button" @click="erase(item)"><Close /></el-icon>
         </el-tooltip>
       </div>
     </div>
@@ -90,11 +92,12 @@
 <!--suppress JSUnresolvedFunction -->
 <script>
   /* eslint-disable no-undef */
-  import Progress from "./Progress"
+  import { Close, Delete, FolderOpened, RefreshRight, VideoPause, VideoPlay } from '@element-plus/icons-vue'
+  import Progress from './Progress'
 
   export default {
-    name: "File",
-    components: { Progress },
+    name: 'File',
+    components: { Close, Delete, FolderOpened, Progress, RefreshRight, VideoPause, VideoPlay },
     props: {
       item: {
         type: Object,
@@ -125,15 +128,15 @@
         required: true
       },
       render: {
-        type: Function(),
+        type: Function,
         required: true
       },
       erase: {
-        type: Function(),
+        type: Function,
         required: true
       },
       copyToClipboard: {
-        type: Function(),
+        type: Function,
         required: true
       }
     },
@@ -199,7 +202,10 @@
 
       // 从磁盘中删除文件
       remove(item) {
-        chrome.downloads.removeFile(item.id, () => this.erase(item))
+        chrome.downloads.removeFile(item.id, () => {
+          item.exists = false
+          this.erase(item)
+        })
       },
 
       // 暂停或恢复下载

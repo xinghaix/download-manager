@@ -1,15 +1,15 @@
 <template>
   <span class="tip"
-        :style="{ left: (position.x + 4) + 'px', top: (position.y - 12) + 'px', zIndex: zIndex }"
-        v-if="showTip">
+        :style="{ left: (normalizedPosition.x + 4) + 'px', top: (normalizedPosition.y - 12) + 'px', zIndex: zIndex }"
+        v-if="visible">
     {{text}}
   </span>
 </template>
 
 <script>
-/* eslint-disable vue/no-mutating-props */
   export default {
-    name: "Tip",
+    name: 'Tip',
+    emits: ['update:showTip'],
     props: {
       text: {
         type: String,
@@ -17,15 +17,10 @@
       },
       position: {
         type: Object,
-        default: () => {
-          return {
-            x: 0,
-            y: 0
-          }
-        },
-        validator: (value) => {
-          return value.x && value.y && value.x instanceof Number && value.y instanceof Number
-        }
+        default: () => ({
+          x: 0,
+          y: 0
+        })
       },
       timeout: {
         type: Number,
@@ -40,40 +35,59 @@
         default: false
       }
     },
-    mounted() {
-      if (this.timeout < 0) {
-        this.timeout = 0
-      }
-    },
     data() {
       return {
-        timeoutId: null
+        timeoutId: null,
+        visible: false
+      }
+    },
+    computed: {
+      normalizedTimeout() {
+        return this.timeout < 0 ? 0 : this.timeout
+      },
+      normalizedPosition() {
+        return {
+          x: Math.max(0, Number(this.position?.x) || 0),
+          y: Math.max(0, Number(this.position?.y) || 0)
+        }
       }
     },
     watch: {
-      position(val) {
-        if (val.x < 0) {
-          val.x = 0
+      position: {
+        handler() {
+          if (this.showTip) {
+            this.render()
+          }
+        },
+        deep: true
+      },
+      showTip(val) {
+        if (val) {
+          this.render()
+        } else {
+          this.clearTimer()
+          this.visible = false
         }
-        if (val.y < 0) {
-          val.y = 0
-        }
-        this.render()
       }
     },
+    beforeUnmount() {
+      this.clearTimer()
+    },
     methods: {
-      render() {
+      clearTimer() {
         if (this.timeoutId) {
           clearTimeout(this.timeoutId)
-        }
-        this.showTip = true
-        this.timeoutId = setTimeout(() => {
-          this.showTip = false
           this.timeoutId = null
-        }, this.timeout)
+        }
       },
-      destroy() {
-
+      render() {
+        this.clearTimer()
+        this.visible = true
+        this.timeoutId = setTimeout(() => {
+          this.visible = false
+          this.timeoutId = null
+          this.$emit('update:showTip', false)
+        }, this.normalizedTimeout)
       }
     }
   }

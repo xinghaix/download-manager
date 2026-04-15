@@ -64,7 +64,7 @@ const icon = {
   setIcon() {
     let imageData = this.drawIcon()
     if (imageData) {
-      chrome.browserAction.setIcon({imageData: imageData})
+      chrome.action.setIcon({imageData: imageData})
     }
   },
 
@@ -73,9 +73,8 @@ const icon = {
    * @return ImageData
    */
   drawIcon() {
-    let canvas = document.createElement('canvas')
-    canvas.width = canvas.height = 19
-    document.body.appendChild(canvas)
+    // Service Worker 中使用 OffscreenCanvas
+    let canvas = new OffscreenCanvas(19, 19)
     let ctx = canvas.getContext('2d')
 
     ctx.strokeStyle = 'rgba(0, 0, 0, 0)'
@@ -143,8 +142,6 @@ const icon = {
     ctx.fill()
 
     let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-    // 一定要删除元素
-    canvas.parentNode.removeChild(canvas)
 
     return imageData
   },
