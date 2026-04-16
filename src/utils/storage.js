@@ -1,6 +1,31 @@
 /* eslint-disable no-undef */
 
 const LOCAL_STORAGE_PREFIX = '__download_manager__'
+const CONFIG_KEYS = [
+  'theme',
+  'icon_color',
+  'icon_downloading_color',
+  'download_panel_theme',
+  'download_panel_page_size',
+  'close_tooltip',
+  'left_click_file',
+  'right_click_file',
+  'left_click_url',
+  'right_click_url',
+  'enable_animation',
+  'download_started_notification',
+  'download_completed_notification',
+  'download_warning_notification',
+  'download_started_tone',
+  'download_completed_tone',
+  'download_warning_tone',
+  'download_notification_reserved_time',
+  'download_notification_remain_visible',
+  'download_context_menus',
+  'ui_theme',
+  'ui_theme_series',
+  'system_theme'
+]
 
 function hasChromeStorage() {
   return typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync && chrome.storage.local
@@ -28,7 +53,102 @@ function localSet(key, value) {
   }
 }
 
+function getStorageArea(useSync) {
+  return chrome.storage[useSync ? 'sync' : 'local']
+}
+
 const storage = {
+  getConfigKeys() {
+    return [...CONFIG_KEYS]
+  },
+
+  getSyncPreference() {
+    if (!hasChromeStorage()) {
+      const localSync = localGet('sync')
+      return Promise.resolve(typeof localSync === 'boolean' ? localSync : true)
+    }
+
+    return new Promise(resolve => {
+      chrome.storage.sync.get(['sync'], result => {
+        resolve(typeof result.sync === 'boolean' ? result.sync : true)
+      })
+    })
+  },
+
+  setSyncPreference(value) {
+    if (!hasChromeStorage()) {
+      localSet('sync', value)
+      return Promise.resolve()
+    }
+
+    return new Promise(resolve => {
+      chrome.storage.sync.set({ sync: value }, () => resolve())
+    })
+  },
+
+  getFromArea(key, useSync) {
+    if (!hasChromeStorage()) {
+      return Promise.resolve(localGet(key))
+    }
+
+    return new Promise(resolve => {
+      getStorageArea(useSync).get([key], result => resolve(result[key]))
+    })
+  },
+
+  getManyFromArea(keys, useSync) {
+    if (!hasChromeStorage()) {
+      const result = {}
+      keys.forEach(key => {
+        result[key] = localGet(key)
+      })
+      return Promise.resolve(result)
+    }
+
+    return new Promise(resolve => {
+      getStorageArea(useSync).get(keys, result => resolve(result))
+    })
+  },
+
+  setManyToArea(values, useSync) {
+    if (!hasChromeStorage()) {
+      Object.entries(values).forEach(([key, value]) => localSet(key, value))
+      return Promise.resolve()
+    }
+
+    return new Promise(resolve => {
+      getStorageArea(useSync).set(values, () => resolve())
+    })
+  },
+
+  async switchStorageMode(targetUseSync) {
+    if (!hasChromeStorage()) {
+      localSet('sync', targetUseSync)
+      return
+    }
+
+    const currentUseSync = await this.getSyncPreference()
+    if (currentUseSync === targetUseSync) {
+      await this.setSyncPreference(targetUseSync)
+      return
+    }
+
+    const sourceValues = await this.getManyFromArea(CONFIG_KEYS, currentUseSync)
+    const valuesToMigrate = {}
+
+    CONFIG_KEYS.forEach(key => {
+      if (typeof sourceValues[key] !== 'undefined') {
+        valuesToMigrate[key] = sourceValues[key]
+      }
+    })
+
+    if (Object.keys(valuesToMigrate).length > 0) {
+      await this.setManyToArea(valuesToMigrate, targetUseSync)
+    }
+
+    await this.setSyncPreference(targetUseSync)
+  },
+
   /**
    * 设置配置
    * 将同步和未同步时的方法统一包装下，方便使用
@@ -41,12 +161,11 @@ const storage = {
       return Promise.resolve()
     }
 
-    return new Promise(resolve => {
-      chrome.storage.sync.get('sync', result => {
-        const isSync = !!(result && result.sync)
-        chrome.storage[isSync ? 'sync' : 'local'].set({ [key]: value }, () => resolve())
-      })
-    })
+    if (key === 'sync') {
+      return this.setSyncPreference(Boolean(value))
+    }
+
+    return this.getSyncPreference().then(isSync => this.setManyToArea({ [key]: value }, isSync))
   },
 
   /**
@@ -55,16 +174,15 @@ const storage = {
    * @return {Promise}
    */
   get(keys) {
+    if (keys === 'sync') {
+      return this.getSyncPreference()
+    }
+
     if (!hasChromeStorage()) {
       return Promise.resolve(localGet(keys))
     }
 
-    return new Promise(resolve => {
-      chrome.storage.sync.get('sync', result => {
-        const isSync = !!(result && result.sync)
-        chrome.storage[isSync ? 'sync' : 'local'].get([keys], result2 => resolve(result2[keys]))
-      })
-    })
+    return this.getSyncPreference().then(isSync => this.getFromArea(keys, isSync))
   },
 
   /**

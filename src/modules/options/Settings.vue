@@ -152,31 +152,46 @@ export default {
     i18data: Object
   },
   watch: {
-    isSync(val) {
-      storage.set('sync', val)
+    async isSync(val, oldVal) {
+      if (this.initializing || this.syncTransitioning) {
+        return
+      }
+
+      this.syncTransitioning = true
+      try {
+        await storage.switchStorageMode(val)
+      } catch (e) {
+        console.warn('Failed to switch storage mode', e)
+        this.isSync = oldVal
+      } finally {
+        this.syncTransitioning = false
+      }
     },
 
-    showTooltip(val) {
-      storage.set('close_tooltip', !val)
+    async showTooltip(val) {
+      await this.persistSetting('close_tooltip', !val)
     },
-    leftClickFile(val) {
-      storage.set('left_click_file', val)
+    async leftClickFile(val) {
+      await this.persistSetting('left_click_file', val)
     },
-    rightClickFile(val) {
-      storage.set('right_click_file', val)
+    async rightClickFile(val) {
+      await this.persistSetting('right_click_file', val)
     },
-    leftClickUrl(val) {
-      storage.set('left_click_url', val)
+    async leftClickUrl(val) {
+      await this.persistSetting('left_click_url', val)
     },
-    rightClickUrl(val) {
-      storage.set('right_click_url', val)
+    async rightClickUrl(val) {
+      await this.persistSetting('right_click_url', val)
     },
-    enableAnimation(val) {
-      storage.set('enable_animation', val)
+    async enableAnimation(val) {
+      await this.persistSetting('enable_animation', val)
     },
 
-    downloadContextMenus(val) {
-      storage.set('download_context_menus', val)
+    async downloadContextMenus(val) {
+      await this.persistSetting('download_context_menus', val)
+      if (this.initializing) {
+        return
+      }
       if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
         chrome.runtime.sendMessage(JSON.stringify({type: 'downloadMenus', data: val}), () => {
           if (chrome.runtime.lastError) {
@@ -186,31 +201,31 @@ export default {
       }
     },
 
-    downloadStartedNotification(val) {
-      storage.set('download_started_notification', val)
+    async downloadStartedNotification(val) {
+      await this.persistSetting('download_started_notification', val)
     },
-    downloadCompletedNotification(val) {
-      storage.set('download_completed_notification', val)
+    async downloadCompletedNotification(val) {
+      await this.persistSetting('download_completed_notification', val)
     },
-    downloadWarningNotification(val) {
-      storage.set('download_warning_notification', val)
-    },
-
-    downloadStartedTone(val) {
-      storage.set('download_started_tone', val)
-    },
-    downloadCompletedTone(val) {
-      storage.set('download_completed_tone', val)
-    },
-    downloadWarningTone(val) {
-      storage.set('download_warning_tone', val)
+    async downloadWarningNotification(val) {
+      await this.persistSetting('download_warning_notification', val)
     },
 
-    downloadNotificationReservedTime(val) {
-      storage.set('download_notification_reserved_time', val)
+    async downloadStartedTone(val) {
+      await this.persistSetting('download_started_tone', val)
     },
-    downloadNotificationRemainVisible(val) {
-      storage.set('download_notification_remain_visible', val)
+    async downloadCompletedTone(val) {
+      await this.persistSetting('download_completed_tone', val)
+    },
+    async downloadWarningTone(val) {
+      await this.persistSetting('download_warning_tone', val)
+    },
+
+    async downloadNotificationReservedTime(val) {
+      await this.persistSetting('download_notification_reserved_time', val)
+    },
+    async downloadNotificationRemainVisible(val) {
+      await this.persistSetting('download_notification_remain_visible', val)
     }
   },
   async mounted() {
@@ -272,6 +287,7 @@ export default {
     } catch (e) {
       console.warn('Failed to initialize Settings page', e)
     } finally {
+      this.initializing = false
       // 开始渲染页面
       this.show = true
     }
@@ -309,11 +325,21 @@ export default {
 
       // 同步设置
       isSync: true,
+      initializing: true,
+      syncTransitioning: false,
 
       chromeVersionGreaterThan50: true
     }
   },
   methods: {
+    async persistSetting(key, value) {
+      if (this.initializing || this.syncTransitioning) {
+        return
+      }
+
+      await storage.set(key, value)
+    },
+
     /**
      * 获取打开插件弹框的快捷键
      * @return {Promise<String>}
