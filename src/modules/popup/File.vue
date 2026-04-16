@@ -7,7 +7,7 @@
                 :loop="item.totalBytes === 0"
                 :paused="item.paused"
                 :percentage="getPercentage(item)"/>
-      <img :src="item.iconUrl" alt="" draggable="false"/>
+      <img :src="resolvedIconUrl" alt="" draggable="false"/>
     </div>
     <div class="file-content">
       <span class="filename"
@@ -33,7 +33,7 @@
           <template v-else-if="item.totalBytes !== 0">
             <div class="cell left common">
               <span class="receivedSize small-size">{{ getFormattedSize(item.bytesReceived) }}</span>
-              <span class="divider small-size">|</span>
+              <span class="divider small-size">/</span>
               <span class="size small-size">{{ getFormattedSize(item.totalBytes) }}</span>
             </div>
             <div class="cell middle common">
@@ -106,6 +106,8 @@
 import {Close, Delete, FolderOpened, RefreshRight, VideoPause, VideoPlay} from '@element-plus/icons-vue'
 import Progress from './Progress'
 import {canAcceptDanger as canAcceptDangerDownload, isDangerousDownload} from '../../utils/downloadDanger'
+import common from '../../utils/common'
+import { getCachedFileIcon, setCachedFileIcon } from '../../utils/fileIconCache'
 
 export default {
   name: 'File',
@@ -153,11 +155,64 @@ export default {
     }
   },
   mounted() {
+    this.syncResolvedIconUrl()
+    this.ensureFileIcon()
+  },
+  watch: {
+    'item.id'() {
+      this.syncResolvedIconUrl()
+      this.ensureFileIcon()
+    },
+    'item.filename'() {
+      this.ensureFileIcon()
+    }
   },
   data() {
-    return {}
+    return {
+      resolvedIconUrl: null,
+      iconLoading: false
+    }
   },
   methods: {
+    syncResolvedIconUrl() {
+      const cachedIconUrl = getCachedFileIcon(this.item?.id)
+      this.resolvedIconUrl = cachedIconUrl || this.item?.iconUrl || null
+    },
+
+    ensureFileIcon() {
+      if (!this.item || !this.item.filename) {
+        return
+      }
+
+      const cachedIconUrl = getCachedFileIcon(this.item.id)
+      if (cachedIconUrl) {
+        this.resolvedIconUrl = cachedIconUrl
+        return
+      }
+
+      if (this.item.iconUrl) {
+        this.resolvedIconUrl = this.item.iconUrl
+        setCachedFileIcon(this.item.id, this.item.iconUrl)
+        return
+      }
+
+      if (this.iconLoading) {
+        return
+      }
+
+      this.resolvedIconUrl = null
+      this.iconLoading = true
+
+      common.getCustomFileIcon(this.item).then(iconUrl => {
+        this.resolvedIconUrl = iconUrl || null
+        if (iconUrl) {
+          setCachedFileIcon(this.item.id, iconUrl)
+        }
+      }).finally(() => {
+        this.iconLoading = false
+      })
+    },
+
     /**
      * 接受下载危险文件
      *
@@ -251,6 +306,10 @@ export default {
     // 恢复已经暂停下载中的文件
     resume(item) {
       chrome.downloads.resume(item.id, () => {
+        if (chrome.runtime && chrome.runtime.lastError) {
+          console.warn('resume failed', chrome.runtime.lastError.message)
+          return
+        }
         item.paused = false
         this.render()
       })
@@ -260,9 +319,22 @@ export default {
      * 重新下载文件
      * @param item {Object}
      */
-    retryDownload(item) {
-      this.resume(item)
-      // common.download(item.url)
+    async retryDownload(item) {
+      if (item.canResume) {
+        this.resume(item)
+        return
+      }
+
+      const retryUrl = item.url || item.finalUrl
+      if (retryUrl) {
+        const downloadId = await common.download(retryUrl)
+        if (downloadId !== null) {
+          await this.render()
+          setTimeout(() => {
+            this.render()
+          }, 500)
+        }
+      }
     },
 
     /**
@@ -288,7 +360,7 @@ export default {
      * @param item {Object}
      */
     retryable(item) {
-      return item.state === 'interrupted'
+      return item.state === 'interrupted' && (!!item.canResume || !!item.url)
     },
 
     // 获取文件下载进度

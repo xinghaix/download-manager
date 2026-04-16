@@ -8,7 +8,8 @@
         </template>
       </el-input>
       <div class="header-operator">
-        <el-popover ref="openDownload" placement="bottom" :width="342" trigger="click"
+        <el-popover ref="openDownload" placement="bottom" :width="openDownloadPopoverWidth" trigger="manual"
+                    popper-class="open-download-popover"
                     v-model:visible="showPopover" @after-enter="textareaFocus">
           <el-input type="textarea" :clearable="true" resize="none"
                     :autosize="{ minRows: 1, maxRows: 4 }"
@@ -16,10 +17,11 @@
                     v-model="downloadUrl" @keydown.enter.prevent="enterToDownload(downloadUrl)">
           </el-input>
           <template #reference>
-            <el-tooltip :disabled="closeTooltip" :content="i18data.newDownload"
-                        placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
-              <el-icon class="header-button icon-button"><Download /></el-icon>
-            </el-tooltip>
+            <span class="header-button header-popover-trigger"
+                  :title="closeTooltip ? '' : i18data.newDownload"
+                  @click.stop="toggleOpenDownload">
+              <el-icon class="icon-button"><Download /></el-icon>
+            </span>
           </template>
         </el-popover>
         <div class="musk" v-if="showMusk" @click="() => { this.showMusk = false; this.showPopover = false }"/>
@@ -55,7 +57,7 @@
     </div>
 
     <div class="content">
-      <RecycleScroller id="vue-recycle-scroller" :items="downloadItems"
+      <RecycleScroller id="vue-recycle-scroller" :items="filteredDownloadItems"
                        :item-size="78" key-field="id" v-slot="{ item }">
         <transition :enter-active-class="enableAnimation ? 'transition-enter' : ''"
                     :leave-active-class="enableAnimation ? 'transition-leave' : ''">
@@ -76,6 +78,7 @@
   /* eslint-disable no-undef */
   import common from '../../utils/common'
   import storage from '../../utils/storage'
+  import { deleteCachedFileIcon } from '../../utils/fileIconCache'
   import File from './File'
   import Tip from '../../components/Tip'
 
@@ -137,9 +140,6 @@
       // 开启文件移入移出动画
       this.enableAnimation = await storage.get('enable_animation')
 
-      // 获取下载文件信息
-      this.render()
-
       // 接收来自background发来的数据
       chrome.runtime.onMessage.addListener(message => {
         if (typeof message !== 'string') {
@@ -153,42 +153,35 @@
           return
         }
 
-        if (received.type === 'download') {
-          const incomingIds = new Set(received.data.map(item => item.id))
-          this.downloadItems = this.downloadItems.filter(item => incomingIds.has(item.id))
-
-          // data中存放自定义的从background传过来的下载信息
-          // 为了解决文件图标闪烁问题，此处不能直接调用请求chrome下载文件的方法
-          for (let i = 0, len1 = received.data.length; i < len1; i++) {
-            let item = received.data[i]
-            let tmpItem = this.getItem(item.id)
-
-            if (tmpItem) {
-              this.mergeDownloadItem(tmpItem, item)
-            } else if (item.filename) {
-              this.prepareDownloadItem(item)
-
-              let noInsert = true
-              for (let j = 0, len2 = this.downloadItems.length; j < len2; j++) {
-                if (item.startTime >= this.downloadItems[j].startTime) {
-                  // 按照下载开始时间降序排列
-                  this.downloadItems.splice(j, 0, item)
-                  noInsert = false
-                  break
-                }
-              }
-              if (noInsert) {
-                this.downloadItems.push(item)
-              }
-            }
+        if (received.type === 'download_delta') {
+          this.downloadUpdateVersion++
+          if (Array.isArray(received.removes)) {
+            received.removes.forEach(id => this.removeItemById(id))
           }
+
+          if (Array.isArray(received.upserts)) {
+            received.upserts.forEach(item => {
+              if (item && item.filename) {
+                this.upsertDownloadItem(item)
+              }
+            })
+          }
+          this.scheduleLocalSyncIfNeeded()
         }
       })
 
       // 如果其他插件或者谷歌浏览器下载界面清除下载文件时，同步搜索数据
       chrome.downloads.onErased.addListener((id) => {
+        this.downloadUpdateVersion++
         this.removeItemById(id)
+        this.scheduleLocalSyncIfNeeded()
       })
+
+      // 获取下载文件信息
+      await this.render()
+    },
+    beforeUnmount() {
+      this.clearLocalSyncTimer()
     },
     data() {
       return {
@@ -221,22 +214,26 @@
         rightClickUrl: true,
         enableAnimation: false,
 
-        themeData: null
+        themeData: null,
+        downloadItemIndexMap: new Map(),
+        downloadUpdateVersion: 0,
+        renderRequestId: 0,
+        localSyncTimer: null
+      }
+    },
+    computed: {
+      filteredDownloadItems() {
+        const keyword = this.searchContent.trim().toLowerCase()
+        if (!keyword) {
+          return this.downloadItems
+        }
+        return this.downloadItems.filter(item => item.basename.toLowerCase().indexOf(keyword) > -1)
+      },
+      openDownloadPopoverWidth() {
+        return Math.max(Number(this.downloadPanelPageSize.width) - 40, 280)
       }
     },
     watch: {
-      /**
-       * 搜索框内容改变时触发
-       */
-      searchContent(val) {
-        let tmp = val.trim().toLowerCase()
-        this.downloadItems.forEach(item => {
-          common.beforeHandler(item)
-          // 以小写字母模式模糊匹配搜索的字段
-          item.show = tmp === '' || item.basename.toLowerCase().indexOf(tmp) > -1
-        })
-      },
-
       /**
        * 手动下载文件弹框展示或取消时触发
        * @param val {Boolean}
@@ -251,6 +248,29 @@
       }
     },
     methods: {
+      clearLocalSyncTimer() {
+        if (this.localSyncTimer) {
+          clearTimeout(this.localSyncTimer)
+          this.localSyncTimer = null
+        }
+      },
+
+      hasActiveDownloads() {
+        return this.downloadItems.some(item => item.state === 'in_progress')
+      },
+
+      scheduleLocalSyncIfNeeded() {
+        this.clearLocalSyncTimer()
+        if (!this.hasActiveDownloads()) {
+          return
+        }
+
+        this.localSyncTimer = setTimeout(() => {
+          this.localSyncTimer = null
+          this.syncActiveDownloads()
+        }, 400)
+      },
+
       async getStoredEffectiveMode() {
         const theme = await storage.get('theme')
         if (theme === 'dark' || theme === 'light') {
@@ -303,17 +323,24 @@
       },
 
       getItem(id) {
-        for (let i = 0; i < this.downloadItems.length; i++) {
-          let item = this.downloadItems[i]
-          if (item.id === id) {
-            return item
-          }
+        const index = this.downloadItemIndexMap.get(id)
+        if (typeof index === 'number') {
+          return this.downloadItems[index] || null
         }
         return null
       },
 
+      rebuildDownloadItemIndexMap() {
+        this.downloadItemIndexMap = new Map()
+        for (let i = 0; i < this.downloadItems.length; i++) {
+          this.downloadItemIndexMap.set(this.downloadItems[i].id, i)
+        }
+      },
+
       removeItemById(id) {
+        deleteCachedFileIcon(id)
         this.downloadItems = this.downloadItems.filter(item => item.id !== id)
+        this.rebuildDownloadItemIndexMap()
       },
 
       prepareDownloadItem(item) {
@@ -324,7 +351,6 @@
         item.endTime = item.endTime || null
         item.exists = typeof item.exists === 'boolean' ? item.exists : true
         item.paused = Boolean(item.paused)
-        item.show = this.searchContent === '' || item.basename.toLowerCase().indexOf(this.searchContent) > -1
       },
 
       mergeDownloadItem(target, source) {
@@ -334,20 +360,165 @@
         target.previousBytesReceived = previousBytesReceived
       },
 
+      insertDownloadItem(item) {
+        let insertIndex = this.downloadItems.length
+        for (let i = 0; i < this.downloadItems.length; i++) {
+          if (item.startTime >= this.downloadItems[i].startTime) {
+            insertIndex = i
+            break
+          }
+        }
+        this.downloadItems.splice(insertIndex, 0, item)
+        this.rebuildDownloadItemIndexMap()
+      },
+
+      upsertDownloadItem(item) {
+        this.prepareDownloadItem(item)
+        const target = this.getItem(item.id)
+        if (target) {
+          this.mergeDownloadItem(target, item)
+          return
+        }
+        this.insertDownloadItem(item)
+      },
+
+      async requestDownloadSnapshot() {
+        if (!(typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage)) {
+          return this.searchDownloadsSnapshot()
+        }
+
+        return await new Promise(resolve => {
+          chrome.runtime.sendMessage(JSON.stringify({
+            type: 'download_snapshot_request'
+          }), response => {
+            if (chrome.runtime.lastError || !response || !response.success || !Array.isArray(response.data)) {
+              this.searchDownloadsSnapshot().then(resolve)
+              return
+            }
+            resolve(response.data)
+          })
+        })
+      },
+
+      async searchDownloadsSnapshot() {
+        if (!(typeof chrome !== 'undefined' && chrome.downloads && chrome.downloads.search)) {
+          return []
+        }
+
+        return await new Promise(resolve => {
+          chrome.downloads.search({ orderBy: ['-startTime'] }, items => {
+            if (chrome.runtime && chrome.runtime.lastError) {
+              resolve([])
+              return
+            }
+            resolve(Array.isArray(items) ? items : [])
+          })
+        })
+      },
+
+      async searchActiveDownloads() {
+        if (!(typeof chrome !== 'undefined' && chrome.downloads && chrome.downloads.search)) {
+          return []
+        }
+
+        return await new Promise(resolve => {
+          chrome.downloads.search({ state: 'in_progress', orderBy: ['-startTime'] }, items => {
+            if (chrome.runtime && chrome.runtime.lastError) {
+              resolve([])
+              return
+            }
+            resolve(Array.isArray(items) ? items : [])
+          })
+        })
+      },
+
+      async searchDownloadById(id) {
+        if (!(typeof chrome !== 'undefined' && chrome.downloads && chrome.downloads.search)) {
+          return null
+        }
+
+        return await new Promise(resolve => {
+          chrome.downloads.search({ id }, items => {
+            if (chrome.runtime && chrome.runtime.lastError) {
+              resolve(null)
+              return
+            }
+            resolve(Array.isArray(items) && items.length ? items[0] : null)
+          })
+        })
+      },
+
+      async syncActiveDownloads() {
+        const trackedIds = this.downloadItems
+          .filter(item => item.state === 'in_progress')
+          .map(item => item.id)
+
+        if (!trackedIds.length) {
+          return
+        }
+
+        const activeItems = await this.searchActiveDownloads()
+        const activeIdSet = new Set()
+
+        activeItems.forEach(item => {
+          if (!item || !item.filename) {
+            return
+          }
+          activeIdSet.add(item.id)
+          this.upsertDownloadItem(item)
+        })
+
+        for (const id of trackedIds) {
+          if (activeIdSet.has(id)) {
+            continue
+          }
+
+          const item = await this.searchDownloadById(id)
+          if (item && item.filename) {
+            this.upsertDownloadItem(item)
+          } else {
+            this.removeItemById(id)
+          }
+        }
+
+        this.scheduleLocalSyncIfNeeded()
+      },
+
       /**
        * 获取所有下载文件列表
        */
-      render() {
-        chrome.downloads.search({orderBy: ['-startTime']}, (items) => {
-          this.downloadItems = []
-          items.forEach(item => {
-            if (!item.filename) {
-              return
+      async render() {
+        const requestId = ++this.renderRequestId
+        const startVersion = this.downloadUpdateVersion
+        const items = await this.requestDownloadSnapshot()
+
+        if (requestId !== this.renderRequestId) {
+          return
+        }
+
+        if (this.downloadUpdateVersion !== startVersion) {
+          setTimeout(() => {
+            if (requestId === this.renderRequestId) {
+              this.render()
             }
-            this.prepareDownloadItem(item)
-            this.downloadItems.push(item)
-          })
+          }, 0)
+          return
+        }
+
+        this.downloadItems = []
+        items.forEach(item => {
+          if (!item || !item.filename) {
+            return
+          }
+          this.prepareDownloadItem(item)
+          this.downloadItems.push(item)
         })
+        this.rebuildDownloadItemIndexMap()
+        this.scheduleLocalSyncIfNeeded()
+      },
+
+      toggleOpenDownload() {
+        this.showPopover = !this.showPopover
       },
 
       /**
@@ -540,6 +711,17 @@
   body .el-popper .el-popper__arrow::before {
     background-color: var(--popover-background-color)!important;
     border-color: var(--popover-border-color)!important;
+  }
+
+  body .open-download-popover.el-popover {
+    padding: 8px 12px;
+    box-sizing: border-box;
+  }
+
+  body .open-download-popover .el-textarea,
+  body .open-download-popover .el-textarea textarea {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .el-dropdown__popper.el-popper[data-popper-placement^=bottom] .el-popper__arrow::before {

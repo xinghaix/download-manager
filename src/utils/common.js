@@ -19,7 +19,6 @@ const common = {
    */
   beforeHandler(item) {
     this.handleBasename(item)
-    this.handleFileIcon(item)
   },
 
   /**
@@ -75,12 +74,21 @@ const common = {
   download(url) {
     if (url && typeof chrome !== 'undefined' && chrome.downloads) {
       let trimUrl = url.trim()
-      trimUrl !== '' && chrome.downloads.download({url: trimUrl}, () => {
-        if (chrome.runtime && chrome.runtime.lastError) {
-          // todo
-        }
+      if (trimUrl === '') {
+        return Promise.resolve(null)
+      }
+
+      return new Promise(resolve => {
+        chrome.downloads.download({url: trimUrl}, downloadId => {
+          if (chrome.runtime && chrome.runtime.lastError) {
+            resolve(null)
+            return
+          }
+          resolve(downloadId)
+        })
       })
     }
+    return Promise.resolve(null)
   },
 
   /**

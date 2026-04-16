@@ -11,11 +11,13 @@ let state = {
   downloadingNumber: 0,
   progress: -1,
   notificationList: [],
-  progressTimer: null,
+  itemRefreshTimer: null,
+  activeRefreshTimer: null,
   systemTheme: null
 }
 
 const contextDownloadMenus = ['link', 'image', 'audio', 'video']
+const pendingDownloadIds = new Set()
 
 // Service Worker 安装
 self.addEventListener('install', () => {
@@ -48,7 +50,7 @@ async function initialize() {
     // 初始化下载进度
     handleDownloadingNumber(0)
     handleDangerousDownloading(false)
-    updateDownloadProgress()
+    await refreshActiveDownloadsSummary()
 
     await ensureOffscreenDocument()
 
@@ -65,19 +67,22 @@ async function initialize() {
 
 // 下载创建监听
 chrome.downloads.onCreated.addListener((item) => {
-  if (item.state === 'in_progress') {
-    updateDownloadProgress()
-  }
+  queueDownloadRefresh(item.id)
 })
 
 // 下载变化监听
-chrome.downloads.onChanged.addListener(() => {
-  updateDownloadProgress()
+chrome.downloads.onChanged.addListener((delta) => {
+  if (delta && typeof delta.id === 'number') {
+    queueDownloadRefresh(delta.id)
+  }
 })
 
 // 下载删除监听
 chrome.downloads.onErased.addListener((id) => {
+  pendingDownloadIds.delete(id)
   deleteAllDownloadNotificationId(id)
+  sendPopupDownloadDelta([], [id]).catch(() => {})
+  scheduleActiveDownloadsRefresh()
 })
 
 // 通知按钮点击
@@ -143,6 +148,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         case 'icon_downloading_color':
           icon.message.runningColor = received.data
           break
+        case 'download_snapshot_request':
+          sendResponse({
+            success: true,
+            data: await getDownloadSnapshot()
+          })
+          return
       }
 
       sendResponse({ success: true })
@@ -156,103 +167,165 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 })
 
 
-// 更新下载进度
-async function updateDownloadProgress() {
-  if (state.progressTimer) return
+async function searchDownloads(query) {
+  return chrome.downloads.search(query)
+}
 
-  state.progressTimer = setTimeout(async () => {
-    state.progressTimer = null
+function prepareRuntimeDownloadItem(item) {
+  if (!item) {
+    return null
+  }
+  common.beforeHandler(item)
+  return item
+}
 
+async function getDownloadById(id) {
+  const items = await searchDownloads({ id })
+  if (!items || !items.length) {
+    return null
+  }
+  return prepareRuntimeDownloadItem(items[0])
+}
+
+async function getDownloadSnapshot() {
+  const items = await searchDownloads({ orderBy: ['-startTime'] })
+  return items
+    .filter(item => item && item.filename)
+    .map(item => prepareRuntimeDownloadItem(item))
+}
+
+async function sendPopupDownloadDelta(upserts = [], removes = []) {
+  if ((!upserts || upserts.length === 0) && (!removes || removes.length === 0)) {
+    return
+  }
+
+  try {
+    await chrome.runtime.sendMessage(JSON.stringify({
+      type: 'download_delta',
+      upserts,
+      removes
+    }))
+  } catch (e) {
+    // Popup 可能未打开，忽略错误
+  }
+}
+
+function scheduleActiveDownloadsRefresh() {
+  if (state.activeRefreshTimer) {
+    return
+  }
+
+  state.activeRefreshTimer = setTimeout(async () => {
+    state.activeRefreshTimer = null
     try {
-      const items = await chrome.downloads.search({ orderBy: ['-startTime'] })
-
-      let downloadingNumber = 0
-      let anyInProgress = false
-      let anyInDangerous = false
-      let greaterThanZeroNumber = 0
-      let totalProgress = 0.0
-
-      for (const item of items) {
-        common.beforeHandler(item)
-
-        if (item.state === 'in_progress') {
-          downloadingNumber++
-          anyInProgress = true
-
-          await handleDownloadStartedNotification(item)
-
-          if (isDangerousDownload(item)) {
-            anyInDangerous = true
-            await handleDownloadWarningNotification(item)
-          }
-
-          const progress = getProgress(item)
-          if (progress !== -1) {
-            greaterThanZeroNumber++
-            totalProgress += progress
-          }
-        } else if (item.state === 'complete') {
-          await handleDownloadCompletedNotification(item)
-        } else {
-          deleteAllDownloadNotificationId(item.id)
-        }
-      }
-
-      state.anyInProgress = anyInProgress
-      state.anyInDangerous = anyInDangerous
-
-      // 设置当前所有下载文件总体进度
-      if (greaterThanZeroNumber > 0) {
-        state.progress = totalProgress / greaterThanZeroNumber
-      } else {
-        state.progress = -1
-      }
-
-      // 更新图标和 badge
-      state.downloadingNumber = downloadingNumber
-      handleDownloadingNumber(downloadingNumber)
-      handleDangerousDownloading(anyInDangerous)
-
-      // 更新图标进度
-      if (anyInProgress) {
-        const themeKey = await getActiveIconThemeKey()
-        const iconColor = await storage.get('icon_color')
-        const iconDownloadingColor = await storage.get('icon_downloading_color')
-
-        if (iconColor && iconDownloadingColor) {
-          icon.setRunningBrowserActionIcon(
-            iconColor[themeKey],
-            iconDownloadingColor[themeKey],
-            anyInProgress,
-            state.progress
-          )
-        }
-      } else {
-        const themeKey = await getActiveIconThemeKey()
-        const iconColor = await storage.get('icon_color')
-        if (iconColor) {
-          icon.restoreDefaultIcon(iconColor[themeKey])
-        }
-      }
-
-      // 发送数据到 popup（如果打开）
-      try {
-        await chrome.runtime.sendMessage(JSON.stringify({
-          type: 'download',
-          data: items
-        }))
-      } catch (e) {
-        // Popup 可能未打开，忽略错误
-      }
-
-      // 如果还有下载中的文件，继续更新
-      if (state.anyInProgress) {
-        setTimeout(updateDownloadProgress, 400)
-      }
+      await refreshActiveDownloadsSummary()
     } catch (error) {
-      console.error('Update download progress error:', error)
+      console.error('Refresh active downloads summary error:', error)
     }
-  }, 100)
+  }, 80)
+}
+
+function queueDownloadRefresh(id) {
+  if (typeof id !== 'number') {
+    return
+  }
+
+  pendingDownloadIds.add(id)
+  if (state.itemRefreshTimer) {
+    return
+  }
+
+  state.itemRefreshTimer = setTimeout(async () => {
+    state.itemRefreshTimer = null
+    try {
+      await flushPendingDownloadUpdates()
+    } catch (error) {
+      console.error('Flush pending download updates error:', error)
+    }
+  }, 80)
+}
+
+async function flushPendingDownloadUpdates() {
+  const ids = [...pendingDownloadIds]
+  pendingDownloadIds.clear()
+
+  if (!ids.length) {
+    scheduleActiveDownloadsRefresh()
+    return
+  }
+
+  const upserts = []
+  for (const id of ids) {
+    const item = await getDownloadById(id)
+    if (item?.filename) {
+      upserts.push(item)
+    }
+
+    if (!item) {
+      continue
+    }
+
+    if (item.state === 'in_progress') {
+      await handleDownloadStartedNotification(item)
+      if (isDangerousDownload(item)) {
+        await handleDownloadWarningNotification(item)
+      } else {
+        deleteDownloadNotificationId(item.id, '-warning')
+      }
+    } else if (item.state === 'complete') {
+      deleteDownloadNotificationId(item.id, '-warning')
+      await handleDownloadCompletedNotification(item)
+    } else {
+      deleteAllDownloadNotificationId(item.id)
+    }
+  }
+
+  await sendPopupDownloadDelta(upserts, [])
+  scheduleActiveDownloadsRefresh()
+}
+
+async function refreshActiveDownloadsSummary() {
+  const activeItems = (await searchDownloads({ state: 'in_progress', orderBy: ['-startTime'] }))
+    .map(item => prepareRuntimeDownloadItem(item))
+
+  let anyInDangerous = false
+  let greaterThanZeroNumber = 0
+  let totalProgress = 0.0
+
+  activeItems.forEach(item => {
+    if (isDangerousDownload(item)) {
+      anyInDangerous = true
+    }
+
+    const progress = getProgress(item)
+    if (progress !== -1) {
+      greaterThanZeroNumber++
+      totalProgress += progress
+    }
+  })
+
+  state.anyInProgress = activeItems.length > 0
+  state.anyInDangerous = anyInDangerous
+  state.downloadingNumber = activeItems.length
+  state.progress = greaterThanZeroNumber > 0 ? totalProgress / greaterThanZeroNumber : -1
+
+  handleDownloadingNumber(state.downloadingNumber)
+  handleDangerousDownloading(anyInDangerous)
+
+  const themeKey = await getActiveIconThemeKey()
+  const iconColor = await storage.get('icon_color')
+  const iconDownloadingColor = await storage.get('icon_downloading_color')
+
+  if (state.anyInProgress && iconColor && iconDownloadingColor) {
+    icon.setRunningBrowserActionIcon(
+      iconColor[themeKey],
+      iconDownloadingColor[themeKey],
+      true,
+      state.progress
+    )
+  } else if (iconColor) {
+    icon.restoreDefaultIcon(iconColor[themeKey])
+  }
 }
 
 // 处理下载开始通知
@@ -260,11 +333,10 @@ async function handleDownloadStartedNotification(item) {
   const notificationId = item.id + '-started'
   if (state.notificationList.indexOf(notificationId) < 0) {
     state.notificationList.push(notificationId)
-
-    const iconUrl = await getIcon(item)
     const showNotification = await storage.get('download_started_notification')
-
+    
     if (showNotification) {
+      const iconUrl = getNotificationIcon(item)
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
         const visible = await storage.get('download_notification_remain_visible')
@@ -296,14 +368,12 @@ async function handleDownloadStartedNotification(item) {
 // 处理下载完成通知
 async function handleDownloadCompletedNotification(item) {
   const notificationId = item.id + '-completed'
-  if (state.notificationList.indexOf(notificationId) < 0 &&
-      state.notificationList.indexOf(item.id + '-started') >= 0) {
+  if (state.notificationList.indexOf(notificationId) < 0) {
     state.notificationList.push(notificationId)
-
-    const iconUrl = await getIcon(item)
     const showNotification = await storage.get('download_completed_notification')
 
     if (showNotification) {
+      const iconUrl = getNotificationIcon(item)
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
         const visible = await storage.get('download_notification_remain_visible')
@@ -340,11 +410,10 @@ async function handleDownloadWarningNotification(item) {
   const notificationId = item.id + '-warning'
   if (state.notificationList.indexOf(notificationId) < 0) {
     state.notificationList.push(notificationId)
-
-    const iconUrl = await getIcon(item)
     const showNotification = await storage.get('download_warning_notification')
 
     if (showNotification) {
+      const iconUrl = getNotificationIcon(item)
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
         const visible = await storage.get('download_notification_remain_visible')
@@ -521,13 +590,8 @@ async function closeNotification(id, option, visible) {
   }
 }
 
-// 获取文件图标
-async function getIcon(item) {
-  if (item.iconUrl) {
-    return item.iconUrl
-  } else {
-    return await common.getCustomFileIcon(item)
-  }
+function getNotificationIcon(item) {
+  return item?.iconUrl || 'img/icon19.png'
 }
 
 // 删除所有通知

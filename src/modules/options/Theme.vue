@@ -149,7 +149,7 @@
                           <div class="info">
                             <div class="cell left common">
                               <span class="receivedSize small-size">{{ file.received }}</span>
-                              <span class="divider small-size">|</span>
+                              <span class="divider small-size">/</span>
                               <span class="size small-size">{{ file.total }}</span>
                             </div>
                             <div class="cell middle common">
