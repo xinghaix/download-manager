@@ -307,6 +307,142 @@
     "message": "Page size (width, height)",
     "description": "Theme Tab Description"
   },
+  "pageSizeDescription": {
+    "message": "Control the popup panel width and height.",
+    "description": "Theme Tab Description"
+  },
+  "themeSystemTitle": {
+    "message": "Theme Setup & Preview",
+    "description": "Theme Tab Description"
+  },
+  "themeSystemDescription": {
+    "message": "Changes take effect immediately after selecting a theme series. The preview below shows the actual Popup UI.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesLabel": {
+    "message": "Theme series",
+    "description": "Theme Tab Description"
+  },
+  "themePreviewModeAriaLabel": {
+    "message": "Preview mode",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalTitle": {
+    "message": "Terminal",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalDescription": {
+    "message": "Terminal-inspired geek style. High contrast and tool-like, ideal for an engineering feel.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalDarkLabel": {
+    "message": "Terminal Dark",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalLightLabel": {
+    "message": "Terminal Light",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalDarkBadge": {
+    "message": "High Contrast",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalLightBadge": {
+    "message": "Clean CLI",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalDarkNote": {
+    "message": "Neon glow, dark background, highly recognizable.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalLightNote": {
+    "message": "Keeps the hacker vibe while feeling brighter and more restrained.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubTitle": {
+    "message": "GitHub",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubDescription": {
+    "message": "Developer-classic style. Steady information density and a strong professional feel, ideal for long-term use.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubDarkLabel": {
+    "message": "GitHub Dark",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubLightLabel": {
+    "message": "GitHub Light",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubBadge": {
+    "message": "Developer",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubDarkNote": {
+    "message": "Calm, familiar, and productivity-oriented.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubLightNote": {
+    "message": "Clean, orderly, and close to a platform-product feel.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeTitle": {
+    "message": "Claude",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeDescription": {
+    "message": "Warm and elegant. Soft beige tones for a lighter UI with more breathing room.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeDarkLabel": {
+    "message": "Claude Dark",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeLightLabel": {
+    "message": "Claude Light",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeBadge": {
+    "message": "Warm",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeDarkNote": {
+    "message": "Deep warm brown tones with more mood.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeLightNote": {
+    "message": "Soft paper-like feel with a more relaxed presentation.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicTitle": {
+    "message": "Basic",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicDescription": {
+    "message": "Clean and universal. Light on styling and suitable as the default theme for most users.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicDarkLabel": {
+    "message": "Basic Dark",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicLightLabel": {
+    "message": "Basic Light",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicBadge": {
+    "message": "Balanced",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicDarkNote": {
+    "message": "Low-key, versatile, and comfortable at night.",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicLightNote": {
+    "message": "Neutral, clean, and close to the default browser feel.",
+    "description": "Theme Tab Description"
+  },
   "downloadPanelThemeCustomDescription": {
     "message": "Custom theme, stay tuned!",
     "description": "Theme Tab Description"

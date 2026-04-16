@@ -31,6 +31,21 @@ const common = {
         item.filename.lastIndexOf('\\'),
         item.filename.lastIndexOf('/')
       ) + 1)
+      return
+    }
+
+    if (!item.basename) {
+      const sourceUrl = item.finalUrl || item.url
+      if (sourceUrl) {
+        try {
+          const parsedUrl = new URL(sourceUrl)
+          const pathname = parsedUrl.pathname || ''
+          const fallbackName = pathname.substring(pathname.lastIndexOf('/') + 1)
+          item.basename = fallbackName || parsedUrl.hostname || sourceUrl
+        } catch (e) {
+          item.basename = sourceUrl
+        }
+      }
     }
   },
 
@@ -43,7 +58,11 @@ const common = {
     return new Promise(resolve => {
       if (typeof chrome !== 'undefined' && chrome.downloads && item.filename && !item.iconUrl) {
         chrome.downloads.getFileIcon(item.id, {size: 32}, iconUrl => {
-          resolve(iconUrl)
+          if (chrome.runtime && chrome.runtime.lastError) {
+            resolve(null)
+            return
+          }
+          resolve(iconUrl || null)
         })
       } else {
         resolve(item.iconUrl)
@@ -248,6 +267,40 @@ const common = {
     this.i18data.downloadPanelTitle = this.loadI18nMessage('downloadPanelTitle')
     this.i18data.downloadPanelThemeCustomDescription = this.loadI18nMessage('downloadPanelThemeCustomDescription')
     this.i18data.pageSize = this.loadI18nMessage('pageSize')
+    this.i18data.pageSizeDescription = this.loadI18nMessage('pageSizeDescription')
+    this.i18data.themeSystemTitle = this.loadI18nMessage('themeSystemTitle')
+    this.i18data.themeSystemDescription = this.loadI18nMessage('themeSystemDescription')
+    this.i18data.themeSeriesLabel = this.loadI18nMessage('themeSeriesLabel')
+    this.i18data.themePreviewModeAriaLabel = this.loadI18nMessage('themePreviewModeAriaLabel')
+    this.i18data.themeSeriesTerminalTitle = this.loadI18nMessage('themeSeriesTerminalTitle')
+    this.i18data.themeSeriesTerminalDescription = this.loadI18nMessage('themeSeriesTerminalDescription')
+    this.i18data.themeSeriesTerminalDarkLabel = this.loadI18nMessage('themeSeriesTerminalDarkLabel')
+    this.i18data.themeSeriesTerminalLightLabel = this.loadI18nMessage('themeSeriesTerminalLightLabel')
+    this.i18data.themeSeriesTerminalDarkBadge = this.loadI18nMessage('themeSeriesTerminalDarkBadge')
+    this.i18data.themeSeriesTerminalLightBadge = this.loadI18nMessage('themeSeriesTerminalLightBadge')
+    this.i18data.themeSeriesTerminalDarkNote = this.loadI18nMessage('themeSeriesTerminalDarkNote')
+    this.i18data.themeSeriesTerminalLightNote = this.loadI18nMessage('themeSeriesTerminalLightNote')
+    this.i18data.themeSeriesGithubTitle = this.loadI18nMessage('themeSeriesGithubTitle')
+    this.i18data.themeSeriesGithubDescription = this.loadI18nMessage('themeSeriesGithubDescription')
+    this.i18data.themeSeriesGithubDarkLabel = this.loadI18nMessage('themeSeriesGithubDarkLabel')
+    this.i18data.themeSeriesGithubLightLabel = this.loadI18nMessage('themeSeriesGithubLightLabel')
+    this.i18data.themeSeriesGithubBadge = this.loadI18nMessage('themeSeriesGithubBadge')
+    this.i18data.themeSeriesGithubDarkNote = this.loadI18nMessage('themeSeriesGithubDarkNote')
+    this.i18data.themeSeriesGithubLightNote = this.loadI18nMessage('themeSeriesGithubLightNote')
+    this.i18data.themeSeriesClaudeTitle = this.loadI18nMessage('themeSeriesClaudeTitle')
+    this.i18data.themeSeriesClaudeDescription = this.loadI18nMessage('themeSeriesClaudeDescription')
+    this.i18data.themeSeriesClaudeDarkLabel = this.loadI18nMessage('themeSeriesClaudeDarkLabel')
+    this.i18data.themeSeriesClaudeLightLabel = this.loadI18nMessage('themeSeriesClaudeLightLabel')
+    this.i18data.themeSeriesClaudeBadge = this.loadI18nMessage('themeSeriesClaudeBadge')
+    this.i18data.themeSeriesClaudeDarkNote = this.loadI18nMessage('themeSeriesClaudeDarkNote')
+    this.i18data.themeSeriesClaudeLightNote = this.loadI18nMessage('themeSeriesClaudeLightNote')
+    this.i18data.themeSeriesBasicTitle = this.loadI18nMessage('themeSeriesBasicTitle')
+    this.i18data.themeSeriesBasicDescription = this.loadI18nMessage('themeSeriesBasicDescription')
+    this.i18data.themeSeriesBasicDarkLabel = this.loadI18nMessage('themeSeriesBasicDarkLabel')
+    this.i18data.themeSeriesBasicLightLabel = this.loadI18nMessage('themeSeriesBasicLightLabel')
+    this.i18data.themeSeriesBasicBadge = this.loadI18nMessage('themeSeriesBasicBadge')
+    this.i18data.themeSeriesBasicDarkNote = this.loadI18nMessage('themeSeriesBasicDarkNote')
+    this.i18data.themeSeriesBasicLightNote = this.loadI18nMessage('themeSeriesBasicLightNote')
 
     // options about 关于
     this.i18data.starAbout1 = this.loadI18nMessage('starAbout1')

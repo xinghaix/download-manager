@@ -26,5 +26,3 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
   return true
 })
-
-console.log('Offscreen document loaded')

@@ -18,6 +18,9 @@ let state = {
 
 const contextDownloadMenus = ['link', 'image', 'audio', 'video']
 const pendingDownloadIds = new Set()
+const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
+const ACTIVE_DOWNLOADS_ALARM = 'active-downloads-reconcile'
+const RECENT_DOWNLOAD_KEEP_MS = 10000
 
 // Service Worker 安装
 self.addEventListener('install', () => {
@@ -51,15 +54,13 @@ async function initialize() {
     handleDownloadingNumber(0)
     handleDangerousDownloading(false)
     await refreshActiveDownloadsSummary()
-
-    await ensureOffscreenDocument()
+    await rebuildProjectionFromActiveDownloads()
 
     // 创建上下文菜单
     const downloadContextMenus = await storage.get('download_context_menus')
     if (downloadContextMenus) {
       await createDownloadContextMenus()
     }
-
   } catch (error) {
     console.error('Initialize error:', error)
   }
@@ -81,8 +82,33 @@ chrome.downloads.onChanged.addListener((delta) => {
 chrome.downloads.onErased.addListener((id) => {
   pendingDownloadIds.delete(id)
   deleteAllDownloadNotificationId(id)
-  sendPopupDownloadDelta([], [id]).catch(() => {})
+  ;(async () => {
+    try {
+      const projection = await getDownloadsProjection()
+      delete projection.itemsById[id]
+      projection.removedIds = [id]
+      projection.summary = {
+        anyInProgress: state.anyInProgress,
+        anyInDangerous: state.anyInDangerous,
+        downloadingNumber: state.downloadingNumber,
+        progress: state.progress
+      }
+      await setDownloadsProjection(projection)
+    } catch (error) {
+      console.error('Projection erase sync error:', error)
+    }
+  })()
   scheduleActiveDownloadsRefresh()
+})
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name !== ACTIVE_DOWNLOADS_ALARM) {
+    return
+  }
+
+  rebuildProjectionFromActiveDownloads().catch(error => {
+    console.error('Active downloads reconcile error:', error)
+  })
 })
 
 // 通知按钮点击
@@ -190,23 +216,137 @@ async function getDownloadById(id) {
 async function getDownloadSnapshot() {
   const items = await searchDownloads({ orderBy: ['-startTime'] })
   return items
-    .filter(item => item && item.filename)
+    .filter(item => item)
     .map(item => prepareRuntimeDownloadItem(item))
 }
 
-async function sendPopupDownloadDelta(upserts = [], removes = []) {
-  if ((!upserts || upserts.length === 0) && (!removes || removes.length === 0)) {
+function pickProjectionItemFields(item) {
+  if (!item) {
+    return null
+  }
+
+  return {
+    id: item.id,
+    state: item.state,
+    filename: item.filename,
+    basename: item.basename,
+    finalUrl: item.finalUrl,
+    url: item.url,
+    bytesReceived: item.bytesReceived,
+    totalBytes: item.totalBytes,
+    estimatedEndTime: item.estimatedEndTime || null,
+    endTime: item.endTime || null,
+    paused: Boolean(item.paused),
+    error: item.error || null,
+    exists: typeof item.exists === 'boolean' ? item.exists : true,
+    danger: item.danger,
+    canResume: Boolean(item.canResume),
+    startTime: item.startTime,
+    iconUrl: item.iconUrl || null,
+    retainedUntil: item.state === 'in_progress' ? null : Date.now() + RECENT_DOWNLOAD_KEEP_MS
+  }
+}
+
+function pruneProjectionItems(itemsById) {
+  const nextItemsById = {}
+  const now = Date.now()
+
+  Object.entries(itemsById || {}).forEach(([id, item]) => {
+    if (!item) {
+      return
+    }
+
+    if (item.state === 'in_progress') {
+      nextItemsById[id] = item
+      return
+    }
+
+    if (!item.retainedUntil || item.retainedUntil > now) {
+      nextItemsById[id] = item
+    }
+  })
+
+  return nextItemsById
+}
+
+async function getDownloadsProjection() {
+  const projection = await storage.getSession(DOWNLOADS_PROJECTION_KEY)
+  if (!projection || typeof projection !== 'object') {
+    return {
+      seq: 0,
+      updatedAt: 0,
+      itemsById: {},
+      removedIds: [],
+      summary: {
+        anyInProgress: false,
+        anyInDangerous: false,
+        downloadingNumber: 0,
+        progress: -1
+      }
+    }
+  }
+
+  return {
+    seq: typeof projection.seq === 'number' ? projection.seq : 0,
+    updatedAt: typeof projection.updatedAt === 'number' ? projection.updatedAt : 0,
+    itemsById: pruneProjectionItems(projection.itemsById && typeof projection.itemsById === 'object' ? projection.itemsById : {}),
+    removedIds: Array.isArray(projection.removedIds) ? projection.removedIds : [],
+    summary: projection.summary && typeof projection.summary === 'object' ? projection.summary : {
+      anyInProgress: false,
+      anyInDangerous: false,
+      downloadingNumber: 0,
+      progress: -1
+    }
+  }
+}
+
+async function setDownloadsProjection(projection) {
+  const nextProjection = {
+    ...projection,
+    seq: (typeof projection.seq === 'number' ? projection.seq : 0) + 1,
+    updatedAt: Date.now()
+  }
+  await storage.setSession(DOWNLOADS_PROJECTION_KEY, nextProjection)
+  return nextProjection
+}
+
+async function rebuildProjectionFromActiveDownloads() {
+  const activeItems = (await searchDownloads({ state: 'in_progress', orderBy: ['-startTime'] }))
+    .map(item => prepareRuntimeDownloadItem(item))
+
+  const itemsById = {}
+  activeItems.forEach(item => {
+    const projectionItem = pickProjectionItemFields(item)
+    if (projectionItem) {
+      itemsById[item.id] = projectionItem
+    }
+  })
+
+  const projection = await getDownloadsProjection()
+  projection.itemsById = itemsById
+  projection.removedIds = []
+  projection.summary = {
+    anyInProgress: state.anyInProgress,
+    anyInDangerous: state.anyInDangerous,
+    downloadingNumber: state.downloadingNumber,
+    progress: state.progress
+  }
+
+  await setDownloadsProjection(projection)
+  await syncActiveDownloadsAlarm(state.anyInProgress)
+}
+
+async function syncActiveDownloadsAlarm(hasActiveDownloads) {
+  const alarm = await chrome.alarms.get(ACTIVE_DOWNLOADS_ALARM)
+  if (hasActiveDownloads) {
+    if (!alarm) {
+      chrome.alarms.create(ACTIVE_DOWNLOADS_ALARM, { periodInMinutes: 0.5 })
+    }
     return
   }
 
-  try {
-    await chrome.runtime.sendMessage(JSON.stringify({
-      type: 'download_delta',
-      upserts,
-      removes
-    }))
-  } catch (e) {
-    // Popup 可能未打开，忽略错误
+  if (alarm) {
+    chrome.alarms.clear(ACTIVE_DOWNLOADS_ALARM)
   }
 }
 
@@ -254,15 +394,21 @@ async function flushPendingDownloadUpdates() {
     return
   }
 
-  const upserts = []
+  const projection = await getDownloadsProjection()
+  projection.removedIds = []
+
   for (const id of ids) {
     const item = await getDownloadById(id)
-    if (item?.filename) {
-      upserts.push(item)
-    }
+    const projectionItem = pickProjectionItemFields(item)
 
     if (!item) {
+      delete projection.itemsById[id]
+      projection.removedIds.push(id)
       continue
+    }
+
+    if (projectionItem) {
+      projection.itemsById[id] = projectionItem
     }
 
     if (item.state === 'in_progress') {
@@ -280,7 +426,15 @@ async function flushPendingDownloadUpdates() {
     }
   }
 
-  await sendPopupDownloadDelta(upserts, [])
+  projection.itemsById = pruneProjectionItems(projection.itemsById)
+
+  projection.summary = {
+    anyInProgress: state.anyInProgress,
+    anyInDangerous: state.anyInDangerous,
+    downloadingNumber: state.downloadingNumber,
+    progress: state.progress
+  }
+  await setDownloadsProjection(projection)
   scheduleActiveDownloadsRefresh()
 }
 
@@ -311,6 +465,7 @@ async function refreshActiveDownloadsSummary() {
 
   handleDownloadingNumber(state.downloadingNumber)
   handleDangerousDownloading(anyInDangerous)
+  await syncActiveDownloadsAlarm(state.anyInProgress)
 
   const themeKey = await getActiveIconThemeKey()
   const iconColor = await storage.get('icon_color')
@@ -326,24 +481,31 @@ async function refreshActiveDownloadsSummary() {
   } else if (iconColor) {
     icon.restoreDefaultIcon(iconColor[themeKey])
   }
+
+  const projection = await getDownloadsProjection()
+  projection.summary = {
+    anyInProgress: state.anyInProgress,
+    anyInDangerous: state.anyInDangerous,
+    downloadingNumber: state.downloadingNumber,
+    progress: state.progress
+  }
+  await setDownloadsProjection(projection)
 }
 
 // 处理下载开始通知
 async function handleDownloadStartedNotification(item) {
   const notificationId = item.id + '-started'
   if (state.notificationList.indexOf(notificationId) < 0) {
-    state.notificationList.push(notificationId)
     const showNotification = await storage.get('download_started_notification')
-    
+
     if (showNotification) {
-      const iconUrl = getNotificationIcon(item)
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
         const visible = await storage.get('download_notification_remain_visible')
         const option = {
           type: 'basic',
           priority: 2,
-          iconUrl: iconUrl || 'img/icon19.png',
+          iconUrl: getNotificationIcon(),
           title: common.i18data.downloadStartedNotification,
           message: item.basename || item.url,
           buttons: [{ title: common.i18data.deleteNotification }]
@@ -353,8 +515,9 @@ async function handleDownloadStartedNotification(item) {
           option.requireInteraction = true
         }
 
-        await chrome.notifications.create(notificationId, option)
-        closeNotification(notificationId, option, visible)
+        const createdId = await createExtensionNotification(notificationId, option)
+        state.notificationList.push(createdId)
+        closeNotification(createdId, option, visible)
       }
     }
 
@@ -369,18 +532,16 @@ async function handleDownloadStartedNotification(item) {
 async function handleDownloadCompletedNotification(item) {
   const notificationId = item.id + '-completed'
   if (state.notificationList.indexOf(notificationId) < 0) {
-    state.notificationList.push(notificationId)
     const showNotification = await storage.get('download_completed_notification')
 
     if (showNotification) {
-      const iconUrl = getNotificationIcon(item)
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
         const visible = await storage.get('download_notification_remain_visible')
         const option = {
           type: 'basic',
           priority: 2,
-          iconUrl: iconUrl || 'img/icon19.png',
+          iconUrl: getNotificationIcon(),
           title: common.i18data.downloadCompletedNotification,
           message: item.basename || item.url,
           buttons: [
@@ -393,8 +554,9 @@ async function handleDownloadCompletedNotification(item) {
           option.requireInteraction = true
         }
 
-        await chrome.notifications.create(notificationId, option)
-        closeNotification(notificationId, option, visible)
+        const createdId = await createExtensionNotification(notificationId, option)
+        state.notificationList.push(createdId)
+        closeNotification(createdId, option, visible)
       }
     }
 
@@ -409,18 +571,16 @@ async function handleDownloadCompletedNotification(item) {
 async function handleDownloadWarningNotification(item) {
   const notificationId = item.id + '-warning'
   if (state.notificationList.indexOf(notificationId) < 0) {
-    state.notificationList.push(notificationId)
     const showNotification = await storage.get('download_warning_notification')
 
     if (showNotification) {
-      const iconUrl = getNotificationIcon(item)
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
         const visible = await storage.get('download_notification_remain_visible')
         const option = {
           type: 'basic',
           priority: 2,
-          iconUrl: iconUrl || 'img/icon19.png',
+          iconUrl: getNotificationIcon(),
           title: common.i18data.downloadWarnNotification,
           message: item.basename || item.url,
           buttons: [{ title: common.i18data.deleteNotification }]
@@ -430,8 +590,9 @@ async function handleDownloadWarningNotification(item) {
           option.requireInteraction = true
         }
 
-        await chrome.notifications.create(notificationId, option)
-        closeNotification(notificationId, option, visible)
+        const createdId = await createExtensionNotification(notificationId, option)
+        state.notificationList.push(createdId)
+        closeNotification(createdId, option, visible)
       }
     }
 
@@ -554,12 +715,37 @@ async function ensureOffscreenDocument() {
   })
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+async function sendMessageToOffscreen(message, maxAttempts = 5, delayMs = 60) {
+  let lastError = null
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      return await chrome.runtime.sendMessage(message)
+    } catch (error) {
+      lastError = error
+      const errorMessage = error?.message || String(error)
+      if (!errorMessage.includes('Could not establish connection')) {
+        throw error
+      }
+      if (attempt < maxAttempts) {
+        await sleep(delayMs)
+      }
+    }
+  }
+
+  throw lastError || new Error('Failed to deliver message to offscreen document')
+}
+
 // 播放音频（使用 Offscreen Document）
 async function playAudio(audioFile) {
   try {
     await ensureOffscreenDocument()
 
-    await chrome.runtime.sendMessage({
+    await sendMessageToOffscreen({
       type: 'play-audio',
       file: audioFile
     })
@@ -590,8 +776,12 @@ async function closeNotification(id, option, visible) {
   }
 }
 
-function getNotificationIcon(item) {
-  return item?.iconUrl || 'img/icon19.png'
+function getNotificationIcon() {
+  return chrome.runtime.getURL('img/icon19.png')
+}
+
+async function createExtensionNotification(id, options) {
+  return chrome.notifications.create(id, options)
 }
 
 // 删除所有通知
@@ -669,5 +859,3 @@ function removeDownloadContextMenus() {
     }
   })
 }
-
-console.log('Download Manager background script loaded')

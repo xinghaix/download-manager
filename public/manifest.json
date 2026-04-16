@@ -11,8 +11,8 @@
   },
   "action": {
     "default_icon": {
-     "19": "img/icon19.png",
-     "38": "img/icon38.png"
+      "19": "img/icon19.png",
+      "38": "img/icon38.png"
     },
     "default_title": "__MSG_extName__",
     "default_popup": "popup.html"
@@ -27,7 +27,7 @@
         "default": "Alt+X",
         "mac": "Alt+X"
       },
-      "description" : "__MSG_openPopupSetting__"
+      "description": "__MSG_openPopupSetting__"
     }
   },
   "options_page": "options.html",

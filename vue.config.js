@@ -1,7 +1,8 @@
+const {defineConfig} = require('@vue/cli-service')
 
 class RemoveNewFunctionPlugin {
   apply(compiler) {
-    const { Compilation, sources } = compiler.webpack
+    const {Compilation, sources} = compiler.webpack
 
     compiler.hooks.thisCompilation.tap('RemoveNewFunctionPlugin', (compilation) => {
       compilation.hooks.processAssets.tap(
@@ -33,7 +34,7 @@ class RemoveNewFunctionPlugin {
   }
 }
 
-module.exports = {
+module.exports = defineConfig({
   // 禁用 ESLint
   lintOnSave: false,
 
@@ -79,9 +80,9 @@ module.exports = {
     performance: {
       hints: 'warning',
       // 入口最大值
-      maxEntrypointSize: 1024000,
+      maxEntrypointSize: 1500000,
       // 生成的资源文件最大值
-      maxAssetSize: 1024000,
+      maxAssetSize: 1500000,
       // 只针对js文件给出性能优化提示
       assetFilter: function (assetFilename) {
         return assetFilename.endsWith(".js")
@@ -102,6 +103,10 @@ module.exports = {
       filename: 'options.html',
       title: 'options'
     },
+    offscreen: {
+      entry: 'src/offscreen.js',
+      filename: 'offscreen.html',
+    },
     background: {
       entry: 'src/background.js',
       filename: 'background.js'
@@ -114,15 +119,55 @@ module.exports = {
     config.plugins.delete('preload-background')
     config.plugins.delete('prefetch-background')
 
-    // 确保 background.js 输出到根目录且不带 hash
+    // 确保 background.js 和 offscreen.js 输出到根目录且不带 hash
     config.output.filename(file => {
       if (file.chunk.name === 'background') {
         return 'background.js'
       }
+      if (file.chunk.name === 'offscreen') {
+        return 'offscreen.js'
+      }
       return 'js/[name].[contenthash:8].js'
+    })
+
+    // 配置 splitChunks 排除 background，并进一步拆分 Vendor 以减小体积
+    config.optimization.splitChunks({
+      cacheGroups: {
+        // 提取 Vue 基础库
+        vue: {
+          name: 'chunk-vue',
+          test: /[\\/]node_modules[\\/](vue|vue-router|pinia|vuex)[\\/]/,
+          priority: 20,
+          chunks: (chunk) => chunk.name !== 'background' && chunk.name !== 'offscreen',
+          enforce: true
+        },
+        // 提取 UI 库 (如 element-plus)
+        ui: {
+          name: 'chunk-ui',
+          test: /[\\/]node_modules[\\/](element-plus|@element-plus)[\\/]/,
+          priority: 15,
+          chunks: (chunk) => chunk.name !== 'background' && chunk.name !== 'offscreen',
+          enforce: true
+        },
+        // 默认的 vendor 分组
+        vendors: {
+          name: 'chunk-vendors',
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          chunks: (chunk) => chunk.name !== 'background' && chunk.name !== 'offscreen',
+        },
+        // 默认的 common 分组
+        common: {
+          name: 'chunk-common',
+          minChunks: 2,
+          priority: -20,
+          chunks: (chunk) => chunk.name !== 'background' && chunk.name !== 'offscreen',
+          reuseExistingChunk: true
+        }
+      }
     })
 
     // 添加自定义插件移除 new Function
     config.plugin('remove-new-function').use(RemoveNewFunctionPlugin)
   }
-}
+})

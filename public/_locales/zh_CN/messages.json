@@ -307,6 +307,142 @@
     "message": "页面大小（宽度、高度）",
     "description": "主题标签页说明"
   },
+  "pageSizeDescription": {
+    "message": "控制下载面板的宽高",
+    "description": "主题标签页说明"
+  },
+  "themeSystemTitle": {
+    "message": "主题设置 & 预览",
+    "description": "主题标签页说明"
+  },
+  "themeSystemDescription": {
+    "message": "选择主题系列后立即生效，下方预览区展示 Popup 的实际界面效果。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesLabel": {
+    "message": "主题列表",
+    "description": "主题标签页说明"
+  },
+  "themePreviewModeAriaLabel": {
+    "message": "预览模式",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesTerminalTitle": {
+    "message": "终端",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesTerminalDescription": {
+    "message": "终端极客风。高对比、偏工具化，适合想要“工程感”的界面。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesTerminalDarkLabel": {
+    "message": "终端暗色",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesTerminalLightLabel": {
+    "message": "终端亮色",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesTerminalDarkBadge": {
+    "message": "高对比",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesTerminalLightBadge": {
+    "message": "清爽 CLI",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesTerminalDarkNote": {
+    "message": "霓虹感、黑底、识别性强。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesTerminalLightNote": {
+    "message": "保留极客风，但更明亮克制。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesGithubTitle": {
+    "message": "GitHub",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesGithubDescription": {
+    "message": "开发者经典风。信息密度稳、专业感强，适合长期使用。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesGithubDarkLabel": {
+    "message": "GitHub 暗色",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesGithubLightLabel": {
+    "message": "GitHub 亮色",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesGithubBadge": {
+    "message": "开发者",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesGithubDarkNote": {
+    "message": "沉稳、熟悉、偏生产力。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesGithubLightNote": {
+    "message": "清爽、规整、接近平台化产品。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesClaudeTitle": {
+    "message": "Claude",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesClaudeDescription": {
+    "message": "温暖优雅风。柔和米色系，适合更轻、更有呼吸感的视觉。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesClaudeDarkLabel": {
+    "message": "Claude 暗色",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesClaudeLightLabel": {
+    "message": "Claude 亮色",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesClaudeBadge": {
+    "message": "温暖",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesClaudeDarkNote": {
+    "message": "深暖棕色调，更有情绪表达。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesClaudeLightNote": {
+    "message": "柔和纸感，观感更轻松。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesBasicTitle": {
+    "message": "基础",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesBasicDescription": {
+    "message": "简洁通用风。弱风格化，适合大众默认主题。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesBasicDarkLabel": {
+    "message": "基础暗色",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesBasicLightLabel": {
+    "message": "基础亮色",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesBasicBadge": {
+    "message": "均衡",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesBasicDarkNote": {
+    "message": "低调、通用、适合夜间。",
+    "description": "主题标签页说明"
+  },
+  "themeSeriesBasicLightNote": {
+    "message": "中性、干净、默认感强。",
+    "description": "主题标签页说明"
+  },
   "downloadPanelThemeCustomDescription": {
     "message": "自定义主题，敬请期待！",
     "description": "主题标签页说明"

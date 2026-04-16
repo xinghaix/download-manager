@@ -31,6 +31,10 @@ function hasChromeStorage() {
   return typeof chrome !== 'undefined' && chrome.storage && chrome.storage.sync && chrome.storage.local
 }
 
+function hasChromeSessionStorage() {
+  return typeof chrome !== 'undefined' && chrome.storage && chrome.storage.session
+}
+
 function getLocalKey(key) {
   return `${LOCAL_STORAGE_PREFIX}:${key}`
 }
@@ -55,6 +59,58 @@ function localSet(key, value) {
 
 function getStorageArea(useSync) {
   return chrome.storage[useSync ? 'sync' : 'local']
+}
+
+function sessionGet(key) {
+  if (!hasChromeSessionStorage()) {
+    return Promise.resolve(localGet(`session:${key}`))
+  }
+
+  return new Promise(resolve => {
+    chrome.storage.session.get([key], result => resolve(result[key]))
+  })
+}
+
+function sessionGetMany(keys) {
+  if (!hasChromeSessionStorage()) {
+    const result = {}
+    keys.forEach(key => {
+      result[key] = localGet(`session:${key}`)
+    })
+    return Promise.resolve(result)
+  }
+
+  return new Promise(resolve => {
+    chrome.storage.session.get(keys, result => resolve(result))
+  })
+}
+
+function sessionSetMany(values) {
+  if (!hasChromeSessionStorage()) {
+    Object.entries(values).forEach(([key, value]) => localSet(`session:${key}`, value))
+    return Promise.resolve()
+  }
+
+  return new Promise(resolve => {
+    chrome.storage.session.set(values, () => resolve())
+  })
+}
+
+function sessionRemoveKeys(keys) {
+  if (!hasChromeSessionStorage()) {
+    keys.forEach(key => {
+      try {
+        localStorage.removeItem(getLocalKey(`session:${key}`))
+      } catch (e) {
+        // ignore localStorage errors in non-extension dev environments
+      }
+    })
+    return Promise.resolve()
+  }
+
+  return new Promise(resolve => {
+    chrome.storage.session.remove(keys, () => resolve())
+  })
 }
 
 const storage = {
@@ -201,6 +257,27 @@ const storage = {
    * 当获取配置为null时，提前设置默认配置
    * 只需要执行一次
    */
+  getSession(key) {
+    return sessionGet(key)
+  },
+
+  getManySession(keys) {
+    return sessionGetMany(keys)
+  },
+
+  setSession(key, value) {
+    return sessionSetMany({ [key]: value })
+  },
+
+  setManySession(values) {
+    return sessionSetMany(values)
+  },
+
+  removeSession(keys) {
+    const normalizedKeys = Array.isArray(keys) ? keys : [keys]
+    return sessionRemoveKeys(normalizedKeys)
+  },
+
   async defaultSettings() {
     // 插件设置默认启用同步
     await this.setDefaultIfNull('sync', true)

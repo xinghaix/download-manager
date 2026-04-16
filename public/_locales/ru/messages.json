@@ -307,6 +307,142 @@
     "message": "Размер страницы (ширина, высота)",
     "description": "Инструкция на странице лейбла"
   },
+  "pageSizeDescription": {
+    "message": "Управляет шириной и высотой панели загрузки.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSystemTitle": {
+    "message": "Настройка темы и предпросмотр",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSystemDescription": {
+    "message": "После выбора серии тем она применяется сразу, а ниже показывается реальный интерфейс Popup.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesLabel": {
+    "message": "Список тем",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themePreviewModeAriaLabel": {
+    "message": "Режим предпросмотра",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesTerminalTitle": {
+    "message": "Terminal",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesTerminalDescription": {
+    "message": "Гиковский стиль в духе терминала. Высокая контрастность и инструментальный характер подходят для «инженерного» интерфейса.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesTerminalDarkLabel": {
+    "message": "Terminal Тёмная",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesTerminalLightLabel": {
+    "message": "Terminal Светлая",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesTerminalDarkBadge": {
+    "message": "Высокий контраст",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesTerminalLightBadge": {
+    "message": "Чистый CLI",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesTerminalDarkNote": {
+    "message": "Неоновый акцент, тёмный фон и высокая узнаваемость.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesTerminalLightNote": {
+    "message": "Сохраняет гиковский стиль, но выглядит светлее и сдержаннее.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesGithubTitle": {
+    "message": "GitHub",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesGithubDescription": {
+    "message": "Классический стиль для разработчиков. Стабильная плотность информации и профессиональный вид для повседневного использования.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesGithubDarkLabel": {
+    "message": "GitHub Тёмная",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesGithubLightLabel": {
+    "message": "GitHub Светлая",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesGithubBadge": {
+    "message": "Для разработчиков",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesGithubDarkNote": {
+    "message": "Спокойно, знакомо и ориентировано на продуктивность.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesGithubLightNote": {
+    "message": "Чисто, аккуратно и похоже на платформенный продукт.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesClaudeTitle": {
+    "message": "Claude",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesClaudeDescription": {
+    "message": "Тёплый и элегантный стиль. Мягкие бежевые оттенки делают интерфейс легче и воздушнее.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesClaudeDarkLabel": {
+    "message": "Claude Тёмная",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesClaudeLightLabel": {
+    "message": "Claude Светлая",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesClaudeBadge": {
+    "message": "Тёплая",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesClaudeDarkNote": {
+    "message": "Глубокие тёплые коричневые тона и более выраженное настроение.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesClaudeLightNote": {
+    "message": "Мягкая бумажная фактура и более расслабленное восприятие.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesBasicTitle": {
+    "message": "Базовая",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesBasicDescription": {
+    "message": "Простой и универсальный стиль. Слабо выраженный характер, хорошо подходит как тема по умолчанию.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesBasicDarkLabel": {
+    "message": "Базовая тёмная",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesBasicLightLabel": {
+    "message": "Базовая светлая",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesBasicBadge": {
+    "message": "Сбалансированная",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesBasicDarkNote": {
+    "message": "Сдержанная, универсальная и удобная ночью.",
+    "description": "Инструкция на странице лейбла"
+  },
+  "themeSeriesBasicLightNote": {
+    "message": "Нейтральная, чистая и максимально близкая к стилю по умолчанию.",
+    "description": "Инструкция на странице лейбла"
+  },
   "downloadPanelThemeCustomDescription": {
     "message": "Пользовательская тема, следите за обновлениями!",
     "description": "Инструкция на странице лейбла"

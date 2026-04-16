@@ -81,7 +81,6 @@
 <style scoped rel="stylesheet/css">
   .home {
     margin: 0 auto;
-    font-family: Segoe UI, Microsoft YaHei, sans-serif;
   }
 
   /* 侧边栏 */
@@ -180,8 +179,6 @@
     border-left: 3px solid rgba(87, 154, 255, 1);
     -webkit-transition: opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
     transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
-    -webkit-transform: scaleY(1);
-    transform: scaleY(1);
   }
   .side-menu :deep(.el-menu-item.is-active .el-icon) {
     margin-left: -3px;

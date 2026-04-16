@@ -3,7 +3,7 @@
   <div class="file" :class="shouldBeGray(item)">
     <div class="icon">
       <Progress v-if="item.state === 'in_progress'" class="progress"
-                :width="42"
+                :width="46"
                 :loop="item.totalBytes === 0"
                 :paused="item.paused"
                 :percentage="getPercentage(item)"/>
@@ -15,7 +15,7 @@
             @contextmenu.prevent="rightClickFile && copyToClipboard(item.basename, $event)">{{ item.basename }}</span>
       <span class="file-url"
             @click="leftClickUrl && openUrl(item)"
-            @contextmenu.prevent="rightClickUrl && copyToClipboard(item.finalUrl, $event)">{{ item.finalUrl }}</span>
+            @contextmenu.prevent="rightClickUrl && copyToClipboard(item.finalUrl || item.url, $event)">{{ item.finalUrl || item.url }}</span>
       <div class="info">
         <template v-if="item.state === 'in_progress'">
           <template v-if="dangerous(item)">
@@ -270,18 +270,30 @@ export default {
     // 打开文件
     openfile(item) {
       if (this.openable(item)) {
-        chrome.downloads.open(item.id)
+        chrome.downloads.open(item.id, () => {
+          if (chrome.runtime && chrome.runtime.lastError) {
+            this.render()
+          }
+        })
       }
     },
 
     // 在资源管理器中显示文件
     showInFolder(item) {
-      chrome.downloads.show(item.id)
+      chrome.downloads.show(item.id, () => {
+        if (chrome.runtime && chrome.runtime.lastError) {
+          this.render()
+        }
+      })
     },
 
     // 从磁盘中删除文件
     remove(item) {
       chrome.downloads.removeFile(item.id, () => {
+        if (chrome.runtime && chrome.runtime.lastError) {
+          this.render()
+          return
+        }
         item.exists = false
         this.erase(item)
       })
@@ -299,6 +311,10 @@ export default {
     // 暂停正在下载中的文件
     pause(item) {
       chrome.downloads.pause(item.id, () => {
+        if (chrome.runtime && chrome.runtime.lastError) {
+          this.render()
+          return
+        }
         item.paused = true
       })
     },
@@ -307,7 +323,7 @@ export default {
     resume(item) {
       chrome.downloads.resume(item.id, () => {
         if (chrome.runtime && chrome.runtime.lastError) {
-          console.warn('resume failed', chrome.runtime.lastError.message)
+          this.render()
           return
         }
         item.paused = false
@@ -342,7 +358,11 @@ export default {
      * @param item {Object}
      */
     cancel(item) {
-      chrome.downloads.cancel(item.id)
+      chrome.downloads.cancel(item.id, () => {
+        if (chrome.runtime && chrome.runtime.lastError) {
+          this.render()
+        }
+      })
     },
 
     // 可在资源管理器中打开
@@ -479,8 +499,8 @@ export default {
 <style rel="stylesheet/scss" scoped>
 /* 下载文件 */
 .file {
-  height: 70px;
-  border-radius: 4px;
+  height: 76px;
+  border-radius: 5px;
   margin-right: 3px;
   border: 1px solid var(--content-file-border-color);
   background-color: var(--content-file-background-color);
@@ -498,16 +518,18 @@ export default {
 /* 文件图标 */
 .file .icon {
   text-align: center;
-  line-height: 86px;
-  width: 52px;
+  width: 56px;
   height: 100%;
   border-right: 1px solid var(--content-file-icon-border-right-color);
   float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .file .icon img {
-  height: 24px;
-  width: 24px;
+  height: 26px;
+  width: 26px;
 }
 
 .file .icon img:not([src]) {
@@ -523,24 +545,24 @@ export default {
 /* 图标上面的进度条 */
 .file .progress {
   position: absolute;
-  top: 15px;
+  top: 14px;
   left: 5px;
 }
 
 /* 文件内容 */
 .file .file-content {
-  width: calc(100% - 70px);
+  width: calc(100% - 74px);
   float: right;
-  padding: 6px 8px 0 0;
+  padding: 8px 8px 0 0;
 }
 
 /* 文件名称 */
 .file .filename {
   display: block;
-  height: 19px;
-  line-height: 19px;
+  height: 20px;
+  line-height: 20px;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--content-file-filename-color);
   white-space: nowrap;
   overflow: hidden;
@@ -560,9 +582,9 @@ export default {
 /* 文件下载链接 */
 .file .file-url {
   display: block;
-  height: 19px;
-  line-height: 19px;
-  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -575,16 +597,13 @@ export default {
 /* 文件信息栏 */
 .file .info {
   width: 100%;
-  height: 24px;
+  height: 26px;
   display: table;
 }
 
 .file .info .small-size {
   transition: none;
   font-size: 12px;
-  -webkit-transform-origin-x: 0;
-  -webkit-transform: scale(.9);
-  font-family: Consolas, Microsoft YaHei, serif;
 }
 
 /* 已下载的大小 */
@@ -608,7 +627,7 @@ export default {
 }
 
 .file .info .left.common {
-  width: 110px;
+  width: 118px;
 }
 
 .file .info .middle {
@@ -616,7 +635,7 @@ export default {
 }
 
 .file .info .middle.common {
-  width: 72px;
+  width: 80px;
 }
 
 .file .info .right {
@@ -631,9 +650,9 @@ export default {
 
 .file .info .danger .button {
   outline: 0;
-  border-radius: 4px;
-  height: 20px;
-  line-height: 16px;
+  border-radius: 11px;
+  height: 22px;
+  line-height: 18px;
   border: none;
   cursor: pointer;
 }
@@ -653,7 +672,7 @@ export default {
   color: #1a73e8;
   background-color: #fff;
   border: 1px solid #dadce0;
-  margin-right: -5px;
+  margin-right: -4px;
 }
 
 .file .info .danger .button.accept:hover {
@@ -663,11 +682,11 @@ export default {
 /* 内容栏 操作按钮 父元素*/
 .file .content-operator-wrapper {
   position: absolute;
-  top: -2px;
-  right: 6px;
-  height: 28px;
-  line-height: 36px;
-  padding-left: 16px;
+  top: 0;
+  right: 8px;
+  height: 30px;
+  line-height: 38px;
+  padding-left: 18px;
   background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, var(--content-file-background-color) 24%);
   z-index: 1;
 }
@@ -678,7 +697,31 @@ export default {
 }
 
 .file .content-operator .icon-button {
+  width: 24px;
+  height: 24px;
+  margin: 0 0 0 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
   font-size: 14px !important;
+  color: var(--header-icon-color);
+  background-color: transparent;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: background-color .18s ease, box-shadow .18s ease, color .18s ease;
+  box-sizing: border-box;
+}
+
+.file .content-operator .icon-button:hover,
+.file .content-operator .icon-button:focus-visible {
+  color: var(--header-icon-hover-color);
+  background-color: rgba(127, 127, 127, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.18);
+}
+
+.file .content-operator .icon-button:active {
+  background-color: rgba(127, 127, 127, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.24);
 }
 
 /* 内容栏 操作按钮*/
@@ -692,10 +735,10 @@ export default {
 
 /* 图标按钮 */
 .icon-button {
-  margin: 4px 0 0 12px;
-  display: inline-block;
+  margin: 0;
+  display: inline-flex;
   cursor: pointer;
-  font-size: 17px;
+  font-size: 18px;
   color: var(--header-icon-color);
   -webkit-transition: .2s;
   transition: .2s;
@@ -703,7 +746,20 @@ export default {
 
 .icon-button:hover {
   color: var(--header-icon-hover-color);
-  font-weight: bold;
+  background-color: rgba(127, 127, 127, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.18);
+  transition: .2s;
+}
+
+.icon-button:active {
+  background-color: rgba(127, 127, 127, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.24);
+}
+
+.icon-button:focus-visible {
+  color: var(--header-icon-hover-color);
+  background-color: rgba(127, 127, 127, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.18);
   transition: .2s;
 }
 </style>

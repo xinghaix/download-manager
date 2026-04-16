@@ -6,7 +6,7 @@
         <div class="item">
           <el-icon class="about-icon"><InfoFilled /></el-icon>
           <span class="prefix">{{extName}}<span class="version">{{version}}</span></span>
-          <a class="suffix link" @click="openUrl(githubUrl)">Github</a>
+          <a class="suffix link" @click="openUrl(githubUrl)">GITHUB</a>
         </div>
         <div class="item">
           <el-icon class="about-icon star-icon"><StarFilled /></el-icon>
@@ -130,7 +130,6 @@
     margin-left: 4px;
     border-radius: 2px;
     font-size: 13px;
-    font-family: consolas, Microsoft YaHei, sans-serif;
   }
   /* 链接 */
   .about-card .item .link {

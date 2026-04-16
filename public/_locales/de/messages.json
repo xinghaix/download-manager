@@ -307,6 +307,142 @@
     "message": "Seitengröße (Breite, Höhe)",
     "description": "Das fach design erscheint auf der vorderseite"
   },
+  "pageSizeDescription": {
+    "message": "Steuert Breite und Höhe des Download-Panels.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSystemTitle": {
+    "message": "Themeneinstellungen & Vorschau",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSystemDescription": {
+    "message": "Nach Auswahl einer Themenreihe wird sie sofort angewendet. Die Vorschau unten zeigt die tatsächliche Popup-Oberfläche.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesLabel": {
+    "message": "Themenreihe",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themePreviewModeAriaLabel": {
+    "message": "Vorschaumodus",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesTerminalTitle": {
+    "message": "Terminal",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesTerminalDescription": {
+    "message": "Terminal-inspirierter Geek-Stil. Hoher Kontrast und werkzeugartig, ideal für einen technischen Look.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesTerminalDarkLabel": {
+    "message": "Terminal Dunkel",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesTerminalLightLabel": {
+    "message": "Terminal Hell",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesTerminalDarkBadge": {
+    "message": "Hoher Kontrast",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesTerminalLightBadge": {
+    "message": "Klare CLI",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesTerminalDarkNote": {
+    "message": "Neonwirkung, dunkler Hintergrund, hohe Wiedererkennbarkeit.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesTerminalLightNote": {
+    "message": "Behält den Geek-Stil, wirkt aber heller und zurückhaltender.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesGithubTitle": {
+    "message": "GitHub",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesGithubDescription": {
+    "message": "Klassischer Entwicklerstil. Ausgewogene Informationsdichte und professioneller Eindruck, ideal für den täglichen Einsatz.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesGithubDarkLabel": {
+    "message": "GitHub Dunkel",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesGithubLightLabel": {
+    "message": "GitHub Hell",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesGithubBadge": {
+    "message": "Entwickler",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesGithubDarkNote": {
+    "message": "Ruhig, vertraut und produktivitätsorientiert.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesGithubLightNote": {
+    "message": "Klar, ordentlich und nah an einer Plattform-Oberfläche.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesClaudeTitle": {
+    "message": "Claude",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesClaudeDescription": {
+    "message": "Warm und elegant. Weiche Beigetöne für eine leichtere Oberfläche mit mehr Luft.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesClaudeDarkLabel": {
+    "message": "Claude Dunkel",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesClaudeLightLabel": {
+    "message": "Claude Hell",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesClaudeBadge": {
+    "message": "Warm",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesClaudeDarkNote": {
+    "message": "Tief warme Brauntöne mit stärkerer Stimmung.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesClaudeLightNote": {
+    "message": "Weiche Papieroptik für einen entspannteren Eindruck.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesBasicTitle": {
+    "message": "Basis",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesBasicDescription": {
+    "message": "Schlicht und universell. Wenig stilisiert und gut als Standardthema geeignet.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesBasicDarkLabel": {
+    "message": "Basis Dunkel",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesBasicLightLabel": {
+    "message": "Basis Hell",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesBasicBadge": {
+    "message": "Ausgewogen",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesBasicDarkNote": {
+    "message": "Dezent, vielseitig und angenehm bei Nacht.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
+  "themeSeriesBasicLightNote": {
+    "message": "Neutral, sauber und mit starkem Standardgefühl.",
+    "description": "Das fach design erscheint auf der vorderseite"
+  },
   "downloadPanelThemeCustomDescription": {
     "message": "Benutzerdefiniertes Thema, bleiben Sie dran!",
     "description": "Das fach design erscheint auf der vorderseite"

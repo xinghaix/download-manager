@@ -441,7 +441,6 @@ export default {
     background-color: #ececec;
     border-radius: 4px;
     padding: 2px 6px;
-    font-family: Consolas, Microsoft YaHei, sans-serif;
   }
   .box-card .item .setting-description .code {
     margin-left: 4px;

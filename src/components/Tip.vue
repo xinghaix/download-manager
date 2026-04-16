@@ -100,10 +100,8 @@
     line-height: 14px;
     height: 15px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--tip-color);
     background: var(--tip-background-color);
-    -webkit-transform-origin-x: 0;
-    -webkit-transform: scale(0.9);
   }
 </style>

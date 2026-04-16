@@ -307,6 +307,142 @@
     "message": "ページサイズ（幅、高さ）",
     "description": "プラグインの設定手順"
   },
+  "pageSizeDescription": {
+    "message": "ダウンロードパネルの幅と高さを調整します。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSystemTitle": {
+    "message": "テーマ設定とプレビュー",
+    "description": "プラグインの設定手順"
+  },
+  "themeSystemDescription": {
+    "message": "テーマシリーズを選択するとすぐに反映され、下のプレビューに Popup の実際の表示を示します。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesLabel": {
+    "message": "テーマ一覧",
+    "description": "プラグインの設定手順"
+  },
+  "themePreviewModeAriaLabel": {
+    "message": "プレビューモード",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesTerminalTitle": {
+    "message": "ターミナル",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesTerminalDescription": {
+    "message": "ターミナル風のギークスタイル。高コントラストでツール感が強く、エンジニア向けの見た目に適しています。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesTerminalDarkLabel": {
+    "message": "ターミナル ダーク",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesTerminalLightLabel": {
+    "message": "ターミナル ライト",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesTerminalDarkBadge": {
+    "message": "高コントラスト",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesTerminalLightBadge": {
+    "message": "すっきり CLI",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesTerminalDarkNote": {
+    "message": "ネオン感のある黒基調で、視認性が高い。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesTerminalLightNote": {
+    "message": "ギーク感を残しつつ、より明るく控えめ。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesGithubTitle": {
+    "message": "GitHub",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesGithubDescription": {
+    "message": "開発者向けの定番スタイル。情報密度が安定しており、長く使いやすいプロ向けの見た目です。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesGithubDarkLabel": {
+    "message": "GitHub ダーク",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesGithubLightLabel": {
+    "message": "GitHub ライト",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesGithubBadge": {
+    "message": "開発者向け",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesGithubDarkNote": {
+    "message": "落ち着きがあり、見慣れていて、生産性重視。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesGithubLightNote": {
+    "message": "すっきり整っていて、プラットフォーム製品に近い印象。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesClaudeTitle": {
+    "message": "Claude",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesClaudeDescription": {
+    "message": "温かみと上品さのあるスタイル。やわらかなベージュ系で、軽く呼吸感のある表示に向いています。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesClaudeDarkLabel": {
+    "message": "Claude ダーク",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesClaudeLightLabel": {
+    "message": "Claude ライト",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesClaudeBadge": {
+    "message": "ウォーム",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesClaudeDarkNote": {
+    "message": "深みのある暖色ブラウンで、より雰囲気がある。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesClaudeLightNote": {
+    "message": "紙のような柔らかさで、よりリラックスした見た目。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesBasicTitle": {
+    "message": "ベーシック",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesBasicDescription": {
+    "message": "シンプルで汎用的なスタイル。主張が強すぎず、標準テーマとして使いやすいです。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesBasicDarkLabel": {
+    "message": "ベーシック ダーク",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesBasicLightLabel": {
+    "message": "ベーシック ライト",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesBasicBadge": {
+    "message": "バランス",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesBasicDarkNote": {
+    "message": "控えめで汎用性が高く、夜間利用に向いている。",
+    "description": "プラグインの設定手順"
+  },
+  "themeSeriesBasicLightNote": {
+    "message": "中立的でクリーン、標準テーマらしい印象。",
+    "description": "プラグインの設定手順"
+  },
   "downloadPanelThemeCustomDescription": {
     "message": "カスタムテーマ、お楽しみに！",
     "description": "プラグインの設定手順"

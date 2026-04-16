@@ -26,7 +26,7 @@
         </el-popover>
         <div class="musk" v-if="showMusk" @click="() => { this.showMusk = false; this.showPopover = false }"/>
         <el-tooltip :disabled="closeTooltip" :content="i18data.clearAll"
-                    placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
+                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false">
           <el-dropdown class="header-dropdown" trigger="click" @command="clearDropdownCommand">
             <span class="header-button header-dropdown-trigger">
               <el-icon class="icon-button"><Brush /></el-icon>
@@ -42,23 +42,23 @@
           </el-dropdown>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openDownloadFolder"
-                    placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
+                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false">
           <el-icon class="header-button icon-button" @click="openFolder"><FolderOpened /></el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openHome"
-                    placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
+                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false">
           <el-icon class="header-button icon-button" @click="openHome"><Position /></el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openSettings"
-                    placement="bottom" effect="dark" popper-class="tooltip" :enterable="false">
+                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false">
           <el-icon class="header-button icon-button" @click="openOptions"><Setting /></el-icon>
         </el-tooltip>
       </div>
     </div>
 
     <div class="content">
-      <RecycleScroller id="vue-recycle-scroller" :items="filteredDownloadItems"
-                       :item-size="78" key-field="id" v-slot="{ item }">
+      <RecycleScroller id="vue-recycle-scroller" :key="recycleScrollerKey" :items="filteredDownloadItems"
+                       :item-size="84" key-field="id" v-slot="{ item }">
         <transition :enter-active-class="enableAnimation ? 'transition-enter' : ''"
                     :leave-active-class="enableAnimation ? 'transition-leave' : ''">
           <file class="file" :item="item" :key="item.id"
@@ -82,10 +82,46 @@
   import File from './File'
   import Tip from '../../components/Tip'
 
+  const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
+
   export default {
     name: 'Popup',
     components: {File, Tip},
     async created() {
+      this.runtimeMessageListener = (message => {
+        if (typeof message !== 'string') {
+          return
+        }
+
+        let received
+        try {
+          received = JSON.parse(message)
+        } catch (e) {
+          return
+        }
+
+        if (received.type === 'ui_theme_changed') {
+          this.setTheme(received.data)
+        }
+      })
+      chrome.runtime.onMessage.addListener(this.runtimeMessageListener)
+
+      this.storageChangeListener = (changes, areaName) => {
+        if (areaName !== 'session') {
+          return
+        }
+        const projectionChange = changes[DOWNLOADS_PROJECTION_KEY]
+        if (!projectionChange || !projectionChange.newValue) {
+          return
+        }
+        if (Array.isArray(projectionChange.newValue.removedIds) && projectionChange.newValue.removedIds.length > 0) {
+          this.render()
+          return
+        }
+        this.applyDownloadsProjection(projectionChange.newValue)
+      }
+      chrome.storage.onChanged.addListener(this.storageChangeListener)
+
       // 获取页面大小
       this.checkPageSize(await storage.get('download_panel_page_size'))
 
@@ -98,18 +134,6 @@
       })
 
       await this.applyStoredTheme()
-
-      // 监听来自 Options 页面的主题变更消息
-      chrome.runtime.onMessage.addListener(message => {
-        try {
-          let received = JSON.parse(message);
-          if (received.type === 'ui_theme_changed') {
-            this.setTheme(received.data)
-          }
-        } catch (e) {
-          // 忽略非 JSON 消息
-        }
-      })
 
       // 监听浏览器的颜色模式（在自适应系列或未设置旧版 UI 主题时生效）
       window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
@@ -140,48 +164,19 @@
       // 开启文件移入移出动画
       this.enableAnimation = await storage.get('enable_animation')
 
-      // 接收来自background发来的数据
-      chrome.runtime.onMessage.addListener(message => {
-        if (typeof message !== 'string') {
-          return
-        }
-
-        let received
-        try {
-          received = JSON.parse(message)
-        } catch (e) {
-          return
-        }
-
-        if (received.type === 'download_delta') {
-          this.downloadUpdateVersion++
-          if (Array.isArray(received.removes)) {
-            received.removes.forEach(id => this.removeItemById(id))
-          }
-
-          if (Array.isArray(received.upserts)) {
-            received.upserts.forEach(item => {
-              if (item && item.filename) {
-                this.upsertDownloadItem(item)
-              }
-            })
-          }
-          this.scheduleLocalSyncIfNeeded()
-        }
-      })
-
-      // 如果其他插件或者谷歌浏览器下载界面清除下载文件时，同步搜索数据
-      chrome.downloads.onErased.addListener((id) => {
-        this.downloadUpdateVersion++
-        this.removeItemById(id)
-        this.scheduleLocalSyncIfNeeded()
-      })
+      const projection = await storage.getSession(DOWNLOADS_PROJECTION_KEY)
+      this.applyDownloadsProjection(projection, { allowInsertStates: ['in_progress'] })
 
       // 获取下载文件信息
       await this.render()
     },
     beforeUnmount() {
-      this.clearLocalSyncTimer()
+      if (this.runtimeMessageListener) {
+        chrome.runtime.onMessage.removeListener(this.runtimeMessageListener)
+      }
+      if (this.storageChangeListener) {
+        chrome.storage.onChanged.removeListener(this.storageChangeListener)
+      }
     },
     data() {
       return {
@@ -217,8 +212,7 @@
         themeData: null,
         downloadItemIndexMap: new Map(),
         downloadUpdateVersion: 0,
-        renderRequestId: 0,
-        localSyncTimer: null
+        renderRequestId: 0
       }
     },
     computed: {
@@ -231,6 +225,9 @@
       },
       openDownloadPopoverWidth() {
         return Math.max(Number(this.downloadPanelPageSize.width) - 40, 280)
+      },
+      recycleScrollerKey() {
+        return `${this.downloadUpdateVersion}-${this.filteredDownloadItems.length}`
       }
     },
     watch: {
@@ -248,27 +245,26 @@
       }
     },
     methods: {
-      clearLocalSyncTimer() {
-        if (this.localSyncTimer) {
-          clearTimeout(this.localSyncTimer)
-          this.localSyncTimer = null
-        }
-      },
-
-      hasActiveDownloads() {
-        return this.downloadItems.some(item => item.state === 'in_progress')
-      },
-
-      scheduleLocalSyncIfNeeded() {
-        this.clearLocalSyncTimer()
-        if (!this.hasActiveDownloads()) {
+      applyDownloadsProjection(projection, options = {}) {
+        if (!projection || typeof projection !== 'object') {
           return
         }
 
-        this.localSyncTimer = setTimeout(() => {
-          this.localSyncTimer = null
-          this.syncActiveDownloads()
-        }, 400)
+        this.downloadUpdateVersion++
+
+        if (Array.isArray(projection.removedIds)) {
+          projection.removedIds.forEach(id => this.removeItemById(id))
+        }
+
+        const itemsById = projection.itemsById && typeof projection.itemsById === 'object'
+          ? projection.itemsById
+          : {}
+
+        Object.values(itemsById).forEach(item => {
+          if (item) {
+            this.upsertDownloadItem(item, options)
+          }
+        })
       },
 
       async getStoredEffectiveMode() {
@@ -303,8 +299,8 @@
       checkPageSize(downloadPanelPageSize) {
         if (downloadPanelPageSize) {
           let width = downloadPanelPageSize.width
-          if (width < 350) {
-            width = 350
+          if (width < 380) {
+            width = 380
           }
           if (width > 800) {
             width = 800
@@ -372,19 +368,24 @@
         this.rebuildDownloadItemIndexMap()
       },
 
-      upsertDownloadItem(item) {
+      upsertDownloadItem(item, options = {}) {
         this.prepareDownloadItem(item)
         const target = this.getItem(item.id)
         if (target) {
           this.mergeDownloadItem(target, item)
           return
         }
+
+        if (Array.isArray(options.allowInsertStates) && !options.allowInsertStates.includes(item.state)) {
+          return
+        }
+
         this.insertDownloadItem(item)
       },
 
       async requestDownloadSnapshot() {
         if (!(typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage)) {
-          return this.searchDownloadsSnapshot()
+          return []
         }
 
         return await new Promise(resolve => {
@@ -392,96 +393,12 @@
             type: 'download_snapshot_request'
           }), response => {
             if (chrome.runtime.lastError || !response || !response.success || !Array.isArray(response.data)) {
-              this.searchDownloadsSnapshot().then(resolve)
+              resolve([])
               return
             }
             resolve(response.data)
           })
         })
-      },
-
-      async searchDownloadsSnapshot() {
-        if (!(typeof chrome !== 'undefined' && chrome.downloads && chrome.downloads.search)) {
-          return []
-        }
-
-        return await new Promise(resolve => {
-          chrome.downloads.search({ orderBy: ['-startTime'] }, items => {
-            if (chrome.runtime && chrome.runtime.lastError) {
-              resolve([])
-              return
-            }
-            resolve(Array.isArray(items) ? items : [])
-          })
-        })
-      },
-
-      async searchActiveDownloads() {
-        if (!(typeof chrome !== 'undefined' && chrome.downloads && chrome.downloads.search)) {
-          return []
-        }
-
-        return await new Promise(resolve => {
-          chrome.downloads.search({ state: 'in_progress', orderBy: ['-startTime'] }, items => {
-            if (chrome.runtime && chrome.runtime.lastError) {
-              resolve([])
-              return
-            }
-            resolve(Array.isArray(items) ? items : [])
-          })
-        })
-      },
-
-      async searchDownloadById(id) {
-        if (!(typeof chrome !== 'undefined' && chrome.downloads && chrome.downloads.search)) {
-          return null
-        }
-
-        return await new Promise(resolve => {
-          chrome.downloads.search({ id }, items => {
-            if (chrome.runtime && chrome.runtime.lastError) {
-              resolve(null)
-              return
-            }
-            resolve(Array.isArray(items) && items.length ? items[0] : null)
-          })
-        })
-      },
-
-      async syncActiveDownloads() {
-        const trackedIds = this.downloadItems
-          .filter(item => item.state === 'in_progress')
-          .map(item => item.id)
-
-        if (!trackedIds.length) {
-          return
-        }
-
-        const activeItems = await this.searchActiveDownloads()
-        const activeIdSet = new Set()
-
-        activeItems.forEach(item => {
-          if (!item || !item.filename) {
-            return
-          }
-          activeIdSet.add(item.id)
-          this.upsertDownloadItem(item)
-        })
-
-        for (const id of trackedIds) {
-          if (activeIdSet.has(id)) {
-            continue
-          }
-
-          const item = await this.searchDownloadById(id)
-          if (item && item.filename) {
-            this.upsertDownloadItem(item)
-          } else {
-            this.removeItemById(id)
-          }
-        }
-
-        this.scheduleLocalSyncIfNeeded()
       },
 
       /**
@@ -490,7 +407,10 @@
       async render() {
         const requestId = ++this.renderRequestId
         const startVersion = this.downloadUpdateVersion
-        const items = await this.requestDownloadSnapshot()
+        const [projection, items] = await Promise.all([
+          storage.getSession(DOWNLOADS_PROJECTION_KEY),
+          this.requestDownloadSnapshot()
+        ])
 
         if (requestId !== this.renderRequestId) {
           return
@@ -507,14 +427,14 @@
 
         this.downloadItems = []
         items.forEach(item => {
-          if (!item || !item.filename) {
+          if (!item) {
             return
           }
           this.prepareDownloadItem(item)
           this.downloadItems.push(item)
         })
         this.rebuildDownloadItemIndexMap()
-        this.scheduleLocalSyncIfNeeded()
+        this.applyDownloadsProjection(projection)
       },
 
       toggleOpenDownload() {
@@ -578,6 +498,10 @@
        */
       erase(item) {
         chrome.downloads.erase({id: item.id}, () => {
+          if (chrome.runtime && chrome.runtime.lastError) {
+            this.render()
+            return
+          }
           this.removeItemById(item.id)
         })
       },
@@ -595,7 +519,13 @@
                 break
               case 'deleteAll':
                 if (item.exists) {
-                  chrome.downloads.removeFile(item.id, () => this.erase(item))
+                  chrome.downloads.removeFile(item.id, () => {
+                    if (chrome.runtime && chrome.runtime.lastError) {
+                      this.render()
+                      return
+                    }
+                    this.erase(item)
+                  })
                 } else {
                   this.erase(item)
                 }
@@ -653,7 +583,7 @@
           console.warn(`Theme "${theme}" not found in themeData`);
           return;
         }
-        
+
         Object.keys(panelThemeData).forEach(key => {
           bodyStyle.setProperty(key, panelThemeData[key])
         })
@@ -674,10 +604,8 @@
     color: var(--tooltip-color)!important;
     border-color: var(--tooltip-background-color)!important;
     padding: 4px!important;
-    font-size: 12px!important;
+    font-size: 11px!important;
     transition: none;
-    -webkit-transform-origin-x: 0;
-    -webkit-transform: scale(.9);
   }
   body .tooltip .el-popper__arrow,
   body .tooltip.el-popper .el-popper__arrow {
@@ -699,6 +627,9 @@
   }
   body .el-popper[data-popper-placement^=bottom] {
     margin-top: 8px;
+  }
+  body .header-tooltip.el-popper[data-popper-placement^=bottom] {
+    margin-top: 2px !important;
   }
   body .el-popconfirm .el-popconfirm__main {
     height: 0;
@@ -729,7 +660,6 @@
   }
 
   body .el-textarea textarea {
-    font-family: Segoe UI, Microsoft YaHei, sans-serif;
     resize: none;
     color: var(--popover-textarea-color);
     background-color: var(--popover-textarea-background-color);
@@ -741,19 +671,15 @@
     color: var(--popover-textarea-placeholder-color);
   }
   body .el-textarea textarea::-webkit-input-placeholder {
-    font-family: Segoe UI, Microsoft YaHei, sans-serif;
     font-size: 14px;
   }
   body .el-textarea textarea:-moz-placeholder {
-    font-family: Segoe UI, Microsoft YaHei, sans-serif;
     font-size: 14px;
   }
   body .el-textarea textarea::-moz-placeholder {
-    font-family: Segoe UI, Microsoft YaHei, sans-serif;
     font-size: 14px;
   }
   body .el-textarea textarea::-ms-input-placeholder {
-    font-family: Segoe UI, Microsoft YaHei, sans-serif;
     font-size: 14px;
   }
   body .el-textarea textarea::-webkit-scrollbar {
@@ -782,16 +708,16 @@
   }
 
   .header {
-    padding: 9px 3px 0 6px;
+    padding: 10px 4px 0 8px;
   }
 
   /* header栏输入框 */
   .header .search {
-    width: 200px;
+    width: 212px;
   }
   .header .search :deep(.el-input__wrapper) {
-    border-radius: 16px;
-    min-height: 24px;
+    border-radius: 18px;
+    min-height: 28px;
     background-color: var(--header-search-background-color);
     box-shadow: 0 0 0 1px var(--header-search-border-color) inset !important;
     transition: box-shadow 0ms;
@@ -801,12 +727,14 @@
     box-shadow: 0 0 0 1px var(--header-search-hover-border-color) inset !important;
   }
   .header .search :deep(.el-input__inner) {
-    height: 24px;
-    line-height: 24px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 13px;
     color: var(--header-search-color);
   }
   .header .search .search-icon {
-    line-height: 24px;
+    line-height: 28px;
+    font-size: 14px;
     color: var(--header-search-color);
   }
 
@@ -819,8 +747,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 3px 5px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
     vertical-align: middle;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: var(--header-icon-color);
+    box-shadow: inset 0 0 0 1px transparent;
+    transition: background-color .18s ease, box-shadow .18s ease, color .18s ease;
   }
   .header .header-dropdown,
   .header .header-dropdown-trigger {
@@ -829,6 +764,16 @@
   }
   .header .header-dropdown-trigger {
     outline: none;
+  }
+  .header .header-button:hover,
+  .header .header-button:focus-visible {
+    background-color: rgba(127, 127, 127, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.18);
+    color: var(--header-icon-hover-color);
+  }
+  .header .header-button:active {
+    background-color: rgba(127, 127, 127, 0.18);
+    box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.24);
   }
 
   /* 显示手动下载文件弹框时的遮蔽层 */
@@ -846,14 +791,13 @@
   /* 图标按钮 */
   .icon-button {
     cursor: pointer;
-    font-size: 17px;
-    color: var(--header-icon-color);
+    font-size: 19px;
+    color: inherit;
     -webkit-transition: .2s;
     transition: .2s;
   }
   .icon-button:hover {
-    color: var(--header-icon-hover-color);
-    font-weight: bold;
+    color: inherit;
     transition: .2s;
   }
 
@@ -879,8 +823,8 @@
 
   /* 下载内容区域 */
   .content {
-    height: calc(100% - 48px);
-    margin: 8px 0 0 6px;
+    height: calc(100% - 54px);
+    margin: 9px 0 0 7px;
   }
 
   /* 滚动条样式 */

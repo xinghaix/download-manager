@@ -65,11 +65,11 @@
       <div class="item compact-item">
         <div class="content">
           <span class="setting-title">{{i18data.pageSize}}</span>
-          <span class="setting-description">控制下载面板的宽高</span>
+          <span class="setting-description">{{i18data.pageSizeDescription}}</span>
         </div>
         <div class="switch width page-size">
           <el-input-number v-model="downloadPanelPageSize.width" :controls="false"
-                           :min="350" :max="800" size="small"></el-input-number>
+                           :min="380" :max="800" size="small"></el-input-number>
           <el-input-number v-model="downloadPanelPageSize.height" :controls="false"
                            :min="300" :max="600" size="small"></el-input-number>
         </div>
@@ -79,11 +79,11 @@
 
       <section class="theme-system-head">
         <div class="theme-system-copy">
-          <div class="theme-system-title">主题设置 & 预览</div>
-          <div class="theme-system-desc">选择主题系列后立即生效，下方预览区展示 Popup 的实际界面效果。</div>
+          <div class="theme-system-title">{{i18data.themeSystemTitle}}</div>
+          <div class="theme-system-desc">{{i18data.themeSystemDescription}}</div>
         </div>
         <div class="theme-selector-control theme-system-selector">
-          <span class="selector-label">主题列表</span>
+          <span class="selector-label">{{i18data.themeSeriesLabel}}</span>
           <el-select v-model="selectedThemeSeriesKey" size="small" @change="handlePreviewSeriesChange">
             <el-option v-for="series in themeSeries"
                        :key="series.key"
@@ -97,17 +97,17 @@
         <div class="preview-stage">
           <div class="preview-stage-grid"></div>
           <div class="preview-stage-head">
-            <div v-if="theme === 'auto'" class="preview-mode-switch" role="tablist" aria-label="Preview mode">
+            <div v-if="theme === 'auto'" class="preview-mode-switch" role="tablist" :aria-label="i18data.themePreviewModeAriaLabel">
               <button type="button"
                       class="preview-mode-button"
                       :class="{ active: previewMode === 'light' }"
-                      @click="setPreviewMode('light')">Light</button>
+                      @click="setPreviewMode('light')">{{ getModeLabel('light') }}</button>
               <button type="button"
                       class="preview-mode-button"
                       :class="{ active: previewMode === 'dark' }"
-                      @click="setPreviewMode('dark')">Dark</button>
+                      @click="setPreviewMode('dark')">{{ getModeLabel('dark') }}</button>
             </div>
-            <div v-else class="preview-mode-indicator">{{ getEffectiveMode() }}</div>
+            <div v-else class="preview-mode-indicator">{{ getModeLabel(getEffectiveMode()) }}</div>
           </div>
           <div class="popup-preview-wrapper">
             <div class="popup-preview"
@@ -122,7 +122,7 @@
                   <div class="header popup-header">
                     <div class="search popup-search">
                       <div class="search-inner">
-                        <span class="search-placeholder">Search</span>
+                        <span class="search-placeholder"></span>
                         <span class="search-icon">⌕</span>
                       </div>
                     </div>
@@ -188,7 +188,7 @@
   import storage from '../../utils/storage'
   import common from '../../utils/common'
 
-  const MIN_PREVIEW_WIDTH = 350
+  const MIN_PREVIEW_WIDTH = 380
   const MAX_PREVIEW_WIDTH = 800
   const MIN_PREVIEW_HEIGHT = 300
   const MAX_PREVIEW_HEIGHT = 600
@@ -235,6 +235,7 @@
       this.show = true
     },
     data() {
+      const i18n = common.i18data
       return {
         show: false,
         systemTheme: 'light',
@@ -259,7 +260,7 @@
         themeData: null,
         selectedThemeSeriesKey: 'basic',
         previewMode: 'light',
-        previewFiles: [
+        previewFileTemplates: [
           {
             name: 'download-manager-v3.zip',
             url: 'github.com/xinghaix/download-manager/releases',
@@ -267,7 +268,7 @@
             received: '2.4M',
             total: '3.7M',
             speed: '860K/s',
-            status: '13s',
+            statusSeconds: '13',
             previewClass: ''
           },
           {
@@ -277,7 +278,7 @@
             received: '1.1M',
             total: '5.0M',
             speed: '420K/s',
-            status: '48s',
+            statusSeconds: '48',
             previewClass: 'is-hovered'
           },
           {
@@ -287,45 +288,45 @@
             received: '4.8M',
             total: '5.0M',
             speed: '1.2M/s',
-            status: '2s',
+            statusSeconds: '2',
             previewClass: ''
           }
         ],
         themeSeries: [
           {
             key: 'terminal',
-            title: 'Terminal',
-            desc: '终端极客风。高对比、偏工具化，适合想要“工程感”的界面。',
+            title: i18n.themeSeriesTerminalTitle,
+            desc: i18n.themeSeriesTerminalDescription,
             options: [
-              { value: 'terminal-dark', previewClass: 'terminal-dark', label: 'Terminal Dark', mode: 'Dark', badge: 'High Contrast', note: '霓虹感、黑底、识别性强。' },
-              { value: 'terminal-light', previewClass: 'terminal-light', label: 'Terminal Light', mode: 'Light', badge: 'Clean CLI', note: '保留极客风，但更明亮克制。' }
+              { value: 'terminal-dark', previewClass: 'terminal-dark', label: i18n.themeSeriesTerminalDarkLabel, mode: 'dark', badge: i18n.themeSeriesTerminalDarkBadge, note: i18n.themeSeriesTerminalDarkNote },
+              { value: 'terminal-light', previewClass: 'terminal-light', label: i18n.themeSeriesTerminalLightLabel, mode: 'light', badge: i18n.themeSeriesTerminalLightBadge, note: i18n.themeSeriesTerminalLightNote }
             ]
           },
           {
             key: 'github',
-            title: 'GitHub',
-            desc: '开发者经典风。信息密度稳、专业感强，适合长期使用。',
+            title: i18n.themeSeriesGithubTitle,
+            desc: i18n.themeSeriesGithubDescription,
             options: [
-              { value: 'github-dark', previewClass: 'github-dark', label: 'GitHub Dark', mode: 'Dark', badge: 'Developer', note: '沉稳、熟悉、偏生产力。' },
-              { value: 'github-light', previewClass: 'github-light', label: 'GitHub Light', mode: 'Light', badge: 'Developer', note: '清爽、规整、接近平台化产品。' }
+              { value: 'github-dark', previewClass: 'github-dark', label: i18n.themeSeriesGithubDarkLabel, mode: 'dark', badge: i18n.themeSeriesGithubBadge, note: i18n.themeSeriesGithubDarkNote },
+              { value: 'github-light', previewClass: 'github-light', label: i18n.themeSeriesGithubLightLabel, mode: 'light', badge: i18n.themeSeriesGithubBadge, note: i18n.themeSeriesGithubLightNote }
             ]
           },
           {
             key: 'claude',
-            title: 'Claude',
-            desc: '温暖优雅风。柔和米色系，适合更轻、更有呼吸感的视觉。',
+            title: i18n.themeSeriesClaudeTitle,
+            desc: i18n.themeSeriesClaudeDescription,
             options: [
-              { value: 'claude-dark', previewClass: 'claude-dark', label: 'Claude Dark', mode: 'Dark', badge: 'Warm', note: '深暖棕色调，更有情绪表达。' },
-              { value: 'claude-light', previewClass: 'claude-light', label: 'Claude Light', mode: 'Light', badge: 'Warm', note: '柔和纸感，观感更轻松。' }
+              { value: 'claude-dark', previewClass: 'claude-dark', label: i18n.themeSeriesClaudeDarkLabel, mode: 'dark', badge: i18n.themeSeriesClaudeBadge, note: i18n.themeSeriesClaudeDarkNote },
+              { value: 'claude-light', previewClass: 'claude-light', label: i18n.themeSeriesClaudeLightLabel, mode: 'light', badge: i18n.themeSeriesClaudeBadge, note: i18n.themeSeriesClaudeLightNote }
             ]
           },
           {
             key: 'basic',
-            title: 'Basic',
-            desc: '简洁通用风。弱风格化，适合大众默认主题。',
+            title: i18n.themeSeriesBasicTitle,
+            desc: i18n.themeSeriesBasicDescription,
             options: [
-              { value: 'basic-dark', previewClass: 'basic-dark', label: 'Basic Dark', mode: 'Dark', badge: 'Balanced', note: '低调、通用、适合夜间。' },
-              { value: 'basic-light', previewClass: 'basic-light', label: 'Basic Light', mode: 'Light', badge: 'Balanced', note: '中性、干净、默认感强。' }
+              { value: 'basic-dark', previewClass: 'basic-dark', label: i18n.themeSeriesBasicDarkLabel, mode: 'dark', badge: i18n.themeSeriesBasicBadge, note: i18n.themeSeriesBasicDarkNote },
+              { value: 'basic-light', previewClass: 'basic-light', label: i18n.themeSeriesBasicLightLabel, mode: 'light', badge: i18n.themeSeriesBasicBadge, note: i18n.themeSeriesBasicLightNote }
             ]
           }
         ]
@@ -369,6 +370,12 @@
       enableThemeAdaptation() {
         return this.theme === 'auto'
       },
+      previewFiles() {
+        return this.previewFileTemplates.map(file => ({
+          ...file,
+          status: this.i18data.second.replace('{}', file.statusSeconds)
+        }))
+      },
       previewThemeStyle() {
         if (!this.themeData) {
           return {}
@@ -389,7 +396,7 @@
         return this.fixedPreviewViewport.height - 1
       },
       previewContentHeight() {
-        return Math.max(this.popupBodyHeight - 48, 0)
+        return Math.max(this.popupBodyHeight - 54, 0)
       }
     },
     methods: {
@@ -415,6 +422,9 @@
         if (!themeName || typeof themeName !== 'string') {
           return ''
         }
+        if (themeName === 'light' || themeName === 'dark') {
+          return 'basic'
+        }
         return this.themeSeries.find(series => series.options.some(option => option.value === themeName))?.key || ''
       },
       getThemeNameByMode(seriesKey, mode) {
@@ -437,6 +447,9 @@
           return
         }
         this.previewMode = mode === 'dark' ? 'dark' : 'light'
+      },
+      getModeLabel(mode) {
+        return mode === 'dark' ? this.i18data.themeAdaptationOption3 : this.i18data.themeAdaptationOption2
       },
       async handlePreviewSeriesChange() {
         await this.applyUIThemeSeries(this.selectedThemeSeriesKey)
@@ -523,6 +536,7 @@
     max-width: 960px;
     padding: 20px;
     box-sizing: border-box;
+    --settings-card-radius: var(--el-card-border-radius, var(--el-border-radius-base, 4px));
   }
 
   .title {
@@ -533,7 +547,7 @@
     width: 100%;
     max-width: 920px;
     margin-bottom: 36px;
-    border-radius: 18px;
+    border-radius: var(--settings-card-radius);
     box-sizing: border-box;
   }
 
@@ -634,7 +648,7 @@
     gap: 18px;
     padding: 14px 18px;
     margin-bottom: 16px;
-    border-radius: 18px;
+    border-radius: var(--settings-card-radius);
     border: 1px solid #e7ecf4;
     background:
       linear-gradient(135deg, rgba(123, 97, 255, 0.05) 0%, rgba(64, 158, 255, 0.04) 100%),
@@ -673,7 +687,7 @@
   .theme-meta-item {
     min-width: 118px;
     padding: 10px 12px;
-    border-radius: 14px;
+    border-radius: var(--settings-card-radius);
     background: linear-gradient(180deg, #fbfcfe 0%, #f3f6fb 100%);
     border: 1px solid #e7ecf4;
   }
@@ -704,7 +718,7 @@
   .scale-panel {
     border: 1px solid #e7ecf4;
     background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
-    border-radius: 16px;
+    border-radius: var(--settings-card-radius);
     padding: 12px 14px;
   }
 
@@ -747,7 +761,7 @@
 
   .preview-stage {
     position: relative;
-    border-radius: 24px;
+    border-radius: var(--settings-card-radius);
     overflow: hidden;
     padding: 16px;
     border: 1px solid #e7ecf4;
@@ -1188,7 +1202,7 @@
   .theme-option {
     position: relative;
     padding: 14px;
-    border-radius: 20px;
+    border-radius: var(--settings-card-radius);
     border: 1px solid #e8edf5;
     background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
     cursor: pointer;
@@ -1265,7 +1279,7 @@
   .theme-preview {
     width: 100%;
     height: 122px;
-    border-radius: 16px;
+    border-radius: var(--settings-card-radius);
     margin-bottom: 12px;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -1277,7 +1291,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    font-family: 'Segoe UI', system-ui, sans-serif;
   }
 
   .mini-ui .preview-header {
@@ -1528,7 +1541,7 @@
   }
 
   .popup-header {
-    padding: 9px 3px 0 6px;
+    padding: 10px 4px 0 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1536,21 +1549,26 @@
   }
 
   .popup-search {
-    width: 200px;
+    width: 212px;
   }
 
   .popup-search .search-inner {
-    height: 24px;
-    border-radius: 16px;
+    height: 28px;
+    border-radius: 18px;
     background-color: var(--header-search-background-color);
     color: var(--header-search-color);
-    border: 1px solid var(--header-search-border-color);
+    box-shadow: 0 0 0 1px var(--header-search-border-color) inset;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 10px 0 12px;
-    font-size: 12px;
+    padding: 0 11px 0 13px;
+    font-size: 13px;
     box-sizing: border-box;
+    transition: box-shadow 0ms;
+  }
+
+  .popup-search .search-inner:hover {
+    box-shadow: 0 0 0 1px var(--header-search-hover-border-color) inset;
   }
 
   .popup-search .search-placeholder {
@@ -1558,31 +1576,55 @@
   }
 
   .popup-search .search-icon {
-    font-size: 12px;
+    font-size: 14px;
     opacity: 0.7;
   }
 
   .popup-header-operator {
     display: flex;
     align-items: center;
-    gap: 2px;
   }
 
   .popup-header-operator .header-button {
     display: inline-flex;
-    padding: 3px 5px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: var(--header-icon-color);
+    box-shadow: inset 0 0 0 1px transparent;
+    transition: background-color .18s ease, box-shadow .18s ease, color .18s ease;
+    cursor: pointer;
+  }
+
+  .popup-header-operator .header-button:hover,
+  .popup-header-operator .header-button:focus-visible {
+    background-color: rgba(127, 127, 127, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.18);
+    color: var(--header-icon-hover-color);
+  }
+
+  .popup-header-operator .header-button:active {
+    background-color: rgba(127, 127, 127, 0.18);
+    box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.24);
   }
 
   .popup-header-operator .icon-button {
     margin: 0;
-    font-size: 16px;
-    color: var(--header-icon-color);
+    font-size: 19px;
+    color: inherit;
+    cursor: pointer;
     transition: .2s;
   }
 
+  .popup-header-operator .icon-button:hover {
+    color: inherit;
+  }
+
   .popup-content {
-    height: calc(100% - 48px);
-    margin: 8px 0 0 6px;
+    height: calc(100% - 54px);
+    margin: 9px 0 0 7px;
   }
 
   .preview-scroll {
@@ -1594,8 +1636,8 @@
   }
 
   .popup-preview .file {
-    height: 70px;
-    border-radius: 4px;
+    height: 76px;
+    border-radius: 5px;
     margin-right: 3px;
     margin-bottom: 8px;
     border: 1px solid var(--content-file-border-color);
@@ -1612,8 +1654,7 @@
 
   .popup-preview .file .icon {
     text-align: center;
-    line-height: 70px;
-    width: 52px;
+    width: 56px;
     height: 100%;
     border-right: 1px solid var(--content-file-icon-border-right-color);
     float: left;
@@ -1623,36 +1664,32 @@
   }
 
   .popup-preview .progress-ring {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     border: 2px solid var(--content-file-border-color);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--content-file-filename-color);
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 700;
     box-sizing: border-box;
   }
 
-  .popup-preview .progress-ring-inner {
-    transform: scale(.95);
-  }
-
   .popup-preview .file .file-content {
-    width: calc(100% - 70px);
+    width: calc(100% - 74px);
     float: right;
-    padding: 6px 8px 0 0;
+    padding: 8px 8px 0 0;
     box-sizing: border-box;
   }
 
   .popup-preview .file .filename {
     display: block;
-    height: 19px;
-    line-height: 19px;
+    height: 20px;
+    line-height: 20px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--content-file-filename-color);
     white-space: nowrap;
     overflow: hidden;
@@ -1661,9 +1698,9 @@
 
   .popup-preview .file .file-url {
     display: block;
-    height: 19px;
-    line-height: 19px;
-    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 13px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1673,16 +1710,13 @@
 
   .popup-preview .file .info {
     width: 100%;
-    height: 24px;
+    height: 26px;
     display: table;
   }
 
   .popup-preview .file .info .small-size {
     transition: none;
     font-size: 12px;
-    -webkit-transform-origin-x: 0;
-    -webkit-transform: scale(.9);
-    font-family: Consolas, Microsoft YaHei, serif;
   }
 
   .popup-preview .file .info .cell {
@@ -1695,7 +1729,7 @@
   }
 
   .popup-preview .file .info .left.common {
-    width: 110px;
+    width: 118px;
   }
 
   .popup-preview .file .info .middle {
@@ -1703,7 +1737,7 @@
   }
 
   .popup-preview .file .info .middle.common {
-    width: 72px;
+    width: 80px;
   }
 
   .popup-preview .file .info .right {
@@ -1718,11 +1752,11 @@
 
   .popup-preview .file .content-operator-wrapper {
     position: absolute;
-    top: -2px;
-    right: 6px;
-    height: 28px;
-    line-height: 36px;
-    padding-left: 16px;
+    top: 0;
+    right: 8px;
+    height: 30px;
+    line-height: 38px;
+    padding-left: 18px;
     background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, var(--content-file-background-color) 24%);
     z-index: 1;
     display: none;
@@ -1734,10 +1768,31 @@
   }
 
   .popup-preview .file .content-operator .icon-button {
-    margin: 4px 0 0 12px;
-    display: inline-block;
-    cursor: default;
+    width: 24px;
+    height: 24px;
+    margin: 0 0 0 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     font-size: 14px !important;
     color: var(--header-icon-color);
+    border-radius: 7px;
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px transparent;
+    transition: background-color .18s ease, box-shadow .18s ease, color .18s ease;
+    box-sizing: border-box;
+  }
+
+  .popup-preview .file .content-operator .icon-button:hover,
+  .popup-preview .file .content-operator .icon-button:focus-visible {
+    color: var(--header-icon-hover-color);
+    background-color: rgba(127, 127, 127, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.18);
+  }
+
+  .popup-preview .file .content-operator .icon-button:active {
+    background-color: rgba(127, 127, 127, 0.18);
+    box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.24);
   }
 </style>

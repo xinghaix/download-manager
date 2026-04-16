@@ -307,6 +307,142 @@
     "message": "Taille de la page (largeur, hauteur)",
     "description": "Description de l'onglet Thème"
   },
+  "pageSizeDescription": {
+    "message": "Contrôle la largeur et la hauteur du panneau de téléchargement.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSystemTitle": {
+    "message": "Paramètres du thème et aperçu",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSystemDescription": {
+    "message": "La série de thèmes est appliquée immédiatement après la sélection. L’aperçu ci-dessous montre l’interface Popup réelle.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesLabel": {
+    "message": "Série de thèmes",
+    "description": "Description de l'onglet Thème"
+  },
+  "themePreviewModeAriaLabel": {
+    "message": "Mode d’aperçu",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesTerminalTitle": {
+    "message": "Terminal",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesTerminalDescription": {
+    "message": "Style geek inspiré du terminal. Contraste élevé et aspect utilitaire, idéal pour une interface très technique.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesTerminalDarkLabel": {
+    "message": "Terminal sombre",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesTerminalLightLabel": {
+    "message": "Terminal clair",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesTerminalDarkBadge": {
+    "message": "Contraste élevé",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesTerminalLightBadge": {
+    "message": "CLI épurée",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesTerminalDarkNote": {
+    "message": "Effet néon, fond sombre, forte lisibilité.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesTerminalLightNote": {
+    "message": "Conserve l’esprit geek tout en étant plus lumineux et plus sobre.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesGithubTitle": {
+    "message": "GitHub",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesGithubDescription": {
+    "message": "Style classique pour développeurs. Densité d’information stable et rendu professionnel, adapté à un usage quotidien.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesGithubDarkLabel": {
+    "message": "GitHub sombre",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesGithubLightLabel": {
+    "message": "GitHub clair",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesGithubBadge": {
+    "message": "Développeur",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesGithubDarkNote": {
+    "message": "Sobre, familier et orienté productivité.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesGithubLightNote": {
+    "message": "Clair, structuré et proche d’un produit de plateforme.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesClaudeTitle": {
+    "message": "Claude",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesClaudeDescription": {
+    "message": "Style chaleureux et élégant. Tons beige doux pour une interface plus légère et aérée.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesClaudeDarkLabel": {
+    "message": "Claude sombre",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesClaudeLightLabel": {
+    "message": "Claude clair",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesClaudeBadge": {
+    "message": "Chaleureux",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesClaudeDarkNote": {
+    "message": "Tons bruns chauds et ambiance plus marquée.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesClaudeLightNote": {
+    "message": "Texture papier douce pour un rendu plus détendu.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesBasicTitle": {
+    "message": "Basique",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesBasicDescription": {
+    "message": "Style simple et universel. Peu stylisé, idéal comme thème par défaut.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesBasicDarkLabel": {
+    "message": "Basique sombre",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesBasicLightLabel": {
+    "message": "Basique clair",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesBasicBadge": {
+    "message": "Équilibré",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesBasicDarkNote": {
+    "message": "Discret, polyvalent et agréable la nuit.",
+    "description": "Description de l'onglet Thème"
+  },
+  "themeSeriesBasicLightNote": {
+    "message": "Neutre, propre et très proche d’un style par défaut.",
+    "description": "Description de l'onglet Thème"
+  },
   "downloadPanelThemeCustomDescription": {
     "message": "Thème personnalisé, restez à l'écoute!",
     "description": "Description de l'onglet Thème"
