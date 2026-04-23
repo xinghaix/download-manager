@@ -83,6 +83,7 @@
   import Tip from '../../components/Tip'
 
   const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
+  const DOWNLOADS_BATCH_UPDATE_MESSAGE = 'downloads_batch_update'
 
   export default {
     name: 'Popup',
@@ -100,8 +101,21 @@
           return
         }
 
+        if (!received || typeof received !== 'object' || !received.type) {
+          return
+        }
+
         if (received.type === 'ui_theme_changed') {
           this.setTheme(received.data)
+          return
+        }
+
+        if (received.type === DOWNLOADS_BATCH_UPDATE_MESSAGE) {
+          if (!this.initializationDone) {
+            this.pendingRealtimeBatches.push(received)
+            return
+          }
+          this.applyRealtimeBatchUpdate(received)
         }
       })
       chrome.runtime.onMessage.addListener(this.runtimeMessageListener)
@@ -169,6 +183,9 @@
 
       // 获取下载文件信息
       await this.render()
+
+      this.initializationDone = true
+      this.flushPendingRealtimeBatches()
     },
     beforeUnmount() {
       if (this.runtimeMessageListener) {
@@ -212,7 +229,11 @@
         themeData: null,
         downloadItemIndexMap: new Map(),
         downloadUpdateVersion: 0,
-        renderRequestId: 0
+        renderRequestId: 0,
+        lastRealtimeSeq: 0,
+        lastRealtimeUpdatedAt: 0,
+        initializationDone: false,
+        pendingRealtimeBatches: []
       }
     },
     computed: {
@@ -250,6 +271,17 @@
           return
         }
 
+        const projectionSeq = typeof projection.seq === 'number' ? projection.seq : 0
+        const projectionUpdatedAt = typeof projection.updatedAt === 'number' ? projection.updatedAt : 0
+        if (
+          this.lastRealtimeSeq > 0 &&
+          projectionSeq > 0 &&
+          projectionSeq <= this.lastRealtimeSeq &&
+          projectionUpdatedAt <= this.lastRealtimeUpdatedAt
+        ) {
+          return
+        }
+
         this.downloadUpdateVersion++
 
         if (Array.isArray(projection.removedIds)) {
@@ -265,6 +297,50 @@
             this.upsertDownloadItem(item, options)
           }
         })
+      },
+
+      applyRealtimeBatchUpdate(payload) {
+        if (!payload || typeof payload !== 'object') {
+          return
+        }
+
+        const seq = typeof payload.seq === 'number' ? payload.seq : 0
+        const updatedAt = typeof payload.updatedAt === 'number' ? payload.updatedAt : Date.now()
+
+        if (
+          seq > 0 &&
+          this.lastRealtimeSeq > 0 &&
+          seq < this.lastRealtimeSeq &&
+          updatedAt <= this.lastRealtimeUpdatedAt
+        ) {
+          return
+        }
+
+        if (Array.isArray(payload.removedIds)) {
+          payload.removedIds.forEach(id => this.removeItemById(id))
+        }
+
+        if (Array.isArray(payload.items) && payload.items.length > 0) {
+          payload.items.forEach(item => {
+            if (item) {
+              this.upsertDownloadItem(item, { allowInsertStates: ['in_progress'] })
+            }
+          })
+        }
+
+        this.lastRealtimeSeq = Math.max(this.lastRealtimeSeq, seq)
+        this.lastRealtimeUpdatedAt = Math.max(this.lastRealtimeUpdatedAt, updatedAt)
+        this.downloadUpdateVersion++
+      },
+
+      flushPendingRealtimeBatches() {
+        if (!Array.isArray(this.pendingRealtimeBatches) || this.pendingRealtimeBatches.length === 0) {
+          return
+        }
+
+        const pendingBatches = this.pendingRealtimeBatches.slice()
+        this.pendingRealtimeBatches = []
+        pendingBatches.forEach(batch => this.applyRealtimeBatchUpdate(batch))
       },
 
       async getStoredEffectiveMode() {

@@ -21,6 +21,7 @@ const pendingDownloadIds = new Set()
 const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
 const ACTIVE_DOWNLOADS_ALARM = 'active-downloads-reconcile'
 const RECENT_DOWNLOAD_KEEP_MS = 10000
+const DOWNLOADS_BATCH_UPDATE_MESSAGE = 'downloads_batch_update'
 
 // Service Worker 安装
 self.addEventListener('install', () => {
@@ -93,7 +94,12 @@ chrome.downloads.onErased.addListener((id) => {
         downloadingNumber: state.downloadingNumber,
         progress: state.progress
       }
-      await setDownloadsProjection(projection)
+      const nextProjection = await setDownloadsProjection(projection)
+      await broadcastDownloadsBatchUpdate({
+        projection: nextProjection,
+        items: [],
+        removedIds: [id]
+      })
     } catch (error) {
       console.error('Projection erase sync error:', error)
     }
@@ -310,6 +316,50 @@ async function setDownloadsProjection(projection) {
   return nextProjection
 }
 
+async function safeBroadcastRuntimeMessage(message) {
+  try {
+    await chrome.runtime.sendMessage(JSON.stringify(message))
+  } catch (error) {
+    const errorMessage = error?.message || String(error || '')
+    if (
+      errorMessage.includes('Receiving end does not exist') ||
+      errorMessage.includes('Could not establish connection') ||
+      errorMessage.includes('The message port closed before a response was received')
+    ) {
+      return false
+    }
+    console.warn('Broadcast runtime message failed:', error)
+    return false
+  }
+  return true
+}
+
+async function broadcastDownloadsBatchUpdate({ projection, items = [], removedIds = [] }) {
+  if (!projection || typeof projection !== 'object') {
+    return
+  }
+
+  if ((!items || items.length === 0) && (!removedIds || removedIds.length === 0)) {
+    return
+  }
+
+  await safeBroadcastRuntimeMessage({
+    type: DOWNLOADS_BATCH_UPDATE_MESSAGE,
+    seq: typeof projection.seq === 'number' ? projection.seq : 0,
+    updatedAt: typeof projection.updatedAt === 'number' ? projection.updatedAt : Date.now(),
+    items,
+    removedIds,
+    summary: projection.summary && typeof projection.summary === 'object'
+      ? projection.summary
+      : {
+        anyInProgress: state.anyInProgress,
+        anyInDangerous: state.anyInDangerous,
+        downloadingNumber: state.downloadingNumber,
+        progress: state.progress
+      }
+  })
+}
+
 async function rebuildProjectionFromActiveDownloads() {
   const activeItems = (await searchDownloads({ state: 'in_progress', orderBy: ['-startTime'] }))
     .map(item => prepareRuntimeDownloadItem(item))
@@ -397,6 +447,9 @@ async function flushPendingDownloadUpdates() {
   const projection = await getDownloadsProjection()
   projection.removedIds = []
 
+  const changedItems = []
+  const removedIds = []
+
   for (const id of ids) {
     const item = await getDownloadById(id)
     const projectionItem = pickProjectionItemFields(item)
@@ -404,11 +457,13 @@ async function flushPendingDownloadUpdates() {
     if (!item) {
       delete projection.itemsById[id]
       projection.removedIds.push(id)
+      removedIds.push(id)
       continue
     }
 
     if (projectionItem) {
       projection.itemsById[id] = projectionItem
+      changedItems.push(projectionItem)
     }
 
     if (item.state === 'in_progress') {
@@ -434,7 +489,12 @@ async function flushPendingDownloadUpdates() {
     downloadingNumber: state.downloadingNumber,
     progress: state.progress
   }
-  await setDownloadsProjection(projection)
+  const nextProjection = await setDownloadsProjection(projection)
+  await broadcastDownloadsBatchUpdate({
+    projection: nextProjection,
+    items: changedItems,
+    removedIds
+  })
   scheduleActiveDownloadsRefresh()
 }
 
