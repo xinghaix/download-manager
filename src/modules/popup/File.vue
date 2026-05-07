@@ -66,32 +66,32 @@
       <div class="content-operator">
         <el-tooltip :disabled="closeTooltip" :content="i18data.openFileInFolder"
                     placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <el-icon class="icon-button" v-show="openable(item)" @click="showInFolder(item)">
+          <el-icon class="icon-button" v-show="folderOpenable(item)" @click.stop="showInFolder(item)">
             <FolderOpened/>
           </el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="item.paused ? i18data.resume : i18data.pause"
                     placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <el-icon v-show="item.state === 'in_progress'" @click="pauseOrResume(item)" class="icon-button">
+          <el-icon v-show="item.state === 'in_progress'" @click.stop="pauseOrResume(item)" class="icon-button">
             <VideoPlay v-if="item.paused"/>
             <VideoPause v-else/>
           </el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.delete"
                     placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <el-icon class="icon-button" v-show="removable(item)" @click="remove(item)">
+          <el-icon class="icon-button" v-show="removable(item)" @click.stop="remove(item)">
             <Delete/>
           </el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.retry"
                     placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <el-icon class="icon-button" v-show="retryable(item)" @click="retryDownload(item)">
+          <el-icon class="icon-button" v-show="retryable(item)" @click.stop="retryDownload(item)">
             <RefreshRight/>
           </el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.erase"
                     placement="top" effect="dark" popper-class="tooltip" :enterable="false">
-          <el-icon class="icon-button" @click="erase(item)">
+          <el-icon class="icon-button" @click.stop="erase(item)">
             <Close/>
           </el-icon>
         </el-tooltip>
@@ -269,22 +269,39 @@ export default {
 
     // 打开文件
     openfile(item) {
-      if (this.openable(item)) {
-        chrome.downloads.open(item.id, () => {
-          if (chrome.runtime && chrome.runtime.lastError) {
-            this.render()
-          }
-        })
+      if (this.fileOpenable(item)) {
+        try {
+          const result = chrome.downloads.open(item.id)
+          this.watchDownloadAction('open file', result)
+        } catch (error) {
+          this.handleDownloadActionError('open file', error)
+        }
       }
     },
 
     // 在资源管理器中显示文件
     showInFolder(item) {
-      chrome.downloads.show(item.id, () => {
-        if (chrome.runtime && chrome.runtime.lastError) {
-          this.render()
-        }
-      })
+      if (!this.folderOpenable(item)) {
+        return
+      }
+
+      try {
+        const result = chrome.downloads.show(item.id)
+        this.watchDownloadAction('show file in folder', result)
+      } catch (error) {
+        this.handleDownloadActionError('show file in folder', error)
+      }
+    },
+
+    watchDownloadAction(action, result) {
+      if (result && typeof result.catch === 'function') {
+        result.catch(error => this.handleDownloadActionError(action, error))
+      }
+    },
+
+    handleDownloadActionError(action, error) {
+      console.warn(`${action} failed`, error)
+      this.render()
     },
 
     // 从磁盘中删除文件
@@ -366,8 +383,13 @@ export default {
     },
 
     // 可在资源管理器中打开
-    openable(item) {
+    folderOpenable(item) {
       return (item.state === 'complete' || item.state === 'in_progress') && item.exists
+    },
+
+    // 可打开文件
+    fileOpenable(item) {
+      return item.state === 'complete' && item.exists
     },
 
     // 可从磁盘中删除
