@@ -62,7 +62,8 @@
         <transition :enter-active-class="enableAnimation ? 'transition-enter' : ''"
                     :leave-active-class="enableAnimation ? 'transition-leave' : ''">
           <file class="file" :item="item" :key="item.id"
-                :render="render" :erase="erase" :copyToClipboard="copyToClipboard"
+                :render="render" :erase="erase" :request-remove="requestRemoveFile"
+                :copyToClipboard="copyToClipboard"
                 :i18data="i18data" :close-tooltip="closeTooltip" :left-click-file="leftClickFile"
                 :left-click-url="leftClickUrl" :right-click-file="rightClickFile" :right-click-url="rightClickUrl"/>
         </transition>
@@ -70,6 +71,27 @@
       <el-backtop target=".content #vue-recycle-scroller" visibilityHeight="70"/>
       <tip :text="i18data.copied" :position="tipPosition" v-model:showTip="showCopiedTip"/>
     </div>
+    <transition name="delete-confirm-fade">
+      <div v-if="deleteConfirm.visible" class="delete-confirm-overlay" @click.self="cancelDeleteConfirm">
+        <section class="delete-confirm-dialog" role="dialog" aria-modal="true">
+          <div class="delete-confirm-icon">
+            <el-icon><Delete /></el-icon>
+          </div>
+          <div class="delete-confirm-content">
+            <h2>{{ deleteConfirm.title }}</h2>
+            <p>{{ deleteConfirm.message }}</p>
+          </div>
+          <div class="delete-confirm-actions">
+            <button class="delete-confirm-button secondary" type="button" @click="cancelDeleteConfirm">
+              {{ i18data.cancel }}
+            </button>
+            <button class="delete-confirm-button danger" type="button" @click="confirmDelete">
+              {{ deleteConfirm.confirmText }}
+            </button>
+          </div>
+        </section>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -212,7 +234,14 @@
         themeData: null,
         downloadItemIndexMap: new Map(),
         downloadUpdateVersion: 0,
-        renderRequestId: 0
+        renderRequestId: 0,
+        deleteConfirm: {
+          visible: false,
+          title: '',
+          message: '',
+          confirmText: '',
+          action: null
+        }
       }
     },
     computed: {
@@ -506,29 +535,96 @@
         })
       },
 
+      requestRemoveFile(item) {
+        if (!item || item.state !== 'complete' || !item.exists) {
+          return
+        }
+
+        this.openDeleteConfirm({
+          title: this.i18data.deleteConfirmTitle,
+          message: this.i18data.deleteConfirmFileMessage.replace('{}', item.basename || item.filename || item.url),
+          confirmText: this.i18data.deleteConfirmButton,
+          action: () => this.removeFileFromDisk(item)
+        })
+      },
+
+      requestRemoveAllFiles() {
+        const items = this.downloadItems.filter(item => item.state && item.state !== 'in_progress')
+        if (!items.length) {
+          return
+        }
+
+        this.openDeleteConfirm({
+          title: this.i18data.deleteConfirmTitle,
+          message: this.i18data.deleteConfirmAllMessage.replace('{}', items.length),
+          confirmText: this.i18data.deleteConfirmButton,
+          action: () => this.removeAllFilesFromDisk(items)
+        })
+      },
+
+      openDeleteConfirm({title, message, confirmText, action}) {
+        this.deleteConfirm = {
+          visible: true,
+          title,
+          message,
+          confirmText,
+          action
+        }
+      },
+
+      cancelDeleteConfirm() {
+        this.deleteConfirm.visible = false
+        this.deleteConfirm.action = null
+      },
+
+      confirmDelete() {
+        const action = this.deleteConfirm.action
+        this.cancelDeleteConfirm()
+        if (typeof action === 'function') {
+          action()
+        }
+      },
+
+      removeFileFromDisk(item) {
+        return new Promise(resolve => {
+          chrome.downloads.removeFile(item.id, () => {
+            if (chrome.runtime && chrome.runtime.lastError) {
+              this.render()
+              resolve(false)
+              return
+            }
+            item.exists = false
+            this.erase(item)
+            resolve(true)
+          })
+        })
+      },
+
+      removeAllFilesFromDisk(items) {
+        items.forEach(item => {
+          if (item.exists) {
+            this.removeFileFromDisk(item)
+          } else {
+            this.erase(item)
+          }
+        })
+      },
+
       /**
        * header栏 - 清除按钮点击事件
        * @param command {String}
        */
       clearDropdownCommand(command) {
+        if (command === 'deleteAll') {
+          this.requestRemoveAllFiles()
+          return
+        }
+
         this.downloadItems.forEach(item => {
           if (item.state && item.state !== 'in_progress') {
             switch (command) {
               case 'clearAll':
                 this.erase(item)
-                break
-              case 'deleteAll':
-                if (item.exists) {
-                  chrome.downloads.removeFile(item.id, () => {
-                    if (chrome.runtime && chrome.runtime.lastError) {
-                      this.render()
-                      return
-                    }
-                    this.erase(item)
-                  })
-                } else {
-                  this.erase(item)
-                }
                 break
               case 'clearFailed':
                 item.error && this.erase(item)
@@ -855,6 +951,114 @@
     bottom: 20px !important;
     width: 34px;
     height: 34px;
+  }
+
+  .delete-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, .24);
+  }
+
+  .delete-confirm-dialog {
+    width: min(320px, 100%);
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    column-gap: 10px;
+    row-gap: 14px;
+    padding: 16px;
+    border: 1px solid var(--popover-border-color);
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: var(--popover-color);
+    background-color: var(--popover-background-color);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .18);
+  }
+
+  .delete-confirm-icon {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: var(--delete-confirm-danger-color, #d93025);
+    background-color: var(--delete-confirm-danger-background-color, rgba(217, 48, 37, .10));
+  }
+
+  .delete-confirm-icon .el-icon {
+    font-size: 18px;
+  }
+
+  .delete-confirm-content h2 {
+    margin: 0 0 6px;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--content-file-filename-color);
+  }
+
+  .delete-confirm-content p {
+    margin: 0;
+    line-height: 18px;
+    font-size: 12px;
+    color: var(--popover-color);
+    word-break: break-word;
+  }
+
+  .delete-confirm-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .delete-confirm-button {
+    min-width: 64px;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 6px;
+    border: 1px solid var(--popover-border-color);
+    font-size: 12px;
+    line-height: 26px;
+    cursor: pointer;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+  }
+
+  .delete-confirm-button.secondary {
+    color: var(--popover-color);
+    background-color: var(--popover-background-color);
+  }
+
+  .delete-confirm-button.secondary:hover {
+    color: var(--header-icon-hover-color);
+    background-color: rgba(127, 127, 127, .12);
+  }
+
+  .delete-confirm-button.danger {
+    color: #fff;
+    border-color: var(--delete-confirm-danger-color, #d93025);
+    background-color: var(--delete-confirm-danger-color, #d93025);
+  }
+
+  .delete-confirm-button.danger:hover {
+    border-color: var(--delete-confirm-danger-hover-color, #b3261e);
+    background-color: var(--delete-confirm-danger-hover-color, #b3261e);
+  }
+
+  .delete-confirm-fade-enter-active,
+  .delete-confirm-fade-leave-active {
+    transition: opacity .14s ease;
+  }
+
+  .delete-confirm-fade-enter-from,
+  .delete-confirm-fade-leave-to {
+    opacity: 0;
   }
 
   /* 动画效果 */

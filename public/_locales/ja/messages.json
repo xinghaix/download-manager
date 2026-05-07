@@ -91,6 +91,22 @@
     "message": "ディスクから削除",
     "description": "ディスクからファイルを削除する"
   },
+  "deleteConfirmTitle": {
+    "message": "削除を確認",
+    "description": "Confirmation title before deleting files from disk"
+  },
+  "deleteConfirmFileMessage": {
+    "message": "\"{}\" をディスクから完全に削除します。この操作は元に戻せません。",
+    "description": "Confirmation message before deleting one file from disk"
+  },
+  "deleteConfirmAllMessage": {
+    "message": "{} 件の非アクティブ項目を処理します。存在するファイルをディスクから削除し、存在しない記録を消去します。この操作は元に戻せません。",
+    "description": "Confirmation message before deleting all files from disk"
+  },
+  "deleteConfirmButton": {
+    "message": "削除",
+    "description": "Confirmation button before deleting files from disk"
+  },
   "retry": {
     "message": "再試行",
     "description": "再度ダウンロード"

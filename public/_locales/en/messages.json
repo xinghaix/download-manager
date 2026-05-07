@@ -91,6 +91,22 @@
     "message": "delete from disk",
     "description": "delete file from disk"
   },
+  "deleteConfirmTitle": {
+    "message": "Confirm disk deletion",
+    "description": "Confirmation title before deleting files from disk"
+  },
+  "deleteConfirmFileMessage": {
+    "message": "Permanently delete \"{}\" from disk. This cannot be undone.",
+    "description": "Confirmation message before deleting one file from disk"
+  },
+  "deleteConfirmAllMessage": {
+    "message": "Process {} inactive items: delete existing files from disk and clear absent records. This cannot be undone.",
+    "description": "Confirmation message before deleting all files from disk"
+  },
+  "deleteConfirmButton": {
+    "message": "Delete",
+    "description": "Confirmation button before deleting files from disk"
+  },
   "retry": {
     "message": "retry",
     "description": "download again"

@@ -149,6 +149,10 @@ export default {
       type: Function,
       required: true
     },
+    requestRemove: {
+      type: Function,
+      required: true
+    },
     copyToClipboard: {
       type: Function,
       required: true
@@ -306,14 +310,7 @@ export default {
 
     // 从磁盘中删除文件
     remove(item) {
-      chrome.downloads.removeFile(item.id, () => {
-        if (chrome.runtime && chrome.runtime.lastError) {
-          this.render()
-          return
-        }
-        item.exists = false
-        this.erase(item)
-      })
+      this.requestRemove(item)
     },
 
     // 暂停或恢复下载

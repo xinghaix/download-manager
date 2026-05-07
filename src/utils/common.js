@@ -196,6 +196,10 @@ const common = {
     this.i18data.delete = this.loadI18nMessage('delete')
     this.i18data.retry = this.loadI18nMessage('retry')
     this.i18data.erase = this.loadI18nMessage('erase')
+    this.i18data.deleteConfirmTitle = this.loadI18nMessage('deleteConfirmTitle')
+    this.i18data.deleteConfirmFileMessage = this.loadI18nMessage('deleteConfirmFileMessage')
+    this.i18data.deleteConfirmAllMessage = this.loadI18nMessage('deleteConfirmAllMessage')
+    this.i18data.deleteConfirmButton = this.loadI18nMessage('deleteConfirmButton')
     this.i18data.clearPopConfirmText = this.loadI18nMessage('el_popconfirm_confirmButtonText')
     this.i18data.clearPopCancelText = this.loadI18nMessage('el_popconfirm_cancelButtonText')
     // popup 下载危险文件

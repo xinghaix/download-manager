@@ -91,6 +91,22 @@
     "message": "Supprimer du disque",
     "description": "supprimer le fichier du disque"
   },
+  "deleteConfirmTitle": {
+    "message": "Confirmer la suppression",
+    "description": "Confirmation title before deleting files from disk"
+  },
+  "deleteConfirmFileMessage": {
+    "message": "Supprimer définitivement \"{}\" du disque. Cette action est irréversible.",
+    "description": "Confirmation message before deleting one file from disk"
+  },
+  "deleteConfirmAllMessage": {
+    "message": "Traiter {} éléments inactifs : supprimer les fichiers existants du disque et effacer les entrées absentes. Cette action est irréversible.",
+    "description": "Confirmation message before deleting all files from disk"
+  },
+  "deleteConfirmButton": {
+    "message": "Supprimer",
+    "description": "Confirmation button before deleting files from disk"
+  },
   "retry": {
     "message": "Réessayez",
     "description": "télécharger à nouveau"

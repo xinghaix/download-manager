@@ -91,6 +91,22 @@
     "message": "Удалить с диска",
     "description": "Удалить файлы с диска"
   },
+  "deleteConfirmTitle": {
+    "message": "Подтвердите удаление",
+    "description": "Confirmation title before deleting files from disk"
+  },
+  "deleteConfirmFileMessage": {
+    "message": "Навсегда удалить \"{}\" с диска. Это действие нельзя отменить.",
+    "description": "Confirmation message before deleting one file from disk"
+  },
+  "deleteConfirmAllMessage": {
+    "message": "Обработать {} неактивных элементов: удалить существующие файлы с диска и очистить отсутствующие записи. Это действие нельзя отменить.",
+    "description": "Confirmation message before deleting all files from disk"
+  },
+  "deleteConfirmButton": {
+    "message": "Удалить",
+    "description": "Confirmation button before deleting files from disk"
+  },
   "retry": {
     "message": "Повторить",
     "description": "Загрузите снова"

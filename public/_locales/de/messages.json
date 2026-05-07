@@ -91,6 +91,22 @@
     "message": "Löschen",
     "description": "Datei löschen"
   },
+  "deleteConfirmTitle": {
+    "message": "Löschen bestätigen",
+    "description": "Confirmation title before deleting files from disk"
+  },
+  "deleteConfirmFileMessage": {
+    "message": "\"{}\" dauerhaft vom Datenträger löschen. Dies kann nicht rückgängig gemacht werden.",
+    "description": "Confirmation message before deleting one file from disk"
+  },
+  "deleteConfirmAllMessage": {
+    "message": "{} inaktive Einträge verarbeiten: vorhandene Dateien vom Datenträger löschen und fehlende Einträge entfernen. Dies kann nicht rückgängig gemacht werden.",
+    "description": "Confirmation message before deleting all files from disk"
+  },
+  "deleteConfirmButton": {
+    "message": "Löschen",
+    "description": "Confirmation button before deleting files from disk"
+  },
   "retry": {
     "message": "Wiederholen",
     "description": "Den Download erneuern"
