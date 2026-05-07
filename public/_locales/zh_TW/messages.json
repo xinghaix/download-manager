@@ -1,0 +1,494 @@
+{
+  "extName": {
+    "message": "下載管理器",
+    "description": "擴充功能名稱"
+  },
+  "extDesc": {
+    "message": "方便管理下載的檔案",
+    "description": "擴充功能描述"
+  },
+  "settingsTitle": {
+    "message": "設定",
+    "description": "個人設定"
+  },
+  "aboutTitle": {
+    "message": "關於",
+    "description": "關於擴充功能的一些額外的資訊"
+  },
+  "second": {
+    "message": "剩餘{}秒",
+    "description": "剩餘時間顯示"
+  },
+  "minute": {
+    "message": "剩餘{}分鐘",
+    "description": "剩餘時間顯示"
+  },
+  "hour": {
+    "message": "剩餘{}小時",
+    "description": "剩餘時間顯示"
+  },
+  "day": {
+    "message": "剩餘{}天",
+    "description": "剩餘時間顯示"
+  },
+  "closeTooltip": {
+    "message": "停止顯示文字提示框",
+    "description": "在下載管理頁面上滑鼠移動到按鈕上時，停止顯示文字提示框"
+  },
+  "newDownload": {
+    "message": "新增下載",
+    "description": "新增下載檔案"
+  },
+  "newDownloadPlaceholder": {
+    "message": "請輸入下載連結! Enter 鍵下載檔案",
+    "description": "請輸入下載連結"
+  },
+  "clearAll": {
+    "message": "清空清單",
+    "description": "清除按鈕下拉選單"
+  },
+  "deleteAll": {
+    "message": "從磁碟刪除所有",
+    "description": "清除按鈕下拉選單"
+  },
+  "clearFailed": {
+    "message": "清除下載失敗",
+    "description": "清除按鈕下拉選單"
+  },
+  "clearAbsent": {
+    "message": "清除檔案不存在",
+    "description": "清除按鈕下拉選單"
+  },
+  "openDownloadFolder": {
+    "message": "開啟下載資料夾",
+    "description": "在檔案總管中開啟下載資料夾"
+  },
+  "openSettings": {
+    "message": "擴充功能設定",
+    "description": "在新標籤頁開啟擴充功能設定"
+  },
+  "openHome": {
+    "message": "開啟下載頁",
+    "description": "在新標籤頁開啟瀏覽器預設下載頁"
+  },
+  "openFileInFolder": {
+    "message": "開啟資料夾",
+    "description": "在資料夾中開啟檔案"
+  },
+  "openFile": {
+    "message": "開啟檔案",
+    "description": "開啟檔案"
+  },
+  "pause": {
+    "message": "暫停",
+    "description": "暫停下載"
+  },
+  "resume": {
+    "message": "恢復下載",
+    "description": "恢復下載處在暫停中的檔案"
+  },
+  "delete": {
+    "message": "從磁碟刪除",
+    "description": "從磁碟中刪除檔案"
+  },
+  "deleteConfirmTitle": {
+    "message": "確認從磁碟刪除",
+    "description": "從磁碟刪除檔案前的再次確認標題"
+  },
+  "deleteConfirmFileMessage": {
+    "message": "將從磁碟永久刪除“{}”，此操作無法復原。",
+    "description": "從磁碟刪除單個檔案前的再次確認內容"
+  },
+  "deleteConfirmAllMessage": {
+    "message": "將處理 {} 個非下載中項目：從磁碟刪除存在的檔案，並清除不存在的記錄。此操作無法復原。",
+    "description": "從磁碟刪除全部檔案前的再次確認內容"
+  },
+  "deleteConfirmButton": {
+    "message": "確認刪除",
+    "description": "從磁碟刪除檔案前的再次確認按鈕"
+  },
+  "retry": {
+    "message": "重新下載",
+    "description": "重新下載"
+  },
+  "dangerDescription": {
+    "message": "此檔案可能會損害您的電腦",
+    "description": "此檔案可能會損害您的電腦"
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "取消下載危險檔案"
+  },
+  "reserve": {
+    "message": "保留",
+    "description": "保留危險檔案"
+  },
+  "erase": {
+    "message": "從清單移除",
+    "description": "取消下載或在清單清除檔案"
+  },
+  "copied": {
+    "message": "已複製",
+    "description": "已經複製到剪貼簿"
+  },
+  "prefixMenus": {
+    "message": "下載該",
+    "description": "右鍵下載選單淺前綴顯示"
+  },
+  "link": {
+    "message": "連結",
+    "description": "右鍵下載選單顯示"
+  },
+  "image": {
+    "message": "圖片",
+    "description": "右鍵下載選單顯示"
+  },
+  "audio": {
+    "message": "音訊",
+    "description": "右鍵下載選單顯示"
+  },
+  "video": {
+    "message": "影片",
+    "description": "右鍵下載選單顯示"
+  },
+  "deleteNotification": {
+    "message": "刪除通知",
+    "description": "刪除通知按鈕"
+  },
+  "downloadCompletedNotification": {
+    "message": "下載完成",
+    "description": "下載通知"
+  },
+  "downloadStartedNotification": {
+    "message": "開始下載",
+    "description": "下載通知"
+  },
+  "downloadWarnNotification": {
+    "message": "下載警告",
+    "description": "下載通知"
+  },
+  "openFolderNotification": {
+    "message": "開啟資料夾",
+    "description": "下載完成通知開啟資料夾按鈕"
+  },
+  "downloadSetting": {
+    "message": "下載",
+    "description": "擴充功能設定說明"
+  },
+  "leftClickFileSetting": {
+    "message": "滑鼠左鍵點選檔名時開啟檔案",
+    "description": "擴充功能設定說明"
+  },
+  "rightClickFileSetting": {
+    "message": "滑鼠右鍵點選檔名時複製到剪貼簿",
+    "description": "擴充功能設定說明"
+  },
+  "leftClickUrlSetting": {
+    "message": "滑鼠左鍵點選下載連結時可在新分頁開啟",
+    "description": "擴充功能設定說明"
+  },
+  "rightClickUrlSetting": {
+    "message": "滑鼠右鍵點選下載連結時複製到剪貼簿",
+    "description": "擴充功能設定說明"
+  },
+  "showTooltipSetting": {
+    "message": "滑鼠移動到按鈕上時顯示提示資訊",
+    "description": "擴充功能設定說明"
+  },
+  "enableAnimation": {
+    "message": "開啟檔案移入移出動畫",
+    "description": "擴充功能設定說明"
+  },
+  "contextMenus": {
+    "message": "右鍵選單",
+    "description": "擴充功能設定說明"
+  },
+  "downloadContextMenusSetting": {
+    "message": "下載選單",
+    "description": "擴充功能設定說明"
+  },
+  "downloadContextMenusDescSetting": {
+    "message": "支援的檔案類型: ",
+    "description": "擴充功能設定細節說明"
+  },
+  "notificationSetting": {
+    "message": "通知",
+    "description": "擴充功能設定說明"
+  },
+  "downloadNotificationSetting": {
+    "message": "下載通知",
+    "description": "擴充功能設定說明"
+  },
+  "downloadNotificationSetting1": {
+    "message": "開始",
+    "description": "擴充功能設定說明"
+  },
+  "downloadNotificationSetting2": {
+    "message": "完成",
+    "description": "擴充功能設定說明"
+  },
+  "downloadNotificationSetting3": {
+    "message": "警告",
+    "description": "擴充功能設定說明"
+  },
+  "downloadNotificationReservedTimeSetting": {
+    "message": "下載通知保留時間（秒）",
+    "description": "擴充功能設定說明"
+  },
+  "downloadToneSetting": {
+    "message": "下載提示音",
+    "description": "擴充功能設定說明"
+  },
+  "downloadNotificationRemainVisibleSetting": {
+    "message": "下載通知保持可見",
+    "description": "擴充功能設定說明"
+  },
+  "downloadNotificationRemainVisibleDescSetting": {
+    "message": "在使用者啟用或關閉通知之前，通知在螢幕上保持可見。Chrome 50 版之後可用",
+    "description": "擴充功能設定說明"
+  },
+  "shortcutSetting": {
+    "message": "快捷鍵",
+    "description": "擴充功能設定說明"
+  },
+  "openPopupSetting": {
+    "message": "啟用此擴充功能",
+    "description": "擴充功能設定說明"
+  },
+  "openPopupDetailsSetting": {
+    "message": "請點選",
+    "description": "擴充功能設定細節說明"
+  },
+  "chromePluginShortcutDescSetting": {
+    "message": "快捷鍵設定",
+    "description": "擴充功能設定說明"
+  },
+  "syncSetting": {
+    "message": "同步",
+    "description": "擴充功能設定說明"
+  },
+  "pluginSyncSetting": {
+    "message": "同步擴充功能設定",
+    "description": "擴充功能設定說明"
+  },
+  "pluginSyncDetailsSetting": {
+    "message": "已登入 Google 帳號時，可在不同的基於 Google 核心的瀏覽器之間同步擴充功能設定",
+    "description": "擴充功能設定細節說明"
+  },
+  "notSyncSetting": {
+    "message": "此設定不會被同步",
+    "description": "擴充功能設定說明"
+  },
+  "themeTitle": {
+    "message": "主題",
+    "description": "主題標籤頁說明"
+  },
+  "themeAdaptation": {
+    "message": "主題自適應",
+    "description": "主題標籤頁說明"
+  },
+  "themeAdaptationDescription": {
+    "message": "根據系統的顏色模式自適應顯示亮色和暗黑主題，包含圖示和下載面板。",
+    "description": "主題標籤頁說明"
+  },
+  "themeAdaptationOption1": {
+    "message": "自動",
+    "description": "主題標籤頁說明"
+  },
+  "themeAdaptationOption2": {
+    "message": "亮色",
+    "description": "主題標籤頁說明"
+  },
+  "themeAdaptationOption3": {
+    "message": "暗黑",
+    "description": "主題標籤頁說明"
+  },
+  "iconTitle": {
+    "message": "圖示",
+    "description": "主題標籤頁說明"
+  },
+  "iconColorSetting": {
+    "message": "自定義圖示顏色",
+    "description": "主題標籤頁說明"
+  },
+  "iconDownloadingColorSetting": {
+    "message": "自定義圖示下載動畫顏色",
+    "description": "主題標籤頁說明"
+  },
+  "downloadPanelTitle": {
+    "message": "下載面板",
+    "description": "主題標籤頁說明"
+  },
+  "pageSize": {
+    "message": "頁面大小（寬度、高度）",
+    "description": "主題標籤頁說明"
+  },
+  "pageSizeDescription": {
+    "message": "控制下載面板的寬高",
+    "description": "主題標籤頁說明"
+  },
+  "themeSystemTitle": {
+    "message": "主題設定 & 預覽",
+    "description": "主題標籤頁說明"
+  },
+  "themeSystemDescription": {
+    "message": "選擇主題系列後立即生效，下方預覽區展示 Popup 的實際介面效果。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesLabel": {
+    "message": "主題清單",
+    "description": "主題標籤頁說明"
+  },
+  "themePreviewModeAriaLabel": {
+    "message": "預覽模式",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesTerminalTitle": {
+    "message": "終端",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesTerminalDescription": {
+    "message": "終端極客風。高對比、偏工具化，適合想要“工程感”的介面。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesTerminalDarkLabel": {
+    "message": "終端暗色",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesTerminalLightLabel": {
+    "message": "終端亮色",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesTerminalDarkBadge": {
+    "message": "高對比",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesTerminalLightBadge": {
+    "message": "清爽 CLI",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesTerminalDarkNote": {
+    "message": "霓虹感、黑底、識別性強。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesTerminalLightNote": {
+    "message": "保留極客風，但更明亮剋制。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesGithubTitle": {
+    "message": "GitHub",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesGithubDescription": {
+    "message": "開發者經典風。資訊密度穩、專業感強，適合長期使用。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesGithubDarkLabel": {
+    "message": "GitHub 暗色",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesGithubLightLabel": {
+    "message": "GitHub 亮色",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesGithubBadge": {
+    "message": "開發者",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesGithubDarkNote": {
+    "message": "沉穩、熟悉、偏生產力。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesGithubLightNote": {
+    "message": "清爽、規整、接近平台化產品。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesClaudeTitle": {
+    "message": "Claude",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesClaudeDescription": {
+    "message": "溫暖優雅風。柔和米色系，適合更輕、更有呼吸感的視覺。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesClaudeDarkLabel": {
+    "message": "Claude 暗色",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesClaudeLightLabel": {
+    "message": "Claude 亮色",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesClaudeBadge": {
+    "message": "溫暖",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesClaudeDarkNote": {
+    "message": "深暖棕色調，更有情緒表達。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesClaudeLightNote": {
+    "message": "柔和紙感，觀感更輕鬆。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesBasicTitle": {
+    "message": "基礎",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesBasicDescription": {
+    "message": "簡潔通用風。弱風格化，適合大眾預設主題。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesBasicDarkLabel": {
+    "message": "基礎暗色",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesBasicLightLabel": {
+    "message": "基礎亮色",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesBasicBadge": {
+    "message": "均衡",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesBasicDarkNote": {
+    "message": "低調、通用、適合夜間。",
+    "description": "主題標籤頁說明"
+  },
+  "themeSeriesBasicLightNote": {
+    "message": "中性、乾淨、預設感強。",
+    "description": "主題標籤頁說明"
+  },
+  "downloadPanelThemeCustomDescription": {
+    "message": "自定義主題，敬請期待！",
+    "description": "主題標籤頁說明"
+  },
+  "el_colorpicker_confirm": {
+    "message": "確定",
+    "description": "主題標籤頁說明 - Element-UI 顏色選擇器"
+  },
+  "el_colorpicker_clear": {
+    "message": "清空",
+    "description": "主題標籤頁說明 - Element-UI 顏色選擇器"
+  },
+  "el_popconfirm_confirmButtonText": {
+    "message": "確定",
+    "description": "清空清單 - Element-UI PopConfirm"
+  },
+  "el_popconfirm_cancelButtonText": {
+    "message": "取消",
+    "description": "清空清單 - Element-UI PopConfirm"
+  },
+  "starAbout1": {
+    "message": "覺得不錯，去",
+    "description": "關於標籤頁說明"
+  },
+  "pluginShopAbout": {
+    "message": "應用程式商店",
+    "description": "關於標籤頁說明"
+  },
+  "starAbout2": {
+    "message": "評個分吧",
+    "description": "關於標籤頁說明"
+  }
+}
