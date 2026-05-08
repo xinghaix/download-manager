@@ -36,6 +36,7 @@ Click on the plugin icon to see the status of all downloaded files.
 10. Right-click download menu
 11. Custom icon color
 12. Custom theme
+13. File classification download
 
 ### **5. Supported Language**
 `简体中文`、`繁体中文`、`English`、`Japanese`、`German`、`Russian`、`French`
@@ -63,10 +64,10 @@ The following features are developing in order 😂:
 ### **8. Build & Package**
 ```
 # Load dependency
-pnpm install
+npm install
 
 # Compile and package
-pnpm run build
+npm run build
 ```
 
 ### 9. Help
