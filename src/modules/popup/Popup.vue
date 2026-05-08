@@ -26,7 +26,8 @@
         </el-popover>
         <div class="musk" v-if="showMusk" @click="() => { this.showMusk = false; this.showPopover = false }"/>
         <el-tooltip :disabled="closeTooltip" :content="i18data.clearAll"
-                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false">
+                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false"
+                    :show-after="tooltipShowAfter" :hide-after="tooltipHideAfter">
           <el-dropdown class="header-dropdown" trigger="click" @command="clearDropdownCommand">
             <span class="header-button header-dropdown-trigger">
               <el-icon class="icon-button"><Brush /></el-icon>
@@ -43,15 +44,18 @@
           </el-dropdown>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openDownloadFolder"
-                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false">
+                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false"
+                    :show-after="tooltipShowAfter" :hide-after="tooltipHideAfter">
           <el-icon class="header-button icon-button" @click="openFolder"><FolderOpened /></el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openHome"
-                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false">
+                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false"
+                    :show-after="tooltipShowAfter" :hide-after="tooltipHideAfter">
           <el-icon class="header-button icon-button" @click="openHome"><Position /></el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openSettings"
-                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false">
+                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false"
+                    :show-after="tooltipShowAfter" :hide-after="tooltipHideAfter">
           <el-icon class="header-button icon-button" @click="openOptions"><Setting /></el-icon>
         </el-tooltip>
       </div>
@@ -65,6 +69,7 @@
           <file class="file" :item="item" :key="item.id"
                 :render="render" :erase="erase" :request-remove="requestRemoveFile"
                 :copyToClipboard="copyToClipboard"
+                :tooltip-show-after="tooltipShowAfter" :tooltip-hide-after="tooltipHideAfter"
                 :i18data="i18data" :close-tooltip="closeTooltip" :left-click-file="leftClickFile"
                 :left-click-url="leftClickUrl" :right-click-file="rightClickFile" :right-click-url="rightClickUrl"/>
         </transition>
@@ -106,6 +111,8 @@
   import Tip from '../../components/Tip'
 
   const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
+  const TOOLTIP_SHOW_AFTER = 700
+  const TOOLTIP_HIDE_AFTER = 0
 
   export default {
     name: 'Popup',
@@ -231,6 +238,8 @@
         rightClickFile: true,
         rightClickUrl: true,
         enableAnimation: false,
+        tooltipShowAfter: TOOLTIP_SHOW_AFTER,
+        tooltipHideAfter: TOOLTIP_HIDE_AFTER,
 
         themeData: null,
         downloadItemIndexMap: new Map(),

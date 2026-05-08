@@ -65,32 +65,37 @@
     <div class="content-operator-wrapper">
       <div class="content-operator">
         <el-tooltip :disabled="closeTooltip" :content="i18data.openFileInFolder"
-                    placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+                    placement="top" effect="dark" popper-class="tooltip" :enterable="false"
+                    :show-after="tooltipShowAfter" :hide-after="tooltipHideAfter">
           <el-icon class="icon-button" v-show="folderOpenable(item)" @click.stop="showInFolder(item)">
             <FolderOpened/>
           </el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="item.paused ? i18data.resume : i18data.pause"
-                    placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+                    placement="top" effect="dark" popper-class="tooltip" :enterable="false"
+                    :show-after="tooltipShowAfter" :hide-after="tooltipHideAfter">
           <el-icon v-show="item.state === 'in_progress'" @click.stop="pauseOrResume(item)" class="icon-button">
             <VideoPlay v-if="item.paused"/>
             <VideoPause v-else/>
           </el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.delete"
-                    placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+                    placement="top" effect="dark" popper-class="tooltip" :enterable="false"
+                    :show-after="tooltipShowAfter" :hide-after="tooltipHideAfter">
           <el-icon class="icon-button" v-show="removable(item)" @click.stop="remove(item)">
             <Delete/>
           </el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.retry"
-                    placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+                    placement="top" effect="dark" popper-class="tooltip" :enterable="false"
+                    :show-after="tooltipShowAfter" :hide-after="tooltipHideAfter">
           <el-icon class="icon-button" v-show="retryable(item)" @click.stop="retryDownload(item)">
             <RefreshRight/>
           </el-icon>
         </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.erase"
-                    placement="top" effect="dark" popper-class="tooltip" :enterable="false">
+                    placement="top" effect="dark" popper-class="tooltip" :enterable="false"
+                    :show-after="tooltipShowAfter" :hide-after="tooltipHideAfter">
           <el-icon class="icon-button" @click.stop="erase(item)">
             <Close/>
           </el-icon>
@@ -123,6 +128,14 @@ export default {
     },
     closeTooltip: {
       type: Boolean,
+      required: true
+    },
+    tooltipShowAfter: {
+      type: Number,
+      required: true
+    },
+    tooltipHideAfter: {
+      type: Number,
       required: true
     },
     leftClickFile: {
