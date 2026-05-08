@@ -237,6 +237,22 @@ const common = {
     this.i18data.downloadContextMenusSetting = this.loadI18nMessage('downloadContextMenusSetting')
     this.i18data.downloadContextMenusDescSetting = this.loadI18nMessage('downloadContextMenusDescSetting')
 
+    // options settings 文件分类下载
+    this.i18data.fileRoutingSetting = this.loadI18nMessage('fileRoutingSetting')
+    this.i18data.fileRoutingEnableSetting = this.loadI18nMessage('fileRoutingEnableSetting')
+    this.i18data.fileRoutingDescription = this.loadI18nMessage('fileRoutingDescription')
+    this.i18data.fileRoutingRulesSetting = this.loadI18nMessage('fileRoutingRulesSetting')
+    this.i18data.fileRoutingFolderLabel = this.loadI18nMessage('fileRoutingFolderLabel')
+    this.i18data.fileRoutingExtensionsLabel = this.loadI18nMessage('fileRoutingExtensionsLabel')
+    this.i18data.fileRoutingActionsLabel = this.loadI18nMessage('fileRoutingActionsLabel')
+    this.i18data.fileRoutingRuleEnabledLabel = this.loadI18nMessage('fileRoutingRuleEnabledLabel')
+    this.i18data.fileRoutingFolderPlaceholder = this.loadI18nMessage('fileRoutingFolderPlaceholder')
+    this.i18data.fileRoutingExtensionsPlaceholder = this.loadI18nMessage('fileRoutingExtensionsPlaceholder')
+    this.i18data.fileRoutingAddRule = this.loadI18nMessage('fileRoutingAddRule')
+    this.i18data.fileRoutingResetRules = this.loadI18nMessage('fileRoutingResetRules')
+    this.i18data.fileRoutingDeleteRule = this.loadI18nMessage('fileRoutingDeleteRule')
+    this.i18data.fileRoutingDeleteRuleConfirm = this.loadI18nMessage('fileRoutingDeleteRuleConfirm')
+
     // options settings 通知设置
     this.i18data.notificationSetting = this.loadI18nMessage('notificationSetting')
     this.i18data.downloadNotificationSetting = this.loadI18nMessage('downloadNotificationSetting')

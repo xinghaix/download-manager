@@ -4,8 +4,8 @@
     "description": "Nom de l'extension"
   },
   "extDesc": {
-   "message": "Gestion facile des téléchargements de fichiers",
-   "description": "Description de l'extension"
+    "message": "Gestion facile des téléchargements de fichiers",
+    "description": "Description de l'extension"
   },
   "settingsTitle": {
     "message": "Réglages",
@@ -214,6 +214,62 @@
   "downloadContextMenusDescSetting": {
     "message": "Types de fichiers pris en charge : ",
     "description": "instructions de configuration du plugin"
+  },
+  "fileRoutingSetting": {
+    "message": "Classement des fichiers",
+    "description": "Description des paramètres du plugin"
+  },
+  "fileRoutingEnableSetting": {
+    "message": "Activer le classement des fichiers",
+    "description": "Description des paramètres du plugin"
+  },
+  "fileRoutingDescription": {
+    "message": "Enregistrer les téléchargements dans des sous-dossiers du dossier de téléchargement par défaut selon leurs extensions. Cette fonction est désactivée par défaut.",
+    "description": "Description détaillée des paramètres du plugin"
+  },
+  "fileRoutingRulesSetting": {
+    "message": "Règles de classement",
+    "description": "Description des paramètres du plugin"
+  },
+  "fileRoutingFolderLabel": {
+    "message": "Dossier",
+    "description": "Description des paramètres du plugin"
+  },
+  "fileRoutingExtensionsLabel": {
+    "message": "Extensions de fichier",
+    "description": "Description des paramètres du plugin"
+  },
+  "fileRoutingActionsLabel": {
+    "message": "Actions",
+    "description": "Description des paramètres du plugin"
+  },
+  "fileRoutingRuleEnabledLabel": {
+    "message": "Activer ou désactiver la règle",
+    "description": "Libellé accessible du bouton d'activation de la règle de routage"
+  },
+  "fileRoutingFolderPlaceholder": {
+    "message": "Exemple : Images ou Documents/PDF",
+    "description": "Description des paramètres du plugin"
+  },
+  "fileRoutingExtensionsPlaceholder": {
+    "message": "Exemple : jpg, png, webp",
+    "description": "Description des paramètres du plugin"
+  },
+  "fileRoutingAddRule": {
+    "message": "Ajouter une règle",
+    "description": "Description des paramètres du plugin"
+  },
+  "fileRoutingResetRules": {
+    "message": "Restaurer les valeurs par défaut",
+    "description": "Description des paramètres du plugin"
+  },
+  "fileRoutingDeleteRule": {
+    "message": "Supprimer la règle",
+    "description": "Libellé accessible du bouton de suppression de la règle de routage"
+  },
+  "fileRoutingDeleteRuleConfirm": {
+    "message": "Supprimer cette règle de routage ?",
+    "description": "Deuxième confirmation avant de supprimer une règle de routage de fichiers"
   },
   "notificationSetting": {
     "message": "Notification",

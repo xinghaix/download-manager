@@ -215,6 +215,62 @@
     "message": "支持的文件类型: ",
     "description": "插件设置细节说明"
   },
+  "fileRoutingSetting": {
+    "message": "文件分类下载",
+    "description": "插件设置说明"
+  },
+  "fileRoutingEnableSetting": {
+    "message": "启用文件分类下载",
+    "description": "插件设置说明"
+  },
+  "fileRoutingDescription": {
+    "message": "根据文件后缀将下载文件保存到默认下载目录下的指定子文件夹。该功能默认关闭。",
+    "description": "插件设置细节说明"
+  },
+  "fileRoutingRulesSetting": {
+    "message": "分类规则",
+    "description": "插件设置说明"
+  },
+  "fileRoutingFolderLabel": {
+    "message": "文件夹",
+    "description": "插件设置说明"
+  },
+  "fileRoutingExtensionsLabel": {
+    "message": "文件后缀",
+    "description": "插件设置说明"
+  },
+  "fileRoutingActionsLabel": {
+    "message": "操作",
+    "description": "插件设置说明"
+  },
+  "fileRoutingRuleEnabledLabel": {
+    "message": "启用或停用规则",
+    "description": "文件分类规则启停控件的无障碍标签"
+  },
+  "fileRoutingFolderPlaceholder": {
+    "message": "例如：Images 或 Documents/PDF",
+    "description": "插件设置说明"
+  },
+  "fileRoutingExtensionsPlaceholder": {
+    "message": "例如：jpg, png, webp",
+    "description": "插件设置说明"
+  },
+  "fileRoutingAddRule": {
+    "message": "添加规则",
+    "description": "插件设置说明"
+  },
+  "fileRoutingResetRules": {
+    "message": "恢复默认",
+    "description": "插件设置说明"
+  },
+  "fileRoutingDeleteRule": {
+    "message": "删除规则",
+    "description": "文件分类规则删除按钮的无障碍标签"
+  },
+  "fileRoutingDeleteRuleConfirm": {
+    "message": "确认删除该分类规则？",
+    "description": "删除文件分类规则前的二次确认内容"
+  },
   "notificationSetting": {
     "message": "通知",
     "description": "插件设置说明"

@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 
+import { cloneDefaultDownloadFileRoutingRules } from './downloadFileRouting.js'
+
 const LOCAL_STORAGE_PREFIX = '__download_manager__'
 const CONFIG_KEYS = [
   'theme',
@@ -22,6 +24,8 @@ const CONFIG_KEYS = [
   'download_notification_reserved_time',
   'download_notification_remain_visible',
   'download_context_menus',
+  'download_file_routing_enabled',
+  'download_file_routing_rules',
   'ui_theme',
   'ui_theme_series',
   'system_theme'
@@ -326,6 +330,9 @@ const storage = {
     await this.setDefaultIfNull('download_warning_tone', false)
     // 插件默认创建下载文件上下文菜单
     await this.setDefaultIfNull('download_context_menus', true)
+    // 文件分类下载默认关闭
+    await this.setDefaultIfNull('download_file_routing_enabled', false)
+    await this.setDefaultIfNull('download_file_routing_rules', cloneDefaultDownloadFileRoutingRules())
   }
 
 }

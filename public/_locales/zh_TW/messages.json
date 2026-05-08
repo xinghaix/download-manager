@@ -215,6 +215,62 @@
     "message": "支援的檔案類型: ",
     "description": "擴充功能設定細節說明"
   },
+  "fileRoutingSetting": {
+    "message": "檔案分類下載",
+    "description": "擴充功能設定說明"
+  },
+  "fileRoutingEnableSetting": {
+    "message": "啟用檔案分類下載",
+    "description": "擴充功能設定說明"
+  },
+  "fileRoutingDescription": {
+    "message": "根據檔案副檔名將下載檔案儲存到預設下載目錄下的指定子資料夾。此功能預設關閉。",
+    "description": "擴充功能設定細節說明"
+  },
+  "fileRoutingRulesSetting": {
+    "message": "分類規則",
+    "description": "擴充功能設定說明"
+  },
+  "fileRoutingFolderLabel": {
+    "message": "資料夾",
+    "description": "擴充功能設定說明"
+  },
+  "fileRoutingExtensionsLabel": {
+    "message": "副檔名",
+    "description": "擴充功能設定說明"
+  },
+  "fileRoutingActionsLabel": {
+    "message": "操作",
+    "description": "擴充功能設定說明"
+  },
+  "fileRoutingRuleEnabledLabel": {
+    "message": "啟用或停用規則",
+    "description": "檔案分類規則啟停控制項的無障礙標籤"
+  },
+  "fileRoutingFolderPlaceholder": {
+    "message": "例如：Images 或 Documents/PDF",
+    "description": "擴充功能設定說明"
+  },
+  "fileRoutingExtensionsPlaceholder": {
+    "message": "例如：jpg, png, webp",
+    "description": "擴充功能設定說明"
+  },
+  "fileRoutingAddRule": {
+    "message": "新增規則",
+    "description": "擴充功能設定說明"
+  },
+  "fileRoutingResetRules": {
+    "message": "恢復預設",
+    "description": "擴充功能設定說明"
+  },
+  "fileRoutingDeleteRule": {
+    "message": "刪除規則",
+    "description": "檔案分類規則刪除按鈕的無障礙標籤"
+  },
+  "fileRoutingDeleteRuleConfirm": {
+    "message": "確定要刪除此分類規則？",
+    "description": "刪除檔案分類規則前的二次確認內容"
+  },
   "notificationSetting": {
     "message": "通知",
     "description": "擴充功能設定說明"

@@ -215,6 +215,62 @@
     "message": "サポートされているファイル形式: ",
     "description": "プラグイン設定の詳細"
   },
+  "fileRoutingSetting": {
+    "message": "ファイル分類ダウンロード",
+    "description": "プラグイン設定の説明"
+  },
+  "fileRoutingEnableSetting": {
+    "message": "ファイル分類ダウンロードを有効化",
+    "description": "プラグイン設定の説明"
+  },
+  "fileRoutingDescription": {
+    "message": "ファイル拡張子に基づいて、既定のダウンロードフォルダ内の指定したサブフォルダに保存します。この機能は既定で無効です。",
+    "description": "プラグイン設定の詳細説明"
+  },
+  "fileRoutingRulesSetting": {
+    "message": "分類ルール",
+    "description": "プラグイン設定の説明"
+  },
+  "fileRoutingFolderLabel": {
+    "message": "フォルダ",
+    "description": "プラグイン設定の説明"
+  },
+  "fileRoutingExtensionsLabel": {
+    "message": "ファイル拡張子",
+    "description": "プラグイン設定の説明"
+  },
+  "fileRoutingActionsLabel": {
+    "message": "操作",
+    "description": "プラグイン設定の説明"
+  },
+  "fileRoutingRuleEnabledLabel": {
+    "message": "ルールを有効または無効にする",
+    "description": "ファイル分類ルールの有効化スイッチのアクセシブルラベル"
+  },
+  "fileRoutingFolderPlaceholder": {
+    "message": "例: Images または Documents/PDF",
+    "description": "プラグイン設定の説明"
+  },
+  "fileRoutingExtensionsPlaceholder": {
+    "message": "例: jpg, png, webp",
+    "description": "プラグイン設定の説明"
+  },
+  "fileRoutingAddRule": {
+    "message": "ルールを追加",
+    "description": "プラグイン設定の説明"
+  },
+  "fileRoutingResetRules": {
+    "message": "既定に戻す",
+    "description": "プラグイン設定の説明"
+  },
+  "fileRoutingDeleteRule": {
+    "message": "ルールを削除",
+    "description": "ファイル分類ルール削除ボタンのアクセシブルラベル"
+  },
+  "fileRoutingDeleteRuleConfirm": {
+    "message": "この分類ルールを削除しますか？",
+    "description": "ファイル分類ルールを削除する前の二次確認内容"
+  },
   "notificationSetting": {
     "message": "お知らせ",
     "description": "プラグインの設定手順"

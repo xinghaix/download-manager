@@ -37,7 +37,7 @@
     </el-aside>
     <el-container class="main-container">
       <el-scrollbar class="content-scrollbar">
-        <Settings :i18data="i18data" class="content-item" v-show="selectedIndex === '#settings'"/>
+        <Settings :i18data="i18data" class="content-item content-item-wide" v-show="selectedIndex === '#settings'"/>
         <Theme :i18data="i18data" class="content-item content-item-wide" v-show="selectedIndex === '#theme'"/>
         <About :i18data="i18data" class="content-item" v-show="selectedIndex === '#about'"/>
       </el-scrollbar>

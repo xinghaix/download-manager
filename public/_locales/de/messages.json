@@ -215,6 +215,62 @@
     "message": "Arten von Dateien, die unterstützt werden: ",
     "description": "插件设置细节说明"
   },
+  "fileRoutingSetting": {
+    "message": "Dateisortierung",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingEnableSetting": {
+    "message": "Dateisortierung aktivieren",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingDescription": {
+    "message": "Downloads anhand der Dateiendung in Unterordnern des Standard-Downloadordners speichern. Diese Funktion ist standardmäßig deaktiviert.",
+    "description": "Plugin settings detail description"
+  },
+  "fileRoutingRulesSetting": {
+    "message": "Sortierregeln",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingFolderLabel": {
+    "message": "Ordner",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingExtensionsLabel": {
+    "message": "Dateiendungen",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingActionsLabel": {
+    "message": "Aktionen",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingRuleEnabledLabel": {
+    "message": "Regel aktivieren oder deaktivieren",
+    "description": "Accessible label for the file routing rule toggle"
+  },
+  "fileRoutingFolderPlaceholder": {
+    "message": "Beispiel: Images oder Documents/PDF",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingExtensionsPlaceholder": {
+    "message": "Beispiel: jpg, png, webp",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingAddRule": {
+    "message": "Regel hinzufügen",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingResetRules": {
+    "message": "Standard wiederherstellen",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingDeleteRule": {
+    "message": "Regel löschen",
+    "description": "Accessible label for the file routing rule delete button"
+  },
+  "fileRoutingDeleteRuleConfirm": {
+    "message": "Diese Routing-Regel löschen?",
+    "description": "Second confirmation before deleting a file routing rule"
+  },
   "notificationSetting": {
     "message": "Benachrichtigungen",
     "description": "Modul einrichten -beschreibung"

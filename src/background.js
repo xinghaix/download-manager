@@ -3,6 +3,7 @@ import storage from "./utils/storage.js"
 import common from "./utils/common.js"
 import icon from "./utils/icon.js"
 import { isDangerousDownload } from "./utils/downloadDanger.js"
+import { getRoutingFilename } from "./utils/downloadFileRouting.js"
 
 // 全局状态（Service Worker 重启时会丢失，需要从 storage 恢复）
 let state = {
@@ -111,6 +112,22 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   })
 })
 
+chrome.downloads.onDeterminingFilename.addListener((item, suggest) => {
+  ;(async () => {
+    const filename = await getSuggestedRoutingFilename(item)
+    if (filename) {
+      suggest({ filename })
+      return
+    }
+    suggest()
+  })().catch(error => {
+    console.error('Download file routing error:', error)
+    suggest()
+  })
+
+  return true
+})
+
 // 通知按钮点击
 chrome.notifications.onButtonClicked.addListener((notificationId, index) => {
   chrome.notifications.clear(notificationId)
@@ -203,6 +220,16 @@ function prepareRuntimeDownloadItem(item) {
   }
   common.beforeHandler(item)
   return item
+}
+
+async function getSuggestedRoutingFilename(item) {
+  const enabled = await storage.get('download_file_routing_enabled')
+  if (!enabled || !item) {
+    return null
+  }
+
+  const rules = await storage.get('download_file_routing_rules')
+  return getRoutingFilename(item.filename || item.url || item.finalUrl, rules)
 }
 
 async function getDownloadById(id) {

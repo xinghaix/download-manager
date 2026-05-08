@@ -215,6 +215,62 @@
     "message": "Поддерживаемые типы файлов: ",
     "description": "Детали плагина говорят сами за себя"
   },
+  "fileRoutingSetting": {
+    "message": "Сортировка файлов",
+    "description": "Описание настроек плагина"
+  },
+  "fileRoutingEnableSetting": {
+    "message": "Включить сортировку файлов",
+    "description": "Описание настроек плагина"
+  },
+  "fileRoutingDescription": {
+    "message": "Сохранять загрузки в подпапки каталога загрузок по расширению файла. Эта функция по умолчанию отключена.",
+    "description": "Подробное описание настроек плагина"
+  },
+  "fileRoutingRulesSetting": {
+    "message": "Правила сортировки",
+    "description": "Описание настроек плагина"
+  },
+  "fileRoutingFolderLabel": {
+    "message": "Папка",
+    "description": "Описание настроек плагина"
+  },
+  "fileRoutingExtensionsLabel": {
+    "message": "Расширения файлов",
+    "description": "Описание настроек плагина"
+  },
+  "fileRoutingActionsLabel": {
+    "message": "Действия",
+    "description": "Описание настроек плагина"
+  },
+  "fileRoutingRuleEnabledLabel": {
+    "message": "Включить или отключить правило",
+    "description": "Accessible label for the file routing rule toggle"
+  },
+  "fileRoutingFolderPlaceholder": {
+    "message": "Например: Images или Documents/PDF",
+    "description": "Описание настроек плагина"
+  },
+  "fileRoutingExtensionsPlaceholder": {
+    "message": "Например: jpg, png, webp",
+    "description": "Описание настроек плагина"
+  },
+  "fileRoutingAddRule": {
+    "message": "Добавить правило",
+    "description": "Описание настроек плагина"
+  },
+  "fileRoutingResetRules": {
+    "message": "Восстановить по умолчанию",
+    "description": "Описание настроек плагина"
+  },
+  "fileRoutingDeleteRule": {
+    "message": "Удалить правило",
+    "description": "Accessible label for the file routing rule delete button"
+  },
+  "fileRoutingDeleteRuleConfirm": {
+    "message": "Удалить это правило маршрутизации?",
+    "description": "Второе подтверждение перед удалением правила маршрутизации файлов"
+  },
   "notificationSetting": {
     "message": "Уведомления",
     "description": "Инструкция к плагину"

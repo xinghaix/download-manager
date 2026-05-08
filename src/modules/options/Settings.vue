@@ -63,6 +63,90 @@
       </div>
     </el-card>
 
+    <h2 class="title">{{i18data.fileRoutingSetting}}</h2>
+    <el-card class="box-card file-routing-card" shadow="hover">
+      <div class="item pointer">
+        <div class="content" @click="downloadFileRoutingEnabled = !downloadFileRoutingEnabled">
+          <span class="setting-title">{{i18data.fileRoutingEnableSetting}}</span>
+          <span class="setting-description">{{i18data.fileRoutingDescription}}</span>
+        </div>
+        <el-switch class="switch" v-model="downloadFileRoutingEnabled" active-color="#409EFF" inactive-color="#bdc1c6"/>
+      </div>
+      <el-divider/>
+      <div class="file-routing-toolbar">
+        <span class="setting-title">{{i18data.fileRoutingRulesSetting}}</span>
+        <div class="file-routing-actions">
+          <el-button size="small" @click="addFileRoutingRule">
+            <el-icon><Plus /></el-icon>
+            {{i18data.fileRoutingAddRule}}
+          </el-button>
+          <el-button size="small" @click="resetFileRoutingRules">
+            <el-icon><RefreshLeft /></el-icon>
+            {{i18data.fileRoutingResetRules}}
+          </el-button>
+        </div>
+      </div>
+      <div class="file-routing-table" role="table">
+        <div class="file-routing-table-head" role="row">
+          <div role="columnheader">{{i18data.fileRoutingFolderLabel}}</div>
+          <div role="columnheader">{{i18data.fileRoutingExtensionsLabel}}</div>
+          <div role="columnheader">{{i18data.fileRoutingActionsLabel}}</div>
+        </div>
+        <div class="file-routing-table-row"
+             v-for="rule in downloadFileRoutingRules"
+             :key="rule.id"
+             role="row"
+             :class="{ disabled: !downloadFileRoutingEnabled || !rule.enabled }"
+             @focusout="handleRuleFocusOut(rule, $event)">
+          <div class="file-routing-table-cell" role="cell" :data-label="i18data.fileRoutingFolderLabel">
+            <el-input v-model="rule.folder"
+                      :class="{ 'file-routing-field-error': isExistingFileRoutingRuleInvalid(rule) && !isFileRoutingRuleFolderValid(rule) }"
+                      size="small"
+                      :disabled="!downloadFileRoutingEnabled"
+                      :placeholder="i18data.fileRoutingFolderPlaceholder"
+                      @input="handleRuleFolderInput(rule)"
+                      @blur="handleRuleFolderBlur(rule)"/>
+          </div>
+          <div class="file-routing-table-cell" role="cell" :data-label="i18data.fileRoutingExtensionsLabel">
+            <el-input-tag class="file-routing-extensions"
+                          :class="{ 'file-routing-field-error': isExistingFileRoutingRuleInvalid(rule) && !isFileRoutingRuleExtensionsValid(rule) }"
+                          :model-value="rule.extensions"
+                          size="small"
+                          :delimiter="/[\s,;，；]+/"
+                          :disabled="!downloadFileRoutingEnabled"
+                          :placeholder="i18data.fileRoutingExtensionsPlaceholder"
+                          @update:model-value="updateRuleExtensions(rule, $event)"
+                          @change="handleRuleExtensionsChange(rule)"
+                          @blur="handleRuleExtensionsBlur(rule)"/>
+          </div>
+          <div class="file-routing-table-cell file-routing-row-actions" role="cell" :data-label="i18data.fileRoutingActionsLabel">
+            <div class="file-routing-enable">
+              <el-switch v-model="rule.enabled" active-color="#409EFF" inactive-color="#bdc1c6"
+                         :aria-label="i18data.fileRoutingRuleEnabledLabel"
+                         :title="i18data.fileRoutingRuleEnabledLabel"
+                         :disabled="!downloadFileRoutingEnabled || isFileRoutingRuleIncomplete(rule)"
+                         @change="flushFileRoutingRules"/>
+            </div>
+            <el-popconfirm
+              :title="i18data.fileRoutingDeleteRuleConfirm"
+              :confirm-button-text="i18data.clearPopConfirmText"
+              :cancel-button-text="i18data.clearPopCancelText"
+              confirm-button-type="danger"
+              width="220"
+              @confirm="deleteFileRoutingRule(rule.id)">
+              <template #reference>
+                <el-button class="file-routing-delete" text type="danger"
+                           :aria-label="i18data.fileRoutingDeleteRule"
+                           :title="i18data.fileRoutingDeleteRule">
+                  <el-icon><Delete /></el-icon>
+                </el-button>
+              </template>
+            </el-popconfirm>
+          </div>
+        </div>
+      </div>
+    </el-card>
+
     <h2 class="title">{{i18data.notificationSetting}}</h2>
     <el-card class="box-card" shadow="hover">
       <div class="item">
@@ -141,13 +225,19 @@
 </template>
 
 <script>
-import { InfoFilled } from '@element-plus/icons-vue'
+import { Delete, InfoFilled, Plus, RefreshLeft } from '@element-plus/icons-vue'
 import storage from '../../utils/storage'
 import common from '../../utils/common'
+import {
+  cloneDefaultDownloadFileRoutingRules,
+  normalizeDownloadFileRoutingRules,
+  normalizeFolderPath,
+  parseExtensions
+} from '../../utils/downloadFileRouting'
 
 export default {
   name: 'Settings',
-  components: { InfoFilled },
+  components: { Delete, InfoFilled, Plus, RefreshLeft },
   props: {
     i18data: Object
   },
@@ -201,6 +291,17 @@ export default {
       }
     },
 
+    async downloadFileRoutingEnabled(val) {
+      await this.persistSetting('download_file_routing_enabled', val)
+    },
+
+    downloadFileRoutingRules: {
+      handler() {
+        this.scheduleFileRoutingRulesPersist()
+      },
+      deep: true
+    },
+
     async downloadStartedNotification(val) {
       await this.persistSetting('download_started_notification', val)
     },
@@ -246,6 +347,13 @@ export default {
       // 上下文菜单设置
       const downloadContextMenus = await storage.get('download_context_menus')
       this.downloadContextMenus = typeof downloadContextMenus === 'boolean' ? downloadContextMenus : true
+
+      // 文件分类下载设置
+      const downloadFileRoutingEnabled = await storage.get('download_file_routing_enabled')
+      this.downloadFileRoutingEnabled = typeof downloadFileRoutingEnabled === 'boolean' ? downloadFileRoutingEnabled : false
+
+      const downloadFileRoutingRules = await storage.get('download_file_routing_rules')
+      this.downloadFileRoutingRules = normalizeDownloadFileRoutingRules(downloadFileRoutingRules)
 
       // 通知设置
       const downloadStartedNotification = await storage.get('download_started_notification')
@@ -309,6 +417,10 @@ export default {
       // 上下文菜单
       downloadContextMenus: true,
 
+      // 文件分类下载
+      downloadFileRoutingEnabled: false,
+      downloadFileRoutingRules: [],
+
       // 通知设置
       downloadStartedNotification: false,
       downloadCompletedNotification: false,
@@ -327,8 +439,17 @@ export default {
       isSync: true,
       initializing: true,
       syncTransitioning: false,
+      fileRoutingPersistTimer: null,
+      fileRoutingPersistQueue: Promise.resolve(),
 
       chromeVersionGreaterThan50: true
+    }
+  },
+  beforeUnmount() {
+    if (!this.initializing && this.fileRoutingPersistTimer) {
+      clearTimeout(this.fileRoutingPersistTimer)
+      this.fileRoutingPersistTimer = null
+      storage.set('download_file_routing_rules', this.getNormalizedFileRoutingRulesForPersist())
     }
   },
   methods: {
@@ -338,6 +459,150 @@ export default {
       }
 
       await storage.set(key, value)
+    },
+
+    addFileRoutingRule() {
+      this.discardIncompleteNewFileRoutingRules()
+      this.downloadFileRoutingRules.push({
+        id: `custom-${Date.now()}`,
+        isNew: true,
+        enabled: true,
+        folder: '',
+        extensions: []
+      })
+    },
+
+    deleteFileRoutingRule(id) {
+      this.downloadFileRoutingRules = this.downloadFileRoutingRules.filter(rule => rule.id !== id)
+      this.flushFileRoutingRules()
+    },
+
+    resetFileRoutingRules() {
+      this.downloadFileRoutingRules = cloneDefaultDownloadFileRoutingRules()
+      this.flushFileRoutingRules()
+    },
+
+    updateRuleExtensions(rule, value) {
+      rule.extensions = parseExtensions(value)
+      this.disableIncompleteExistingFileRoutingRule(rule)
+      this.tryCommitNewFileRoutingRule(rule)
+    },
+
+    handleRuleFolderInput(rule) {
+      this.disableIncompleteExistingFileRoutingRule(rule)
+    },
+
+    handleRuleFolderBlur(rule) {
+      rule.folder = normalizeFolderPath(rule.folder)
+      this.disableIncompleteExistingFileRoutingRule(rule)
+      this.tryCommitNewFileRoutingRule(rule)
+      this.flushFileRoutingRules()
+    },
+
+    handleRuleExtensionsChange(rule) {
+      this.disableIncompleteExistingFileRoutingRule(rule)
+      this.tryCommitNewFileRoutingRule(rule)
+      this.flushFileRoutingRules()
+    },
+
+    handleRuleExtensionsBlur(rule) {
+      this.disableIncompleteExistingFileRoutingRule(rule)
+      this.tryCommitNewFileRoutingRule(rule)
+      this.flushFileRoutingRules()
+    },
+
+    handleRuleFocusOut(rule, event) {
+      const nextTarget = event.relatedTarget
+      if (nextTarget && event.currentTarget.contains(nextTarget)) {
+        return
+      }
+
+      if (rule.isNew && this.isFileRoutingRuleIncomplete(rule)) {
+        this.deleteFileRoutingRule(rule.id)
+      }
+    },
+
+    normalizeFolderPath(value) {
+      return normalizeFolderPath(value)
+    },
+
+    isFileRoutingRuleFolderValid(rule) {
+      return Boolean(normalizeFolderPath(rule && rule.folder))
+    },
+
+    isFileRoutingRuleExtensionsValid(rule) {
+      return parseExtensions(rule && rule.extensions).length > 0
+    },
+
+    isFileRoutingRuleIncomplete(rule) {
+      return !this.isFileRoutingRuleFolderValid(rule) || !this.isFileRoutingRuleExtensionsValid(rule)
+    },
+
+    isExistingFileRoutingRuleInvalid(rule) {
+      return rule && !rule.isNew && this.isFileRoutingRuleIncomplete(rule)
+    },
+
+    disableIncompleteExistingFileRoutingRule(rule) {
+      if (this.isExistingFileRoutingRuleInvalid(rule) && rule.enabled !== false) {
+        rule.enabled = false
+      }
+    },
+
+    tryCommitNewFileRoutingRule(rule) {
+      if (rule && rule.isNew && !this.isFileRoutingRuleIncomplete(rule)) {
+        rule.isNew = false
+      }
+    },
+
+    discardIncompleteNewFileRoutingRules() {
+      this.downloadFileRoutingRules = this.downloadFileRoutingRules.filter(rule => {
+        return !rule.isNew || !this.isFileRoutingRuleIncomplete(rule)
+      })
+    },
+
+    getNormalizedFileRoutingRulesForPersist() {
+      const rules = this.downloadFileRoutingRules.filter(rule => {
+        return !rule.isNew || !this.isFileRoutingRuleIncomplete(rule)
+      })
+      rules.forEach(rule => this.disableIncompleteExistingFileRoutingRule(rule))
+      return normalizeDownloadFileRoutingRules(rules)
+    },
+
+    scheduleFileRoutingRulesPersist() {
+      if (this.initializing || this.syncTransitioning) {
+        return
+      }
+
+      if (this.fileRoutingPersistTimer) {
+        clearTimeout(this.fileRoutingPersistTimer)
+      }
+
+      this.fileRoutingPersistTimer = setTimeout(() => {
+        this.fileRoutingPersistTimer = null
+        this.persistFileRoutingRules()
+      }, 500)
+    },
+
+    flushFileRoutingRules() {
+      return this.persistFileRoutingRules()
+    },
+
+    async persistFileRoutingRules() {
+      if (this.initializing || this.syncTransitioning) {
+        return
+      }
+
+      if (this.fileRoutingPersistTimer) {
+        clearTimeout(this.fileRoutingPersistTimer)
+        this.fileRoutingPersistTimer = null
+      }
+
+      const rules = this.getNormalizedFileRoutingRulesForPersist()
+      this.fileRoutingPersistQueue = this.fileRoutingPersistQueue
+        .catch(() => {})
+        .then(() => storage.set('download_file_routing_rules', rules))
+
+      await this.fileRoutingPersistQueue
     },
 
     /**
@@ -389,7 +654,7 @@ export default {
   /* 通用卡片样式 */
   .box-card {
     width: 100%;
-    max-width: 600px;
+    max-width: 920px;
     margin-bottom: 36px;
     box-sizing: border-box;
   }
@@ -444,6 +709,152 @@ export default {
   }
   .box-card .item .setting-description .code {
     margin-left: 4px;
+  }
+
+  .file-routing-card {
+    max-width: 920px;
+  }
+
+  .file-routing-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px;
+    margin-bottom: 8px;
+  }
+
+  .file-routing-toolbar .setting-title {
+    font-size: 14px;
+  }
+
+  .file-routing-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .file-routing-table {
+    border: 1px solid var(--el-border-color-light, #e4e7ed);
+    border-radius: var(--el-card-border-radius, var(--el-border-radius-base, 4px));
+    overflow: hidden;
+  }
+
+  .file-routing-table-head,
+  .file-routing-table-row {
+    display: grid;
+    grid-template-columns: minmax(140px, 200px) minmax(360px, 1fr) 112px;
+    align-items: center;
+  }
+
+  .file-routing-table-head {
+    color: var(--el-text-color-secondary, gray);
+    background: var(--el-fill-color-light, #f5f7fa);
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .file-routing-table-head > div,
+  .file-routing-table-cell {
+    min-width: 0;
+    padding: 10px 12px;
+    box-sizing: border-box;
+  }
+
+  .file-routing-table-head > div:last-child {
+    text-align: center;
+  }
+
+  .file-routing-table-row {
+    border-top: 1px solid var(--el-border-color-lighter, #ebeef5);
+  }
+
+  .file-routing-table-row.disabled {
+    opacity: 0.72;
+  }
+
+  .file-routing-row-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .file-routing-enable {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .file-routing-delete {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    font-size: 16px;
+  }
+
+  .file-routing-table :deep(.el-input__inner) {
+    font-size: 12px;
+  }
+
+  .file-routing-field-error :deep(.el-input__wrapper) {
+    box-shadow: 0 0 0 1px var(--el-color-danger, #f56c6c) inset;
+  }
+
+  .file-routing-extensions {
+    width: 100%;
+    --el-input-tag-padding: 5px 6px;
+    --el-input-tag-gap: 6px;
+    --el-input-tag-line-height: 20px;
+    min-height: 36px;
+  }
+
+  .file-routing-extensions.file-routing-field-error {
+    box-shadow: 0 0 0 1px var(--el-color-danger, #f56c6c) inset;
+  }
+
+  .file-routing-extensions :deep(.el-input-tag__inner) {
+    gap: 6px;
+    align-items: center;
+  }
+
+  .file-routing-extensions :deep(.el-tag) {
+    text-transform: lowercase;
+    margin-top: 1px;
+    margin-bottom: 1px;
+  }
+
+  @media (max-width: 760px) {
+    .file-routing-table {
+      border: none;
+      border-radius: 0;
+      overflow: visible;
+    }
+
+    .file-routing-table-head {
+      display: none;
+    }
+
+    .file-routing-table-row {
+      display: block;
+      padding: 10px 0;
+      border-top: 1px solid var(--el-border-color-lighter, #ebeef5);
+    }
+
+    .file-routing-table-cell {
+      padding: 6px 4px;
+    }
+
+    .file-routing-table-cell::before {
+      content: attr(data-label);
+      display: block;
+      margin-bottom: 4px;
+      color: var(--el-text-color-secondary, gray);
+      font-size: 12px;
+    }
+
+    .file-routing-row-actions {
+      justify-content: flex-start;
+    }
   }
 
   .reserved_time {

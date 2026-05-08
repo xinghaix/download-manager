@@ -4,8 +4,8 @@
     "description": "Extension name"
   },
   "extDesc": {
-   "message": "Easy to manage downloaded files",
-   "description": "Extension description"
+    "message": "Easy to manage downloaded files",
+    "description": "Extension description"
   },
   "settingsTitle": {
     "message": "Settings",
@@ -214,6 +214,62 @@
   "downloadContextMenusDescSetting": {
     "message": "Supported file types: ",
     "description": "plugin setting details instructions"
+  },
+  "fileRoutingSetting": {
+    "message": "File routing",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingEnableSetting": {
+    "message": "Enable file routing",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingDescription": {
+    "message": "Save downloads into subfolders under the default download directory based on file extensions. This feature is off by default.",
+    "description": "Plugin settings detail description"
+  },
+  "fileRoutingRulesSetting": {
+    "message": "Routing rules",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingFolderLabel": {
+    "message": "Folder",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingExtensionsLabel": {
+    "message": "File extensions",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingActionsLabel": {
+    "message": "Actions",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingRuleEnabledLabel": {
+    "message": "Enable or disable rule",
+    "description": "Accessible label for the file routing rule toggle"
+  },
+  "fileRoutingFolderPlaceholder": {
+    "message": "Example: Images or Documents/PDF",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingExtensionsPlaceholder": {
+    "message": "Example: jpg, png, webp",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingAddRule": {
+    "message": "Add rule",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingResetRules": {
+    "message": "Restore defaults",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingDeleteRule": {
+    "message": "Delete rule",
+    "description": "Accessible label for the file routing rule delete button"
+  },
+  "fileRoutingDeleteRuleConfirm": {
+    "message": "Delete this routing rule?",
+    "description": "Second confirmation before deleting a file routing rule"
   },
   "notificationSetting": {
     "message": "Notification",
