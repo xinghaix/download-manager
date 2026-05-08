@@ -1,6 +1,6 @@
 {
   "name": "download-manager",
-  "version": "0.1.0",
+  "version": "1.2.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -15,7 +15,7 @@
     "highlight.js": "^10.5.0",
     "kind-of": "^6.0.3",
     "minimist": "^1.2.6",
-    "serialize-javascript": "^5.0.1",
+    "serialize-javascript": "^7.0.5",
     "vue": "^3.5.32",
     "vue-virtual-scroller": "^2.0.1",
     "websocket-extensions": "^0.1.4"
@@ -26,13 +26,13 @@
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
     "@vue/compiler-sfc": "^3.5.32",
-    "eslint": "^8.57.0",
+    "eslint": "^9.26.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.1.0",
     "eslint-plugin-vue": "^9.0.0",
-    "webpack": "^5.88.0"
+    "webpack": "^5.104.1"
   },
   "eslintConfig": {
     "root": true,

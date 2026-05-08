@@ -42,7 +42,7 @@
 
 ### **5. 支持的语言**
 
-`简体中文`、`English`、`Japanese`、`German`、`Russian`、`French`
+`简体中文`、`繁体中文`、`English`、`Japanese`、`German`、`Russian`、`French`
 
 这是使用谷歌翻译后的结果，如果您有更好的建议，请创建Issues或发邮件!
 
@@ -57,11 +57,10 @@
 以下计划按先后顺序依次开发😂：
 
 1. 解决重试下载失败文件变成新创建下载的问题
-2. 自定义下载面板主题
-3. 强迫症系列：只显示下载文件名称、下载面板停止显示飞入飞出动画
-4. 代理设置
+2. 强迫症系列：只显示下载文件名称
+3. 代理设置
 
-### **7. Info**
+### **7. 示例图**
 
 <img src="docs/img/Popup_zh_CN.png" width="320" hegiht="420" alt=""/>
 <img src="docs/img/Settings_zh_CN.png" width="320" hegiht="420" alt=""/>
@@ -79,5 +78,3 @@ pnpm run build
 ### 9. 帮助
 
 有任何问题请创建Issues
-或者
-给我发送<a href="mailto:xinghaixw@outlook.com">邮件</a>
