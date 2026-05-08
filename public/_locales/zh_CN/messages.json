@@ -59,6 +59,10 @@
     "message": "清除文件不存在",
     "description": "清除按钮下拉菜单"
   },
+  "clearCompleted": {
+    "message": "清除下载完成",
+    "description": "清除按钮下拉菜单"
+  },
   "openDownloadFolder": {
     "message": "打开下载文件夹",
     "description": "在资源管理器中打开下载文件夹"

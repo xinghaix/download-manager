@@ -37,6 +37,7 @@
                 <el-dropdown-item command="deleteAll">{{i18data.deleteAll}}</el-dropdown-item>
                 <el-dropdown-item command="clearFailed">{{i18data.clearFailed}}</el-dropdown-item>
                 <el-dropdown-item command="clearAbsent">{{i18data.clearAbsent}}</el-dropdown-item>
+                <el-dropdown-item command="clearCompleted">{{i18data.clearCompleted}}</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -631,6 +632,9 @@
                 break
               case 'clearAbsent':
                 !item.exists && this.erase(item)
+                break
+              case 'clearCompleted':
+                item.state === 'complete' && this.erase(item)
                 break
             }
           }

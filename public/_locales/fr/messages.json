@@ -59,6 +59,10 @@
     "message": "Effacer les fichiers absents",
     "description": "Menu déroulant du bouton Effacer"
   },
+  "clearCompleted": {
+    "message": "Effacer les téléchargements terminés",
+    "description": "Menu déroulant du bouton Effacer"
+  },
   "openDownloadFolder": {
     "message": "Ouvrir le dossier de téléchargement",
     "description": "ouvrir le dossier de téléchargement dans l'Explorateur"

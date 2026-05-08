@@ -59,6 +59,10 @@
     "message": "清除檔案不存在",
     "description": "清除按鈕下拉選單"
   },
+  "clearCompleted": {
+    "message": "清除下載完成",
+    "description": "清除按鈕下拉選單"
+  },
   "openDownloadFolder": {
     "message": "開啟下載資料夾",
     "description": "在檔案總管中開啟下載資料夾"

@@ -59,6 +59,10 @@
     "message": "Datei löschen existiert nicht",
     "description": "Dropdown-Menü der Schaltfläche löschen"
   },
+  "clearCompleted": {
+    "message": "Abgeschlossene Downloads löschen",
+    "description": "Dropdown-Menü der Schaltfläche löschen"
+  },
   "openDownloadFolder": {
     "message": "Lade den ordner ab.",
     "description": "Öffnen sie den ordner für die downloads im ressourcen"

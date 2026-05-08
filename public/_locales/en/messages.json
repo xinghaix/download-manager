@@ -59,6 +59,10 @@
     "message": "clear absent tasks",
     "description": "Clear button dropdown menu"
   },
+  "clearCompleted": {
+    "message": "clear completed tasks",
+    "description": "Clear button dropdown menu"
+  },
   "openDownloadFolder": {
     "message": "open download folder",
     "description": "open the download folder in Explorer"

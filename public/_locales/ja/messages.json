@@ -59,6 +59,10 @@
     "message": "クリアファイルが存在しません",
     "description": "クリアボタンのドロップダウンメニュー"
   },
+  "clearCompleted": {
+    "message": "完了したダウンロードをクリア",
+    "description": "クリアボタンのドロップダウンメニュー"
+  },
   "openDownloadFolder": {
     "message": "ダウンロードフォルダを開く",
     "description": "エクスプローラーでダウンロードフォルダーを開く"

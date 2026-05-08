@@ -182,6 +182,7 @@ const common = {
     this.i18data.deleteAll = this.loadI18nMessage('deleteAll')
     this.i18data.clearFailed = this.loadI18nMessage('clearFailed')
     this.i18data.clearAbsent = this.loadI18nMessage('clearAbsent')
+    this.i18data.clearCompleted = this.loadI18nMessage('clearCompleted')
 
     // 网速显示
     this.i18data.second = this.loadI18nMessage('second')
