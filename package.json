@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "eslint \"**/*.{js,ts,jsx,tsx,cjs,cts,mjs,mts,html,vue}\""
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
@@ -22,43 +22,18 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.6",
+    "@eslint/js": "^9.39.4",
     "@vue/cli-plugin-babel": "^5.0.9",
-    "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
     "@vue/compiler-sfc": "^3.5.32",
-    "eslint": "^9.26.0",
+    "eslint": "^9.39.4",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.1.0",
     "eslint-plugin-vue": "^9.0.0",
+    "globals": "^17.6.0",
     "webpack": "^5.104.1"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "browser": true,
-      "es6": true,
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "globals": {
-      "Atomics": "readonly",
-      "SharedArrayBuffer": "readonly",
-      "chrome": "readonly"
-    },
-    "rules": {
-      "vue/multi-word-component-names": "off",
-      "vue/no-reserved-component-names": "off"
-    },
-    "parser": "vue-eslint-parser",
-    "parserOptions": {
-      "parser": "@babel/eslint-parser",
-      "requireConfigFile": false
-    }
   },
   "postcss": {
     "plugins": {
