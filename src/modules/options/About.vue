@@ -66,6 +66,7 @@
     height: 100%;
     width: 100%;
     padding: 20px;
+    box-sizing: border-box;
   }
 
   .title {
@@ -74,8 +75,10 @@
 
   /* 通用卡片样式 */
   .box-card {
-    width: 600px;
+    width: 100%;
+    max-width: 920px;
     margin-bottom: 36px;
+    box-sizing: border-box;
   }
   .box-card .card-header {
     display: table;

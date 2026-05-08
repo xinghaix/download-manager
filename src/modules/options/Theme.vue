@@ -77,95 +77,97 @@
 
       <el-divider/>
 
-      <section class="theme-system-head">
-        <div class="theme-system-copy">
-          <div class="theme-system-title">{{i18data.themeSystemTitle}}</div>
-          <div class="theme-system-desc">{{i18data.themeSystemDescription}}</div>
-        </div>
-        <div class="theme-selector-control theme-system-selector">
-          <span class="selector-label">{{i18data.themeSeriesLabel}}</span>
-          <el-select v-model="selectedThemeSeriesKey" size="small" @change="handlePreviewSeriesChange">
-            <el-option v-for="series in themeSeries"
-                       :key="series.key"
-                       :label="series.title"
-                       :value="series.key"></el-option>
-          </el-select>
-        </div>
-      </section>
-
-      <section class="live-preview-shell">
-        <div class="preview-stage">
-          <div class="preview-stage-grid"></div>
-          <div class="preview-stage-head">
-            <div v-if="theme === 'auto'" class="preview-mode-switch" role="tablist" :aria-label="i18data.themePreviewModeAriaLabel">
-              <button type="button"
-                      class="preview-mode-button"
-                      :class="{ active: previewMode === 'light' }"
-                      @click="setPreviewMode('light')">{{ getModeLabel('light') }}</button>
-              <button type="button"
-                      class="preview-mode-button"
-                      :class="{ active: previewMode === 'dark' }"
-                      @click="setPreviewMode('dark')">{{ getModeLabel('dark') }}</button>
-            </div>
-            <div v-else class="preview-mode-indicator">{{ getModeLabel(getEffectiveMode()) }}</div>
+      <section class="theme-preview-panel">
+        <section class="theme-system-head">
+          <div class="theme-system-copy">
+            <div class="theme-system-title">{{i18data.themeSystemTitle}}</div>
+            <div class="theme-system-desc">{{i18data.themeSystemDescription}}</div>
           </div>
-          <div class="popup-preview-wrapper">
-            <div class="popup-preview"
-                 ref="popupPreview"
-                 :style="{
-                   width: fixedPreviewViewport.width + 'px',
-                   height: fixedPreviewViewport.height + 'px',
-                   ...previewThemeStyle
-                 }">
-              <div class="popup-shell">
-                <div class="home popup-home" :style="{ width: fixedPreviewViewport.width + 'px', height: popupBodyHeight + 'px' }">
-                  <div class="header popup-header">
-                    <div class="search popup-search">
-                      <div class="search-inner">
-                        <span class="search-placeholder"></span>
-                        <span class="search-icon">⌕</span>
+          <div class="theme-selector-control theme-system-selector">
+            <span class="selector-label">{{i18data.themeSeriesLabel}}</span>
+            <el-select v-model="selectedThemeSeriesKey" size="small" @change="handlePreviewSeriesChange">
+              <el-option v-for="series in themeSeries"
+                         :key="series.key"
+                         :label="series.title"
+                         :value="series.key"></el-option>
+            </el-select>
+          </div>
+        </section>
+
+        <section class="live-preview-shell">
+          <div class="preview-stage">
+            <div class="preview-stage-grid"></div>
+            <div class="preview-stage-head">
+              <div v-if="theme === 'auto'" class="preview-mode-switch" role="tablist" :aria-label="i18data.themePreviewModeAriaLabel">
+                <button type="button"
+                        class="preview-mode-button"
+                        :class="{ active: previewMode === 'light' }"
+                        @click="setPreviewMode('light')">{{ getModeLabel('light') }}</button>
+                <button type="button"
+                        class="preview-mode-button"
+                        :class="{ active: previewMode === 'dark' }"
+                        @click="setPreviewMode('dark')">{{ getModeLabel('dark') }}</button>
+              </div>
+              <div v-else class="preview-mode-indicator">{{ getModeLabel(getEffectiveMode()) }}</div>
+            </div>
+            <div class="popup-preview-wrapper">
+              <div class="popup-preview"
+                   ref="popupPreview"
+                   :style="{
+                     width: fixedPreviewViewport.width + 'px',
+                     height: fixedPreviewViewport.height + 'px',
+                     ...previewThemeStyle
+                   }">
+                <div class="popup-shell">
+                  <div class="home popup-home" :style="{ width: fixedPreviewViewport.width + 'px', height: popupBodyHeight + 'px' }">
+                    <div class="header popup-header">
+                      <div class="search popup-search">
+                        <div class="search-inner">
+                          <span class="search-placeholder"></span>
+                          <span class="search-icon">⌕</span>
+                        </div>
+                      </div>
+                      <div class="header-operator popup-header-operator">
+                        <el-icon class="header-button icon-button"><Download /></el-icon>
+                        <el-icon class="header-button icon-button"><Brush /></el-icon>
+                        <el-icon class="header-button icon-button"><FolderOpened /></el-icon>
+                        <el-icon class="header-button icon-button"><Position /></el-icon>
+                        <el-icon class="header-button icon-button"><Setting /></el-icon>
                       </div>
                     </div>
-                    <div class="header-operator popup-header-operator">
-                      <el-icon class="header-button icon-button"><Download /></el-icon>
-                      <el-icon class="header-button icon-button"><Brush /></el-icon>
-                      <el-icon class="header-button icon-button"><FolderOpened /></el-icon>
-                      <el-icon class="header-button icon-button"><Position /></el-icon>
-                      <el-icon class="header-button icon-button"><Setting /></el-icon>
-                    </div>
-                  </div>
 
-                  <div class="content popup-content">
-                    <div class="preview-scroll" :style="{ maxHeight: previewContentHeight + 'px' }">
-                      <div class="file" v-for="file in previewFiles" :key="file.name" :class="file.previewClass">
-                        <div class="icon">
-                          <div class="progress-ring">
-                            <div class="progress-ring-inner">{{ file.percent }}</div>
-                          </div>
-                        </div>
-                        <div class="file-content">
-                          <span class="filename">{{ file.name }}</span>
-                          <span class="file-url">{{ file.url }}</span>
-                          <div class="info">
-                            <div class="cell left common">
-                              <span class="receivedSize small-size">{{ file.received }}</span>
-                              <span class="divider small-size">/</span>
-                              <span class="size small-size">{{ file.total }}</span>
-                            </div>
-                            <div class="cell middle common">
-                              <span class="speed small-size">{{ file.speed }}</span>
-                            </div>
-                            <div class="cell right common">
-                              <span class="remaining small-size">{{ file.status }}</span>
+                    <div class="content popup-content">
+                      <div class="preview-scroll" :style="{ maxHeight: previewContentHeight + 'px' }">
+                        <div class="file" v-for="file in previewFiles" :key="file.name" :class="file.previewClass">
+                          <div class="icon">
+                            <div class="progress-ring">
+                              <div class="progress-ring-inner">{{ file.percent }}</div>
                             </div>
                           </div>
-                        </div>
-                        <div class="content-operator-wrapper">
-                          <div class="content-operator">
-                            <el-icon class="icon-button"><FolderOpened /></el-icon>
-                            <el-icon class="icon-button"><VideoPause /></el-icon>
-                            <el-icon class="icon-button"><RefreshRight /></el-icon>
-                            <el-icon class="icon-button"><Close /></el-icon>
+                          <div class="file-content">
+                            <span class="filename">{{ file.name }}</span>
+                            <span class="file-url">{{ file.url }}</span>
+                            <div class="info">
+                              <div class="cell left common">
+                                <span class="receivedSize small-size">{{ file.received }}</span>
+                                <span class="divider small-size">/</span>
+                                <span class="size small-size">{{ file.total }}</span>
+                              </div>
+                              <div class="cell middle common">
+                                <span class="speed small-size">{{ file.speed }}</span>
+                              </div>
+                              <div class="cell right common">
+                                <span class="remaining small-size">{{ file.status }}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="content-operator-wrapper">
+                            <div class="content-operator">
+                              <el-icon class="icon-button"><FolderOpened /></el-icon>
+                              <el-icon class="icon-button"><VideoPause /></el-icon>
+                              <el-icon class="icon-button"><RefreshRight /></el-icon>
+                              <el-icon class="icon-button"><Close /></el-icon>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -175,7 +177,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </section>
     </el-card>
   </div>
@@ -192,9 +194,6 @@
   const MAX_PREVIEW_WIDTH = 800
   const MIN_PREVIEW_HEIGHT = 300
   const MAX_PREVIEW_HEIGHT = 600
-  const PREVIEW_FIXED_VIEWPORT_WIDTH = 400
-  const PREVIEW_FIXED_VIEWPORT_HEIGHT = 420
-
   export default {
     name: 'Theme',
     components: { Brush, Close, Download, FolderOpened, Position, RefreshRight, Setting, VideoPause },
@@ -387,10 +386,7 @@
         return this.normalizePreviewSize(this.downloadPanelPageSize)
       },
       fixedPreviewViewport() {
-        return {
-          width: PREVIEW_FIXED_VIEWPORT_WIDTH,
-          height: PREVIEW_FIXED_VIEWPORT_HEIGHT
-        }
+        return this.normalizedPreviewSize
       },
       popupBodyHeight() {
         return this.fixedPreviewViewport.height - 1
@@ -641,15 +637,21 @@
     border-radius: 10px;
   }
 
+  .theme-preview-panel {
+    margin-bottom: 22px;
+    border: 1px solid #e7ecf4;
+    border-radius: var(--settings-card-radius);
+    background: #ffffff;
+    overflow: hidden;
+  }
+
   .theme-system-head {
     display: flex;
     justify-content: space-between;
     align-items: end;
     gap: 18px;
     padding: 14px 18px;
-    margin-bottom: 16px;
-    border-radius: var(--settings-card-radius);
-    border: 1px solid #e7ecf4;
+    margin-bottom: 0;
     background:
       linear-gradient(135deg, rgba(123, 97, 255, 0.05) 0%, rgba(64, 158, 255, 0.04) 100%),
       linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
@@ -752,7 +754,9 @@
   }
 
   .live-preview-shell {
-    margin-bottom: 22px;
+    margin-bottom: 0;
+    padding: 0;
+    border-top: 1px solid #e7ecf4;
   }
 
   .theme-system-selector {
@@ -761,23 +765,27 @@
 
   .preview-stage {
     position: relative;
-    border-radius: var(--settings-card-radius);
+    border-radius: 0;
     overflow: hidden;
-    padding: 16px;
-    border: 1px solid #e7ecf4;
+    padding: 0;
+    border: none;
     background: radial-gradient(circle at top left, #ffffff 0%, #f5f8ff 46%, #eef3fb 100%);
-    min-height: 420px;
+    min-height: 560px;
   }
 
   .preview-stage-head {
-    position: relative;
-    z-index: 1;
+    position: absolute;
+    z-index: 2;
+    top: 16px;
+    left: 16px;
+    right: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
     flex-wrap: wrap;
-    margin-bottom: 16px;
+    margin-bottom: 0;
+    pointer-events: none;
   }
 
   .preview-stage-grid {
@@ -815,6 +823,7 @@
     background: rgba(255, 255, 255, 0.78);
     border: 1px solid rgba(160, 175, 201, 0.3);
     box-shadow: 0 10px 24px rgba(26, 38, 58, 0.08);
+    pointer-events: auto;
   }
 
   .preview-mode-button {
@@ -851,6 +860,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    pointer-events: auto;
   }
 
   .popup-preview-wrapper {
@@ -858,14 +868,15 @@
     z-index: 1;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    min-height: 430px;
-    padding: 8px 0 2px;
+    align-items: center;
+    min-height: 560px;
+    padding: 72px 24px 40px;
     box-sizing: border-box;
   }
 
   .popup-preview {
     transform-origin: top center;
+    transform: scale(0.92);
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 24px 56px rgba(33, 43, 60, 0.16), 0 8px 24px rgba(33, 43, 60, 0.08);
