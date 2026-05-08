@@ -63,13 +63,6 @@
 
 ### **7. Info**
 
-#### **7.1. 最新版本**：1.2.1
-
-新增：
-
-1. 插件支持V3协议
-2. 完善主题设置，新增预览
-
 <img src="docs/img/Popup_zh_CN.png" width="320" hegiht="420" alt=""/>
 <img src="docs/img/Settings_zh_CN.png" width="320" hegiht="420" alt=""/>
 
