@@ -291,16 +291,16 @@
 
         this.downloadUpdateVersion++
 
-        if (Array.isArray(projection.removedIds)) {
-          projection.removedIds.forEach(id => this.removeItemById(id))
-        }
+        const removedIds = Array.isArray(projection.removedIds) ? projection.removedIds : []
+        const removedIdSet = new Set(removedIds)
+        removedIds.forEach(id => this.removeItemById(id))
 
         const itemsById = projection.itemsById && typeof projection.itemsById === 'object'
           ? projection.itemsById
           : {}
 
         Object.values(itemsById).forEach(item => {
-          if (item) {
+          if (item && !removedIdSet.has(item.id)) {
             this.upsertDownloadItem(item, options)
           }
         })
@@ -536,12 +536,51 @@
        * @param item {Object}
        */
       erase(item) {
-        chrome.downloads.erase({id: item.id}, () => {
-          if (chrome.runtime && chrome.runtime.lastError) {
-            this.render()
+        return new Promise(resolve => {
+          if (!item || typeof item.id !== 'number') {
+            resolve(false)
             return
           }
-          this.removeItemById(item.id)
+
+          chrome.downloads.erase({id: item.id}, async () => {
+            if (chrome.runtime && chrome.runtime.lastError) {
+              this.render()
+              resolve(false)
+              return
+            }
+            try {
+              await this.removeProjectionItemById(item.id)
+            } catch (error) {
+              console.warn('Remove projection item failed', error)
+            }
+            this.removeItemById(item.id)
+            resolve(true)
+          })
+        })
+      },
+
+      async removeProjectionItemById(id) {
+        const projection = await storage.getSession(DOWNLOADS_PROJECTION_KEY)
+        if (!projection || typeof projection !== 'object') {
+          return
+        }
+
+        const itemsById = projection.itemsById && typeof projection.itemsById === 'object'
+          ? {...projection.itemsById}
+          : {}
+        delete itemsById[id]
+
+        const removedIds = Array.isArray(projection.removedIds)
+          ? projection.removedIds.filter(removedId => removedId !== id)
+          : []
+        removedIds.push(id)
+
+        await storage.setSession(DOWNLOADS_PROJECTION_KEY, {
+          ...projection,
+          seq: (typeof projection.seq === 'number' ? projection.seq : 0) + 1,
+          updatedAt: Date.now(),
+          itemsById,
+          removedIds
         })
       },
 
@@ -591,33 +630,89 @@
         const action = this.deleteConfirm.action
         this.cancelDeleteConfirm()
         if (typeof action === 'function') {
-          action()
+          const result = action()
+          if (result && typeof result.catch === 'function') {
+            result.catch(error => {
+              console.warn('Delete confirm action failed', error)
+              this.render()
+            })
+          }
         }
       },
 
-      removeFileFromDisk(item) {
+      async removeFileFromDisk(item) {
+        if (!item || typeof item.id !== 'number') {
+          return false
+        }
+
+        if (!item.exists) {
+          return await this.erase(item)
+        }
+
+        const result = await this.removeDownloadFile(item)
+        if (!result.success) {
+          const shouldErase = await this.shouldEraseAfterRemoveFileFailure(item, result.errorMessage)
+          if (!shouldErase) {
+            await this.render()
+            return false
+          }
+        }
+
+        item.exists = false
+        return await this.erase(item)
+      },
+
+      removeDownloadFile(item) {
         return new Promise(resolve => {
           chrome.downloads.removeFile(item.id, () => {
             if (chrome.runtime && chrome.runtime.lastError) {
-              this.render()
-              resolve(false)
+              resolve({
+                success: false,
+                errorMessage: chrome.runtime.lastError.message || ''
+              })
               return
             }
-            item.exists = false
-            this.erase(item)
-            resolve(true)
+            resolve({
+              success: true,
+              errorMessage: ''
+            })
           })
         })
       },
 
-      removeAllFilesFromDisk(items) {
-        items.forEach(item => {
-          if (item.exists) {
-            this.removeFileFromDisk(item)
-          } else {
-            this.erase(item)
-          }
+      async shouldEraseAfterRemoveFileFailure(item, errorMessage) {
+        if (!item.exists || this.isFileMissingError(errorMessage)) {
+          return true
+        }
+
+        const refreshedItem = await this.getDownloadItemById(item.id)
+        return !refreshedItem || refreshedItem.exists === false
+      },
+
+      isFileMissingError(errorMessage) {
+        return /does(?:\s+not|n't)\s+exist|not\s+found|no\s+such\s+file|file\s+missing|already\s+(?:deleted|removed)|has\s+been\s+(?:deleted|removed)|不存在|找不到|已删除|已移除/i.test(errorMessage || '')
+      },
+
+      getDownloadItemById(id) {
+        return new Promise(resolve => {
+          chrome.downloads.search({id}, items => {
+            if (chrome.runtime && chrome.runtime.lastError) {
+              resolve(null)
+              return
+            }
+            resolve(items && items[0] ? items[0] : null)
+          })
         })
+      },
+
+      async removeAllFilesFromDisk(items) {
+        for (const item of items) {
+          const currentItem = this.getItem(item.id)
+          if (currentItem) {
+            await this.removeFileFromDisk(currentItem)
+          }
+        }
+        await this.render()
       },
 
       /**
