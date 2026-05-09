@@ -1,0 +1,554 @@
+{
+  "extName": {
+    "message": "ตัวจัดการดาวน์โหลด",
+    "description": "Extension name"
+  },
+  "extDesc": {
+    "message": "จัดการไฟล์ที่ดาวน์โหลดได้อย่างสะดวก",
+    "description": "Extension description"
+  },
+  "settingsTitle": {
+    "message": "การตั้งค่า",
+    "description": "Personal settings"
+  },
+  "aboutTitle": {
+    "message": "เกี่ยวกับ",
+    "description": "Some information about the plugin"
+  },
+  "second": {
+    "message": "เหลือ {} วินาที",
+    "description": "remaining time display"
+  },
+  "minute": {
+    "message": "เหลือ {} นาที",
+    "description": "remaining time display"
+  },
+  "hour": {
+    "message": "เหลือ {} ชั่วโมง",
+    "description": "remaining time display"
+  },
+  "day": {
+    "message": "เหลือ {} วัน",
+    "description": "remaining time display"
+  },
+  "closeTooltip": {
+    "message": "หยุดแสดงคำแนะนำแบบข้อความ",
+    "description": "on the download management page, when the mouse is moved over the button, the text prompt box stops showing"
+  },
+  "newDownload": {
+    "message": "ดาวน์โหลดใหม่",
+    "description": "new download"
+  },
+  "newDownloadPlaceholder": {
+    "message": "ใส่ลิงก์ดาวน์โหลด แล้วกด Enter เพื่อดาวน์โหลด",
+    "description": "Please enter the download link"
+  },
+  "clearAll": {
+    "message": "ล้างรายการ",
+    "description": "Clear button dropdown menu"
+  },
+  "deleteAll": {
+    "message": "ลบทั้งหมดจากดิสก์",
+    "description": "Clear button dropdown menu"
+  },
+  "clearFailed": {
+    "message": "ล้างรายการที่ดาวน์โหลดไม่สำเร็จ",
+    "description": "Clear button dropdown menu"
+  },
+  "clearAbsent": {
+    "message": "ล้างไฟล์ที่ไม่มีอยู่",
+    "description": "Clear button dropdown menu"
+  },
+  "clearCompleted": {
+    "message": "ล้างรายการที่ดาวน์โหลดเสร็จแล้ว",
+    "description": "Clear button dropdown menu"
+  },
+  "openDownloadFolder": {
+    "message": "เปิดโฟลเดอร์ดาวน์โหลด",
+    "description": "open the download folder in Explorer"
+  },
+  "openSettings": {
+    "message": "การตั้งค่าส่วนขยาย",
+    "description": "open plugin settings in a new tab"
+  },
+  "openHome": {
+    "message": "เปิดหน้าดาวน์โหลด",
+    "description": "Open the browser's default download page in a new tab"
+  },
+  "openFileInFolder": {
+    "message": "เปิดโฟลเดอร์",
+    "description": "open file in folder"
+  },
+  "openFile": {
+    "message": "เปิดไฟล์",
+    "description": "open file"
+  },
+  "pause": {
+    "message": "หยุดชั่วคราว",
+    "description": "pause download"
+  },
+  "resume": {
+    "message": "ดาวน์โหลดต่อ",
+    "description": "resume downloading a suspended file"
+  },
+  "delete": {
+    "message": "ลบจากดิสก์",
+    "description": "delete file from disk"
+  },
+  "deleteConfirmTitle": {
+    "message": "ยืนยันการลบจากดิสก์",
+    "description": "Confirmation title before deleting files from disk"
+  },
+  "deleteConfirmFileMessage": {
+    "message": "“{}” จะถูกลบถาวรจากดิสก์ การดำเนินการนี้ไม่สามารถย้อนกลับได้",
+    "description": "Confirmation message before deleting one file from disk"
+  },
+  "deleteConfirmAllMessage": {
+    "message": "จะประมวลผลรายการที่ไม่ได้กำลังดาวน์โหลด {} รายการ: ลบไฟล์ที่มีอยู่จากดิสก์ และล้างบันทึกของไฟล์ที่ไม่มีอยู่ การดำเนินการนี้ไม่สามารถย้อนกลับได้",
+    "description": "Confirmation message before deleting all files from disk"
+  },
+  "deleteConfirmButton": {
+    "message": "ยืนยันการลบ",
+    "description": "Confirmation button before deleting files from disk"
+  },
+  "retry": {
+    "message": "ดาวน์โหลดอีกครั้ง",
+    "description": "download again"
+  },
+  "dangerDescription": {
+    "message": "ไฟล์นี้อาจเป็นอันตรายต่อคอมพิวเตอร์ของคุณ",
+    "description": "The file may harm your computer"
+  },
+  "cancel": {
+    "message": "ยกเลิก",
+    "description": "Cancel download of dangerous files"
+  },
+  "reserve": {
+    "message": "เก็บไว้",
+    "description": "Keep dangerous files"
+  },
+  "erase": {
+    "message": "ลบออกจากรายการ",
+    "description": "cancel download or clear file from list"
+  },
+  "copied": {
+    "message": "คัดลอกแล้ว",
+    "description": "copied to clipboard"
+  },
+  "prefixMenus": {
+    "message": "ดาวน์โหลด",
+    "description": "context download prefix menus display"
+  },
+  "link": {
+    "message": "ลิงก์",
+    "description": "context download menus display"
+  },
+  "image": {
+    "message": "รูปภาพ",
+    "description": "context download menus display"
+  },
+  "audio": {
+    "message": "เสียง",
+    "description": "context download menus display"
+  },
+  "video": {
+    "message": "วิดีโอ",
+    "description": "context download menus display"
+  },
+  "deleteNotification": {
+    "message": "ลบการแจ้งเตือน",
+    "description": "Delete notification button"
+  },
+  "downloadCompletedNotification": {
+    "message": "ดาวน์โหลดเสร็จแล้ว",
+    "description": "Download completion notification button"
+  },
+  "downloadStartedNotification": {
+    "message": "เริ่มดาวน์โหลดแล้ว",
+    "description": "Download notification"
+  },
+  "downloadWarnNotification": {
+    "message": "คำเตือนการดาวน์โหลด",
+    "description": "Download notification"
+  },
+  "openFolderNotification": {
+    "message": "เปิดโฟลเดอร์",
+    "description": "Download completion notification open folder button"
+  },
+  "downloadSetting": {
+    "message": "ดาวน์โหลด",
+    "description": "plugin setting instructions"
+  },
+  "leftClickFileSetting": {
+    "message": "เปิดไฟล์เมื่อคลิกซ้ายที่ชื่อไฟล์",
+    "description": "plugin setting instructions"
+  },
+  "rightClickFileSetting": {
+    "message": "คัดลอกไปยังคลิปบอร์ดเมื่อคลิกขวาที่ชื่อไฟล์",
+    "description": "plugin setting instructions"
+  },
+  "leftClickUrlSetting": {
+    "message": "เปิดลิงก์ดาวน์โหลดในหน้าใหม่เมื่อคลิกซ้าย",
+    "description": "plugin setting instructions"
+  },
+  "rightClickUrlSetting": {
+    "message": "คัดลอกลิงก์ดาวน์โหลดไปยังคลิปบอร์ดเมื่อคลิกขวา",
+    "description": "plugin setting instructions"
+  },
+  "showTooltipSetting": {
+    "message": "แสดงคำแนะนำเมื่อเลื่อนเมาส์ไปบนปุ่ม",
+    "description": "plugin setting instructions"
+  },
+  "enableAnimation": {
+    "message": "เปิดแอนิเมชันเมื่อไฟล์เข้าและออกจากรายการ",
+    "description": "plugin setting instructions"
+  },
+  "contextMenus": {
+    "message": "เมนูบริบท",
+    "description": "plugin setting instructions"
+  },
+  "downloadContextMenusSetting": {
+    "message": "เมนูดาวน์โหลด",
+    "description": "plugin setting instructions"
+  },
+  "downloadContextMenusDescSetting": {
+    "message": "ประเภทไฟล์ที่รองรับ: ",
+    "description": "plugin setting details instructions"
+  },
+  "fileRoutingSetting": {
+    "message": "ดาวน์โหลดตามประเภทไฟล์",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingEnableSetting": {
+    "message": "เปิดดาวน์โหลดตามประเภทไฟล์",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingDescription": {
+    "message": "บันทึกไฟล์ดาวน์โหลดลงในโฟลเดอร์ย่อยที่กำหนดภายใต้โฟลเดอร์ดาวน์โหลดเริ่มต้น โดยอิงจากนามสกุลไฟล์ ฟีเจอร์นี้ปิดอยู่โดยค่าเริ่มต้น",
+    "description": "Plugin settings detail description"
+  },
+  "fileRoutingRulesSetting": {
+    "message": "กฎการจัดหมวดหมู่",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingFolderLabel": {
+    "message": "โฟลเดอร์",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingExtensionsLabel": {
+    "message": "นามสกุลไฟล์",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingActionsLabel": {
+    "message": "การทำงาน",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingRuleEnabledLabel": {
+    "message": "เปิดหรือปิดกฎ",
+    "description": "Accessible label for the file routing rule toggle"
+  },
+  "fileRoutingFolderPlaceholder": {
+    "message": "ตัวอย่าง: Images หรือ Documents/PDF",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingExtensionsPlaceholder": {
+    "message": "ตัวอย่าง: jpg, png, webp",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingAddRule": {
+    "message": "เพิ่มกฎ",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingResetRules": {
+    "message": "คืนค่าเริ่มต้น",
+    "description": "Plugin settings description"
+  },
+  "fileRoutingDeleteRule": {
+    "message": "ลบกฎ",
+    "description": "Accessible label for the file routing rule delete button"
+  },
+  "fileRoutingDeleteRuleConfirm": {
+    "message": "ลบกฎการจัดหมวดหมู่นี้หรือไม่",
+    "description": "Second confirmation before deleting a file routing rule"
+  },
+  "notificationSetting": {
+    "message": "การแจ้งเตือน",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationSetting": {
+    "message": "การแจ้งเตือนการดาวน์โหลด",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationSetting1": {
+    "message": "เริ่มต้น",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationSetting2": {
+    "message": "เสร็จสิ้น",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationSetting3": {
+    "message": "คำเตือน",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationReservedTimeSetting": {
+    "message": "เวลาคงอยู่ของการแจ้งเตือนดาวน์โหลด (วินาที)",
+    "description": "plugin setting instructions"
+  },
+  "downloadToneSetting": {
+    "message": "เสียงแจ้งเตือนดาวน์โหลด",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationRemainVisibleSetting": {
+    "message": "ให้การแจ้งเตือนดาวน์โหลดยังคงแสดงอยู่",
+    "description": "plugin setting instructions"
+  },
+  "downloadNotificationRemainVisibleDescSetting": {
+    "message": "การแจ้งเตือนจะคงอยู่บนหน้าจอจนกว่าผู้ใช้จะเปิดหรือปิด ใช้ได้ตั้งแต่ Chrome 50 เป็นต้นไป",
+    "description": "plugin setting instructions"
+  },
+  "shortcutSetting": {
+    "message": "แป้นพิมพ์ลัด",
+    "description": "plugin setting instructions"
+  },
+  "openPopupSetting": {
+    "message": "เปิดใช้งานส่วนขยายนี้",
+    "description": "plugin setting instructions"
+  },
+  "openPopupDetailsSetting": {
+    "message": "โปรดคลิก",
+    "description": "plugin setting details instructions"
+  },
+  "chromePluginShortcutDescSetting": {
+    "message": "การตั้งค่าแป้นพิมพ์ลัด",
+    "description": "plugin setting instructions"
+  },
+  "syncSetting": {
+    "message": "ซิงค์",
+    "description": "plugin setting instructions"
+  },
+  "pluginSyncSetting": {
+    "message": "ซิงค์การตั้งค่าส่วนขยาย",
+    "description": "plugin setting instructions"
+  },
+  "pluginSyncDetailsSetting": {
+    "message": "เมื่อลงชื่อเข้าใช้บัญชี Google แล้ว คุณสามารถซิงค์การตั้งค่าส่วนขยายระหว่างเบราว์เซอร์ที่ใช้ Chromium ได้",
+    "description": "plugin setting details instructions"
+  },
+  "notSyncSetting": {
+    "message": "การตั้งค่านี้จะไม่ถูกซิงค์",
+    "description": "plugin setting instructions"
+  },
+  "themeTitle": {
+    "message": "ธีม",
+    "description": "Theme Tab Description"
+  },
+  "themeAdaptation": {
+    "message": "ธีมปรับตามระบบ",
+    "description": "Theme Tab Description"
+  },
+  "themeAdaptationDescription": {
+    "message": "ปรับธีมสว่างและมืดตามโหมดสีของระบบโดยอัตโนมัติ รวมถึงไอคอนและแผงดาวน์โหลด",
+    "description": "Theme Tab Description"
+  },
+  "themeAdaptationOption1": {
+    "message": "อัตโนมัติ",
+    "description": "Theme Tab Description"
+  },
+  "themeAdaptationOption2": {
+    "message": "สว่าง",
+    "description": "Theme Tab Description"
+  },
+  "themeAdaptationOption3": {
+    "message": "มืด",
+    "description": "Theme Tab Description"
+  },
+  "iconTitle": {
+    "message": "ไอคอน",
+    "description": "Theme Tab Description"
+  },
+  "iconColorSetting": {
+    "message": "ปรับสีไอคอน",
+    "description": "Theme Tab Description"
+  },
+  "iconDownloadingColorSetting": {
+    "message": "ปรับสีแอนิเมชันดาวน์โหลดของไอคอน",
+    "description": "Theme Tab Description"
+  },
+  "downloadPanelTitle": {
+    "message": "แผงดาวน์โหลด",
+    "description": "Theme Tab Description"
+  },
+  "pageSize": {
+    "message": "ขนาดหน้า (กว้าง, สูง)",
+    "description": "Theme Tab Description"
+  },
+  "pageSizeDescription": {
+    "message": "ควบคุมความกว้างและความสูงของแผงดาวน์โหลด",
+    "description": "Theme Tab Description"
+  },
+  "themeSystemTitle": {
+    "message": "ตั้งค่าและดูตัวอย่างธีม",
+    "description": "Theme Tab Description"
+  },
+  "themeSystemDescription": {
+    "message": "ธีมจะมีผลทันทีหลังจากเลือกชุดธีม พื้นที่ตัวอย่างด้านล่างจะแสดงหน้าตาจริงของ Popup",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesLabel": {
+    "message": "รายการธีม",
+    "description": "Theme Tab Description"
+  },
+  "themePreviewModeAriaLabel": {
+    "message": "โหมดตัวอย่าง",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalTitle": {
+    "message": "เทอร์มินัล",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalDescription": {
+    "message": "สไตล์เทอร์มินัลสำหรับสายเทคนิค คอนทราสต์สูงและเน้นความเป็นเครื่องมือ ให้ความรู้สึกเชิงวิศวกรรม",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalDarkLabel": {
+    "message": "เทอร์มินัลมืด",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalLightLabel": {
+    "message": "เทอร์มินัลสว่าง",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalDarkBadge": {
+    "message": "คอนทราสต์สูง",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalLightBadge": {
+    "message": "CLI เรียบสะอาด",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalDarkNote": {
+    "message": "กลิ่นอายนีออน พื้นหลังดำ และแยกแยะชัดเจน",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesTerminalLightNote": {
+    "message": "ยังคงความเป็นสายเทคนิค แต่สว่างและสุขุมกว่า",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubTitle": {
+    "message": "GitHub",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubDescription": {
+    "message": "สไตล์คลาสสิกสำหรับนักพัฒนา หนาแน่นพอดี เสถียร และดูเป็นมืออาชีพ เหมาะกับการใช้งานระยะยาว",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubDarkLabel": {
+    "message": "GitHub มืด",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubLightLabel": {
+    "message": "GitHub สว่าง",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubBadge": {
+    "message": "นักพัฒนา",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubDarkNote": {
+    "message": "นิ่ง คุ้นเคย และเน้นประสิทธิภาพการทำงาน",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesGithubLightNote": {
+    "message": "สะอาด เป็นระเบียบ และให้ความรู้สึกเหมือนผลิตภัณฑ์แพลตฟอร์ม",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeTitle": {
+    "message": "Claude",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeDescription": {
+    "message": "สไตล์อบอุ่นและสง่างาม โทนเบจอ่อนทำให้อินเทอร์เฟซดูเบาและมีพื้นที่หายใจมากขึ้น",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeDarkLabel": {
+    "message": "Claude มืด",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeLightLabel": {
+    "message": "Claude สว่าง",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeBadge": {
+    "message": "อบอุ่น",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeDarkNote": {
+    "message": "โทนน้ำตาลอบอุ่นลึก ให้บรรยากาศมากขึ้น",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesClaudeLightNote": {
+    "message": "ให้ความรู้สึกคล้ายกระดาษนุ่ม สบายตากว่า",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicTitle": {
+    "message": "พื้นฐาน",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicDescription": {
+    "message": "สไตล์เรียบง่ายและใช้ได้ทั่วไป ไม่เน้นลวดลาย เหมาะเป็นธีมเริ่มต้น",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicDarkLabel": {
+    "message": "พื้นฐานมืด",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicLightLabel": {
+    "message": "พื้นฐานสว่าง",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicBadge": {
+    "message": "สมดุล",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicDarkNote": {
+    "message": "เรียบ ใช้ได้ทั่วไป และเหมาะกับเวลากลางคืน",
+    "description": "Theme Tab Description"
+  },
+  "themeSeriesBasicLightNote": {
+    "message": "เป็นกลาง สะอาด และให้ความรู้สึกค่าเริ่มต้นชัดเจน",
+    "description": "Theme Tab Description"
+  },
+  "downloadPanelThemeCustomDescription": {
+    "message": "ธีมแบบกำหนดเองจะมาเร็ว ๆ นี้!",
+    "description": "Theme Tab Description"
+  },
+  "el_colorpicker_confirm": {
+    "message": "ตกลง",
+    "description": "Theme Tab Description - Element-UI colorPicker"
+  },
+  "el_colorpicker_clear": {
+    "message": "ล้าง",
+    "description": "Theme Tab Description - Element-UI colorPicker"
+  },
+  "el_popconfirm_confirmButtonText": {
+    "message": "ตกลง",
+    "description": "Clear list - Element-UI PopConfirm"
+  },
+  "el_popconfirm_cancelButtonText": {
+    "message": "ยกเลิก",
+    "description": "Clear list - Element-UI PopConfirm"
+  },
+  "starAbout1": {
+    "message": "ถ้าถูกใจ ไปที่",
+    "description": "about tab description"
+  },
+  "pluginShopAbout": {
+    "message": "ร้านค้าส่วนขยาย",
+    "description": "about tab description"
+  },
+  "starAbout2": {
+    "message": "แล้วให้คะแนนกันนะ",
+    "description": "about tab description"
+  }
+}

@@ -331,7 +331,7 @@
     "message": "Synchronisation des paramètres du plugin",
     "description": "instructions de configuration du plugin"
   },
-  "pluginSyncDetailedSetting": {
+  "pluginSyncDetailsSetting": {
     "message": "Quand vous êtes connéctés à votre compte Google, vous pouvez synchroniser les réglages du plugin entre vos différents navigateurs basés sur le Kernel Google",
     "description": "instructions détaillées des paramètres du plugin"
   },

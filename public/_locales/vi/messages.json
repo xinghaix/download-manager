@@ -1,154 +1,154 @@
 {
   "extName": {
-    "message": "Download Manager",
+    "message": "Trình quản lý tải xuống",
     "description": "Extension name"
   },
   "extDesc": {
-    "message": "Easy to manage downloaded files",
+    "message": "Quản lý các tệp đã tải xuống một cách thuận tiện",
     "description": "Extension description"
   },
   "settingsTitle": {
-    "message": "Settings",
+    "message": "Cài đặt",
     "description": "Personal settings"
   },
   "aboutTitle": {
-    "message": "About",
+    "message": "Giới thiệu",
     "description": "Some information about the plugin"
   },
   "second": {
-    "message": "{} seconds left",
+    "message": "Còn {} giây",
     "description": "remaining time display"
   },
   "minute": {
-    "message": "{} minutes left",
+    "message": "Còn {} phút",
     "description": "remaining time display"
   },
   "hour": {
-    "message": "{} hours left",
+    "message": "Còn {} giờ",
     "description": "remaining time display"
   },
   "day": {
-    "message": "{} days left",
+    "message": "Còn {} ngày",
     "description": "remaining time display"
   },
   "closeTooltip": {
-    "message": "stop showing text prompt box",
+    "message": "Ngừng hiển thị chú giải văn bản",
     "description": "on the download management page, when the mouse is moved over the button, the text prompt box stops showing"
   },
   "newDownload": {
-    "message": "new download",
+    "message": "Tải xuống mới",
     "description": "new download"
   },
   "newDownloadPlaceholder": {
-    "message": "Please enter the download link! Press Enter to download file",
+    "message": "Nhập liên kết tải xuống. Nhấn Enter để tải",
     "description": "Please enter the download link"
   },
   "clearAll": {
-    "message": "clear list",
+    "message": "Xóa danh sách",
     "description": "Clear button dropdown menu"
   },
   "deleteAll": {
-    "message": "delete all from disk",
+    "message": "Xóa tất cả khỏi ổ đĩa",
     "description": "Clear button dropdown menu"
   },
   "clearFailed": {
-    "message": "clear failed tasks",
+    "message": "Xóa các lượt tải thất bại",
     "description": "Clear button dropdown menu"
   },
   "clearAbsent": {
-    "message": "clear absent tasks",
+    "message": "Xóa các tệp không tồn tại",
     "description": "Clear button dropdown menu"
   },
   "clearCompleted": {
-    "message": "clear completed tasks",
+    "message": "Xóa các lượt tải hoàn tất",
     "description": "Clear button dropdown menu"
   },
   "openDownloadFolder": {
-    "message": "open download folder",
+    "message": "Mở thư mục tải xuống",
     "description": "open the download folder in Explorer"
   },
   "openSettings": {
-    "message": "plugin settings",
+    "message": "Cài đặt tiện ích",
     "description": "open plugin settings in a new tab"
   },
   "openHome": {
-    "message": "Open downloads page",
+    "message": "Mở trang tải xuống",
     "description": "Open the browser's default download page in a new tab"
   },
   "openFileInFolder": {
-    "message": "open folder",
+    "message": "Mở thư mục",
     "description": "open file in folder"
   },
   "openFile": {
-    "message": "Open file",
+    "message": "Mở tệp",
     "description": "open file"
   },
   "pause": {
-    "message": "pause",
+    "message": "Tạm dừng",
     "description": "pause download"
   },
   "resume": {
-    "message": "resume download",
+    "message": "Tiếp tục tải xuống",
     "description": "resume downloading a suspended file"
   },
   "delete": {
-    "message": "delete from disk",
+    "message": "Xóa khỏi ổ đĩa",
     "description": "delete file from disk"
   },
   "deleteConfirmTitle": {
-    "message": "Confirm disk deletion",
+    "message": "Xác nhận xóa khỏi ổ đĩa",
     "description": "Confirmation title before deleting files from disk"
   },
   "deleteConfirmFileMessage": {
-    "message": "Permanently delete \"{}\" from disk. This cannot be undone.",
+    "message": "“{}” sẽ bị xóa vĩnh viễn khỏi ổ đĩa. Không thể hoàn tác thao tác này.",
     "description": "Confirmation message before deleting one file from disk"
   },
   "deleteConfirmAllMessage": {
-    "message": "Process {} inactive items: delete existing files from disk and clear absent records. This cannot be undone.",
+    "message": "Sẽ xử lý {} mục không hoạt động: xóa các tệp còn tồn tại khỏi ổ đĩa và xóa bản ghi của tệp không còn tồn tại. Không thể hoàn tác thao tác này.",
     "description": "Confirmation message before deleting all files from disk"
   },
   "deleteConfirmButton": {
-    "message": "Delete",
+    "message": "Xác nhận xóa",
     "description": "Confirmation button before deleting files from disk"
   },
   "retry": {
-    "message": "retry",
+    "message": "Tải lại",
     "description": "download again"
   },
   "dangerDescription": {
-    "message": "The file may harm your pc",
+    "message": "Tệp này có thể gây hại cho máy tính của bạn",
     "description": "The file may harm your computer"
   },
   "cancel": {
-    "message": "discard",
+    "message": "Hủy",
     "description": "Cancel download of dangerous files"
   },
   "reserve": {
-    "message": "keep",
+    "message": "Giữ lại",
     "description": "Keep dangerous files"
   },
   "erase": {
-    "message": "remove from list",
+    "message": "Xóa khỏi danh sách",
     "description": "cancel download or clear file from list"
   },
   "copied": {
-    "message": "copied",
+    "message": "Đã sao chép",
     "description": "copied to clipboard"
   },
   "prefixMenus": {
-    "message": "Download the ",
+    "message": "Tải xuống ",
     "description": "context download prefix menus display"
   },
   "link": {
-    "message": "link",
+    "message": "liên kết",
     "description": "context download menus display"
   },
   "image": {
-    "message": "image",
+    "message": "hình ảnh",
     "description": "context download menus display"
   },
   "audio": {
-    "message": "audio",
+    "message": "âm thanh",
     "description": "context download menus display"
   },
   "video": {
@@ -156,251 +156,251 @@
     "description": "context download menus display"
   },
   "deleteNotification": {
-    "message": "Delete Notification",
+    "message": "Xóa thông báo",
     "description": "Delete notification button"
   },
   "downloadCompletedNotification": {
-    "message": "Download Completed",
+    "message": "Tải xuống hoàn tất",
     "description": "Download completion notification button"
   },
   "downloadStartedNotification": {
-    "message": "Download started",
+    "message": "Bắt đầu tải xuống",
     "description": "Download notification"
   },
   "downloadWarnNotification": {
-    "message": "Download warning",
+    "message": "Cảnh báo tải xuống",
     "description": "Download notification"
   },
   "openFolderNotification": {
-    "message": "Open folder",
+    "message": "Mở thư mục",
     "description": "Download completion notification open folder button"
   },
   "downloadSetting": {
-    "message": "Download",
+    "message": "Tải xuống",
     "description": "plugin setting instructions"
   },
   "leftClickFileSetting": {
-    "message": "Open the file when clicking the file name with the left mouse button",
+    "message": "Mở tệp khi nhấp trái vào tên tệp",
     "description": "plugin setting instructions"
   },
   "rightClickFileSetting": {
-    "message": "Copy to clipboard when right click on file name",
+    "message": "Sao chép vào bảng tạm khi nhấp phải vào tên tệp",
     "description": "plugin setting instructions"
   },
   "leftClickUrlSetting": {
-    "message": "Open the link when clicking the download link",
+    "message": "Mở liên kết tải xuống trong trang mới khi nhấp trái",
     "description": "plugin setting instructions"
   },
   "rightClickUrlSetting": {
-    "message": "Copy to clipboard when right click on download link",
+    "message": "Sao chép liên kết tải xuống vào bảng tạm khi nhấp phải",
     "description": "plugin setting instructions"
   },
   "showTooltipSetting": {
-    "message": "Display a prompt message when the mouse moves over the button",
+    "message": "Hiển thị chú giải khi di chuột lên nút",
     "description": "plugin setting instructions"
   },
   "enableAnimation": {
-    "message": "Enable file moving in and out animation",
+    "message": "Bật hiệu ứng tệp đi vào và rời khỏi danh sách",
     "description": "plugin setting instructions"
   },
   "contextMenus": {
-    "message": "Context menu",
+    "message": "Menu ngữ cảnh",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusSetting": {
-    "message": "Download menu",
+    "message": "Menu tải xuống",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Supported file types: ",
+    "message": "Loại tệp được hỗ trợ: ",
     "description": "plugin setting details instructions"
   },
   "fileRoutingSetting": {
-    "message": "File routing",
+    "message": "Tải xuống theo loại tệp",
     "description": "Plugin settings description"
   },
   "fileRoutingEnableSetting": {
-    "message": "Enable file routing",
+    "message": "Bật tải xuống theo loại tệp",
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Save downloads into subfolders under the default download directory based on file extensions. This feature is off by default.",
+    "message": "Lưu tệp tải xuống vào các thư mục con được chỉ định trong thư mục tải xuống mặc định dựa trên phần mở rộng tệp. Tính năng này mặc định tắt.",
     "description": "Plugin settings detail description"
   },
   "fileRoutingRulesSetting": {
-    "message": "Routing rules",
+    "message": "Quy tắc phân loại",
     "description": "Plugin settings description"
   },
   "fileRoutingFolderLabel": {
-    "message": "Folder",
+    "message": "Thư mục",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsLabel": {
-    "message": "File extensions",
+    "message": "Phần mở rộng tệp",
     "description": "Plugin settings description"
   },
   "fileRoutingActionsLabel": {
-    "message": "Actions",
+    "message": "Thao tác",
     "description": "Plugin settings description"
   },
   "fileRoutingRuleEnabledLabel": {
-    "message": "Enable or disable rule",
+    "message": "Bật hoặc tắt quy tắc",
     "description": "Accessible label for the file routing rule toggle"
   },
   "fileRoutingFolderPlaceholder": {
-    "message": "Example: Images or Documents/PDF",
+    "message": "Ví dụ: Images hoặc Documents/PDF",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsPlaceholder": {
-    "message": "Example: jpg, png, webp",
+    "message": "Ví dụ: jpg, png, webp",
     "description": "Plugin settings description"
   },
   "fileRoutingAddRule": {
-    "message": "Add rule",
+    "message": "Thêm quy tắc",
     "description": "Plugin settings description"
   },
   "fileRoutingResetRules": {
-    "message": "Restore defaults",
+    "message": "Khôi phục mặc định",
     "description": "Plugin settings description"
   },
   "fileRoutingDeleteRule": {
-    "message": "Delete rule",
+    "message": "Xóa quy tắc",
     "description": "Accessible label for the file routing rule delete button"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "Delete this routing rule?",
+    "message": "Xóa quy tắc phân loại này?",
     "description": "Second confirmation before deleting a file routing rule"
   },
   "notificationSetting": {
-    "message": "Notification",
+    "message": "Thông báo",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting": {
-    "message": "Download notification",
+    "message": "Thông báo tải xuống",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting1": {
-    "message": "Started",
+    "message": "Bắt đầu",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting2": {
-    "message": "Completed",
+    "message": "Hoàn tất",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting3": {
-    "message": "Warned",
+    "message": "Cảnh báo",
     "description": "plugin setting instructions"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "Download notification retention time (second)",
+    "message": "Thời gian hiển thị thông báo tải xuống (giây)",
     "description": "plugin setting instructions"
   },
   "downloadToneSetting": {
-    "message": "Download tone",
+    "message": "Âm báo tải xuống",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "Download notifications remain visible",
+    "message": "Giữ thông báo tải xuống hiển thị",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "Indicates that the notification should remain visible on screen until the user activates or dismisses the notification. Since Chrome 50.",
+    "message": "Thông báo sẽ hiển thị cho đến khi người dùng mở hoặc đóng. Khả dụng từ Chrome 50",
     "description": "plugin setting instructions"
   },
   "shortcutSetting": {
-    "message": "Shortcut",
+    "message": "Phím tắt",
     "description": "plugin setting instructions"
   },
   "openPopupSetting": {
-    "message": "Activate the extension",
+    "message": "Kích hoạt tiện ích này",
     "description": "plugin setting instructions"
   },
   "openPopupDetailsSetting": {
-    "message": "Please click",
+    "message": "Vui lòng nhấp vào",
     "description": "plugin setting details instructions"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "Shortcut Settings",
+    "message": "Cài đặt phím tắt",
     "description": "plugin setting instructions"
   },
   "syncSetting": {
-    "message": "Sync",
+    "message": "Đồng bộ hóa",
     "description": "plugin setting instructions"
   },
   "pluginSyncSetting": {
-    "message": "Sync plugin settings",
+    "message": "Đồng bộ cài đặt tiện ích",
     "description": "plugin setting instructions"
   },
   "pluginSyncDetailsSetting": {
-    "message": "When you have logged in to your Google account, you can synchronize plugin settings between different Google Kernel-based browsers",
+    "message": "Khi đã đăng nhập tài khoản Google, bạn có thể đồng bộ cài đặt tiện ích giữa các trình duyệt dựa trên Chromium",
     "description": "plugin setting details instructions"
   },
   "notSyncSetting": {
-    "message": "This setting will not be synchronized",
+    "message": "Cài đặt này sẽ không được đồng bộ",
     "description": "plugin setting instructions"
   },
   "themeTitle": {
-    "message": "Theme",
+    "message": "Chủ đề",
     "description": "Theme Tab Description"
   },
   "themeAdaptation": {
-    "message": "Theme adaptation",
+    "message": "Chủ đề thích ứng",
     "description": "Theme Tab Description"
   },
   "themeAdaptationDescription": {
-    "message": "According to the color mode of the system, adaptively display bright and dark themes, including icons and download panel.",
+    "message": "Tự động chuyển giữa chủ đề sáng và tối theo chế độ màu của hệ thống, bao gồm biểu tượng và bảng tải xuống.",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption1": {
-    "message": "auto",
+    "message": "Tự động",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption2": {
-    "message": "light",
+    "message": "Sáng",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption3": {
-    "message": "dark",
+    "message": "Tối",
     "description": "Theme Tab Description"
   },
   "iconTitle": {
-    "message": "Icon",
+    "message": "Biểu tượng",
     "description": "Theme Tab Description"
   },
   "iconColorSetting": {
-    "message": "Custom icon color",
+    "message": "Tùy chỉnh màu biểu tượng",
     "description": "Theme Tab Description"
   },
   "iconDownloadingColorSetting": {
-    "message": "Custom icon download animation color",
+    "message": "Tùy chỉnh màu hiệu ứng tải xuống của biểu tượng",
     "description": "Theme Tab Description"
   },
   "downloadPanelTitle": {
-    "message": "Download panel",
+    "message": "Bảng tải xuống",
     "description": "Theme Tab Description"
   },
   "pageSize": {
-    "message": "Page size (width, height)",
+    "message": "Kích thước trang (rộng, cao)",
     "description": "Theme Tab Description"
   },
   "pageSizeDescription": {
-    "message": "Control the popup panel width and height.",
+    "message": "Điều chỉnh chiều rộng và chiều cao của bảng tải xuống",
     "description": "Theme Tab Description"
   },
   "themeSystemTitle": {
-    "message": "Theme Setup & Preview",
+    "message": "Cài đặt và xem trước chủ đề",
     "description": "Theme Tab Description"
   },
   "themeSystemDescription": {
-    "message": "Changes take effect immediately after selecting a theme series. The preview below shows the actual Popup UI.",
+    "message": "Chủ đề có hiệu lực ngay sau khi chọn dòng chủ đề. Khu vực xem trước bên dưới hiển thị giao diện thực tế của Popup.",
     "description": "Theme Tab Description"
   },
   "themeSeriesLabel": {
-    "message": "Theme series",
+    "message": "Danh sách chủ đề",
     "description": "Theme Tab Description"
   },
   "themePreviewModeAriaLabel": {
-    "message": "Preview mode",
+    "message": "Chế độ xem trước",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalTitle": {
@@ -408,31 +408,31 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDescription": {
-    "message": "Terminal-inspired geek style. High contrast and tool-like, ideal for an engineering feel.",
+    "message": "Phong cách terminal dành cho người thích kỹ thuật. Tương phản cao, thiên về công cụ, tạo cảm giác kỹ thuật rõ ràng.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkLabel": {
-    "message": "Terminal Dark",
+    "message": "Terminal tối",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightLabel": {
-    "message": "Terminal Light",
+    "message": "Terminal sáng",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkBadge": {
-    "message": "High Contrast",
+    "message": "Tương phản cao",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightBadge": {
-    "message": "Clean CLI",
+    "message": "CLI gọn gàng",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "Neon glow, dark background, highly recognizable.",
+    "message": "Sắc neon, nền đen, dễ nhận diện.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "Keeps the hacker vibe while feeling brighter and more restrained.",
+    "message": "Giữ chất kỹ thuật nhưng sáng hơn và tiết chế hơn.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubTitle": {
@@ -440,27 +440,27 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDescription": {
-    "message": "Developer-classic style. Steady information density and a strong professional feel, ideal for long-term use.",
+    "message": "Phong cách cổ điển cho nhà phát triển. Mật độ thông tin ổn định, chuyên nghiệp và phù hợp dùng lâu dài.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkLabel": {
-    "message": "GitHub Dark",
+    "message": "GitHub tối",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightLabel": {
-    "message": "GitHub Light",
+    "message": "GitHub sáng",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubBadge": {
-    "message": "Developer",
+    "message": "Nhà phát triển",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "Calm, familiar, and productivity-oriented.",
+    "message": "Điềm tĩnh, quen thuộc và hướng đến năng suất.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightNote": {
-    "message": "Clean, orderly, and close to a platform-product feel.",
+    "message": "Sạch, trật tự và gần với cảm giác sản phẩm nền tảng.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeTitle": {
@@ -468,59 +468,59 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDescription": {
-    "message": "Warm and elegant. Soft beige tones for a lighter UI with more breathing room.",
+    "message": "Phong cách ấm áp và thanh lịch. Tông be mềm cho giao diện nhẹ và thoáng hơn.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkLabel": {
-    "message": "Claude Dark",
+    "message": "Claude tối",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightLabel": {
-    "message": "Claude Light",
+    "message": "Claude sáng",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeBadge": {
-    "message": "Warm",
+    "message": "Ấm áp",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "Deep warm brown tones with more mood.",
+    "message": "Tông nâu ấm sâu, giàu cảm xúc hơn.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "Soft paper-like feel with a more relaxed presentation.",
+    "message": "Cảm giác giấy mềm, dễ chịu hơn khi nhìn.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicTitle": {
-    "message": "Basic",
+    "message": "Cơ bản",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDescription": {
-    "message": "Clean and universal. Light on styling and suitable as the default theme for most users.",
+    "message": "Phong cách đơn giản và phổ dụng. Ít cá tính hóa, phù hợp làm chủ đề mặc định.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkLabel": {
-    "message": "Basic Dark",
+    "message": "Cơ bản tối",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightLabel": {
-    "message": "Basic Light",
+    "message": "Cơ bản sáng",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicBadge": {
-    "message": "Balanced",
+    "message": "Cân bằng",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "Low-key, versatile, and comfortable at night.",
+    "message": "Kín đáo, phổ dụng và hợp dùng ban đêm.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightNote": {
-    "message": "Neutral, clean, and close to the default browser feel.",
+    "message": "Trung tính, sạch và mang cảm giác mặc định rõ rệt.",
     "description": "Theme Tab Description"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "Custom theme, stay tuned!",
+    "message": "Chủ đề tùy chỉnh sẽ sớm ra mắt!",
     "description": "Theme Tab Description"
   },
   "el_colorpicker_confirm": {
@@ -528,7 +528,7 @@
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_colorpicker_clear": {
-    "message": "Clear",
+    "message": "Xóa",
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_popconfirm_confirmButtonText": {
@@ -536,19 +536,19 @@
     "description": "Clear list - Element-UI PopConfirm"
   },
   "el_popconfirm_cancelButtonText": {
-    "message": "Cancel",
+    "message": "Hủy",
     "description": "Clear list - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "If you like this plugin, please go to the",
+    "message": "Thấy hữu ích? Hãy vào",
     "description": "about tab description"
   },
   "pluginShopAbout": {
-    "message": "app store",
+    "message": "cửa hàng tiện ích",
     "description": "about tab description"
   },
   "starAbout2": {
-    "message": "and rate it",
+    "message": "và đánh giá nhé",
     "description": "about tab description"
   }
 }

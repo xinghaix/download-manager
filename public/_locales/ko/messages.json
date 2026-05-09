@@ -1,438 +1,438 @@
 {
   "extName": {
-    "message": "Download Manager",
+    "message": "다운로드 관리자",
     "description": "Extension name"
   },
   "extDesc": {
-    "message": "Easy to manage downloaded files",
+    "message": "다운로드한 파일을 편리하게 관리합니다",
     "description": "Extension description"
   },
   "settingsTitle": {
-    "message": "Settings",
+    "message": "설정",
     "description": "Personal settings"
   },
   "aboutTitle": {
-    "message": "About",
+    "message": "정보",
     "description": "Some information about the plugin"
   },
   "second": {
-    "message": "{} seconds left",
+    "message": "{}초 남음",
     "description": "remaining time display"
   },
   "minute": {
-    "message": "{} minutes left",
+    "message": "{}분 남음",
     "description": "remaining time display"
   },
   "hour": {
-    "message": "{} hours left",
+    "message": "{}시간 남음",
     "description": "remaining time display"
   },
   "day": {
-    "message": "{} days left",
+    "message": "{}일 남음",
     "description": "remaining time display"
   },
   "closeTooltip": {
-    "message": "stop showing text prompt box",
+    "message": "텍스트 도움말 표시 중지",
     "description": "on the download management page, when the mouse is moved over the button, the text prompt box stops showing"
   },
   "newDownload": {
-    "message": "new download",
+    "message": "새 다운로드",
     "description": "new download"
   },
   "newDownloadPlaceholder": {
-    "message": "Please enter the download link! Press Enter to download file",
+    "message": "다운로드 링크를 입력하세요. Enter 키로 다운로드",
     "description": "Please enter the download link"
   },
   "clearAll": {
-    "message": "clear list",
+    "message": "목록 비우기",
     "description": "Clear button dropdown menu"
   },
   "deleteAll": {
-    "message": "delete all from disk",
+    "message": "디스크에서 모두 삭제",
     "description": "Clear button dropdown menu"
   },
   "clearFailed": {
-    "message": "clear failed tasks",
+    "message": "실패한 다운로드 지우기",
     "description": "Clear button dropdown menu"
   },
   "clearAbsent": {
-    "message": "clear absent tasks",
+    "message": "없는 파일 지우기",
     "description": "Clear button dropdown menu"
   },
   "clearCompleted": {
-    "message": "clear completed tasks",
+    "message": "완료된 다운로드 지우기",
     "description": "Clear button dropdown menu"
   },
   "openDownloadFolder": {
-    "message": "open download folder",
+    "message": "다운로드 폴더 열기",
     "description": "open the download folder in Explorer"
   },
   "openSettings": {
-    "message": "plugin settings",
+    "message": "확장 프로그램 설정",
     "description": "open plugin settings in a new tab"
   },
   "openHome": {
-    "message": "Open downloads page",
+    "message": "다운로드 페이지 열기",
     "description": "Open the browser's default download page in a new tab"
   },
   "openFileInFolder": {
-    "message": "open folder",
+    "message": "폴더 열기",
     "description": "open file in folder"
   },
   "openFile": {
-    "message": "Open file",
+    "message": "파일 열기",
     "description": "open file"
   },
   "pause": {
-    "message": "pause",
+    "message": "일시 중지",
     "description": "pause download"
   },
   "resume": {
-    "message": "resume download",
+    "message": "다운로드 다시 시작",
     "description": "resume downloading a suspended file"
   },
   "delete": {
-    "message": "delete from disk",
+    "message": "디스크에서 삭제",
     "description": "delete file from disk"
   },
   "deleteConfirmTitle": {
-    "message": "Confirm disk deletion",
+    "message": "디스크 삭제 확인",
     "description": "Confirmation title before deleting files from disk"
   },
   "deleteConfirmFileMessage": {
-    "message": "Permanently delete \"{}\" from disk. This cannot be undone.",
+    "message": "“{}” 파일을 디스크에서 영구 삭제합니다. 이 작업은 되돌릴 수 없습니다.",
     "description": "Confirmation message before deleting one file from disk"
   },
   "deleteConfirmAllMessage": {
-    "message": "Process {} inactive items: delete existing files from disk and clear absent records. This cannot be undone.",
+    "message": "다운로드 중이 아닌 항목 {}개를 처리합니다. 존재하는 파일은 디스크에서 삭제하고, 없는 파일 기록은 제거합니다. 이 작업은 되돌릴 수 없습니다.",
     "description": "Confirmation message before deleting all files from disk"
   },
   "deleteConfirmButton": {
-    "message": "Delete",
+    "message": "삭제 확인",
     "description": "Confirmation button before deleting files from disk"
   },
   "retry": {
-    "message": "retry",
+    "message": "다시 다운로드",
     "description": "download again"
   },
   "dangerDescription": {
-    "message": "The file may harm your pc",
+    "message": "이 파일은 컴퓨터를 손상시킬 수 있습니다",
     "description": "The file may harm your computer"
   },
   "cancel": {
-    "message": "discard",
+    "message": "취소",
     "description": "Cancel download of dangerous files"
   },
   "reserve": {
-    "message": "keep",
+    "message": "보관",
     "description": "Keep dangerous files"
   },
   "erase": {
-    "message": "remove from list",
+    "message": "목록에서 제거",
     "description": "cancel download or clear file from list"
   },
   "copied": {
-    "message": "copied",
+    "message": "복사됨",
     "description": "copied to clipboard"
   },
   "prefixMenus": {
-    "message": "Download the ",
+    "message": "다운로드: ",
     "description": "context download prefix menus display"
   },
   "link": {
-    "message": "link",
+    "message": "링크",
     "description": "context download menus display"
   },
   "image": {
-    "message": "image",
+    "message": "이미지",
     "description": "context download menus display"
   },
   "audio": {
-    "message": "audio",
+    "message": "오디오",
     "description": "context download menus display"
   },
   "video": {
-    "message": "video",
+    "message": "동영상",
     "description": "context download menus display"
   },
   "deleteNotification": {
-    "message": "Delete Notification",
+    "message": "알림 삭제",
     "description": "Delete notification button"
   },
   "downloadCompletedNotification": {
-    "message": "Download Completed",
+    "message": "다운로드 완료",
     "description": "Download completion notification button"
   },
   "downloadStartedNotification": {
-    "message": "Download started",
+    "message": "다운로드 시작",
     "description": "Download notification"
   },
   "downloadWarnNotification": {
-    "message": "Download warning",
+    "message": "다운로드 경고",
     "description": "Download notification"
   },
   "openFolderNotification": {
-    "message": "Open folder",
+    "message": "폴더 열기",
     "description": "Download completion notification open folder button"
   },
   "downloadSetting": {
-    "message": "Download",
+    "message": "다운로드",
     "description": "plugin setting instructions"
   },
   "leftClickFileSetting": {
-    "message": "Open the file when clicking the file name with the left mouse button",
+    "message": "파일 이름을 왼쪽 클릭하면 파일 열기",
     "description": "plugin setting instructions"
   },
   "rightClickFileSetting": {
-    "message": "Copy to clipboard when right click on file name",
+    "message": "파일 이름을 오른쪽 클릭하면 클립보드에 복사",
     "description": "plugin setting instructions"
   },
   "leftClickUrlSetting": {
-    "message": "Open the link when clicking the download link",
+    "message": "다운로드 링크를 왼쪽 클릭하면 새 페이지에서 열기",
     "description": "plugin setting instructions"
   },
   "rightClickUrlSetting": {
-    "message": "Copy to clipboard when right click on download link",
+    "message": "다운로드 링크를 오른쪽 클릭하면 클립보드에 복사",
     "description": "plugin setting instructions"
   },
   "showTooltipSetting": {
-    "message": "Display a prompt message when the mouse moves over the button",
+    "message": "버튼 위에 마우스를 올리면 도움말 표시",
     "description": "plugin setting instructions"
   },
   "enableAnimation": {
-    "message": "Enable file moving in and out animation",
+    "message": "파일 진입 및 종료 애니메이션 켜기",
     "description": "plugin setting instructions"
   },
   "contextMenus": {
-    "message": "Context menu",
+    "message": "컨텍스트 메뉴",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusSetting": {
-    "message": "Download menu",
+    "message": "다운로드 메뉴",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Supported file types: ",
+    "message": "지원되는 파일 형식: ",
     "description": "plugin setting details instructions"
   },
   "fileRoutingSetting": {
-    "message": "File routing",
+    "message": "파일 유형별 다운로드",
     "description": "Plugin settings description"
   },
   "fileRoutingEnableSetting": {
-    "message": "Enable file routing",
+    "message": "파일 유형별 다운로드 사용",
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Save downloads into subfolders under the default download directory based on file extensions. This feature is off by default.",
+    "message": "파일 확장자에 따라 다운로드 파일을 기본 다운로드 폴더 아래의 지정된 하위 폴더에 저장합니다. 이 기능은 기본적으로 꺼져 있습니다.",
     "description": "Plugin settings detail description"
   },
   "fileRoutingRulesSetting": {
-    "message": "Routing rules",
+    "message": "분류 규칙",
     "description": "Plugin settings description"
   },
   "fileRoutingFolderLabel": {
-    "message": "Folder",
+    "message": "폴더",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsLabel": {
-    "message": "File extensions",
+    "message": "파일 확장자",
     "description": "Plugin settings description"
   },
   "fileRoutingActionsLabel": {
-    "message": "Actions",
+    "message": "작업",
     "description": "Plugin settings description"
   },
   "fileRoutingRuleEnabledLabel": {
-    "message": "Enable or disable rule",
+    "message": "규칙 켜기 또는 끄기",
     "description": "Accessible label for the file routing rule toggle"
   },
   "fileRoutingFolderPlaceholder": {
-    "message": "Example: Images or Documents/PDF",
+    "message": "예: Images 또는 Documents/PDF",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsPlaceholder": {
-    "message": "Example: jpg, png, webp",
+    "message": "예: jpg, png, webp",
     "description": "Plugin settings description"
   },
   "fileRoutingAddRule": {
-    "message": "Add rule",
+    "message": "규칙 추가",
     "description": "Plugin settings description"
   },
   "fileRoutingResetRules": {
-    "message": "Restore defaults",
+    "message": "기본값 복원",
     "description": "Plugin settings description"
   },
   "fileRoutingDeleteRule": {
-    "message": "Delete rule",
+    "message": "규칙 삭제",
     "description": "Accessible label for the file routing rule delete button"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "Delete this routing rule?",
+    "message": "이 분류 규칙을 삭제할까요?",
     "description": "Second confirmation before deleting a file routing rule"
   },
   "notificationSetting": {
-    "message": "Notification",
+    "message": "알림",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting": {
-    "message": "Download notification",
+    "message": "다운로드 알림",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting1": {
-    "message": "Started",
+    "message": "시작",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting2": {
-    "message": "Completed",
+    "message": "완료",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting3": {
-    "message": "Warned",
+    "message": "경고",
     "description": "plugin setting instructions"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "Download notification retention time (second)",
+    "message": "다운로드 알림 유지 시간(초)",
     "description": "plugin setting instructions"
   },
   "downloadToneSetting": {
-    "message": "Download tone",
+    "message": "다운로드 알림음",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "Download notifications remain visible",
+    "message": "다운로드 알림 계속 표시",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "Indicates that the notification should remain visible on screen until the user activates or dismisses the notification. Since Chrome 50.",
+    "message": "사용자가 알림을 열거나 닫을 때까지 화면에 계속 표시합니다. Chrome 50 이후 버전에서 사용할 수 있습니다.",
     "description": "plugin setting instructions"
   },
   "shortcutSetting": {
-    "message": "Shortcut",
+    "message": "단축키",
     "description": "plugin setting instructions"
   },
   "openPopupSetting": {
-    "message": "Activate the extension",
+    "message": "이 확장 프로그램 활성화",
     "description": "plugin setting instructions"
   },
   "openPopupDetailsSetting": {
-    "message": "Please click",
+    "message": "다음을 클릭하세요:",
     "description": "plugin setting details instructions"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "Shortcut Settings",
+    "message": "단축키 설정",
     "description": "plugin setting instructions"
   },
   "syncSetting": {
-    "message": "Sync",
+    "message": "동기화",
     "description": "plugin setting instructions"
   },
   "pluginSyncSetting": {
-    "message": "Sync plugin settings",
+    "message": "확장 프로그램 설정 동기화",
     "description": "plugin setting instructions"
   },
   "pluginSyncDetailsSetting": {
-    "message": "When you have logged in to your Google account, you can synchronize plugin settings between different Google Kernel-based browsers",
+    "message": "Google 계정에 로그인하면 Chromium 기반 브라우저 간에 확장 프로그램 설정을 동기화할 수 있습니다.",
     "description": "plugin setting details instructions"
   },
   "notSyncSetting": {
-    "message": "This setting will not be synchronized",
+    "message": "이 설정은 동기화되지 않습니다",
     "description": "plugin setting instructions"
   },
   "themeTitle": {
-    "message": "Theme",
+    "message": "테마",
     "description": "Theme Tab Description"
   },
   "themeAdaptation": {
-    "message": "Theme adaptation",
+    "message": "테마 자동 전환",
     "description": "Theme Tab Description"
   },
   "themeAdaptationDescription": {
-    "message": "According to the color mode of the system, adaptively display bright and dark themes, including icons and download panel.",
+    "message": "시스템 색상 모드에 맞춰 밝은 테마와 어두운 테마를 자동으로 표시하며, 아이콘과 다운로드 패널도 함께 적용됩니다.",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption1": {
-    "message": "auto",
+    "message": "자동",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption2": {
-    "message": "light",
+    "message": "밝게",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption3": {
-    "message": "dark",
+    "message": "어둡게",
     "description": "Theme Tab Description"
   },
   "iconTitle": {
-    "message": "Icon",
+    "message": "아이콘",
     "description": "Theme Tab Description"
   },
   "iconColorSetting": {
-    "message": "Custom icon color",
+    "message": "아이콘 색상 사용자 지정",
     "description": "Theme Tab Description"
   },
   "iconDownloadingColorSetting": {
-    "message": "Custom icon download animation color",
+    "message": "아이콘 다운로드 애니메이션 색상 사용자 지정",
     "description": "Theme Tab Description"
   },
   "downloadPanelTitle": {
-    "message": "Download panel",
+    "message": "다운로드 패널",
     "description": "Theme Tab Description"
   },
   "pageSize": {
-    "message": "Page size (width, height)",
+    "message": "페이지 크기(너비, 높이)",
     "description": "Theme Tab Description"
   },
   "pageSizeDescription": {
-    "message": "Control the popup panel width and height.",
+    "message": "다운로드 패널의 너비와 높이를 조정합니다",
     "description": "Theme Tab Description"
   },
   "themeSystemTitle": {
-    "message": "Theme Setup & Preview",
+    "message": "테마 설정 및 미리보기",
     "description": "Theme Tab Description"
   },
   "themeSystemDescription": {
-    "message": "Changes take effect immediately after selecting a theme series. The preview below shows the actual Popup UI.",
+    "message": "테마 시리즈를 선택하면 즉시 적용됩니다. 아래 미리보기 영역에서 Popup의 실제 화면 효과를 확인할 수 있습니다.",
     "description": "Theme Tab Description"
   },
   "themeSeriesLabel": {
-    "message": "Theme series",
+    "message": "테마 목록",
     "description": "Theme Tab Description"
   },
   "themePreviewModeAriaLabel": {
-    "message": "Preview mode",
+    "message": "미리보기 모드",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalTitle": {
-    "message": "Terminal",
+    "message": "터미널",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDescription": {
-    "message": "Terminal-inspired geek style. High contrast and tool-like, ideal for an engineering feel.",
+    "message": "터미널 감성의 개발자 스타일입니다. 높은 대비와 도구 중심의 구성이 엔지니어링 느낌을 줍니다.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkLabel": {
-    "message": "Terminal Dark",
+    "message": "터미널 어둡게",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightLabel": {
-    "message": "Terminal Light",
+    "message": "터미널 밝게",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkBadge": {
-    "message": "High Contrast",
+    "message": "고대비",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightBadge": {
-    "message": "Clean CLI",
+    "message": "깔끔한 CLI",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "Neon glow, dark background, highly recognizable.",
+    "message": "네온 감성, 검은 배경, 뛰어난 식별성.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "Keeps the hacker vibe while feeling brighter and more restrained.",
+    "message": "개발자 감성은 유지하면서 더 밝고 절제된 느낌.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubTitle": {
@@ -440,27 +440,27 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDescription": {
-    "message": "Developer-classic style. Steady information density and a strong professional feel, ideal for long-term use.",
+    "message": "개발자를 위한 클래식 스타일입니다. 정보 밀도가 안정적이고 전문적인 느낌으로 오래 쓰기 좋습니다.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkLabel": {
-    "message": "GitHub Dark",
+    "message": "GitHub 어둡게",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightLabel": {
-    "message": "GitHub Light",
+    "message": "GitHub 밝게",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubBadge": {
-    "message": "Developer",
+    "message": "개발자",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "Calm, familiar, and productivity-oriented.",
+    "message": "차분하고 익숙하며 생산성에 잘 맞습니다.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightNote": {
-    "message": "Clean, orderly, and close to a platform-product feel.",
+    "message": "깔끔하고 정돈되어 플랫폼 제품에 가까운 느낌.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeTitle": {
@@ -468,87 +468,87 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDescription": {
-    "message": "Warm and elegant. Soft beige tones for a lighter UI with more breathing room.",
+    "message": "따뜻하고 우아한 스타일입니다. 부드러운 베이지 톤으로 더 가볍고 여유로운 화면을 제공합니다.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkLabel": {
-    "message": "Claude Dark",
+    "message": "Claude 어둡게",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightLabel": {
-    "message": "Claude Light",
+    "message": "Claude 밝게",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeBadge": {
-    "message": "Warm",
+    "message": "따뜻함",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "Deep warm brown tones with more mood.",
+    "message": "깊고 따뜻한 브라운 톤으로 분위기가 살아납니다.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "Soft paper-like feel with a more relaxed presentation.",
+    "message": "부드러운 종이 질감으로 보기 편안합니다.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicTitle": {
-    "message": "Basic",
+    "message": "기본",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDescription": {
-    "message": "Clean and universal. Light on styling and suitable as the default theme for most users.",
+    "message": "간결하고 범용적인 스타일입니다. 개성이 과하지 않아 기본 테마로 적합합니다.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkLabel": {
-    "message": "Basic Dark",
+    "message": "기본 어둡게",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightLabel": {
-    "message": "Basic Light",
+    "message": "기본 밝게",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicBadge": {
-    "message": "Balanced",
+    "message": "균형",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "Low-key, versatile, and comfortable at night.",
+    "message": "차분하고 범용적이며 야간에 적합합니다.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightNote": {
-    "message": "Neutral, clean, and close to the default browser feel.",
+    "message": "중립적이고 깨끗하며 기본 느낌이 강합니다.",
     "description": "Theme Tab Description"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "Custom theme, stay tuned!",
+    "message": "사용자 지정 테마는 곧 제공됩니다!",
     "description": "Theme Tab Description"
   },
   "el_colorpicker_confirm": {
-    "message": "OK",
+    "message": "확인",
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_colorpicker_clear": {
-    "message": "Clear",
+    "message": "지우기",
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_popconfirm_confirmButtonText": {
-    "message": "OK",
+    "message": "확인",
     "description": "Clear list - Element-UI PopConfirm"
   },
   "el_popconfirm_cancelButtonText": {
-    "message": "Cancel",
+    "message": "취소",
     "description": "Clear list - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "If you like this plugin, please go to the",
+    "message": "마음에 드셨다면",
     "description": "about tab description"
   },
   "pluginShopAbout": {
-    "message": "app store",
+    "message": "확장 프로그램 스토어",
     "description": "about tab description"
   },
   "starAbout2": {
-    "message": "and rate it",
+    "message": "에서 평점을 남겨 주세요",
     "description": "about tab description"
   }
 }

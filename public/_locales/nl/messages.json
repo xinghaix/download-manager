@@ -1,142 +1,142 @@
 {
   "extName": {
-    "message": "Download Manager",
+    "message": "Downloadbeheerder",
     "description": "Extension name"
   },
   "extDesc": {
-    "message": "Easy to manage downloaded files",
+    "message": "Beheer je gedownloade bestanden eenvoudig",
     "description": "Extension description"
   },
   "settingsTitle": {
-    "message": "Settings",
+    "message": "Instellingen",
     "description": "Personal settings"
   },
   "aboutTitle": {
-    "message": "About",
+    "message": "Over",
     "description": "Some information about the plugin"
   },
   "second": {
-    "message": "{} seconds left",
+    "message": "Nog {} seconden",
     "description": "remaining time display"
   },
   "minute": {
-    "message": "{} minutes left",
+    "message": "Nog {} minuten",
     "description": "remaining time display"
   },
   "hour": {
-    "message": "{} hours left",
+    "message": "Nog {} uur",
     "description": "remaining time display"
   },
   "day": {
-    "message": "{} days left",
+    "message": "Nog {} dagen",
     "description": "remaining time display"
   },
   "closeTooltip": {
-    "message": "stop showing text prompt box",
+    "message": "Teksttips niet meer tonen",
     "description": "on the download management page, when the mouse is moved over the button, the text prompt box stops showing"
   },
   "newDownload": {
-    "message": "new download",
+    "message": "Nieuwe download",
     "description": "new download"
   },
   "newDownloadPlaceholder": {
-    "message": "Please enter the download link! Press Enter to download file",
+    "message": "Voer een downloadlink in. Druk op Enter om te downloaden",
     "description": "Please enter the download link"
   },
   "clearAll": {
-    "message": "clear list",
+    "message": "Lijst wissen",
     "description": "Clear button dropdown menu"
   },
   "deleteAll": {
-    "message": "delete all from disk",
+    "message": "Alles van schijf verwijderen",
     "description": "Clear button dropdown menu"
   },
   "clearFailed": {
-    "message": "clear failed tasks",
+    "message": "Mislukte downloads wissen",
     "description": "Clear button dropdown menu"
   },
   "clearAbsent": {
-    "message": "clear absent tasks",
+    "message": "Ontbrekende bestanden wissen",
     "description": "Clear button dropdown menu"
   },
   "clearCompleted": {
-    "message": "clear completed tasks",
+    "message": "Voltooide downloads wissen",
     "description": "Clear button dropdown menu"
   },
   "openDownloadFolder": {
-    "message": "open download folder",
+    "message": "Downloadmap openen",
     "description": "open the download folder in Explorer"
   },
   "openSettings": {
-    "message": "plugin settings",
+    "message": "Extensie-instellingen",
     "description": "open plugin settings in a new tab"
   },
   "openHome": {
-    "message": "Open downloads page",
+    "message": "Downloadpagina openen",
     "description": "Open the browser's default download page in a new tab"
   },
   "openFileInFolder": {
-    "message": "open folder",
+    "message": "Map openen",
     "description": "open file in folder"
   },
   "openFile": {
-    "message": "Open file",
+    "message": "Bestand openen",
     "description": "open file"
   },
   "pause": {
-    "message": "pause",
+    "message": "Pauzeren",
     "description": "pause download"
   },
   "resume": {
-    "message": "resume download",
+    "message": "Download hervatten",
     "description": "resume downloading a suspended file"
   },
   "delete": {
-    "message": "delete from disk",
+    "message": "Van schijf verwijderen",
     "description": "delete file from disk"
   },
   "deleteConfirmTitle": {
-    "message": "Confirm disk deletion",
+    "message": "Verwijderen van schijf bevestigen",
     "description": "Confirmation title before deleting files from disk"
   },
   "deleteConfirmFileMessage": {
-    "message": "Permanently delete \"{}\" from disk. This cannot be undone.",
+    "message": "“{}” wordt permanent van de schijf verwijderd. Dit kan niet ongedaan worden gemaakt.",
     "description": "Confirmation message before deleting one file from disk"
   },
   "deleteConfirmAllMessage": {
-    "message": "Process {} inactive items: delete existing files from disk and clear absent records. This cannot be undone.",
+    "message": "{} inactieve items worden verwerkt: bestaande bestanden worden van de schijf verwijderd en ontbrekende records worden gewist. Dit kan niet ongedaan worden gemaakt.",
     "description": "Confirmation message before deleting all files from disk"
   },
   "deleteConfirmButton": {
-    "message": "Delete",
+    "message": "Verwijderen bevestigen",
     "description": "Confirmation button before deleting files from disk"
   },
   "retry": {
-    "message": "retry",
+    "message": "Opnieuw downloaden",
     "description": "download again"
   },
   "dangerDescription": {
-    "message": "The file may harm your pc",
+    "message": "Dit bestand kan je computer beschadigen",
     "description": "The file may harm your computer"
   },
   "cancel": {
-    "message": "discard",
+    "message": "Annuleren",
     "description": "Cancel download of dangerous files"
   },
   "reserve": {
-    "message": "keep",
+    "message": "Behouden",
     "description": "Keep dangerous files"
   },
   "erase": {
-    "message": "remove from list",
+    "message": "Uit lijst verwijderen",
     "description": "cancel download or clear file from list"
   },
   "copied": {
-    "message": "copied",
+    "message": "Gekopieerd",
     "description": "copied to clipboard"
   },
   "prefixMenus": {
-    "message": "Download the ",
+    "message": "Download ",
     "description": "context download prefix menus display"
   },
   "link": {
@@ -144,7 +144,7 @@
     "description": "context download menus display"
   },
   "image": {
-    "message": "image",
+    "message": "afbeelding",
     "description": "context download menus display"
   },
   "audio": {
@@ -156,23 +156,23 @@
     "description": "context download menus display"
   },
   "deleteNotification": {
-    "message": "Delete Notification",
+    "message": "Melding verwijderen",
     "description": "Delete notification button"
   },
   "downloadCompletedNotification": {
-    "message": "Download Completed",
+    "message": "Download voltooid",
     "description": "Download completion notification button"
   },
   "downloadStartedNotification": {
-    "message": "Download started",
+    "message": "Download gestart",
     "description": "Download notification"
   },
   "downloadWarnNotification": {
-    "message": "Download warning",
+    "message": "Downloadwaarschuwing",
     "description": "Download notification"
   },
   "openFolderNotification": {
-    "message": "Open folder",
+    "message": "Map openen",
     "description": "Download completion notification open folder button"
   },
   "downloadSetting": {
@@ -180,227 +180,227 @@
     "description": "plugin setting instructions"
   },
   "leftClickFileSetting": {
-    "message": "Open the file when clicking the file name with the left mouse button",
+    "message": "Bestand openen bij linksklik op de bestandsnaam",
     "description": "plugin setting instructions"
   },
   "rightClickFileSetting": {
-    "message": "Copy to clipboard when right click on file name",
+    "message": "Naar klembord kopiëren bij rechtsklik op de bestandsnaam",
     "description": "plugin setting instructions"
   },
   "leftClickUrlSetting": {
-    "message": "Open the link when clicking the download link",
+    "message": "Downloadlink in een nieuwe pagina openen met linksklik",
     "description": "plugin setting instructions"
   },
   "rightClickUrlSetting": {
-    "message": "Copy to clipboard when right click on download link",
+    "message": "Downloadlink naar klembord kopiëren met rechtsklik",
     "description": "plugin setting instructions"
   },
   "showTooltipSetting": {
-    "message": "Display a prompt message when the mouse moves over the button",
+    "message": "Tips tonen wanneer de muis over knoppen beweegt",
     "description": "plugin setting instructions"
   },
   "enableAnimation": {
-    "message": "Enable file moving in and out animation",
+    "message": "Animaties voor inkomende en uitgaande bestanden inschakelen",
     "description": "plugin setting instructions"
   },
   "contextMenus": {
-    "message": "Context menu",
+    "message": "Contextmenu",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusSetting": {
-    "message": "Download menu",
+    "message": "Downloadmenu",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Supported file types: ",
+    "message": "Ondersteunde bestandstypen: ",
     "description": "plugin setting details instructions"
   },
   "fileRoutingSetting": {
-    "message": "File routing",
+    "message": "Downloaden per bestandstype",
     "description": "Plugin settings description"
   },
   "fileRoutingEnableSetting": {
-    "message": "Enable file routing",
+    "message": "Downloaden per bestandstype inschakelen",
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Save downloads into subfolders under the default download directory based on file extensions. This feature is off by default.",
+    "message": "Sla downloads op in specifieke submappen onder de standaard downloadmap op basis van bestandsextensie. Deze functie staat standaard uit.",
     "description": "Plugin settings detail description"
   },
   "fileRoutingRulesSetting": {
-    "message": "Routing rules",
+    "message": "Classificatieregels",
     "description": "Plugin settings description"
   },
   "fileRoutingFolderLabel": {
-    "message": "Folder",
+    "message": "Map",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsLabel": {
-    "message": "File extensions",
+    "message": "Bestandsextensies",
     "description": "Plugin settings description"
   },
   "fileRoutingActionsLabel": {
-    "message": "Actions",
+    "message": "Acties",
     "description": "Plugin settings description"
   },
   "fileRoutingRuleEnabledLabel": {
-    "message": "Enable or disable rule",
+    "message": "Regel in- of uitschakelen",
     "description": "Accessible label for the file routing rule toggle"
   },
   "fileRoutingFolderPlaceholder": {
-    "message": "Example: Images or Documents/PDF",
+    "message": "Bijv.: Images of Documents/PDF",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsPlaceholder": {
-    "message": "Example: jpg, png, webp",
+    "message": "Bijv.: jpg, png, webp",
     "description": "Plugin settings description"
   },
   "fileRoutingAddRule": {
-    "message": "Add rule",
+    "message": "Regel toevoegen",
     "description": "Plugin settings description"
   },
   "fileRoutingResetRules": {
-    "message": "Restore defaults",
+    "message": "Standaard herstellen",
     "description": "Plugin settings description"
   },
   "fileRoutingDeleteRule": {
-    "message": "Delete rule",
+    "message": "Regel verwijderen",
     "description": "Accessible label for the file routing rule delete button"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "Delete this routing rule?",
+    "message": "Deze classificatieregel verwijderen?",
     "description": "Second confirmation before deleting a file routing rule"
   },
   "notificationSetting": {
-    "message": "Notification",
+    "message": "Meldingen",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting": {
-    "message": "Download notification",
+    "message": "Downloadmeldingen",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting1": {
-    "message": "Started",
+    "message": "Start",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting2": {
-    "message": "Completed",
+    "message": "Voltooid",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting3": {
-    "message": "Warned",
+    "message": "Waarschuwing",
     "description": "plugin setting instructions"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "Download notification retention time (second)",
+    "message": "Weergavetijd downloadmelding (seconden)",
     "description": "plugin setting instructions"
   },
   "downloadToneSetting": {
-    "message": "Download tone",
+    "message": "Downloadgeluid",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "Download notifications remain visible",
+    "message": "Downloadmeldingen zichtbaar houden",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "Indicates that the notification should remain visible on screen until the user activates or dismisses the notification. Since Chrome 50.",
+    "message": "De melding blijft zichtbaar totdat de gebruiker deze opent of sluit. Beschikbaar vanaf Chrome 50",
     "description": "plugin setting instructions"
   },
   "shortcutSetting": {
-    "message": "Shortcut",
+    "message": "Sneltoets",
     "description": "plugin setting instructions"
   },
   "openPopupSetting": {
-    "message": "Activate the extension",
+    "message": "Deze extensie activeren",
     "description": "plugin setting instructions"
   },
   "openPopupDetailsSetting": {
-    "message": "Please click",
+    "message": "Klik op",
     "description": "plugin setting details instructions"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "Shortcut Settings",
+    "message": "Sneltoetsinstellingen",
     "description": "plugin setting instructions"
   },
   "syncSetting": {
-    "message": "Sync",
+    "message": "Synchronisatie",
     "description": "plugin setting instructions"
   },
   "pluginSyncSetting": {
-    "message": "Sync plugin settings",
+    "message": "Extensie-instellingen synchroniseren",
     "description": "plugin setting instructions"
   },
   "pluginSyncDetailsSetting": {
-    "message": "When you have logged in to your Google account, you can synchronize plugin settings between different Google Kernel-based browsers",
+    "message": "Als je bent aangemeld bij je Google-account, kun je extensie-instellingen synchroniseren tussen Chromium-gebaseerde browsers",
     "description": "plugin setting details instructions"
   },
   "notSyncSetting": {
-    "message": "This setting will not be synchronized",
+    "message": "Deze instelling wordt niet gesynchroniseerd",
     "description": "plugin setting instructions"
   },
   "themeTitle": {
-    "message": "Theme",
+    "message": "Thema",
     "description": "Theme Tab Description"
   },
   "themeAdaptation": {
-    "message": "Theme adaptation",
+    "message": "Adaptief thema",
     "description": "Theme Tab Description"
   },
   "themeAdaptationDescription": {
-    "message": "According to the color mode of the system, adaptively display bright and dark themes, including icons and download panel.",
+    "message": "Past lichte en donkere thema’s automatisch aan de systeemkleurmodus aan, inclusief pictogram en downloadpaneel.",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption1": {
-    "message": "auto",
+    "message": "Automatisch",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption2": {
-    "message": "light",
+    "message": "Licht",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption3": {
-    "message": "dark",
+    "message": "Donker",
     "description": "Theme Tab Description"
   },
   "iconTitle": {
-    "message": "Icon",
+    "message": "Pictogram",
     "description": "Theme Tab Description"
   },
   "iconColorSetting": {
-    "message": "Custom icon color",
+    "message": "Pictogramkleur aanpassen",
     "description": "Theme Tab Description"
   },
   "iconDownloadingColorSetting": {
-    "message": "Custom icon download animation color",
+    "message": "Kleur van downloadanimatie van pictogram aanpassen",
     "description": "Theme Tab Description"
   },
   "downloadPanelTitle": {
-    "message": "Download panel",
+    "message": "Downloadpaneel",
     "description": "Theme Tab Description"
   },
   "pageSize": {
-    "message": "Page size (width, height)",
+    "message": "Paginagrootte (breedte, hoogte)",
     "description": "Theme Tab Description"
   },
   "pageSizeDescription": {
-    "message": "Control the popup panel width and height.",
+    "message": "Bepaalt de breedte en hoogte van het downloadpaneel",
     "description": "Theme Tab Description"
   },
   "themeSystemTitle": {
-    "message": "Theme Setup & Preview",
+    "message": "Thema-instellingen en voorbeeld",
     "description": "Theme Tab Description"
   },
   "themeSystemDescription": {
-    "message": "Changes take effect immediately after selecting a theme series. The preview below shows the actual Popup UI.",
+    "message": "Het thema wordt direct toegepast zodra je een serie kiest. Het voorbeeld hieronder toont het echte Popup-uiterlijk.",
     "description": "Theme Tab Description"
   },
   "themeSeriesLabel": {
-    "message": "Theme series",
+    "message": "Themalijst",
     "description": "Theme Tab Description"
   },
   "themePreviewModeAriaLabel": {
-    "message": "Preview mode",
+    "message": "Voorbeeldmodus",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalTitle": {
@@ -408,31 +408,31 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDescription": {
-    "message": "Terminal-inspired geek style. High contrast and tool-like, ideal for an engineering feel.",
+    "message": "Terminal-geekstijl. Hoog contrast en sterk gereedschapsgericht voor een technische uitstraling.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkLabel": {
-    "message": "Terminal Dark",
+    "message": "Terminal donker",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightLabel": {
-    "message": "Terminal Light",
+    "message": "Terminal licht",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkBadge": {
-    "message": "High Contrast",
+    "message": "Hoog contrast",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightBadge": {
-    "message": "Clean CLI",
+    "message": "Schone CLI",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "Neon glow, dark background, highly recognizable.",
+    "message": "Neonachtig, zwarte achtergrond en sterk herkenbaar.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "Keeps the hacker vibe while feeling brighter and more restrained.",
+    "message": "Behoudt de geekstijl, maar lichter en ingetogener.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubTitle": {
@@ -440,27 +440,27 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDescription": {
-    "message": "Developer-classic style. Steady information density and a strong professional feel, ideal for long-term use.",
+    "message": "Klassieke ontwikkelaarsstijl. Informatiedicht, stabiel en professioneel voor langdurig gebruik.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkLabel": {
-    "message": "GitHub Dark",
+    "message": "GitHub donker",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightLabel": {
-    "message": "GitHub Light",
+    "message": "GitHub licht",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubBadge": {
-    "message": "Developer",
+    "message": "Ontwikkelaar",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "Calm, familiar, and productivity-oriented.",
+    "message": "Rustig, vertrouwd en productiviteitsgericht.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightNote": {
-    "message": "Clean, orderly, and close to a platform-product feel.",
+    "message": "Schoon, ordelijk en dicht bij een platformproduct.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeTitle": {
@@ -468,15 +468,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDescription": {
-    "message": "Warm and elegant. Soft beige tones for a lighter UI with more breathing room.",
+    "message": "Warm en elegant. Zachte beige tinten voor een lichtere interface met meer ademruimte.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkLabel": {
-    "message": "Claude Dark",
+    "message": "Claude donker",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightLabel": {
-    "message": "Claude Light",
+    "message": "Claude licht",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeBadge": {
@@ -484,43 +484,43 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "Deep warm brown tones with more mood.",
+    "message": "Diepe warme bruintinten met meer sfeer.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "Soft paper-like feel with a more relaxed presentation.",
+    "message": "Zacht papiergevoel, rustiger om naar te kijken.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicTitle": {
-    "message": "Basic",
+    "message": "Basis",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDescription": {
-    "message": "Clean and universal. Light on styling and suitable as the default theme for most users.",
+    "message": "Eenvoudige universele stijl. Weinig uitgesproken, geschikt als standaardthema.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkLabel": {
-    "message": "Basic Dark",
+    "message": "Basis donker",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightLabel": {
-    "message": "Basic Light",
+    "message": "Basis licht",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicBadge": {
-    "message": "Balanced",
+    "message": "Gebalanceerd",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "Low-key, versatile, and comfortable at night.",
+    "message": "Ingetogen, algemeen bruikbaar en geschikt voor de nacht.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightNote": {
-    "message": "Neutral, clean, and close to the default browser feel.",
+    "message": "Neutraal, schoon en sterk standaard aanvoelend.",
     "description": "Theme Tab Description"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "Custom theme, stay tuned!",
+    "message": "Aangepaste thema’s komen binnenkort!",
     "description": "Theme Tab Description"
   },
   "el_colorpicker_confirm": {
@@ -528,7 +528,7 @@
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_colorpicker_clear": {
-    "message": "Clear",
+    "message": "Wissen",
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_popconfirm_confirmButtonText": {
@@ -536,19 +536,19 @@
     "description": "Clear list - Element-UI PopConfirm"
   },
   "el_popconfirm_cancelButtonText": {
-    "message": "Cancel",
+    "message": "Annuleren",
     "description": "Clear list - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "If you like this plugin, please go to the",
+    "message": "Tevreden? Ga naar de",
     "description": "about tab description"
   },
   "pluginShopAbout": {
-    "message": "app store",
+    "message": "extensiewinkel",
     "description": "about tab description"
   },
   "starAbout2": {
-    "message": "and rate it",
+    "message": "en geef een beoordeling",
     "description": "about tab description"
   }
 }

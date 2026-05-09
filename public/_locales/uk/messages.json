@@ -1,438 +1,438 @@
 {
   "extName": {
-    "message": "Download Manager",
+    "message": "Менеджер завантажень",
     "description": "Extension name"
   },
   "extDesc": {
-    "message": "Easy to manage downloaded files",
+    "message": "Зручно керуйте завантаженими файлами",
     "description": "Extension description"
   },
   "settingsTitle": {
-    "message": "Settings",
+    "message": "Налаштування",
     "description": "Personal settings"
   },
   "aboutTitle": {
-    "message": "About",
+    "message": "Про розширення",
     "description": "Some information about the plugin"
   },
   "second": {
-    "message": "{} seconds left",
+    "message": "Залишилося {} с",
     "description": "remaining time display"
   },
   "minute": {
-    "message": "{} minutes left",
+    "message": "Залишилося {} хв",
     "description": "remaining time display"
   },
   "hour": {
-    "message": "{} hours left",
+    "message": "Залишилося {} год",
     "description": "remaining time display"
   },
   "day": {
-    "message": "{} days left",
+    "message": "Залишилося {} дн.",
     "description": "remaining time display"
   },
   "closeTooltip": {
-    "message": "stop showing text prompt box",
+    "message": "Не показувати текстові підказки",
     "description": "on the download management page, when the mouse is moved over the button, the text prompt box stops showing"
   },
   "newDownload": {
-    "message": "new download",
+    "message": "Нове завантаження",
     "description": "new download"
   },
   "newDownloadPlaceholder": {
-    "message": "Please enter the download link! Press Enter to download file",
+    "message": "Введіть посилання для завантаження. Натисніть Enter, щоб завантажити",
     "description": "Please enter the download link"
   },
   "clearAll": {
-    "message": "clear list",
+    "message": "Очистити список",
     "description": "Clear button dropdown menu"
   },
   "deleteAll": {
-    "message": "delete all from disk",
+    "message": "Видалити все з диска",
     "description": "Clear button dropdown menu"
   },
   "clearFailed": {
-    "message": "clear failed tasks",
+    "message": "Очистити невдалі завантаження",
     "description": "Clear button dropdown menu"
   },
   "clearAbsent": {
-    "message": "clear absent tasks",
+    "message": "Очистити відсутні файли",
     "description": "Clear button dropdown menu"
   },
   "clearCompleted": {
-    "message": "clear completed tasks",
+    "message": "Очистити завершені завантаження",
     "description": "Clear button dropdown menu"
   },
   "openDownloadFolder": {
-    "message": "open download folder",
+    "message": "Відкрити папку завантажень",
     "description": "open the download folder in Explorer"
   },
   "openSettings": {
-    "message": "plugin settings",
+    "message": "Налаштування розширення",
     "description": "open plugin settings in a new tab"
   },
   "openHome": {
-    "message": "Open downloads page",
+    "message": "Відкрити сторінку завантажень",
     "description": "Open the browser's default download page in a new tab"
   },
   "openFileInFolder": {
-    "message": "open folder",
+    "message": "Відкрити папку",
     "description": "open file in folder"
   },
   "openFile": {
-    "message": "Open file",
+    "message": "Відкрити файл",
     "description": "open file"
   },
   "pause": {
-    "message": "pause",
+    "message": "Призупинити",
     "description": "pause download"
   },
   "resume": {
-    "message": "resume download",
+    "message": "Продовжити завантаження",
     "description": "resume downloading a suspended file"
   },
   "delete": {
-    "message": "delete from disk",
+    "message": "Видалити з диска",
     "description": "delete file from disk"
   },
   "deleteConfirmTitle": {
-    "message": "Confirm disk deletion",
+    "message": "Підтвердьте видалення з диска",
     "description": "Confirmation title before deleting files from disk"
   },
   "deleteConfirmFileMessage": {
-    "message": "Permanently delete \"{}\" from disk. This cannot be undone.",
+    "message": "“{}” буде остаточно видалено з диска. Цю дію не можна скасувати.",
     "description": "Confirmation message before deleting one file from disk"
   },
   "deleteConfirmAllMessage": {
-    "message": "Process {} inactive items: delete existing files from disk and clear absent records. This cannot be undone.",
+    "message": "Буде оброблено {} неактивних елементів: наявні файли буде видалено з диска, а відсутні записи очищено. Цю дію не можна скасувати.",
     "description": "Confirmation message before deleting all files from disk"
   },
   "deleteConfirmButton": {
-    "message": "Delete",
+    "message": "Підтвердити видалення",
     "description": "Confirmation button before deleting files from disk"
   },
   "retry": {
-    "message": "retry",
+    "message": "Завантажити знову",
     "description": "download again"
   },
   "dangerDescription": {
-    "message": "The file may harm your pc",
+    "message": "Цей файл може пошкодити ваш комп’ютер",
     "description": "The file may harm your computer"
   },
   "cancel": {
-    "message": "discard",
+    "message": "Скасувати",
     "description": "Cancel download of dangerous files"
   },
   "reserve": {
-    "message": "keep",
+    "message": "Зберегти",
     "description": "Keep dangerous files"
   },
   "erase": {
-    "message": "remove from list",
+    "message": "Вилучити зі списку",
     "description": "cancel download or clear file from list"
   },
   "copied": {
-    "message": "copied",
+    "message": "Скопійовано",
     "description": "copied to clipboard"
   },
   "prefixMenus": {
-    "message": "Download the ",
+    "message": "Завантажити ",
     "description": "context download prefix menus display"
   },
   "link": {
-    "message": "link",
+    "message": "посилання",
     "description": "context download menus display"
   },
   "image": {
-    "message": "image",
+    "message": "зображення",
     "description": "context download menus display"
   },
   "audio": {
-    "message": "audio",
+    "message": "аудіо",
     "description": "context download menus display"
   },
   "video": {
-    "message": "video",
+    "message": "відео",
     "description": "context download menus display"
   },
   "deleteNotification": {
-    "message": "Delete Notification",
+    "message": "Видалити сповіщення",
     "description": "Delete notification button"
   },
   "downloadCompletedNotification": {
-    "message": "Download Completed",
+    "message": "Завантаження завершено",
     "description": "Download completion notification button"
   },
   "downloadStartedNotification": {
-    "message": "Download started",
+    "message": "Завантаження розпочато",
     "description": "Download notification"
   },
   "downloadWarnNotification": {
-    "message": "Download warning",
+    "message": "Попередження завантаження",
     "description": "Download notification"
   },
   "openFolderNotification": {
-    "message": "Open folder",
+    "message": "Відкрити папку",
     "description": "Download completion notification open folder button"
   },
   "downloadSetting": {
-    "message": "Download",
+    "message": "Завантаження",
     "description": "plugin setting instructions"
   },
   "leftClickFileSetting": {
-    "message": "Open the file when clicking the file name with the left mouse button",
+    "message": "Відкривати файл лівим кліком по назві",
     "description": "plugin setting instructions"
   },
   "rightClickFileSetting": {
-    "message": "Copy to clipboard when right click on file name",
+    "message": "Копіювати в буфер обміну правим кліком по назві файлу",
     "description": "plugin setting instructions"
   },
   "leftClickUrlSetting": {
-    "message": "Open the link when clicking the download link",
+    "message": "Відкривати посилання завантаження на новій сторінці лівим кліком",
     "description": "plugin setting instructions"
   },
   "rightClickUrlSetting": {
-    "message": "Copy to clipboard when right click on download link",
+    "message": "Копіювати посилання завантаження в буфер обміну правим кліком",
     "description": "plugin setting instructions"
   },
   "showTooltipSetting": {
-    "message": "Display a prompt message when the mouse moves over the button",
+    "message": "Показувати підказки при наведенні на кнопки",
     "description": "plugin setting instructions"
   },
   "enableAnimation": {
-    "message": "Enable file moving in and out animation",
+    "message": "Увімкнути анімації появи та зникнення файлів",
     "description": "plugin setting instructions"
   },
   "contextMenus": {
-    "message": "Context menu",
+    "message": "Контекстне меню",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusSetting": {
-    "message": "Download menu",
+    "message": "Меню завантаження",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Supported file types: ",
+    "message": "Підтримувані типи файлів: ",
     "description": "plugin setting details instructions"
   },
   "fileRoutingSetting": {
-    "message": "File routing",
+    "message": "Завантаження за типом файлу",
     "description": "Plugin settings description"
   },
   "fileRoutingEnableSetting": {
-    "message": "Enable file routing",
+    "message": "Увімкнути завантаження за типом файлу",
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Save downloads into subfolders under the default download directory based on file extensions. This feature is off by default.",
+    "message": "Зберігайте завантаження в указані підпапки стандартної папки завантажень на основі розширення файлу. Функція типово вимкнена.",
     "description": "Plugin settings detail description"
   },
   "fileRoutingRulesSetting": {
-    "message": "Routing rules",
+    "message": "Правила класифікації",
     "description": "Plugin settings description"
   },
   "fileRoutingFolderLabel": {
-    "message": "Folder",
+    "message": "Папка",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsLabel": {
-    "message": "File extensions",
+    "message": "Розширення файлів",
     "description": "Plugin settings description"
   },
   "fileRoutingActionsLabel": {
-    "message": "Actions",
+    "message": "Дії",
     "description": "Plugin settings description"
   },
   "fileRoutingRuleEnabledLabel": {
-    "message": "Enable or disable rule",
+    "message": "Увімкнути або вимкнути правило",
     "description": "Accessible label for the file routing rule toggle"
   },
   "fileRoutingFolderPlaceholder": {
-    "message": "Example: Images or Documents/PDF",
+    "message": "Приклад: Images або Documents/PDF",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsPlaceholder": {
-    "message": "Example: jpg, png, webp",
+    "message": "Приклад: jpg, png, webp",
     "description": "Plugin settings description"
   },
   "fileRoutingAddRule": {
-    "message": "Add rule",
+    "message": "Додати правило",
     "description": "Plugin settings description"
   },
   "fileRoutingResetRules": {
-    "message": "Restore defaults",
+    "message": "Відновити типові",
     "description": "Plugin settings description"
   },
   "fileRoutingDeleteRule": {
-    "message": "Delete rule",
+    "message": "Видалити правило",
     "description": "Accessible label for the file routing rule delete button"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "Delete this routing rule?",
+    "message": "Видалити це правило класифікації?",
     "description": "Second confirmation before deleting a file routing rule"
   },
   "notificationSetting": {
-    "message": "Notification",
+    "message": "Сповіщення",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting": {
-    "message": "Download notification",
+    "message": "Сповіщення про завантаження",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting1": {
-    "message": "Started",
+    "message": "Початок",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting2": {
-    "message": "Completed",
+    "message": "Завершення",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting3": {
-    "message": "Warned",
+    "message": "Попередження",
     "description": "plugin setting instructions"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "Download notification retention time (second)",
+    "message": "Час показу сповіщення (секунди)",
     "description": "plugin setting instructions"
   },
   "downloadToneSetting": {
-    "message": "Download tone",
+    "message": "Звук завантаження",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "Download notifications remain visible",
+    "message": "Залишати сповіщення про завантаження видимими",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "Indicates that the notification should remain visible on screen until the user activates or dismisses the notification. Since Chrome 50.",
+    "message": "Сповіщення лишатиметься на екрані, доки користувач не відкриє або не закриє його. Доступно з Chrome 50",
     "description": "plugin setting instructions"
   },
   "shortcutSetting": {
-    "message": "Shortcut",
+    "message": "Комбінація клавіш",
     "description": "plugin setting instructions"
   },
   "openPopupSetting": {
-    "message": "Activate the extension",
+    "message": "Активувати це розширення",
     "description": "plugin setting instructions"
   },
   "openPopupDetailsSetting": {
-    "message": "Please click",
+    "message": "Натисніть",
     "description": "plugin setting details instructions"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "Shortcut Settings",
+    "message": "Налаштування комбінацій клавіш",
     "description": "plugin setting instructions"
   },
   "syncSetting": {
-    "message": "Sync",
+    "message": "Синхронізація",
     "description": "plugin setting instructions"
   },
   "pluginSyncSetting": {
-    "message": "Sync plugin settings",
+    "message": "Синхронізувати налаштування розширення",
     "description": "plugin setting instructions"
   },
   "pluginSyncDetailsSetting": {
-    "message": "When you have logged in to your Google account, you can synchronize plugin settings between different Google Kernel-based browsers",
+    "message": "Якщо ви ввійшли в обліковий запис Google, налаштування розширення можна синхронізувати між браузерами на основі Chromium",
     "description": "plugin setting details instructions"
   },
   "notSyncSetting": {
-    "message": "This setting will not be synchronized",
+    "message": "Це налаштування не синхронізуватиметься",
     "description": "plugin setting instructions"
   },
   "themeTitle": {
-    "message": "Theme",
+    "message": "Тема",
     "description": "Theme Tab Description"
   },
   "themeAdaptation": {
-    "message": "Theme adaptation",
+    "message": "Адаптивна тема",
     "description": "Theme Tab Description"
   },
   "themeAdaptationDescription": {
-    "message": "According to the color mode of the system, adaptively display bright and dark themes, including icons and download panel.",
+    "message": "Автоматично пристосовує світлу й темну теми до системного режиму кольорів, включно з іконкою та панеллю завантажень.",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption1": {
-    "message": "auto",
+    "message": "Автоматично",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption2": {
-    "message": "light",
+    "message": "Світла",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption3": {
-    "message": "dark",
+    "message": "Темна",
     "description": "Theme Tab Description"
   },
   "iconTitle": {
-    "message": "Icon",
+    "message": "Іконка",
     "description": "Theme Tab Description"
   },
   "iconColorSetting": {
-    "message": "Custom icon color",
+    "message": "Налаштувати колір іконки",
     "description": "Theme Tab Description"
   },
   "iconDownloadingColorSetting": {
-    "message": "Custom icon download animation color",
+    "message": "Налаштувати колір анімації завантаження іконки",
     "description": "Theme Tab Description"
   },
   "downloadPanelTitle": {
-    "message": "Download panel",
+    "message": "Панель завантажень",
     "description": "Theme Tab Description"
   },
   "pageSize": {
-    "message": "Page size (width, height)",
+    "message": "Розмір сторінки (ширина, висота)",
     "description": "Theme Tab Description"
   },
   "pageSizeDescription": {
-    "message": "Control the popup panel width and height.",
+    "message": "Керує шириною та висотою панелі завантажень",
     "description": "Theme Tab Description"
   },
   "themeSystemTitle": {
-    "message": "Theme Setup & Preview",
+    "message": "Налаштування та попередній перегляд теми",
     "description": "Theme Tab Description"
   },
   "themeSystemDescription": {
-    "message": "Changes take effect immediately after selecting a theme series. The preview below shows the actual Popup UI.",
+    "message": "Тема застосовується одразу після вибору серії. Нижче показано реальний вигляд Popup.",
     "description": "Theme Tab Description"
   },
   "themeSeriesLabel": {
-    "message": "Theme series",
+    "message": "Список тем",
     "description": "Theme Tab Description"
   },
   "themePreviewModeAriaLabel": {
-    "message": "Preview mode",
+    "message": "Режим перегляду",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalTitle": {
-    "message": "Terminal",
+    "message": "Термінал",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDescription": {
-    "message": "Terminal-inspired geek style. High contrast and tool-like, ideal for an engineering feel.",
+    "message": "Термінальний geek-стиль. Високий контраст і інструментальний характер для технічного інтерфейсу.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkLabel": {
-    "message": "Terminal Dark",
+    "message": "Термінал темний",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightLabel": {
-    "message": "Terminal Light",
+    "message": "Термінал світлий",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkBadge": {
-    "message": "High Contrast",
+    "message": "Високий контраст",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightBadge": {
-    "message": "Clean CLI",
+    "message": "Чистий CLI",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "Neon glow, dark background, highly recognizable.",
+    "message": "Неоновий акцент, чорне тло й висока впізнаваність.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "Keeps the hacker vibe while feeling brighter and more restrained.",
+    "message": "Зберігає geek-стиль, але світліший і стриманіший.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubTitle": {
@@ -440,27 +440,27 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDescription": {
-    "message": "Developer-classic style. Steady information density and a strong professional feel, ideal for long-term use.",
+    "message": "Класичний стиль для розробників. Стабільна щільність інформації та професійний вигляд для щоденного використання.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkLabel": {
-    "message": "GitHub Dark",
+    "message": "GitHub темний",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightLabel": {
-    "message": "GitHub Light",
+    "message": "GitHub світлий",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubBadge": {
-    "message": "Developer",
+    "message": "Розробник",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "Calm, familiar, and productivity-oriented.",
+    "message": "Спокійний, знайомий і орієнтований на продуктивність.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightNote": {
-    "message": "Clean, orderly, and close to a platform-product feel.",
+    "message": "Чистий, упорядкований і схожий на платформний продукт.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeTitle": {
@@ -468,59 +468,59 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDescription": {
-    "message": "Warm and elegant. Soft beige tones for a lighter UI with more breathing room.",
+    "message": "Теплий і елегантний стиль. М’які бежеві тони для легшого й просторішого інтерфейсу.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkLabel": {
-    "message": "Claude Dark",
+    "message": "Claude темний",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightLabel": {
-    "message": "Claude Light",
+    "message": "Claude світлий",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeBadge": {
-    "message": "Warm",
+    "message": "Теплий",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "Deep warm brown tones with more mood.",
+    "message": "Глибокі теплі коричневі тони з виразнішою атмосферою.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "Soft paper-like feel with a more relaxed presentation.",
+    "message": "М’яке відчуття паперу, приємніше для очей.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicTitle": {
-    "message": "Basic",
+    "message": "Базова",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDescription": {
-    "message": "Clean and universal. Light on styling and suitable as the default theme for most users.",
+    "message": "Простий універсальний стиль. Менш виразний, добре підходить як типова тема.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkLabel": {
-    "message": "Basic Dark",
+    "message": "Базова темна",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightLabel": {
-    "message": "Basic Light",
+    "message": "Базова світла",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicBadge": {
-    "message": "Balanced",
+    "message": "Збалансована",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "Low-key, versatile, and comfortable at night.",
+    "message": "Стримана, універсальна й зручна вночі.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightNote": {
-    "message": "Neutral, clean, and close to the default browser feel.",
+    "message": "Нейтральна, чиста й дуже схожа на стандартну.",
     "description": "Theme Tab Description"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "Custom theme, stay tuned!",
+    "message": "Користувацькі теми незабаром!",
     "description": "Theme Tab Description"
   },
   "el_colorpicker_confirm": {
@@ -528,7 +528,7 @@
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_colorpicker_clear": {
-    "message": "Clear",
+    "message": "Очистити",
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_popconfirm_confirmButtonText": {
@@ -536,19 +536,19 @@
     "description": "Clear list - Element-UI PopConfirm"
   },
   "el_popconfirm_cancelButtonText": {
-    "message": "Cancel",
+    "message": "Скасувати",
     "description": "Clear list - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "If you like this plugin, please go to the",
+    "message": "Подобається? Перейдіть до",
     "description": "about tab description"
   },
   "pluginShopAbout": {
-    "message": "app store",
+    "message": "магазину розширень",
     "description": "about tab description"
   },
   "starAbout2": {
-    "message": "and rate it",
+    "message": "і залиште оцінку",
     "description": "about tab description"
   }
 }
