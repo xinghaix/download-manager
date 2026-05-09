@@ -119,6 +119,26 @@
     "message": "Файл может нанести вред вашему компьютеру",
     "description": "Файл может нанести вред вашему компьютеру"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome требуется подтверждение перед сохранением файла",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "Выполняется проверка безопасности",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome заблокировал эту загрузку",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "Проверить",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "Отклонить",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "Отменить",
     "description": "Отменить загрузку опасного файла"

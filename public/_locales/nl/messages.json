@@ -119,6 +119,26 @@
     "message": "Dit bestand kan je computer beschadigen",
     "description": "The file may harm your computer"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome heeft bevestiging nodig om dit bestand op te slaan",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "Veiligheidscontrole wordt uitgevoerd",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome heeft deze download geblokkeerd",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "Controleren",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "Verwerpen",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "Annuleren",
     "description": "Cancel download of dangerous files"

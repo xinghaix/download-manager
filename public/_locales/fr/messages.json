@@ -119,6 +119,26 @@
     "message": "Le fichier peut endommager votre PC",
     "description": "Le fichier peut endommager votre ordinateur"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome demande votre confirmation avant d’enregistrer ce fichier",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "Analyse de sécurité en cours",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome a bloqué ce téléchargement",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "Vérifier",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "Rejeter",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "Annuler",
     "description": "Annuler le téléchargement de fichiers dangereux"

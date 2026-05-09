@@ -5,16 +5,19 @@ const SAFE_DANGER_TYPES = new Set([
   'deepScannedSafe'
 ])
 
-const ACCEPTABLE_DANGER_TYPES = new Set([
-  'file',
-  'url',
-  'content',
-  'uncommon',
-  'host',
-  'unwanted',
-  'sensitiveContentWarning',
-  'deepScannedOpenedDangerous',
-  'accountCompromise'
+const WAITING_DANGER_TYPES = new Set([
+  'asyncScanning',
+  'asyncLocalPasswordScanning'
+])
+
+const BLOCKED_DANGER_TYPES = new Set([
+  'blockedTooLarge',
+  'sensitiveContentBlock',
+  'blockedScanFailed',
+  'forceSaveToGdrive',
+  'forceSaveToGDrive',
+  'forceSaveToOnedrive',
+  'forceSaveToOneDrive'
 ])
 
 export function isDangerousDownload(item) {
@@ -26,7 +29,22 @@ export function isDangerousDownload(item) {
   )
 }
 
-export function canAcceptDanger(item) {
-  return isDangerousDownload(item) && ACCEPTABLE_DANGER_TYPES.has(item.danger)
+export function getDangerStatus(item) {
+  if (!isDangerousDownload(item)) {
+    return 'safe'
+  }
+
+  if (WAITING_DANGER_TYPES.has(item.danger)) {
+    return 'scanning'
+  }
+
+  if (BLOCKED_DANGER_TYPES.has(item.danger)) {
+    return 'blocked'
+  }
+
+  return 'action_required'
 }
 
+export function canAcceptDanger(item) {
+  return getDangerStatus(item) === 'action_required'
+}

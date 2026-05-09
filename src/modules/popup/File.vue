@@ -20,10 +20,10 @@
         <template v-if="item.state === 'in_progress'">
           <template v-if="dangerous(item)">
             <div class="cell left danger">
-              <span class="description small-size">{{ i18data.dangerDescription }}</span>
+              <span class="description small-size" :title="dangerDescription(item)">{{ dangerDescription(item) }}</span>
             </div>
             <div class="cell right danger">
-              <button class="cancel button small-size" @click="cancel(item)">{{ i18data.cancel }}</button>
+              <button class="discard button small-size" @click="cancel(item)">{{ i18data.dangerDiscard }}</button>
               <button v-if="canAcceptDanger(item)"
                       class="accept button small-size"
                       @click="acceptDanger(item)">{{ i18data.reserve }}
@@ -110,7 +110,11 @@
 /* eslint-disable no-undef */
 import {Close, Delete, FolderOpened, RefreshRight, VideoPause, VideoPlay} from '@element-plus/icons-vue'
 import Progress from './Progress'
-import {canAcceptDanger as canAcceptDangerDownload, isDangerousDownload} from '../../utils/downloadDanger'
+import {
+  canAcceptDanger as canAcceptDangerDownload,
+  getDangerStatus,
+  isDangerousDownload
+} from '../../utils/downloadDanger'
 import common from '../../utils/common'
 import { getCachedFileIcon, setCachedFileIcon } from '../../utils/fileIconCache'
 
@@ -277,6 +281,19 @@ export default {
 
     canAcceptDanger(item) {
       return canAcceptDangerDownload(item)
+    },
+
+    dangerDescription(item) {
+      switch (getDangerStatus(item)) {
+        case 'scanning':
+          return this.i18data.dangerScanningDescription
+        case 'blocked':
+          return this.i18data.dangerBlockedDescription
+        case 'action_required':
+          return this.i18data.dangerActionRequiredDescription
+        default:
+          return this.i18data.dangerDescription
+      }
     },
 
     // 在新标签页中打开下载文件链接
@@ -655,7 +672,8 @@ export default {
 }
 
 .file .info .left.danger {
-  width: 176px;
+  width: calc(100% - 120px);
+  max-width: 176px;
 }
 
 .file .info .left.common {
@@ -674,10 +692,19 @@ export default {
   text-align: right;
 }
 
+.file .info .right.danger {
+  width: 120px;
+  white-space: nowrap;
+}
+
 /* 下载危险文件时的操作 */
 .file .info .danger .description {
-  color: #ec0000;
+  display: block;
+  overflow: hidden;
+  color: var(--content-file-danger-color, #d93025);
   line-height: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .file .info .danger .button {
@@ -685,30 +712,32 @@ export default {
   border-radius: 11px;
   height: 22px;
   line-height: 18px;
-  border: none;
+  padding: 0 8px;
+  border: 1px solid transparent;
   cursor: pointer;
 }
 
-.file .info .danger .cancel {
+.file .info .danger .discard {
   color: #fff;
-  background-color: #1a73e8;
-  border: 1px solid #1a73e8;
+  background-color: var(--content-file-danger-button-background-color, #d93025);
+  border-color: var(--content-file-danger-button-border-color, var(--content-file-danger-button-background-color, #d93025));
 }
 
-.file .info .danger .button.cancel:hover {
-  border-color: #63a5e8;
-  background-color: #63a5e8;
+.file .info .danger .button.discard:hover {
+  border-color: var(--content-file-danger-button-hover-border-color, var(--content-file-danger-button-hover-background-color, #b3261e));
+  background-color: var(--content-file-danger-button-hover-background-color, #b3261e);
 }
 
 .file .info .danger .accept {
-  color: #1a73e8;
-  background-color: #fff;
-  border: 1px solid #dadce0;
+  color: var(--content-file-danger-accept-color, #1a73e8);
+  background-color: var(--content-file-danger-accept-background-color, var(--content-file-background-color, #fff));
+  border-color: var(--content-file-danger-accept-border-color, var(--content-file-border-color, #dadce0));
   margin-right: -4px;
+  margin-left: 4px;
 }
 
 .file .info .danger .button.accept:hover {
-  background-color: #d2e3fc;
+  background-color: var(--content-file-danger-accept-hover-background-color, var(--header-dropdown-menu-item-hover-background-color, #d2e3fc));
 }
 
 /* 内容栏 操作按钮 父元素*/

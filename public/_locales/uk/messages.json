@@ -119,6 +119,26 @@
     "message": "Цей файл може пошкодити ваш комп’ютер",
     "description": "The file may harm your computer"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome потребує підтвердження перед збереженням файлу",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "Триває перевірка безпеки",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome заблокував це завантаження",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "Переглянути",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "Відхилити",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "Скасувати",
     "description": "Cancel download of dangerous files"

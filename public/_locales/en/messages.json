@@ -119,8 +119,28 @@
     "message": "The file may harm your pc",
     "description": "The file may harm your computer"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome needs your confirmation before saving this file",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "Checking this download for safety",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome blocked this download",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "Review",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "Discard",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
-    "message": "discard",
+    "message": "Cancel",
     "description": "Cancel download of dangerous files"
   },
   "reserve": {

@@ -205,6 +205,11 @@ const common = {
     this.i18data.clearPopCancelText = this.loadI18nMessage('el_popconfirm_cancelButtonText')
     // popup 下载危险文件
     this.i18data.dangerDescription = this.loadI18nMessage('dangerDescription')
+    this.i18data.dangerActionRequiredDescription = this.loadI18nMessage('dangerActionRequiredDescription')
+    this.i18data.dangerScanningDescription = this.loadI18nMessage('dangerScanningDescription')
+    this.i18data.dangerBlockedDescription = this.loadI18nMessage('dangerBlockedDescription')
+    this.i18data.dangerOpenAction = this.loadI18nMessage('dangerOpenAction')
+    this.i18data.dangerDiscard = this.loadI18nMessage('dangerDiscard')
     this.i18data.cancel = this.loadI18nMessage('cancel')
     this.i18data.reserve = this.loadI18nMessage('reserve')
     // popup 右键复制

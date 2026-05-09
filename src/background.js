@@ -2,7 +2,7 @@
 import storage from "./utils/storage.js"
 import common from "./utils/common.js"
 import icon from "./utils/icon.js"
-import { isDangerousDownload } from "./utils/downloadDanger.js"
+import { getDangerStatus, isDangerousDownload } from "./utils/downloadDanger.js"
 import { getRoutingFilename } from "./utils/downloadFileRouting.js"
 
 // 全局状态（Service Worker 重启时会丢失，需要从 storage 恢复）
@@ -46,10 +46,8 @@ async function initialize() {
       icon.setBrowserActionIcon(iconColor[themeKey], false)
     }
 
-    // 禁用下载底部提示
-    if (chrome.downloads.setShelfEnabled) {
-      chrome.downloads.setShelfEnabled(false)
-    }
+    // 禁用浏览器原生下载 UI
+    await disableBrowserDownloadUi()
 
     // 初始化下载进度
     handleDownloadingNumber(0)
@@ -64,6 +62,25 @@ async function initialize() {
     }
   } catch (error) {
     console.error('Initialize error:', error)
+  }
+}
+
+async function disableBrowserDownloadUi() {
+  if (chrome.downloads.setUiOptions) {
+    try {
+      await chrome.downloads.setUiOptions({ enabled: false })
+      return
+    } catch (error) {
+      console.warn('Disable download UI with setUiOptions failed:', error)
+    }
+  }
+
+  if (chrome.downloads.setShelfEnabled) {
+    try {
+      chrome.downloads.setShelfEnabled(false)
+    } catch (error) {
+      console.warn('Disable download shelf failed:', error)
+    }
   }
 }
 
@@ -130,17 +147,85 @@ chrome.downloads.onDeterminingFilename.addListener((item, suggest) => {
 
 // 通知按钮点击
 chrome.notifications.onButtonClicked.addListener((notificationId, index) => {
-  chrome.notifications.clear(notificationId)
+  handleNotificationButtonClicked(notificationId, index).catch(error => {
+    console.error('Notification button click error:', error)
+  })
+})
 
-  if (notificationId.indexOf('completed') >= 0) {
-    const fileId = parseInt(notificationId.substring(0, notificationId.indexOf('-')))
+chrome.notifications.onClicked.addListener((notificationId) => {
+  handleNotificationClicked(notificationId).catch(error => {
+    console.error('Notification click error:', error)
+  })
+})
+
+async function handleNotificationButtonClicked(notificationId, index) {
+  await chrome.notifications.clear(notificationId)
+
+  const fileId = getNotificationDownloadId(notificationId)
+  if (fileId === null) {
+    return
+  }
+
+  if (notificationId.endsWith('-completed')) {
     if (index === 0) {
-      chrome.downloads.open(fileId)
+      await chrome.downloads.open(fileId)
     } else if (index === 1) {
-      chrome.downloads.show(fileId)
+      await chrome.downloads.show(fileId)
+    }
+    return
+  }
+
+  if (notificationId.endsWith('-warning')) {
+    if (index === 0) {
+      await openDangerDownloadUi()
+    } else if (index === 1) {
+      await cancelDownload(fileId)
     }
   }
-})
+}
+
+async function handleNotificationClicked(notificationId) {
+  await chrome.notifications.clear(notificationId)
+
+  if (notificationId.endsWith('-warning')) {
+    await openDangerDownloadUi()
+  }
+}
+
+function getNotificationDownloadId(notificationId) {
+  const match = /^(\d+)-/.exec(notificationId)
+  if (!match) {
+    return null
+  }
+
+  return Number(match[1])
+}
+
+async function openDangerDownloadUi() {
+  if (chrome.action && chrome.action.openPopup) {
+    try {
+      await chrome.action.openPopup()
+      return
+    } catch (error) {
+      console.warn('Open popup for dangerous download failed:', error)
+    }
+  }
+
+  try {
+    await chrome.tabs.create({ url: chrome.runtime.getURL('popup.html') })
+  } catch (error) {
+    console.warn('Open extension download page failed:', error)
+    await chrome.tabs.create({ url: 'chrome://downloads' })
+  }
+}
+
+async function cancelDownload(fileId) {
+  try {
+    await chrome.downloads.cancel(fileId)
+  } catch (error) {
+    console.warn('Cancel dangerous download failed:', error)
+  }
+}
 
 // 上下文菜单点击
 chrome.contextMenus.onClicked.addListener((info) => {
@@ -609,8 +694,12 @@ async function handleDownloadWarningNotification(item) {
           priority: 2,
           iconUrl: getNotificationIcon(),
           title: common.i18data.downloadWarnNotification,
-          message: item.basename || item.url,
-          buttons: [{ title: common.i18data.deleteNotification }]
+          message: getDangerDescription(item),
+          contextMessage: item.basename || item.url || '',
+          buttons: [
+            { title: common.i18data.dangerOpenAction },
+            { title: common.i18data.dangerDiscard }
+          ]
         }
 
         if (visible) {
@@ -627,6 +716,19 @@ async function handleDownloadWarningNotification(item) {
     if (playTone) {
       playAudio('audio/warning.mp3')
     }
+  }
+}
+
+function getDangerDescription(item) {
+  switch (getDangerStatus(item)) {
+    case 'scanning':
+      return common.i18data.dangerScanningDescription
+    case 'blocked':
+      return common.i18data.dangerBlockedDescription
+    case 'action_required':
+      return common.i18data.dangerActionRequiredDescription
+    default:
+      return common.i18data.dangerDescription
   }
 }
 

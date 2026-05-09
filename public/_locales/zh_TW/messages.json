@@ -119,6 +119,26 @@
     "message": "此檔案可能會損害您的電腦",
     "description": "此檔案可能會損害您的電腦"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome 需要確認後才能儲存此檔案",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "正在進行安全檢查，請稍候",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome 已封鎖此下載",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "處理",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "捨棄",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "取消",
     "description": "取消下載危險檔案"

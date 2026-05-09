@@ -36,6 +36,7 @@
     "downloads",
     "downloads.open",
     "downloads.shelf",
+    "downloads.ui",
     "storage",
     "notifications",
     "contextMenus",

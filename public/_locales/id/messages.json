@@ -119,6 +119,26 @@
     "message": "File ini dapat membahayakan komputer Anda",
     "description": "The file may harm your computer"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome memerlukan konfirmasi Anda sebelum menyimpan file ini",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "Memeriksa keamanan unduhan",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome memblokir unduhan ini",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "Tinjau",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "Buang",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "Batal",
     "description": "Cancel download of dangerous files"

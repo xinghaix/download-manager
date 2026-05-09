@@ -119,6 +119,26 @@
     "message": "이 파일은 컴퓨터를 손상시킬 수 있습니다",
     "description": "The file may harm your computer"
   },
+  "dangerActionRequiredDescription": {
+    "message": "파일을 저장하려면 Chrome의 확인이 필요합니다",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "다운로드 안전성을 확인 중입니다",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome에서 이 다운로드를 차단했습니다",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "확인",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "폐기",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "취소",
     "description": "Cancel download of dangerous files"

@@ -119,6 +119,26 @@
     "message": "危険なファイルをダウンロードする",
     "description": "ファイルがコンピューターに損害を与える可能性があります"
   },
+  "dangerActionRequiredDescription": {
+    "message": "保存するには Chrome で確認が必要です",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "安全性を確認しています",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome がこのダウンロードをブロックしました",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "確認",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "破棄",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "キャンセルする",
     "description": "危険なファイルのダウンロードをキャンセルする"

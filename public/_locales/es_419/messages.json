@@ -119,6 +119,26 @@
     "message": "Este archivo puede dañar tu computadora",
     "description": "The file may harm your computer"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome necesita tu confirmación antes de guardar este archivo",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "Comprobando la seguridad de esta descarga",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome bloqueó esta descarga",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "Revisar",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "Descartar",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "Cancelar",
     "description": "Cancel download of dangerous files"

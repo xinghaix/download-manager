@@ -119,6 +119,26 @@
     "message": "Schädliche Datei",
     "description": "Diese Datei ist potentiell schädlich"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome braucht Ihre Bestätigung zum Speichern",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "Sicherheitsprüfung läuft",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome hat diesen Download blockiert",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "Prüfen",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "Verwerfen",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "Abbrechen",
     "description": "Den Download abbrechen"

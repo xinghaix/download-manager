@@ -119,6 +119,26 @@
     "message": "Bu dosya bilgisayarınıza zarar verebilir",
     "description": "The file may harm your computer"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome bu dosyayı kaydetmeden önce onayınızı ister",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "İndirmenin güvenliği denetleniyor",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome bu indirmeyi engelledi",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "İncele",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "Vazgeç",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "İptal",
     "description": "Cancel download of dangerous files"

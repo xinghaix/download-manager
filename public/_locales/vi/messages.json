@@ -119,6 +119,26 @@
     "message": "Tệp này có thể gây hại cho máy tính của bạn",
     "description": "The file may harm your computer"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome cần bạn xác nhận trước khi lưu tệp này",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "Đang kiểm tra độ an toàn của lượt tải",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome đã chặn lượt tải này",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "Xem lại",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "Loại bỏ",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "Hủy",
     "description": "Cancel download of dangerous files"

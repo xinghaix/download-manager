@@ -119,6 +119,26 @@
     "message": "ไฟล์นี้อาจเป็นอันตรายต่อคอมพิวเตอร์ของคุณ",
     "description": "The file may harm your computer"
   },
+  "dangerActionRequiredDescription": {
+    "message": "Chrome ต้องการการยืนยันก่อนบันทึกไฟล์นี้",
+    "description": "Dangerous download needs user confirmation"
+  },
+  "dangerScanningDescription": {
+    "message": "กำลังตรวจสอบความปลอดภัยของการดาวน์โหลด",
+    "description": "Dangerous download scanning message"
+  },
+  "dangerBlockedDescription": {
+    "message": "Chrome บล็อกการดาวน์โหลดนี้แล้ว",
+    "description": "Dangerous download blocked message"
+  },
+  "dangerOpenAction": {
+    "message": "ตรวจสอบ",
+    "description": "Open dangerous download review"
+  },
+  "dangerDiscard": {
+    "message": "ทิ้ง",
+    "description": "Discard dangerous download"
+  },
   "cancel": {
     "message": "ยกเลิก",
     "description": "Cancel download of dangerous files"
