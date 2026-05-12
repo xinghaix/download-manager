@@ -191,6 +191,10 @@
     "message": "下載警告",
     "description": "下載通知"
   },
+  "downloadInProgress": {
+    "message": "下載中",
+    "description": "下載進行中狀態"
+  },
   "openFolderNotification": {
     "message": "開啟資料夾",
     "description": "下載完成通知開啟資料夾按鈕"
@@ -222,6 +226,14 @@
   "enableAnimation": {
     "message": "開啟檔案移入移出動畫",
     "description": "擴充功能設定說明"
+  },
+  "showDownloadProgressSetting": {
+    "message": "顯示下載進度",
+    "description": "插件設定說明"
+  },
+  "showDownloadProgressDescSetting": {
+    "message": "在彈窗中顯示下載進度、速度和剩餘時間。開啟後僅輪詢目前可視區域內正在下載的檔案；關閉後不再輪詢計算進度，可降低大量下載時的資源占用。",
+    "description": "插件設定細節說明"
   },
   "contextMenus": {
     "message": "右鍵選單",

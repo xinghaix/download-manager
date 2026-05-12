@@ -189,6 +189,7 @@ const common = {
     this.i18data.minute = this.loadI18nMessage('minute')
     this.i18data.hour = this.loadI18nMessage('hour')
     this.i18data.day = this.loadI18nMessage('day')
+    this.i18data.downloadInProgress = this.loadI18nMessage('downloadInProgress')
 
     // popup 下载文件操作栏tooltip
     this.i18data.openFileInFolder = this.loadI18nMessage('openFileInFolder')
@@ -236,6 +237,8 @@ const common = {
     this.i18data.rightClickUrlSetting = this.loadI18nMessage('rightClickUrlSetting')
     this.i18data.showTooltipSetting = this.loadI18nMessage('showTooltipSetting')
     this.i18data.enableAnimation = this.loadI18nMessage('enableAnimation')
+    this.i18data.showDownloadProgressSetting = this.loadI18nMessage('showDownloadProgressSetting')
+    this.i18data.showDownloadProgressDescSetting = this.loadI18nMessage('showDownloadProgressDescSetting')
 
     // options settings 上下文菜单
     this.i18data.contextMenus = this.loadI18nMessage('contextMenus')

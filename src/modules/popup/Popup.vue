@@ -63,7 +63,8 @@
 
     <div class="content">
       <RecycleScroller id="vue-recycle-scroller" :key="recycleScrollerKey" :items="filteredDownloadItems"
-                       :item-size="84" key-field="id" v-slot="{ item }">
+                       :item-size="84" key-field="id" :emit-update="true"
+                       @update="handleScrollerUpdate" v-slot="{ item }">
         <transition :enter-active-class="enableAnimation ? 'transition-enter' : ''"
                     :leave-active-class="enableAnimation ? 'transition-leave' : ''">
           <file class="file" :item="item" :key="item.id"
@@ -71,6 +72,7 @@
                 :copyToClipboard="copyToClipboard"
                 :tooltip-show-after="tooltipShowAfter" :tooltip-hide-after="tooltipHideAfter"
                 :i18data="i18data" :close-tooltip="closeTooltip" :left-click-file="leftClickFile"
+                :show-download-progress="showDownloadProgress"
                 :left-click-url="leftClickUrl" :right-click-file="rightClickFile" :right-click-url="rightClickUrl"/>
         </transition>
       </RecycleScroller>
@@ -107,12 +109,14 @@
   import common from '../../utils/common'
   import storage from '../../utils/storage'
   import { deleteCachedFileIcon } from '../../utils/fileIconCache'
+  import { isDangerousDownload } from '../../utils/downloadDanger'
   import File from './File'
   import Tip from '../../components/Tip'
 
   const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
   const TOOLTIP_SHOW_AFTER = 700
   const TOOLTIP_HIDE_AFTER = 0
+  const ACTIVE_DOWNLOAD_POLL_INTERVAL_MS = 500
 
   export default {
     name: 'Popup',
@@ -137,18 +141,22 @@
       chrome.runtime.onMessage.addListener(this.runtimeMessageListener)
 
       this.storageChangeListener = (changes, areaName) => {
-        if (areaName !== 'session') {
-          return
+        if (areaName === 'session') {
+          const projectionChange = changes[DOWNLOADS_PROJECTION_KEY]
+          if (projectionChange && projectionChange.newValue) {
+            if (Array.isArray(projectionChange.newValue.removedIds) && projectionChange.newValue.removedIds.length > 0) {
+              this.render()
+              return
+            }
+            this.applyDownloadsProjection(projectionChange.newValue)
+          }
         }
-        const projectionChange = changes[DOWNLOADS_PROJECTION_KEY]
-        if (!projectionChange || !projectionChange.newValue) {
-          return
+
+        if (changes.show_download_progress) {
+          const nextValue = changes.show_download_progress.newValue
+          this.showDownloadProgress = typeof nextValue === 'boolean' ? nextValue : true
+          this.syncActiveDownloadsPolling()
         }
-        if (Array.isArray(projectionChange.newValue.removedIds) && projectionChange.newValue.removedIds.length > 0) {
-          this.render()
-          return
-        }
-        this.applyDownloadsProjection(projectionChange.newValue)
       }
       chrome.storage.onChanged.addListener(this.storageChangeListener)
 
@@ -193,6 +201,8 @@
       this.rightClickUrl = await storage.get('right_click_url')
       // 开启文件移入移出动画
       this.enableAnimation = await storage.get('enable_animation')
+      const showDownloadProgress = await storage.get('show_download_progress')
+      this.showDownloadProgress = typeof showDownloadProgress === 'boolean' ? showDownloadProgress : true
 
       const projection = await storage.getSession(DOWNLOADS_PROJECTION_KEY)
       this.applyDownloadsProjection(projection, { allowInsertStates: ['in_progress'] })
@@ -207,6 +217,7 @@
       if (this.storageChangeListener) {
         chrome.storage.onChanged.removeListener(this.storageChangeListener)
       }
+      this.stopActiveDownloadsPolling()
     },
     data() {
       return {
@@ -238,6 +249,7 @@
         rightClickFile: true,
         rightClickUrl: true,
         enableAnimation: false,
+        showDownloadProgress: true,
         tooltipShowAfter: TOOLTIP_SHOW_AFTER,
         tooltipHideAfter: TOOLTIP_HIDE_AFTER,
 
@@ -245,6 +257,12 @@
         downloadItemIndexMap: new Map(),
         downloadUpdateVersion: 0,
         renderRequestId: 0,
+        activeDownloadsPollTimer: null,
+        activeDownloadsPollInFlight: false,
+        visibleDownloadRange: {
+          start: 0,
+          end: -1
+        },
         deleteConfirm: {
           visible: false,
           title: '',
@@ -263,7 +281,7 @@
         return this.downloadItems.filter(item => item.basename.toLowerCase().indexOf(keyword) > -1)
       },
       openDownloadPopoverWidth() {
-        return Math.max(Number(this.downloadPanelPageSize.width) - 40, 280)
+        return Math.max(Number(this.downloadPanelPageSize.width) - 8, 280)
       },
       recycleScrollerKey() {
         return `${this.downloadUpdateVersion}-${this.filteredDownloadItems.length}`
@@ -304,6 +322,8 @@
             this.upsertDownloadItem(item, options)
           }
         })
+
+        this.syncActiveDownloadsPolling()
       },
 
       async getStoredEffectiveMode() {
@@ -380,7 +400,19 @@
 
       prepareDownloadItem(item) {
         common.beforeHandler(item)
-        item.previousBytesReceived = item.previousBytesReceived || 0
+        const now = Date.now()
+        item.previousBytesReceived = typeof item.previousBytesReceived === 'number'
+          ? item.previousBytesReceived
+          : (item.bytesReceived || 0)
+        item.previousMetricsUpdatedAt = typeof item.previousMetricsUpdatedAt === 'number'
+          ? item.previousMetricsUpdatedAt
+          : now
+        item.downloadMetricsUpdatedAt = typeof item.downloadMetricsUpdatedAt === 'number'
+          ? item.downloadMetricsUpdatedAt
+          : now
+        item.downloadSpeedBytesPerSecond = typeof item.downloadSpeedBytesPerSecond === 'number'
+          ? item.downloadSpeedBytesPerSecond
+          : null
         item.error = item.error || null
         item.estimatedEndTime = item.estimatedEndTime || null
         item.endTime = item.endTime || null
@@ -390,9 +422,35 @@
 
       mergeDownloadItem(target, source) {
         const previousBytesReceived = target.bytesReceived || 0
+        const previousMetricsUpdatedAt = target.downloadMetricsUpdatedAt || Date.now()
+        const nextBytesReceived = source.bytesReceived || 0
+        const now = Date.now()
         Object.assign(target, source)
         this.prepareDownloadItem(target)
         target.previousBytesReceived = previousBytesReceived
+        target.previousMetricsUpdatedAt = previousMetricsUpdatedAt
+        target.downloadMetricsUpdatedAt = now
+        target.downloadSpeedBytesPerSecond = this.calculateDownloadSpeed(
+          previousBytesReceived,
+          nextBytesReceived,
+          previousMetricsUpdatedAt,
+          now,
+          target
+        )
+      },
+
+      calculateDownloadSpeed(previousBytesReceived, nextBytesReceived, previousMetricsUpdatedAt, now, item) {
+        if (!item || item.state !== 'in_progress' || item.paused) {
+          return 0
+        }
+
+        const elapsedSeconds = (now - previousMetricsUpdatedAt) / 1000
+        const bytesDelta = nextBytesReceived - previousBytesReceived
+        if (elapsedSeconds <= 0 || bytesDelta <= 0) {
+          return 0
+        }
+
+        return bytesDelta / elapsedSeconds
       },
 
       insertDownloadItem(item) {
@@ -422,14 +480,15 @@
         this.insertDownloadItem(item)
       },
 
-      async requestDownloadSnapshot() {
+      async requestDownloadSnapshot(query = null) {
         if (!(typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage)) {
           return []
         }
 
         return await new Promise(resolve => {
           chrome.runtime.sendMessage(JSON.stringify({
-            type: 'download_snapshot_request'
+            type: 'download_snapshot_request',
+            data: query
           }), response => {
             if (chrome.runtime.lastError || !response || !response.success || !Array.isArray(response.data)) {
               resolve([])
@@ -474,6 +533,87 @@
         })
         this.rebuildDownloadItemIndexMap()
         this.applyDownloadsProjection(projection)
+        this.syncActiveDownloadsPolling()
+      },
+
+      handleScrollerUpdate(...range) {
+        const visibleStartIndex = Number.isFinite(range[2]) ? range[2] : 0
+        const visibleEndIndex = Number.isFinite(range[3]) ? range[3] : -1
+        this.visibleDownloadRange = {
+          start: Math.max(visibleStartIndex, 0),
+          end: Math.max(visibleEndIndex, -1)
+        }
+        this.syncActiveDownloadsPolling()
+      },
+
+      getVisibleActiveDownloadIds() {
+        if (!this.showDownloadProgress) {
+          return []
+        }
+
+        const visibleItems = this.filteredDownloadItems.slice(
+          this.visibleDownloadRange.start,
+          this.visibleDownloadRange.end + 1
+        )
+
+        return visibleItems
+          .filter(item => item && item.state === 'in_progress' && !isDangerousDownload(item))
+          .map(item => item.id)
+      },
+
+      syncActiveDownloadsPolling() {
+        if (this.getVisibleActiveDownloadIds().length > 0) {
+          this.startActiveDownloadsPolling()
+        } else {
+          this.stopActiveDownloadsPolling()
+        }
+      },
+
+      startActiveDownloadsPolling() {
+        if (this.activeDownloadsPollTimer) {
+          return
+        }
+
+        this.activeDownloadsPollTimer = setInterval(() => {
+          this.pollActiveDownloads()
+        }, ACTIVE_DOWNLOAD_POLL_INTERVAL_MS)
+      },
+
+      stopActiveDownloadsPolling() {
+        if (!this.activeDownloadsPollTimer) {
+          return
+        }
+
+        clearInterval(this.activeDownloadsPollTimer)
+        this.activeDownloadsPollTimer = null
+        this.activeDownloadsPollInFlight = false
+      },
+
+      async pollActiveDownloads() {
+        const currentActiveIds = this.getVisibleActiveDownloadIds()
+        if (this.activeDownloadsPollInFlight || currentActiveIds.length === 0) {
+          this.syncActiveDownloadsPolling()
+          return
+        }
+
+        this.activeDownloadsPollInFlight = true
+        try {
+          const items = await this.requestDownloadSnapshot({ids: currentActiveIds})
+          const activeIds = new Set()
+          items.forEach(item => {
+            if (item) {
+              activeIds.add(item.id)
+              this.upsertDownloadItem(item)
+            }
+          })
+          const hasMissingActiveItem = currentActiveIds.some(id => !activeIds.has(id))
+          if (hasMissingActiveItem) {
+            await this.render()
+          }
+        } finally {
+          this.activeDownloadsPollInFlight = false
+          this.syncActiveDownloadsPolling()
+        }
       },
 
       toggleOpenDownload() {
@@ -849,7 +989,7 @@
   }
 
   body .open-download-popover.el-popover {
-    padding: 8px 12px;
+    padding: 8px;
     box-sizing: border-box;
   }
 

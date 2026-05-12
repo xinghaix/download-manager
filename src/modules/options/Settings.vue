@@ -44,6 +44,14 @@
         </div>
         <el-switch class="switch" v-model="enableAnimation" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
+      <el-divider/>
+      <div class="item pointer">
+        <div class="content" @click="showDownloadProgress = !showDownloadProgress">
+          <span class="setting-title">{{i18data.showDownloadProgressSetting}}</span>
+          <span class="setting-description">{{i18data.showDownloadProgressDescSetting}}</span>
+        </div>
+        <el-switch class="switch" v-model="showDownloadProgress" active-color="#409EFF" inactive-color="#bdc1c6"/>
+      </div>
     </el-card>
 
     <h2 class="title">{{i18data.contextMenus}}</h2>
@@ -276,6 +284,9 @@ export default {
     async enableAnimation(val) {
       await this.persistSetting('enable_animation', val)
     },
+    async showDownloadProgress(val) {
+      await this.persistSetting('show_download_progress', val)
+    },
 
     async downloadContextMenus(val) {
       await this.persistSetting('download_context_menus', val)
@@ -343,6 +354,9 @@ export default {
 
       const enableAnimation = await storage.get('enable_animation')
       this.enableAnimation = typeof enableAnimation === 'boolean' ? enableAnimation : false
+
+      const showDownloadProgress = await storage.get('show_download_progress')
+      this.showDownloadProgress = typeof showDownloadProgress === 'boolean' ? showDownloadProgress : true
 
       // 上下文菜单设置
       const downloadContextMenus = await storage.get('download_context_menus')
@@ -413,6 +427,7 @@ export default {
       rightClickUrl: true,
       showTooltip: false,
       enableAnimation: false,
+      showDownloadProgress: true,
 
       // 上下文菜单
       downloadContextMenus: true,

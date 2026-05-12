@@ -191,6 +191,10 @@
     "message": "Avertissement de téléchargement",
     "description": "Notification de téléchargement"
   },
+  "downloadInProgress": {
+    "message": "Downloading",
+    "description": "Download in-progress state"
+  },
   "openFolderNotification": {
     "message": "Ouvrir le dossier",
     "description": "Bouton d'ouverture du dossier de notification de fin de téléchargement"
@@ -222,6 +226,14 @@
   "enableAnimation": {
     "message": "Activer l'animation de fichier entrant et sortant",
     "description": "instructions de configuration du plugin"
+  },
+  "showDownloadProgressSetting": {
+    "message": "Show download progress",
+    "description": "Plugin setting description"
+  },
+  "showDownloadProgressDescSetting": {
+    "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
+    "description": "Plugin setting detail description"
   },
   "contextMenus": {
     "message": "Menu contextuel",

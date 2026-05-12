@@ -15,6 +15,7 @@ const CONFIG_KEYS = [
   'left_click_url',
   'right_click_url',
   'enable_animation',
+  'show_download_progress',
   'download_started_notification',
   'download_completed_notification',
   'download_warning_notification',
@@ -320,6 +321,7 @@ const storage = {
     await this.setDefaultIfNull('left_click_url', true)
     await this.setDefaultIfNull('right_click_url', true)
     await this.setDefaultIfNull('enable_animation', false)
+    await this.setDefaultIfNull('show_download_progress', true)
     await this.setDefaultIfNull('download_started_notification', false)
     await this.setDefaultIfNull('download_completed_notification', false)
     await this.setDefaultIfNull('download_warning_notification', false)

@@ -191,6 +191,10 @@
     "message": "下载警告",
     "description": "下载通知"
   },
+  "downloadInProgress": {
+    "message": "下载中",
+    "description": "下载进行中状态"
+  },
   "openFolderNotification": {
     "message": "打开文件夹",
     "description": "下载完成通知打开文件夹按钮"
@@ -222,6 +226,14 @@
   "enableAnimation": {
     "message": "开启文件移入移出动画",
     "description": "插件设置说明"
+  },
+  "showDownloadProgressSetting": {
+    "message": "显示下载进度",
+    "description": "插件设置说明"
+  },
+  "showDownloadProgressDescSetting": {
+    "message": "在弹窗中显示下载进度、速度和剩余时间。开启后仅轮询当前可视区域内正在下载的文件；关闭后不再轮询计算进度，可降低大量下载时的资源占用。",
+    "description": "插件设置细节说明"
   },
   "contextMenus": {
     "message": "上下文菜单",

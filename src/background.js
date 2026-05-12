@@ -279,7 +279,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         case 'download_snapshot_request':
           sendResponse({
             success: true,
-            data: await getDownloadSnapshot()
+            data: await getDownloadSnapshot(
+              received.data && typeof received.data === 'object' ? received.data : null
+            )
           })
           return
       }
@@ -325,8 +327,20 @@ async function getDownloadById(id) {
   return prepareRuntimeDownloadItem(items[0])
 }
 
-async function getDownloadSnapshot() {
-  const items = await searchDownloads({ orderBy: ['-startTime'] })
+async function getDownloadSnapshot(query = null) {
+  const searchQuery = query ? {...query} : { orderBy: ['-startTime'] }
+  if (Array.isArray(searchQuery.ids)) {
+    const items = await Promise.all(
+      searchQuery.ids
+        .filter(id => typeof id === 'number')
+        .map(id => getDownloadById(id))
+    )
+    return items.filter(item => item)
+  }
+  if (!searchQuery.orderBy) {
+    searchQuery.orderBy = ['-startTime']
+  }
+  const items = await searchDownloads(searchQuery)
   return items
     .filter(item => item)
     .map(item => prepareRuntimeDownloadItem(item))

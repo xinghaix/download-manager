@@ -2,7 +2,7 @@
 <template>
   <div class="file" :class="shouldBeGray(item)">
     <div class="icon">
-      <Progress v-if="item.state === 'in_progress'" class="progress"
+      <Progress v-if="showDownloadProgress && item.state === 'in_progress'" class="progress"
                 :width="46"
                 :loop="item.totalBytes === 0"
                 :paused="item.paused"
@@ -30,7 +30,7 @@
               </button>
             </div>
           </template>
-          <template v-else-if="item.totalBytes !== 0">
+          <template v-else-if="showDownloadProgress && item.totalBytes !== 0">
             <div class="cell left common">
               <span class="receivedSize small-size">{{ getFormattedSize(item.bytesReceived) }}</span>
               <span class="divider small-size">/</span>
@@ -43,12 +43,20 @@
               <span class="remaining small-size">{{ remaining(item) }}</span>
             </div>
           </template>
-          <template v-else>
+          <template v-else-if="showDownloadProgress">
             <div class="cell left common">
               <span class="receivedSize small-size">{{ getFormattedSize(item.bytesReceived) }}</span>
             </div>
             <div class="cell right common">
               <span class="speed small-size">{{ getSpeed(item) }}</span>
+            </div>
+          </template>
+          <template v-else>
+            <div class="cell left common">
+              <span class="state small-size">{{ i18data.downloadInProgress }}</span>
+            </div>
+            <div class="cell right common">
+              <span v-if="item.totalBytes > 0" class="size small-size">{{ getFormattedSize(item.totalBytes) }}</span>
             </div>
           </template>
         </template>
@@ -173,6 +181,10 @@ export default {
     copyToClipboard: {
       type: Function,
       required: true
+    },
+    showDownloadProgress: {
+      type: Boolean,
+      default: true
     }
   },
   mounted() {
@@ -469,21 +481,24 @@ export default {
 
     // 获取文件实时下载速度
     getSpeed(item) {
-      // 文件下载有两种情况
-      // 一种是确定文件的总大小
-      if (item.totalBytes !== 0) {
-        let speed = '0B'
-        if (item.estimatedEndTime) {
-          let remainingTime = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
-          if (!isNaN(remainingTime)) {
-            speed = this.getFormattedSize((item.totalBytes - item.bytesReceived) / remainingTime);
-          }
-        }
-        return speed + '/s';
-      } else {
-        // 另一种是文件大小不确定【每400ms计算一次，有时可能为0，精度较差】
-        return this.getFormattedSize((item.bytesReceived - item.previousBytesReceived) / (0.4 * 1.6)) + '/s'
+      if (item.paused) {
+        return '0B/s'
       }
+
+      if (typeof item.downloadSpeedBytesPerSecond === 'number' && item.downloadSpeedBytesPerSecond >= 0) {
+        return this.getFormattedSize(item.downloadSpeedBytesPerSecond) + '/s'
+      }
+
+      if (!item.totalBytes || !item.estimatedEndTime) {
+        return '0B/s'
+      }
+
+      const remainingTime = (new Date(item.estimatedEndTime) - new Date().getTime()) / 1000
+      if (isNaN(remainingTime) || remainingTime <= 0) {
+        return '0B/s'
+      }
+
+      return this.getFormattedSize((item.totalBytes - item.bytesReceived) / remainingTime) + '/s'
     },
 
     remaining(item) {
