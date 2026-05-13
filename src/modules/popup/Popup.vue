@@ -9,6 +9,7 @@
       </el-input>
       <div class="header-operator">
         <el-popover ref="openDownload" placement="bottom" :width="openDownloadPopoverWidth" trigger="manual"
+                    :popper-options="openDownloadPopperOptions"
                     popper-class="open-download-popover"
                     v-model:visible="showPopover" @after-enter="textareaFocus">
           <el-input type="textarea" :clearable="true" resize="none"
@@ -282,6 +283,32 @@
       },
       openDownloadPopoverWidth() {
         return Math.max(Number(this.downloadPanelPageSize.width) - 8, 280)
+      },
+      openDownloadPopperOptions() {
+        return {
+          modifiers: [
+            {
+              name: 'alignOpenDownloadPopover',
+              enabled: true,
+              phase: 'main',
+              requires: ['popperOffsets'],
+              fn({state}) {
+                if (state.modifiersData && state.modifiersData.popperOffsets) {
+                  const popperX = 4
+                  state.modifiersData.popperOffsets.x = popperX
+
+                  const arrow = state.elements && state.elements.arrow
+                  const reference = state.elements && state.elements.reference
+                  if (arrow && reference && state.modifiersData.arrow) {
+                    const referenceRect = reference.getBoundingClientRect()
+                    const arrowWidth = arrow.offsetWidth || 0
+                    state.modifiersData.arrow.x = referenceRect.left + referenceRect.width / 2 - popperX - arrowWidth / 2
+                  }
+                }
+              }
+            }
+          ]
+        }
       },
       recycleScrollerKey() {
         return `${this.downloadUpdateVersion}-${this.filteredDownloadItems.length}`
@@ -989,8 +1016,22 @@
   }
 
   body .open-download-popover.el-popover {
+    --el-popover-bg-color: var(--header-dropdown-menu-background-color);
+    --el-popover-border-color: var(--header-dropdown-menu-border-color);
+    background-color: var(--header-dropdown-menu-background-color);
+    border-color: var(--header-dropdown-menu-border-color);
     padding: 8px;
     box-sizing: border-box;
+  }
+
+  body .open-download-popover.el-popper .el-popper__arrow::before {
+    background-color: var(--header-dropdown-menu-background-color)!important;
+    border: 1px solid var(--header-dropdown-menu-border-color)!important;
+  }
+
+  body .open-download-popover.el-popper[data-popper-placement^=bottom] .el-popper__arrow::before {
+    border-right-color: transparent!important;
+    border-bottom-color: transparent!important;
   }
 
   body .open-download-popover .el-textarea,
