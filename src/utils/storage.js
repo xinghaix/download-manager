@@ -246,6 +246,35 @@ const storage = {
     return this.getSyncPreference().then(isSync => this.getFromArea(keys, isSync))
   },
 
+  async getMany(keys) {
+    const normalizedKeys = Array.isArray(keys) ? keys : [keys]
+    const result = {}
+    const configKeys = normalizedKeys.filter(key => key !== 'sync')
+    let syncPreference = null
+
+    if (normalizedKeys.includes('sync')) {
+      syncPreference = await this.getSyncPreference()
+      result.sync = syncPreference
+    }
+
+    if (!configKeys.length) {
+      return result
+    }
+
+    if (!hasChromeStorage()) {
+      configKeys.forEach(key => {
+        result[key] = localGet(key)
+      })
+      return result
+    }
+
+    const isSync = typeof syncPreference === 'boolean' ? syncPreference : await this.getSyncPreference()
+    return {
+      ...result,
+      ...await this.getManyFromArea(configKeys, isSync)
+    }
+  },
+
   /**
    * 如果对应key的value为null的话，就设置默认的value
    * @param key {String}

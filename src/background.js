@@ -4,6 +4,7 @@ import common from "./utils/common.js"
 import icon from "./utils/icon.js"
 import { getDangerStatus, isDangerousDownload } from "./utils/downloadDanger.js"
 import { getRoutingFilename } from "./utils/downloadFileRouting.js"
+import { ensureBrowserDownloadUiDisabled } from "./utils/browserDownloadUi.js"
 
 // 全局状态（Service Worker 重启时会丢失，需要从 storage 恢复）
 let state = {
@@ -33,6 +34,18 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(initialize())
 })
 
+chrome.runtime.onStartup.addListener(() => {
+  ensureBrowserDownloadUiDisabled(true).catch(error => {
+    console.warn('Disable download UI on startup failed:', error)
+  })
+})
+
+chrome.runtime.onInstalled.addListener(() => {
+  ensureBrowserDownloadUiDisabled(true).catch(error => {
+    console.warn('Disable download UI on installed failed:', error)
+  })
+})
+
 // 初始化
 async function initialize() {
   try {
@@ -47,7 +60,7 @@ async function initialize() {
     }
 
     // 禁用浏览器原生下载 UI
-    await disableBrowserDownloadUi()
+    await ensureBrowserDownloadUiDisabled(true)
 
     // 初始化下载进度
     handleDownloadingNumber(0)
@@ -65,27 +78,11 @@ async function initialize() {
   }
 }
 
-async function disableBrowserDownloadUi() {
-  if (chrome.downloads.setUiOptions) {
-    try {
-      await chrome.downloads.setUiOptions({ enabled: false })
-      return
-    } catch (error) {
-      console.warn('Disable download UI with setUiOptions failed:', error)
-    }
-  }
-
-  if (chrome.downloads.setShelfEnabled) {
-    try {
-      chrome.downloads.setShelfEnabled(false)
-    } catch (error) {
-      console.warn('Disable download shelf failed:', error)
-    }
-  }
-}
-
 // 下载创建监听
 chrome.downloads.onCreated.addListener((item) => {
+  ensureBrowserDownloadUiDisabled().catch(error => {
+    console.warn('Disable download UI on download created failed:', error)
+  })
   queueDownloadRefresh(item.id)
 })
 
@@ -105,18 +102,12 @@ chrome.downloads.onErased.addListener((id) => {
       const projection = await getDownloadsProjection()
       delete projection.itemsById[id]
       projection.removedIds = [id]
-      projection.summary = {
-        anyInProgress: state.anyInProgress,
-        anyInDangerous: state.anyInDangerous,
-        downloadingNumber: state.downloadingNumber,
-        progress: state.progress
-      }
+      await refreshActiveDownloadsSummary({ projection })
       await setDownloadsProjection(projection)
     } catch (error) {
       console.error('Projection erase sync error:', error)
     }
   })()
-  scheduleActiveDownloadsRefresh()
 })
 
 chrome.alarms.onAlarm.addListener((alarm) => {
@@ -436,6 +427,15 @@ async function setDownloadsProjection(projection) {
   return nextProjection
 }
 
+function getDownloadsSummary() {
+  return {
+    anyInProgress: state.anyInProgress,
+    anyInDangerous: state.anyInDangerous,
+    downloadingNumber: state.downloadingNumber,
+    progress: state.progress
+  }
+}
+
 async function rebuildProjectionFromActiveDownloads() {
   const activeItems = (await searchDownloads({ state: 'in_progress', orderBy: ['-startTime'] }))
     .map(item => prepareRuntimeDownloadItem(item))
@@ -451,12 +451,7 @@ async function rebuildProjectionFromActiveDownloads() {
   const projection = await getDownloadsProjection()
   projection.itemsById = itemsById
   projection.removedIds = []
-  projection.summary = {
-    anyInProgress: state.anyInProgress,
-    anyInDangerous: state.anyInDangerous,
-    downloadingNumber: state.downloadingNumber,
-    progress: state.progress
-  }
+  projection.summary = getDownloadsSummary()
 
   await setDownloadsProjection(projection)
   await syncActiveDownloadsAlarm(state.anyInProgress)
@@ -553,18 +548,19 @@ async function flushPendingDownloadUpdates() {
   }
 
   projection.itemsById = pruneProjectionItems(projection.itemsById)
-
-  projection.summary = {
-    anyInProgress: state.anyInProgress,
-    anyInDangerous: state.anyInDangerous,
-    downloadingNumber: state.downloadingNumber,
-    progress: state.progress
-  }
+  clearScheduledActiveDownloadsRefresh()
+  await refreshActiveDownloadsSummary({ projection })
   await setDownloadsProjection(projection)
-  scheduleActiveDownloadsRefresh()
 }
 
-async function refreshActiveDownloadsSummary() {
+function clearScheduledActiveDownloadsRefresh() {
+  if (state.activeRefreshTimer) {
+    clearTimeout(state.activeRefreshTimer)
+    state.activeRefreshTimer = null
+  }
+}
+
+async function refreshActiveDownloadsSummary(options = {}) {
   const activeItems = (await searchDownloads({ state: 'in_progress', orderBy: ['-startTime'] }))
     .map(item => prepareRuntimeDownloadItem(item))
 
@@ -608,26 +604,25 @@ async function refreshActiveDownloadsSummary() {
     icon.restoreDefaultIcon(iconColor[themeKey])
   }
 
-  const projection = await getDownloadsProjection()
-  projection.summary = {
-    anyInProgress: state.anyInProgress,
-    anyInDangerous: state.anyInDangerous,
-    downloadingNumber: state.downloadingNumber,
-    progress: state.progress
+  const projection = options.projection || await getDownloadsProjection()
+  projection.summary = getDownloadsSummary()
+  if (!options.projection) {
+    await setDownloadsProjection(projection)
   }
-  await setDownloadsProjection(projection)
 }
 
 // 处理下载开始通知
 async function handleDownloadStartedNotification(item) {
   const notificationId = item.id + '-started'
   if (state.notificationList.indexOf(notificationId) < 0) {
-    const showNotification = await storage.get('download_started_notification')
+    const notificationSettings = await getDownloadNotificationSettings(
+      'download_started_notification',
+      'download_started_tone'
+    )
 
-    if (showNotification) {
+    if (notificationSettings.showNotification) {
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
-        const visible = await storage.get('download_notification_remain_visible')
         const option = {
           type: 'basic',
           priority: 2,
@@ -637,18 +632,17 @@ async function handleDownloadStartedNotification(item) {
           buttons: [{ title: common.i18data.deleteNotification }]
         }
 
-        if (visible) {
+        if (notificationSettings.visible) {
           option.requireInteraction = true
         }
 
         const createdId = await createExtensionNotification(notificationId, option)
         state.notificationList.push(createdId)
-        closeNotification(createdId, option, visible)
+        closeNotification(createdId, option, notificationSettings.visible)
       }
     }
 
-    const playTone = await storage.get('download_started_tone')
-    if (playTone) {
+    if (notificationSettings.playTone) {
       playAudio('audio/start.mp3')
     }
   }
@@ -658,12 +652,14 @@ async function handleDownloadStartedNotification(item) {
 async function handleDownloadCompletedNotification(item) {
   const notificationId = item.id + '-completed'
   if (state.notificationList.indexOf(notificationId) < 0) {
-    const showNotification = await storage.get('download_completed_notification')
+    const notificationSettings = await getDownloadNotificationSettings(
+      'download_completed_notification',
+      'download_completed_tone'
+    )
 
-    if (showNotification) {
+    if (notificationSettings.showNotification) {
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
-        const visible = await storage.get('download_notification_remain_visible')
         const option = {
           type: 'basic',
           priority: 2,
@@ -676,18 +672,17 @@ async function handleDownloadCompletedNotification(item) {
           ]
         }
 
-        if (visible) {
+        if (notificationSettings.visible) {
           option.requireInteraction = true
         }
 
         const createdId = await createExtensionNotification(notificationId, option)
         state.notificationList.push(createdId)
-        closeNotification(createdId, option, visible)
+        closeNotification(createdId, option, notificationSettings.visible)
       }
     }
 
-    const playTone = await storage.get('download_completed_tone')
-    if (playTone) {
+    if (notificationSettings.playTone) {
       playAudio('audio/completed.wav')
     }
   }
@@ -697,12 +692,14 @@ async function handleDownloadCompletedNotification(item) {
 async function handleDownloadWarningNotification(item) {
   const notificationId = item.id + '-warning'
   if (state.notificationList.indexOf(notificationId) < 0) {
-    const showNotification = await storage.get('download_warning_notification')
+    const notificationSettings = await getDownloadNotificationSettings(
+      'download_warning_notification',
+      'download_warning_tone'
+    )
 
-    if (showNotification) {
+    if (notificationSettings.showNotification) {
       const level = await chrome.notifications.getPermissionLevel()
       if (level === 'granted') {
-        const visible = await storage.get('download_notification_remain_visible')
         const option = {
           type: 'basic',
           priority: 2,
@@ -716,20 +713,33 @@ async function handleDownloadWarningNotification(item) {
           ]
         }
 
-        if (visible) {
+        if (notificationSettings.visible) {
           option.requireInteraction = true
         }
 
         const createdId = await createExtensionNotification(notificationId, option)
         state.notificationList.push(createdId)
-        closeNotification(createdId, option, visible)
+        closeNotification(createdId, option, notificationSettings.visible)
       }
     }
 
-    const playTone = await storage.get('download_warning_tone')
-    if (playTone) {
+    if (notificationSettings.playTone) {
       playAudio('audio/warning.mp3')
     }
+  }
+}
+
+async function getDownloadNotificationSettings(showKey, toneKey) {
+  const settings = await storage.getMany([
+    showKey,
+    toneKey,
+    'download_notification_remain_visible'
+  ])
+
+  return {
+    showNotification: settings[showKey],
+    playTone: settings[toneKey],
+    visible: settings.download_notification_remain_visible
   }
 }
 

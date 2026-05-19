@@ -145,10 +145,6 @@
         if (areaName === 'session') {
           const projectionChange = changes[DOWNLOADS_PROJECTION_KEY]
           if (projectionChange && projectionChange.newValue) {
-            if (Array.isArray(projectionChange.newValue.removedIds) && projectionChange.newValue.removedIds.length > 0) {
-              this.render()
-              return
-            }
             this.applyDownloadsProjection(projectionChange.newValue)
           }
         }
@@ -195,14 +191,23 @@
     },
     async mounted() {
       // 初始化插件设置
-      this.closeTooltip = await storage.get('close_tooltip')
-      this.leftClickFile = await storage.get('left_click_file')
-      this.rightClickFile = await storage.get('right_click_file')
-      this.leftClickUrl = await storage.get('left_click_url')
-      this.rightClickUrl = await storage.get('right_click_url')
+      const settings = await storage.getMany([
+        'close_tooltip',
+        'left_click_file',
+        'right_click_file',
+        'left_click_url',
+        'right_click_url',
+        'enable_animation',
+        'show_download_progress'
+      ])
+      this.closeTooltip = settings.close_tooltip
+      this.leftClickFile = settings.left_click_file
+      this.rightClickFile = settings.right_click_file
+      this.leftClickUrl = settings.left_click_url
+      this.rightClickUrl = settings.right_click_url
       // 开启文件移入移出动画
-      this.enableAnimation = await storage.get('enable_animation')
-      const showDownloadProgress = await storage.get('show_download_progress')
+      this.enableAnimation = settings.enable_animation
+      const showDownloadProgress = settings.show_download_progress
       this.showDownloadProgress = typeof showDownloadProgress === 'boolean' ? showDownloadProgress : true
 
       const projection = await storage.getSession(DOWNLOADS_PROJECTION_KEY)
@@ -260,6 +265,7 @@
         renderRequestId: 0,
         activeDownloadsPollTimer: null,
         activeDownloadsPollInFlight: false,
+        visibleActiveDownloadIdsSignature: '',
         visibleDownloadRange: {
           start: 0,
           end: -1
@@ -589,7 +595,15 @@
       },
 
       syncActiveDownloadsPolling() {
-        if (this.getVisibleActiveDownloadIds().length > 0) {
+        const visibleActiveDownloadIds = this.getVisibleActiveDownloadIds()
+        const signature = visibleActiveDownloadIds.join(',')
+        const shouldPoll = visibleActiveDownloadIds.length > 0
+        if (signature === this.visibleActiveDownloadIdsSignature && Boolean(this.activeDownloadsPollTimer) === shouldPoll) {
+          return
+        }
+
+        this.visibleActiveDownloadIdsSignature = signature
+        if (shouldPoll) {
           this.startActiveDownloadsPolling()
         } else {
           this.stopActiveDownloadsPolling()

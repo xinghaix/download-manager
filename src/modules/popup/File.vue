@@ -123,8 +123,14 @@ import {
   getDangerStatus,
   isDangerousDownload
 } from '../../utils/downloadDanger'
-import common from '../../utils/common'
-import { getCachedFileIcon, setCachedFileIcon } from '../../utils/fileIconCache'
+import {
+  getStoredFileIcon,
+  loadFileIcon,
+  markCompletedFileIconRefreshed,
+  rememberItemFileIcon,
+  resetFileIcon,
+  shouldRefreshCompletedFileIcon
+} from '../../utils/downloadFileIcon'
 
 export default {
   name: 'File',
@@ -189,7 +195,11 @@ export default {
   },
   mounted() {
     this.syncResolvedIconUrl()
-    this.ensureFileIcon()
+    if (this.item?.state === 'complete') {
+      this.refreshCompletedFileIcon()
+    } else {
+      this.ensureFileIcon()
+    }
   },
   watch: {
     'item.id'() {
@@ -198,52 +208,77 @@ export default {
     },
     'item.filename'() {
       this.ensureFileIcon()
+    },
+    'item.state'(state, oldState) {
+      if (state === 'complete' && oldState !== 'complete') {
+        this.refreshCompletedFileIcon()
+      }
     }
   },
   data() {
     return {
       resolvedIconUrl: null,
-      iconLoading: false
+      iconLoading: false,
+      iconRefreshAfterLoading: false
     }
   },
   methods: {
     syncResolvedIconUrl() {
-      const cachedIconUrl = getCachedFileIcon(this.item?.id)
-      this.resolvedIconUrl = cachedIconUrl || this.item?.iconUrl || null
+      this.resolvedIconUrl = getStoredFileIcon(this.item)
     },
 
-    ensureFileIcon() {
+    ensureFileIcon(options = {}) {
       if (!this.item || !this.item.filename) {
         return
       }
 
-      const cachedIconUrl = getCachedFileIcon(this.item.id)
-      if (cachedIconUrl) {
+      const forceRefresh = Boolean(options.forceRefresh)
+      const cachedIconUrl = getStoredFileIcon(this.item, {ignoreItemIcon: forceRefresh})
+      if (!forceRefresh && cachedIconUrl) {
         this.resolvedIconUrl = cachedIconUrl
         return
       }
 
-      if (this.item.iconUrl) {
+      if (!forceRefresh && this.item.iconUrl) {
         this.resolvedIconUrl = this.item.iconUrl
-        setCachedFileIcon(this.item.id, this.item.iconUrl)
+        rememberItemFileIcon(this.item)
         return
       }
 
       if (this.iconLoading) {
+        if (forceRefresh) {
+          this.iconRefreshAfterLoading = true
+        }
         return
       }
 
       this.resolvedIconUrl = null
       this.iconLoading = true
 
-      common.getCustomFileIcon(this.item).then(iconUrl => {
+      loadFileIcon(this.item, {forceRefresh}).then(iconUrl => {
         this.resolvedIconUrl = iconUrl || null
-        if (iconUrl) {
-          setCachedFileIcon(this.item.id, iconUrl)
-        }
       }).finally(() => {
         this.iconLoading = false
+        if (this.iconRefreshAfterLoading) {
+          this.iconRefreshAfterLoading = false
+          this.ensureFileIcon({forceRefresh: true})
+        }
       })
+    },
+
+    refreshCompletedFileIcon() {
+      if (!this.item || typeof this.item.id !== 'number') {
+        return
+      }
+
+      if (!shouldRefreshCompletedFileIcon(this.item.id)) {
+        this.syncResolvedIconUrl()
+        return
+      }
+
+      markCompletedFileIconRefreshed(this.item.id)
+      resetFileIcon(this.item.id)
+      this.ensureFileIcon({forceRefresh: true})
     },
 
     /**
