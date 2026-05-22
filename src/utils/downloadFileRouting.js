@@ -60,10 +60,6 @@ export function parseExtensions(value) {
     .filter(extension => /^[a-z0-9][a-z0-9_+-]*$/.test(extension)))]
 }
 
-export function formatExtensions(extensions) {
-  return parseExtensions(extensions).join(', ')
-}
-
 export function normalizeFolderPath(value) {
   return String(value || '')
     .replace(/\\/g, '/')

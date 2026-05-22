@@ -77,6 +77,9 @@
                 :left-click-url="leftClickUrl" :right-click-file="rightClickFile" :right-click-url="rightClickUrl"/>
         </transition>
       </RecycleScroller>
+      <div v-if="filteredDownloadItems.length === 0" class="empty-state" aria-hidden="true">
+        <img class="empty-state-illustration" src="../../../.idea/1.svg" alt="">
+      </div>
       <el-backtop target=".content #vue-recycle-scroller" visibilityHeight="70"/>
       <tip :text="i18data.copied" :position="tipPosition" v-model:showTip="showCopiedTip"/>
     </div>
@@ -1107,12 +1110,20 @@
   }
 
   .header {
-    padding: 10px 4px 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 7px 8px 8px;
+    border-bottom: 1px solid var(--header-divider-color, var(--content-file-border-color));
+    box-sizing: border-box;
   }
 
   /* header栏输入框 */
   .header .search {
-    width: 212px;
+    flex: 1 1 212px;
+    max-width: 232px;
+    min-width: 0;
   }
   .header .search :deep(.el-input__wrapper) {
     border-radius: 18px;
@@ -1138,9 +1149,9 @@
   }
 
   .header .header-operator {
-    float: right;
     display: flex;
     align-items: center;
+    flex: 0 0 auto;
   }
   .header .header-button {
     display: inline-flex;
@@ -1222,8 +1233,26 @@
 
   /* 下载内容区域 */
   .content {
-    height: calc(100% - 54px);
-    margin: 9px 0 0 7px;
+    position: relative;
+    height: calc(100% - 62px);
+    margin: 12px 0 0 7px;
+  }
+
+  .empty-state {
+    position: absolute;
+    inset: 0 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    color: var(--content-file-filename-gray-color);
+  }
+
+  .empty-state-illustration {
+    width: clamp(252px, 66%, 300px);
+    height: auto;
+    filter: var(--empty-state-illustration-filter, none);
+    opacity: var(--empty-state-illustration-opacity, 1);
   }
 
   /* 滚动条样式 */

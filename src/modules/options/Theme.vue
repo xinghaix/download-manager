@@ -392,7 +392,7 @@
         return this.fixedPreviewViewport.height - 1
       },
       previewContentHeight() {
-        return Math.max(this.popupBodyHeight - 54, 0)
+        return Math.max(this.popupBodyHeight - 62, 0)
       }
     },
     methods: {
@@ -1552,15 +1552,19 @@
   }
 
   .popup-header {
-    padding: 10px 4px 0 8px;
+    padding: 10px 7px 8px 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
+    border-bottom: 1px solid var(--header-divider-color, var(--content-file-border-color));
+    box-sizing: border-box;
   }
 
   .popup-search {
-    width: 212px;
+    flex: 1 1 212px;
+    max-width: 232px;
+    min-width: 0;
   }
 
   .popup-search .search-inner {
@@ -1634,8 +1638,8 @@
   }
 
   .popup-content {
-    height: calc(100% - 54px);
-    margin: 9px 0 0 7px;
+    height: calc(100% - 62px);
+    margin: 12px 0 0 7px;
   }
 
   .preview-scroll {
@@ -1647,17 +1651,24 @@
   }
 
   .popup-preview .file {
-    height: 76px;
-    border-radius: 5px;
-    margin-right: 3px;
+    --file-surface-color: var(--content-file-background-color);
+    height: 74px;
+    border-radius: 6px;
+    margin-right: 4px;
     margin-bottom: 8px;
     border: 1px solid var(--content-file-border-color);
-    background-color: var(--content-file-background-color);
+    background-color: var(--file-surface-color);
     overflow: hidden;
     color: var(--content-file-color);
     position: relative;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 2px 0 var(--content-file-shadow-color, rgba(0, 0, 0, .05));
     user-select: none;
+    transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease;
+  }
+  .popup-preview .file:hover {
+    --file-surface-color: var(--content-file-hover-background-color, var(--content-file-background-color));
+    border-color: var(--content-file-hover-border-color, var(--content-file-border-color));
+    background-color: var(--file-surface-color);
   }
   .popup-preview .file.is-hovered .content-operator-wrapper {
     display: inline-block;
@@ -1665,7 +1676,7 @@
 
   .popup-preview .file .icon {
     text-align: center;
-    width: 56px;
+    width: 52px;
     height: 100%;
     border-right: 1px solid var(--content-file-icon-border-right-color);
     float: left;
@@ -1689,9 +1700,9 @@
   }
 
   .popup-preview .file .file-content {
-    width: calc(100% - 74px);
+    width: calc(100% - 68px);
     float: right;
-    padding: 8px 8px 0 0;
+    padding: 7px 10px 0 0;
     box-sizing: border-box;
   }
 
@@ -1699,7 +1710,7 @@
     display: block;
     height: 20px;
     line-height: 20px;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 13px;
     color: var(--content-file-filename-color);
     white-space: nowrap;
@@ -1715,14 +1726,14 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: var(--content-file-color);
-    opacity: 0.85;
+    color: var(--content-file-url-color, var(--content-file-color));
   }
 
   .popup-preview .file .info {
     width: 100%;
-    height: 26px;
+    height: 25px;
     display: table;
+    color: var(--content-file-muted-color, var(--content-file-content-color));
   }
 
   .popup-preview .file .info .small-size {
@@ -1768,7 +1779,7 @@
     height: 30px;
     line-height: 38px;
     padding-left: 18px;
-    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, var(--content-file-background-color) 24%);
+    background-image: linear-gradient(90deg, transparent 0, var(--file-surface-color) 24%);
     z-index: 1;
     display: none;
   }

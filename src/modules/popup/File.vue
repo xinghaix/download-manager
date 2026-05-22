@@ -598,26 +598,36 @@ export default {
 <style rel="stylesheet/scss" scoped>
 /* 下载文件 */
 .file {
-  height: 76px;
-  border-radius: 5px;
-  margin-right: 3px;
+  --file-surface-color: var(--content-file-background-color);
+  height: 74px;
+  border-radius: 6px;
+  margin-right: 4px;
   border: 1px solid var(--content-file-border-color);
-  background-color: var(--content-file-background-color);
+  background-color: var(--file-surface-color);
   overflow: hidden;
   color: var(--content-file-color);
   position: relative;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+  box-shadow: 0 1px 2px 0 var(--content-file-shadow-color, rgba(0, 0, 0, .05));
   user-select: none;
+  transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease;
+}
+
+.file:hover {
+  --file-surface-color: var(--content-file-hover-background-color, var(--content-file-background-color));
+  border-color: var(--content-file-hover-border-color, var(--content-file-border-color));
+  background-color: var(--file-surface-color);
 }
 
 .file.gray {
+  --file-surface-color: var(--content-file-muted-background-color, var(--content-file-background-color));
   box-shadow: 0 0 0 0 rgba(0, 0, 0, .1);
+  background-color: var(--file-surface-color);
 }
 
 /* 文件图标 */
 .file .icon {
   text-align: center;
-  width: 56px;
+  width: 52px;
   height: 100%;
   border-right: 1px solid var(--content-file-icon-border-right-color);
   float: left;
@@ -627,8 +637,8 @@ export default {
 }
 
 .file .icon img {
-  height: 26px;
-  width: 26px;
+  height: 24px;
+  width: 24px;
 }
 
 .file .icon img:not([src]) {
@@ -645,14 +655,14 @@ export default {
 .file .progress {
   position: absolute;
   top: 14px;
-  left: 5px;
+  left: 3px;
 }
 
 /* 文件内容 */
 .file .file-content {
-  width: calc(100% - 74px);
+  width: calc(100% - 68px);
   float: right;
-  padding: 8px 8px 0 0;
+  padding: 7px 10px 0 0;
 }
 
 /* 文件名称 */
@@ -660,7 +670,7 @@ export default {
   display: block;
   height: 20px;
   line-height: 20px;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 13px;
   color: var(--content-file-filename-color);
   white-space: nowrap;
@@ -684,6 +694,7 @@ export default {
   height: 20px;
   line-height: 20px;
   font-size: 13px;
+  color: var(--content-file-url-color, var(--content-file-color));
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -696,13 +707,20 @@ export default {
 /* 文件信息栏 */
 .file .info {
   width: 100%;
-  height: 26px;
+  height: 25px;
   display: table;
+  color: var(--content-file-muted-color, var(--content-file-content-color));
 }
 
 .file .info .small-size {
   transition: none;
   font-size: 12px;
+}
+
+.file.gray .file-url,
+.file.gray .info {
+  color: var(--content-file-filename-gray-color);
+  opacity: .72;
 }
 
 /* 已下载的大小 */
@@ -798,7 +816,7 @@ export default {
   height: 30px;
   line-height: 38px;
   padding-left: 18px;
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, var(--content-file-background-color) 24%);
+  background-image: linear-gradient(90deg, transparent 0, var(--file-surface-color) 24%);
   z-index: 1;
 }
 
