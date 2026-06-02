@@ -170,7 +170,7 @@ async function handleNotificationButtonClicked(notificationId, index) {
     if (index === 0) {
       await openDangerDownloadUi()
     } else if (index === 1) {
-      await cancelDownload(fileId)
+      await discardDangerDownload(fileId)
     }
   }
 }
@@ -210,11 +210,19 @@ async function openDangerDownloadUi() {
   }
 }
 
-async function cancelDownload(fileId) {
+async function discardDangerDownload(fileId) {
   try {
-    await chrome.downloads.cancel(fileId)
+    const items = await chrome.downloads.search({ id: fileId })
+    const item = items && items[0]
+
+    if (item && item.state === 'in_progress') {
+      await chrome.downloads.cancel(fileId)
+      return
+    }
+
+    await chrome.downloads.erase({ id: fileId })
   } catch (error) {
-    console.warn('Cancel dangerous download failed:', error)
+    console.warn('Discard dangerous download failed:', error)
   }
 }
 
@@ -532,13 +540,14 @@ async function flushPendingDownloadUpdates() {
       projection.itemsById[id] = projectionItem
     }
 
-    if (item.state === 'in_progress') {
-      await handleDownloadStartedNotification(item)
-      if (isDangerousDownload(item)) {
-        await handleDownloadWarningNotification(item)
-      } else {
-        deleteDownloadNotificationId(item.id, '-warning')
+    if (isDangerousDownload(item)) {
+      if (item.state === 'in_progress') {
+        await handleDownloadStartedNotification(item)
       }
+      await handleDownloadWarningNotification(item)
+    } else if (item.state === 'in_progress') {
+      await handleDownloadStartedNotification(item)
+      deleteDownloadNotificationId(item.id, '-warning')
     } else if (item.state === 'complete') {
       deleteDownloadNotificationId(item.id, '-warning')
       await handleDownloadCompletedNotification(item)

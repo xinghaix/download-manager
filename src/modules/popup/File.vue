@@ -17,20 +17,20 @@
             @click="leftClickUrl && openUrl(item)"
             @contextmenu.prevent="rightClickUrl && copyToClipboard(item.finalUrl || item.url, $event)">{{ item.finalUrl || item.url }}</span>
       <div class="info">
-        <template v-if="item.state === 'in_progress'">
-          <template v-if="dangerous(item)">
-            <div class="cell left danger">
-              <span class="description small-size" :title="dangerDescription(item)">{{ dangerDescription(item) }}</span>
-            </div>
-            <div class="cell right danger">
-              <button class="discard button small-size" @click="cancel(item)">{{ i18data.dangerDiscard }}</button>
-              <button v-if="canAcceptDanger(item)"
-                      class="accept button small-size"
-                      @click="acceptDanger(item)">{{ i18data.reserve }}
-              </button>
-            </div>
-          </template>
-          <template v-else-if="showDownloadProgress && item.totalBytes !== 0">
+        <template v-if="dangerous(item)">
+          <div class="cell left danger">
+            <span class="description small-size" :title="dangerDescription(item)">{{ dangerDescription(item) }}</span>
+          </div>
+          <div class="cell right danger">
+            <button class="discard button small-size" @click="discardDanger(item)">{{ i18data.dangerDiscard }}</button>
+            <button v-if="canAcceptDanger(item)"
+                    class="accept button small-size"
+                    @click="acceptDanger(item)">{{ i18data.reserve }}
+            </button>
+          </div>
+        </template>
+        <template v-else-if="item.state === 'in_progress'">
+          <template v-if="showDownloadProgress && item.totalBytes !== 0">
             <div class="cell left common">
               <span class="receivedSize small-size">{{ getFormattedSize(item.bytesReceived) }}</span>
               <span class="divider small-size">/</span>
@@ -341,6 +341,15 @@ export default {
         default:
           return this.i18data.dangerDescription
       }
+    },
+
+    discardDanger(item) {
+      if (item && item.state === 'in_progress') {
+        this.cancel(item)
+        return
+      }
+
+      this.erase(item)
     },
 
     // 在新标签页中打开下载文件链接

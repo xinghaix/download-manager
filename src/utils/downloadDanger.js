@@ -20,12 +20,32 @@ const BLOCKED_DANGER_TYPES = new Set([
   'forceSaveToOneDrive'
 ])
 
+const BLOCKED_DANGER_ERRORS = new Set([
+  'FILE_BLOCKED',
+  'FILE_SECURITY_CHECK_FAILED',
+  'FILE_VIRUS_INFECTED'
+])
+
+export function isBlockedDangerDownload(item) {
+  return Boolean(
+    item &&
+    item.state === 'interrupted' &&
+    item.error &&
+    BLOCKED_DANGER_ERRORS.has(item.error)
+  )
+}
+
 export function isDangerousDownload(item) {
   return Boolean(
     item &&
-    item.state === 'in_progress' &&
-    item.danger &&
-    !SAFE_DANGER_TYPES.has(item.danger)
+    (
+      (
+        item.state === 'in_progress' &&
+        item.danger &&
+        !SAFE_DANGER_TYPES.has(item.danger)
+      ) ||
+      isBlockedDangerDownload(item)
+    )
   )
 }
 
@@ -38,7 +58,7 @@ export function getDangerStatus(item) {
     return 'scanning'
   }
 
-  if (BLOCKED_DANGER_TYPES.has(item.danger)) {
+  if (BLOCKED_DANGER_TYPES.has(item.danger) || isBlockedDangerDownload(item)) {
     return 'blocked'
   }
 
