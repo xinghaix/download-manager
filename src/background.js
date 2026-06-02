@@ -15,6 +15,8 @@ let state = {
   notificationList: [],
   itemRefreshTimer: null,
   activeRefreshTimer: null,
+  activeProgressTimer: null,
+  activeProgressRefreshInFlight: false,
   systemTheme: null
 }
 
@@ -22,6 +24,7 @@ const contextDownloadMenus = ['link', 'image', 'audio', 'video']
 const pendingDownloadIds = new Set()
 const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
 const ACTIVE_DOWNLOADS_ALARM = 'active-downloads-reconcile'
+const ACTIVE_DOWNLOADS_PROGRESS_INTERVAL_MS = 500
 const RECENT_DOWNLOAD_KEEP_MS = 10000
 
 // Service Worker 安装
@@ -479,6 +482,35 @@ async function syncActiveDownloadsAlarm(hasActiveDownloads) {
   }
 }
 
+function syncActiveDownloadsProgressTimer(hasActiveDownloads) {
+  if (hasActiveDownloads) {
+    if (!state.activeProgressTimer) {
+      state.activeProgressTimer = setInterval(refreshActiveDownloadsProgressFromTimer, ACTIVE_DOWNLOADS_PROGRESS_INTERVAL_MS)
+    }
+    return
+  }
+
+  if (state.activeProgressTimer) {
+    clearInterval(state.activeProgressTimer)
+    state.activeProgressTimer = null
+  }
+}
+
+async function refreshActiveDownloadsProgressFromTimer() {
+  if (state.activeProgressRefreshInFlight) {
+    return
+  }
+
+  state.activeProgressRefreshInFlight = true
+  try {
+    await refreshActiveDownloadsSummary({ skipProjectionUpdate: true })
+  } catch (error) {
+    console.error('Refresh active downloads progress error:', error)
+  } finally {
+    state.activeProgressRefreshInFlight = false
+  }
+}
+
 function scheduleActiveDownloadsRefresh() {
   if (state.activeRefreshTimer) {
     return
@@ -597,6 +629,7 @@ async function refreshActiveDownloadsSummary(options = {}) {
   handleDownloadingNumber(state.downloadingNumber)
   handleDangerousDownloading(anyInDangerous)
   await syncActiveDownloadsAlarm(state.anyInProgress)
+  syncActiveDownloadsProgressTimer(state.anyInProgress)
 
   const themeKey = await getActiveIconThemeKey()
   const iconColor = await storage.get('icon_color')
@@ -615,7 +648,7 @@ async function refreshActiveDownloadsSummary(options = {}) {
 
   const projection = options.projection || await getDownloadsProjection()
   projection.summary = getDownloadsSummary()
-  if (!options.projection) {
+  if (!options.projection && !options.skipProjectionUpdate) {
     await setDownloadsProjection(projection)
   }
 }
@@ -988,7 +1021,7 @@ function setBrowserBadge(number) {
 // 获取下载进度
 function getProgress(item) {
   return item.totalBytes != null && item.totalBytes > 0 ?
-    parseFloat((1.0 * item.bytesReceived / item.totalBytes).toFixed(2)) : -1
+    1.0 * item.bytesReceived / item.totalBytes : -1
 }
 
 // 创建上下文菜单

@@ -1,4 +1,7 @@
 /* eslint-disable no-undef */
+const ACTION_ICON_SIZES = [19, 38]
+const ICON_VIEWBOX_SIZE = 1024
+
 const icon = {
 
   message: {
@@ -6,7 +9,8 @@ const icon = {
     color: '',
     runningColor: '',
     progress: -1,
-    running: false
+    running: false,
+    timer: null
   },
 
   setColor(color, runningColor) {
@@ -24,6 +28,7 @@ const icon = {
     this.message.running = running
 
     if (!this.message.running) {
+      this.stopRunningTimer()
       this.setIcon()
     }
   },
@@ -40,13 +45,19 @@ const icon = {
     this.message.running = running
     this.message.progress = progress
 
-    setTimeout(() => {
+    if (!this.message.running) {
+      this.stopRunningTimer()
       this.setIcon()
+      return
+    }
 
-      if (this.message.running) {
-        this.setRunningBrowserActionIcon(this.message.color,
-          this.message.runningColor, this.message.running, this.message.progress)
-      }
+    if (this.message.timer) {
+      return
+    }
+
+    this.setIcon()
+    this.message.timer = setInterval(() => {
+      this.setIcon()
     }, 400)
   },
 
@@ -58,27 +69,57 @@ const icon = {
     this.message.color = color
     this.message.running = false
     this.message.progress = -1
+    this.stopRunningTimer()
     this.setBrowserActionIcon(this.message.color, false)
   },
 
+  stopRunningTimer() {
+    if (!this.message.timer) {
+      return
+    }
+    clearInterval(this.message.timer)
+    this.message.timer = null
+  },
+
   setIcon() {
-    let imageData = this.drawIcon()
-    if (imageData) {
+    const imageData = {}
+    ACTION_ICON_SIZES.forEach(size => {
+      imageData[size] = this.drawIcon(size, this.message.offset)
+    })
+
+    if (Object.keys(imageData).length) {
       chrome.action.setIcon({imageData: imageData})
+    }
+
+    if (this.shouldAdvanceOffset()) {
+      this.advanceOffset()
+    }
+  },
+
+  shouldAdvanceOffset() {
+    return this.message.running
+      && (this.message.progress < 0 || isNaN(this.message.progress))
+  },
+
+  advanceOffset() {
+    if ((this.message.offset += 0.09) > 1.6) {
+      this.message.offset = 0
     }
   },
 
   /**
    * 设置自定义颜色的图标
+   * @param size {Number} 图标尺寸
+   * @param offset {Number} 下载中循环动画偏移
    * @return ImageData
    */
-  drawIcon() {
+  drawIcon(size = 19, offset = this.message.offset) {
     // Service Worker 中使用 OffscreenCanvas
-    let canvas = new OffscreenCanvas(19, 19)
+    let canvas = new OffscreenCanvas(size, size)
     let ctx = canvas.getContext('2d')
 
     ctx.strokeStyle = 'rgba(0, 0, 0, 0)'
-    ctx.scale(0.0185546875, 0.0185546875)
+    ctx.scale(size / ICON_VIEWBOX_SIZE, size / ICON_VIEWBOX_SIZE)
     ctx.beginPath()
     ctx.moveTo(900.58513906, 509.43943584)
     ctx.lineTo(524.45655459, 882.01902676)
@@ -101,7 +142,7 @@ const icon = {
 
       // 有些文件是流式下载，下载开始时并不知道文件大小，这时动画就循环滚动
       if (this.message.progress < 0 || isNaN(this.message.progress)) {
-        let v1 = this.message.offset
+        let v1 = offset
         if (v1 <= 0.6) {
           gradient.addColorStop(0, this.message.runningColor)
           gradient.addColorStop(v1, this.message.runningColor)
@@ -120,9 +161,6 @@ const icon = {
           }
         }
 
-        if ((this.message.offset += 0.09) > 1.6) {
-          this.message.offset = 0
-        }
         ctx.fillStyle = gradient
       } else {
         if (this.message.progress >= 1.0 || this.message.progress === 0) {
