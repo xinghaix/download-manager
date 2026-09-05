@@ -244,8 +244,8 @@
     "description": "プラグインの設定手順"
   },
   "downloadContextMenusDescSetting": {
-    "message": "サポートされているファイル形式: ",
-    "description": "プラグイン設定の詳細"
+    "message": "ページの右クリックメニューにダウンロード項目を表示します。有効にするコンテキストをさらに選択できます。",
+    "description": "詳細説明"
   },
   "fileRoutingSetting": {
     "message": "ファイル分類ダウンロード",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "評価してください",
     "description": "タブの説明について"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "有効な右クリックメニューのコンテキスト",
+    "description": "設定の説明"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "必要なコンテキストだけを残せます。たとえば「画像」のみを選ぶと、画像を右クリックしたときだけダウンロード項目が表示されます。",
+    "description": "詳細説明"
   }
 }

@@ -244,8 +244,8 @@
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Jenis file yang didukung: ",
-    "description": "plugin setting details instructions"
+    "message": "Tampilkan item unduhan di menu konteks halaman. Anda juga dapat memilih konteks yang diaktifkan.",
+    "description": "Deskripsi detail"
   },
   "fileRoutingSetting": {
     "message": "Unduh menurut jenis file",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "dan beri nilai",
     "description": "about tab description"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Konteks menu konteks yang diaktifkan",
+    "description": "Deskripsi pengaturan"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Simpan hanya konteks yang Anda butuhkan. Misalnya, pilih hanya Gambar agar item muncul saat mengeklik kanan gambar.",
+    "description": "Deskripsi detail"
   }
 }

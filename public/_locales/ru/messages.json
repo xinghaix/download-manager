@@ -244,8 +244,8 @@
     "description": "Инструкция к плагину"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Поддерживаемые типы файлов: ",
-    "description": "Детали плагина говорят сами за себя"
+    "message": "Показывать пункты загрузки в контекстном меню страницы. Можно дополнительно выбрать активные контексты.",
+    "description": "Подробное описание"
   },
   "fileRoutingSetting": {
     "message": "Сортировка файлов",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "и оцените его.",
     "description": "О инструкциях на странице ярлыков"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Активные контексты меню",
+    "description": "Описание настройки"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Оставьте только нужные контексты. Например, выберите только «Изображение», чтобы пункт появлялся при правом щелчке по изображениям.",
+    "description": "Подробное описание"
   }
 }

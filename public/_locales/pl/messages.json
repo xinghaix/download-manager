@@ -244,8 +244,8 @@
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Obsługiwane typy plików: ",
-    "description": "plugin setting details instructions"
+    "message": "Pokaż elementy pobierania w menu kontekstowym strony. Możesz też wybrać aktywne konteksty.",
+    "description": "Szczegółowy opis"
   },
   "fileRoutingSetting": {
     "message": "Pobieranie według typu pliku",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "i wystaw ocenę",
     "description": "about tab description"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Aktywne konteksty menu kontekstowego",
+    "description": "Opis ustawienia"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Zachowaj tylko potrzebne konteksty. Na przykład wybierz tylko Obraz, aby pozycja pojawiała się po kliknięciu prawym przyciskiem obrazów.",
+    "description": "Szczegółowy opis"
   }
 }

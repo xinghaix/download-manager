@@ -244,8 +244,8 @@
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Supported file types: ",
-    "description": "plugin setting details instructions"
+    "message": "Show download items in the page context menu. You can further choose which contexts are enabled.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingSetting": {
     "message": "File routing",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "and rate it",
     "description": "about tab description"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Enabled context menu contexts",
+    "description": "Plugin setting description"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Keep only the contexts you need. For example, select Image only to show the download item when right-clicking images.",
+    "description": "Plugin setting detail description"
   }
 }

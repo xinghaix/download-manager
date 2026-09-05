@@ -59,15 +59,22 @@
       <div class="item pointer">
         <div class="content" @click="downloadContextMenus = !downloadContextMenus">
           <span class="setting-title">{{i18data.downloadContextMenusSetting}}</span>
-          <span class="setting-description">
-            {{i18data.downloadContextMenusDescSetting}}
-            <a class="code">{{i18data.link}}</a>
-            <a class="code">{{i18data.image}}</a>
-            <a class="code">{{i18data.audio}}</a>
-            <a class="code">{{i18data.video}}</a>
-          </span>
+          <span class="setting-description">{{i18data.downloadContextMenusDescSetting}}</span>
         </div>
         <el-switch class="switch" v-model="downloadContextMenus" active-color="#409EFF" inactive-color="#bdc1c6"/>
+      </div>
+      <el-divider/>
+      <div class="item" :class="{ false: !downloadContextMenus }">
+        <div class="content">
+          <span class="setting-title">{{i18data.downloadContextMenuContextsSetting}}</span>
+          <span class="setting-description">{{i18data.downloadContextMenuContextsDescSetting}}</span>
+        </div>
+        <div class="switch width">
+          <el-checkbox-button :label="i18data.link" v-model="downloadContextMenuLink" :disabled="!downloadContextMenus"/>
+          <el-checkbox-button :label="i18data.image" v-model="downloadContextMenuImage" :disabled="!downloadContextMenus"/>
+          <el-checkbox-button :label="i18data.audio" v-model="downloadContextMenuAudio" :disabled="!downloadContextMenus"/>
+          <el-checkbox-button :label="i18data.video" v-model="downloadContextMenuVideo" :disabled="!downloadContextMenus"/>
+        </div>
       </div>
     </el-card>
 
@@ -293,13 +300,20 @@ export default {
       if (this.initializing) {
         return
       }
-      if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
-        chrome.runtime.sendMessage(JSON.stringify({type: 'downloadMenus', data: val}), () => {
-          if (chrome.runtime.lastError) {
-            // 静默处理连接错误
-          }
-        })
-      }
+      this.notifyContextMenusChanged(val)
+    },
+
+    async downloadContextMenuLink() {
+      await this.persistContextMenuContexts()
+    },
+    async downloadContextMenuImage() {
+      await this.persistContextMenuContexts()
+    },
+    async downloadContextMenuAudio() {
+      await this.persistContextMenuContexts()
+    },
+    async downloadContextMenuVideo() {
+      await this.persistContextMenuContexts()
     },
 
     async downloadFileRoutingEnabled(val) {
@@ -361,6 +375,9 @@ export default {
       // 上下文菜单设置
       const downloadContextMenus = await storage.get('download_context_menus')
       this.downloadContextMenus = typeof downloadContextMenus === 'boolean' ? downloadContextMenus : true
+
+      const downloadContextMenuContexts = await storage.get('download_context_menu_contexts')
+      this.applyContextMenuContexts(downloadContextMenuContexts)
 
       // 文件分类下载设置
       const downloadFileRoutingEnabled = await storage.get('download_file_routing_enabled')
@@ -431,6 +448,11 @@ export default {
 
       // 上下文菜单
       downloadContextMenus: true,
+      downloadContextMenuLink: true,
+      downloadContextMenuImage: true,
+      downloadContextMenuAudio: true,
+      downloadContextMenuVideo: true,
+      contextMenusUpdating: false,
 
       // 文件分类下载
       downloadFileRoutingEnabled: false,
@@ -474,6 +496,70 @@ export default {
       }
 
       await storage.set(key, value)
+    },
+
+    applyContextMenuContexts(contexts) {
+      const selected = Array.isArray(contexts) ? contexts : ['link', 'image', 'audio', 'video']
+      const set = new Set(selected)
+      this.downloadContextMenuLink = set.has('link')
+      this.downloadContextMenuImage = set.has('image')
+      this.downloadContextMenuAudio = set.has('audio')
+      this.downloadContextMenuVideo = set.has('video')
+      // 至少保留一个上下文，避免空菜单
+      if (!this.downloadContextMenuLink && !this.downloadContextMenuImage
+        && !this.downloadContextMenuAudio && !this.downloadContextMenuVideo) {
+        this.downloadContextMenuLink = true
+        this.downloadContextMenuImage = true
+        this.downloadContextMenuAudio = true
+        this.downloadContextMenuVideo = true
+      }
+    },
+
+    getSelectedContextMenuContexts() {
+      const contexts = []
+      if (this.downloadContextMenuLink) contexts.push('link')
+      if (this.downloadContextMenuImage) contexts.push('image')
+      if (this.downloadContextMenuAudio) contexts.push('audio')
+      if (this.downloadContextMenuVideo) contexts.push('video')
+      return contexts.length ? contexts : ['link', 'image', 'audio', 'video']
+    },
+
+    async persistContextMenuContexts() {
+      if (this.initializing || this.syncTransitioning || this.contextMenusUpdating) {
+        return
+      }
+
+      this.contextMenusUpdating = true
+      try {
+        let contexts = this.getSelectedContextMenuContexts()
+        // 如果用户取消了全部选项，回退为全选并同步 UI
+        if (!this.downloadContextMenuLink && !this.downloadContextMenuImage
+          && !this.downloadContextMenuAudio && !this.downloadContextMenuVideo) {
+          this.applyContextMenuContexts(contexts)
+          contexts = this.getSelectedContextMenuContexts()
+        }
+
+        await storage.set('download_context_menu_contexts', contexts)
+        if (this.downloadContextMenus) {
+          this.notifyContextMenusChanged(true, 'downloadMenuContexts')
+        }
+      } finally {
+        this.contextMenusUpdating = false
+      }
+    },
+
+    notifyContextMenusChanged(enabled, type = 'downloadMenus') {
+      if (typeof chrome === 'undefined' || !chrome.runtime || !chrome.runtime.sendMessage) {
+        return
+      }
+      chrome.runtime.sendMessage(JSON.stringify({
+        type,
+        data: enabled
+      }), () => {
+        if (chrome.runtime.lastError) {
+          // 静默处理连接错误
+        }
+      })
     },
 
     addFileRoutingRule() {

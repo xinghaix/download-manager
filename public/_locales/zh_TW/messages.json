@@ -244,8 +244,8 @@
     "description": "擴充功能設定說明"
   },
   "downloadContextMenusDescSetting": {
-    "message": "支援的檔案類型: ",
-    "description": "擴充功能設定細節說明"
+    "message": "在網頁右鍵選單中顯示下載入口。可進一步選擇啟用的內容類型。",
+    "description": "插件設置細節說明"
   },
   "fileRoutingSetting": {
     "message": "檔案分類下載",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "評個分吧",
     "description": "關於標籤頁說明"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "啟用的右鍵選單內容類型",
+    "description": "插件設置說明"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "可依需求只保留圖片等內容類型。例如僅勾選「圖片」時，右鍵圖片才會顯示下載選單。",
+    "description": "插件設置細節說明"
   }
 }

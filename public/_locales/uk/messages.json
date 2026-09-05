@@ -244,8 +244,8 @@
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Підтримувані типи файлів: ",
-    "description": "plugin setting details instructions"
+    "message": "Показувати пункти завантаження в контекстному меню сторінки. Можна додатково вибрати активні контексти.",
+    "description": "Детальний опис"
   },
   "fileRoutingSetting": {
     "message": "Завантаження за типом файлу",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "і залиште оцінку",
     "description": "about tab description"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Активні контексти меню",
+    "description": "Опис налаштування"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Залиште лише потрібні контексти. Наприклад, виберіть лише «Зображення», щоб пункт з’являвся під час клацання правою кнопкою по зображеннях.",
+    "description": "Детальний опис"
   }
 }

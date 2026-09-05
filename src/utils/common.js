@@ -244,6 +244,8 @@ const common = {
     this.i18data.contextMenus = this.loadI18nMessage('contextMenus')
     this.i18data.downloadContextMenusSetting = this.loadI18nMessage('downloadContextMenusSetting')
     this.i18data.downloadContextMenusDescSetting = this.loadI18nMessage('downloadContextMenusDescSetting')
+    this.i18data.downloadContextMenuContextsSetting = this.loadI18nMessage('downloadContextMenuContextsSetting')
+    this.i18data.downloadContextMenuContextsDescSetting = this.loadI18nMessage('downloadContextMenuContextsDescSetting')
 
     // options settings 文件分类下载
     this.i18data.fileRoutingSetting = this.loadI18nMessage('fileRoutingSetting')

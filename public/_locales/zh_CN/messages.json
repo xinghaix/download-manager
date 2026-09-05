@@ -244,7 +244,7 @@
     "description": "插件设置说明"
   },
   "downloadContextMenusDescSetting": {
-    "message": "支持的文件类型: ",
+    "message": "在网页右键菜单中显示下载入口。可进一步选择启用的上下文类型。",
     "description": "插件设置细节说明"
   },
   "fileRoutingSetting": {
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "评个分吧",
     "description": "关于标签页说明"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "启用的右键菜单上下文",
+    "description": "插件设置说明"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "可按需只保留图片等上下文。例如仅勾选“图片”时，右键图片才显示下载菜单。",
+    "description": "插件设置细节说明"
   }
 }

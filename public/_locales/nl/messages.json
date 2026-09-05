@@ -244,8 +244,8 @@
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Ondersteunde bestandstypen: ",
-    "description": "plugin setting details instructions"
+    "message": "Toon downloaditems in het contextmenu van de pagina. Je kunt verder kiezen welke contexten actief zijn.",
+    "description": "Gedetailleerde beschrijving"
   },
   "fileRoutingSetting": {
     "message": "Downloaden per bestandstype",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "en geef een beoordeling",
     "description": "about tab description"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Ingeschakelde contextmenu-contexten",
+    "description": "Instellingsbeschrijving"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Houd alleen de benodigde contexten. Selecteer bijvoorbeeld alleen Afbeelding om het item alleen bij rechtsklikken op afbeeldingen te tonen.",
+    "description": "Gedetailleerde beschrijving"
   }
 }

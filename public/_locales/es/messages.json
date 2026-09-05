@@ -244,8 +244,8 @@
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Tipos de archivo compatibles: ",
-    "description": "plugin setting details instructions"
+    "message": "Mostrar elementos de descarga en el menú contextual de la página. También puedes elegir qué contextos están activos.",
+    "description": "Descripción detallada"
   },
   "fileRoutingSetting": {
     "message": "Descarga por tipo de archivo",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "y deja una valoración",
     "description": "about tab description"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Contextos del menú contextual activos",
+    "description": "Descripción de la configuración"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Conserva solo los contextos que necesites. Por ejemplo, selecciona solo Imagen para mostrar la opción al hacer clic derecho en imágenes.",
+    "description": "Descripción detallada"
   }
 }

@@ -244,8 +244,8 @@
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Loại tệp được hỗ trợ: ",
-    "description": "plugin setting details instructions"
+    "message": "Hiển thị mục tải xuống trong menu ngữ cảnh trang. Bạn cũng có thể chọn ngữ cảnh được bật.",
+    "description": "Mô tả chi tiết"
   },
   "fileRoutingSetting": {
     "message": "Tải xuống theo loại tệp",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "và đánh giá nhé",
     "description": "about tab description"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Ngữ cảnh menu ngữ cảnh được bật",
+    "description": "Mô tả cài đặt"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Chỉ giữ các ngữ cảnh cần thiết. Ví dụ chỉ chọn Ảnh để mục hiện khi nhấp chuột phải vào ảnh.",
+    "description": "Mô tả chi tiết"
   }
 }
