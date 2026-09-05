@@ -184,6 +184,10 @@ export default {
       type: Function,
       required: true
     },
+    requestDownload: {
+      type: Function,
+      required: true
+    },
     copyToClipboard: {
       type: Function,
       required: true
@@ -443,13 +447,14 @@ export default {
 
       const retryUrl = item.url || item.finalUrl
       if (retryUrl) {
-        const downloadId = await common.download(retryUrl)
-        if (downloadId !== null) {
-          await this.render()
-          setTimeout(() => {
-            this.render()
-          }, 500)
-        }
+        await this.requestDownload(retryUrl, async (downloadId) => {
+          if (downloadId !== null) {
+            await this.render()
+            setTimeout(() => {
+              this.render()
+            }, 500)
+          }
+        })
       }
     },
 

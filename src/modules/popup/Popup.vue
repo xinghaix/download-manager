@@ -70,6 +70,7 @@
                     :leave-active-class="enableAnimation ? 'transition-leave' : ''">
           <file class="file" :item="item" :key="item.id"
                 :render="render" :erase="erase" :request-remove="requestRemoveFile"
+                :request-download="requestDownload"
                 :copyToClipboard="copyToClipboard"
                 :tooltip-show-after="tooltipShowAfter" :tooltip-hide-after="tooltipHideAfter"
                 :i18data="i18data" :close-tooltip="closeTooltip" :left-click-file="leftClickFile"
@@ -99,6 +100,27 @@
             </button>
             <button class="delete-confirm-button danger" type="button" @click="confirmDelete">
               {{ deleteConfirm.confirmText }}
+            </button>
+          </div>
+        </section>
+      </div>
+    </transition>
+    <transition name="delete-confirm-fade">
+      <div v-if="downloadConfirm.visible" class="delete-confirm-overlay" @click.self="cancelDownloadConfirm">
+        <section class="delete-confirm-dialog" role="dialog" aria-modal="true">
+          <div class="delete-confirm-icon download-confirm-icon">
+            <el-icon><Download /></el-icon>
+          </div>
+          <div class="delete-confirm-content">
+            <h2>{{ downloadConfirm.title }}</h2>
+            <p class="download-confirm-message">{{ downloadConfirm.message }}</p>
+          </div>
+          <div class="delete-confirm-actions">
+            <button class="delete-confirm-button secondary" type="button" @click="cancelDownloadConfirm">
+              {{ i18data.cancel }}
+            </button>
+            <button class="delete-confirm-button primary" type="button" @click="confirmDownloadStart">
+              {{ downloadConfirm.confirmText }}
             </button>
           </div>
         </section>
@@ -279,6 +301,14 @@
           message: '',
           confirmText: '',
           action: null
+        },
+        downloadConfirm: {
+          visible: false,
+          title: '',
+          message: '',
+          confirmText: '',
+          url: '',
+          afterDownload: null
         }
       }
     },
@@ -670,7 +700,71 @@
        */
       enterToDownload(url) {
         this.showPopover = false
-        common.download(url)
+        this.requestDownload(url)
+      },
+
+      /**
+       * 统一入口：按设置决定是否先确认再下载
+       * @param url {String}
+       * @param afterDownload {Function|undefined}
+       */
+      async requestDownload(url, afterDownload) {
+        const trimUrl = typeof url === 'string' ? url.trim() : ''
+        if (!trimUrl) {
+          return null
+        }
+
+        if (await common.shouldConfirmBeforeDownload()) {
+          this.openDownloadConfirm({
+            title: this.i18data.downloadConfirmTitle,
+            message: this.i18data.downloadConfirmMessage.replace('{}', trimUrl),
+            confirmText: this.i18data.downloadConfirmButton,
+            url: trimUrl,
+            afterDownload: typeof afterDownload === 'function' ? afterDownload : null
+          })
+          return null
+        }
+
+        const downloadId = await common.download(trimUrl)
+        if (typeof afterDownload === 'function') {
+          await afterDownload(downloadId)
+        }
+        return downloadId
+      },
+
+      openDownloadConfirm({title, message, confirmText, url, afterDownload}) {
+        this.downloadConfirm = {
+          visible: true,
+          title,
+          message,
+          confirmText,
+          url,
+          afterDownload: typeof afterDownload === 'function' ? afterDownload : null
+        }
+      },
+
+      cancelDownloadConfirm() {
+        this.downloadConfirm.visible = false
+        this.downloadConfirm.url = ''
+        this.downloadConfirm.afterDownload = null
+      },
+
+      async confirmDownloadStart() {
+        const url = this.downloadConfirm.url
+        const afterDownload = this.downloadConfirm.afterDownload
+        this.cancelDownloadConfirm()
+        if (!url) {
+          return
+        }
+
+        const downloadId = await common.download(url)
+        if (typeof afterDownload === 'function') {
+          try {
+            await afterDownload(downloadId)
+          } catch (error) {
+            console.warn('Download confirm after action failed', error)
+          }
+        }
       },
 
       /**
@@ -1381,6 +1475,26 @@
   .delete-confirm-button.danger:hover {
     border-color: var(--delete-confirm-danger-hover-color, #b3261e);
     background-color: var(--delete-confirm-danger-hover-color, #b3261e);
+  }
+
+  .delete-confirm-button.primary {
+    color: #fff;
+    border-color: var(--download-confirm-primary-color, #409eff);
+    background-color: var(--download-confirm-primary-color, #409eff);
+  }
+
+  .delete-confirm-button.primary:hover {
+    border-color: var(--download-confirm-primary-hover-color, #337ecc);
+    background-color: var(--download-confirm-primary-hover-color, #337ecc);
+  }
+
+  .download-confirm-icon {
+    color: var(--download-confirm-primary-color, #409eff);
+    background-color: var(--download-confirm-primary-background-color, rgba(64, 158, 255, .12));
+  }
+
+  .download-confirm-message {
+    word-break: break-all;
   }
 
   .delete-confirm-fade-enter-active,

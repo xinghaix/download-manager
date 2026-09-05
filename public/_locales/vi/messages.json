@@ -235,6 +235,46 @@
     "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
     "description": "Plugin setting detail description"
   },
+  "downloadConfirmBeforeStartSetting": {
+    "message": "Xác nhận trước khi tải xuống",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmBeforeStartDescSetting": {
+    "message": "Khi bật, các tải xuống do tiện ích này bắt đầu (menu ngữ cảnh, URL thủ công hoặc thử lại) sẽ hỏi xác nhận trước. Không làm gián đoạn tải xuống gốc của trình duyệt để tránh hỏng liên kết dùng một lần. Mặc định tắt.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmChooseFolderSetting": {
+    "message": "Chọn thư mục khi bắt đầu tải xuống",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmChooseFolderDescSetting": {
+    "message": "Dùng hộp thoại Lưu thành (saveAs) cho tải xuống của tiện ích này. Độc lập với tùy chọn Edge/Chrome “Hỏi phải làm gì”, tiện ích không điều khiển được.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmTitle": {
+    "message": "Xác nhận tải xuống",
+    "description": "Confirmation title before starting a download"
+  },
+  "downloadConfirmMessage": {
+    "message": "Bắt đầu tải xuống “{}”?",
+    "description": "Confirmation message before starting a download; {} is the URL"
+  },
+  "downloadConfirmButton": {
+    "message": "Tải xuống",
+    "description": "Confirmation button before starting a download"
+  },
+  "downloadConfirmNotificationTitle": {
+    "message": "Xác nhận tải xuống",
+    "description": "Notification title when confirming a context-menu download"
+  },
+  "downloadConfirmNotificationConfirm": {
+    "message": "Tải xuống",
+    "description": "Notification button to confirm a pending download"
+  },
+  "downloadConfirmNotificationCancel": {
+    "message": "Hủy",
+    "description": "Notification button to cancel a pending download"
+  },
   "contextMenus": {
     "message": "Menu ngữ cảnh",
     "description": "plugin setting instructions"

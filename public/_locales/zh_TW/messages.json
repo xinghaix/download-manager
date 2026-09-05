@@ -235,6 +235,46 @@
     "message": "在彈窗中顯示下載進度、速度和剩餘時間。開啟後僅輪詢目前可視區域內正在下載的檔案；關閉後不再輪詢計算進度，可降低大量下載時的資源占用。",
     "description": "插件設定細節說明"
   },
+  "downloadConfirmBeforeStartSetting": {
+    "message": "下載前確認",
+    "description": "外掛設定說明"
+  },
+  "downloadConfirmBeforeStartDescSetting": {
+    "message": "啟用後，由此外掛發起的下載（右鍵選單、手動輸入連結、重新下載）會先要求確認。瀏覽器原生觸發的下載不會中斷，以免破壞一次性連結。預設關閉。",
+    "description": "外掛設定細節說明"
+  },
+  "downloadConfirmChooseFolderSetting": {
+    "message": "開始下載時選擇儲存位置",
+    "description": "外掛設定說明"
+  },
+  "downloadConfirmChooseFolderDescSetting": {
+    "message": "對此外掛發起的下載使用瀏覽器「另存新檔」對話框（saveAs）。這與 Edge/Chrome 的「每次下載都詢問我該做些什麼」無關，外掛無法綁定該系統選項。",
+    "description": "外掛設定細節說明"
+  },
+  "downloadConfirmTitle": {
+    "message": "確認下載",
+    "description": "開始下載前的二次確認標題"
+  },
+  "downloadConfirmMessage": {
+    "message": "是否開始下載「{}」？",
+    "description": "開始下載前的二次確認內容；{} 為連結"
+  },
+  "downloadConfirmButton": {
+    "message": "開始下載",
+    "description": "開始下載前的二次確認按鈕"
+  },
+  "downloadConfirmNotificationTitle": {
+    "message": "確認下載",
+    "description": "右鍵選單下載確認通知標題"
+  },
+  "downloadConfirmNotificationConfirm": {
+    "message": "下載",
+    "description": "確認待下載通知按鈕"
+  },
+  "downloadConfirmNotificationCancel": {
+    "message": "取消",
+    "description": "取消待下載通知按鈕"
+  },
   "contextMenus": {
     "message": "右鍵選單",
     "description": "擴充功能設定說明"

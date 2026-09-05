@@ -235,6 +235,46 @@
     "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
     "description": "Plugin setting detail description"
   },
+  "downloadConfirmBeforeStartSetting": {
+    "message": "Konfirmasi sebelum mengunduh",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmBeforeStartDescSetting": {
+    "message": "Jika diaktifkan, unduhan yang dimulai ekstensi ini (menu konteks, URL manual, atau coba lagi) meminta konfirmasi dulu. Unduhan bawaan peramban tidak diinterupsi agar tautan sekali pakai tidak rusak. Default nonaktif.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmChooseFolderSetting": {
+    "message": "Pilih folder saat memulai unduhan",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmChooseFolderDescSetting": {
+    "message": "Menggunakan dialog Simpan sebagai (saveAs) untuk unduhan ekstensi ini. Terpisah dari opsi Edge/Chrome “Tanyakan apa yang harus dilakukan”, yang tidak bisa dikontrol ekstensi.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmTitle": {
+    "message": "Konfirmasi unduhan",
+    "description": "Confirmation title before starting a download"
+  },
+  "downloadConfirmMessage": {
+    "message": "Mulai mengunduh “{}”?",
+    "description": "Confirmation message before starting a download; {} is the URL"
+  },
+  "downloadConfirmButton": {
+    "message": "Unduh",
+    "description": "Confirmation button before starting a download"
+  },
+  "downloadConfirmNotificationTitle": {
+    "message": "Konfirmasi unduhan",
+    "description": "Notification title when confirming a context-menu download"
+  },
+  "downloadConfirmNotificationConfirm": {
+    "message": "Unduh",
+    "description": "Notification button to confirm a pending download"
+  },
+  "downloadConfirmNotificationCancel": {
+    "message": "Batal",
+    "description": "Notification button to cancel a pending download"
+  },
   "contextMenus": {
     "message": "Menu konteks",
     "description": "plugin setting instructions"

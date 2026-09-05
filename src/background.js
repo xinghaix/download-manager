@@ -22,6 +22,8 @@ let state = {
 
 const contextDownloadMenus = ['link', 'image', 'audio', 'video']
 const pendingDownloadIds = new Set()
+const PENDING_DOWNLOAD_CONFIRM_KEY = 'pending_download_confirms'
+const DOWNLOAD_CONFIRM_NOTIFICATION_PREFIX = 'confirm-download-'
 const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
 const ACTIVE_DOWNLOADS_ALARM = 'active-downloads-reconcile'
 const ACTIVE_DOWNLOADS_PROGRESS_INTERVAL_MS = 500
@@ -155,6 +157,18 @@ chrome.notifications.onClicked.addListener((notificationId) => {
 async function handleNotificationButtonClicked(notificationId, index) {
   await chrome.notifications.clear(notificationId)
 
+  if (notificationId.startsWith(DOWNLOAD_CONFIRM_NOTIFICATION_PREFIX)) {
+    if (index === 0) {
+      const pendingUrl = await takePendingDownloadConfirm(notificationId)
+      if (pendingUrl) {
+        await common.download(pendingUrl)
+      }
+    } else {
+      await takePendingDownloadConfirm(notificationId)
+    }
+    return
+  }
+
   const fileId = getNotificationDownloadId(notificationId)
   if (fileId === null) {
     return
@@ -180,6 +194,11 @@ async function handleNotificationButtonClicked(notificationId, index) {
 
 async function handleNotificationClicked(notificationId) {
   await chrome.notifications.clear(notificationId)
+
+  if (notificationId.startsWith(DOWNLOAD_CONFIRM_NOTIFICATION_PREFIX)) {
+    // 点击通知本体不自动开始下载，仅关闭通知；按钮负责确认/取消
+    return
+  }
 
   if (notificationId.endsWith('-warning')) {
     await openDangerDownloadUi()
@@ -237,7 +256,9 @@ chrome.contextMenus.onClicked.addListener((info) => {
   } else {
     url = info.srcUrl
   }
-  common.download(url)
+  handleExtensionDownloadRequest(url).catch(error => {
+    console.error('Context menu download error:', error)
+  })
 })
 
 // 消息监听
@@ -1022,6 +1043,80 @@ function setBrowserBadge(number) {
 function getProgress(item) {
   return item.totalBytes != null && item.totalBytes > 0 ?
     1.0 * item.bytesReceived / item.totalBytes : -1
+}
+
+/**
+ * 扩展主动发起的下载入口（右键菜单等）
+ * 开启“下载前确认”时用通知确认，避免打断浏览器原生下载或破坏一次性链接
+ * @param url {String}
+ */
+async function handleExtensionDownloadRequest(url) {
+  const trimUrl = typeof url === 'string' ? url.trim() : ''
+  if (!trimUrl) {
+    return
+  }
+
+  if (await common.shouldConfirmBeforeDownload()) {
+    await showDownloadConfirmNotification(trimUrl)
+    return
+  }
+
+  await common.download(trimUrl)
+}
+
+async function showDownloadConfirmNotification(url) {
+  const level = await chrome.notifications.getPermissionLevel()
+  if (level !== 'granted') {
+    // 无通知权限时回退为直接下载，避免功能完全不可用
+    await common.download(url)
+    return
+  }
+
+  const notificationId = `${DOWNLOAD_CONFIRM_NOTIFICATION_PREFIX}${Date.now()}`
+  await savePendingDownloadConfirm(notificationId, url)
+
+  const option = {
+    type: 'basic',
+    priority: 2,
+    iconUrl: getNotificationIcon(),
+    title: common.i18data.downloadConfirmNotificationTitle,
+    message: url,
+    buttons: [
+      { title: common.i18data.downloadConfirmNotificationConfirm },
+      { title: common.i18data.downloadConfirmNotificationCancel }
+    ],
+    requireInteraction: true
+  }
+
+  const createdId = await createExtensionNotification(notificationId, option)
+  state.notificationList.push(createdId)
+}
+
+async function savePendingDownloadConfirm(notificationId, url) {
+  const pending = await storage.getSession(PENDING_DOWNLOAD_CONFIRM_KEY)
+  const next = pending && typeof pending === 'object' ? {...pending} : {}
+  next[notificationId] = {
+    url,
+    createdAt: Date.now()
+  }
+  await storage.setSession(PENDING_DOWNLOAD_CONFIRM_KEY, next)
+}
+
+async function takePendingDownloadConfirm(notificationId) {
+  const pending = await storage.getSession(PENDING_DOWNLOAD_CONFIRM_KEY)
+  if (!pending || typeof pending !== 'object') {
+    return null
+  }
+
+  const entry = pending[notificationId]
+  const next = {...pending}
+  delete next[notificationId]
+  await storage.setSession(PENDING_DOWNLOAD_CONFIRM_KEY, next)
+
+  if (!entry || typeof entry.url !== 'string') {
+    return null
+  }
+  return entry.url
 }
 
 // 创建上下文菜单

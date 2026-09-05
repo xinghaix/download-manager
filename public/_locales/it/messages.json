@@ -235,6 +235,46 @@
     "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
     "description": "Plugin setting detail description"
   },
+  "downloadConfirmBeforeStartSetting": {
+    "message": "Conferma prima del download",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmBeforeStartDescSetting": {
+    "message": "Se abilitato, i download avviati da questa estensione (menu contestuale, URL manuale o riprova) chiedono conferma. I download nativi del browser non vengono interrotti per non rompere i link monouso. Disattivato per impostazione predefinita.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmChooseFolderSetting": {
+    "message": "Scegli cartella all’avvio del download",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmChooseFolderDescSetting": {
+    "message": "Usa la finestra Salva con nome (saveAs) per i download di questa estensione. Indipendente da “Chiedi cosa fare” di Edge/Chrome, non controllabile dall’estensione.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmTitle": {
+    "message": "Conferma download",
+    "description": "Confirmation title before starting a download"
+  },
+  "downloadConfirmMessage": {
+    "message": "Avviare il download di “{}”?",
+    "description": "Confirmation message before starting a download; {} is the URL"
+  },
+  "downloadConfirmButton": {
+    "message": "Scarica",
+    "description": "Confirmation button before starting a download"
+  },
+  "downloadConfirmNotificationTitle": {
+    "message": "Conferma download",
+    "description": "Notification title when confirming a context-menu download"
+  },
+  "downloadConfirmNotificationConfirm": {
+    "message": "Scarica",
+    "description": "Notification button to confirm a pending download"
+  },
+  "downloadConfirmNotificationCancel": {
+    "message": "Annulla",
+    "description": "Notification button to cancel a pending download"
+  },
   "contextMenus": {
     "message": "Menu contestuale",
     "description": "plugin setting instructions"

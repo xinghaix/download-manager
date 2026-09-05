@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 
+import storage from './storage.js'
+
 const common = {
 
   /**
@@ -89,16 +91,25 @@ const common = {
    * 下载文件
    * 有时候当下载频率较高时，谷歌浏览器会自动阻止下载多个文件，需要等待几秒后才能再次下载文件
    * @param url {String}
+   * @param options {{saveAs?: boolean}|undefined}
    */
-  download(url) {
+  async download(url, options = {}) {
     if (url && typeof chrome !== 'undefined' && chrome.downloads) {
       let trimUrl = url.trim()
       if (trimUrl === '') {
-        return Promise.resolve(null)
+        return null
+      }
+
+      let saveAs = false
+      if (typeof options.saveAs === 'boolean') {
+        saveAs = options.saveAs
+      } else {
+        const chooseFolder = await storage.get('download_confirm_choose_folder')
+        saveAs = chooseFolder === true
       }
 
       return new Promise(resolve => {
-        chrome.downloads.download({url: trimUrl}, downloadId => {
+        chrome.downloads.download({url: trimUrl, saveAs}, downloadId => {
           if (chrome.runtime && chrome.runtime.lastError) {
             resolve(null)
             return
@@ -107,7 +118,16 @@ const common = {
         })
       })
     }
-    return Promise.resolve(null)
+    return null
+  },
+
+  /**
+   * 是否在由扩展发起下载前弹出确认
+   * @return {Promise<boolean>}
+   */
+  async shouldConfirmBeforeDownload() {
+    const value = await storage.get('download_confirm_before_start')
+    return value === true
   },
 
   /**
@@ -239,6 +259,16 @@ const common = {
     this.i18data.enableAnimation = this.loadI18nMessage('enableAnimation')
     this.i18data.showDownloadProgressSetting = this.loadI18nMessage('showDownloadProgressSetting')
     this.i18data.showDownloadProgressDescSetting = this.loadI18nMessage('showDownloadProgressDescSetting')
+    this.i18data.downloadConfirmBeforeStartSetting = this.loadI18nMessage('downloadConfirmBeforeStartSetting')
+    this.i18data.downloadConfirmBeforeStartDescSetting = this.loadI18nMessage('downloadConfirmBeforeStartDescSetting')
+    this.i18data.downloadConfirmChooseFolderSetting = this.loadI18nMessage('downloadConfirmChooseFolderSetting')
+    this.i18data.downloadConfirmChooseFolderDescSetting = this.loadI18nMessage('downloadConfirmChooseFolderDescSetting')
+    this.i18data.downloadConfirmTitle = this.loadI18nMessage('downloadConfirmTitle')
+    this.i18data.downloadConfirmMessage = this.loadI18nMessage('downloadConfirmMessage')
+    this.i18data.downloadConfirmButton = this.loadI18nMessage('downloadConfirmButton')
+    this.i18data.downloadConfirmNotificationTitle = this.loadI18nMessage('downloadConfirmNotificationTitle')
+    this.i18data.downloadConfirmNotificationConfirm = this.loadI18nMessage('downloadConfirmNotificationConfirm')
+    this.i18data.downloadConfirmNotificationCancel = this.loadI18nMessage('downloadConfirmNotificationCancel')
 
     // options settings 上下文菜单
     this.i18data.contextMenus = this.loadI18nMessage('contextMenus')
