@@ -235,6 +235,14 @@
     "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
     "description": "Plugin setting detail description"
   },
+  "deleteFileConfirmSetting": {
+    "message": "Confirmar antes de eliminar archivos",
+    "description": "Descripción de la configuración del complemento"
+  },
+  "deleteFileConfirmDescSetting": {
+    "message": "Mostrar un diálogo de confirmación antes de eliminar archivos del disco. Si se desactiva, los archivos se eliminan de inmediato y no se pueden deshacer.",
+    "description": "Descripción detallada de la configuración"
+  },
   "contextMenus": {
     "message": "Menú contextual",
     "description": "plugin setting instructions"

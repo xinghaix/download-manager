@@ -157,6 +157,11 @@
           this.showDownloadProgress = typeof nextValue === 'boolean' ? nextValue : true
           this.syncActiveDownloadsPolling()
         }
+
+        if (changes.delete_file_confirm) {
+          const nextValue = changes.delete_file_confirm.newValue
+          this.deleteFileConfirm = typeof nextValue === 'boolean' ? nextValue : true
+        }
       }
       chrome.storage.onChanged.addListener(this.storageChangeListener)
 
@@ -201,7 +206,8 @@
         'left_click_url',
         'right_click_url',
         'enable_animation',
-        'show_download_progress'
+        'show_download_progress',
+        'delete_file_confirm'
       ])
       this.closeTooltip = settings.close_tooltip
       this.leftClickFile = settings.left_click_file
@@ -212,6 +218,8 @@
       this.enableAnimation = settings.enable_animation
       const showDownloadProgress = settings.show_download_progress
       this.showDownloadProgress = typeof showDownloadProgress === 'boolean' ? showDownloadProgress : true
+      const deleteFileConfirm = settings.delete_file_confirm
+      this.deleteFileConfirm = typeof deleteFileConfirm === 'boolean' ? deleteFileConfirm : true
 
       const projection = await storage.getSession(DOWNLOADS_PROJECTION_KEY)
       this.applyDownloadsProjection(projection, { allowInsertStates: ['in_progress'] })
@@ -259,6 +267,7 @@
         rightClickUrl: true,
         enableAnimation: false,
         showDownloadProgress: true,
+        deleteFileConfirm: true,
         tooltipShowAfter: TOOLTIP_SHOW_AFTER,
         tooltipHideAfter: TOOLTIP_HIDE_AFTER,
 
@@ -773,11 +782,23 @@
           return
         }
 
+        const action = () => this.removeFileFromDisk(item)
+        if (!this.deleteFileConfirm) {
+          const result = action()
+          if (result && typeof result.catch === 'function') {
+            result.catch(error => {
+              console.warn('Delete action failed', error)
+              this.render()
+            })
+          }
+          return
+        }
+
         this.openDeleteConfirm({
           title: this.i18data.deleteConfirmTitle,
           message: this.i18data.deleteConfirmFileMessage.replace('{}', item.basename || item.filename || item.url),
           confirmText: this.i18data.deleteConfirmButton,
-          action: () => this.removeFileFromDisk(item)
+          action
         })
       },
 
@@ -787,11 +808,23 @@
           return
         }
 
+        const action = () => this.removeAllFilesFromDisk(items)
+        if (!this.deleteFileConfirm) {
+          const result = action()
+          if (result && typeof result.catch === 'function') {
+            result.catch(error => {
+              console.warn('Delete all action failed', error)
+              this.render()
+            })
+          }
+          return
+        }
+
         this.openDeleteConfirm({
           title: this.i18data.deleteConfirmTitle,
           message: this.i18data.deleteConfirmAllMessage.replace('{}', items.length),
           confirmText: this.i18data.deleteConfirmButton,
-          action: () => this.removeAllFilesFromDisk(items)
+          action
         })
       },
 

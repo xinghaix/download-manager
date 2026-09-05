@@ -239,6 +239,8 @@ const common = {
     this.i18data.enableAnimation = this.loadI18nMessage('enableAnimation')
     this.i18data.showDownloadProgressSetting = this.loadI18nMessage('showDownloadProgressSetting')
     this.i18data.showDownloadProgressDescSetting = this.loadI18nMessage('showDownloadProgressDescSetting')
+    this.i18data.deleteFileConfirmSetting = this.loadI18nMessage('deleteFileConfirmSetting')
+    this.i18data.deleteFileConfirmDescSetting = this.loadI18nMessage('deleteFileConfirmDescSetting')
 
     // options settings 上下文菜单
     this.i18data.contextMenus = this.loadI18nMessage('contextMenus')
