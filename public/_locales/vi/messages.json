@@ -235,6 +235,14 @@
     "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
     "description": "Plugin setting detail description"
   },
+  "deleteFileConfirmSetting": {
+    "message": "Xác nhận trước khi xóa tệp",
+    "description": "Mô tả cài đặt tiện ích"
+  },
+  "deleteFileConfirmDescSetting": {
+    "message": "Hiển thị hộp thoại xác nhận trước khi xóa tệp khỏi ổ đĩa. Khi tắt, tệp sẽ bị xóa ngay lập tức và không thể hoàn tác.",
+    "description": "Mô tả chi tiết cài đặt"
+  },
   "contextMenus": {
     "message": "Menu ngữ cảnh",
     "description": "plugin setting instructions"

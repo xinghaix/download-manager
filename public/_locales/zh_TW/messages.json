@@ -235,6 +235,14 @@
     "message": "在彈窗中顯示下載進度、速度和剩餘時間。開啟後僅輪詢目前可視區域內正在下載的檔案；關閉後不再輪詢計算進度，可降低大量下載時的資源占用。",
     "description": "插件設定細節說明"
   },
+  "deleteFileConfirmSetting": {
+    "message": "刪除檔案前確認",
+    "description": "插件設置說明"
+  },
+  "deleteFileConfirmDescSetting": {
+    "message": "從磁碟刪除檔案前彈出確認對話框。關閉後將直接刪除，無法復原。",
+    "description": "插件設置細節說明"
+  },
   "contextMenus": {
     "message": "右鍵選單",
     "description": "擴充功能設定說明"

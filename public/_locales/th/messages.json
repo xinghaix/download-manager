@@ -235,6 +235,14 @@
     "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
     "description": "Plugin setting detail description"
   },
+  "deleteFileConfirmSetting": {
+    "message": "ยืนยันก่อนลบไฟล์",
+    "description": "คำอธิบายการตั้งค่าปลั๊กอิน"
+  },
+  "deleteFileConfirmDescSetting": {
+    "message": "แสดงกล่องโต้ตอบยืนยันก่อนลบไฟล์ออกจากดิสก์ หากปิดใช้งาน ไฟล์จะถูกลบทันทีและไม่สามารถยกเลิกได้",
+    "description": "คำอธิบายรายละเอียดการตั้งค่า"
+  },
   "contextMenus": {
     "message": "เมนูบริบท",
     "description": "plugin setting instructions"

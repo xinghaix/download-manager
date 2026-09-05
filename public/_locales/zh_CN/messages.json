@@ -235,6 +235,14 @@
     "message": "在弹窗中显示下载进度、速度和剩余时间。开启后仅轮询当前可视区域内正在下载的文件；关闭后不再轮询计算进度，可降低大量下载时的资源占用。",
     "description": "插件设置细节说明"
   },
+  "deleteFileConfirmSetting": {
+    "message": "删除文件前确认",
+    "description": "插件设置说明"
+  },
+  "deleteFileConfirmDescSetting": {
+    "message": "从磁盘删除文件前弹出确认对话框。关闭后将直接删除，无法撤销。",
+    "description": "插件设置细节说明"
+  },
   "contextMenus": {
     "message": "上下文菜单",
     "description": "插件设置说明"

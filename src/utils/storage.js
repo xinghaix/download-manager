@@ -16,6 +16,7 @@ const CONFIG_KEYS = [
   'right_click_url',
   'enable_animation',
   'show_download_progress',
+  'delete_file_confirm',
   'download_started_notification',
   'download_completed_notification',
   'download_warning_notification',
@@ -351,6 +352,8 @@ const storage = {
     await this.setDefaultIfNull('right_click_url', true)
     await this.setDefaultIfNull('enable_animation', false)
     await this.setDefaultIfNull('show_download_progress', true)
+    // 删除文件前确认，默认开启（与当前始终确认行为一致）
+    await this.setDefaultIfNull('delete_file_confirm', true)
     await this.setDefaultIfNull('download_started_notification', false)
     await this.setDefaultIfNull('download_completed_notification', false)
     await this.setDefaultIfNull('download_warning_notification', false)
