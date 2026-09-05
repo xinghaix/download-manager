@@ -91,6 +91,22 @@
     "message": "Reanudar descarga",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "Acciones de descarga por lotes",
+    "description": "Tooltip de acciones por lotes"
+  },
+  "pauseAll": {
+    "message": "Pausar todo",
+    "description": "Pausar todas las descargas en curso"
+  },
+  "resumeAll": {
+    "message": "Reanudar todo",
+    "description": "Reanudar todas las descargas en pausa"
+  },
+  "cancelAll": {
+    "message": "Cancelar todo",
+    "description": "Cancelar todas las descargas en curso"
+  },
   "delete": {
     "message": "Eliminar del disco",
     "description": "delete file from disk"

@@ -91,6 +91,22 @@
     "message": "resume download",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "Batch download actions",
+    "description": "Popup batch action button tooltip"
+  },
+  "pauseAll": {
+    "message": "Pause all",
+    "description": "Pause all in-progress downloads"
+  },
+  "resumeAll": {
+    "message": "Resume all",
+    "description": "Resume all paused downloads"
+  },
+  "cancelAll": {
+    "message": "Cancel all",
+    "description": "Cancel all in-progress downloads"
+  },
   "delete": {
     "message": "delete from disk",
     "description": "delete file from disk"
