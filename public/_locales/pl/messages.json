@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Zapisuj pobrane pliki w określonych podfolderach domyślnego folderu pobierania na podstawie rozszerzenia pliku. Funkcja jest domyślnie wyłączona.",
-    "description": "Plugin settings detail description"
+    "message": "Zapisuje pobrane pliki w podfolderach domyślnego folderu Pobrane na podstawie rozszerzenia lub domeny źródłowej. Domyślnie wyłączone. Reguły domen mają domyślnie pierwszeństwo przed regułami rozszerzeń.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Reguły klasyfikacji",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "i wystaw ocenę",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Priorytet reguł",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Gdy pasuje reguła domeny i rozszerzenia, wybrany priorytet decyduje o folderze. Domyślnie preferowane są reguły domen.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Najpierw domena",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Najpierw rozszerzenie",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Reguły klasyfikacji według domeny",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Brak reguł domen. Dodaj reguły, aby zapisywać pobrania z wybranych witryn w osobnych podfolderach.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Domeny",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "np. github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "np. GitHub lub Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

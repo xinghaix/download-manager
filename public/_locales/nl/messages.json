@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Sla downloads op in specifieke submappen onder de standaard downloadmap op basis van bestandsextensie. Deze functie staat standaard uit.",
-    "description": "Plugin settings detail description"
+    "message": "Slaat downloads op in submappen van de standaard Downloadmap op basis van bestandsextensie of brondomein. Standaard uitgeschakeld. Domeinregels hebben standaard voorrang op extensieregels.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Classificatieregels",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "en geef een beoordeling",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Regelprioriteit",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Als zowel een domein- als een extensieregel overeenkomt, bepaalt de gekozen prioriteit de map. Domeinregels hebben standaard voorrang.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Domein eerst",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Extensie eerst",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Domeinclassificatieregels",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Nog geen domeinregels. Voeg regels toe om downloads van specifieke sites in eigen submappen op te slaan.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Domeinen",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "bijv. github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "bijv. GitHub of Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

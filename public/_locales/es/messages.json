@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Guarda las descargas en subcarpetas específicas dentro de la carpeta de descargas predeterminada según la extensión del archivo. Esta función está desactivada por defecto.",
-    "description": "Plugin settings detail description"
+    "message": "Guarda las descargas en subcarpetas de la carpeta Descargas según la extensión o el dominio de origen. Desactivado por defecto. Las reglas de dominio tienen prioridad por defecto.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Reglas de clasificación",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "y deja una valoración",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Prioridad de reglas",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Cuando coinciden una regla de dominio y una de extensión, la prioridad elegida decide la carpeta. Por defecto se prefieren las reglas de dominio.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Dominio primero",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Extensión primero",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Reglas de clasificación por dominio",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Aún no hay reglas de dominio. Añade reglas para guardar descargas de sitios específicos en sus propias subcarpetas.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Dominios",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "p. ej. github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "p. ej. GitHub o Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

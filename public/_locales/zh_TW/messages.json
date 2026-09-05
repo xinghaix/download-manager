@@ -256,8 +256,8 @@
     "description": "擴充功能設定說明"
   },
   "fileRoutingDescription": {
-    "message": "根據檔案副檔名將下載檔案儲存到預設下載目錄下的指定子資料夾。此功能預設關閉。",
-    "description": "擴充功能設定細節說明"
+    "message": "根據檔案副檔名或來源網域，將下載檔案儲存到預設下載目錄下的指定子資料夾。此功能預設關閉。網域規則預設優先於副檔名規則。",
+    "description": "插件設置細節說明"
   },
   "fileRoutingRulesSetting": {
     "message": "分類規則",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "評個分吧",
     "description": "關於標籤頁說明"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "規則優先順序",
+    "description": "插件設置說明"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "當網域規則與副檔名規則同時符合時，依所選優先順序決定儲存資料夾。預設優先使用網域規則。",
+    "description": "插件設置細節說明"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "網域優先",
+    "description": "插件設置選項"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "副檔名優先",
+    "description": "插件設置選項"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "網域分類規則",
+    "description": "插件設置說明"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "尚無網域規則。新增後可將指定網站的下載儲存到獨立子資料夾。",
+    "description": "空狀態提示"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "網域",
+    "description": "表格列標題"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "例如：github.com, gist.github.com",
+    "description": "輸入提示"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "例如：GitHub 或 Sites/GitHub",
+    "description": "輸入提示"
   }
 }

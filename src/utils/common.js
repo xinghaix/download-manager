@@ -260,6 +260,15 @@ const common = {
     this.i18data.fileRoutingResetRules = this.loadI18nMessage('fileRoutingResetRules')
     this.i18data.fileRoutingDeleteRule = this.loadI18nMessage('fileRoutingDeleteRule')
     this.i18data.fileRoutingDeleteRuleConfirm = this.loadI18nMessage('fileRoutingDeleteRuleConfirm')
+    this.i18data.fileRoutingPrecedenceSetting = this.loadI18nMessage('fileRoutingPrecedenceSetting')
+    this.i18data.fileRoutingPrecedenceDescription = this.loadI18nMessage('fileRoutingPrecedenceDescription')
+    this.i18data.fileRoutingPrecedenceDomain = this.loadI18nMessage('fileRoutingPrecedenceDomain')
+    this.i18data.fileRoutingPrecedenceExtension = this.loadI18nMessage('fileRoutingPrecedenceExtension')
+    this.i18data.fileRoutingDomainRulesSetting = this.loadI18nMessage('fileRoutingDomainRulesSetting')
+    this.i18data.fileRoutingDomainRulesEmpty = this.loadI18nMessage('fileRoutingDomainRulesEmpty')
+    this.i18data.fileRoutingDomainsLabel = this.loadI18nMessage('fileRoutingDomainsLabel')
+    this.i18data.fileRoutingDomainsPlaceholder = this.loadI18nMessage('fileRoutingDomainsPlaceholder')
+    this.i18data.fileRoutingDomainFolderPlaceholder = this.loadI18nMessage('fileRoutingDomainFolderPlaceholder')
 
     // options settings 通知设置
     this.i18data.notificationSetting = this.loadI18nMessage('notificationSetting')

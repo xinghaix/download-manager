@@ -256,8 +256,8 @@
     "description": "Описание настроек плагина"
   },
   "fileRoutingDescription": {
-    "message": "Сохранять загрузки в подпапки каталога загрузок по расширению файла. Эта функция по умолчанию отключена.",
-    "description": "Подробное описание настроек плагина"
+    "message": "Сохраняет загрузки в подпапки папки «Загрузки» по расширению файла или домену источника. По умолчанию выключено. Правила доменов имеют приоритет по умолчанию.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Правила сортировки",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "и оцените его.",
     "description": "О инструкциях на странице ярлыков"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Приоритет правил",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Если совпадают правило домена и правило расширения, выбранный приоритет определяет папку. По умолчанию предпочтительны правила доменов.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Сначала домен",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Сначала расширение",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Правила классификации по домену",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Правил доменов пока нет. Добавьте их, чтобы сохранять загрузки с определенных сайтов в отдельные подпапки.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Домены",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "напр. github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "напр. GitHub или Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

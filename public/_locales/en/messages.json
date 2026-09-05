@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Save downloads into subfolders under the default download directory based on file extensions. This feature is off by default.",
-    "description": "Plugin settings detail description"
+    "message": "Save downloads into subfolders under the default Downloads folder based on file extension or source domain. Disabled by default. Domain rules take precedence over extension rules by default.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Routing rules",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "and rate it",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Rule precedence",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "When both a domain rule and an extension rule match, use the selected precedence to choose the folder. Domain rules are preferred by default.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Domain first",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Extension first",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Domain routing rules",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "No domain rules yet. Add rules to save downloads from specific sites into their own subfolders.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Domains",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "e.g. github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "e.g. GitHub or Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

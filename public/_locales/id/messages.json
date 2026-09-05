@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Simpan unduhan ke subfolder tertentu di bawah folder unduhan default berdasarkan ekstensi file. Fitur ini nonaktif secara default.",
-    "description": "Plugin settings detail description"
+    "message": "Menyimpan unduhan ke subfolder di folder Unduhan default berdasarkan ekstensi file atau domain sumber. Dinonaktifkan secara default. Aturan domain didahulukan secara default.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Aturan klasifikasi",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "dan beri nilai",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Prioritas aturan",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Jika aturan domain dan ekstensi sama-sama cocok, prioritas yang dipilih menentukan folder. Aturan domain diutamakan secara default.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Domain dulu",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Ekstensi dulu",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Aturan klasifikasi domain",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Belum ada aturan domain. Tambahkan aturan untuk menyimpan unduhan dari situs tertentu ke subfolder sendiri.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Domain",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "mis. github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "mis. GitHub atau Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

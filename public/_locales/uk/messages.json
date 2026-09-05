@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Зберігайте завантаження в указані підпапки стандартної папки завантажень на основі розширення файлу. Функція типово вимкнена.",
-    "description": "Plugin settings detail description"
+    "message": "Зберігає завантаження в підпапки теки «Завантаження» за розширенням файлу або доменом джерела. За замовчуванням вимкнено. Правила доменів мають пріоритет за замовчуванням.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Правила класифікації",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "і залиште оцінку",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Пріоритет правил",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Якщо збігаються правило домену й розширення, вибраний пріоритет визначає теку. За замовчуванням перевага надається правилам доменів.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Спочатку домен",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Спочатку розширення",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Правила класифікації за доменом",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Правил доменів ще немає. Додайте їх, щоб зберігати завантаження з певних сайтів в окремі підпапки.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Домени",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "напр. github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "напр. GitHub або Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

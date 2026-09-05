@@ -3,7 +3,7 @@ import storage from "./utils/storage.js"
 import common from "./utils/common.js"
 import icon from "./utils/icon.js"
 import { getDangerStatus, isDangerousDownload } from "./utils/downloadDanger.js"
-import { getRoutingFilename } from "./utils/downloadFileRouting.js"
+import { resolveRoutingFilename } from "./utils/downloadFileRouting.js"
 import { ensureBrowserDownloadUiDisabled } from "./utils/browserDownloadUi.js"
 
 // 全局状态（Service Worker 重启时会丢失，需要从 storage 恢复）
@@ -317,8 +317,17 @@ async function getSuggestedRoutingFilename(item) {
     return null
   }
 
-  const rules = await storage.get('download_file_routing_rules')
-  return getRoutingFilename(item.filename || item.url || item.finalUrl, rules)
+  const [extensionRules, domainRules, precedence] = await Promise.all([
+    storage.get('download_file_routing_rules'),
+    storage.get('download_domain_routing_rules'),
+    storage.get('download_routing_precedence')
+  ])
+
+  return resolveRoutingFilename(item, {
+    extensionRules,
+    domainRules,
+    precedence
+  })
 }
 
 async function getDownloadById(id) {

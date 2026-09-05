@@ -256,7 +256,7 @@
     "description": "插件设置说明"
   },
   "fileRoutingDescription": {
-    "message": "根据文件后缀将下载文件保存到默认下载目录下的指定子文件夹。该功能默认关闭。",
+    "message": "根据文件后缀或来源域名，将下载文件保存到默认下载目录下的指定子文件夹。该功能默认关闭。域名规则默认优先于后缀规则。",
     "description": "插件设置细节说明"
   },
   "fileRoutingRulesSetting": {
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "评个分吧",
     "description": "关于标签页说明"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "规则优先级",
+    "description": "插件设置说明"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "当域名规则与后缀规则同时匹配时，按所选优先级决定保存文件夹。默认优先使用域名规则。",
+    "description": "插件设置细节说明"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "域名优先",
+    "description": "插件设置选项"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "后缀优先",
+    "description": "插件设置选项"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "域名分类规则",
+    "description": "插件设置说明"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "暂无域名规则。添加后可将指定网站的下载保存到独立子文件夹。",
+    "description": "空状态提示"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "域名",
+    "description": "表格列标题"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "例如：github.com, gist.github.com",
+    "description": "输入提示"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "例如：GitHub 或 Sites/GitHub",
+    "description": "输入提示"
   }
 }

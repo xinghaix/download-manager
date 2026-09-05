@@ -81,6 +81,91 @@
         <el-switch class="switch" v-model="downloadFileRoutingEnabled" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
       <el-divider/>
+      <div class="item">
+        <div class="content">
+          <span class="setting-title">{{i18data.fileRoutingPrecedenceSetting}}</span>
+          <span class="setting-description">{{i18data.fileRoutingPrecedenceDescription}}</span>
+        </div>
+        <div class="switch width">
+          <el-radio-group v-model="downloadRoutingPrecedence" size="small" :disabled="!downloadFileRoutingEnabled">
+            <el-radio-button value="domain">{{i18data.fileRoutingPrecedenceDomain}}</el-radio-button>
+            <el-radio-button value="extension">{{i18data.fileRoutingPrecedenceExtension}}</el-radio-button>
+          </el-radio-group>
+        </div>
+      </div>
+      <el-divider/>
+      <div class="file-routing-toolbar">
+        <span class="setting-title">{{i18data.fileRoutingDomainRulesSetting}}</span>
+        <div class="file-routing-actions">
+          <el-button size="small" @click="addDomainRoutingRule" :disabled="!downloadFileRoutingEnabled">
+            <el-icon><Plus /></el-icon>
+            {{i18data.fileRoutingAddRule}}
+          </el-button>
+        </div>
+      </div>
+      <div class="file-routing-table" role="table">
+        <div class="file-routing-table-head" role="row">
+          <div role="columnheader">{{i18data.fileRoutingFolderLabel}}</div>
+          <div role="columnheader">{{i18data.fileRoutingDomainsLabel}}</div>
+          <div role="columnheader">{{i18data.fileRoutingActionsLabel}}</div>
+        </div>
+        <div class="file-routing-empty" v-if="!downloadDomainRoutingRules.length">
+          {{i18data.fileRoutingDomainRulesEmpty}}
+        </div>
+        <div class="file-routing-table-row"
+             v-for="rule in downloadDomainRoutingRules"
+             :key="rule.id"
+             role="row"
+             :class="{ disabled: !downloadFileRoutingEnabled || !rule.enabled }"
+             @focusout="handleDomainRuleFocusOut(rule, $event)">
+          <div class="file-routing-table-cell" role="cell" :data-label="i18data.fileRoutingFolderLabel">
+            <el-input v-model="rule.folder"
+                      :class="{ 'file-routing-field-error': isExistingDomainRoutingRuleInvalid(rule) && !isFileRoutingRuleFolderValid(rule) }"
+                      size="small"
+                      :disabled="!downloadFileRoutingEnabled"
+                      :placeholder="i18data.fileRoutingDomainFolderPlaceholder"
+                      @input="handleDomainRuleFolderInput(rule)"
+                      @blur="handleDomainRuleFolderBlur(rule)"/>
+          </div>
+          <div class="file-routing-table-cell" role="cell" :data-label="i18data.fileRoutingDomainsLabel">
+            <el-input-tag class="file-routing-extensions"
+                          :class="{ 'file-routing-field-error': isExistingDomainRoutingRuleInvalid(rule) && !isDomainRoutingRuleDomainsValid(rule) }"
+                          :model-value="rule.domains"
+                          size="small"
+                          :delimiter="/[\s,;，；]+/"
+                          :disabled="!downloadFileRoutingEnabled"
+                          :placeholder="i18data.fileRoutingDomainsPlaceholder"
+                          @update:model-value="updateDomainRuleDomains(rule, $event)"
+                          @change="handleDomainRuleDomainsChange(rule)"
+                          @blur="handleDomainRuleDomainsBlur(rule)"/>
+          </div>
+          <div class="file-routing-table-cell file-routing-row-actions" role="cell" :data-label="i18data.fileRoutingActionsLabel">
+            <div class="file-routing-enable">
+              <el-switch v-model="rule.enabled" active-color="#409EFF" inactive-color="#bdc1c6"
+                         :aria-label="i18data.fileRoutingRuleEnabledLabel"
+                         :title="i18data.fileRoutingRuleEnabledLabel"
+                         :disabled="!downloadFileRoutingEnabled || isDomainRoutingRuleIncomplete(rule)"
+                         @change="flushDomainRoutingRules"/>
+            </div>
+            <el-popconfirm
+              :title="i18data.fileRoutingDeleteRuleConfirm"
+              :confirm-button-text="i18data.clearPopConfirmText"
+              :cancel-button-text="i18data.clearPopCancelText"
+              confirm-button-type="danger"
+              width="220"
+              @confirm="deleteDomainRoutingRule(rule.id)">
+              <template #reference>
+                <el-button class="file-routing-delete" text type="danger"
+                           :aria-label="i18data.fileRoutingDeleteRule"
+                           :title="i18data.fileRoutingDeleteRule">
+                  <el-icon><Delete /></el-icon>
+                </el-button>
+              </template>
+            </el-popconfirm>
+          </div>
+        </div>
+      </div>
+      <el-divider/>
       <div class="file-routing-toolbar">
         <span class="setting-title">{{i18data.fileRoutingRulesSetting}}</span>
         <div class="file-routing-actions">
@@ -237,9 +322,14 @@ import { Delete, InfoFilled, Plus, RefreshLeft } from '@element-plus/icons-vue'
 import storage from '../../utils/storage'
 import common from '../../utils/common'
 import {
+  cloneDefaultDownloadDomainRoutingRules,
   cloneDefaultDownloadFileRoutingRules,
+  DEFAULT_DOWNLOAD_ROUTING_PRECEDENCE,
+  normalizeDownloadDomainRoutingRules,
   normalizeDownloadFileRoutingRules,
+  normalizeDownloadRoutingPrecedence,
   normalizeFolderPath,
+  parseDomains,
   parseExtensions
 } from '../../utils/downloadFileRouting'
 
@@ -306,9 +396,20 @@ export default {
       await this.persistSetting('download_file_routing_enabled', val)
     },
 
+    async downloadRoutingPrecedence(val) {
+      await this.persistSetting('download_routing_precedence', normalizeDownloadRoutingPrecedence(val))
+    },
+
     downloadFileRoutingRules: {
       handler() {
         this.scheduleFileRoutingRulesPersist()
+      },
+      deep: true
+    },
+
+    downloadDomainRoutingRules: {
+      handler() {
+        this.scheduleDomainRoutingRulesPersist()
       },
       deep: true
     },
@@ -368,6 +469,12 @@ export default {
 
       const downloadFileRoutingRules = await storage.get('download_file_routing_rules')
       this.downloadFileRoutingRules = normalizeDownloadFileRoutingRules(downloadFileRoutingRules)
+
+      const downloadDomainRoutingRules = await storage.get('download_domain_routing_rules')
+      this.downloadDomainRoutingRules = normalizeDownloadDomainRoutingRules(downloadDomainRoutingRules)
+
+      const downloadRoutingPrecedence = await storage.get('download_routing_precedence')
+      this.downloadRoutingPrecedence = normalizeDownloadRoutingPrecedence(downloadRoutingPrecedence)
 
       // 通知设置
       const downloadStartedNotification = await storage.get('download_started_notification')
@@ -435,6 +542,8 @@ export default {
       // 文件分类下载
       downloadFileRoutingEnabled: false,
       downloadFileRoutingRules: [],
+      downloadDomainRoutingRules: [],
+      downloadRoutingPrecedence: DEFAULT_DOWNLOAD_ROUTING_PRECEDENCE,
 
       // 通知设置
       downloadStartedNotification: false,
@@ -456,6 +565,8 @@ export default {
       syncTransitioning: false,
       fileRoutingPersistTimer: null,
       fileRoutingPersistQueue: Promise.resolve(),
+      domainRoutingPersistTimer: null,
+      domainRoutingPersistQueue: Promise.resolve(),
 
       chromeVersionGreaterThan50: true
     }
@@ -465,6 +576,11 @@ export default {
       clearTimeout(this.fileRoutingPersistTimer)
       this.fileRoutingPersistTimer = null
       storage.set('download_file_routing_rules', this.getNormalizedFileRoutingRulesForPersist())
+    }
+    if (!this.initializing && this.domainRoutingPersistTimer) {
+      clearTimeout(this.domainRoutingPersistTimer)
+      this.domainRoutingPersistTimer = null
+      storage.set('download_domain_routing_rules', this.getNormalizedDomainRoutingRulesForPersist())
     }
   },
   methods: {
@@ -495,6 +611,137 @@ export default {
     resetFileRoutingRules() {
       this.downloadFileRoutingRules = cloneDefaultDownloadFileRoutingRules()
       this.flushFileRoutingRules()
+    },
+
+    addDomainRoutingRule() {
+      this.discardIncompleteNewDomainRoutingRules()
+      this.downloadDomainRoutingRules.push({
+        id: `domain-custom-${Date.now()}`,
+        isNew: true,
+        enabled: true,
+        folder: '',
+        domains: []
+      })
+    },
+
+    deleteDomainRoutingRule(id) {
+      this.downloadDomainRoutingRules = this.downloadDomainRoutingRules.filter(rule => rule.id !== id)
+      this.flushDomainRoutingRules()
+    },
+
+    updateDomainRuleDomains(rule, value) {
+      rule.domains = parseDomains(value)
+      this.disableIncompleteExistingDomainRoutingRule(rule)
+      this.tryCommitNewDomainRoutingRule(rule)
+    },
+
+    handleDomainRuleFolderInput(rule) {
+      this.disableIncompleteExistingDomainRoutingRule(rule)
+    },
+
+    handleDomainRuleFolderBlur(rule) {
+      rule.folder = normalizeFolderPath(rule.folder)
+      this.disableIncompleteExistingDomainRoutingRule(rule)
+      this.tryCommitNewDomainRoutingRule(rule)
+      this.flushDomainRoutingRules()
+    },
+
+    handleDomainRuleDomainsChange(rule) {
+      this.disableIncompleteExistingDomainRoutingRule(rule)
+      this.tryCommitNewDomainRoutingRule(rule)
+      this.flushDomainRoutingRules()
+    },
+
+    handleDomainRuleDomainsBlur(rule) {
+      this.disableIncompleteExistingDomainRoutingRule(rule)
+      this.tryCommitNewDomainRoutingRule(rule)
+      this.flushDomainRoutingRules()
+    },
+
+    handleDomainRuleFocusOut(rule, event) {
+      const nextTarget = event.relatedTarget
+      if (nextTarget && event.currentTarget.contains(nextTarget)) {
+        return
+      }
+
+      if (rule.isNew && this.isDomainRoutingRuleIncomplete(rule)) {
+        this.deleteDomainRoutingRule(rule.id)
+      }
+    },
+
+    isDomainRoutingRuleDomainsValid(rule) {
+      return parseDomains(rule && rule.domains).length > 0
+    },
+
+    isDomainRoutingRuleIncomplete(rule) {
+      return !this.isFileRoutingRuleFolderValid(rule) || !this.isDomainRoutingRuleDomainsValid(rule)
+    },
+
+    isExistingDomainRoutingRuleInvalid(rule) {
+      return rule && !rule.isNew && this.isDomainRoutingRuleIncomplete(rule)
+    },
+
+    disableIncompleteExistingDomainRoutingRule(rule) {
+      if (this.isExistingDomainRoutingRuleInvalid(rule) && rule.enabled !== false) {
+        rule.enabled = false
+      }
+    },
+
+    tryCommitNewDomainRoutingRule(rule) {
+      if (rule && rule.isNew && !this.isDomainRoutingRuleIncomplete(rule)) {
+        rule.isNew = false
+      }
+    },
+
+    discardIncompleteNewDomainRoutingRules() {
+      this.downloadDomainRoutingRules = this.downloadDomainRoutingRules.filter(rule => {
+        return !rule.isNew || !this.isDomainRoutingRuleIncomplete(rule)
+      })
+    },
+
+    getNormalizedDomainRoutingRulesForPersist() {
+      const rules = this.downloadDomainRoutingRules.filter(rule => {
+        return !rule.isNew || !this.isDomainRoutingRuleIncomplete(rule)
+      })
+      rules.forEach(rule => this.disableIncompleteExistingDomainRoutingRule(rule))
+      return normalizeDownloadDomainRoutingRules(rules)
+    },
+
+    scheduleDomainRoutingRulesPersist() {
+      if (this.initializing || this.syncTransitioning) {
+        return
+      }
+
+      if (this.domainRoutingPersistTimer) {
+        clearTimeout(this.domainRoutingPersistTimer)
+      }
+
+      this.domainRoutingPersistTimer = setTimeout(() => {
+        this.domainRoutingPersistTimer = null
+        this.persistDomainRoutingRules()
+      }, 500)
+    },
+
+    flushDomainRoutingRules() {
+      return this.persistDomainRoutingRules()
+    },
+
+    async persistDomainRoutingRules() {
+      if (this.initializing || this.syncTransitioning) {
+        return
+      }
+
+      if (this.domainRoutingPersistTimer) {
+        clearTimeout(this.domainRoutingPersistTimer)
+        this.domainRoutingPersistTimer = null
+      }
+
+      const rules = this.getNormalizedDomainRoutingRulesForPersist()
+      this.domainRoutingPersistQueue = this.domainRoutingPersistQueue
+        .catch(() => {})
+        .then(() => storage.set('download_domain_routing_rules', rules))
+
+      await this.domainRoutingPersistQueue
     },
 
     updateRuleExtensions(rule, value) {
@@ -747,6 +994,12 @@ export default {
     display: flex;
     align-items: center;
     gap: 8px;
+  }
+
+  .file-routing-empty {
+    padding: 10px 4px;
+    color: var(--el-text-color-secondary, #909399);
+    font-size: 13px;
   }
 
   .file-routing-table {

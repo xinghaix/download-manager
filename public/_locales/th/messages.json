@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "บันทึกไฟล์ดาวน์โหลดลงในโฟลเดอร์ย่อยที่กำหนดภายใต้โฟลเดอร์ดาวน์โหลดเริ่มต้น โดยอิงจากนามสกุลไฟล์ ฟีเจอร์นี้ปิดอยู่โดยค่าเริ่มต้น",
-    "description": "Plugin settings detail description"
+    "message": "บันทึกการดาวน์โหลดลงโฟลเดอร์ย่อยในโฟลเดอร์ดาวน์โหลดเริ่มต้นตามนามสกุลไฟล์หรือโดเมนต้นทาง ปิดใช้งานตามค่าเริ่มต้น กฎโดเมนมีลำดับความสำคัญเหนือกฎนามสกุลตามค่าเริ่มต้น",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "กฎการจัดหมวดหมู่",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "แล้วให้คะแนนกันนะ",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "ลำดับความสำคัญของกฎ",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "เมื่อกฎโดเมนและนามสกุลตรงกันทั้งคู่ ให้ใช้ลำดับความสำคัญที่เลือกเพื่อเลือกโฟลเดอร์ ค่าเริ่มต้นให้ความสำคัญกับกฎโดเมน",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "โดเมนก่อน",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "นามสกุลก่อน",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "กฎการจัดประเภทตามโดเมน",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "ยังไม่มีกฎโดเมน เพิ่มกฎเพื่อบันทึกการดาวน์โหลดจากเว็บไซต์เฉพาะลงในโฟลเดอร์ย่อยของตัวเอง",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "โดเมน",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "เช่น github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "เช่น GitHub หรือ Sites/GitHub",
+    "description": "Input placeholder"
   }
 }
