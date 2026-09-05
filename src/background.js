@@ -20,7 +20,7 @@ let state = {
   systemTheme: null
 }
 
-const contextDownloadMenus = ['link', 'image', 'audio', 'video']
+const ALL_CONTEXT_DOWNLOAD_MENUS = ['link', 'image', 'audio', 'video']
 const pendingDownloadIds = new Set()
 const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
 const ACTIVE_DOWNLOADS_ALARM = 'active-downloads-reconcile'
@@ -260,6 +260,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             await createDownloadContextMenus()
           } else {
             removeDownloadContextMenus()
+          }
+          break
+        case 'downloadMenuContexts':
+          if (await storage.get('download_context_menus')) {
+            await createDownloadContextMenus()
           }
           break
         case 'ui_theme_changed':
@@ -1024,13 +1029,27 @@ function getProgress(item) {
     1.0 * item.bytesReceived / item.totalBytes : -1
 }
 
+function normalizeContextMenuContexts(value) {
+  const selected = Array.isArray(value)
+    ? value.filter(menu => ALL_CONTEXT_DOWNLOAD_MENUS.includes(menu))
+    : []
+  const unique = [...new Set(selected)]
+  return unique.length ? unique : [...ALL_CONTEXT_DOWNLOAD_MENUS]
+}
+
+async function getEnabledContextMenuContexts() {
+  const contexts = await storage.get('download_context_menu_contexts')
+  return normalizeContextMenuContexts(contexts)
+}
+
 // 创建上下文菜单
 async function createDownloadContextMenus() {
   await new Promise((resolve) => {
     chrome.contextMenus.removeAll(() => resolve())
   })
 
-  await Promise.all(contextDownloadMenus.map((menu) => {
+  const menus = await getEnabledContextMenuContexts()
+  await Promise.all(menus.map((menu) => {
     return new Promise((resolve) => {
       chrome.contextMenus.create({
         id: 'download-' + menu,
