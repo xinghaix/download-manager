@@ -91,6 +91,22 @@
     "message": "ダウンロードを再開",
     "description": "一時停止中のファイルのダウンロードを再開します"
   },
+  "batchDownloadActions": {
+    "message": "一括ダウンロード操作",
+    "description": "一括操作ボタンのツールチップ"
+  },
+  "pauseAll": {
+    "message": "すべて一時停止",
+    "description": "進行中のダウンロードをすべて一時停止"
+  },
+  "resumeAll": {
+    "message": "すべて再開",
+    "description": "一時停止中のダウンロードをすべて再開"
+  },
+  "cancelAll": {
+    "message": "すべてキャンセル",
+    "description": "進行中のダウンロードをすべてキャンセル"
+  },
   "delete": {
     "message": "ディスクから削除",
     "description": "ディスクからファイルを削除する"

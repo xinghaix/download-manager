@@ -91,6 +91,22 @@
     "message": "Riprendi download",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "Azioni di download in blocco",
+    "description": "Tooltip azioni in blocco"
+  },
+  "pauseAll": {
+    "message": "Metti in pausa tutti",
+    "description": "Metti in pausa tutti i download in corso"
+  },
+  "resumeAll": {
+    "message": "Riprendi tutti",
+    "description": "Riprendi tutti i download in pausa"
+  },
+  "cancelAll": {
+    "message": "Annulla tutti",
+    "description": "Annulla tutti i download in corso"
+  },
   "delete": {
     "message": "Elimina dal disco",
     "description": "delete file from disk"

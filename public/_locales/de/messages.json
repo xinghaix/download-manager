@@ -91,6 +91,22 @@
     "message": "Fortsetzen",
     "description": "Den Download fortsetzen"
   },
+  "batchDownloadActions": {
+    "message": "Batch-Download-Aktionen",
+    "description": "Tooltip für Batch-Aktionen"
+  },
+  "pauseAll": {
+    "message": "Alle pausieren",
+    "description": "Alle laufenden Downloads pausieren"
+  },
+  "resumeAll": {
+    "message": "Alle fortsetzen",
+    "description": "Alle pausierten Downloads fortsetzen"
+  },
+  "cancelAll": {
+    "message": "Alle abbrechen",
+    "description": "Alle laufenden Downloads abbrechen"
+  },
   "delete": {
     "message": "Löschen",
     "description": "Datei löschen"

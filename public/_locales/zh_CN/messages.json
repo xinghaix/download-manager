@@ -91,6 +91,22 @@
     "message": "恢复下载",
     "description": "恢复下载处在暂停中的文件"
   },
+  "batchDownloadActions": {
+    "message": "批量下载操作",
+    "description": "弹窗批量操作按钮提示"
+  },
+  "pauseAll": {
+    "message": "全部暂停",
+    "description": "暂停全部进行中的下载"
+  },
+  "resumeAll": {
+    "message": "全部继续",
+    "description": "恢复全部已暂停的下载"
+  },
+  "cancelAll": {
+    "message": "全部取消",
+    "description": "取消全部进行中的下载"
+  },
   "delete": {
     "message": "从磁盘删除",
     "description": "从磁盘中删除文件"

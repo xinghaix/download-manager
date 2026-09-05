@@ -91,6 +91,22 @@
     "message": "Продовжити завантаження",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "Пакетні дії завантаження",
+    "description": "Підказка пакетних дій"
+  },
+  "pauseAll": {
+    "message": "Призупинити всі",
+    "description": "Призупинити всі поточні завантаження"
+  },
+  "resumeAll": {
+    "message": "Відновити всі",
+    "description": "Відновити всі призупинені завантаження"
+  },
+  "cancelAll": {
+    "message": "Скасувати всі",
+    "description": "Скасувати всі поточні завантаження"
+  },
   "delete": {
     "message": "Видалити з диска",
     "description": "delete file from disk"

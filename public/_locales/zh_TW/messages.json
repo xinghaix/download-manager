@@ -91,6 +91,22 @@
     "message": "恢復下載",
     "description": "恢復下載處在暫停中的檔案"
   },
+  "batchDownloadActions": {
+    "message": "批量下載操作",
+    "description": "彈窗批量操作按鈕提示"
+  },
+  "pauseAll": {
+    "message": "全部暫停",
+    "description": "暫停全部進行中的下載"
+  },
+  "resumeAll": {
+    "message": "全部繼續",
+    "description": "恢復全部已暫停的下載"
+  },
+  "cancelAll": {
+    "message": "全部取消",
+    "description": "取消全部進行中的下載"
+  },
   "delete": {
     "message": "從磁碟刪除",
     "description": "從磁碟中刪除檔案"

@@ -91,6 +91,22 @@
     "message": "Download hervatten",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "Batchdownloadacties",
+    "description": "Tooltip voor batchacties"
+  },
+  "pauseAll": {
+    "message": "Alles pauzeren",
+    "description": "Alle actieve downloads pauzeren"
+  },
+  "resumeAll": {
+    "message": "Alles hervatten",
+    "description": "Alle gepauzeerde downloads hervatten"
+  },
+  "cancelAll": {
+    "message": "Alles annuleren",
+    "description": "Alle actieve downloads annuleren"
+  },
   "delete": {
     "message": "Van schijf verwijderen",
     "description": "delete file from disk"

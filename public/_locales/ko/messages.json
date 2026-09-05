@@ -91,6 +91,22 @@
     "message": "다운로드 다시 시작",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "일괄 다운로드 작업",
+    "description": "일괄 작업 버튼 툴팁"
+  },
+  "pauseAll": {
+    "message": "모두 일시중지",
+    "description": "진행 중인 모든 다운로드 일시중지"
+  },
+  "resumeAll": {
+    "message": "모두 재개",
+    "description": "일시중지된 모든 다운로드 재개"
+  },
+  "cancelAll": {
+    "message": "모두 취소",
+    "description": "진행 중인 모든 다운로드 취소"
+  },
   "delete": {
     "message": "디스크에서 삭제",
     "description": "delete file from disk"

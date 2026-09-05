@@ -91,6 +91,22 @@
     "message": "Reprendre le téléchargement",
     "description": "reprendre le téléchargement d'un fichier suspendu"
   },
+  "batchDownloadActions": {
+    "message": "Actions de téléchargement groupées",
+    "description": "Info-bulle des actions groupées"
+  },
+  "pauseAll": {
+    "message": "Tout mettre en pause",
+    "description": "Mettre en pause tous les téléchargements en cours"
+  },
+  "resumeAll": {
+    "message": "Tout reprendre",
+    "description": "Reprendre tous les téléchargements en pause"
+  },
+  "cancelAll": {
+    "message": "Tout annuler",
+    "description": "Annuler tous les téléchargements en cours"
+  },
   "delete": {
     "message": "Supprimer du disque",
     "description": "supprimer le fichier du disque"

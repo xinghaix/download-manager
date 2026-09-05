@@ -91,6 +91,22 @@
     "message": "ดาวน์โหลดต่อ",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "การดำเนินการดาวน์โหลดแบบชุด",
+    "description": "คำแนะนำปุ่มการดำเนินการแบบชุด"
+  },
+  "pauseAll": {
+    "message": "หยุดชั่วคราวทั้งหมด",
+    "description": "หยุดชั่วคราวการดาวน์โหลดที่กำลังดำเนินการทั้งหมด"
+  },
+  "resumeAll": {
+    "message": "ดำเนินการต่อทั้งหมด",
+    "description": "ดำเนินการต่อการดาวน์โหลดที่หยุดชั่วคราวทั้งหมด"
+  },
+  "cancelAll": {
+    "message": "ยกเลิกทั้งหมด",
+    "description": "ยกเลิกการดาวน์โหลดที่กำลังดำเนินการทั้งหมด"
+  },
   "delete": {
     "message": "ลบจากดิสก์",
     "description": "delete file from disk"

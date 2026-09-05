@@ -91,6 +91,22 @@
     "message": "İndirmeyi sürdür",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "Toplu indirme işlemleri",
+    "description": "Toplu işlemler ipucu"
+  },
+  "pauseAll": {
+    "message": "Tümünü duraklat",
+    "description": "Devam eden tüm indirmeleri duraklat"
+  },
+  "resumeAll": {
+    "message": "Tümünü sürdür",
+    "description": "Duraklatılmış tüm indirmeleri sürdür"
+  },
+  "cancelAll": {
+    "message": "Tümünü iptal et",
+    "description": "Devam eden tüm indirmeleri iptal et"
+  },
   "delete": {
     "message": "Diskten sil",
     "description": "delete file from disk"

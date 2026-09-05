@@ -91,6 +91,22 @@
     "message": "Tiếp tục tải xuống",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "Thao tác tải xuống hàng loạt",
+    "description": "Chú thích thao tác hàng loạt"
+  },
+  "pauseAll": {
+    "message": "Tạm dừng tất cả",
+    "description": "Tạm dừng tất cả các tải xuống đang chạy"
+  },
+  "resumeAll": {
+    "message": "Tiếp tục tất cả",
+    "description": "Tiếp tục tất cả các tải xuống đang tạm dừng"
+  },
+  "cancelAll": {
+    "message": "Hủy tất cả",
+    "description": "Hủy tất cả các tải xuống đang chạy"
+  },
   "delete": {
     "message": "Xóa khỏi ổ đĩa",
     "description": "delete file from disk"
