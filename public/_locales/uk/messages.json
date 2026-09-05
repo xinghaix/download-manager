@@ -235,6 +235,46 @@
     "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
     "description": "Plugin setting detail description"
   },
+  "downloadConfirmBeforeStartSetting": {
+    "message": "Підтверджувати перед завантаженням",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmBeforeStartDescSetting": {
+    "message": "Якщо ввімкнено, завантаження, розпочаті цим розширенням (контекстне меню, ручний URL, повтор), спочатку запитують підтвердження. Вбудовані завантаження браузера не перериваються, щоб не ламати одноразові посилання. Типово вимкнено.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmChooseFolderSetting": {
+    "message": "Обирати папку на початку завантаження",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmChooseFolderDescSetting": {
+    "message": "Використовує діалог «Зберегти як» (saveAs) для завантажень цього розширення. Незалежно від параметра Edge/Chrome «Запитувати, що робити», який розширення не контролює.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmTitle": {
+    "message": "Підтвердити завантаження",
+    "description": "Confirmation title before starting a download"
+  },
+  "downloadConfirmMessage": {
+    "message": "Почати завантаження «{}»?",
+    "description": "Confirmation message before starting a download; {} is the URL"
+  },
+  "downloadConfirmButton": {
+    "message": "Завантажити",
+    "description": "Confirmation button before starting a download"
+  },
+  "downloadConfirmNotificationTitle": {
+    "message": "Підтвердити завантаження",
+    "description": "Notification title when confirming a context-menu download"
+  },
+  "downloadConfirmNotificationConfirm": {
+    "message": "Завантажити",
+    "description": "Notification button to confirm a pending download"
+  },
+  "downloadConfirmNotificationCancel": {
+    "message": "Скасувати",
+    "description": "Notification button to cancel a pending download"
+  },
   "contextMenus": {
     "message": "Контекстне меню",
     "description": "plugin setting instructions"

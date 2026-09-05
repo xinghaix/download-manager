@@ -16,6 +16,8 @@ const CONFIG_KEYS = [
   'right_click_url',
   'enable_animation',
   'show_download_progress',
+  'download_confirm_before_start',
+  'download_confirm_choose_folder',
   'download_started_notification',
   'download_completed_notification',
   'download_warning_notification',
@@ -351,6 +353,8 @@ const storage = {
     await this.setDefaultIfNull('right_click_url', true)
     await this.setDefaultIfNull('enable_animation', false)
     await this.setDefaultIfNull('show_download_progress', true)
+    await this.setDefaultIfNull('download_confirm_before_start', false)
+    await this.setDefaultIfNull('download_confirm_choose_folder', false)
     await this.setDefaultIfNull('download_started_notification', false)
     await this.setDefaultIfNull('download_completed_notification', false)
     await this.setDefaultIfNull('download_warning_notification', false)

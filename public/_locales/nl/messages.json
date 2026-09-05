@@ -235,6 +235,46 @@
     "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
     "description": "Plugin setting detail description"
   },
+  "downloadConfirmBeforeStartSetting": {
+    "message": "Bevestigen vóór downloaden",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmBeforeStartDescSetting": {
+    "message": "Indien ingeschakeld vragen downloads van deze extensie (contextmenu, handmatige URL of opnieuw) eerst om bevestiging. Browser-eigen downloads worden niet onderbroken om eenmalige links te beschermen. Standaard uit.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmChooseFolderSetting": {
+    "message": "Map kiezen bij starten van download",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmChooseFolderDescSetting": {
+    "message": "Gebruikt het Opslaan als-dialoogvenster (saveAs) voor downloads van deze extensie. Los van Edge/Chrome “Vragen wat te doen”, wat extensies niet kunnen sturen.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmTitle": {
+    "message": "Download bevestigen",
+    "description": "Confirmation title before starting a download"
+  },
+  "downloadConfirmMessage": {
+    "message": "Download van “{}” starten?",
+    "description": "Confirmation message before starting a download; {} is the URL"
+  },
+  "downloadConfirmButton": {
+    "message": "Downloaden",
+    "description": "Confirmation button before starting a download"
+  },
+  "downloadConfirmNotificationTitle": {
+    "message": "Download bevestigen",
+    "description": "Notification title when confirming a context-menu download"
+  },
+  "downloadConfirmNotificationConfirm": {
+    "message": "Downloaden",
+    "description": "Notification button to confirm a pending download"
+  },
+  "downloadConfirmNotificationCancel": {
+    "message": "Annuleren",
+    "description": "Notification button to cancel a pending download"
+  },
   "contextMenus": {
     "message": "Contextmenu",
     "description": "plugin setting instructions"

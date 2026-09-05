@@ -235,6 +235,46 @@
     "message": "在弹窗中显示下载进度、速度和剩余时间。开启后仅轮询当前可视区域内正在下载的文件；关闭后不再轮询计算进度，可降低大量下载时的资源占用。",
     "description": "插件设置细节说明"
   },
+  "downloadConfirmBeforeStartSetting": {
+    "message": "下载前确认",
+    "description": "插件设置说明"
+  },
+  "downloadConfirmBeforeStartDescSetting": {
+    "message": "开启后，由本扩展发起的下载（右键菜单、手动输入链接、重新下载）会先弹出确认。浏览器原生触发的下载不会中断，以免破坏一次性链接。默认关闭。",
+    "description": "插件设置细节说明"
+  },
+  "downloadConfirmChooseFolderSetting": {
+    "message": "开始下载时选择保存位置",
+    "description": "插件设置说明"
+  },
+  "downloadConfirmChooseFolderDescSetting": {
+    "message": "对本扩展发起的下载使用浏览器“另存为”对话框（saveAs）。这与 Edge/Chrome 的“每次下载都询问我该做些什么”无关，扩展无法绑定该系统选项。",
+    "description": "插件设置细节说明"
+  },
+  "downloadConfirmTitle": {
+    "message": "确认下载",
+    "description": "开始下载前的二次确认标题"
+  },
+  "downloadConfirmMessage": {
+    "message": "是否开始下载“{}”？",
+    "description": "开始下载前的二次确认内容；{} 为链接"
+  },
+  "downloadConfirmButton": {
+    "message": "开始下载",
+    "description": "开始下载前的二次确认按钮"
+  },
+  "downloadConfirmNotificationTitle": {
+    "message": "确认下载",
+    "description": "右键菜单下载确认通知标题"
+  },
+  "downloadConfirmNotificationConfirm": {
+    "message": "下载",
+    "description": "确认待下载通知按钮"
+  },
+  "downloadConfirmNotificationCancel": {
+    "message": "取消",
+    "description": "取消待下载通知按钮"
+  },
   "contextMenus": {
     "message": "上下文菜单",
     "description": "插件设置说明"

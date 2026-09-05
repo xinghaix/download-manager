@@ -235,6 +235,46 @@
     "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
     "description": "Plugin setting detail description"
   },
+  "downloadConfirmBeforeStartSetting": {
+    "message": "다운로드 전 확인",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmBeforeStartDescSetting": {
+    "message": "사용하면 이 확장 프로그램이 시작하는 다운로드(컨텍스트 메뉴, 수동 URL, 다시 다운로드) 전에 확인합니다. 브라우저 기본 다운로드는 중단하지 않습니다(일회성 링크 보호). 기본값은 꺼짐입니다.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmChooseFolderSetting": {
+    "message": "다운로드 시작 시 저장 위치 선택",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmChooseFolderDescSetting": {
+    "message": "이 확장 프로그램이 시작하는 다운로드에 브라우저 저장 대화상자(saveAs)를 사용합니다. Edge/Chrome의 “매번 확인” 설정과는 별개이며 확장에서 제어할 수 없습니다.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmTitle": {
+    "message": "다운로드 확인",
+    "description": "Confirmation title before starting a download"
+  },
+  "downloadConfirmMessage": {
+    "message": "“{}” 다운로드를 시작할까요?",
+    "description": "Confirmation message before starting a download; {} is the URL"
+  },
+  "downloadConfirmButton": {
+    "message": "다운로드",
+    "description": "Confirmation button before starting a download"
+  },
+  "downloadConfirmNotificationTitle": {
+    "message": "다운로드 확인",
+    "description": "Notification title when confirming a context-menu download"
+  },
+  "downloadConfirmNotificationConfirm": {
+    "message": "다운로드",
+    "description": "Notification button to confirm a pending download"
+  },
+  "downloadConfirmNotificationCancel": {
+    "message": "취소",
+    "description": "Notification button to cancel a pending download"
+  },
   "contextMenus": {
     "message": "컨텍스트 메뉴",
     "description": "plugin setting instructions"
