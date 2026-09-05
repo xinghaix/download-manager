@@ -60,6 +60,22 @@
         </div>
         <el-switch class="switch" v-model="deleteFileConfirm" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
+      <el-divider/>
+      <div class="item pointer">
+        <div class="content" @click="downloadConfirmBeforeStart = !downloadConfirmBeforeStart">
+          <span class="setting-title">{{i18data.downloadConfirmBeforeStartSetting}}</span>
+          <span class="setting-description">{{i18data.downloadConfirmBeforeStartDescSetting}}</span>
+        </div>
+        <el-switch class="switch" v-model="downloadConfirmBeforeStart" active-color="#409EFF" inactive-color="#bdc1c6"/>
+      </div>
+      <el-divider/>
+      <div class="item pointer">
+        <div class="content" @click="downloadConfirmChooseFolder = !downloadConfirmChooseFolder">
+          <span class="setting-title">{{i18data.downloadConfirmChooseFolderSetting}}</span>
+          <span class="setting-description">{{i18data.downloadConfirmChooseFolderDescSetting}}</span>
+        </div>
+        <el-switch class="switch" v-model="downloadConfirmChooseFolder" active-color="#409EFF" inactive-color="#bdc1c6"/>
+      </div>
     </el-card>
 
     <h2 class="title">{{i18data.contextMenus}}</h2>
@@ -405,6 +421,12 @@ export default {
     async deleteFileConfirm(val) {
       await this.persistSetting('delete_file_confirm', val)
     },
+    async downloadConfirmBeforeStart(val) {
+      await this.persistSetting('download_confirm_before_start', val)
+    },
+    async downloadConfirmChooseFolder(val) {
+      await this.persistSetting('download_confirm_choose_folder', val)
+    },
 
     async downloadContextMenus(val) {
       await this.persistSetting('download_context_menus', val)
@@ -505,6 +527,12 @@ export default {
       const deleteFileConfirm = await storage.get('delete_file_confirm')
       this.deleteFileConfirm = typeof deleteFileConfirm === 'boolean' ? deleteFileConfirm : true
 
+      const downloadConfirmBeforeStart = await storage.get('download_confirm_before_start')
+      this.downloadConfirmBeforeStart = typeof downloadConfirmBeforeStart === 'boolean' ? downloadConfirmBeforeStart : false
+
+      const downloadConfirmChooseFolder = await storage.get('download_confirm_choose_folder')
+      this.downloadConfirmChooseFolder = typeof downloadConfirmChooseFolder === 'boolean' ? downloadConfirmChooseFolder : false
+
       // 上下文菜单设置
       const downloadContextMenus = await storage.get('download_context_menus')
       this.downloadContextMenus = typeof downloadContextMenus === 'boolean' ? downloadContextMenus : true
@@ -590,6 +618,8 @@ export default {
       enableAnimation: false,
       showDownloadProgress: true,
       deleteFileConfirm: true,
+      downloadConfirmBeforeStart: false,
+      downloadConfirmChooseFolder: false,
 
       // 上下文菜单
       downloadContextMenus: true,

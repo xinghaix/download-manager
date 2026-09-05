@@ -21,6 +21,10 @@ let state = {
 
 const ALL_CONTEXT_DOWNLOAD_MENUS = ['link', 'image', 'audio', 'video']
 const pendingDownloadIds = new Set()
+const PENDING_DOWNLOAD_CONFIRM_KEY = 'pending_download_confirms'
+const PENDING_POPUP_DOWNLOAD_CONFIRM_KEY = 'pending_popup_download_confirm'
+const DOWNLOAD_CONFIRM_NOTIFICATION_PREFIX = 'confirm-download-'
+const DOWNLOAD_CONFIRM_TTL_MS = 24 * 60 * 60 * 1000
 const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
 const NOTIFIED_EVENTS_KEY = 'notified_download_events'
 const ACTIVE_NOTIFICATIONS_KEY = 'active_notification_ids'
@@ -29,6 +33,7 @@ const ACTIVE_DOWNLOADS_ALARM = 'active-downloads-reconcile'
 const ACTIVE_DOWNLOADS_PROGRESS_INTERVAL_MS = 500
 const RECENT_DOWNLOAD_KEEP_MS = 10000
 const notificationCloseTimers = new Map()
+let confirmNotificationSeq = 0
 let contextMenuQueue = Promise.resolve()
 let notifiedEventsQueue = Promise.resolve()
 let notificationStackQueue = Promise.resolve()
@@ -159,7 +164,12 @@ chrome.notifications.onClicked.addListener((notificationId) => {
 })
 
 chrome.notifications.onClosed.addListener((notificationId) => {
-  removeActiveNotification(notificationId).catch(error => {
+  ;(async () => {
+    if (notificationId.startsWith(DOWNLOAD_CONFIRM_NOTIFICATION_PREFIX)) {
+      await takePendingDownloadConfirm(notificationId)
+    }
+    await removeActiveNotification(notificationId)
+  })().catch(error => {
     console.error('Notification close sync error:', error)
   })
 })
@@ -167,6 +177,18 @@ chrome.notifications.onClosed.addListener((notificationId) => {
 async function handleNotificationButtonClicked(notificationId, index) {
   await clearSystemNotification(notificationId)
   await removeActiveNotification(notificationId)
+
+  if (notificationId.startsWith(DOWNLOAD_CONFIRM_NOTIFICATION_PREFIX)) {
+    if (index === 0) {
+      const pendingUrl = await takePendingDownloadConfirm(notificationId)
+      if (pendingUrl) {
+        await common.download(pendingUrl)
+      }
+    } else {
+      await takePendingDownloadConfirm(notificationId)
+    }
+    return
+  }
 
   const fileId = getNotificationDownloadId(notificationId)
   if (fileId === null) {
@@ -194,6 +216,12 @@ async function handleNotificationButtonClicked(notificationId, index) {
 async function handleNotificationClicked(notificationId) {
   await clearSystemNotification(notificationId)
   await removeActiveNotification(notificationId)
+
+  if (notificationId.startsWith(DOWNLOAD_CONFIRM_NOTIFICATION_PREFIX)) {
+    // 点击通知本体不自动开始下载，清理挂起记录并关闭通知；按钮负责确认/取消
+    await takePendingDownloadConfirm(notificationId)
+    return
+  }
 
   if (notificationId.endsWith('-warning')) {
     await openDangerDownloadUi()
@@ -251,7 +279,9 @@ chrome.contextMenus.onClicked.addListener((info) => {
   } else {
     url = info.srcUrl
   }
-  common.download(url)
+  handleExtensionDownloadRequest(url).catch(error => {
+    console.error('Context menu download error:', error)
+  })
 })
 
 // 消息监听
@@ -1286,6 +1316,119 @@ function normalizeContextMenuContexts(value) {
 async function getEnabledContextMenuContexts() {
   const contexts = await storage.get('download_context_menu_contexts')
   return normalizeContextMenuContexts(contexts)
+}
+
+function formatDownloadConfirmMessage(url) {
+  const rawUrl = String(url || '').trim()
+  if (!rawUrl) {
+    return ''
+  }
+
+  let formatted = rawUrl
+  try {
+    const parsed = new URL(rawUrl)
+    const segments = parsed.pathname.split('/').filter(Boolean)
+    const fileSegment = segments.length ? decodeURIComponent(segments[segments.length - 1]) : ''
+    if (fileSegment && parsed.hostname) {
+      formatted = `${fileSegment} — ${parsed.hostname}`
+    } else if (parsed.hostname) {
+      formatted = `${parsed.hostname}${parsed.pathname || ''}`
+    }
+  } catch (error) {
+    formatted = rawUrl
+  }
+
+  if (formatted.length > 180) {
+    return `${formatted.slice(0, 177)}...`
+  }
+  return formatted
+}
+
+/**
+ * 扩展主动发起的下载入口（右键菜单等）
+ * 开启“下载前确认”时用通知确认，避免打断浏览器原生下载或破坏一次性链接
+ * @param url {String}
+ */
+async function handleExtensionDownloadRequest(url) {
+  const trimUrl = typeof url === 'string' ? url.trim() : ''
+  if (!trimUrl) {
+    return
+  }
+
+  if (await common.shouldConfirmBeforeDownload()) {
+    await showDownloadConfirmNotification(trimUrl)
+    return
+  }
+
+  await common.download(trimUrl)
+}
+
+async function showDownloadConfirmNotification(url) {
+  const level = await chrome.notifications.getPermissionLevel()
+  if (level !== 'granted') {
+    // 无通知权限时转为打开扩展弹窗确认，避免静默绕过确认开关
+    await storage.setSession(PENDING_POPUP_DOWNLOAD_CONFIRM_KEY, {
+      url,
+      createdAt: Date.now()
+    })
+    await openDangerDownloadUi()
+    return
+  }
+
+  confirmNotificationSeq += 1
+  const notificationId = `${DOWNLOAD_CONFIRM_NOTIFICATION_PREFIX}${Date.now()}-${confirmNotificationSeq}`
+  await savePendingDownloadConfirm(notificationId, url)
+
+  const option = {
+    type: 'basic',
+    priority: 2,
+    iconUrl: getNotificationIcon(),
+    title: common.i18data.downloadConfirmNotificationTitle,
+    message: formatDownloadConfirmMessage(url),
+    buttons: [
+      { title: common.i18data.downloadConfirmNotificationConfirm },
+      { title: common.i18data.downloadConfirmNotificationCancel }
+    ],
+    requireInteraction: true
+  }
+
+  const createdId = await createExtensionNotification(notificationId, option)
+  await trackActiveNotification(createdId)
+}
+
+async function savePendingDownloadConfirm(notificationId, url) {
+  const now = Date.now()
+  const pending = await storage.getSession(PENDING_DOWNLOAD_CONFIRM_KEY)
+  const next = {}
+  if (pending && typeof pending === 'object') {
+    Object.entries(pending).forEach(([key, entry]) => {
+      if (entry && typeof entry.createdAt === 'number' && (now - entry.createdAt) < DOWNLOAD_CONFIRM_TTL_MS) {
+        next[key] = entry
+      }
+    })
+  }
+  next[notificationId] = {
+    url,
+    createdAt: now
+  }
+  await storage.setSession(PENDING_DOWNLOAD_CONFIRM_KEY, next)
+}
+
+async function takePendingDownloadConfirm(notificationId) {
+  const pending = await storage.getSession(PENDING_DOWNLOAD_CONFIRM_KEY)
+  if (!pending || typeof pending !== 'object') {
+    return null
+  }
+
+  const entry = pending[notificationId]
+  const next = {...pending}
+  delete next[notificationId]
+  await storage.setSession(PENDING_DOWNLOAD_CONFIRM_KEY, next)
+
+  if (!entry || typeof entry.url !== 'string') {
+    return null
+  }
+  return entry.url
 }
 
 // 创建上下文菜单
