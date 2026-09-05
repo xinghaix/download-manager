@@ -327,6 +327,14 @@
     "message": "Durasi notifikasi unduhan (detik)",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "Batas notifikasi bertumpuk",
+    "description": "Deskripsi pengaturan"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "Jika melebihi batas, notifikasi tertua dihapus dan yang terbaru dipertahankan. Default 3; 0 = tanpa batas.",
+    "description": "Deskripsi detail"
+  },
   "downloadToneSetting": {
     "message": "Suara unduhan",
     "description": "plugin setting instructions"

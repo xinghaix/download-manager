@@ -327,6 +327,14 @@
     "message": "İndirme bildirimi görünme süresi (saniye)",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "Maks. yığılmış bildirim sayısı",
+    "description": "Ayar açıklaması"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "Sınır aşıldığında en eski bildirimler silinir, en yeniler tutulur. Varsayılan 3; 0 = sınırsız.",
+    "description": "Ayrıntılı açıklama"
+  },
   "downloadToneSetting": {
     "message": "İndirme sesi",
     "description": "plugin setting instructions"

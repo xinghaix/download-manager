@@ -327,6 +327,14 @@
     "message": "Durée d'affichage des notifications de téléchargement (secondes)",
     "description": "Instructions de configuration du plug-in"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "Nombre max de notifications empilées",
+    "description": "Description du paramètre"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "Au-delà de la limite, les notifications les plus anciennes sont effacées pour garder les plus récentes. Par défaut 3 ; 0 = illimité.",
+    "description": "Description détaillée"
+  },
   "downloadToneSetting": {
     "message": "Son de téléchargement",
     "description": "instructions de configuration du plugin"

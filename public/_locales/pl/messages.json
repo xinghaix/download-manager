@@ -327,6 +327,14 @@
     "message": "Czas wyświetlania powiadomienia (sekundy)",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "Maks. liczba powiadomień w stosie",
+    "description": "Opis ustawienia"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "Po przekroczeniu limitu najstarsze powiadomienia są usuwane, a najnowsze zachowywane. Domyślnie 3; 0 = bez limitu.",
+    "description": "Szczegółowy opis"
+  },
   "downloadToneSetting": {
     "message": "Dźwięk pobierania",
     "description": "plugin setting instructions"

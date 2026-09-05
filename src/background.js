@@ -154,6 +154,7 @@ chrome.notifications.onClicked.addListener((notificationId) => {
 
 async function handleNotificationButtonClicked(notificationId, index) {
   await chrome.notifications.clear(notificationId)
+  removeNotificationIdFromList(notificationId)
 
   const fileId = getNotificationDownloadId(notificationId)
   if (fileId === null) {
@@ -180,6 +181,7 @@ async function handleNotificationButtonClicked(notificationId, index) {
 
 async function handleNotificationClicked(notificationId) {
   await chrome.notifications.clear(notificationId)
+  removeNotificationIdFromList(notificationId)
 
   if (notificationId.endsWith('-warning')) {
     await openDangerDownloadUi()
@@ -679,7 +681,7 @@ async function handleDownloadStartedNotification(item) {
         }
 
         const createdId = await createExtensionNotification(notificationId, option)
-        state.notificationList.push(createdId)
+        await trackNotification(createdId)
         closeNotification(createdId, option, notificationSettings.visible)
       }
     }
@@ -719,7 +721,7 @@ async function handleDownloadCompletedNotification(item) {
         }
 
         const createdId = await createExtensionNotification(notificationId, option)
-        state.notificationList.push(createdId)
+        await trackNotification(createdId)
         closeNotification(createdId, option, notificationSettings.visible)
       }
     }
@@ -760,7 +762,7 @@ async function handleDownloadWarningNotification(item) {
         }
 
         const createdId = await createExtensionNotification(notificationId, option)
-        state.notificationList.push(createdId)
+        await trackNotification(createdId)
         closeNotification(createdId, option, notificationSettings.visible)
       }
     }
@@ -967,6 +969,8 @@ async function closeNotification(id, option, visible) {
           await chrome.notifications.clear(returnId)
         }
       }
+
+      removeNotificationIdFromList(id)
     }, reservedTime * 1000)
   }
 }
@@ -977,6 +981,51 @@ function getNotificationIcon() {
 
 async function createExtensionNotification(id, options) {
   return chrome.notifications.create(id, options)
+}
+
+function normalizeNotificationMaxCount(value) {
+  const number = Number(value)
+  if (!Number.isFinite(number)) {
+    return 3
+  }
+  // 0 means unlimited; otherwise clamp to a sane upper bound
+  return Math.max(0, Math.min(50, Math.floor(number)))
+}
+
+async function trackNotification(createdId) {
+  if (!createdId) {
+    return
+  }
+  if (state.notificationList.indexOf(createdId) < 0) {
+    state.notificationList.push(createdId)
+  }
+  await enforceNotificationStackCap()
+}
+
+async function enforceNotificationStackCap() {
+  const maxCount = normalizeNotificationMaxCount(await storage.get('download_notification_max_count'))
+  if (maxCount <= 0) {
+    return
+  }
+
+  while (state.notificationList.length > maxCount) {
+    const oldestId = state.notificationList.shift()
+    if (!oldestId) {
+      break
+    }
+    try {
+      await chrome.notifications.clear(oldestId)
+    } catch (error) {
+      console.warn('Failed to clear overflow notification', oldestId, error)
+    }
+  }
+}
+
+function removeNotificationIdFromList(id) {
+  const index = state.notificationList.indexOf(id)
+  if (index >= 0) {
+    state.notificationList.splice(index, 1)
+  }
 }
 
 // 删除所有通知

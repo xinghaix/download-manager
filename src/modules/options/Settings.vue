@@ -178,6 +178,17 @@
         </div>
       </div>
       <el-divider/>
+      <div class="item">
+        <div class="content">
+          <span class="setting-title">{{i18data.downloadNotificationMaxCountSetting}}</span>
+          <span class="setting-description">{{i18data.downloadNotificationMaxCountDescSetting}}</span>
+        </div>
+        <div class="switch width">
+          <el-input-number v-model="downloadNotificationMaxCount" :controls="false"
+                           class="reserved_time" :min="0" :max="50" size="small"></el-input-number>
+        </div>
+      </div>
+      <el-divider/>
       <div class="item pointer" :class="chromeVersionGreaterThan50 ? 'true' : 'false'">
         <div class="content" @click="chromeVersionGreaterThan50 && (downloadNotificationRemainVisible = !downloadNotificationRemainVisible)">
           <span class="setting-title">{{i18data.downloadNotificationRemainVisibleSetting}}</span>
@@ -336,6 +347,14 @@ export default {
     async downloadNotificationReservedTime(val) {
       await this.persistSetting('download_notification_reserved_time', val)
     },
+    async downloadNotificationMaxCount(val) {
+      const normalized = Number.isFinite(Number(val)) ? Math.max(0, Math.min(50, Math.floor(Number(val)))) : 3
+      if (normalized !== val) {
+        this.downloadNotificationMaxCount = normalized
+        return
+      }
+      await this.persistSetting('download_notification_max_count', normalized)
+    },
     async downloadNotificationRemainVisible(val) {
       await this.persistSetting('download_notification_remain_visible', val)
     }
@@ -393,6 +412,11 @@ export default {
         ? Number(downloadNotificationReservedTime)
         : 10
 
+      const downloadNotificationMaxCount = await storage.get('download_notification_max_count')
+      this.downloadNotificationMaxCount = Number.isFinite(Number(downloadNotificationMaxCount))
+        ? Math.max(0, Math.min(50, Math.floor(Number(downloadNotificationMaxCount))))
+        : 3
+
       const downloadNotificationRemainVisible = await storage.get('download_notification_remain_visible')
       this.downloadNotificationRemainVisible = typeof downloadNotificationRemainVisible === 'boolean'
         ? downloadNotificationRemainVisible
@@ -445,6 +469,7 @@ export default {
       downloadWarningTone: false,
       // 通知保留时间
       downloadNotificationReservedTime: 10,
+      downloadNotificationMaxCount: 3,
       downloadNotificationRemainVisible: false,
 
       // 快捷键设置

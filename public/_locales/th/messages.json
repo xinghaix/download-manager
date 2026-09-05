@@ -327,6 +327,14 @@
     "message": "เวลาคงอยู่ของการแจ้งเตือนดาวน์โหลด (วินาที)",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "จำนวนการแจ้งเตือนซ้อนสูงสุด",
+    "description": "คำอธิบายการตั้งค่า"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "เมื่อเกินขีดจำกัด จะลบการแจ้งเตือนที่เก่าที่สุดและเก็บอันใหม่สุด ค่าเริ่มต้น 3; 0 = ไม่จำกัด",
+    "description": "คำอธิบายรายละเอียด"
+  },
   "downloadToneSetting": {
     "message": "เสียงแจ้งเตือนดาวน์โหลด",
     "description": "plugin setting instructions"

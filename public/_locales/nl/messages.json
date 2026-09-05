@@ -327,6 +327,14 @@
     "message": "Weergavetijd downloadmelding (seconden)",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "Max. gestapelde meldingen",
+    "description": "Instellingsbeschrijving"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "Bij overschrijding worden de oudste meldingen gewist en blijven de nieuwste behouden. Standaard 3; 0 = onbeperkt.",
+    "description": "Gedetailleerde beschrijving"
+  },
   "downloadToneSetting": {
     "message": "Downloadgeluid",
     "description": "plugin setting instructions"

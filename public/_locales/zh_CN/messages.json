@@ -327,6 +327,14 @@
     "message": "下载通知保留时间（秒）",
     "description": "插件设置说明"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "同时显示通知数量上限",
+    "description": "插件设置说明"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "超过上限时清除最早的通知，保留最新的。默认 3；设为 0 表示不限制。",
+    "description": "插件设置细节说明"
+  },
   "downloadToneSetting": {
     "message": "下载提示音",
     "description": "插件设置说明"

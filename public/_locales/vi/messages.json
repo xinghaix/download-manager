@@ -327,6 +327,14 @@
     "message": "Thời gian hiển thị thông báo tải xuống (giây)",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "Giới hạn thông báo xếp chồng",
+    "description": "Mô tả cài đặt"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "Khi vượt giới hạn, thông báo cũ nhất bị xóa và giữ lại thông báo mới nhất. Mặc định 3; 0 = không giới hạn.",
+    "description": "Mô tả chi tiết"
+  },
   "downloadToneSetting": {
     "message": "Âm báo tải xuống",
     "description": "plugin setting instructions"

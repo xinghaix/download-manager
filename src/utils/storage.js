@@ -23,6 +23,7 @@ const CONFIG_KEYS = [
   'download_completed_tone',
   'download_warning_tone',
   'download_notification_reserved_time',
+  'download_notification_max_count',
   'download_notification_remain_visible',
   'download_context_menus',
   'download_file_routing_enabled',
@@ -357,6 +358,8 @@ const storage = {
     await this.setDefaultIfNull('download_started_tone', false)
     await this.setDefaultIfNull('download_completed_tone', false)
     await this.setDefaultIfNull('download_notification_reserved_time', 10)
+    // 同时显示的通知上限，超出时清除最早的，保留最新的
+    await this.setDefaultIfNull('download_notification_max_count', 3)
     await this.setDefaultIfNull('download_notification_remain_visible', false)
     await this.setDefaultIfNull('download_warning_tone', false)
     // 插件默认创建下载文件上下文菜单

@@ -327,6 +327,14 @@
     "message": "Время хранения уведомлений о загрузке (в секундах)",
     "description": "Инструкция к плагину"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "Макс. число уведомлений в стопке",
+    "description": "Описание настройки"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "При превышении лимита удаляются самые старые уведомления, сохраняются новые. По умолчанию 3; 0 — без ограничений.",
+    "description": "Подробное описание"
+  },
   "downloadToneSetting": {
     "message": "Скачать напоминание",
     "description": "Инструкция к плагину"

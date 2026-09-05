@@ -327,6 +327,14 @@
     "message": "Anzeigedauer von Download-Benachrichtigungen (Sekunden)",
     "description": "Modul einrichten -beschreibung"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "Max. gestapelte Benachrichtigungen",
+    "description": "Plugin-Einstellungsbeschreibung"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "Bei Überschreitung werden die ältesten Benachrichtigungen gelöscht und die neuesten behalten. Standard ist 3; 0 bedeutet unbegrenzt.",
+    "description": "Detaillierte Beschreibung"
+  },
   "downloadToneSetting": {
     "message": "Erinnerung herunterladen",
     "description": "Modul einrichten -beschreibung"
