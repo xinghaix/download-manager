@@ -235,6 +235,14 @@
     "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
     "description": "Plugin setting detail description"
   },
+  "deleteFileConfirmSetting": {
+    "message": "Konfirmasi sebelum menghapus file",
+    "description": "Deskripsi pengaturan plugin"
+  },
+  "deleteFileConfirmDescSetting": {
+    "message": "Tampilkan dialog konfirmasi sebelum menghapus file dari disk. Jika dinonaktifkan, file langsung dihapus dan tidak dapat dibatalkan.",
+    "description": "Deskripsi detail pengaturan plugin"
+  },
   "contextMenus": {
     "message": "Menu konteks",
     "description": "plugin setting instructions"
