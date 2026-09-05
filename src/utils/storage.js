@@ -25,6 +25,7 @@ const CONFIG_KEYS = [
   'download_notification_reserved_time',
   'download_notification_remain_visible',
   'download_context_menus',
+  'download_context_menu_contexts',
   'download_file_routing_enabled',
   'download_file_routing_rules',
   'ui_theme',
@@ -361,6 +362,7 @@ const storage = {
     await this.setDefaultIfNull('download_warning_tone', false)
     // 插件默认创建下载文件上下文菜单
     await this.setDefaultIfNull('download_context_menus', true)
+    await this.setDefaultIfNull('download_context_menu_contexts', ['link', 'image', 'audio', 'video'])
     // 文件分类下载默认关闭
     await this.setDefaultIfNull('download_file_routing_enabled', false)
     await this.setDefaultIfNull('download_file_routing_rules', cloneDefaultDownloadFileRoutingRules())

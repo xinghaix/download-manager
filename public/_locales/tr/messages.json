@@ -244,8 +244,8 @@
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Desteklenen dosya türleri: ",
-    "description": "plugin setting details instructions"
+    "message": "Sayfa bağlam menüsünde indirme öğelerini göster. Etkin bağlamları ayrıca seçebilirsiniz.",
+    "description": "Ayrıntılı açıklama"
   },
   "fileRoutingSetting": {
     "message": "Dosya türüne göre indirme",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "gidip puan verebilirsiniz",
     "description": "about tab description"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Etkin bağlam menüsü bağlamları",
+    "description": "Ayar açıklaması"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Yalnızca ihtiyacınız olan bağlamları tutun. Örneğin yalnızca Görüntü seçerseniz, öğe yalnızca görsellere sağ tıklayınca görünür.",
+    "description": "Ayrıntılı açıklama"
   }
 }

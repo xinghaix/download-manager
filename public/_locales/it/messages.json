@@ -244,8 +244,8 @@
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Tipi di file supportati: ",
-    "description": "plugin setting details instructions"
+    "message": "Mostra voci di download nel menu contestuale della pagina. Puoi anche scegliere quali contesti attivare.",
+    "description": "Descrizione dettagliata"
   },
   "fileRoutingSetting": {
     "message": "Download per tipo di file",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "e lascia una valutazione",
     "description": "about tab description"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Contesti del menu contestuale attivi",
+    "description": "Descrizione impostazione"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Conserva solo i contesti necessari. Ad esempio, seleziona solo Immagine per mostrare la voce con il clic destro sulle immagini.",
+    "description": "Descrizione dettagliata"
   }
 }

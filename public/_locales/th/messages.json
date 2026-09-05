@@ -244,8 +244,8 @@
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "ประเภทไฟล์ที่รองรับ: ",
-    "description": "plugin setting details instructions"
+    "message": "แสดงรายการดาวน์โหลดในเมนูคลิกขวาของหน้า คุณสามารถเลือกประเภทบริบทที่เปิดใช้งานเพิ่มเติมได้",
+    "description": "คำอธิบายรายละเอียด"
   },
   "fileRoutingSetting": {
     "message": "ดาวน์โหลดตามประเภทไฟล์",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "แล้วให้คะแนนกันนะ",
     "description": "about tab description"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "บริบทเมนูคลิกขวาที่เปิดใช้งาน",
+    "description": "คำอธิบายการตั้งค่า"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "เก็บเฉพาะบริบทที่ต้องการ เช่น เลือกเฉพาะรูปภาพ เพื่อให้รายการแสดงเมื่อคลิกขวาที่รูปภาพเท่านั้น",
+    "description": "คำอธิบายรายละเอียด"
   }
 }

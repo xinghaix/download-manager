@@ -244,8 +244,8 @@
     "description": "instructions de configuration du plugin"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Types de fichiers pris en charge : ",
-    "description": "instructions de configuration du plugin"
+    "message": "Afficher les éléments de téléchargement dans le menu contextuel de la page. Vous pouvez aussi choisir les contextes activés.",
+    "description": "Description détaillée"
   },
   "fileRoutingSetting": {
     "message": "Classement des fichiers",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "et notez-le",
     "description": "description de l'onglet A propos"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Contextes de menu contextuel activés",
+    "description": "Description du paramètre"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Conservez uniquement les contextes nécessaires. Par exemple, sélectionnez uniquement Image pour n’afficher l’élément que lors d’un clic droit sur une image.",
+    "description": "Description détaillée"
   }
 }

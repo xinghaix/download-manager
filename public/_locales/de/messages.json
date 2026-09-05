@@ -244,8 +244,8 @@
     "description": "Modul einrichten -beschreibung"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Arten von Dateien, die unterstützt werden: ",
-    "description": "插件设置细节说明"
+    "message": "Download-Einträge im Kontextmenü der Seite anzeigen. Sie können die aktivierten Kontexte weiter auswählen.",
+    "description": "Detaillierte Beschreibung"
   },
   "fileRoutingSetting": {
     "message": "Dateisortierung",
@@ -582,5 +582,13 @@
   "starAbout2": {
     "message": "and rate it!",
     "description": "Dazu die karteikarten"
+  },
+  "downloadContextMenuContextsSetting": {
+    "message": "Aktivierte Kontextmenü-Kontexte",
+    "description": "Einstellungsbeschreibung"
+  },
+  "downloadContextMenuContextsDescSetting": {
+    "message": "Behalten Sie nur die benötigten Kontexte. Wählen Sie z. B. nur „Bild“, damit der Download-Eintrag nur beim Rechtsklick auf Bilder erscheint.",
+    "description": "Detaillierte Beschreibung"
   }
 }
