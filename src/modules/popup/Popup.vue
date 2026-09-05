@@ -337,6 +337,18 @@
       },
       recycleScrollerKey() {
         return `${this.downloadUpdateVersion}-${this.filteredDownloadItems.length}`
+      },
+      inProgressDownloadItems() {
+        return this.downloadItems.filter(item => item && item.state === 'in_progress')
+      },
+      hasPausableDownloads() {
+        return this.inProgressDownloadItems.some(item => !item.paused)
+      },
+      hasResumableDownloads() {
+        return this.inProgressDownloadItems.some(item => item.paused)
+      },
+      hasCancelableDownloads() {
+        return this.inProgressDownloadItems.length > 0
       }
     },
     watch: {
