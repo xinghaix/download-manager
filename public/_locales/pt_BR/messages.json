@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Salve downloads em subpastas específicas dentro da pasta padrão de downloads com base na extensão do arquivo. Este recurso fica desativado por padrão.",
-    "description": "Plugin settings detail description"
+    "message": "Salva downloads em subpastas da pasta Downloads com base na extensão ou no domínio de origem. Desativado por padrão. Regras de domínio têm precedência por padrão.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Regras de classificação",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "e deixe sua avaliação",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Precedência das regras",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Quando regras de domínio e de extensão coincidem, a precedência escolhida decide a pasta. Por padrão, regras de domínio têm prioridade.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Domínio primeiro",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Extensão primeiro",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Regras de classificação por domínio",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Ainda não há regras de domínio. Adicione regras para salvar downloads de sites específicos em subpastas próprias.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Domínios",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "ex.: github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "ex.: GitHub ou Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

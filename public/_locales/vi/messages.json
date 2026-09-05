@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Lưu tệp tải xuống vào các thư mục con được chỉ định trong thư mục tải xuống mặc định dựa trên phần mở rộng tệp. Tính năng này mặc định tắt.",
-    "description": "Plugin settings detail description"
+    "message": "Lưu tệp tải xuống vào thư mục con trong thư mục Tải xuống dựa trên phần mở rộng hoặc miền nguồn. Mặc định tắt. Quy tắc miền được ưu tiên hơn quy tắc phần mở rộng theo mặc định.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Quy tắc phân loại",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "và đánh giá nhé",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Độ ưu tiên quy tắc",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Khi cả quy tắc miền và phần mở rộng đều khớp, độ ưu tiên đã chọn quyết định thư mục. Mặc định ưu tiên quy tắc miền.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Ưu tiên miền",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Ưu tiên phần mở rộng",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Quy tắc phân loại theo miền",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Chưa có quy tắc miền. Thêm quy tắc để lưu tải xuống từ các trang cụ thể vào thư mục con riêng.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Miền",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "vd: github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "vd: GitHub hoặc Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

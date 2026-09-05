@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "파일 확장자에 따라 다운로드 파일을 기본 다운로드 폴더 아래의 지정된 하위 폴더에 저장합니다. 이 기능은 기본적으로 꺼져 있습니다.",
-    "description": "Plugin settings detail description"
+    "message": "파일 확장자 또는 소스 도메인에 따라 기본 다운로드 폴더의 하위 폴더에 저장합니다. 기본값은 꺼짐입니다. 기본적으로 도메인 규칙이 확장자 규칙보다 우선합니다.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "분류 규칙",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "에서 평점을 남겨 주세요",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "규칙 우선순위",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "도메인 규칙과 확장자 규칙이 모두 일치하면 선택한 우선순위로 폴더를 결정합니다. 기본값은 도메인 규칙 우선입니다.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "도메인 우선",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "확장자 우선",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "도메인 분류 규칙",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "도메인 규칙이 없습니다. 추가하면 특정 사이트의 다운로드를 별도의 하위 폴더에 저장할 수 있습니다.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "도메인",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "예: github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "예: GitHub 또는 Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

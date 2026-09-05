@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Dosya uzantısına göre indirilenleri varsayılan indirme klasörü altındaki belirli alt klasörlere kaydeder. Bu özellik varsayılan olarak kapalıdır.",
-    "description": "Plugin settings detail description"
+    "message": "İndirmeleri dosya uzantısı veya kaynak etki alanına göre varsayılan İndirilenler klasörünün alt klasörlerine kaydeder. Varsayılan olarak kapalıdır. Etki alanı kuralları varsayılan olarak uzantı kurallarından önce gelir.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Sınıflandırma kuralları",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "gidip puan verebilirsiniz",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Kural önceliği",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Hem etki alanı hem uzantı kuralı eşleştiğinde seçilen öncelik klasörü belirler. Varsayılan olarak etki alanı kuralları tercih edilir.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Önce etki alanı",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Önce uzantı",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Etki alanı sınıflandırma kuralları",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Henüz etki alanı kuralı yok. Belirli sitelerden indirmeleri kendi alt klasörlerine kaydetmek için kural ekleyin.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Etki alanları",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "örn. github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "örn. GitHub veya Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

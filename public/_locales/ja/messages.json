@@ -256,8 +256,8 @@
     "description": "プラグイン設定の説明"
   },
   "fileRoutingDescription": {
-    "message": "ファイル拡張子に基づいて、既定のダウンロードフォルダ内の指定したサブフォルダに保存します。この機能は既定で無効です。",
-    "description": "プラグイン設定の詳細説明"
+    "message": "ファイル拡張子またはソースドメインに基づき、既定のダウンロードフォルダ配下のサブフォルダへ保存します。既定ではオフです。既定ではドメイン規則が拡張子規則より優先されます。",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "分類ルール",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "評価してください",
     "description": "タブの説明について"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "ルールの優先順位",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "ドメイン規則と拡張子規則の両方に一致する場合、選択した優先順位で保存フォルダを決めます。既定ではドメイン規則を優先します。",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "ドメイン優先",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "拡張子優先",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "ドメイン分類ルール",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "ドメインルールはまだありません。追加すると特定サイトのダウンロードを専用サブフォルダに保存できます。",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "ドメイン",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "例: github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "例: GitHub または Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Downloads anhand der Dateiendung in Unterordnern des Standard-Downloadordners speichern. Diese Funktion ist standardmäßig deaktiviert.",
-    "description": "Plugin settings detail description"
+    "message": "Laden Sie Downloads basierend auf Dateierweiterung oder Quelldomain in Unterordner im Standard-Downloadordner. Standardmäßig deaktiviert. Domainregeln haben standardmäßig Vorrang vor Erweiterungsregeln.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Sortierregeln",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "and rate it!",
     "description": "Dazu die karteikarten"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Regelpriorität",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Wenn sowohl eine Domain- als auch eine Erweiterungsregel zutrifft, bestimmt die gewählte Priorität den Ordner. Domainregeln haben standardmäßig Vorrang.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Domain zuerst",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Erweiterung zuerst",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Domain-Klassifizierungsregeln",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Noch keine Domainregeln. Fügen Sie Regeln hinzu, um Downloads bestimmter Websites in eigene Unterordner zu speichern.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Domains",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "z. B. github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "z. B. GitHub oder Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

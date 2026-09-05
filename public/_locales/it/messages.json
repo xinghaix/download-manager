@@ -256,8 +256,8 @@
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Salva i download in sottocartelle specifiche nella cartella download predefinita in base all’estensione del file. La funzione è disattivata per impostazione predefinita.",
-    "description": "Plugin settings detail description"
+    "message": "Salva i download in sottocartelle della cartella Download in base all’estensione o al dominio di origine. Disattivato per impostazione predefinita. Le regole di dominio hanno la precedenza per impostazione predefinita.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Regole di classificazione",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "e lascia una valutazione",
     "description": "about tab description"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Priorità delle regole",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Quando corrispondono sia una regola di dominio sia una di estensione, la priorità scelta determina la cartella. Per impostazione predefinita hanno priorità le regole di dominio.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Dominio prima",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Estensione prima",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Regole di classificazione per dominio",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Nessuna regola di dominio. Aggiungine per salvare i download di siti specifici in sottocartelle dedicate.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Domini",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "es. github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "es. GitHub o Sites/GitHub",
+    "description": "Input placeholder"
   }
 }

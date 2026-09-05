@@ -256,8 +256,8 @@
     "description": "Description des paramètres du plugin"
   },
   "fileRoutingDescription": {
-    "message": "Enregistrer les téléchargements dans des sous-dossiers du dossier de téléchargement par défaut selon leurs extensions. Cette fonction est désactivée par défaut.",
-    "description": "Description détaillée des paramètres du plugin"
+    "message": "Enregistre les téléchargements dans des sous-dossiers du dossier Téléchargements par défaut selon l’extension ou le domaine source. Désactivé par défaut. Les règles de domaine ont la priorité par défaut.",
+    "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
     "message": "Règles de classement",
@@ -582,5 +582,41 @@
   "starAbout2": {
     "message": "et notez-le",
     "description": "description de l'onglet A propos"
+  },
+  "fileRoutingPrecedenceSetting": {
+    "message": "Priorité des règles",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingPrecedenceDescription": {
+    "message": "Lorsque des règles de domaine et d’extension correspondent, la priorité choisie détermine le dossier. Les règles de domaine sont prioritaires par défaut.",
+    "description": "Plugin setting detail description"
+  },
+  "fileRoutingPrecedenceDomain": {
+    "message": "Domaine d’abord",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingPrecedenceExtension": {
+    "message": "Extension d’abord",
+    "description": "Plugin setting option"
+  },
+  "fileRoutingDomainRulesSetting": {
+    "message": "Règles de classement par domaine",
+    "description": "Plugin setting description"
+  },
+  "fileRoutingDomainRulesEmpty": {
+    "message": "Aucune règle de domaine. Ajoutez-en pour enregistrer les téléchargements de sites spécifiques dans leurs propres sous-dossiers.",
+    "description": "Empty state hint"
+  },
+  "fileRoutingDomainsLabel": {
+    "message": "Domaines",
+    "description": "Table column header"
+  },
+  "fileRoutingDomainsPlaceholder": {
+    "message": "ex. : github.com, gist.github.com",
+    "description": "Input placeholder"
+  },
+  "fileRoutingDomainFolderPlaceholder": {
+    "message": "ex. : GitHub ou Sites/GitHub",
+    "description": "Input placeholder"
   }
 }
