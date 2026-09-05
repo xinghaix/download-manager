@@ -327,6 +327,14 @@
     "message": "Час показу сповіщення (секунди)",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "Макс. кількість сповіщень у стосі",
+    "description": "Опис налаштування"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "Після перевищення ліміту найстаріші сповіщення очищуються, новіші зберігаються. За замовчуванням 3; 0 — без обмежень.",
+    "description": "Детальний опис"
+  },
   "downloadToneSetting": {
     "message": "Звук завантаження",
     "description": "plugin setting instructions"

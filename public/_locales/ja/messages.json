@@ -327,6 +327,14 @@
     "message": "ダウンロード通知保持時間（秒）",
     "description": "プラグインの設定手順"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "同時表示通知の上限",
+    "description": "プラグイン設定の説明"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "上限を超えると最も古い通知を消し、最新の通知を残します。既定値は 3。0 は無制限です。",
+    "description": "プラグイン設定の詳細説明"
+  },
   "downloadToneSetting": {
     "message": "リマインダーをダウンロード",
     "description": "プラグインの設定手順"

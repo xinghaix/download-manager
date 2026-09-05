@@ -327,6 +327,14 @@
     "message": "Download notification retention time (second)",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "Max stacked notifications",
+    "description": "Plugin setting description"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "When the limit is exceeded, clear the oldest notifications and keep the newest. Default is 3; set to 0 for unlimited.",
+    "description": "Plugin setting detail description"
+  },
   "downloadToneSetting": {
     "message": "Download tone",
     "description": "plugin setting instructions"

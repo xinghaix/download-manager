@@ -327,6 +327,14 @@
     "message": "다운로드 알림 유지 시간(초)",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "동시 표시 알림 수 상한",
+    "description": "플러그인 설정 설명"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "상한을 초과하면 가장 오래된 알림을 지우고 최신 알림을 유지합니다. 기본값은 3이며, 0은 제한 없음입니다.",
+    "description": "플러그인 설정 상세 설명"
+  },
   "downloadToneSetting": {
     "message": "다운로드 알림음",
     "description": "plugin setting instructions"

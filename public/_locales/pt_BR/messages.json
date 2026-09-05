@@ -327,6 +327,14 @@
     "message": "Tempo de exibição da notificação (segundos)",
     "description": "plugin setting instructions"
   },
+  "downloadNotificationMaxCountSetting": {
+    "message": "Máximo de notificações empilhadas",
+    "description": "Descrição da configuração"
+  },
+  "downloadNotificationMaxCountDescSetting": {
+    "message": "Ao exceder o limite, as mais antigas são removidas e as mais recentes são mantidas. Padrão: 3; 0 = ilimitado.",
+    "description": "Descrição detalhada"
+  },
   "downloadToneSetting": {
     "message": "Som de download",
     "description": "plugin setting instructions"
