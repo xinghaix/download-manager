@@ -91,6 +91,22 @@
     "message": "Lanjutkan unduhan",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "Tindakan unduhan batch",
+    "description": "Tooltip tindakan batch"
+  },
+  "pauseAll": {
+    "message": "Jeda semua",
+    "description": "Jeda semua unduhan yang sedang berlangsung"
+  },
+  "resumeAll": {
+    "message": "Lanjutkan semua",
+    "description": "Lanjutkan semua unduhan yang dijeda"
+  },
+  "cancelAll": {
+    "message": "Batalkan semua",
+    "description": "Batalkan semua unduhan yang sedang berlangsung"
+  },
   "delete": {
     "message": "Hapus dari disk",
     "description": "delete file from disk"

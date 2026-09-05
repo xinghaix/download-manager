@@ -44,6 +44,22 @@
             </template>
           </el-dropdown>
         </el-tooltip>
+        <el-tooltip :disabled="closeTooltip" :content="i18data.batchDownloadActions"
+                    placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false"
+                    :show-after="tooltipShowAfter" :hide-after="tooltipHideAfter">
+          <el-dropdown class="header-dropdown" trigger="click" @command="batchDownloadCommand">
+            <span class="header-button header-dropdown-trigger">
+              <el-icon class="icon-button"><VideoPause /></el-icon>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="pauseAll" :disabled="!hasPausableDownloads">{{i18data.pauseAll}}</el-dropdown-item>
+                <el-dropdown-item command="resumeAll" :disabled="!hasResumableDownloads">{{i18data.resumeAll}}</el-dropdown-item>
+                <el-dropdown-item command="cancelAll" :disabled="!hasCancelableDownloads" divided>{{i18data.cancelAll}}</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </el-tooltip>
         <el-tooltip :disabled="closeTooltip" :content="i18data.openDownloadFolder"
                     placement="bottom" effect="dark" popper-class="tooltip header-tooltip" :enterable="false"
                     :show-after="tooltipShowAfter" :hide-after="tooltipHideAfter">
@@ -321,6 +337,18 @@
       },
       recycleScrollerKey() {
         return `${this.downloadUpdateVersion}-${this.filteredDownloadItems.length}`
+      },
+      inProgressDownloadItems() {
+        return this.downloadItems.filter(item => item && item.state === 'in_progress')
+      },
+      hasPausableDownloads() {
+        return this.inProgressDownloadItems.some(item => !item.paused)
+      },
+      hasResumableDownloads() {
+        return this.inProgressDownloadItems.some(item => item.paused)
+      },
+      hasCancelableDownloads() {
+        return this.inProgressDownloadItems.length > 0
       }
     },
     watch: {
@@ -897,6 +925,76 @@
           }
         }
         await this.render()
+      },
+
+
+      batchDownloadCommand(command) {
+        if (command === 'pauseAll') {
+          this.pauseAllDownloads()
+          return
+        }
+        if (command === 'resumeAll') {
+          this.resumeAllDownloads()
+          return
+        }
+        if (command === 'cancelAll') {
+          this.cancelAllDownloads()
+        }
+      },
+
+      pauseAllDownloads() {
+        const targets = this.inProgressDownloadItems.filter(item => !item.paused)
+        targets.forEach(item => {
+          chrome.downloads.pause(item.id, () => {
+            if (chrome.runtime && chrome.runtime.lastError) {
+              return
+            }
+            const current = this.getItem(item.id)
+            if (current) {
+              current.paused = true
+            }
+          })
+        })
+      },
+
+      resumeAllDownloads() {
+        const targets = this.inProgressDownloadItems.filter(item => item.paused)
+        let remaining = targets.length
+        if (!remaining) {
+          return
+        }
+
+        targets.forEach(item => {
+          chrome.downloads.resume(item.id, () => {
+            if (!(chrome.runtime && chrome.runtime.lastError)) {
+              const current = this.getItem(item.id)
+              if (current) {
+                current.paused = false
+              }
+            }
+            remaining -= 1
+            if (remaining <= 0) {
+              this.render()
+            }
+          })
+        })
+      },
+
+      cancelAllDownloads() {
+        const targets = [...this.inProgressDownloadItems]
+        let remaining = targets.length
+        if (!remaining) {
+          return
+        }
+
+        targets.forEach(item => {
+          chrome.downloads.cancel(item.id, () => {
+            remaining -= 1
+            if (remaining <= 0) {
+              this.render()
+            }
+          })
+        })
       },
 
       /**
