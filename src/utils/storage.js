@@ -1,6 +1,10 @@
 /* eslint-disable no-undef */
 
-import { cloneDefaultDownloadFileRoutingRules } from './downloadFileRouting.js'
+import {
+  cloneDefaultDownloadDomainRoutingRules,
+  cloneDefaultDownloadFileRoutingRules,
+  DEFAULT_DOWNLOAD_ROUTING_PRECEDENCE
+} from './downloadFileRouting.js'
 
 const LOCAL_STORAGE_PREFIX = '__download_manager__'
 const CONFIG_KEYS = [
@@ -29,6 +33,8 @@ const CONFIG_KEYS = [
   'download_context_menu_contexts',
   'download_file_routing_enabled',
   'download_file_routing_rules',
+  'download_domain_routing_rules',
+  'download_routing_precedence',
   'ui_theme',
   'ui_theme_series',
   'system_theme'
@@ -180,7 +186,12 @@ const storage = {
     }
 
     return new Promise(resolve => {
-      getStorageArea(useSync).set(values, () => resolve())
+      getStorageArea(useSync).set(values, () => {
+        if (chrome.runtime && chrome.runtime.lastError) {
+          console.warn('Storage set failed:', chrome.runtime.lastError.message)
+        }
+        resolve()
+      })
     })
   },
 
@@ -369,6 +380,8 @@ const storage = {
     // 文件分类下载默认关闭
     await this.setDefaultIfNull('download_file_routing_enabled', false)
     await this.setDefaultIfNull('download_file_routing_rules', cloneDefaultDownloadFileRoutingRules())
+    await this.setDefaultIfNull('download_domain_routing_rules', cloneDefaultDownloadDomainRoutingRules())
+    await this.setDefaultIfNull('download_routing_precedence', DEFAULT_DOWNLOAD_ROUTING_PRECEDENCE)
   }
 
 }
