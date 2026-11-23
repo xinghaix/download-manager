@@ -78,10 +78,10 @@
           <span class="setting-description">{{i18data.downloadContextMenuContextsDescSetting}}</span>
         </div>
         <div class="switch width">
-          <el-checkbox-button :label="i18data.link" v-model="downloadContextMenuLink" :disabled="!downloadContextMenus"/>
-          <el-checkbox-button :label="i18data.image" v-model="downloadContextMenuImage" :disabled="!downloadContextMenus"/>
-          <el-checkbox-button :label="i18data.audio" v-model="downloadContextMenuAudio" :disabled="!downloadContextMenus"/>
-          <el-checkbox-button :label="i18data.video" v-model="downloadContextMenuVideo" :disabled="!downloadContextMenus"/>
+          <el-checkbox-button :label="i18data.link" v-model="downloadContextMenuLink" :disabled="!downloadContextMenus || isOnlySelectedContext('link')"/>
+          <el-checkbox-button :label="i18data.image" v-model="downloadContextMenuImage" :disabled="!downloadContextMenus || isOnlySelectedContext('image')"/>
+          <el-checkbox-button :label="i18data.audio" v-model="downloadContextMenuAudio" :disabled="!downloadContextMenus || isOnlySelectedContext('audio')"/>
+          <el-checkbox-button :label="i18data.video" v-model="downloadContextMenuVideo" :disabled="!downloadContextMenus || isOnlySelectedContext('video')"/>
         </div>
       </div>
     </el-card>
@@ -308,7 +308,7 @@ export default {
 
     async downloadContextMenus(val) {
       await this.persistSetting('download_context_menus', val)
-      if (this.initializing) {
+      if (this.initializing || this.syncTransitioning) {
         return
       }
       this.notifyContextMenusChanged(val)
@@ -467,7 +467,7 @@ export default {
       downloadContextMenuImage: true,
       downloadContextMenuAudio: true,
       downloadContextMenuVideo: true,
-      contextMenusUpdating: false,
+      contextMenuPersistQueue: Promise.resolve(),
 
       // 文件分类下载
       downloadFileRoutingEnabled: false,
@@ -530,37 +530,47 @@ export default {
       }
     },
 
-    getSelectedContextMenuContexts() {
+    getRawSelectedContextMenuContexts() {
       const contexts = []
       if (this.downloadContextMenuLink) contexts.push('link')
       if (this.downloadContextMenuImage) contexts.push('image')
       if (this.downloadContextMenuAudio) contexts.push('audio')
       if (this.downloadContextMenuVideo) contexts.push('video')
+      return contexts
+    },
+
+    isOnlySelectedContext(context) {
+      const selected = this.getRawSelectedContextMenuContexts()
+      return selected.length === 1 && selected[0] === context
+    },
+
+    getSelectedContextMenuContexts() {
+      const contexts = this.getRawSelectedContextMenuContexts()
       return contexts.length ? contexts : ['link', 'image', 'audio', 'video']
     },
 
     async persistContextMenuContexts() {
-      if (this.initializing || this.syncTransitioning || this.contextMenusUpdating) {
+      if (this.initializing || this.syncTransitioning) {
         return
       }
 
-      this.contextMenusUpdating = true
-      try {
-        let contexts = this.getSelectedContextMenuContexts()
-        // 如果用户取消了全部选项，回退为全选并同步 UI
-        if (!this.downloadContextMenuLink && !this.downloadContextMenuImage
-          && !this.downloadContextMenuAudio && !this.downloadContextMenuVideo) {
-          this.applyContextMenuContexts(contexts)
-          contexts = this.getSelectedContextMenuContexts()
-        }
-
-        await storage.set('download_context_menu_contexts', contexts)
-        if (this.downloadContextMenus) {
-          this.notifyContextMenusChanged(true, 'downloadMenuContexts')
-        }
-      } finally {
-        this.contextMenusUpdating = false
+      const rawSelected = this.getRawSelectedContextMenuContexts()
+      if (!rawSelected.length) {
+        const fallback = ['link', 'image', 'audio', 'video']
+        this.applyContextMenuContexts(fallback)
       }
+
+      const contexts = this.getSelectedContextMenuContexts()
+      this.contextMenuPersistQueue = this.contextMenuPersistQueue
+        .catch(() => {})
+        .then(async () => {
+          await storage.set('download_context_menu_contexts', contexts)
+          if (this.downloadContextMenus) {
+            this.notifyContextMenusChanged(true, 'downloadMenuContexts')
+          }
+        })
+
+      await this.contextMenuPersistQueue
     },
 
     notifyContextMenusChanged(enabled, type = 'downloadMenus') {
