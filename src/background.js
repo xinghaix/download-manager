@@ -20,12 +20,13 @@ let state = {
   systemTheme: null
 }
 
-const contextDownloadMenus = ['link', 'image', 'audio', 'video']
+const ALL_CONTEXT_DOWNLOAD_MENUS = ['link', 'image', 'audio', 'video']
 const pendingDownloadIds = new Set()
 const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
 const ACTIVE_DOWNLOADS_ALARM = 'active-downloads-reconcile'
 const ACTIVE_DOWNLOADS_PROGRESS_INTERVAL_MS = 500
 const RECENT_DOWNLOAD_KEEP_MS = 10000
+let contextMenuQueue = Promise.resolve()
 
 // Service Worker 安装
 self.addEventListener('install', () => {
@@ -259,7 +260,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           if (received.data) {
             await createDownloadContextMenus()
           } else {
-            removeDownloadContextMenus()
+            await removeDownloadContextMenus()
+          }
+          break
+        case 'downloadMenuContexts':
+          if (await storage.get('download_context_menus')) {
+            await createDownloadContextMenus()
           }
           break
         case 'ui_theme_changed':
@@ -1024,33 +1030,93 @@ function getProgress(item) {
     1.0 * item.bytesReceived / item.totalBytes : -1
 }
 
+function enqueueContextMenuUpdate(task) {
+  contextMenuQueue = contextMenuQueue
+    .catch(() => {})
+    .then(task)
+  return contextMenuQueue
+}
+
+chrome.storage.onChanged.addListener((changes, areaName) => {
+  if (areaName !== 'sync' && areaName !== 'local') {
+    return
+  }
+
+  if (!changes.download_context_menus && !changes.download_context_menu_contexts && !(areaName === 'sync' && changes.sync)) {
+    return
+  }
+
+  ;(async () => {
+    const useSync = await storage.getSyncPreference()
+    const activeArea = useSync ? 'sync' : 'local'
+    if (areaName !== activeArea && !(areaName === 'sync' && changes.sync)) {
+      return
+    }
+
+    const enabled = await storage.get('download_context_menus')
+    if (enabled) {
+      await createDownloadContextMenus()
+    } else {
+      await removeDownloadContextMenus()
+    }
+  })().catch(error => {
+    console.warn('Sync context menus on storage change failed:', error)
+  })
+})
+
+function normalizeContextMenuContexts(value) {
+  const selected = Array.isArray(value)
+    ? value.filter(menu => ALL_CONTEXT_DOWNLOAD_MENUS.includes(menu))
+    : []
+  const unique = [...new Set(selected)]
+  return unique.length ? unique : [...ALL_CONTEXT_DOWNLOAD_MENUS]
+}
+
+async function getEnabledContextMenuContexts() {
+  const contexts = await storage.get('download_context_menu_contexts')
+  return normalizeContextMenuContexts(contexts)
+}
+
 // 创建上下文菜单
 async function createDownloadContextMenus() {
-  await new Promise((resolve) => {
-    chrome.contextMenus.removeAll(() => resolve())
-  })
-
-  await Promise.all(contextDownloadMenus.map((menu) => {
-    return new Promise((resolve) => {
-      chrome.contextMenus.create({
-        id: 'download-' + menu,
-        title: common.i18data.prefixMenus + common.i18data[menu],
-        contexts: [menu]
-      }, () => {
+  return enqueueContextMenuUpdate(async () => {
+    const menus = await getEnabledContextMenuContexts()
+    await new Promise((resolve) => {
+      chrome.contextMenus.removeAll(() => {
         if (chrome.runtime.lastError) {
           console.error(chrome.runtime.lastError)
         }
         resolve()
       })
     })
-  }))
+
+    await Promise.all(menus.map((menu) => {
+      return new Promise((resolve) => {
+        chrome.contextMenus.create({
+          id: 'download-' + menu,
+          title: common.i18data.prefixMenus + common.i18data[menu],
+          contexts: [menu]
+        }, () => {
+          if (chrome.runtime.lastError) {
+            console.error(chrome.runtime.lastError)
+          }
+          resolve()
+        })
+      })
+    }))
+  })
 }
 
 // 删除上下文菜单
-function removeDownloadContextMenus() {
-  chrome.contextMenus.removeAll(() => {
-    if (chrome.runtime.lastError) {
-      console.error(chrome.runtime.lastError)
-    }
+async function removeDownloadContextMenus() {
+  return enqueueContextMenuUpdate(async () => {
+    await new Promise((resolve) => {
+      chrome.contextMenus.removeAll(() => {
+        if (chrome.runtime.lastError) {
+          console.error(chrome.runtime.lastError)
+        }
+        resolve()
+      })
+    })
   })
 }
