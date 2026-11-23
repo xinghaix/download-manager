@@ -91,6 +91,22 @@
     "message": "恢复下载",
     "description": "恢复下载处在暂停中的文件"
   },
+  "batchDownloadActions": {
+    "message": "批量下载操作",
+    "description": "弹窗批量操作按钮提示"
+  },
+  "pauseAll": {
+    "message": "全部暂停",
+    "description": "暂停全部进行中的下载"
+  },
+  "resumeAll": {
+    "message": "全部继续",
+    "description": "恢复全部已暂停的下载"
+  },
+  "cancelAll": {
+    "message": "全部取消",
+    "description": "取消全部进行中的下载"
+  },
   "delete": {
     "message": "从磁盘删除",
     "description": "从磁盘中删除文件"
@@ -598,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "可按需只保留图片等上下文。例如仅勾选“图片”时，右键图片才显示下载菜单。",
     "description": "插件设置细节说明"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "确定取消全部 {} 个进行中的下载吗？未完成的下载进度将被丢弃。",
+    "description": "确认取消全部进行中下载的提示语"
   }
 }

@@ -91,6 +91,22 @@
     "message": "Fortsetzen",
     "description": "Den Download fortsetzen"
   },
+  "batchDownloadActions": {
+    "message": "Batch-Download-Aktionen",
+    "description": "Tooltip für Batch-Aktionen"
+  },
+  "pauseAll": {
+    "message": "Alle pausieren",
+    "description": "Alle laufenden Downloads pausieren"
+  },
+  "resumeAll": {
+    "message": "Alle fortsetzen",
+    "description": "Alle pausierten Downloads fortsetzen"
+  },
+  "cancelAll": {
+    "message": "Alle abbrechen",
+    "description": "Alle laufenden Downloads abbrechen"
+  },
   "delete": {
     "message": "Löschen",
     "description": "Datei löschen"
@@ -598,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Behalten Sie nur die benötigten Kontexte. Wählen Sie z. B. nur „Bild“, damit der Download-Eintrag nur beim Rechtsklick auf Bilder erscheint.",
     "description": "Detaillierte Beschreibung"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Alle {} laufenden Downloads abbrechen? Nicht abgeschlossener Fortschritt geht verloren.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

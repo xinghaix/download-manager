@@ -91,6 +91,22 @@
     "message": "Reprendre le téléchargement",
     "description": "reprendre le téléchargement d'un fichier suspendu"
   },
+  "batchDownloadActions": {
+    "message": "Actions de téléchargement groupées",
+    "description": "Info-bulle des actions groupées"
+  },
+  "pauseAll": {
+    "message": "Tout mettre en pause",
+    "description": "Mettre en pause tous les téléchargements en cours"
+  },
+  "resumeAll": {
+    "message": "Tout reprendre",
+    "description": "Reprendre tous les téléchargements en pause"
+  },
+  "cancelAll": {
+    "message": "Tout annuler",
+    "description": "Annuler tous les téléchargements en cours"
+  },
   "delete": {
     "message": "Supprimer du disque",
     "description": "supprimer le fichier du disque"
@@ -598,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Conservez uniquement les contextes nécessaires. Par exemple, sélectionnez uniquement Image pour n’afficher l’élément que lors d’un clic droit sur une image.",
     "description": "Description détaillée"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Annuler les {} téléchargements actifs ? La progression non terminée sera perdue.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

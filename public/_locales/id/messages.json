@@ -91,6 +91,22 @@
     "message": "Lanjutkan unduhan",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "Tindakan unduhan batch",
+    "description": "Tooltip tindakan batch"
+  },
+  "pauseAll": {
+    "message": "Jeda semua",
+    "description": "Jeda semua unduhan yang sedang berlangsung"
+  },
+  "resumeAll": {
+    "message": "Lanjutkan semua",
+    "description": "Lanjutkan semua unduhan yang dijeda"
+  },
+  "cancelAll": {
+    "message": "Batalkan semua",
+    "description": "Batalkan semua unduhan yang sedang berlangsung"
+  },
   "delete": {
     "message": "Hapus dari disk",
     "description": "delete file from disk"
@@ -598,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Simpan hanya konteks yang Anda butuhkan. Misalnya, pilih hanya Gambar agar item muncul saat mengeklik kanan gambar.",
     "description": "Deskripsi detail"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Batalkan semua {} unduhan yang sedang berjalan? Progres yang belum selesai akan hilang.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

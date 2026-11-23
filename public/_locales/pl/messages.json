@@ -91,6 +91,22 @@
     "message": "Wznów pobieranie",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "Akcje pobierania wsadowego",
+    "description": "Podpowiedź akcji wsadowych"
+  },
+  "pauseAll": {
+    "message": "Wstrzymaj wszystkie",
+    "description": "Wstrzymaj wszystkie trwające pobierania"
+  },
+  "resumeAll": {
+    "message": "Wznów wszystkie",
+    "description": "Wznów wszystkie wstrzymane pobierania"
+  },
+  "cancelAll": {
+    "message": "Anuluj wszystkie",
+    "description": "Anuluj wszystkie trwające pobierania"
+  },
   "delete": {
     "message": "Usuń z dysku",
     "description": "delete file from disk"
@@ -598,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Zachowaj tylko potrzebne konteksty. Na przykład wybierz tylko Obraz, aby pozycja pojawiała się po kliknięciu prawym przyciskiem obrazów.",
     "description": "Szczegółowy opis"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Anulować wszystkie {} aktywne pobierania? Nieukończony postęp zostanie utracony.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

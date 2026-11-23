@@ -91,6 +91,22 @@
     "message": "ダウンロードを再開",
     "description": "一時停止中のファイルのダウンロードを再開します"
   },
+  "batchDownloadActions": {
+    "message": "一括ダウンロード操作",
+    "description": "一括操作ボタンのツールチップ"
+  },
+  "pauseAll": {
+    "message": "すべて一時停止",
+    "description": "進行中のダウンロードをすべて一時停止"
+  },
+  "resumeAll": {
+    "message": "すべて再開",
+    "description": "一時停止中のダウンロードをすべて再開"
+  },
+  "cancelAll": {
+    "message": "すべてキャンセル",
+    "description": "進行中のダウンロードをすべてキャンセル"
+  },
   "delete": {
     "message": "ディスクから削除",
     "description": "ディスクからファイルを削除する"
@@ -598,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "必要なコンテキストだけを残せます。たとえば「画像」のみを選ぶと、画像を右クリックしたときだけダウンロード項目が表示されます。",
     "description": "詳細説明"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "進行中の {} 件のダウンロードをすべてキャンセルしますか？未完了の進捗は失われます。",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

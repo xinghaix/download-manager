@@ -91,6 +91,22 @@
     "message": "Download hervatten",
     "description": "resume downloading a suspended file"
   },
+  "batchDownloadActions": {
+    "message": "Batchdownloadacties",
+    "description": "Tooltip voor batchacties"
+  },
+  "pauseAll": {
+    "message": "Alles pauzeren",
+    "description": "Alle actieve downloads pauzeren"
+  },
+  "resumeAll": {
+    "message": "Alles hervatten",
+    "description": "Alle gepauzeerde downloads hervatten"
+  },
+  "cancelAll": {
+    "message": "Alles annuleren",
+    "description": "Alle actieve downloads annuleren"
+  },
   "delete": {
     "message": "Van schijf verwijderen",
     "description": "delete file from disk"
@@ -598,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Houd alleen de benodigde contexten. Selecteer bijvoorbeeld alleen Afbeelding om het item alleen bij rechtsklikken op afbeeldingen te tonen.",
     "description": "Gedetailleerde beschrijving"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Alle {} actieve downloads annuleren? Niet-voltooide voortgang gaat verloren.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }
