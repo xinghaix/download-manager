@@ -240,7 +240,7 @@
     "description": "Opis ustawienia wtyczki"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Pokaż okno potwierdzenia przed usunięciem plików z dysku. Po wyłączeniu pliki są usuwane natychmiast i nie można tego cofnąć.",
+    "message": "Pokaż okno potwierdzenia przed usunięciem pliku z dysku. Po wyłączeniu pojedyncze pliki są usuwane natychmiast i nie można tego cofnąć (opcja „Usuń wszystko” nadal wymaga potwierdzenia).",
     "description": "Szczegółowy opis ustawienia"
   },
   "contextMenus": {

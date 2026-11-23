@@ -240,7 +240,7 @@
     "description": "Description du paramètre du plugin"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Afficher une boîte de dialogue de confirmation avant de supprimer des fichiers du disque. Si désactivé, les fichiers sont supprimés immédiatement et l’action est irréversible.",
+    "message": "Afficher une boîte de dialogue de confirmation avant de supprimer un fichier du disque. Si désactivé, les fichiers individuels sont supprimés immédiatement et l’action est irréversible (« Tout supprimer » demande toujours confirmation).",
     "description": "Description détaillée du paramètre"
   },
   "contextMenus": {

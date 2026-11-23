@@ -240,7 +240,7 @@
     "description": "Plugin setting description"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Show a confirmation dialog before deleting files from disk. When disabled, files are deleted immediately and cannot be undone.",
+    "message": "Show a confirmation dialog before deleting a file from disk. When disabled, single files are deleted immediately and cannot be undone (Delete all still asks for confirmation).",
     "description": "Plugin setting detail description"
   },
   "contextMenus": {

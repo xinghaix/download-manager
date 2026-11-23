@@ -240,7 +240,7 @@
     "description": "Descripción de la configuración del complemento"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Mostrar un diálogo de confirmación antes de eliminar archivos del disco. Si se desactiva, los archivos se eliminan de inmediato y no se pueden deshacer.",
+    "message": "Mostrar un diálogo de confirmación antes de eliminar un archivo del disco. Si se desactiva, los archivos individuales se eliminan de inmediato y no se pueden deshacer (Eliminar todo seguirá pidiendo confirmación).",
     "description": "Descripción detallada de la configuración"
   },
   "contextMenus": {

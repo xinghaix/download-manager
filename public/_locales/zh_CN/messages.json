@@ -240,7 +240,7 @@
     "description": "插件设置说明"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "从磁盘删除文件前弹出确认对话框。关闭后将直接删除，无法撤销。",
+    "message": "从磁盘删除单个文件前弹出确认对话框。关闭后删除单个文件将立即执行且无法撤销（“从磁盘删除所有”仍会二次确认）。",
     "description": "插件设置细节说明"
   },
   "contextMenus": {

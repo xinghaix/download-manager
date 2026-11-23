@@ -240,7 +240,7 @@
     "description": "Plugin-Einstellungsbeschreibung"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Vor dem Löschen von Dateien von der Festplatte einen Bestätigungsdialog anzeigen. Wenn deaktiviert, werden Dateien sofort gelöscht und können nicht rückgängig gemacht werden.",
+    "message": "Vor dem Löschen einer einzelnen Datei von der Festplatte einen Bestätigungsdialog anzeigen. Wenn deaktiviert, werden einzelne Dateien sofort gelöscht und können nicht rückgängig gemacht werden („Alle löschen“ fragt weiterhin nach).",
     "description": "Detaillierte Plugin-Einstellungsbeschreibung"
   },
   "contextMenus": {

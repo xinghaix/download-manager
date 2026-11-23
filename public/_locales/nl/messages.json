@@ -240,7 +240,7 @@
     "description": "Plugininstelling beschrijving"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Toon een bevestigingsdialoog voordat bestanden van de schijf worden verwijderd. Indien uitgeschakeld worden bestanden direct verwijderd en kan dit niet ongedaan worden gemaakt.",
+    "message": "Toon een bevestigingsdialoog voordat een bestand van de schijf wordt verwijderd. Indien uitgeschakeld worden losse bestanden direct verwijderd en kan dit niet ongedaan worden gemaakt (Alles verwijderen vraagt nog steeds om bevestiging).",
     "description": "Gedetailleerde beschrijving van de instelling"
   },
   "contextMenus": {

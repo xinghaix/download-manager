@@ -240,7 +240,7 @@
     "description": "Deskripsi pengaturan plugin"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Tampilkan dialog konfirmasi sebelum menghapus file dari disk. Jika dinonaktifkan, file langsung dihapus dan tidak dapat dibatalkan.",
+    "message": "Tampilkan dialog konfirmasi sebelum menghapus satu file dari disk. Jika dinonaktifkan, satu file langsung dihapus dan tidak dapat dibatalkan (Hapus semua tetap meminta konfirmasi).",
     "description": "Deskripsi detail pengaturan plugin"
   },
   "contextMenus": {

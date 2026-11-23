@@ -808,23 +808,12 @@
           return
         }
 
-        const action = () => this.removeAllFilesFromDisk(items)
-        if (!this.deleteFileConfirm) {
-          const result = action()
-          if (result && typeof result.catch === 'function') {
-            result.catch(error => {
-              console.warn('Delete all action failed', error)
-              this.render()
-            })
-          }
-          return
-        }
-
+        // 批量清空磁盘文件风险较高，“删除全部”始终保留二次确认
         this.openDeleteConfirm({
           title: this.i18data.deleteConfirmTitle,
           message: this.i18data.deleteConfirmAllMessage.replace('{}', items.length),
           confirmText: this.i18data.deleteConfirmButton,
-          action
+          action: () => this.removeAllFilesFromDisk(items)
         })
       },
 

@@ -240,7 +240,7 @@
     "description": "Descrizione impostazione plugin"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Mostra una finestra di conferma prima di eliminare i file dal disco. Se disattivata, i file vengono eliminati immediatamente e non possono essere annullati.",
+    "message": "Mostra una finestra di conferma prima di eliminare un file dal disco. Se disattivata, i singoli file vengono eliminati immediatamente e non possono essere annullati (Elimina tutto chiede comunque conferma).",
     "description": "Descrizione dettagliata impostazione"
   },
   "contextMenus": {

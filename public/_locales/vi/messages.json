@@ -240,7 +240,7 @@
     "description": "Mô tả cài đặt tiện ích"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Hiển thị hộp thoại xác nhận trước khi xóa tệp khỏi ổ đĩa. Khi tắt, tệp sẽ bị xóa ngay lập tức và không thể hoàn tác.",
+    "message": "Hiển thị hộp thoại xác nhận trước khi xóa từng tệp khỏi ổ đĩa. Khi tắt, tệp đơn lẻ sẽ bị xóa ngay lập tức và không thể hoàn tác (Xóa tất cả vẫn yêu cầu xác nhận).",
     "description": "Mô tả chi tiết cài đặt"
   },
   "contextMenus": {

@@ -240,7 +240,7 @@
     "description": "插件設置說明"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "從磁碟刪除檔案前彈出確認對話框。關閉後將直接刪除，無法復原。",
+    "message": "從磁碟刪除單個檔案前彈出確認對話框。關閉後刪除單個檔案將立即執行且無法復原（\"從磁碟刪除所有\"仍會二次確認）。",
     "description": "插件設置細節說明"
   },
   "contextMenus": {

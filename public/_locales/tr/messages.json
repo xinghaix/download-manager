@@ -240,7 +240,7 @@
     "description": "Eklenti ayarı açıklaması"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Dosyaları diskten silmeden önce bir onay iletişim kutusu göster. Devre dışı bırakıldığında dosyalar hemen silinir ve geri alınamaz.",
+    "message": "Diskten tek bir dosyayı silmeden önce onay iletişim kutusu göster. Devre dışı bırakıldığında tekil dosyalar hemen silinir ve geri alınamaz (Tümünü sil seçeneği yine onay ister).",
     "description": "Ayarın ayrıntılı açıklaması"
   },
   "contextMenus": {
