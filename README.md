@@ -16,12 +16,12 @@
 
 ### 1. 语言
 
-**[简体中文](../README.md) | [English](docs/README_EN.md)**
+**[简体中文](README.md) | [English](docs/README_EN.md)**
 
 ### 2. 下载安装
 
 [Chrome Web Store](https://chrome.google.com/webstore/detail/download-manager/ofpglhlcdbjdhlacgbljnildhajfmlei?hl=zh-CN) 、
-[Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic)
+[Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/dppelgknofnkccigopomkbdedbkkcbgh)
 
 ### 3. [隐私政策说明](docs/Privacy.md)
 
@@ -63,8 +63,8 @@
 
 ### **7. 示例图**
 
-<img src="docs/img/Popup_zh_CN.png" width="320" hegiht="420" alt=""/>
-<img src="docs/img/Settings_zh_CN.png" width="320" hegiht="420" alt=""/>
+<img src="docs/img/Popup_zh_CN.png" width="320" height="420" alt=""/>
+<img src="docs/img/Settings_zh_CN.png" width="320" height="420" alt=""/>
 
 ### **8. 编译打包**
 

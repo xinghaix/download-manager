@@ -1,6 +1,6 @@
 {
   "name": "download-manager",
-  "version": "1.2.3",
+  "version": "1.2.8",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

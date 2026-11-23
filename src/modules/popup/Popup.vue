@@ -78,7 +78,7 @@
         </transition>
       </RecycleScroller>
       <div v-if="filteredDownloadItems.length === 0" class="empty-state" aria-hidden="true">
-        <img class="empty-state-illustration" src="../../../.idea/1.svg" alt="">
+        <img class="empty-state-illustration" src="../../assets/empty-state.svg" alt="">
       </div>
       <el-backtop target=".content #vue-recycle-scroller" visibilityHeight="70"/>
       <tip :text="i18data.copied" :position="tipPosition" v-model:showTip="showCopiedTip"/>

@@ -38,7 +38,7 @@
 
       return {
         githubUrl: 'https://github.com/xinghaix/download-manager',
-        edgePluginShopUrl: 'https://microsoftedge.microsoft.com/addons/detail/phalbpghhjknlmomkmimbamfceiddlic',
+        edgePluginShopUrl: 'https://microsoftedge.microsoft.com/addons/detail/dppelgknofnkccigopomkbdedbkkcbgh',
         chromePluginShopUrl: 'https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei',
 
         extName: manifest.name,

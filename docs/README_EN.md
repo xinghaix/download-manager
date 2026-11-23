@@ -58,8 +58,8 @@ The following features are developing in order 😂:
 
 ### **7. Info**
 
-<img src="../docs/img/Popup_EN.png.png" width="320" hegiht="420" alt=""/>
-<img src="../docs/img/Settings_EN.png" width="320" hegiht="420" alt=""/>
+<img src="img/Popup_EN.png" width="320" height="420" alt=""/>
+<img src="img/Settings_EN.png" width="320" height="420" alt=""/>
 
 ### **8. Build & Package**
 ```
