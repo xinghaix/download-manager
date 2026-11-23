@@ -1056,6 +1056,9 @@
     width: 100%;
     box-sizing: border-box;
   }
+  body .open-download-popover .el-textarea__inner {
+    border-radius: 8px;
+  }
 
   .el-dropdown__popper.el-popper[data-popper-placement^=bottom] .el-popper__arrow::before {
     background-color: var(--header-dropdown-menu-background-color)!important;
@@ -1126,7 +1129,7 @@
     min-width: 0;
   }
   .header .search :deep(.el-input__wrapper) {
-    border-radius: 18px;
+    border-radius: 8px;
     min-height: 28px;
     background-color: var(--header-search-background-color);
     box-shadow: 0 0 0 1px var(--header-search-border-color) inset !important;
