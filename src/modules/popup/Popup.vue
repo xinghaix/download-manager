@@ -152,8 +152,8 @@
   import storage from '../../utils/storage'
   import { deleteCachedFileIcon } from '../../utils/fileIconCache'
   import { isDangerousDownload } from '../../utils/downloadDanger'
-  import File from './File'
-  import Tip from '../../components/Tip'
+  import File from './File.vue'
+  import Tip from '../../components/Tip.vue'
 
   const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
   const PENDING_POPUP_DOWNLOAD_CONFIRM_KEY = 'pending_popup_download_confirm'

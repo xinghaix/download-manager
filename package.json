@@ -3,44 +3,22 @@
   "version": "1.2.9",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vite",
+    "build": "vite build",
     "lint": "eslint \"**/*.{js,ts,jsx,tsx,cjs,cts,mjs,mts,html,vue}\""
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
-    "acorn": "^8.0.4",
-    "core-js": "^3.49.0",
     "element-plus": "^2.13.7",
-    "highlight.js": "^10.5.0",
-    "kind-of": "^6.0.3",
-    "minimist": "^1.2.6",
-    "serialize-javascript": "^7.0.5",
     "vue": "^3.5.32",
-    "vue-virtual-scroller": "^2.0.1",
-    "websocket-extensions": "^0.1.4"
+    "vue-virtual-scroller": "^2.0.1"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.28.6",
     "@eslint/js": "^9.39.4",
-    "@vue/cli-plugin-babel": "^5.0.9",
-    "@vue/cli-service": "^5.0.8",
-    "@vue/compiler-sfc": "^3.5.32",
+    "@vitejs/plugin-vue": "^6.0.11",
     "eslint": "^9.39.4",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.1.0",
     "eslint-plugin-vue": "^9.0.0",
     "globals": "^17.6.0",
-    "webpack": "^5.104.1"
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "Chrome >= 88"
-  ]
+    "vite": "^8.3.8"
+  }
 }

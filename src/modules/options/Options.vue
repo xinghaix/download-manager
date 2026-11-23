@@ -51,9 +51,9 @@
   /* eslint-disable no-undef */
   import { DArrowLeft, InfoFilled, TakeawayBox, Tools } from '@element-plus/icons-vue'
   import common from '../../utils/common'
-  import Settings from './Settings'
-  import About from './About'
-  import Theme from './Theme'
+  import Settings from './Settings.vue'
+  import About from './About.vue'
+  import Theme from './Theme.vue'
 
   export default {
     name: 'Options',
@@ -63,7 +63,7 @@
     },
     data() {
       return {
-        publicPath: process.env.BASE_URL,
+        publicPath: import.meta.env.BASE_URL,
         isCollapse: false,
         selectedIndex: '#settings',
         i18data: common.i18data

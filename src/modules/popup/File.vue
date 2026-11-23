@@ -117,7 +117,7 @@
 <script>
 /* eslint-disable no-undef */
 import {Close, Delete, FolderOpened, RefreshRight, VideoPause, VideoPlay} from '@element-plus/icons-vue'
-import Progress from './Progress'
+import Progress from './Progress.vue'
 import {
   canAcceptDanger as canAcceptDangerDownload,
   getDangerStatus,
