@@ -52,6 +52,14 @@
         </div>
         <el-switch class="switch" v-model="showDownloadProgress" active-color="#409EFF" inactive-color="#bdc1c6"/>
       </div>
+      <el-divider/>
+      <div class="item pointer">
+        <div class="content" @click="deleteFileConfirm = !deleteFileConfirm">
+          <span class="setting-title">{{i18data.deleteFileConfirmSetting}}</span>
+          <span class="setting-description">{{i18data.deleteFileConfirmDescSetting}}</span>
+        </div>
+        <el-switch class="switch" v-model="deleteFileConfirm" active-color="#409EFF" inactive-color="#bdc1c6"/>
+      </div>
     </el-card>
 
     <h2 class="title">{{i18data.contextMenus}}</h2>
@@ -287,6 +295,9 @@ export default {
     async showDownloadProgress(val) {
       await this.persistSetting('show_download_progress', val)
     },
+    async deleteFileConfirm(val) {
+      await this.persistSetting('delete_file_confirm', val)
+    },
 
     async downloadContextMenus(val) {
       await this.persistSetting('download_context_menus', val)
@@ -358,6 +369,9 @@ export default {
       const showDownloadProgress = await storage.get('show_download_progress')
       this.showDownloadProgress = typeof showDownloadProgress === 'boolean' ? showDownloadProgress : true
 
+      const deleteFileConfirm = await storage.get('delete_file_confirm')
+      this.deleteFileConfirm = typeof deleteFileConfirm === 'boolean' ? deleteFileConfirm : true
+
       // 上下文菜单设置
       const downloadContextMenus = await storage.get('download_context_menus')
       this.downloadContextMenus = typeof downloadContextMenus === 'boolean' ? downloadContextMenus : true
@@ -428,6 +442,7 @@ export default {
       showTooltip: false,
       enableAnimation: false,
       showDownloadProgress: true,
+      deleteFileConfirm: true,
 
       // 上下文菜单
       downloadContextMenus: true,
