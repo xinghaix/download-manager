@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "必要なコンテキストだけを残せます。たとえば「画像」のみを選ぶと、画像を右クリックしたときだけダウンロード項目が表示されます。",
     "description": "詳細説明"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "進行中の {} 件のダウンロードをすべてキャンセルしますか？未完了の進捗は失われます。",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

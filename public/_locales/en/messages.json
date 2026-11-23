@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Keep only the contexts you need. For example, select Image only to show the download item when right-clicking images.",
     "description": "Plugin setting detail description"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Cancel all {} active downloads? Unfinished download progress will be lost.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

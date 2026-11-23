@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Simpan hanya konteks yang Anda butuhkan. Misalnya, pilih hanya Gambar agar item muncul saat mengeklik kanan gambar.",
     "description": "Deskripsi detail"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Batalkan semua {} unduhan yang sedang berjalan? Progres yang belum selesai akan hilang.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "เก็บเฉพาะบริบทที่ต้องการ เช่น เลือกเฉพาะรูปภาพ เพื่อให้รายการแสดงเมื่อคลิกขวาที่รูปภาพเท่านั้น",
     "description": "คำอธิบายรายละเอียด"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "ยกเลิกการดาวน์โหลดที่กำลังทำอยู่ทั้งหมด {} รายการหรือไม่? ความคืบหน้าที่ยังไม่เสร็จจะหายไป",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

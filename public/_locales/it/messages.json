@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Conserva solo i contesti necessari. Ad esempio, seleziona solo Immagine per mostrare la voce con il clic destro sulle immagini.",
     "description": "Descrizione dettagliata"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Annullare tutti i {} download attivi? I progressi non completati andranno persi.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

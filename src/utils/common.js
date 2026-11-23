@@ -199,6 +199,7 @@ const common = {
     this.i18data.pauseAll = this.loadI18nMessage('pauseAll')
     this.i18data.resumeAll = this.loadI18nMessage('resumeAll')
     this.i18data.cancelAll = this.loadI18nMessage('cancelAll')
+    this.i18data.cancelAllConfirmMessage = this.loadI18nMessage('cancelAllConfirmMessage')
     this.i18data.delete = this.loadI18nMessage('delete')
     this.i18data.retry = this.loadI18nMessage('retry')
     this.i18data.erase = this.loadI18nMessage('erase')

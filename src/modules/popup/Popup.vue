@@ -350,11 +350,25 @@
       inProgressDownloadItems() {
         return this.downloadItems.filter(item => item && item.state === 'in_progress')
       },
+      pausableDownloadItems() {
+        return this.inProgressDownloadItems.filter(item => !item.paused)
+      },
+      resumableDownloadItems() {
+        return this.downloadItems.filter(item => {
+          if (!item) {
+            return false
+          }
+          if (item.state === 'in_progress') {
+            return Boolean(item.paused) && item.canResume !== false
+          }
+          return item.state === 'interrupted' && item.canResume === true
+        })
+      },
       hasPausableDownloads() {
-        return this.inProgressDownloadItems.some(item => !item.paused)
+        return this.pausableDownloadItems.length > 0
       },
       hasResumableDownloads() {
-        return this.inProgressDownloadItems.some(item => item.paused)
+        return this.resumableDownloadItems.length > 0
       },
       hasCancelableDownloads() {
         return this.inProgressDownloadItems.length > 0
@@ -960,27 +974,35 @@
           return
         }
         if (command === 'cancelAll') {
-          this.cancelAllDownloads()
+          this.requestCancelAllDownloads()
         }
       },
 
       pauseAllDownloads() {
-        const targets = this.inProgressDownloadItems.filter(item => !item.paused)
+        const targets = [...this.pausableDownloadItems]
+        let remaining = targets.length
+        if (!remaining) {
+          return
+        }
+
         targets.forEach(item => {
           chrome.downloads.pause(item.id, () => {
-            if (chrome.runtime && chrome.runtime.lastError) {
-              return
+            if (!(chrome.runtime && chrome.runtime.lastError)) {
+              const current = this.getItem(item.id)
+              if (current) {
+                current.paused = true
+              }
             }
-            const current = this.getItem(item.id)
-            if (current) {
-              current.paused = true
+            remaining -= 1
+            if (remaining <= 0) {
+              this.render()
             }
           })
         })
       },
 
       resumeAllDownloads() {
-        const targets = this.inProgressDownloadItems.filter(item => item.paused)
+        const targets = [...this.resumableDownloadItems]
         let remaining = targets.length
         if (!remaining) {
           return
@@ -1002,8 +1024,21 @@
         })
       },
 
-      cancelAllDownloads() {
+      requestCancelAllDownloads() {
         const targets = [...this.inProgressDownloadItems]
+        if (!targets.length) {
+          return
+        }
+
+        this.openDeleteConfirm({
+          title: this.i18data.cancelAll,
+          message: this.i18data.cancelAllConfirmMessage.replace('{}', targets.length),
+          confirmText: this.i18data.cancelAll,
+          action: () => this.cancelAllDownloads(targets)
+        })
+      },
+
+      cancelAllDownloads(targets = [...this.inProgressDownloadItems]) {
         let remaining = targets.length
         if (!remaining) {
           return
@@ -1011,6 +1046,9 @@
 
         targets.forEach(item => {
           chrome.downloads.cancel(item.id, () => {
+            if (chrome.runtime && chrome.runtime.lastError) {
+              // 静默消费错误（例如回调前下载已完成）
+            }
             remaining -= 1
             if (remaining <= 0) {
               this.render()
@@ -1236,7 +1274,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 6px;
     padding: 10px 7px 8px 8px;
     border-bottom: 1px solid var(--header-divider-color, var(--content-file-border-color));
     box-sizing: border-box;
@@ -1280,8 +1318,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     padding: 0;
     vertical-align: middle;
     border-radius: 8px;

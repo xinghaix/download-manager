@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Houd alleen de benodigde contexten. Selecteer bijvoorbeeld alleen Afbeelding om het item alleen bij rechtsklikken op afbeeldingen te tonen.",
     "description": "Gedetailleerde beschrijving"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Alle {} actieve downloads annuleren? Niet-voltooide voortgang gaat verloren.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Залиште лише потрібні контексти. Наприклад, виберіть лише «Зображення», щоб пункт з’являвся під час клацання правою кнопкою по зображеннях.",
     "description": "Детальний опис"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Скасувати всі {} активних завантажень? Незавершений прогрес буде втрачено.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

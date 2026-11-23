@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "可依需求只保留圖片等內容類型。例如僅勾選「圖片」時，右鍵圖片才會顯示下載選單。",
     "description": "插件設置細節說明"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "確定取消全部 {} 個進行中的下載嗎？未完成的下載進度將會遺失。",
+    "description": "確認取消全部進行中下載的提示語"
   }
 }

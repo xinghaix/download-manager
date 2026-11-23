@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Chỉ giữ các ngữ cảnh cần thiết. Ví dụ chỉ chọn Ảnh để mục hiện khi nhấp chuột phải vào ảnh.",
     "description": "Mô tả chi tiết"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Hủy tất cả {} lượt tải xuống đang hoạt động? Tiến trình chưa hoàn tất sẽ bị mất.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Yalnızca ihtiyacınız olan bağlamları tutun. Örneğin yalnızca Görüntü seçerseniz, öğe yalnızca görsellere sağ tıklayınca görünür.",
     "description": "Ayrıntılı açıklama"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Devam eden {} indirmenin tümü iptal edilsin mi? Tamamlanmamış ilerleme kaybolacaktır.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

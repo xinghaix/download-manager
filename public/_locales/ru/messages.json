@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Оставьте только нужные контексты. Например, выберите только «Изображение», чтобы пункт появлялся при правом щелчке по изображениям.",
     "description": "Подробное описание"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Отменить все {} активных загрузок? Незавершённый прогресс будет потерян.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

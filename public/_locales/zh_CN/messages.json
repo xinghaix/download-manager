@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "可按需只保留图片等上下文。例如仅勾选“图片”时，右键图片才显示下载菜单。",
     "description": "插件设置细节说明"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "确定取消全部 {} 个进行中的下载吗？未完成的下载进度将被丢弃。",
+    "description": "确认取消全部进行中下载的提示语"
   }
 }

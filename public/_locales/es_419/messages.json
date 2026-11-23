@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Conserva solo los contextos que necesites. Por ejemplo, selecciona solo Imagen para mostrar la opción al hacer clic derecho en imágenes.",
     "description": "Descripción detallada"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "¿Cancelar las {} descargas activas? Se perderá el progreso no completado.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }

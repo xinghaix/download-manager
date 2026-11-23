@@ -614,5 +614,9 @@
   "downloadContextMenuContextsDescSetting": {
     "message": "Conservez uniquement les contextes nécessaires. Par exemple, sélectionnez uniquement Image pour n’afficher l’élément que lors d’un clic droit sur une image.",
     "description": "Description détaillée"
+  },
+  "cancelAllConfirmMessage": {
+    "message": "Annuler les {} téléchargements actifs ? La progression non terminée sera perdue.",
+    "description": "Confirm message for cancel all active downloads"
   }
 }
