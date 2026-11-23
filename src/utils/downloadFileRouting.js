@@ -171,21 +171,27 @@ export function getHostnameFromUrl(url) {
     return ''
   }
 
+  const normalizedUrl = url.trim().replace(/^blob:/i, '')
   try {
-    return normalizeHostname(new URL(url).hostname)
+    return normalizeHostname(new URL(normalizedUrl).hostname)
   } catch (e) {
-    return normalizeHostname(url)
+    return normalizeHostname(normalizedUrl)
   }
 }
 
-export function getDownloadRoutingHostname(item) {
+export function getDownloadRoutingHostnames(item) {
   if (!item) {
-    return ''
+    return []
   }
 
-  return getHostnameFromUrl(item.referrer)
-    || getHostnameFromUrl(item.finalUrl)
-    || getHostnameFromUrl(item.url)
+  const candidates = [item.referrer, item.url, item.finalUrl]
+  return [...new Set(candidates
+    .map(candidate => getHostnameFromUrl(candidate))
+    .filter(Boolean))]
+}
+
+export function getDownloadRoutingHostname(item) {
+  return getDownloadRoutingHostnames(item)[0] || ''
 }
 
 export function hostnameMatchesDomain(hostname, domain) {
@@ -223,23 +229,40 @@ export function getDomainRoutingFilename(filename, item, domainRules) {
     return null
   }
 
-  const hostname = getDownloadRoutingHostname(item)
-  if (!hostname) {
+  const hostnames = getDownloadRoutingHostnames(item)
+  if (!hostnames.length) {
     return null
   }
 
   const normalizedRules = normalizeDownloadDomainRoutingRules(domainRules)
-  const matchedRule = normalizedRules.find(rule => {
-    return rule.enabled
-      && rule.folder
-      && rule.domains.some(domain => hostnameMatchesDomain(hostname, domain))
-  })
+  let matchedRule = null
+  for (const hostname of hostnames) {
+    matchedRule = normalizedRules.find(rule => {
+      return rule.enabled
+        && rule.folder
+        && rule.domains.some(domain => hostnameMatchesDomain(hostname, domain))
+    })
+    if (matchedRule) {
+      break
+    }
+  }
 
   if (!matchedRule) {
     return null
   }
 
   return `${matchedRule.folder}/${basename}`
+}
+
+function getCandidateRoutingFilename(item) {
+  if (!item) {
+    return ''
+  }
+  if (item.filename) {
+    return item.filename
+  }
+  const urlCandidate = item.url || item.finalUrl || ''
+  return String(urlCandidate).split(/[?#]/)[0]
 }
 
 /**
@@ -255,7 +278,7 @@ export function resolveRoutingFilename(item, {
     return null
   }
 
-  const filename = item.filename || item.url || item.finalUrl
+  const filename = getCandidateRoutingFilename(item)
   const orderedPrecedence = normalizeDownloadRoutingPrecedence(precedence)
   const domainFilename = getDomainRoutingFilename(filename, item, domainRules)
   const extensionFilename = getRoutingFilename(filename, extensionRules)

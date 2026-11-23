@@ -184,11 +184,11 @@
       <div class="file-routing-toolbar">
         <span class="setting-title">{{i18data.fileRoutingRulesSetting}}</span>
         <div class="file-routing-actions">
-          <el-button size="small" @click="addFileRoutingRule">
+          <el-button size="small" @click="addFileRoutingRule" :disabled="!downloadFileRoutingEnabled">
             <el-icon><Plus /></el-icon>
             {{i18data.fileRoutingAddRule}}
           </el-button>
-          <el-button size="small" @click="resetFileRoutingRules">
+          <el-button size="small" @click="resetFileRoutingRules" :disabled="!downloadFileRoutingEnabled">
             <el-icon><RefreshLeft /></el-icon>
             {{i18data.fileRoutingResetRules}}
           </el-button>
@@ -337,7 +337,6 @@ import { Delete, InfoFilled, Plus, RefreshLeft } from '@element-plus/icons-vue'
 import storage from '../../utils/storage'
 import common from '../../utils/common'
 import {
-  cloneDefaultDownloadDomainRoutingRules,
   cloneDefaultDownloadFileRoutingRules,
   DEFAULT_DOWNLOAD_ROUTING_PRECEDENCE,
   normalizeDownloadDomainRoutingRules,

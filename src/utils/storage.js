@@ -186,7 +186,12 @@ const storage = {
     }
 
     return new Promise(resolve => {
-      getStorageArea(useSync).set(values, () => resolve())
+      getStorageArea(useSync).set(values, () => {
+        if (chrome.runtime && chrome.runtime.lastError) {
+          console.warn('Storage set failed:', chrome.runtime.lastError.message)
+        }
+        resolve()
+      })
     })
   },
 
