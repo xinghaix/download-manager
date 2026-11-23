@@ -12,7 +12,6 @@ let state = {
   anyInDangerous: false,
   downloadingNumber: 0,
   progress: -1,
-  notificationList: [],
   itemRefreshTimer: null,
   activeRefreshTimer: null,
   activeProgressTimer: null,
@@ -23,10 +22,16 @@ let state = {
 const ALL_CONTEXT_DOWNLOAD_MENUS = ['link', 'image', 'audio', 'video']
 const pendingDownloadIds = new Set()
 const DOWNLOADS_PROJECTION_KEY = 'downloads_projection'
+const NOTIFIED_EVENTS_KEY = 'notified_download_events'
+const ACTIVE_NOTIFICATIONS_KEY = 'active_notification_ids'
+const MAX_NOTIFIED_EVENTS = 500
 const ACTIVE_DOWNLOADS_ALARM = 'active-downloads-reconcile'
 const ACTIVE_DOWNLOADS_PROGRESS_INTERVAL_MS = 500
 const RECENT_DOWNLOAD_KEEP_MS = 10000
+const notificationCloseTimers = new Map()
 let contextMenuQueue = Promise.resolve()
+let notifiedEventsQueue = Promise.resolve()
+let notificationStackQueue = Promise.resolve()
 
 // Service Worker 安装
 self.addEventListener('install', () => {
@@ -100,9 +105,9 @@ chrome.downloads.onChanged.addListener((delta) => {
 // 下载删除监听
 chrome.downloads.onErased.addListener((id) => {
   pendingDownloadIds.delete(id)
-  deleteAllDownloadNotificationId(id)
   ;(async () => {
     try {
+      await deleteAllDownloadNotificationId(id)
       const projection = await getDownloadsProjection()
       delete projection.itemsById[id]
       projection.removedIds = [id]
@@ -153,8 +158,15 @@ chrome.notifications.onClicked.addListener((notificationId) => {
   })
 })
 
+chrome.notifications.onClosed.addListener((notificationId) => {
+  removeActiveNotification(notificationId).catch(error => {
+    console.error('Notification close sync error:', error)
+  })
+})
+
 async function handleNotificationButtonClicked(notificationId, index) {
-  await chrome.notifications.clear(notificationId)
+  await clearSystemNotification(notificationId)
+  await removeActiveNotification(notificationId)
 
   const fileId = getNotificationDownloadId(notificationId)
   if (fileId === null) {
@@ -180,7 +192,8 @@ async function handleNotificationButtonClicked(notificationId, index) {
 }
 
 async function handleNotificationClicked(notificationId) {
-  await chrome.notifications.clear(notificationId)
+  await clearSystemNotification(notificationId)
+  await removeActiveNotification(notificationId)
 
   if (notificationId.endsWith('-warning')) {
     await openDangerDownloadUi()
@@ -594,12 +607,12 @@ async function flushPendingDownloadUpdates() {
       await handleDownloadWarningNotification(item)
     } else if (item.state === 'in_progress') {
       await handleDownloadStartedNotification(item)
-      deleteDownloadNotificationId(item.id, '-warning')
+      await deleteDownloadNotificationId(item.id, '-warning')
     } else if (item.state === 'complete') {
-      deleteDownloadNotificationId(item.id, '-warning')
+      await deleteDownloadNotificationId(item.id, '-warning')
       await handleDownloadCompletedNotification(item)
     } else {
-      deleteAllDownloadNotificationId(item.id)
+      await deleteAllDownloadNotificationId(item.id)
     }
   }
 
@@ -671,118 +684,124 @@ async function refreshActiveDownloadsSummary(options = {}) {
 // 处理下载开始通知
 async function handleDownloadStartedNotification(item) {
   const notificationId = item.id + '-started'
-  if (state.notificationList.indexOf(notificationId) < 0) {
-    const notificationSettings = await getDownloadNotificationSettings(
-      'download_started_notification',
-      'download_started_tone'
-    )
+  if (!(await tryAcquireNotifiedDownloadEvent(notificationId))) {
+    return
+  }
 
-    if (notificationSettings.showNotification) {
-      const level = await chrome.notifications.getPermissionLevel()
-      if (level === 'granted') {
-        const option = {
-          type: 'basic',
-          priority: 2,
-          iconUrl: getNotificationIcon(),
-          title: common.i18data.downloadStartedNotification,
-          message: item.basename || item.url,
-          buttons: [{ title: common.i18data.deleteNotification }]
-        }
+  const notificationSettings = await getDownloadNotificationSettings(
+    'download_started_notification',
+    'download_started_tone'
+  )
 
-        if (notificationSettings.visible) {
-          option.requireInteraction = true
-        }
-
-        const createdId = await createExtensionNotification(notificationId, option)
-        state.notificationList.push(createdId)
-        closeNotification(createdId, option, notificationSettings.visible)
+  if (notificationSettings.showNotification) {
+    const level = await chrome.notifications.getPermissionLevel()
+    if (level === 'granted') {
+      const option = {
+        type: 'basic',
+        priority: 2,
+        iconUrl: getNotificationIcon(),
+        title: common.i18data.downloadStartedNotification,
+        message: item.basename || item.url,
+        buttons: [{ title: common.i18data.deleteNotification }]
       }
-    }
 
-    if (notificationSettings.playTone) {
-      playAudio('audio/start.mp3')
+      if (notificationSettings.visible) {
+        option.requireInteraction = true
+      }
+
+      const createdId = await createExtensionNotification(notificationId, option)
+      await trackActiveNotification(createdId)
+      closeNotification(createdId, option, notificationSettings.visible)
     }
+  }
+
+  if (notificationSettings.playTone) {
+    playAudio('audio/start.mp3')
   }
 }
 
 // 处理下载完成通知
 async function handleDownloadCompletedNotification(item) {
   const notificationId = item.id + '-completed'
-  if (state.notificationList.indexOf(notificationId) < 0) {
-    const notificationSettings = await getDownloadNotificationSettings(
-      'download_completed_notification',
-      'download_completed_tone'
-    )
+  if (!(await tryAcquireNotifiedDownloadEvent(notificationId))) {
+    return
+  }
 
-    if (notificationSettings.showNotification) {
-      const level = await chrome.notifications.getPermissionLevel()
-      if (level === 'granted') {
-        const option = {
-          type: 'basic',
-          priority: 2,
-          iconUrl: getNotificationIcon(),
-          title: common.i18data.downloadCompletedNotification,
-          message: item.basename || item.url,
-          buttons: [
-            { title: common.i18data.openFile },
-            { title: common.i18data.openFolderNotification }
-          ]
-        }
+  const notificationSettings = await getDownloadNotificationSettings(
+    'download_completed_notification',
+    'download_completed_tone'
+  )
 
-        if (notificationSettings.visible) {
-          option.requireInteraction = true
-        }
-
-        const createdId = await createExtensionNotification(notificationId, option)
-        state.notificationList.push(createdId)
-        closeNotification(createdId, option, notificationSettings.visible)
+  if (notificationSettings.showNotification) {
+    const level = await chrome.notifications.getPermissionLevel()
+    if (level === 'granted') {
+      const option = {
+        type: 'basic',
+        priority: 2,
+        iconUrl: getNotificationIcon(),
+        title: common.i18data.downloadCompletedNotification,
+        message: item.basename || item.url,
+        buttons: [
+          { title: common.i18data.openFile },
+          { title: common.i18data.openFolderNotification }
+        ]
       }
-    }
 
-    if (notificationSettings.playTone) {
-      playAudio('audio/completed.wav')
+      if (notificationSettings.visible) {
+        option.requireInteraction = true
+      }
+
+      const createdId = await createExtensionNotification(notificationId, option)
+      await trackActiveNotification(createdId)
+      closeNotification(createdId, option, notificationSettings.visible)
     }
+  }
+
+  if (notificationSettings.playTone) {
+    playAudio('audio/completed.wav')
   }
 }
 
 // 处理下载警告通知
 async function handleDownloadWarningNotification(item) {
   const notificationId = item.id + '-warning'
-  if (state.notificationList.indexOf(notificationId) < 0) {
-    const notificationSettings = await getDownloadNotificationSettings(
-      'download_warning_notification',
-      'download_warning_tone'
-    )
+  if (!(await tryAcquireNotifiedDownloadEvent(notificationId))) {
+    return
+  }
 
-    if (notificationSettings.showNotification) {
-      const level = await chrome.notifications.getPermissionLevel()
-      if (level === 'granted') {
-        const option = {
-          type: 'basic',
-          priority: 2,
-          iconUrl: getNotificationIcon(),
-          title: common.i18data.downloadWarnNotification,
-          message: getDangerDescription(item),
-          contextMessage: item.basename || item.url || '',
-          buttons: [
-            { title: common.i18data.dangerOpenAction },
-            { title: common.i18data.dangerDiscard }
-          ]
-        }
+  const notificationSettings = await getDownloadNotificationSettings(
+    'download_warning_notification',
+    'download_warning_tone'
+  )
 
-        if (notificationSettings.visible) {
-          option.requireInteraction = true
-        }
-
-        const createdId = await createExtensionNotification(notificationId, option)
-        state.notificationList.push(createdId)
-        closeNotification(createdId, option, notificationSettings.visible)
+  if (notificationSettings.showNotification) {
+    const level = await chrome.notifications.getPermissionLevel()
+    if (level === 'granted') {
+      const option = {
+        type: 'basic',
+        priority: 2,
+        iconUrl: getNotificationIcon(),
+        title: common.i18data.downloadWarnNotification,
+        message: getDangerDescription(item),
+        contextMessage: item.basename || item.url || '',
+        buttons: [
+          { title: common.i18data.dangerOpenAction },
+          { title: common.i18data.dangerDiscard }
+        ]
       }
-    }
 
-    if (notificationSettings.playTone) {
-      playAudio('audio/warning.mp3')
+      if (notificationSettings.visible) {
+        option.requireInteraction = true
+      }
+
+      const createdId = await createExtensionNotification(notificationId, option)
+      await trackActiveNotification(createdId)
+      closeNotification(createdId, option, notificationSettings.visible)
     }
+  }
+
+  if (notificationSettings.playTone) {
+    playAudio('audio/warning.mp3')
   }
 }
 
@@ -964,25 +983,74 @@ async function playAudio(audioFile) {
   }
 }
 
+function cancelNotificationCloseTimer(id) {
+  const timer = notificationCloseTimers.get(id)
+  if (timer) {
+    clearTimeout(timer)
+    notificationCloseTimers.delete(id)
+  }
+}
+
+function getSystemNotificationIds() {
+  return new Promise((resolve) => {
+    chrome.notifications.getAll((notifications) => {
+      if (chrome.runtime && chrome.runtime.lastError) {
+        resolve(null)
+        return
+      }
+      resolve(new Set(Object.keys(notifications || {})))
+    })
+  })
+}
+
+function clearSystemNotification(id) {
+  return new Promise((resolve) => {
+    chrome.notifications.clear(id, (wasCleared) => {
+      if (chrome.runtime && chrome.runtime.lastError) {
+        resolve(false)
+        return
+      }
+      resolve(Boolean(wasCleared))
+    })
+  })
+}
+
 // 关闭通知
 async function closeNotification(id, option, visible) {
+  if (!id) {
+    return
+  }
+
+  cancelNotificationCloseTimer(id)
   const reservedTime = await storage.get('download_notification_reserved_time')
 
   if (reservedTime !== null && typeof reservedTime === 'number' && reservedTime >= 0) {
-    setTimeout(async () => {
-      const wasCleared = await chrome.notifications.clear(id)
-
-      if (!wasCleared) {
-        const level = await chrome.notifications.getPermissionLevel()
-        if (level === 'granted') {
-          if (visible) {
-            option.requireInteraction = false
-          }
-          const returnId = await chrome.notifications.create(id, option)
-          await chrome.notifications.clear(returnId)
+    const timer = setTimeout(async () => {
+      notificationCloseTimers.delete(id)
+      try {
+        if (!(await isActiveNotification(id))) {
+          return
         }
+
+        const wasCleared = await clearSystemNotification(id)
+        if (!wasCleared && (await isActiveNotification(id))) {
+          const level = await chrome.notifications.getPermissionLevel()
+          if (level === 'granted') {
+            if (visible) {
+              option.requireInteraction = false
+            }
+            const returnId = await createExtensionNotification(id, option)
+            await clearSystemNotification(returnId)
+          }
+        }
+
+        await removeActiveNotification(id)
+      } catch (error) {
+        console.warn('Auto close notification failed:', id, error)
       }
     }, reservedTime * 1000)
+
+    notificationCloseTimers.set(id, timer)
   }
 }
 
@@ -994,17 +1062,151 @@ async function createExtensionNotification(id, options) {
   return chrome.notifications.create(id, options)
 }
 
-// 删除所有通知
-function deleteAllDownloadNotificationId(id) {
-  deleteDownloadNotificationId(id, '-started')
-  deleteDownloadNotificationId(id, '-completed')
-  deleteDownloadNotificationId(id, '-warning')
+function normalizeNotificationMaxCount(value) {
+  const number = Number(value)
+  if (!Number.isFinite(number)) {
+    return 3
+  }
+  // 0 means unlimited; otherwise clamp to a sane upper bound
+  return Math.max(0, Math.min(50, Math.floor(number)))
 }
 
-function deleteDownloadNotificationId(id, suffix) {
-  const index = state.notificationList.indexOf(id + suffix)
-  if (index >= 0) {
-    state.notificationList.splice(index, 1)
+function isProtectedNotificationId(id) {
+  return typeof id === 'string' && (id.endsWith('-warning') || id.startsWith('confirm-download-'))
+}
+
+function enqueueNotifiedEventsOp(task) {
+  notifiedEventsQueue = notifiedEventsQueue
+    .catch(() => {})
+    .then(task)
+  return notifiedEventsQueue
+}
+
+function enqueueNotificationStackOp(task) {
+  notificationStackQueue = notificationStackQueue
+    .catch(() => {})
+    .then(task)
+  return notificationStackQueue
+}
+
+async function getStoredNotifiedEventIds() {
+  const stored = await storage.getSession(NOTIFIED_EVENTS_KEY)
+  return Array.isArray(stored) ? stored.filter(id => typeof id === 'string') : []
+}
+
+async function tryAcquireNotifiedDownloadEvent(eventId) {
+  if (!eventId) {
+    return false
+  }
+
+  return enqueueNotifiedEventsOp(async () => {
+    const events = await getStoredNotifiedEventIds()
+    if (events.includes(eventId)) {
+      return false
+    }
+
+    events.push(eventId)
+    const trimmed = events.length > MAX_NOTIFIED_EVENTS
+      ? events.slice(events.length - MAX_NOTIFIED_EVENTS)
+      : events
+    await storage.setSession(NOTIFIED_EVENTS_KEY, trimmed)
+    return true
+  })
+}
+
+async function unmarkNotifiedDownloadEvents(eventIds) {
+  const targets = new Set((Array.isArray(eventIds) ? eventIds : [eventIds]).filter(Boolean))
+  if (!targets.size) {
+    return
+  }
+
+  await enqueueNotifiedEventsOp(async () => {
+    const events = await getStoredNotifiedEventIds()
+    const next = events.filter(id => !targets.has(id))
+    if (next.length !== events.length) {
+      await storage.setSession(NOTIFIED_EVENTS_KEY, next)
+    }
+  })
+}
+
+async function getStoredActiveNotificationIds() {
+  const stored = await storage.getSession(ACTIVE_NOTIFICATIONS_KEY)
+  return Array.isArray(stored) ? stored.filter(id => typeof id === 'string') : []
+}
+
+async function trackActiveNotification(createdId) {
+  if (!createdId) {
+    return
+  }
+
+  await enqueueNotificationStackOp(async () => {
+    const [storedIds, systemIds, maxCountRaw] = await Promise.all([
+      getStoredActiveNotificationIds(),
+      getSystemNotificationIds(),
+      storage.get('download_notification_max_count')
+    ])
+
+    let activeIds = storedIds.filter(id => id !== createdId && (!systemIds || systemIds.has(id)))
+    activeIds.push(createdId)
+
+    const maxCount = normalizeNotificationMaxCount(maxCountRaw)
+    if (maxCount > 0) {
+      while (activeIds.length > maxCount) {
+        const evictIndex = activeIds.findIndex(id => id !== createdId && !isProtectedNotificationId(id))
+        if (evictIndex < 0) {
+          break
+        }
+        const [evictedId] = activeIds.splice(evictIndex, 1)
+        cancelNotificationCloseTimer(evictedId)
+        await clearSystemNotification(evictedId)
+      }
+    }
+
+    await storage.setSession(ACTIVE_NOTIFICATIONS_KEY, activeIds)
+  })
+}
+
+async function removeActiveNotification(id) {
+  if (!id) {
+    return
+  }
+
+  cancelNotificationCloseTimer(id)
+  await enqueueNotificationStackOp(async () => {
+    const activeIds = await getStoredActiveNotificationIds()
+    const next = activeIds.filter(itemId => itemId !== id)
+    if (next.length !== activeIds.length) {
+      await storage.setSession(ACTIVE_NOTIFICATIONS_KEY, next)
+    }
+  })
+}
+
+async function isActiveNotification(id) {
+  if (!id) {
+    return false
+  }
+
+  return enqueueNotificationStackOp(async () => {
+    const activeIds = await getStoredActiveNotificationIds()
+    return activeIds.includes(id)
+  })
+}
+
+// 删除所有通知去重标记
+async function deleteAllDownloadNotificationId(id) {
+  await unmarkNotifiedDownloadEvents([
+    `${id}-started`,
+    `${id}-completed`,
+    `${id}-warning`
+  ])
+}
+
+async function deleteDownloadNotificationId(id, suffix) {
+  const notificationId = `${id}${suffix}`
+  await unmarkNotifiedDownloadEvents([notificationId])
+  if (suffix === '-warning' && (await isActiveNotification(notificationId))) {
+    await clearSystemNotification(notificationId)
+    await removeActiveNotification(notificationId)
   }
 }
 
