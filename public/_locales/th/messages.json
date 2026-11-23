@@ -662,5 +662,45 @@
   "fileRoutingDomainFolderPlaceholder": {
     "message": "เช่น GitHub หรือ Sites/GitHub",
     "description": "Input placeholder"
+  },
+  "downloadConfirmBeforeStartSetting": {
+    "message": "ยืนยันก่อนเริ่มดาวน์โหลด",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmBeforeStartDescSetting": {
+    "message": "เมื่อเปิดใช้ การดาวน์โหลดที่เริ่มโดยส่วนขยายนี้ (เมนูคลิกขวา, URL ด้วยตนเอง หรือลองใหม่) จะถามยืนยันก่อน ไม่ขัดจังหวะการดาวน์โหลดของเบราว์เซอร์เอง เพื่อไม่ให้ลิงก์ใช้ครั้งเดียวเสียหาย ค่าเริ่มต้นคือปิด",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmChooseFolderSetting": {
+    "message": "เลือกโฟลเดอร์เมื่อเริ่มดาวน์โหลด",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmChooseFolderDescSetting": {
+    "message": "ใช้กล่องโต้ตอบบันทึกเป็น (saveAs) สำหรับการดาวน์โหลดของส่วนขยายนี้ แยกจากตัวเลือก Edge/Chrome “ถามว่าจะทำอะไร” ซึ่งส่วนขยายควบคุมไม่ได้",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmTitle": {
+    "message": "ยืนยันการดาวน์โหลด",
+    "description": "Confirmation title before starting a download"
+  },
+  "downloadConfirmMessage": {
+    "message": "เริ่มดาวน์โหลด “{}” หรือไม่?",
+    "description": "Confirmation message before starting a download; {} is the URL"
+  },
+  "downloadConfirmButton": {
+    "message": "ดาวน์โหลด",
+    "description": "Confirmation button before starting a download"
+  },
+  "downloadConfirmNotificationTitle": {
+    "message": "ยืนยันการดาวน์โหลด",
+    "description": "Notification title when confirming a context-menu download"
+  },
+  "downloadConfirmNotificationConfirm": {
+    "message": "ดาวน์โหลด",
+    "description": "Notification button to confirm a pending download"
+  },
+  "downloadConfirmNotificationCancel": {
+    "message": "ยกเลิก",
+    "description": "Notification button to cancel a pending download"
   }
 }

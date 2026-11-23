@@ -662,5 +662,45 @@
   "fileRoutingDomainFolderPlaceholder": {
     "message": "ex. : GitHub ou Sites/GitHub",
     "description": "Input placeholder"
+  },
+  "downloadConfirmBeforeStartSetting": {
+    "message": "Confirmer avant de télécharger",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmBeforeStartDescSetting": {
+    "message": "Si activé, les téléchargements démarrés par cette extension (menu contextuel, URL manuelle, nouvel essai) demandent une confirmation. Les téléchargements natifs du navigateur ne sont pas interrompus, pour éviter de casser les liens à usage unique. Désactivé par défaut.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmChooseFolderSetting": {
+    "message": "Choisir l’emplacement au démarrage",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmChooseFolderDescSetting": {
+    "message": "Utilise la boîte de dialogue Enregistrer sous (saveAs) pour les téléchargements de cette extension. Indépendant de l’option Edge/Chrome « Demander quoi faire », non contrôlable par l’extension.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmTitle": {
+    "message": "Confirmer le téléchargement",
+    "description": "Confirmation title before starting a download"
+  },
+  "downloadConfirmMessage": {
+    "message": "Démarrer le téléchargement de « {} » ?",
+    "description": "Confirmation message before starting a download; {} is the URL"
+  },
+  "downloadConfirmButton": {
+    "message": "Télécharger",
+    "description": "Confirmation button before starting a download"
+  },
+  "downloadConfirmNotificationTitle": {
+    "message": "Confirmer le téléchargement",
+    "description": "Notification title when confirming a context-menu download"
+  },
+  "downloadConfirmNotificationConfirm": {
+    "message": "Télécharger",
+    "description": "Notification button to confirm a pending download"
+  },
+  "downloadConfirmNotificationCancel": {
+    "message": "Annuler",
+    "description": "Notification button to cancel a pending download"
   }
 }

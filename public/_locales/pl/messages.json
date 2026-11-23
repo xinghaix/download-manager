@@ -662,5 +662,45 @@
   "fileRoutingDomainFolderPlaceholder": {
     "message": "np. GitHub lub Sites/GitHub",
     "description": "Input placeholder"
+  },
+  "downloadConfirmBeforeStartSetting": {
+    "message": "Potwierdź przed pobraniem",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmBeforeStartDescSetting": {
+    "message": "Po włączeniu pobierania rozpoczęte przez to rozszerzenie (menu kontekstowe, ręczny URL lub ponowienie) wymagają potwierdzenia. Pobrań natywnych przeglądarki nie przerywamy, by nie psuć jednorazowych linków. Domyślnie wyłączone.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmChooseFolderSetting": {
+    "message": "Wybierz folder przy starcie pobierania",
+    "description": "Plugin setting description"
+  },
+  "downloadConfirmChooseFolderDescSetting": {
+    "message": "Używa okna Zapisz jako (saveAs) dla pobrań tego rozszerzenia. Niezależne od opcji Edge/Chrome „Pytaj, co robić”, której rozszerzenie nie kontroluje.",
+    "description": "Plugin setting detail description"
+  },
+  "downloadConfirmTitle": {
+    "message": "Potwierdź pobieranie",
+    "description": "Confirmation title before starting a download"
+  },
+  "downloadConfirmMessage": {
+    "message": "Rozpocząć pobieranie „{}”?",
+    "description": "Confirmation message before starting a download; {} is the URL"
+  },
+  "downloadConfirmButton": {
+    "message": "Pobierz",
+    "description": "Confirmation button before starting a download"
+  },
+  "downloadConfirmNotificationTitle": {
+    "message": "Potwierdź pobieranie",
+    "description": "Notification title when confirming a context-menu download"
+  },
+  "downloadConfirmNotificationConfirm": {
+    "message": "Pobierz",
+    "description": "Notification button to confirm a pending download"
+  },
+  "downloadConfirmNotificationCancel": {
+    "message": "Anuluj",
+    "description": "Notification button to cancel a pending download"
   }
 }
