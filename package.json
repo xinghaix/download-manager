@@ -5,20 +5,16 @@
   "scripts": {
     "serve": "vite",
     "build": "vite build",
-    "lint": "eslint \"**/*.{js,ts,jsx,tsx,cjs,cts,mjs,mts,html,vue}\""
+    "lint": "eslint \"**/*.{js,mjs,svelte}\""
   },
-  "dependencies": {
-    "@element-plus/icons-vue": "^2.3.2",
-    "element-plus": "^2.13.7",
-    "vue": "^3.5.32",
-    "vue-virtual-scroller": "^2.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@eslint/js": "^9.39.4",
-    "@vitejs/plugin-vue": "^6.0.11",
+    "@sveltejs/vite-plugin-svelte": "^7.3.2",
     "eslint": "^9.39.4",
-    "eslint-plugin-vue": "^9.0.0",
+    "eslint-plugin-svelte": "^3.24.1",
     "globals": "^17.6.0",
+    "svelte": "^5.59.1",
     "vite": "^8.3.8"
   }
 }

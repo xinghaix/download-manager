@@ -1,11 +1,11 @@
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
 
 export default defineConfig({
   base: './',
   publicDir: 'public',
-  plugins: [vue()],
+  plugins: [svelte()],
   build: {
     outDir: 'dist',
     emptyOutDir: true,

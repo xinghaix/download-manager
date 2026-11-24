@@ -1,5 +1,5 @@
 import js from '@eslint/js'
-import vue from 'eslint-plugin-vue'
+import svelte from 'eslint-plugin-svelte'
 import globals from 'globals'
 
 export default [
@@ -15,9 +15,9 @@ export default [
     ]
   },
   js.configs.recommended,
-  ...vue.configs['flat/essential'],
+  ...svelte.configs['flat/recommended'],
   {
-    files: ['**/*.{js,mjs,vue}'],
+    files: ['**/*.{js,mjs,svelte}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -30,9 +30,7 @@ export default [
       }
     },
     rules: {
-      'no-unused-vars': ['error', { caughtErrors: 'none' }],
-      'vue/multi-word-component-names': 'off',
-      'vue/no-reserved-component-names': 'off'
+      'no-unused-vars': ['error', { caughtErrors: 'none' }]
     }
   }
 ]
