@@ -1,15 +1,7 @@
-import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import Options from './Options.vue'
-import 'element-plus/dist/index.css'
+import './options-theme.css'
+import { mount } from 'svelte'
+import Options from './Options.svelte'
 
-const app = createApp(Options)
-
-app.use(ElementPlus)
-
-Object.entries(ElementPlusIconsVue).forEach(([name, component]) => {
-  app.component(name, component)
+mount(Options, {
+  target: document.getElementById('app')
 })
-
-app.mount('#app')

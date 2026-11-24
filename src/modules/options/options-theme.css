@@ -1,0 +1,130 @@
+:root {
+  color-scheme: light;
+  --opt-bg: #f6f8fb;
+  --opt-surface: #ffffff;
+  --opt-surface-subtle: #f8fafc;
+  --opt-surface-hover: #f3f6fb;
+  --opt-border: #e5eaf3;
+  --opt-border-subtle: #edf1f7;
+
+  --opt-control-bg: #ffffff;
+  --opt-control-border: #d5dce6;
+  --opt-control-border-hover: #b8c4d4;
+  --opt-control-disabled-bg: #f4f6f9;
+  --opt-control-disabled-border: #e6ebf2;
+
+  --opt-text-primary: #1f2937;
+  --opt-text-secondary: #4b5563;
+  --opt-text-muted: #6b7280;
+  --opt-text-disabled: #9ca3af;
+
+  --opt-accent: #409eff;
+  --opt-accent-hover: #2d8cf0;
+  --opt-accent-soft: #ecf5ff;
+  --opt-accent-soft-border: #b3d8ff;
+  --opt-accent-disabled: #a0cfff;
+  --opt-focus-ring: rgba(64, 158, 255, 0.28);
+
+  --opt-danger: #f56c6c;
+  --opt-danger-hover: #f78989;
+  --opt-danger-hover-bg: #fef0f0;
+
+  --opt-badge-bg: #eef2f7;
+  --opt-badge-border: #dce3ee;
+  --opt-badge-text: #374151;
+
+  --opt-card-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --opt-card-shadow-hover: 0 6px 18px rgba(15, 23, 42, 0.07);
+  --opt-popover-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+
+  --opt-sidebar-bg: #363d4d;
+  --opt-sidebar-active-bg: #3b557f;
+  --opt-sidebar-active-border: #579aff;
+  --opt-sidebar-active-text: #dbeafe;
+  --opt-sidebar-text: rgba(255, 255, 255, 0.92);
+
+  --opt-stage-bg: radial-gradient(circle at top left, #ffffff 0%, #f5f8ff 46%, #eef3fb 100%);
+  --opt-stage-grid: rgba(125, 145, 180, 0.08);
+  --opt-stage-head-bg: linear-gradient(135deg, rgba(123, 97, 255, 0.05) 0%, rgba(64, 158, 255, 0.04) 100%), linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+  --opt-stage-head-highlight: rgba(255, 255, 255, 0.7);
+  --opt-stage-pill-bg: rgba(255, 255, 255, 0.82);
+  --opt-stage-pill-border: rgba(160, 175, 201, 0.32);
+  --opt-stage-pill-text: #556173;
+
+  --opt-radius-card: 10px;
+  --opt-radius-inner: 8px;
+  --opt-radius-control: 6px;
+
+  --dm-switch-off: #cbd5e1;
+  --dm-tag-bg: #eef2f7;
+  --dm-tag-text: #374151;
+
+  --tooltip-background-color: #1f2937;
+  --tooltip-color: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --opt-bg: #12161f;
+  --opt-surface: #1a202c;
+  --opt-surface-subtle: #202736;
+  --opt-surface-hover: #252e40;
+  --opt-border: #2c3547;
+  --opt-border-subtle: #252d3d;
+
+  --opt-control-bg: #151b26;
+  --opt-control-border: #364156;
+  --opt-control-border-hover: #4b5975;
+  --opt-control-disabled-bg: #181e2a;
+  --opt-control-disabled-border: #262f40;
+
+  --opt-text-primary: #eef2f6;
+  --opt-text-secondary: #cbd5e1;
+  --opt-text-muted: #94a3b8;
+  --opt-text-disabled: #64748b;
+
+  --opt-accent: #4c9aff;
+  --opt-accent-hover: #6cb0ff;
+  --opt-accent-soft: rgba(76, 154, 255, 0.14);
+  --opt-accent-soft-border: rgba(76, 154, 255, 0.38);
+  --opt-accent-disabled: rgba(76, 154, 255, 0.42);
+  --opt-focus-ring: rgba(76, 154, 255, 0.35);
+
+  --opt-danger: #f87171;
+  --opt-danger-hover: #fca5a5;
+  --opt-danger-hover-bg: rgba(248, 113, 113, 0.14);
+
+  --opt-badge-bg: #263042;
+  --opt-badge-border: #38455d;
+  --opt-badge-text: #dbeafe;
+
+  --opt-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --opt-card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --opt-popover-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+
+  --opt-sidebar-bg: #0f131b;
+  --opt-sidebar-active-bg: rgba(76, 154, 255, 0.18);
+  --opt-sidebar-active-border: #4c9aff;
+  --opt-sidebar-active-text: #93c5fd;
+  --opt-sidebar-text: rgba(241, 245, 249, 0.9);
+
+  --opt-stage-bg: radial-gradient(circle at top left, #1c2433 0%, #151b27 52%, #111621 100%);
+  --opt-stage-grid: rgba(148, 163, 184, 0.08);
+  --opt-stage-head-bg: linear-gradient(135deg, rgba(123, 97, 255, 0.08) 0%, rgba(76, 154, 255, 0.06) 100%), linear-gradient(180deg, #1d2432 0%, #19202d 100%);
+  --opt-stage-head-highlight: rgba(255, 255, 255, 0.04);
+  --opt-stage-pill-bg: rgba(30, 39, 54, 0.85);
+  --opt-stage-pill-border: rgba(75, 89, 117, 0.55);
+  --opt-stage-pill-text: #cbd5e1;
+
+  --dm-switch-off: #475569;
+  --dm-tag-bg: #263042;
+  --dm-tag-text: #e2e8f0;
+
+  --tooltip-background-color: #2d3748;
+  --tooltip-color: #f8fafc;
+}
+
+body {
+  background-color: var(--opt-bg);
+  color: var(--opt-text-primary);
+}
