@@ -78,7 +78,7 @@ const common = {
    */
   handleFileIcon(item) {
     if (item.filename && !item.iconUrl) {
-      // 置空，让后续改变可以被vue监控到
+      // 初始化为 null，保证响应式状态能追踪后续异步赋值
       item.iconUrl = null
     }
 

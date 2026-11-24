@@ -1,7 +1,7 @@
 # **download-manager**
-[![build](https://img.shields.io/travis/xinghaix/download-manager/master?style=flat-square)](https://www.travis-ci.org/xinghaix/download-manager)
+[![CI](https://github.com/xinghaix/download-manager/actions/workflows/ci.yml/badge.svg)](https://github.com/xinghaix/download-manager/actions/workflows/ci.yml)
 ![release](https://img.shields.io/github/v/release/xinghaix/download-manager.svg?include_prereleases&style=flat-square)
-![language](https://img.shields.io/badge/language-Vue.js-forestgreen.svg?style=flat-square)
+![language](https://img.shields.io/badge/language-Svelte-ff3e00.svg?style=flat-square)
 [![Hex.pm](https://img.shields.io/github/license/xinghaix/download-manager?style=flat-square)](https://github.com/xinghaix/download-manager/blob/master/LICENSE)
 
 [![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/ofpglhlcdbjdhlacgbljnildhajfmlei.svg?style=flat-square&label=Chrome%20Web%20Store)](https://chrome.google.com/webstore/detail/ofpglhlcdbjdhlacgbljnildhajfmlei)

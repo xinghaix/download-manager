@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: '0 16 * * 5'
 
+concurrency:
+  group: codeql-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
@@ -25,6 +29,50 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Precompile Svelte components for CodeQL
+        run: |
+          node --input-type=module << 'EOF'
+          import fs from 'node:fs'
+          import path from 'node:path'
+          import { compile } from 'svelte/compiler'
+
+          function walk(dir) {
+            const entries = fs.readdirSync(dir, { withFileTypes: true })
+            const files = []
+            for (const entry of entries) {
+              const fullPath = path.join(dir, entry.name)
+              if (entry.isDirectory()) {
+                files.push(...walk(fullPath))
+              } else if (entry.name.endsWith('.svelte')) {
+                files.push(fullPath)
+              }
+            }
+            return files.sort()
+          }
+
+          const svelteFiles = walk('src')
+          for (const file of svelteFiles) {
+            const source = fs.readFileSync(file, 'utf8')
+            const { js } = compile(source, { filename: file, generate: 'client', dev: false })
+            const rewritten = js.code.replace(
+              /(['"])(\.\.?\/[^'"]+?\.svelte)\1/g,
+              '$1$2.mjs$1'
+            )
+            fs.writeFileSync(`${file}.mjs`, rewritten, 'utf8')
+          }
+
+          console.log(`Precompiled ${svelteFiles.length} Svelte component(s) to .svelte.mjs for CodeQL.`)
+          EOF
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4

@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [master]
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
 
@@ -28,21 +32,137 @@ jobs:
 
       - name: Validate locale JSON files
         run: |
-          node -e '
-            const fs = require("fs");
-            const path = require("path");
-            const dir = "public/_locales";
-            for (const locale of fs.readdirSync(dir)) {
-              const file = path.join(dir, locale, "messages.json");
-              if (fs.existsSync(file)) {
-                JSON.parse(fs.readFileSync(file, "utf8"));
+          node --input-type=module << 'EOF'
+          import fs from 'node:fs'
+          import path from 'node:path'
+
+          const dir = 'public/_locales'
+          const enPath = path.join(dir, 'en', 'messages.json')
+          const en = JSON.parse(fs.readFileSync(enPath, 'utf8'))
+          const enKeys = Object.keys(en).sort()
+          const locales = fs.readdirSync(dir).filter((name) =>
+            fs.existsSync(path.join(dir, name, 'messages.json'))
+          ).sort()
+
+          if (locales.length === 0) {
+            throw new Error('No locale files found in public/_locales')
+          }
+
+          for (const locale of locales) {
+            const file = path.join(dir, locale, 'messages.json')
+            const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+            const keys = Object.keys(data).sort()
+            if (JSON.stringify(keys) !== JSON.stringify(enKeys)) {
+              const missing = enKeys.filter((k) => !(k in data))
+              const extra = keys.filter((k) => !(k in en))
+              throw new Error(`Key mismatch in ${locale}: missing=[${missing}] extra=[${extra}]`)
+            }
+            for (const key of enKeys) {
+              const msg = data[key]?.message
+              if (typeof msg !== 'string' || msg.trim() === '') {
+                throw new Error(`Empty or invalid message for ${locale}.${key}`)
+              }
+              const expectedPh = (en[key].message.match(/\{\}/g) || []).length
+              const actualPh = (msg.match(/\{\}/g) || []).length
+              if (expectedPh !== actualPh) {
+                throw new Error(`Placeholder count mismatch in ${locale}.${key}: expected ${expectedPh}, got ${actualPh}`)
               }
             }
-            console.log("All locale JSON files are valid.");
-          '
+          }
+
+          console.log(`Validated ${locales.length} locale files (${enKeys.length} keys each).`)
+          EOF
+
+      - name: Check Svelte compiler warnings
+        run: |
+          node --input-type=module << 'EOF'
+          import fs from 'node:fs'
+          import path from 'node:path'
+          import { compile } from 'svelte/compiler'
+
+          function walk(dir) {
+            const entries = fs.readdirSync(dir, { withFileTypes: true })
+            const files = []
+            for (const entry of entries) {
+              const fullPath = path.join(dir, entry.name)
+              if (entry.isDirectory()) {
+                files.push(...walk(fullPath))
+              } else if (entry.name.endsWith('.svelte')) {
+                files.push(fullPath)
+              }
+            }
+            return files.sort()
+          }
+
+          const svelteFiles = walk('src')
+          if (svelteFiles.length === 0) {
+            throw new Error('No .svelte files found under src/')
+          }
+
+          let warningCount = 0
+          for (const file of svelteFiles) {
+            const source = fs.readFileSync(file, 'utf8')
+            const result = compile(source, { filename: file, generate: 'client', dev: false })
+            for (const warning of result.warnings) {
+              console.error(`${file}:${warning.start?.line ?? '?'}:${warning.start?.column ?? '?'} [${warning.code}] ${warning.message}`)
+              warningCount++
+            }
+          }
+
+          if (warningCount > 0) {
+            throw new Error(`Found ${warningCount} Svelte compiler warning(s).`)
+          }
+
+          console.log(`Compiled ${svelteFiles.length} Svelte components with 0 warnings.`)
+          EOF
 
       - name: Lint
         run: npm run lint
 
       - name: Build
         run: npm run build
+
+      - name: Verify MV3 build output
+        run: |
+          node --input-type=module << 'EOF'
+          import fs from 'node:fs'
+
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'))
+          const allDeps = { ...pkg.dependencies, ...pkg.devDependencies }
+          for (const legacy of ['vue', 'element-plus', 'element-ui']) {
+            if (legacy in allDeps) {
+              throw new Error(`Legacy dependency "${legacy}" should not exist in package.json`)
+            }
+          }
+
+          const manifest = JSON.parse(fs.readFileSync('dist/manifest.json', 'utf8'))
+          if (manifest.manifest_version !== 3) {
+            throw new Error(`Expected manifest_version 3, got ${manifest.manifest_version}`)
+          }
+          if (manifest.version !== pkg.version) {
+            throw new Error(`Version mismatch: dist/manifest.json=${manifest.version}, package.json=${pkg.version}`)
+          }
+
+          const requiredFiles = [
+            'dist/manifest.json',
+            'dist/popup.html',
+            'dist/options.html',
+            'dist/offscreen.html',
+            'dist/background.js',
+            'dist/offscreen.js',
+            'dist/_locales/en/messages.json'
+          ]
+          for (const file of requiredFiles) {
+            if (!fs.existsSync(file)) {
+              throw new Error(`Missing required build output: ${file}`)
+            }
+          }
+
+          for (const dir of ['dist/js', 'dist/css']) {
+            if (!fs.existsSync(dir) || fs.readdirSync(dir).length === 0) {
+              throw new Error(`Build directory is missing or empty: ${dir}`)
+            }
+          }
+
+          console.log(`Verified MV3 build output for version ${manifest.version}.`)
+          EOF
