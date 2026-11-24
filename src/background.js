@@ -13,14 +13,19 @@ let state = {
   downloadingNumber: 0,
   progress: -1,
   itemRefreshTimer: null,
+  eraseRefreshTimer: null,
   activeRefreshTimer: null,
   activeProgressTimer: null,
   activeProgressRefreshInFlight: false,
-  systemTheme: null
+  systemTheme: null,
+  lastBadgeText: null,
+  lastBadgeDanger: null,
+  alarmScheduled: null
 }
 
 const ALL_CONTEXT_DOWNLOAD_MENUS = ['link', 'image', 'audio', 'video']
 const pendingDownloadIds = new Set()
+const pendingErasedIds = new Set()
 const PENDING_DOWNLOAD_CONFIRM_KEY = 'pending_download_confirms'
 const PENDING_POPUP_DOWNLOAD_CONFIRM_KEY = 'pending_popup_download_confirm'
 const DOWNLOAD_CONFIRM_NOTIFICATION_PREFIX = 'confirm-download-'
@@ -30,9 +35,12 @@ const NOTIFIED_EVENTS_KEY = 'notified_download_events'
 const ACTIVE_NOTIFICATIONS_KEY = 'active_notification_ids'
 const MAX_NOTIFIED_EVENTS = 500
 const ACTIVE_DOWNLOADS_ALARM = 'active-downloads-reconcile'
-const ACTIVE_DOWNLOADS_PROGRESS_INTERVAL_MS = 500
+const ACTIVE_DOWNLOADS_PROGRESS_INTERVAL_MS = 1000
 const RECENT_DOWNLOAD_KEEP_MS = 10000
+const ICON_APPEARANCE_KEYS = ['ui_theme', 'theme', 'system_theme', 'icon_color', 'icon_downloading_color']
 const notificationCloseTimers = new Map()
+let iconAppearanceCache = null
+let iconAppearancePromise = null
 let confirmNotificationSeq = 0
 let contextMenuQueue = Promise.resolve()
 let notifiedEventsQueue = Promise.resolve()
@@ -67,8 +75,8 @@ async function initialize() {
     await storage.defaultSettings()
 
     // 获取主题并设置图标
-    const themeKey = await getActiveIconThemeKey()
-    const iconColor = await storage.get('icon_color')
+    invalidateIconAppearanceCache()
+    const { themeKey, iconColor } = await getResolvedIconAppearance()
     if (iconColor && iconColor[themeKey]) {
       icon.setBrowserActionIcon(iconColor[themeKey], false)
     }
@@ -107,22 +115,46 @@ chrome.downloads.onChanged.addListener((delta) => {
   }
 })
 
-// 下载删除监听
+// 下载删除监听（合并短时间内的批量清除，避免清空列表时触发数百次并发查询与存储写入）
 chrome.downloads.onErased.addListener((id) => {
   pendingDownloadIds.delete(id)
-  ;(async () => {
+  if (typeof id === 'number') {
+    pendingErasedIds.add(id)
+  }
+  if (state.eraseRefreshTimer) {
+    return
+  }
+  state.eraseRefreshTimer = setTimeout(async () => {
+    state.eraseRefreshTimer = null
     try {
-      await deleteAllDownloadNotificationId(id)
-      const projection = await getDownloadsProjection()
-      delete projection.itemsById[id]
-      projection.removedIds = [id]
-      await refreshActiveDownloadsSummary({ projection })
-      await setDownloadsProjection(projection)
+      await flushPendingErasedDownloads()
     } catch (error) {
       console.error('Projection erase sync error:', error)
     }
-  })()
+  }, 80)
 })
+
+async function flushPendingErasedDownloads() {
+  const erasedIds = [...pendingErasedIds]
+  pendingErasedIds.clear()
+  if (!erasedIds.length) {
+    return
+  }
+
+  const eventIdsToUnmark = []
+  erasedIds.forEach((id) => {
+    eventIdsToUnmark.push(`${id}-started`, `${id}-completed`, `${id}-warning`)
+  })
+  await unmarkNotifiedDownloadEvents(eventIdsToUnmark)
+
+  const projection = await getDownloadsProjection()
+  erasedIds.forEach((id) => {
+    delete projection.itemsById[id]
+  })
+  projection.removedIds = erasedIds
+  await refreshActiveDownloadsSummary({ projection })
+  await setDownloadsProjection(projection)
+}
 
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name !== ACTIVE_DOWNLOADS_ALARM) {
@@ -318,14 +350,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           await handleSystemThemeChanged(received.data)
           break
         case 'icon_color':
+          invalidateIconAppearanceCache()
           if (state.anyInProgress) {
             icon.message.color = received.data
+            icon.message.lastSignature = ''
           } else {
             icon.setBrowserActionIcon(received.data, false)
           }
           break
         case 'icon_downloading_color':
+          invalidateIconAppearanceCache()
           icon.message.runningColor = received.data
+          icon.message.lastSignature = ''
           break
         case 'download_snapshot_request':
           sendResponse({
@@ -527,17 +563,24 @@ async function rebuildProjectionFromActiveDownloads() {
 }
 
 async function syncActiveDownloadsAlarm(hasActiveDownloads) {
+  const nextScheduled = Boolean(hasActiveDownloads)
+  if (state.alarmScheduled === nextScheduled) {
+    return
+  }
+
   const alarm = await chrome.alarms.get(ACTIVE_DOWNLOADS_ALARM)
-  if (hasActiveDownloads) {
+  if (nextScheduled) {
     if (!alarm) {
       chrome.alarms.create(ACTIVE_DOWNLOADS_ALARM, { periodInMinutes: 0.5 })
     }
+    state.alarmScheduled = true
     return
   }
 
   if (alarm) {
-    chrome.alarms.clear(ACTIVE_DOWNLOADS_ALARM)
+    await chrome.alarms.clear(ACTIVE_DOWNLOADS_ALARM)
   }
+  state.alarmScheduled = false
 }
 
 function syncActiveDownloadsProgressTimer(hasActiveDownloads) {
@@ -613,11 +656,15 @@ async function flushPendingDownloadUpdates() {
     return
   }
 
-  const projection = await getDownloadsProjection()
+  const [projection, fetchedItems] = await Promise.all([
+    getDownloadsProjection(),
+    Promise.all(ids.map(id => getDownloadById(id)))
+  ])
   projection.removedIds = []
 
-  for (const id of ids) {
-    const item = await getDownloadById(id)
+  for (let i = 0; i < ids.length; i++) {
+    const id = ids[i]
+    const item = fetchedItems[i]
     const projectionItem = pickProjectionItemFields(item)
 
     if (!item) {
@@ -689,9 +736,7 @@ async function refreshActiveDownloadsSummary(options = {}) {
   await syncActiveDownloadsAlarm(state.anyInProgress)
   syncActiveDownloadsProgressTimer(state.anyInProgress)
 
-  const themeKey = await getActiveIconThemeKey()
-  const iconColor = await storage.get('icon_color')
-  const iconDownloadingColor = await storage.get('icon_downloading_color')
+  const { themeKey, iconColor, iconDownloadingColor } = await getResolvedIconAppearance()
 
   if (state.anyInProgress && iconColor && iconDownloadingColor) {
     icon.setRunningBrowserActionIcon(
@@ -862,13 +907,36 @@ function getDangerDescription(item) {
   }
 }
 
-async function getActiveIconThemeKey() {
-  const uiTheme = await storage.get('ui_theme')
+function invalidateIconAppearanceCache() {
+  iconAppearanceCache = null
+  iconAppearancePromise = null
+}
+
+async function getIconAppearanceSettings() {
+  if (iconAppearanceCache) {
+    return iconAppearanceCache
+  }
+  if (iconAppearancePromise) {
+    return iconAppearancePromise
+  }
+  iconAppearancePromise = storage.getMany(ICON_APPEARANCE_KEYS).then(settings => {
+    iconAppearanceCache = settings || {}
+    iconAppearancePromise = null
+    return iconAppearanceCache
+  }).catch(error => {
+    iconAppearancePromise = null
+    throw error
+  })
+  return iconAppearancePromise
+}
+
+function resolveThemeKeyFromAppearance(appearance) {
+  const uiTheme = appearance && appearance.ui_theme
   if (uiTheme) {
     return uiTheme.endsWith('-dark') ? 'dark' : 'light'
   }
 
-  const theme = await storage.get('theme')
+  const theme = appearance && appearance.theme
   if (theme === 'dark' || theme === 'light') {
     return theme
   }
@@ -877,7 +945,7 @@ async function getActiveIconThemeKey() {
     return state.systemTheme
   }
 
-  const storedSystemTheme = await storage.get('system_theme')
+  const storedSystemTheme = appearance && appearance.system_theme
   if (storedSystemTheme === 'dark' || storedSystemTheme === 'light') {
     return storedSystemTheme
   }
@@ -885,28 +953,19 @@ async function getActiveIconThemeKey() {
   return 'light'
 }
 
-async function handleUiThemeChanged(themeName) {
-  if (themeName) {
-    const themeKey = themeName.endsWith('-dark') ? 'dark' : 'light'
-    const iconColor = await storage.get('icon_color')
-    const iconDownloadingColor = await storage.get('icon_downloading_color')
-
-    if (state.anyInProgress && iconColor && iconDownloadingColor) {
-      icon.setRunningBrowserActionIcon(
-        iconColor[themeKey],
-        iconDownloadingColor[themeKey],
-        true,
-        state.progress
-      )
-    } else if (iconColor) {
-      icon.restoreDefaultIcon(iconColor[themeKey])
-    }
-    return
+async function getResolvedIconAppearance() {
+  const appearance = await getIconAppearanceSettings()
+  return {
+    themeKey: resolveThemeKeyFromAppearance(appearance),
+    iconColor: appearance.icon_color,
+    iconDownloadingColor: appearance.icon_downloading_color
   }
+}
 
-  const themeKey = await getActiveIconThemeKey()
-  const iconColor = await storage.get('icon_color')
-  const iconDownloadingColor = await storage.get('icon_downloading_color')
+async function handleUiThemeChanged(themeName) {
+  invalidateIconAppearanceCache()
+  const { themeKey: fallbackThemeKey, iconColor, iconDownloadingColor } = await getResolvedIconAppearance()
+  const themeKey = themeName ? (themeName.endsWith('-dark') ? 'dark' : 'light') : fallbackThemeKey
 
   if (state.anyInProgress && iconColor && iconDownloadingColor) {
     icon.setRunningBrowserActionIcon(
@@ -926,17 +985,17 @@ async function handleSystemThemeChanged(themeName) {
   }
 
   state.systemTheme = themeName
+  if (iconAppearanceCache) {
+    iconAppearanceCache = { ...iconAppearanceCache, system_theme: themeName }
+  }
   storage.set('system_theme', themeName)
 
-  const uiTheme = await storage.get('ui_theme')
-  const theme = await storage.get('theme')
-  if (uiTheme || theme !== 'auto') {
+  const appearance = await getIconAppearanceSettings()
+  if (appearance.ui_theme || appearance.theme !== 'auto') {
     return
   }
 
-  const iconColor = await storage.get('icon_color')
-  const iconDownloadingColor = await storage.get('icon_downloading_color')
-
+  const { iconColor, iconDownloadingColor } = appearance
   if (state.anyInProgress && iconColor && iconDownloadingColor) {
     icon.setRunningBrowserActionIcon(
       iconColor[themeName],
@@ -1247,8 +1306,13 @@ function handleDownloadingNumber(num) {
 
 // 处理危险下载
 function handleDangerousDownloading(anyInDangerous) {
+  const normalized = Boolean(anyInDangerous)
+  if (state.lastBadgeDanger === normalized) {
+    return
+  }
+  state.lastBadgeDanger = normalized
   chrome.action.setBadgeBackgroundColor({
-    color: anyInDangerous ? '#FF0000' : '#4285F4'
+    color: normalized ? '#FF0000' : '#4285F4'
   })
 }
 
@@ -1262,7 +1326,11 @@ function setBrowserBadge(number) {
       text = number.toString()
     }
   }
-  chrome.action.setBadgeText({ text: text })
+  if (state.lastBadgeText === text) {
+    return
+  }
+  state.lastBadgeText = text
+  chrome.action.setBadgeText({ text })
 }
 
 // 获取下载进度
@@ -1281,6 +1349,13 @@ function enqueueContextMenuUpdate(task) {
 chrome.storage.onChanged.addListener((changes, areaName) => {
   if (areaName !== 'sync' && areaName !== 'local') {
     return
+  }
+
+  if (
+    ICON_APPEARANCE_KEYS.some(key => Object.prototype.hasOwnProperty.call(changes, key)) ||
+    (areaName === 'sync' && Object.prototype.hasOwnProperty.call(changes, 'sync'))
+  ) {
+    invalidateIconAppearanceCache()
   }
 
   if (!changes.download_context_menus && !changes.download_context_menu_contexts && !(areaName === 'sync' && changes.sync)) {
