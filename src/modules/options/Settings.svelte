@@ -31,6 +31,8 @@
     'right_click_file',
     'left_click_url',
     'right_click_url',
+    'show_download_url',
+    'show_copy_url_button',
     'close_tooltip',
     'enable_animation',
     'show_download_progress',
@@ -65,6 +67,8 @@
   let rightClickFile = $state(true)
   let leftClickUrl = $state(true)
   let rightClickUrl = $state(true)
+  let showDownloadUrl = $state(true)
+  let showCopyUrlButton = $state(false)
   let showTooltip = $state(false)
   let enableAnimation = $state(false)
   let showDownloadProgress = $state(true)
@@ -148,6 +152,8 @@
         rightClickFile = typeof settings.right_click_file === 'boolean' ? settings.right_click_file : true
         leftClickUrl = typeof settings.left_click_url === 'boolean' ? settings.left_click_url : true
         rightClickUrl = typeof settings.right_click_url === 'boolean' ? settings.right_click_url : true
+        showDownloadUrl = typeof settings.show_download_url === 'boolean' ? settings.show_download_url : true
+        showCopyUrlButton = typeof settings.show_copy_url_button === 'boolean' ? settings.show_copy_url_button : false
         showTooltip = typeof settings.close_tooltip === 'boolean' ? !settings.close_tooltip : false
         enableAnimation = typeof settings.enable_animation === 'boolean' ? settings.enable_animation : false
         showDownloadProgress = typeof settings.show_download_progress === 'boolean' ? settings.show_download_progress : true
@@ -239,6 +245,8 @@
   function updateRightClickFile(val) { rightClickFile = val; persistSetting('right_click_file', val) }
   function updateLeftClickUrl(val) { leftClickUrl = val; persistSetting('left_click_url', val) }
   function updateRightClickUrl(val) { rightClickUrl = val; persistSetting('right_click_url', val) }
+  function updateShowDownloadUrl(val) { showDownloadUrl = val; persistSetting('show_download_url', val) }
+  function updateShowCopyUrlButton(val) { showCopyUrlButton = val; persistSetting('show_copy_url_button', val) }
   function updateShowTooltip(val) { showTooltip = val; persistSetting('close_tooltip', !val) }
   function updateEnableAnimation(val) { enableAnimation = val; persistSetting('enable_animation', val) }
   function updateShowDownloadProgress(val) { showDownloadProgress = val; persistSetting('show_download_progress', val) }
@@ -843,21 +851,48 @@
         <hr class="divider" />
         <div class="item pointer">
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-          <div class="content" onclick={() => updateLeftClickUrl(!leftClickUrl)}>
-            <div class="setting-title">{i18data.leftClickUrlSetting}</div>
+          <div class="content" onclick={() => updateShowDownloadUrl(!showDownloadUrl)}>
+            <span class="setting-title">{i18data.showDownloadUrlSetting}</span>
+            <span class="setting-description">{i18data.showDownloadUrlDescSetting}</span>
           </div>
           <div class="switch">
-            <Switch checked={leftClickUrl} ariaLabel={i18data.leftClickUrlSetting} onchange={updateLeftClickUrl} />
+            <Switch checked={showDownloadUrl} ariaLabel={i18data.showDownloadUrlSetting} onchange={updateShowDownloadUrl} />
           </div>
         </div>
         <hr class="divider" />
-        <div class="item pointer">
+        <div class="item pointer" class:is-disabled-row={!showDownloadUrl}>
           <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-          <div class="content" onclick={() => updateRightClickUrl(!rightClickUrl)}>
+          <div class="content" onclick={() => showDownloadUrl && updateLeftClickUrl(!leftClickUrl)}>
+            <div class="setting-title">{i18data.leftClickUrlSetting}</div>
+          </div>
+          <div class="switch">
+            <Switch checked={leftClickUrl} disabled={!showDownloadUrl} ariaLabel={i18data.leftClickUrlSetting} onchange={updateLeftClickUrl} />
+          </div>
+        </div>
+        <hr class="divider" />
+        <div class="item pointer" class:is-disabled-row={!showDownloadUrl}>
+          <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+          <div class="content" onclick={() => showDownloadUrl && updateRightClickUrl(!rightClickUrl)}>
             <span class="setting-title">{i18data.rightClickUrlSetting}</span>
           </div>
           <div class="switch">
-            <Switch checked={rightClickUrl} ariaLabel={i18data.rightClickUrlSetting} onchange={updateRightClickUrl} />
+            <Switch checked={rightClickUrl} disabled={!showDownloadUrl} ariaLabel={i18data.rightClickUrlSetting} onchange={updateRightClickUrl} />
+          </div>
+        </div>
+        <hr class="divider" />
+        <div class="item pointer" class:is-disabled-row={!showDownloadUrl}>
+          <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+          <div class="content" onclick={() => showDownloadUrl && updateShowCopyUrlButton(!showCopyUrlButton)}>
+            <span class="setting-title">{i18data.showCopyUrlButtonSetting}</span>
+            <span class="setting-description">{i18data.showCopyUrlButtonDescSetting}</span>
+          </div>
+          <div class="switch">
+            <Switch
+              checked={!showDownloadUrl || showCopyUrlButton}
+              disabled={!showDownloadUrl}
+              ariaLabel={i18data.showCopyUrlButtonSetting}
+              onchange={updateShowCopyUrlButton}
+            />
           </div>
         </div>
         <hr class="divider" />
@@ -1496,6 +1531,16 @@
 
   .box-card .item.is-disabled-row:hover {
     cursor: not-allowed;
+  }
+
+  .box-card .item.is-disabled-row .content .setting-title,
+  .box-card .item.is-disabled-row .header-buttons-copy .setting-title {
+    color: var(--opt-text-disabled, #9ca3af);
+  }
+
+  .box-card .item.is-disabled-row .content .setting-description,
+  .box-card .item.is-disabled-row .header-buttons-copy .setting-description {
+    color: var(--opt-text-disabled, #9ca3af);
   }
 
   .box-card .item .content {

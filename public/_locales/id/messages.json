@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "Tema gelap",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "Salin tautan unduhan",
+    "description": "Tooltip for copy download link button on file card"
+  },
+  "showDownloadUrlSetting": {
+    "message": "Tampilkan tautan unduhan di kartu",
+    "description": "Toggle download link visibility in popup file cards"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "Saat dimatikan, kartu menggunakan tata letak dua baris yang ringkas dan otomatis menampilkan tombol salin tautan",
+    "description": "Description for showDownloadUrlSetting"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "Tampilkan tombol salin tautan di kartu",
+    "description": "Toggle copy-link shortcut button in file card action bar"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "Menambahkan tindakan cepat salin tautan saat kursor diarahkan ke kartu (selalu aktif saat tautan disembunyikan)",
+    "description": "Description for showCopyUrlButtonSetting"
   }
 }

@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "Donker thema",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "Downloadlink kopiëren",
+    "description": "Tooltip for copy download link button on file card"
+  },
+  "showDownloadUrlSetting": {
+    "message": "Downloadlink op kaarten tonen",
+    "description": "Toggle download link visibility in popup file cards"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "Indien uitgeschakeld gebruiken kaarten een compact tweeregelig ontwerp en verschijnt automatisch een knop om de link te kopiëren",
+    "description": "Description for showDownloadUrlSetting"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "Knop voor link kopiëren op kaarten tonen",
+    "description": "Toggle copy-link shortcut button in file card action bar"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "Voegt bij aanwijzen een snelkoppeling toe om de link te kopiëren (altijd actief als links verborgen zijn)",
+    "description": "Description for showCopyUrlButtonSetting"
   }
 }

@@ -36,6 +36,8 @@
     'right_click_file',
     'left_click_url',
     'right_click_url',
+    'show_download_url',
+    'show_copy_url_button',
     'enable_animation',
     'show_download_progress',
     'delete_file_confirm',
@@ -107,6 +109,8 @@
   let leftClickUrl = $state(true)
   let rightClickFile = $state(true)
   let rightClickUrl = $state(true)
+  let showDownloadUrl = $state(true)
+  let showCopyUrlButtonSetting = $state(false)
   let enableAnimation = $state(false)
   let showDownloadProgress = $state(true)
   let deleteFileConfirm = $state(true)
@@ -114,6 +118,8 @@
   let popupHeaderButtons = $state([...POPUP_HEADER_BUTTON_KEYS])
   let popupHeaderButtonsOrder = $state([...POPUP_HEADER_BUTTON_KEYS])
 
+  const showCopyUrlButton = $derived(!showDownloadUrl || showCopyUrlButtonSetting)
+  const listItemSize = $derived(showDownloadUrl ? 84 : 68)
   const visibleHeaderButtons = $derived(
     getOrderedVisiblePopupHeaderButtons(popupHeaderButtonsVisible, popupHeaderButtons, popupHeaderButtonsOrder)
   )
@@ -286,6 +292,16 @@
         syncActiveDownloadsPolling()
       }
 
+      if (changes.show_download_url) {
+        const nextValue = changes.show_download_url.newValue
+        showDownloadUrl = typeof nextValue === 'boolean' ? nextValue : true
+      }
+
+      if (changes.show_copy_url_button) {
+        const nextValue = changes.show_copy_url_button.newValue
+        showCopyUrlButtonSetting = Boolean(nextValue)
+      }
+
       if (changes.delete_file_confirm) {
         const nextValue = changes.delete_file_confirm.newValue
         deleteFileConfirm = typeof nextValue === 'boolean' ? nextValue : true
@@ -396,6 +412,8 @@
       rightClickFile = typeof settings.right_click_file === 'boolean' ? settings.right_click_file : true
       leftClickUrl = typeof settings.left_click_url === 'boolean' ? settings.left_click_url : true
       rightClickUrl = typeof settings.right_click_url === 'boolean' ? settings.right_click_url : true
+      showDownloadUrl = typeof settings.show_download_url === 'boolean' ? settings.show_download_url : true
+      showCopyUrlButtonSetting = Boolean(settings.show_copy_url_button)
       enableAnimation = Boolean(settings.enable_animation)
       showDownloadProgress = typeof settings.show_download_progress === 'boolean' ? settings.show_download_progress : true
       deleteFileConfirm = typeof settings.delete_file_confirm === 'boolean' ? settings.delete_file_confirm : true
@@ -1768,7 +1786,7 @@
     <VirtualList
       bind:this={virtualListRef}
       items={filteredDownloadItems}
-      itemSize={84}
+      itemSize={listItemSize}
       onupdate={handleScrollerUpdate}
       onscroll={handleListScroll}
     >
@@ -1786,6 +1804,8 @@
           {closeTooltip}
           {leftClickFile}
           {showDownloadProgress}
+          {showDownloadUrl}
+          {showCopyUrlButton}
           {leftClickUrl}
           {rightClickFile}
           {rightClickUrl}

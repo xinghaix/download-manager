@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "ธีมมืด",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "คัดลอกลิงก์ดาวน์โหลด",
+    "description": "Tooltip for copy download link button on file card"
+  },
+  "showDownloadUrlSetting": {
+    "message": "แสดงลิงก์ดาวน์โหลดในการ์ด",
+    "description": "Toggle download link visibility in popup file cards"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "เมื่อปิด การ์ดจะเปลี่ยนเป็นแบบสองบรรทัดที่กระชับและแสดงปุ่มคัดลอกลิงก์ให้อัตโนมัติ",
+    "description": "Description for showDownloadUrlSetting"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "แสดงปุ่มคัดลอกลิงก์ในการ์ด",
+    "description": "Toggle copy-link shortcut button in file card action bar"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "เพิ่มปุ่มคัดลอกลิงก์ด่วนเมื่อวางเมาส์บนการ์ด (เปิดใช้งานเสมอเมื่อซ่อนลิงก์ดาวน์โหลด)",
+    "description": "Description for showCopyUrlButtonSetting"
   }
 }

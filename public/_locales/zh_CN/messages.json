@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "深色主题",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "复制下载链接",
+    "description": "卡片操作栏复制下载链接按钮提示"
+  },
+  "showDownloadUrlSetting": {
+    "message": "在卡片中显示下载链接",
+    "description": "控制弹窗文件卡片是否显示下载链接行"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "关闭后卡片切换为紧凑两行视图，并自动在操作栏显示复制链接按钮",
+    "description": "显示下载链接开关的详细说明"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "在卡片操作栏显示复制链接按钮",
+    "description": "控制卡片右上角操作栏是否显示快捷复制链接按钮"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "悬停卡片时提供一键复制下载链接入口（隐藏下载链接时会自动启用）",
+    "description": "显示复制链接按钮开关的详细说明"
   }
 }

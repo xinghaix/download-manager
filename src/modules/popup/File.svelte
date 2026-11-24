@@ -32,6 +32,8 @@
     requestDownload,
     copyToClipboard,
     showDownloadProgress = true,
+    showDownloadUrl = true,
+    showCopyUrlButton = false,
     enableAnimation = false
   } = $props()
 
@@ -39,10 +41,14 @@
   let iconLoading = false
   let iconRefreshAfterLoading = false
   let cancelIconRequest = null
+  let copiedUrl = $state(false)
+  let copiedUrlTimer = null
   let lastTrackedId
   let lastTrackedFilename
   let lastTrackedState
 
+  const copyUrlTarget = $derived(item.finalUrl || item.url || '')
+  const canCopyUrl = $derived(Boolean(showCopyUrlButton && copyUrlTarget))
   const isGray = $derived(!item.exists || Boolean(item.error))
   const isDanger = $derived(isDangerousDownload(item))
   const canAccept = $derived(canAcceptDangerDownload(item))
@@ -148,6 +154,8 @@
       lastTrackedState = state
 
       if (idChanged) {
+        clearCopiedUrlTimer()
+        copiedUrl = false
         abortPendingIconLoad()
         syncResolvedIconUrl()
         if (state === 'complete') {
@@ -170,9 +178,30 @@
 
   $effect(() => {
     return () => {
+      clearCopiedUrlTimer()
       abortPendingIconLoad()
     }
   })
+
+  function clearCopiedUrlTimer() {
+    if (copiedUrlTimer) {
+      clearTimeout(copiedUrlTimer)
+      copiedUrlTimer = null
+    }
+  }
+
+  async function handleCopyUrlButton(event) {
+    if (!copyUrlTarget) {
+      return
+    }
+    await copyToClipboard(copyUrlTarget, event)
+    copiedUrl = true
+    clearCopiedUrlTimer()
+    copiedUrlTimer = setTimeout(() => {
+      copiedUrl = false
+      copiedUrlTimer = null
+    }, 1100)
+  }
 
   function onActionEnter(event, text) {
     if (closeTooltip || !showActionTooltip || !event || !event.currentTarget) {
@@ -436,12 +465,18 @@
   }
 </script>
 
-<div class="file" class:gray={isGray} class:normal={!isGray} class:transition-enter={enableAnimation}>
+<div
+  class="file"
+  class:compact={!showDownloadUrl}
+  class:gray={isGray}
+  class:normal={!isGray}
+  class:transition-enter={enableAnimation}
+>
   <div class="icon">
     {#if showDownloadProgress && item.state === 'in_progress'}
       <div class="progress">
         <Progress
-          width={46}
+          width={showDownloadUrl ? 46 : 40}
           loop={item.totalBytes === 0}
           paused={Boolean(item.paused)}
           percentage={getPercentage(item)}
@@ -459,14 +494,16 @@
     >
       {item.basename}
     </span>
-    <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-    <span
-      class="file-url"
-      onclick={() => leftClickUrl && openUrl(item)}
-      oncontextmenu={handleUrlContextMenu}
-    >
-      {item.finalUrl || item.url}
-    </span>
+    {#if showDownloadUrl}
+      <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+      <span
+        class="file-url"
+        onclick={() => leftClickUrl && openUrl(item)}
+        oncontextmenu={handleUrlContextMenu}
+      >
+        {item.finalUrl || item.url}
+      </span>
+    {/if}
     <div class="info">
       {#if isDanger}
         <div class="cell left danger">
@@ -528,6 +565,19 @@
   </div>
   <div class="content-operator-wrapper">
     <div class="content-operator">
+      {#if canCopyUrl}
+        <button
+          type="button"
+          class="icon-button"
+          class:is-copied={copiedUrl}
+          aria-label={i18data.copyDownloadUrl}
+          onmouseenter={(e) => onActionEnter(e, i18data.copyDownloadUrl)}
+          onmouseleave={onActionLeave}
+          onclick={(e) => onActionClick(e, () => handleCopyUrlButton(e))}
+        >
+          <Icon name={copiedUrl ? 'Check' : 'Link'} />
+        </button>
+      {/if}
       {#if canOpenFolder}
         <button
           type="button"
@@ -608,6 +658,10 @@
     transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease;
   }
 
+  .file.compact {
+    height: 58px;
+  }
+
   .file:hover {
     --file-surface-color: var(--content-file-hover-background-color, var(--content-file-background-color));
     border-color: var(--content-file-hover-border-color, var(--content-file-border-color));
@@ -622,6 +676,7 @@
 
   /* 文件图标 */
   .file .icon {
+    position: relative;
     text-align: center;
     width: 52px;
     height: 100%;
@@ -650,8 +705,11 @@
   /* 图标上面的进度条 */
   .file .progress {
     position: absolute;
-    top: 14px;
-    left: 3px;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
   }
 
   /* 文件内容 */
@@ -659,6 +717,15 @@
     width: calc(100% - 68px);
     float: right;
     padding: 7px 10px 0 0;
+  }
+
+  .file.compact .file-content {
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6px 10px 6px 0;
   }
 
   /* 文件名称 */
@@ -709,6 +776,11 @@
     font-family: var(--content-file-meta-font-family, inherit);
     font-variant-numeric: tabular-nums;
     color: var(--content-file-muted-color, var(--content-file-content-color));
+  }
+
+  .file.compact .info {
+    height: 22px;
+    margin-top: 2px;
   }
 
   .file .info .small-size {
@@ -810,13 +882,17 @@
   /* 内容栏 操作按钮 父元素 */
   .file .content-operator-wrapper {
     position: absolute;
-    top: 5px;
+    top: 6px;
     right: 8px;
-    height: 24px;
-    padding-left: 18px;
+    height: 22px;
+    padding-left: 16px;
     background-image: linear-gradient(90deg, transparent 0, var(--file-surface-color) 24%);
     z-index: 1;
     display: none;
+  }
+
+  .file.compact .content-operator-wrapper {
+    top: 5px;
   }
 
   .file:hover .content-operator-wrapper {
@@ -828,20 +904,21 @@
     position: relative;
     display: inline-flex;
     align-items: center;
+    gap: 2px;
     height: 100%;
   }
 
   .file .content-operator .icon-button {
-    width: 24px;
-    height: 24px;
-    margin: 0 0 0 5px;
+    width: 22px;
+    height: 22px;
+    margin: 0;
     padding: 0;
     border: none;
     outline: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 7px;
+    border-radius: 6px;
     font-size: 14px;
     cursor: pointer;
     color: var(--header-icon-color);
@@ -849,6 +926,10 @@
     box-shadow: inset 0 0 0 1px transparent;
     transition: background-color .18s ease, box-shadow .18s ease, color .18s ease;
     box-sizing: border-box;
+  }
+
+  .file .content-operator .icon-button.is-copied {
+    color: #16a34a;
   }
 
   .file .content-operator .icon-button:hover,

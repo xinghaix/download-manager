@@ -213,6 +213,7 @@ const common = {
 
     // popup 下载文件操作栏tooltip
     this.i18data.openFileInFolder = this.loadI18nMessage('openFileInFolder')
+    this.i18data.copyDownloadUrl = this.loadI18nMessage('copyDownloadUrl')
     this.i18data.pause = this.loadI18nMessage('pause')
     this.i18data.resume = this.loadI18nMessage('resume')
     this.i18data.batchDownloadActions = this.loadI18nMessage('batchDownloadActions')
@@ -266,6 +267,10 @@ const common = {
     this.i18data.rightClickFileSetting = this.loadI18nMessage('rightClickFileSetting')
     this.i18data.leftClickUrlSetting = this.loadI18nMessage('leftClickUrlSetting')
     this.i18data.rightClickUrlSetting = this.loadI18nMessage('rightClickUrlSetting')
+    this.i18data.showDownloadUrlSetting = this.loadI18nMessage('showDownloadUrlSetting')
+    this.i18data.showDownloadUrlDescSetting = this.loadI18nMessage('showDownloadUrlDescSetting')
+    this.i18data.showCopyUrlButtonSetting = this.loadI18nMessage('showCopyUrlButtonSetting')
+    this.i18data.showCopyUrlButtonDescSetting = this.loadI18nMessage('showCopyUrlButtonDescSetting')
     this.i18data.showTooltipSetting = this.loadI18nMessage('showTooltipSetting')
     this.i18data.enableAnimation = this.loadI18nMessage('enableAnimation')
     this.i18data.showDownloadProgressSetting = this.loadI18nMessage('showDownloadProgressSetting')

@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "Giao diện tối",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "Sao chép liên kết tải xuống",
+    "description": "Tooltip for copy download link button on file card"
+  },
+  "showDownloadUrlSetting": {
+    "message": "Hiển thị liên kết tải xuống trên thẻ",
+    "description": "Toggle download link visibility in popup file cards"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "Khi tắt, thẻ chuyển sang bố cục hai dòng gọn gàng và tự động hiển thị nút sao chép liên kết",
+    "description": "Description for showDownloadUrlSetting"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "Hiển thị nút sao chép liên kết trên thẻ",
+    "description": "Toggle copy-link shortcut button in file card action bar"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "Thêm nút sao chép nhanh liên kết khi di chuột vào thẻ (luôn bật khi ẩn liên kết tải xuống)",
+    "description": "Description for showCopyUrlButtonSetting"
   }
 }

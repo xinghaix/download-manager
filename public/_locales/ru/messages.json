@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "Тёмная тема",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "Копировать ссылку на загрузку",
+    "description": "Tooltip for copy download link button on file card"
+  },
+  "showDownloadUrlSetting": {
+    "message": "Показывать ссылку на загрузку в карточках",
+    "description": "Toggle download link visibility in popup file cards"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "При отключении карточки переходят на компактный двухстрочный вид и автоматически показывают кнопку копирования ссылки",
+    "description": "Description for showDownloadUrlSetting"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "Показывать кнопку копирования ссылки на карточках",
+    "description": "Toggle copy-link shortcut button in file card action bar"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "Добавляет быстрое копирование ссылки при наведении на карточку (всегда включено, если ссылки скрыты)",
+    "description": "Description for showCopyUrlButtonSetting"
   }
 }

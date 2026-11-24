@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "Tema oscuro",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "Copiar vínculo de descarga",
+    "description": "Tooltip for copy download link button on file card"
+  },
+  "showDownloadUrlSetting": {
+    "message": "Mostrar vínculo de descarga en las tarjetas",
+    "description": "Toggle download link visibility in popup file cards"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "Al desactivarlo, las tarjetas usan un diseño compacto de dos líneas y muestran automáticamente un botón para copiar el vínculo",
+    "description": "Description for showDownloadUrlSetting"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "Mostrar botón para copiar vínculo en las tarjetas",
+    "description": "Toggle copy-link shortcut button in file card action bar"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "Agrega una acción rápida para copiar el vínculo al pasar el cursor (siempre activa cuando los vínculos están ocultos)",
+    "description": "Description for showCopyUrlButtonSetting"
   }
 }

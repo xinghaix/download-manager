@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "Темна тема",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "Копіювати посилання на завантаження",
+    "description": "Tooltip for copy download link button on file card"
+  },
+  "showDownloadUrlSetting": {
+    "message": "Показувати посилання на завантаження у картках",
+    "description": "Toggle download link visibility in popup file cards"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "Якщо вимкнено, картки переходять у компактний дворядковий вигляд і автоматично показують кнопку копіювання посилання",
+    "description": "Description for showDownloadUrlSetting"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "Показувати кнопку копіювання посилання на картках",
+    "description": "Toggle copy-link shortcut button in file card action bar"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "Додає швидке копіювання посилання при наведенні на картку (завжди увімкнено, коли посилання приховані)",
+    "description": "Description for showCopyUrlButtonSetting"
   }
 }

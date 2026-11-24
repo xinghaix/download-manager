@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "深色主題",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "複製下載連結",
+    "description": "卡片操作列複製下載連結按鈕提示"
+  },
+  "showDownloadUrlSetting": {
+    "message": "在卡片中顯示下載連結",
+    "description": "控制彈窗檔案卡片是否顯示下載連結列"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "關閉後卡片將切換為緊湊雙行檢視，並自動在操作列顯示複製連結按鈕",
+    "description": "顯示下載連結開關的詳細說明"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "在卡片操作列顯示複製連結按鈕",
+    "description": "控制卡片右上角操作列是否顯示快速複製連結按鈕"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "滑鼠懸停卡片時提供一鍵複製下載連結功能（隱藏下載連結時會自動啟用）",
+    "description": "顯示複製連結按鈕開關的詳細說明"
   }
 }

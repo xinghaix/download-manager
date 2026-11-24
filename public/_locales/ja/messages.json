@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "ダークテーマ",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "ダウンロードリンクをコピー",
+    "description": "Tooltip for copy download link button on file card"
+  },
+  "showDownloadUrlSetting": {
+    "message": "カードにダウンロードリンクを表示",
+    "description": "Toggle download link visibility in popup file cards"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "オフにするとコンパクトな2行表示になり、操作欄にリンクコピーボタンが自動で表示されます",
+    "description": "Description for showDownloadUrlSetting"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "カードの操作欄にリンクコピーボタンを表示",
+    "description": "Toggle copy-link shortcut button in file card action bar"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "カードにホバーした際、ワンクリックでリンクをコピーできます（リンク非表示時は常に有効）",
+    "description": "Description for showCopyUrlButtonSetting"
   }
 }

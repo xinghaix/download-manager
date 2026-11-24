@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "Dunkles Design",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "Download-Link kopieren",
+    "description": "Tooltip for copy download link button on file card"
+  },
+  "showDownloadUrlSetting": {
+    "message": "Download-Link in Karten anzeigen",
+    "description": "Toggle download link visibility in popup file cards"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "Wenn deaktiviert, verwenden Karten ein kompaktes zweizeiliges Layout und zeigen automatisch eine Schaltfläche zum Link-Kopieren",
+    "description": "Description for showDownloadUrlSetting"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "Schaltfläche „Link kopieren“ auf Karten anzeigen",
+    "description": "Toggle copy-link shortcut button in file card action bar"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "Fügt beim Überfahren einer Karte eine Schnellaktion zum Kopieren des Links hinzu (bei ausgeblendeten Links immer aktiv)",
+    "description": "Description for showCopyUrlButtonSetting"
   }
 }

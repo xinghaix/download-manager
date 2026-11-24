@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "Koyu tema",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "İndirme bağlantısını kopyala",
+    "description": "Tooltip for copy download link button on file card"
+  },
+  "showDownloadUrlSetting": {
+    "message": "Kartlarda indirme bağlantısını göster",
+    "description": "Toggle download link visibility in popup file cards"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "Kapatıldığında kartlar kompakt iki satırlı görünüme geçer ve otomatik olarak bağlantı kopyalama düğmesini gösterir",
+    "description": "Description for showDownloadUrlSetting"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "Kartlarda bağlantı kopyalama düğmesini göster",
+    "description": "Toggle copy-link shortcut button in file card action bar"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "Kartın üzerine gelindiğinde hızlı bağlantı kopyalama düğmesi sunar (bağlantılar gizliyken her zaman etkindir)",
+    "description": "Description for showCopyUrlButtonSetting"
   }
 }

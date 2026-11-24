@@ -742,5 +742,25 @@
   "darkThemeTooltip": {
     "message": "Dark mode",
     "description": "Tooltip for dark mode toolbar icon color"
+  },
+  "copyDownloadUrl": {
+    "message": "Copy download link",
+    "description": "Tooltip for copy download link button on file card"
+  },
+  "showDownloadUrlSetting": {
+    "message": "Show download link in cards",
+    "description": "Toggle download link visibility in popup file cards"
+  },
+  "showDownloadUrlDescSetting": {
+    "message": "When turned off, cards use a compact two-line layout and automatically show a copy-link button",
+    "description": "Description for showDownloadUrlSetting"
+  },
+  "showCopyUrlButtonSetting": {
+    "message": "Show copy-link button on cards",
+    "description": "Toggle copy-link shortcut button in file card action bar"
+  },
+  "showCopyUrlButtonDescSetting": {
+    "message": "Adds a quick copy-link action on card hover (always enabled when download links are hidden)",
+    "description": "Description for showCopyUrlButtonSetting"
   }
 }

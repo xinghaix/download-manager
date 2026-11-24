@@ -26,6 +26,9 @@
     'icon_downloading_color',
     'download_panel_theme',
     'download_panel_page_size',
+    'show_download_progress',
+    'show_download_url',
+    'show_copy_url_button',
     'popup_header_buttons_visible',
     'popup_header_buttons',
     'popup_header_buttons_order'
@@ -135,10 +138,13 @@
   let selectedThemeSeriesKey = $state('basic')
   let previewMode = $state('light')
 
-  // 与真实 Popup 同步的顶部按钮配置
+  // 与真实 Popup 同步的顶部按钮与卡片外观配置
   let popupHeaderButtonsVisible = $state(true)
   let popupHeaderButtons = $state([...POPUP_HEADER_BUTTON_KEYS])
   let popupHeaderButtonsOrder = $state([...POPUP_HEADER_BUTTON_KEYS])
+  let showDownloadProgress = $state(true)
+  let showDownloadUrl = $state(true)
+  let showCopyUrlButtonSetting = $state(false)
 
   // 图标配色按钮 Tooltip
   let tooltip = $state({
@@ -149,6 +155,7 @@
 
   const enableThemeAdaptation = $derived(theme === 'auto')
   const effectiveMode = $derived(theme === 'auto' ? systemTheme : theme)
+  const showCopyUrlButton = $derived(!showDownloadUrl || showCopyUrlButtonSetting)
 
   const previewHeaderButtons = $derived(
     getOrderedVisiblePopupHeaderButtons(popupHeaderButtonsVisible, popupHeaderButtons, popupHeaderButtonsOrder)
@@ -181,10 +188,39 @@
     return parts.join('; ')
   })
 
+  function applyRuntimePreviewSettings(settings) {
+    if (!settings) {
+      return
+    }
+    popupHeaderButtonsVisible = typeof settings.popup_header_buttons_visible === 'boolean'
+      ? settings.popup_header_buttons_visible
+      : true
+    popupHeaderButtonsOrder = normalizePopupHeaderButtonsOrder(settings.popup_header_buttons_order)
+    popupHeaderButtons = normalizePopupHeaderButtons(settings.popup_header_buttons, popupHeaderButtonsOrder)
+    showDownloadProgress = typeof settings.show_download_progress === 'boolean' ? settings.show_download_progress : true
+    showDownloadUrl = typeof settings.show_download_url === 'boolean' ? settings.show_download_url : true
+    showCopyUrlButtonSetting = Boolean(settings.show_copy_url_button)
+  }
+
   onMount(() => {
     let disposed = false
 
-    const storageChangeListener = (changes) => {
+    const storageChangeListener = (changes, areaName) => {
+      if (areaName === 'sync' && changes.sync) {
+        storage.getMany([
+          'popup_header_buttons_visible',
+          'popup_header_buttons',
+          'popup_header_buttons_order',
+          'show_download_progress',
+          'show_download_url',
+          'show_copy_url_button'
+        ]).then(nextSettings => {
+          if (!disposed) {
+            applyRuntimePreviewSettings(nextSettings)
+          }
+        })
+        return
+      }
       if (changes.popup_header_buttons_visible) {
         const nextValue = changes.popup_header_buttons_visible.newValue
         popupHeaderButtonsVisible = typeof nextValue === 'boolean' ? nextValue : true
@@ -195,6 +231,17 @@
       }
       if (changes.popup_header_buttons) {
         popupHeaderButtons = normalizePopupHeaderButtons(changes.popup_header_buttons.newValue, popupHeaderButtonsOrder)
+      }
+      if (changes.show_download_progress) {
+        const nextValue = changes.show_download_progress.newValue
+        showDownloadProgress = typeof nextValue === 'boolean' ? nextValue : true
+      }
+      if (changes.show_download_url) {
+        const nextValue = changes.show_download_url.newValue
+        showDownloadUrl = typeof nextValue === 'boolean' ? nextValue : true
+      }
+      if (changes.show_copy_url_button) {
+        showCopyUrlButtonSetting = Boolean(changes.show_copy_url_button.newValue)
       }
     }
     if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.onChanged) {
@@ -235,11 +282,7 @@
         ...(settings.download_panel_page_size || {})
       })
 
-      popupHeaderButtonsVisible = typeof settings.popup_header_buttons_visible === 'boolean'
-        ? settings.popup_header_buttons_visible
-        : true
-      popupHeaderButtonsOrder = normalizePopupHeaderButtonsOrder(settings.popup_header_buttons_order)
-      popupHeaderButtons = normalizePopupHeaderButtons(settings.popup_header_buttons, popupHeaderButtonsOrder)
+      applyRuntimePreviewSettings(settings)
 
       themeData = loadedThemeData
       initializeThemeSelection()
@@ -710,31 +753,54 @@
                       <div class="popup-content">
                         <div class="preview-scroll" style:max-height="{previewContentHeight}px">
                           {#each previewFiles as file (file.name)}
-                            <div class="file {file.previewClass}">
+                            <div class="file {file.previewClass}" class:compact={!showDownloadUrl}>
                               <div class="icon">
-                                <div class="progress-ring">
-                                  <div class="progress-ring-inner">{file.percent}</div>
-                                </div>
+                                {#if showDownloadProgress}
+                                  <div class="progress-ring" class:compact={!showDownloadUrl}>
+                                    <div class="progress-ring-inner">{file.percent}</div>
+                                  </div>
+                                {:else}
+                                  <span class="file-placeholder-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                      <polyline points="14 2 14 8 20 8" />
+                                    </svg>
+                                  </span>
+                                {/if}
                               </div>
                               <div class="file-content">
                                 <span class="filename">{file.name}</span>
-                                <span class="file-url">{file.url}</span>
+                                {#if showDownloadUrl}
+                                  <span class="file-url">{file.url}</span>
+                                {/if}
                                 <div class="info">
-                                  <div class="cell left common">
-                                    <span class="receivedSize small-size">{file.received}</span>
-                                    <span class="divider-sep small-size">/</span>
-                                    <span class="size small-size">{file.total}</span>
-                                  </div>
-                                  <div class="cell middle common">
-                                    <span class="speed small-size">{file.speed}</span>
-                                  </div>
-                                  <div class="cell right common">
-                                    <span class="remaining small-size">{file.status}</span>
-                                  </div>
+                                  {#if showDownloadProgress}
+                                    <div class="cell left common">
+                                      <span class="receivedSize small-size">{file.received}</span>
+                                      <span class="divider-sep small-size">/</span>
+                                      <span class="size small-size">{file.total}</span>
+                                    </div>
+                                    <div class="cell middle common">
+                                      <span class="speed small-size">{file.speed}</span>
+                                    </div>
+                                    <div class="cell right common">
+                                      <span class="remaining small-size">{file.status}</span>
+                                    </div>
+                                  {:else}
+                                    <div class="cell left common">
+                                      <span class="state small-size">{i18data.downloadInProgress}</span>
+                                    </div>
+                                    <div class="cell right common">
+                                      <span class="size small-size">{file.total}</span>
+                                    </div>
+                                  {/if}
                                 </div>
                               </div>
                               <div class="content-operator-wrapper">
                                 <div class="content-operator">
+                                  {#if showCopyUrlButton}
+                                    <span class="icon-button"><Icon name="Link" /></span>
+                                  {/if}
                                   <span class="icon-button"><Icon name="FolderOpened" /></span>
                                   <span class="icon-button"><Icon name="VideoPause" /></span>
                                   <span class="icon-button"><Icon name="RefreshRight" /></span>
@@ -1311,6 +1377,10 @@
     transition: background-color .16s ease, border-color .16s ease, box-shadow .16s ease;
   }
 
+  .popup-preview .file.compact {
+    height: 58px;
+  }
+
   .popup-preview .file:hover {
     --file-surface-color: var(--content-file-hover-background-color, var(--content-file-background-color));
     border-color: var(--content-file-hover-border-color, var(--content-file-border-color));
@@ -1349,11 +1419,33 @@
     box-sizing: border-box;
   }
 
+  .popup-preview .progress-ring.compact {
+    width: 32px;
+    height: 32px;
+    font-size: 9px;
+  }
+
+  .popup-preview .file-placeholder-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--content-file-filename-color);
+    opacity: 0.72;
+  }
+
   .popup-preview .file .file-content {
     width: calc(100% - 68px);
     float: right;
     padding: 7px 10px 0 0;
     box-sizing: border-box;
+  }
+
+  .popup-preview .file.compact .file-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6px 10px 6px 0;
   }
 
   .popup-preview .file .filename {
@@ -1387,6 +1479,11 @@
     font-family: var(--content-file-meta-font-family, inherit);
     font-variant-numeric: tabular-nums;
     color: var(--content-file-muted-color, var(--content-file-content-color));
+  }
+
+  .popup-preview .file.compact .info {
+    height: 22px;
+    margin-top: 2px;
   }
 
   .popup-preview .file .info .small-size {
@@ -1427,33 +1524,38 @@
 
   .popup-preview .file .content-operator-wrapper {
     position: absolute;
-    top: 5px;
+    top: 6px;
     right: 8px;
-    height: 24px;
-    padding-left: 18px;
+    height: 22px;
+    padding-left: 16px;
     background-image: linear-gradient(90deg, transparent 0, var(--file-surface-color) 24%);
     z-index: 1;
     display: none;
+  }
+
+  .popup-preview .file.compact .content-operator-wrapper {
+    top: 5px;
   }
 
   .popup-preview .file .content-operator {
     position: relative;
     display: inline-flex;
     align-items: center;
+    gap: 2px;
     height: 100%;
   }
 
   .popup-preview .file .content-operator .icon-button {
-    width: 24px;
-    height: 24px;
-    margin: 0 0 0 5px;
+    width: 22px;
+    height: 22px;
+    margin: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     font-size: 14px;
     color: var(--header-icon-color);
-    border-radius: 7px;
+    border-radius: 6px;
     background-color: transparent;
     box-shadow: inset 0 0 0 1px transparent;
     transition: background-color .18s ease, box-shadow .18s ease, color .18s ease;
