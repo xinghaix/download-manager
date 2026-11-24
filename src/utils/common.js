@@ -247,6 +247,12 @@ const common = {
     this.i18data.image = this.loadI18nMessage('image')
     this.i18data.audio = this.loadI18nMessage('audio')
     this.i18data.video = this.loadI18nMessage('video')
+    this.i18data.contextMenuDownloadLink = this.loadI18nMessage('contextMenuDownloadLink')
+    this.i18data.contextMenuDownloadImage = this.loadI18nMessage('contextMenuDownloadImage')
+    this.i18data.contextMenuDownloadAudio = this.loadI18nMessage('contextMenuDownloadAudio')
+    this.i18data.contextMenuDownloadVideo = this.loadI18nMessage('contextMenuDownloadVideo')
+    this.i18data.lightThemeTooltip = this.loadI18nMessage('lightThemeTooltip')
+    this.i18data.darkThemeTooltip = this.loadI18nMessage('darkThemeTooltip')
 
     // options 侧边栏
     this.i18data.extensionName = this.loadI18nMessage('extName')

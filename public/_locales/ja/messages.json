@@ -1,50 +1,50 @@
 {
   "extName": {
-    "message": "Download Manager",
+    "message": "ダウンロードマネージャー",
     "description": "プラグイン名"
   },
   "extDesc": {
-    "message": "ダウンロードしたファイルを便利に管理",
+    "message": "ブラウザのダウンロードをすっきりスマートに管理",
     "description": "プラグインの説明"
   },
   "settingsTitle": {
-    "message": "設定する",
+    "message": "設定",
     "description": "個人設定"
   },
   "aboutTitle": {
-    "message": "について",
+    "message": "情報",
     "description": "プラグインに関する追加情報"
   },
   "second": {
-    "message": "残り{}sec",
+    "message": "残り {} 秒",
     "description": "残り時間表示"
   },
   "minute": {
-    "message": "残り{}min",
+    "message": "残り {} 分",
     "description": "残り時間表示"
   },
   "hour": {
-    "message": "残り{}hour",
+    "message": "残り {} 時間",
     "description": "残り時間表示"
   },
   "day": {
-    "message": "残り{}day",
+    "message": "残り {} 日",
     "description": "残り時間表示"
   },
   "closeTooltip": {
-    "message": "テキストバルーンの表示を停止",
+    "message": "ツールチップを表示しない",
     "description": "ダウンロード管理ページのボタンの上にマウスを移動すると、テキストメッセージボックスの表示が停止する"
   },
   "newDownload": {
-    "message": "新しいダウンロード",
+    "message": "新規ダウンロード",
     "description": "新しいダウンロードファイル"
   },
   "newDownloadPlaceholder": {
-    "message": "ダウンロードリンクを入力してください！ファイルをダウンロードするにはEnterキーを押してください",
+    "message": "ダウンロードURLを入力して Enter キーを押してください",
     "description": "ダウンロードリンクを入力してください"
   },
   "clearAll": {
-    "message": "リストをクリア",
+    "message": "一覧をクリア",
     "description": "クリアボタンのドロップダウンメニュー"
   },
   "deleteAll": {
@@ -52,15 +52,15 @@
     "description": "クリアボタンのドロップダウンメニュー"
   },
   "clearFailed": {
-    "message": "ダウンロードをクリアできませんでした",
+    "message": "失敗した項目をクリア",
     "description": "クリアボタンのドロップダウンメニュー"
   },
   "clearAbsent": {
-    "message": "クリアファイルが存在しません",
+    "message": "存在しないファイルをクリア",
     "description": "クリアボタンのドロップダウンメニュー"
   },
   "clearCompleted": {
-    "message": "完了したダウンロードをクリア",
+    "message": "完了した項目をクリア",
     "description": "クリアボタンのドロップダウンメニュー"
   },
   "openDownloadFolder": {
@@ -68,15 +68,15 @@
     "description": "エクスプローラーでダウンロードフォルダーを開く"
   },
   "openSettings": {
-    "message": "プラグイン設定",
+    "message": "拡張機能の設定",
     "description": "新しいタブでプラグイン設定を開く"
   },
   "openHome": {
-    "message": "ダウンロードページを開く",
+    "message": "ブラウザのダウンロードページを開く",
     "description": "ブラウザのデフォルトのダウンロードページを新しいタブで開く"
   },
   "openFileInFolder": {
-    "message": "フォルダーを開く",
+    "message": "フォルダに表示",
     "description": "フォルダー内のファイルを開く"
   },
   "openFile": {
@@ -88,11 +88,11 @@
     "description": "ダウンロードを一時停止"
   },
   "resume": {
-    "message": "ダウンロードを再開",
+    "message": "再開",
     "description": "一時停止中のファイルのダウンロードを再開します"
   },
   "batchDownloadActions": {
-    "message": "一括ダウンロード操作",
+    "message": "一括操作",
     "description": "一括操作ボタンのツールチップ"
   },
   "pauseAll": {
@@ -112,43 +112,43 @@
     "description": "ディスクからファイルを削除する"
   },
   "deleteConfirmTitle": {
-    "message": "削除を確認",
+    "message": "ディスクから削除",
     "description": "Confirmation title before deleting files from disk"
   },
   "deleteConfirmFileMessage": {
-    "message": "\"{}\" をディスクから完全に削除します。この操作は元に戻せません。",
+    "message": "「{}」をディスクから完全に削除しますか？この操作は元に戻せません。",
     "description": "Confirmation message before deleting one file from disk"
   },
   "deleteConfirmAllMessage": {
-    "message": "{} 件の非アクティブ項目を処理します。存在するファイルをディスクから削除し、存在しない記録を消去します。この操作は元に戻せません。",
+    "message": "{} 件の停止中の項目を処理します：存在するファイルはディスクから削除し、見つからない履歴は一覧から消去します。この操作は元に戻せません。",
     "description": "Confirmation message before deleting all files from disk"
   },
   "deleteConfirmButton": {
-    "message": "削除",
+    "message": "削除する",
     "description": "Confirmation button before deleting files from disk"
   },
   "retry": {
-    "message": "再試行",
+    "message": "再ダウンロード",
     "description": "再度ダウンロード"
   },
   "dangerDescription": {
-    "message": "危険なファイルをダウンロードする",
+    "message": "このファイルはコンピュータに損害を与える可能性があります",
     "description": "ファイルがコンピューターに損害を与える可能性があります"
   },
   "dangerActionRequiredDescription": {
-    "message": "保存するには Chrome で確認が必要です",
+    "message": "このファイルを保存するには確認が必要です",
     "description": "Dangerous download needs user confirmation"
   },
   "dangerScanningDescription": {
-    "message": "安全性を確認しています",
+    "message": "安全性をスキャンしています…",
     "description": "Dangerous download scanning message"
   },
   "dangerBlockedDescription": {
-    "message": "Chrome がこのダウンロードをブロックしました",
+    "message": "セキュリティ上の理由によりブロックされました",
     "description": "Dangerous download blocked message"
   },
   "dangerOpenAction": {
-    "message": "確認",
+    "message": "詳細を確認",
     "description": "Open dangerous download review"
   },
   "dangerDiscard": {
@@ -156,43 +156,43 @@
     "description": "Discard dangerous download"
   },
   "cancel": {
-    "message": "キャンセルする",
+    "message": "キャンセル",
     "description": "危険なファイルのダウンロードをキャンセルする"
   },
   "reserve": {
-    "message": "保つ",
+    "message": "保存",
     "description": "危険なファイルを保管する"
   },
   "erase": {
-    "message": "リストから削除する",
+    "message": "一覧から削除",
     "description": "ダウンロードをキャンセルするか、リストからファイルを消去します"
   },
   "copied": {
-    "message": "コピー済み",
+    "message": "コピーしました",
     "description": "クリップボードにコピーしました"
   },
   "prefixMenus": {
-    "message": "これをダウンロード",
+    "message": "これをダウンロード：",
     "description": "コンテキストダウンロードメニューのプレフィックス表示"
   },
   "link": {
-    "message": "link",
+    "message": "リンク",
     "description": "コンテキストダウンロードメニューの表示"
   },
   "image": {
-    "message": "image",
+    "message": "画像",
     "description": "コンテキストダウンロードメニューの表示"
   },
   "audio": {
-    "message": "audio",
+    "message": "音声",
     "description": "コンテキストダウンロードメニューの表示"
   },
   "video": {
-    "message": "video",
+    "message": "動画",
     "description": "コンテキストダウンロードメニューの表示"
   },
   "deleteNotification": {
-    "message": "通知を削除",
+    "message": "通知を閉じる",
     "description": "通知ボタンを削除"
   },
   "downloadCompletedNotification": {
@@ -204,59 +204,59 @@
     "description": "ダウンロード通知"
   },
   "downloadWarnNotification": {
-    "message": "警告をダウンロード",
+    "message": "ダウンロード警告",
     "description": "ダウンロード通知"
   },
   "downloadInProgress": {
-    "message": "Downloading",
+    "message": "ダウンロード中",
     "description": "Download in-progress state"
   },
   "openFolderNotification": {
-    "message": "フォルダーを開く",
+    "message": "フォルダを開く",
     "description": "ダウンロード完了通知フォルダを開くボタン"
   },
   "downloadSetting": {
-    "message": "ダウンロードする",
+    "message": "ダウンロード",
     "description": "プラグインの設定手順"
   },
   "leftClickFileSetting": {
-    "message": "マウスの左ボタンでファイル名をクリックするとファイルが開きます",
+    "message": "ファイル名を左クリックしてファイルを開く",
     "description": "プラグインの設定手順"
   },
   "rightClickFileSetting": {
-    "message": "マウスの右ボタンでファイル名をクリックするとクリップボードにコピーされる",
+    "message": "ファイル名を右クリックしてクリップボードにコピー",
     "description": "プラグインの設定手順"
   },
   "leftClickUrlSetting": {
-    "message": "マウスの左ボタンでダウンロードリンクをクリックすると、新しい画面で開くことができる",
+    "message": "URLを左クリックして新しいタブで開く",
     "description": "プラグインの設定手順"
   },
   "rightClickUrlSetting": {
-    "message": "ダウンロードしたリンクをマウスの右ボタンでクリックするとクリップボードにコピーされる",
+    "message": "URLを右クリックしてクリップボードにコピー",
     "description": "プラグインの設定手順"
   },
   "showTooltipSetting": {
-    "message": "マウスがボタンに移動すると提示情報が表示される",
+    "message": "ボタンにカーソルを合わせたときにツールチップを表示",
     "description": "プラグインの設定手順"
   },
   "enableAnimation": {
-    "message": "アニメーションが出入りするファイルを開く",
+    "message": "一覧項目のアニメーションを有効にする",
     "description": "プラグインの設定手順"
   },
   "showDownloadProgressSetting": {
-    "message": "Show download progress",
+    "message": "ダウンロード進捗を表示",
     "description": "Plugin setting description"
   },
   "showDownloadProgressDescSetting": {
-    "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
+    "message": "ポップアップ内に進捗率・速度・残り時間を表示します。表示中の進行中タスクのみポーリングされ、オフにすると大量ダウンロード時の負荷を軽減できます。",
     "description": "Plugin setting detail description"
   },
   "deleteFileConfirmSetting": {
-    "message": "削除前に確認する",
+    "message": "ファイルを削除する前に確認する",
     "description": "プラグイン設定の説明"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "ディスクから単一ファイルを削除する前に確認ダイアログを表示します。オフにすると単一ファイルはすぐに削除され元に戻せません（「すべて削除」は引き続き確認します）。",
+    "message": "ディスクから単一ファイルを削除する前に確認ダイアログを表示します。オフにすると確認なしで即座に削除されます（「すべて削除」は常に確認します）。",
     "description": "プラグイン設定の詳細説明"
   },
   "contextMenus": {
@@ -264,27 +264,27 @@
     "description": "プラグインの設定手順"
   },
   "downloadContextMenusSetting": {
-    "message": "ダウンロードメニュー",
+    "message": "右クリックメニューにダウンロード項目を表示",
     "description": "プラグインの設定手順"
   },
   "downloadContextMenusDescSetting": {
-    "message": "ページの右クリックメニューにダウンロード項目を表示します。有効にするコンテキストをさらに選択できます。",
+    "message": "Webページの右クリックメニューにダウンロード項目を追加し、対象の種類を個別に選択できます。",
     "description": "詳細説明"
   },
   "fileRoutingSetting": {
-    "message": "ファイル分類ダウンロード",
+    "message": "自動フォルダ振り分け",
     "description": "プラグイン設定の説明"
   },
   "fileRoutingEnableSetting": {
-    "message": "ファイル分類ダウンロードを有効化",
+    "message": "自動フォルダ振り分けを有効にする",
     "description": "プラグイン設定の説明"
   },
   "fileRoutingDescription": {
-    "message": "ファイル拡張子またはソースドメインに基づき、既定のダウンロードフォルダ配下のサブフォルダへ保存します。既定ではオフです。既定ではドメイン規則が拡張子規則より優先されます。",
+    "message": "拡張子やダウンロード元ドメインに応じて、既定のダウンロードフォルダ配下のサブフォルダへ自動保存します（既定ではオフ）。デフォルトはドメインルール優先です。",
     "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
-    "message": "分類ルール",
+    "message": "拡張子ルール",
     "description": "プラグイン設定の説明"
   },
   "fileRoutingFolderLabel": {
@@ -292,7 +292,7 @@
     "description": "プラグイン設定の説明"
   },
   "fileRoutingExtensionsLabel": {
-    "message": "ファイル拡張子",
+    "message": "拡張子",
     "description": "プラグイン設定の説明"
   },
   "fileRoutingActionsLabel": {
@@ -300,7 +300,7 @@
     "description": "プラグイン設定の説明"
   },
   "fileRoutingRuleEnabledLabel": {
-    "message": "ルールを有効または無効にする",
+    "message": "ルールの有効／無効を切り替え",
     "description": "ファイル分類ルールの有効化スイッチのアクセシブルラベル"
   },
   "fileRoutingFolderPlaceholder": {
@@ -324,19 +324,19 @@
     "description": "ファイル分類ルール削除ボタンのアクセシブルラベル"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "この分類ルールを削除しますか？",
+    "message": "このルールを削除しますか？",
     "description": "ファイル分類ルールを削除する前の二次確認内容"
   },
   "notificationSetting": {
-    "message": "お知らせ",
+    "message": "通知",
     "description": "プラグインの設定手順"
   },
   "downloadNotificationSetting": {
-    "message": "ダウンロード通知",
+    "message": "デスクトップ通知",
     "description": "プラグインの設定手順"
   },
   "downloadNotificationSetting1": {
-    "message": "開始する",
+    "message": "開始",
     "description": "プラグインの設定手順"
   },
   "downloadNotificationSetting2": {
@@ -348,27 +348,27 @@
     "description": "プラグインの設定手順"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "ダウンロード通知保持時間（秒）",
+    "message": "通知の表示時間（秒）",
     "description": "プラグインの設定手順"
   },
   "downloadNotificationMaxCountSetting": {
-    "message": "同時表示通知の上限",
+    "message": "同時表示する通知の上限",
     "description": "プラグイン設定の説明"
   },
   "downloadNotificationMaxCountDescSetting": {
-    "message": "上限を超えると最も古い通知を消し、最新の通知を残します。既定値は 3。0 は無制限です。",
+    "message": "上限を超えると古い通知から自動で消去されます。既定値: 3（0で無制限）。",
     "description": "プラグイン設定の詳細説明"
   },
   "downloadToneSetting": {
-    "message": "リマインダーをダウンロード",
+    "message": "通知音",
     "description": "プラグインの設定手順"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "ダウンロード通知は表示されたままです",
+    "message": "通知を画面に表示したままにする",
     "description": "プラグインの設定手順"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "ユーザーが通知をアクティブ化または非アクティブ化するまで、通知は画面に表示されたままになります。Chrome 50以降で利用可能",
+    "message": "クリックまたは閉じるまで通知を画面上に保持します（Chrome 50 以降に対応）。",
     "description": "プラグインの設定手順"
   },
   "shortcutSetting": {
@@ -376,43 +376,43 @@
     "description": "プラグインの設定手順"
   },
   "openPopupSetting": {
-    "message": "拡張機能を有効にする",
+    "message": "ダウンロードパネルを開く",
     "description": "プラグインの設定手順"
   },
   "openPopupDetailsSetting": {
-    "message": "クリックしてください",
+    "message": "ブラウザの",
     "description": "プラグインの設定手順"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "ショートカット設定",
+    "message": "拡張機能のショートカット設定を開く",
     "description": "プラグインの設定手順"
   },
   "syncSetting": {
-    "message": "同期する",
+    "message": "同期",
     "description": "プラグインの設定手順"
   },
   "pluginSyncSetting": {
-    "message": "同期プラグイン設定",
+    "message": "拡張機能の設定を同期",
     "description": "プラグインの設定手順"
   },
   "pluginSyncDetailsSetting": {
-    "message": "Googleアカウントにログインすると、異なるGoogleカーネルベースのブラウザ間でプラグイン設定を同期できます",
+    "message": "ブラウザにサインインすると、Chromium系ブラウザ間で拡張機能の設定を同期できます。",
     "description": "プラグインの設定手順"
   },
   "notSyncSetting": {
-    "message": "この設定は同期されません",
+    "message": "このショートカット設定はローカルに保存され、同期されません",
     "description": "プラグインの設定手順"
   },
   "themeTitle": {
-    "message": "件名",
+    "message": "外観とテーマ",
     "description": "プラグインの設定手順"
   },
   "themeAdaptation": {
-    "message": "テーマ適応",
+    "message": "カラーモード",
     "description": "ラグインの設定手順"
   },
   "themeAdaptationDescription": {
-    "message": "システムのカラーモードに応じて、アイコンやダウンロードパネルなどの明るいテーマと暗いテーマを適応的に表示します。",
+    "message": "システムの外観に合わせて、アイコン・ポップアップ・設定画面のライト／ダーク表示を自動で切り替えます。",
     "description": "ラグインの設定手順"
   },
   "themeAdaptationOption1": {
@@ -420,23 +420,23 @@
     "description": "ラグインの設定手順"
   },
   "themeAdaptationOption2": {
-    "message": "軽い",
+    "message": "ライト",
     "description": "ラグインの設定手順"
   },
   "themeAdaptationOption3": {
-    "message": "濃い",
+    "message": "ダーク",
     "description": "ラグインの設定手順"
   },
   "iconTitle": {
-    "message": "アイコン",
+    "message": "ツールバーアイコン",
     "description": "プラグインの設定手順"
   },
   "iconColorSetting": {
-    "message": "カスタムアイコンの色",
+    "message": "通常時のアイコン色",
     "description": "プラグインの設定手順"
   },
   "iconDownloadingColorSetting": {
-    "message": "カスタムアイコンダウンロードアニメーションの色",
+    "message": "ダウンロード中のアイコン色",
     "description": "プラグインの設定手順"
   },
   "downloadPanelTitle": {
@@ -444,43 +444,43 @@
     "description": "プラグインの設定手順"
   },
   "pageSize": {
-    "message": "ページサイズ（幅、高さ）",
+    "message": "パネルサイズ（幅 × 高さ）",
     "description": "プラグインの設定手順"
   },
   "pageSizeDescription": {
-    "message": "ダウンロードパネルの幅と高さを調整します。",
+    "message": "ポップアップの幅（380–800 px）と高さ（300–600 px）を指定します",
     "description": "プラグインの設定手順"
   },
   "themeSystemTitle": {
-    "message": "テーマ設定とプレビュー",
+    "message": "テーマプリセットとライブプレビュー",
     "description": "プラグインの設定手順"
   },
   "themeSystemDescription": {
-    "message": "テーマシリーズを選択するとすぐに反映され、下のプレビューに Popup の実際の表示を示します。",
+    "message": "テーマを選択すると即座に反映され、下のプレビューで実際の表示を確認できます。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesLabel": {
-    "message": "テーマ一覧",
+    "message": "テーマシリーズ",
     "description": "プラグインの設定手順"
   },
   "themePreviewModeAriaLabel": {
-    "message": "プレビューモード",
+    "message": "プレビューの明暗モード",
     "description": "プラグインの設定手順"
   },
   "themeSeriesTerminalTitle": {
-    "message": "ターミナル",
+    "message": "Terminal",
     "description": "プラグインの設定手順"
   },
   "themeSeriesTerminalDescription": {
-    "message": "ターミナル風のギークスタイル。高コントラストでツール感が強く、エンジニア向けの見た目に適しています。",
+    "message": "高コントラストで視認性の高い、エンジニア向けの機能美スタイル。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesTerminalDarkLabel": {
-    "message": "ターミナル ダーク",
+    "message": "Terminal ダーク",
     "description": "プラグインの設定手順"
   },
   "themeSeriesTerminalLightLabel": {
-    "message": "ターミナル ライト",
+    "message": "Terminal ライト",
     "description": "プラグインの設定手順"
   },
   "themeSeriesTerminalDarkBadge": {
@@ -492,11 +492,11 @@
     "description": "プラグインの設定手順"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "ネオン感のある黒基調で、視認性が高い。",
+    "message": "深い黒背景に鮮やかなアクセントで抜群の視認性。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "ギーク感を残しつつ、より明るく控えめ。",
+    "message": "ツール感を残しつつ、明るく落ち着いた配色。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesGithubTitle": {
@@ -504,7 +504,7 @@
     "description": "プラグインの設定手順"
   },
   "themeSeriesGithubDescription": {
-    "message": "開発者向けの定番スタイル。情報密度が安定しており、長く使いやすいプロ向けの見た目です。",
+    "message": "開発者に馴染み深い、落ち着いたコントラストの実用派デザイン。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesGithubDarkLabel": {
@@ -520,11 +520,11 @@
     "description": "プラグインの設定手順"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "落ち着きがあり、見慣れていて、生産性重視。",
+    "message": "目に優しく集中しやすい定番ダーク配色。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesGithubLightNote": {
-    "message": "すっきり整っていて、プラットフォーム製品に近い印象。",
+    "message": "クリーンで整理されたプラットフォーム風の質感。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesClaudeTitle": {
@@ -532,7 +532,7 @@
     "description": "プラグインの設定手順"
   },
   "themeSeriesClaudeDescription": {
-    "message": "温かみと上品さのあるスタイル。やわらかなベージュ系で、軽く呼吸感のある表示に向いています。",
+    "message": "柔らかなアースカラーを取り入れた、温かみのあるエレガントな配色。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesClaudeDarkLabel": {
@@ -548,11 +548,11 @@
     "description": "プラグインの設定手順"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "深みのある暖色ブラウンで、より雰囲気がある。",
+    "message": "深みのある温かなブラウン基調で落ち着いた印象。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "紙のような柔らかさで、よりリラックスした見た目。",
+    "message": "紙のような柔らかな風合いで長時間の閲覧も快適。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesBasicTitle": {
@@ -560,7 +560,7 @@
     "description": "プラグインの設定手順"
   },
   "themeSeriesBasicDescription": {
-    "message": "シンプルで汎用的なスタイル。主張が強すぎず、標準テーマとして使いやすいです。",
+    "message": "クセのないシンプルな定番テーマ。あらゆるブラウザテーマに自然に馴染みます。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesBasicDarkLabel": {
@@ -576,15 +576,15 @@
     "description": "プラグインの設定手順"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "控えめで汎用性が高く、夜間利用に向いている。",
+    "message": "控えめで夜間でも見やすいニュートラル配色。",
     "description": "プラグインの設定手順"
   },
   "themeSeriesBasicLightNote": {
-    "message": "中立的でクリーン、標準テーマらしい印象。",
+    "message": "清潔感がありブラウザ標準 UI に近い質感。",
     "description": "プラグインの設定手順"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "カスタムテーマ、お楽しみに！",
+    "message": "カスタムテーマは近日公開予定です！",
     "description": "プラグインの設定手順"
   },
   "el_colorpicker_confirm": {
@@ -592,39 +592,39 @@
     "description": "トピックタブの説明 - Element-UI colorPicker"
   },
   "el_colorpicker_clear": {
-    "message": "Clear",
+    "message": "クリア",
     "description": "トピックタブの説明 - Element-UI 颜色选择器"
   },
   "el_popconfirm_confirmButtonText": {
-    "message": "OK",
+    "message": "確定",
     "description": "リストをクリア - Element-UI PopConfirm"
   },
   "el_popconfirm_cancelButtonText": {
-    "message": "Cancel",
+    "message": "キャンセル",
     "description": "リストをクリア - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "気分がいい、行く",
+    "message": "この拡張機能を気に入ったら、",
     "description": "タブの説明について"
   },
   "pluginShopAbout": {
-    "message": "App Store",
+    "message": "拡張機能ストア",
     "description": "タブの説明について"
   },
   "starAbout2": {
-    "message": "評価してください",
+    "message": "でぜひ評価をお願いします。",
     "description": "タブの説明について"
   },
   "downloadContextMenuContextsSetting": {
-    "message": "有効な右クリックメニューのコンテキスト",
+    "message": "有効にする右クリック対象",
     "description": "設定の説明"
   },
   "downloadContextMenuContextsDescSetting": {
-    "message": "必要なコンテキストだけを残せます。たとえば「画像」のみを選ぶと、画像を右クリックしたときだけダウンロード項目が表示されます。",
+    "message": "必要な対象のみに絞り込めます。例：「画像」だけを有効にすると画像右クリック時のみ表示されます。",
     "description": "詳細説明"
   },
   "cancelAllConfirmMessage": {
-    "message": "進行中の {} 件のダウンロードをすべてキャンセルしますか？未完了の進捗は失われます。",
+    "message": "進行中の {} 件のダウンロードをすべてキャンセルしますか？未完了のデータは破棄されます。",
     "description": "Confirm message for cancel all active downloads"
   },
   "fileRoutingPrecedenceSetting": {
@@ -632,7 +632,7 @@
     "description": "Plugin setting description"
   },
   "fileRoutingPrecedenceDescription": {
-    "message": "ドメイン規則と拡張子規則の両方に一致する場合、選択した優先順位で保存フォルダを決めます。既定ではドメイン規則を優先します。",
+    "message": "ドメインルールと拡張子ルールの両方に一致した場合に優先する方を選択します（既定ではドメイン優先）。",
     "description": "Plugin setting detail description"
   },
   "fileRoutingPrecedenceDomain": {
@@ -644,11 +644,11 @@
     "description": "Plugin setting option"
   },
   "fileRoutingDomainRulesSetting": {
-    "message": "ドメイン分類ルール",
+    "message": "ドメインルール",
     "description": "Plugin setting description"
   },
   "fileRoutingDomainRulesEmpty": {
-    "message": "ドメインルールはまだありません。追加すると特定サイトのダウンロードを専用サブフォルダに保存できます。",
+    "message": "ドメインルールがありません。追加すると特定サイトからのダウンロードを専用フォルダへ自動保存できます。",
     "description": "Empty state hint"
   },
   "fileRoutingDomainsLabel": {
@@ -664,19 +664,19 @@
     "description": "Input placeholder"
   },
   "downloadConfirmBeforeStartSetting": {
-    "message": "ダウンロード前に確認する",
+    "message": "ダウンロード開始前に確認する",
     "description": "Plugin setting description"
   },
   "downloadConfirmBeforeStartDescSetting": {
-    "message": "有効にすると、この拡張機能が開始するダウンロード（コンテキストメニュー、手動URL、再ダウンロード）の前に確認します。ブラウザ本体のダウンロードは中断しません（ワンタイムURL保護のため）。既定はオフです。",
+    "message": "オンにすると、この拡張機能から開始するダウンロード（右クリック・手動入力・再試行）前に確認を行います。ブラウザ標準のダウンロードは中断しません。",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmChooseFolderSetting": {
-    "message": "ダウンロード開始時に保存先を選ぶ",
+    "message": "開始時に保存先フォルダを選択する",
     "description": "Plugin setting description"
   },
   "downloadConfirmChooseFolderDescSetting": {
-    "message": "この拡張機能が開始するダウンロードでブラウザの保存ダイアログ（saveAs）を使います。Edge/Chrome の「毎回確認」設定とは別で、拡張機能からは制御できません。",
+    "message": "この拡張機能からのダウンロード時に「名前を付けて保存」ダイアログ（saveAs）を開きます。Chrome/Edge のシステム設定とは独立しています。",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmTitle": {
@@ -688,7 +688,7 @@
     "description": "Confirmation message before starting a download; {} is the URL"
   },
   "downloadConfirmButton": {
-    "message": "ダウンロード",
+    "message": "ダウンロード開始",
     "description": "Confirmation button before starting a download"
   },
   "downloadConfirmNotificationTitle": {
@@ -704,19 +704,43 @@
     "description": "Notification button to cancel a pending download"
   },
   "popupHeaderButtonsSetting": {
-    "message": "ポップアップ上部ボタンを表示",
+    "message": "ポップアップ上部の操作ボタンを表示",
     "description": "ポップアップ上部のショートカットボタンを表示するか設定"
   },
   "popupHeaderButtonsDescSetting": {
-    "message": "オフにすると検索欄と設定ボタンのみが固定表示され、他のショートカットボタンを非表示にします",
+    "message": "オフにすると検索欄と設定ボタンのみが残り、他のショートカットボタンを非表示にします。",
     "description": "popupHeaderButtonsSettingの説明"
   },
   "popupHeaderCustomButtonsSetting": {
-    "message": "表示する上部ボタンをカスタマイズ",
+    "message": "上部ボタンの表示・並び順をカスタマイズ",
     "description": "各ボタンの表示・非表示を個別に設定"
   },
   "popupHeaderCustomButtonsDescSetting": {
-    "message": "クリックで表示・非表示を切り替え、ドラッグで並び替えできます（検索と設定は常に固定）",
+    "message": "クリックで表示・非表示を切り替え、ドラッグで並び替えできます（検索と設定は固定表示）。",
     "description": "popupHeaderCustomButtonsSettingの説明"
+  },
+  "contextMenuDownloadLink": {
+    "message": "リンクをダウンロード",
+    "description": "Context menu item to download a link"
+  },
+  "contextMenuDownloadImage": {
+    "message": "画像をダウンロード",
+    "description": "Context menu item to download an image"
+  },
+  "contextMenuDownloadAudio": {
+    "message": "音声をダウンロード",
+    "description": "Context menu item to download audio"
+  },
+  "contextMenuDownloadVideo": {
+    "message": "動画をダウンロード",
+    "description": "Context menu item to download a video"
+  },
+  "lightThemeTooltip": {
+    "message": "ライトテーマ",
+    "description": "Tooltip for light mode toolbar icon color"
+  },
+  "darkThemeTooltip": {
+    "message": "ダークテーマ",
+    "description": "Tooltip for dark mode toolbar icon color"
   }
 }

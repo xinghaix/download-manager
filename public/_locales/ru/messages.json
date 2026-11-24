@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Download Manager",
+    "message": "Менеджер загрузок",
     "description": "Название расширения"
   },
   "extDesc": {
-    "message": "Легко управлять загруженными файлами",
+    "message": "Быстрый и удобный менеджер загрузок для браузера",
     "description": "Описание расширения"
   },
   "settingsTitle": {
@@ -16,23 +16,23 @@
     "description": "Дополнительная информация о расширении"
   },
   "second": {
-    "message": "Осталось {} сек",
+    "message": "Осталось {} сек.",
     "description": "Отображение оставшегося времени"
   },
   "minute": {
-    "message": "Осталось {} мин",
+    "message": "Осталось {} мин.",
     "description": "Отображение оставшегося времени"
   },
   "hour": {
-    "message": "Осталось {} ч",
+    "message": "Осталось {} ч.",
     "description": "Отображение оставшегося времени"
   },
   "day": {
-    "message": "Осталось {} дн",
+    "message": "Осталось {} дн.",
     "description": "Отображение оставшегося времени"
   },
   "closeTooltip": {
-    "message": "Не показывать всплывающие подсказки",
+    "message": "Скрыть подсказки кнопок",
     "description": "При наведении курсора мыши на кнопку на странице управления загрузкой окно текстового сообщения не будет отображаться"
   },
   "newDownload": {
@@ -40,7 +40,7 @@
     "description": "Новый файл для скачивания"
   },
   "newDownloadPlaceholder": {
-    "message": "Пожалуйста, введите ссылку для загрузки! Нажмите Enter, чтобы скачать файл",
+    "message": "Вставьте ссылку для скачивания и нажмите Enter",
     "description": "Пожалуйста, введите ссылку для скачивания"
   },
   "clearAll": {
@@ -52,39 +52,39 @@
     "description": "Кнопка «Очистить» раскрывающегося меню"
   },
   "clearFailed": {
-    "message": "Не удалось очистить загрузку",
+    "message": "Очистить неудачные",
     "description": "Кнопка «Очистить» раскрывающегося меню"
   },
   "clearAbsent": {
-    "message": "Очистить файл не существует",
+    "message": "Очистить отсутствующие файлы",
     "description": "Кнопка «Очистить» раскрывающегося меню"
   },
   "clearCompleted": {
-    "message": "Очистить завершенные загрузки",
+    "message": "Очистить завершённые",
     "description": "Кнопка «Очистить» раскрывающегося меню"
   },
   "openDownloadFolder": {
-    "message": "Открыть папку загрузкок",
+    "message": "Открыть папку загрузок",
     "description": "Откройте папку загрузкок в проводнике"
   },
   "openSettings": {
-    "message": "Настройки",
+    "message": "Настройки расширения",
     "description": "Открыть настройки в новой вкладке"
   },
   "openHome": {
-    "message": "Открыть страницу загрузки",
+    "message": "Открыть страницу загрузок",
     "description": "Откройте в новой вкладке страницу загрузки браузера по умолчанию."
   },
   "openFileInFolder": {
-    "message": "Открыть папку",
+    "message": "Показать в папке",
     "description": "Открыть файл в папке"
   },
   "openFile": {
-    "message": "открыть файл",
+    "message": "Открыть файл",
     "description": "открыть файл"
   },
   "pause": {
-    "message": "Пауза",
+    "message": "Приостановить",
     "description": "Приостановить загрузку"
   },
   "resume": {
@@ -92,7 +92,7 @@
     "description": "Возобновить загрузку"
   },
   "batchDownloadActions": {
-    "message": "Пакетные действия загрузки",
+    "message": "Массовые действия",
     "description": "Подсказка пакетных действий"
   },
   "pauseAll": {
@@ -112,15 +112,15 @@
     "description": "Удалить файлы с диска"
   },
   "deleteConfirmTitle": {
-    "message": "Подтвердите удаление",
+    "message": "Удалить с диска?",
     "description": "Confirmation title before deleting files from disk"
   },
   "deleteConfirmFileMessage": {
-    "message": "Навсегда удалить \"{}\" с диска. Это действие нельзя отменить.",
+    "message": "Удалить «{}» с диска безвозвратно? Это действие нельзя отменить.",
     "description": "Confirmation message before deleting one file from disk"
   },
   "deleteConfirmAllMessage": {
-    "message": "Обработать {} неактивных элементов: удалить существующие файлы с диска и очистить отсутствующие записи. Это действие нельзя отменить.",
+    "message": "Будет обработано {} неактивных загрузок: существующие файлы будут удалены с диска, а записи об отсутствующих — очищены. Действие необратимо.",
     "description": "Confirmation message before deleting all files from disk"
   },
   "deleteConfirmButton": {
@@ -128,23 +128,23 @@
     "description": "Confirmation button before deleting files from disk"
   },
   "retry": {
-    "message": "Повторить",
+    "message": "Повторить загрузку",
     "description": "Загрузите снова"
   },
   "dangerDescription": {
-    "message": "Файл может нанести вред вашему компьютеру",
+    "message": "Этот файл может нанести вред вашему компьютеру",
     "description": "Файл может нанести вред вашему компьютеру"
   },
   "dangerActionRequiredDescription": {
-    "message": "Chrome требуется подтверждение перед сохранением файла",
+    "message": "Для сохранения этого файла требуется подтверждение",
     "description": "Dangerous download needs user confirmation"
   },
   "dangerScanningDescription": {
-    "message": "Выполняется проверка безопасности",
+    "message": "Проверка безопасности файла…",
     "description": "Dangerous download scanning message"
   },
   "dangerBlockedDescription": {
-    "message": "Chrome заблокировал эту загрузку",
+    "message": "Загрузка заблокирована по соображениям безопасности",
     "description": "Dangerous download blocked message"
   },
   "dangerOpenAction": {
@@ -152,15 +152,15 @@
     "description": "Open dangerous download review"
   },
   "dangerDiscard": {
-    "message": "Отклонить",
+    "message": "Удалить",
     "description": "Discard dangerous download"
   },
   "cancel": {
-    "message": "Отменить",
+    "message": "Отмена",
     "description": "Отменить загрузку опасного файла"
   },
   "reserve": {
-    "message": "Продолжить",
+    "message": "Сохранить",
     "description": "Продолжить загрузку опасного файла"
   },
   "erase": {
@@ -172,27 +172,27 @@
     "description": "Скопировано в буфер обмена"
   },
   "prefixMenus": {
-    "message": "Скачать",
+    "message": "Скачать ",
     "description": "Контекстное меню загрузки отображает мелкий префикс"
   },
   "link": {
-    "message": "ссылку",
+    "message": "Ссылка",
     "description": "контекстное меню загрузки"
   },
   "image": {
-    "message": "изображение",
+    "message": "Изображение",
     "description": "Загрузка меню в контекст"
   },
   "audio": {
-    "message": "аудио",
+    "message": "Аудио",
     "description": "Загрузка меню в контекст"
   },
   "video": {
-    "message": "видео",
+    "message": "Видео",
     "description": "Загрузка меню в контекст"
   },
   "deleteNotification": {
-    "message": "Удалить уведомление",
+    "message": "Закрыть",
     "description": "Кнопка удаления уведомления"
   },
   "downloadCompletedNotification": {
@@ -200,19 +200,19 @@
     "description": "Загрузка завершена"
   },
   "downloadStartedNotification": {
-    "message": "Начало загрузки",
+    "message": "Загрузка начата",
     "description": "Скачать уведомление"
   },
   "downloadWarnNotification": {
-    "message": "Скачать предупреждение",
+    "message": "Предупреждение о загрузке",
     "description": "Скачать уведомление"
   },
   "downloadInProgress": {
-    "message": "Downloading",
+    "message": "Загрузка",
     "description": "Download in-progress state"
   },
   "openFolderNotification": {
-    "message": "Открыть в папке",
+    "message": "Показать в папке",
     "description": "Загрузка завершена. Открыть в папке"
   },
   "downloadSetting": {
@@ -220,43 +220,43 @@
     "description": "Инструкция к плагину"
   },
   "leftClickFileSetting": {
-    "message": "Нажатие на имя файла открывает его",
+    "message": "Левый клик по имени открывает файл",
     "description": "Инструкция к плагину"
   },
   "rightClickFileSetting": {
-    "message": "Нажатие правой кнопкой на имя файла копирует его в буфер обмена",
+    "message": "Правый клик по имени копирует в буфер обмена",
     "description": "Инструкция к плагину"
   },
   "leftClickUrlSetting": {
-    "message": "Открывать ссылку при нажатии на неё",
+    "message": "Левый клик по ссылке открывает её в новой вкладке",
     "description": "Инструкция к плагину"
   },
   "rightClickUrlSetting": {
-    "message": "Нажатие правой кнопкой на ссылку копирует её в буфер обмена",
+    "message": "Правый клик по ссылке копирует её в буфер обмена",
     "description": "Инструкция к плагину"
   },
   "showTooltipSetting": {
-    "message": "Показывать всплывающие подсказки при наведении",
+    "message": "Показывать подсказки при наведении на кнопки",
     "description": "Инструкция к плагину"
   },
   "enableAnimation": {
-    "message": "Анимация открытия и выхода открытого файла",
+    "message": "Включить анимацию элементов списка",
     "description": "Инструкция к плагину"
   },
   "showDownloadProgressSetting": {
-    "message": "Show download progress",
+    "message": "Показывать ход загрузки",
     "description": "Plugin setting description"
   },
   "showDownloadProgressDescSetting": {
-    "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
+    "message": "Отображает прогресс, скорость и оставшееся время во всплывающем окне. Обновляются только видимые загрузки; отключение снижает нагрузку на ЦП при большом числе скачиваний.",
     "description": "Plugin setting detail description"
   },
   "deleteFileConfirmSetting": {
-    "message": "Подтверждать перед удалением файлов",
+    "message": "Подтверждать удаление файла с диска",
     "description": "Описание настройки расширения"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Показывать диалог подтверждения перед удалением файла с диска. Если отключено, отдельные файлы удаляются сразу без возможности отмены (для «Удалить все» подтверждение сохраняется).",
+    "message": "Показывать запрос подтверждения перед удалением отдельного файла с диска. Если отключить, файл удаляется сразу и безвозвратно («Удалить все» всегда запрашивает подтверждение).",
     "description": "Подробное описание настройки"
   },
   "contextMenus": {
@@ -264,31 +264,31 @@
     "description": "Инструкция к плагину"
   },
   "downloadContextMenusSetting": {
-    "message": "Меню загрузки",
+    "message": "Показывать пункты в контекстном меню",
     "description": "Инструкция к плагину"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Показывать пункты загрузки в контекстном меню страницы. Можно дополнительно выбрать активные контексты.",
+    "message": "Добавляет пункты скачивания в контекстное меню страниц и позволяет выбрать нужные типы объектов.",
     "description": "Подробное описание"
   },
   "fileRoutingSetting": {
-    "message": "Сортировка файлов",
+    "message": "Автосортировка по папкам",
     "description": "Описание настроек плагина"
   },
   "fileRoutingEnableSetting": {
-    "message": "Включить сортировку файлов",
+    "message": "Включить автосортировку",
     "description": "Описание настроек плагина"
   },
   "fileRoutingDescription": {
-    "message": "Сохраняет загрузки в подпапки папки «Загрузки» по расширению файла или домену источника. По умолчанию выключено. Правила доменов имеют приоритет по умолчанию.",
+    "message": "Автоматически сохраняет загрузки в подпапки каталога «Загрузки» по расширению файла или домену источника (по умолчанию отключено). По умолчанию приоритет имеют правила доменов.",
     "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
-    "message": "Правила сортировки",
+    "message": "Правила по расширениям",
     "description": "Описание настроек плагина"
   },
   "fileRoutingFolderLabel": {
-    "message": "Папка",
+    "message": "Подпапка",
     "description": "Описание настроек плагина"
   },
   "fileRoutingExtensionsLabel": {
@@ -304,11 +304,11 @@
     "description": "Accessible label for the file routing rule toggle"
   },
   "fileRoutingFolderPlaceholder": {
-    "message": "Например: Images или Documents/PDF",
+    "message": "напр.: Images или Documents/PDF",
     "description": "Описание настроек плагина"
   },
   "fileRoutingExtensionsPlaceholder": {
-    "message": "Например: jpg, png, webp",
+    "message": "напр.: jpg, png, webp",
     "description": "Описание настроек плагина"
   },
   "fileRoutingAddRule": {
@@ -316,7 +316,7 @@
     "description": "Описание настроек плагина"
   },
   "fileRoutingResetRules": {
-    "message": "Восстановить по умолчанию",
+    "message": "Сбросить по умолчанию",
     "description": "Описание настроек плагина"
   },
   "fileRoutingDeleteRule": {
@@ -324,7 +324,7 @@
     "description": "Accessible label for the file routing rule delete button"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "Удалить это правило маршрутизации?",
+    "message": "Удалить это правило сортировки?",
     "description": "Второе подтверждение перед удалением правила маршрутизации файлов"
   },
   "notificationSetting": {
@@ -332,59 +332,59 @@
     "description": "Инструкция к плагину"
   },
   "downloadNotificationSetting": {
-    "message": "Загрузка",
+    "message": "Уведомления на рабочем столе",
     "description": "Инструкция к плагину"
   },
   "downloadNotificationSetting1": {
-    "message": "started",
+    "message": "Начало",
     "description": "Инструкция к плагину"
   },
   "downloadNotificationSetting2": {
-    "message": "completed",
+    "message": "Завершение",
     "description": "Инструкция к плагину"
   },
   "downloadNotificationSetting3": {
-    "message": "warning",
+    "message": "Предупреждение",
     "description": "Инструкция к плагину"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "Время хранения уведомлений о загрузке (в секундах)",
+    "message": "Длительность показа (сек.)",
     "description": "Инструкция к плагину"
   },
   "downloadNotificationMaxCountSetting": {
-    "message": "Макс. число уведомлений в стопке",
+    "message": "Максимум уведомлений на экране",
     "description": "Описание настройки"
   },
   "downloadNotificationMaxCountDescSetting": {
-    "message": "При превышении лимита удаляются самые старые уведомления, сохраняются новые. По умолчанию 3; 0 — без ограничений.",
+    "message": "При превышении лимита самые старые уведомления скрываются. По умолчанию: 3; 0 — без ограничений.",
     "description": "Подробное описание"
   },
   "downloadToneSetting": {
-    "message": "Скачать напоминание",
+    "message": "Звуковые сигналы",
     "description": "Инструкция к плагину"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "Уведомления о загрузке остаются видимыми",
+    "message": "Не скрывать уведомления автоматически",
     "description": "Инструкция к плагину"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "Уведомление остается видимым на экране, пока пользователь не активирует или не деактивирует уведомление.Доступно после Chrome 50",
+    "message": "Уведомление остаётся на экране, пока вы не нажмёте на него или не закроете (Chrome 50+).",
     "description": "Инструкция к плагину"
   },
   "shortcutSetting": {
-    "message": "Быстрая клавиша",
+    "message": "Быстрые клавиши",
     "description": "Инструкция к плагину"
   },
   "openPopupSetting": {
-    "message": "Показать окно расширения",
+    "message": "Открыть панель загрузок",
     "description": "Инструкция к плагину"
   },
   "openPopupDetailsSetting": {
-    "message": "Перейдите в",
+    "message": "Настроить в разделе",
     "description": "Детали плагина говорят сами за себя"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "настройка быстрых клавишь",
+    "message": "Быстрые клавиши расширений",
     "description": "Инструкция к плагину"
   },
   "syncSetting": {
@@ -392,75 +392,75 @@
     "description": "Инструкция к плагину"
   },
   "pluginSyncSetting": {
-    "message": "Синхронизация",
+    "message": "Синхронизировать настройки",
     "description": "Инструкция к плагину"
   },
   "pluginSyncDetailsSetting": {
-    "message": "Синхронизировать настройки между разными браузерами через аккаунт Google",
+    "message": "При входе в аккаунт браузера настройки автоматически синхронизируются между браузерами на базе Chromium.",
     "description": "Детали плагина говорят сами за себя"
   },
   "notSyncSetting": {
-    "message": "Эта настройка не синхронизируется",
+    "message": "Этот параметр хранится локально и не синхронизируется",
     "description": "Инструкция к плагину"
   },
   "themeTitle": {
-    "message": "Темы",
+    "message": "Внешний вид",
     "description": "Инструкция на странице лейбла"
   },
   "themeAdaptation": {
-    "message": "Тема адаптации",
+    "message": "Цветовой режим",
     "description": "Инструкция на странице лейбла"
   },
   "themeAdaptationDescription": {
-    "message": "Согласно цветовому режиму системы, адаптивно отображаются яркие и темные темы, в том числе значки и панель загрузки.",
+    "message": "Автоматически переключает светлую и тёмную тему для значка, панели загрузок и страницы настроек в соответствии с темой системы.",
     "description": "Инструкция на странице лейбла"
   },
   "themeAdaptationOption1": {
-    "message": "auto",
+    "message": "Авто",
     "description": "Инструкция на странице лейбла"
   },
   "themeAdaptationOption2": {
-    "message": "light",
+    "message": "Светлая",
     "description": "Инструкция на странице лейбла"
   },
   "themeAdaptationOption3": {
-    "message": "dark",
+    "message": "Тёмная",
     "description": "Инструкция на странице лейбла"
   },
   "iconTitle": {
-    "message": "Иконка",
+    "message": "Значок на панели",
     "description": "Инструкция на странице лейбла"
   },
   "iconColorSetting": {
-    "message": "Цвет иконки",
+    "message": "Цвет обычного значка",
     "description": "Инструкция на странице лейбла"
   },
   "iconDownloadingColorSetting": {
-    "message": "Пользовательский значок загрузки анимации цвета",
+    "message": "Цвет значка при загрузке",
     "description": "Инструкция на странице лейбла"
   },
   "downloadPanelTitle": {
-    "message": "Панель загрузки",
+    "message": "Панель загрузок",
     "description": "Инструкция на странице лейбла"
   },
   "pageSize": {
-    "message": "Размер страницы (ширина, высота)",
+    "message": "Размер окна (ширина × высота)",
     "description": "Инструкция на странице лейбла"
   },
   "pageSizeDescription": {
-    "message": "Управляет шириной и высотой панели загрузки.",
+    "message": "Настройте ширину (380–800 px) и высоту (300–600 px) окна",
     "description": "Инструкция на странице лейбла"
   },
   "themeSystemTitle": {
-    "message": "Настройка темы и предпросмотр",
+    "message": "Темы оформления и предпросмотр",
     "description": "Инструкция на странице лейбла"
   },
   "themeSystemDescription": {
-    "message": "После выбора серии тем она применяется сразу, а ниже показывается реальный интерфейс Popup.",
+    "message": "Изменения применяются мгновенно. Ниже отображается реальный вид всплывающей панели.",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesLabel": {
-    "message": "Список тем",
+    "message": "Стиль темы",
     "description": "Инструкция на странице лейбла"
   },
   "themePreviewModeAriaLabel": {
@@ -468,19 +468,19 @@
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesTerminalTitle": {
-    "message": "Terminal",
+    "message": "Терминал",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesTerminalDescription": {
-    "message": "Гиковский стиль в духе терминала. Высокая контрастность и инструментальный характер подходят для «инженерного» интерфейса.",
+    "message": "Контрастный технический стиль для любителей чётких инструментов.",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesTerminalDarkLabel": {
-    "message": "Terminal Тёмная",
+    "message": "Терминал Тёмная",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesTerminalLightLabel": {
-    "message": "Terminal Светлая",
+    "message": "Терминал Светлая",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesTerminalDarkBadge": {
@@ -492,11 +492,11 @@
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "Неоновый акцент, тёмный фон и высокая узнаваемость.",
+    "message": "Яркие акценты на глубоком тёмном фоне для отличной читаемости.",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "Сохраняет гиковский стиль, но выглядит светлее и сдержаннее.",
+    "message": "Эстетика терминала в светлой и сдержанной палитре.",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesGithubTitle": {
@@ -504,7 +504,7 @@
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesGithubDescription": {
-    "message": "Классический стиль для разработчиков. Стабильная плотность информации и профессиональный вид для повседневного использования.",
+    "message": "Знакомый разработчикам стиль со спокойным контрастом.",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesGithubDarkLabel": {
@@ -516,15 +516,15 @@
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesGithubBadge": {
-    "message": "Для разработчиков",
+    "message": "Разработчик",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "Спокойно, знакомо и ориентировано на продуктивность.",
+    "message": "Спокойный, привычный и ориентированный на работу.",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesGithubLightNote": {
-    "message": "Чисто, аккуратно и похоже на платформенный продукт.",
+    "message": "Аккуратный и структурированный интерфейс платформы.",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesClaudeTitle": {
@@ -532,7 +532,7 @@
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesClaudeDescription": {
-    "message": "Тёплый и элегантный стиль. Мягкие бежевые оттенки делают интерфейс легче и воздушнее.",
+    "message": "Тёплая элегантная палитра в мягких бежевых тонах для комфорта глаз.",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesClaudeDarkLabel": {
@@ -548,11 +548,11 @@
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "Глубокие тёплые коричневые тона и более выраженное настроение.",
+    "message": "Глубокие кофейные оттенки с мягким контрастом.",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "Мягкая бумажная фактура и более расслабленное восприятие.",
+    "message": "Мягкая бумажная текстура для долгого чтения.",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesBasicTitle": {
@@ -560,19 +560,19 @@
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesBasicDescription": {
-    "message": "Простой и универсальный стиль. Слабо выраженный характер, хорошо подходит как тема по умолчанию.",
+    "message": "Лаконичная универсальная тема, органично сочетающаяся с любым браузером.",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesBasicDarkLabel": {
-    "message": "Базовая тёмная",
+    "message": "Базовая Тёмная",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesBasicLightLabel": {
-    "message": "Базовая светлая",
+    "message": "Базовая Светлая",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesBasicBadge": {
-    "message": "Сбалансированная",
+    "message": "Баланс",
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesBasicDarkNote": {
@@ -580,15 +580,15 @@
     "description": "Инструкция на странице лейбла"
   },
   "themeSeriesBasicLightNote": {
-    "message": "Нейтральная, чистая и максимально близкая к стилю по умолчанию.",
+    "message": "Нейтральная, чистая и близкая к стандартному стилю браузера.",
     "description": "Инструкция на странице лейбла"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "Пользовательская тема, следите за обновлениями!",
+    "message": "Пользовательские темы скоро появятся!",
     "description": "Инструкция на странице лейбла"
   },
   "el_colorpicker_confirm": {
-    "message": "Ок",
+    "message": "ОК",
     "description": "Инструкция на странице лейбла - Element-UI Цветовой искатель"
   },
   "el_colorpicker_clear": {
@@ -596,35 +596,35 @@
     "description": "Инструкция на странице лейбла - Element-UI Цветовой искатель"
   },
   "el_popconfirm_confirmButtonText": {
-    "message": "Ок",
+    "message": "Подтвердить",
     "description": "Очистить список - Element-UI PopConfirm"
   },
   "el_popconfirm_cancelButtonText": {
-    "message": "отменен",
+    "message": "Отмена",
     "description": "Очистить список - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "Если вам нравится плагин перейдите в",
+    "message": "Нравится расширение? Перейдите в",
     "description": "О инструкциях на странице ярлыков"
   },
   "pluginShopAbout": {
-    "message": "интернет-магазин Chrome",
+    "message": "магазин расширений",
     "description": "О инструкциях на странице ярлыков"
   },
   "starAbout2": {
-    "message": "и оцените его.",
+    "message": "и оставьте отзыв.",
     "description": "О инструкциях на странице ярлыков"
   },
   "downloadContextMenuContextsSetting": {
-    "message": "Активные контексты меню",
+    "message": "Активные пункты контекстного меню",
     "description": "Описание настройки"
   },
   "downloadContextMenuContextsDescSetting": {
-    "message": "Оставьте только нужные контексты. Например, выберите только «Изображение», чтобы пункт появлялся при правом щелчке по изображениям.",
+    "message": "Выберите нужные типы объектов (например, отметьте только «Изображение», чтобы пункт появлялся лишь для картинок).",
     "description": "Подробное описание"
   },
   "cancelAllConfirmMessage": {
-    "message": "Отменить все {} активных загрузок? Незавершённый прогресс будет потерян.",
+    "message": "Отменить все {} текущие загрузки? Незавершённый прогресс будет утерян.",
     "description": "Confirm message for cancel all active downloads"
   },
   "fileRoutingPrecedenceSetting": {
@@ -632,7 +632,7 @@
     "description": "Plugin setting description"
   },
   "fileRoutingPrecedenceDescription": {
-    "message": "Если совпадают правило домена и правило расширения, выбранный приоритет определяет папку. По умолчанию предпочтительны правила доменов.",
+    "message": "Определяет, какое правило главнее при одновременном совпадении домена и расширения. По умолчанию приоритет у домена.",
     "description": "Plugin setting detail description"
   },
   "fileRoutingPrecedenceDomain": {
@@ -644,11 +644,11 @@
     "description": "Plugin setting option"
   },
   "fileRoutingDomainRulesSetting": {
-    "message": "Правила классификации по домену",
+    "message": "Правила по доменам",
     "description": "Plugin setting description"
   },
   "fileRoutingDomainRulesEmpty": {
-    "message": "Правил доменов пока нет. Добавьте их, чтобы сохранять загрузки с определенных сайтов в отдельные подпапки.",
+    "message": "Правил для доменов пока нет. Добавьте правило, чтобы сохранять файлы с выбранных сайтов в отдельные подпапки.",
     "description": "Empty state hint"
   },
   "fileRoutingDomainsLabel": {
@@ -656,35 +656,35 @@
     "description": "Table column header"
   },
   "fileRoutingDomainsPlaceholder": {
-    "message": "напр. github.com, gist.github.com",
+    "message": "напр.: github.com, gist.github.com",
     "description": "Input placeholder"
   },
   "fileRoutingDomainFolderPlaceholder": {
-    "message": "напр. GitHub или Sites/GitHub",
+    "message": "напр.: GitHub или Sites/GitHub",
     "description": "Input placeholder"
   },
   "downloadConfirmBeforeStartSetting": {
-    "message": "Подтверждать перед загрузкой",
+    "message": "Подтверждать перед началом загрузки",
     "description": "Plugin setting description"
   },
   "downloadConfirmBeforeStartDescSetting": {
-    "message": "Если включено, загрузки, начатые этим расширением (контекстное меню, ручной URL, повтор), сначала запрашивают подтверждение. Встроенные загрузки браузера не прерываются, чтобы не ломать одноразовые ссылки. По умолчанию выключено.",
+    "message": "Запрашивает подтверждение перед запуском загрузки через расширение (контекстное меню, новая ссылка, повтор). Обычные загрузки браузера не прерываются.",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmChooseFolderSetting": {
-    "message": "Выбирать папку при старте загрузки",
+    "message": "Выбирать папку сохранения перед загрузкой",
     "description": "Plugin setting description"
   },
   "downloadConfirmChooseFolderDescSetting": {
-    "message": "Использует диалог «Сохранить как» (saveAs) для загрузок этого расширения. Не связано с параметром Edge/Chrome «Спрашивать, что делать», который расширение не контролирует.",
+    "message": "Открывает диалог «Сохранить как» (saveAs) для загрузок из этого расширения, независимо от системных настроек Chrome/Edge.",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmTitle": {
-    "message": "Подтвердить загрузку",
+    "message": "Подтверждение загрузки",
     "description": "Confirmation title before starting a download"
   },
   "downloadConfirmMessage": {
-    "message": "Начать загрузку «{}»?",
+    "message": "Начать скачивание «{}»?",
     "description": "Confirmation message before starting a download; {} is the URL"
   },
   "downloadConfirmButton": {
@@ -692,7 +692,7 @@
     "description": "Confirmation button before starting a download"
   },
   "downloadConfirmNotificationTitle": {
-    "message": "Подтвердить загрузку",
+    "message": "Подтверждение загрузки",
     "description": "Notification title when confirming a context-menu download"
   },
   "downloadConfirmNotificationConfirm": {
@@ -704,19 +704,43 @@
     "description": "Notification button to cancel a pending download"
   },
   "popupHeaderButtonsSetting": {
-    "message": "Показывать кнопки верхней панели",
+    "message": "Показывать кнопки быстрого доступа",
     "description": "Отображение дополнительных кнопок в шапке всплывающего окна"
   },
   "popupHeaderButtonsDescSetting": {
-    "message": "Если выключено, остаются видны только строка поиска и кнопка настроек",
+    "message": "Если отключить, останутся только поле поиска и кнопка «Настройки».",
     "description": "Описание для popupHeaderButtonsSetting"
   },
   "popupHeaderCustomButtonsSetting": {
-    "message": "Настроить видимые кнопки",
+    "message": "Настройка видимости и порядка кнопок",
     "description": "Выбор отображаемых кнопок в верхней панели"
   },
   "popupHeaderCustomButtonsDescSetting": {
-    "message": "Нажмите, чтобы показать или скрыть кнопку, перетащите для изменения порядка (Поиск и Настройки закреплены всегда)",
+    "message": "Нажмите для переключения видимости, перетащите для изменения порядка (Поиск и Настройки закреплены).",
     "description": "Описание для popupHeaderCustomButtonsSetting"
+  },
+  "contextMenuDownloadLink": {
+    "message": "Скачать ссылку",
+    "description": "Context menu item to download a link"
+  },
+  "contextMenuDownloadImage": {
+    "message": "Скачать изображение",
+    "description": "Context menu item to download an image"
+  },
+  "contextMenuDownloadAudio": {
+    "message": "Скачать аудио",
+    "description": "Context menu item to download audio"
+  },
+  "contextMenuDownloadVideo": {
+    "message": "Скачать видео",
+    "description": "Context menu item to download a video"
+  },
+  "lightThemeTooltip": {
+    "message": "Светлая тема",
+    "description": "Tooltip for light mode toolbar icon color"
+  },
+  "darkThemeTooltip": {
+    "message": "Тёмная тема",
+    "description": "Tooltip for dark mode toolbar icon color"
   }
 }

@@ -4,7 +4,7 @@
     "description": "插件名称"
   },
   "extDesc": {
-    "message": "方便管理下载的文件",
+    "message": "简洁高效的浏览器下载管理扩展",
     "description": "插件描述"
   },
   "settingsTitle": {
@@ -16,23 +16,23 @@
     "description": "关于插件的一些额外的信息"
   },
   "second": {
-    "message": "剩余{}秒",
+    "message": "剩余 {} 秒",
     "description": "剩余时间显示"
   },
   "minute": {
-    "message": "剩余{}分钟",
+    "message": "剩余 {} 分钟",
     "description": "剩余时间显示"
   },
   "hour": {
-    "message": "剩余{}小时",
+    "message": "剩余 {} 小时",
     "description": "剩余时间显示"
   },
   "day": {
-    "message": "剩余{}天",
+    "message": "剩余 {} 天",
     "description": "剩余时间显示"
   },
   "closeTooltip": {
-    "message": "停止显示文字提示框",
+    "message": "关闭按钮悬浮提示",
     "description": "在下载管理页面上鼠标移动到按钮上时，停止显示文字提示框"
   },
   "newDownload": {
@@ -40,7 +40,7 @@
     "description": "新建下载文件"
   },
   "newDownloadPlaceholder": {
-    "message": "请输入下载链接! Enter键下载文件",
+    "message": "请输入下载链接，按 Enter 开始下载",
     "description": "请输入下载链接"
   },
   "clearAll": {
@@ -48,19 +48,19 @@
     "description": "清除按钮下拉菜单"
   },
   "deleteAll": {
-    "message": "从磁盘删除所有",
+    "message": "从磁盘删除全部",
     "description": "清除按钮下拉菜单"
   },
   "clearFailed": {
-    "message": "清除下载失败",
+    "message": "清除下载失败项",
     "description": "清除按钮下拉菜单"
   },
   "clearAbsent": {
-    "message": "清除文件不存在",
+    "message": "清除不存在的文件",
     "description": "清除按钮下拉菜单"
   },
   "clearCompleted": {
-    "message": "清除下载完成",
+    "message": "清除已完成项",
     "description": "清除按钮下拉菜单"
   },
   "openDownloadFolder": {
@@ -68,15 +68,15 @@
     "description": "在资源管理器中打开下载文件夹"
   },
   "openSettings": {
-    "message": "插件设置",
+    "message": "扩展设置",
     "description": "在新标签页打开插件设置"
   },
   "openHome": {
-    "message": "打开下载页",
+    "message": "打开浏览器下载页",
     "description": "在新标签页打开浏览器默认下载页"
   },
   "openFileInFolder": {
-    "message": "打开文件夹",
+    "message": "在文件夹中显示",
     "description": "在文件夹中打开文件"
   },
   "openFile": {
@@ -88,11 +88,11 @@
     "description": "暂停下载"
   },
   "resume": {
-    "message": "恢复下载",
+    "message": "继续下载",
     "description": "恢复下载处在暂停中的文件"
   },
   "batchDownloadActions": {
-    "message": "批量下载操作",
+    "message": "批量操作",
     "description": "弹窗批量操作按钮提示"
   },
   "pauseAll": {
@@ -116,11 +116,11 @@
     "description": "物理删除文件前的二次确认标题"
   },
   "deleteConfirmFileMessage": {
-    "message": "将从磁盘永久删除“{}”，此操作无法撤销。",
+    "message": "确定要从磁盘永久删除“{}”吗？此操作无法撤销。",
     "description": "物理删除单个文件前的二次确认内容"
   },
   "deleteConfirmAllMessage": {
-    "message": "将处理 {} 个非下载中项目：从磁盘删除存在的文件，并清除不存在的记录。此操作无法撤销。",
+    "message": "即将处理 {} 个非下载中项目：从磁盘删除仍存在的文件，并清除已丢失的记录。此操作无法撤销。",
     "description": "物理删除全部文件前的二次确认内容"
   },
   "deleteConfirmButton": {
@@ -132,23 +132,23 @@
     "description": "重新下载"
   },
   "dangerDescription": {
-    "message": "该文件可能会损害您的计算机",
+    "message": "此文件可能会损害您的计算机",
     "description": "该文件可能会损害您的计算机"
   },
   "dangerActionRequiredDescription": {
-    "message": "Chrome 需要确认后才能保存此文件",
+    "message": "需要您的确认才能保存此文件",
     "description": "Dangerous download needs user confirmation"
   },
   "dangerScanningDescription": {
-    "message": "正在进行安全检查，请稍候",
+    "message": "正在进行安全扫描，请稍候…",
     "description": "Dangerous download scanning message"
   },
   "dangerBlockedDescription": {
-    "message": "Chrome 已阻止此下载",
+    "message": "出于安全原因，此下载已被阻止",
     "description": "Dangerous download blocked message"
   },
   "dangerOpenAction": {
-    "message": "处理",
+    "message": "查看详情",
     "description": "Open dangerous download review"
   },
   "dangerDiscard": {
@@ -192,7 +192,7 @@
     "description": "上下文下载菜单显示"
   },
   "deleteNotification": {
-    "message": "删除通知",
+    "message": "关闭通知",
     "description": "删除通知按钮"
   },
   "downloadCompletedNotification": {
@@ -200,11 +200,11 @@
     "description": "下载通知"
   },
   "downloadStartedNotification": {
-    "message": "下载开始",
+    "message": "开始下载",
     "description": "下载通知"
   },
   "downloadWarnNotification": {
-    "message": "下载警告",
+    "message": "下载安全警告",
     "description": "下载通知"
   },
   "downloadInProgress": {
@@ -212,7 +212,7 @@
     "description": "下载进行中状态"
   },
   "openFolderNotification": {
-    "message": "打开文件夹",
+    "message": "打开所在文件夹",
     "description": "下载完成通知打开文件夹按钮"
   },
   "downloadSetting": {
@@ -220,27 +220,27 @@
     "description": "插件设置说明"
   },
   "leftClickFileSetting": {
-    "message": "鼠标左键点击文件名时打开文件",
+    "message": "左键点击文件名时打开文件",
     "description": "插件设置说明"
   },
   "rightClickFileSetting": {
-    "message": "鼠标右键点击文件名时复制到剪切板",
+    "message": "右键点击文件名时复制到剪贴板",
     "description": "插件设置说明"
   },
   "leftClickUrlSetting": {
-    "message": "鼠标左键点击下载链接时可在新界面打开",
+    "message": "左键点击下载链接时在新标签页打开",
     "description": "插件设置说明"
   },
   "rightClickUrlSetting": {
-    "message": "鼠标右键点击下载链接时复制到剪切板",
+    "message": "右键点击下载链接时复制到剪贴板",
     "description": "插件设置说明"
   },
   "showTooltipSetting": {
-    "message": "鼠标移动到按钮上时显示提示信息",
+    "message": "鼠标悬停按钮时显示文字提示",
     "description": "插件设置说明"
   },
   "enableAnimation": {
-    "message": "开启文件移入移出动画",
+    "message": "开启列表项过渡动画",
     "description": "插件设置说明"
   },
   "showDownloadProgressSetting": {
@@ -248,47 +248,47 @@
     "description": "插件设置说明"
   },
   "showDownloadProgressDescSetting": {
-    "message": "在弹窗中显示下载进度、速度和剩余时间。开启后仅轮询当前可视区域内正在下载的文件；关闭后不再轮询计算进度，可降低大量下载时的资源占用。",
+    "message": "在弹窗中显示下载进度、实时速度与剩余时间。开启时仅轮询可视区域内的活跃下载；关闭后可大幅降低同时下载大量文件时的 CPU 占用。",
     "description": "插件设置细节说明"
   },
   "deleteFileConfirmSetting": {
-    "message": "删除文件前确认",
+    "message": "从磁盘删除文件前确认",
     "description": "插件设置说明"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "从磁盘删除单个文件前弹出确认对话框。关闭后删除单个文件将立即执行且无法撤销（“从磁盘删除所有”仍会二次确认）。",
+    "message": "从磁盘删除单个文件前弹出确认框。关闭后将直接删除且无法撤销（“从磁盘删除全部”仍会弹窗确认）。",
     "description": "插件设置细节说明"
   },
   "contextMenus": {
-    "message": "上下文菜单",
+    "message": "右键菜单",
     "description": "插件设置说明"
   },
   "downloadContextMenusSetting": {
-    "message": "下载菜单",
+    "message": "启用网页右键下载菜单",
     "description": "插件设置说明"
   },
   "downloadContextMenusDescSetting": {
-    "message": "在网页右键菜单中显示下载入口。可进一步选择启用的上下文类型。",
+    "message": "在网页右键菜单中添加下载快捷入口，并可按需筛选启用的内容类型。",
     "description": "插件设置细节说明"
   },
   "fileRoutingSetting": {
-    "message": "文件分类下载",
+    "message": "文件自动分类",
     "description": "插件设置说明"
   },
   "fileRoutingEnableSetting": {
-    "message": "启用文件分类下载",
+    "message": "启用文件自动分类保存",
     "description": "插件设置说明"
   },
   "fileRoutingDescription": {
-    "message": "根据文件后缀或来源域名，将下载文件保存到默认下载目录下的指定子文件夹。该功能默认关闭。域名规则默认优先于后缀规则。",
+    "message": "根据来源域名或文件后缀，将下载自动保存到默认下载目录下的指定子文件夹（默认关闭）。默认优先匹配域名规则。",
     "description": "插件设置细节说明"
   },
   "fileRoutingRulesSetting": {
-    "message": "分类规则",
+    "message": "后缀分类规则",
     "description": "插件设置说明"
   },
   "fileRoutingFolderLabel": {
-    "message": "文件夹",
+    "message": "子文件夹",
     "description": "插件设置说明"
   },
   "fileRoutingExtensionsLabel": {
@@ -300,7 +300,7 @@
     "description": "插件设置说明"
   },
   "fileRoutingRuleEnabledLabel": {
-    "message": "启用或停用规则",
+    "message": "启用或停用此规则",
     "description": "文件分类规则启停控件的无障碍标签"
   },
   "fileRoutingFolderPlaceholder": {
@@ -324,7 +324,7 @@
     "description": "文件分类规则删除按钮的无障碍标签"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "确认删除该分类规则？",
+    "message": "确认删除这条分类规则吗？",
     "description": "删除文件分类规则前的二次确认内容"
   },
   "notificationSetting": {
@@ -332,7 +332,7 @@
     "description": "插件设置说明"
   },
   "downloadNotificationSetting": {
-    "message": "下载通知",
+    "message": "桌面通知",
     "description": "插件设置说明"
   },
   "downloadNotificationSetting1": {
@@ -348,7 +348,7 @@
     "description": "插件设置说明"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "下载通知保留时间（秒）",
+    "message": "通知显示时长（秒）",
     "description": "插件设置说明"
   },
   "downloadNotificationMaxCountSetting": {
@@ -356,19 +356,19 @@
     "description": "插件设置说明"
   },
   "downloadNotificationMaxCountDescSetting": {
-    "message": "超过上限时清除最早的通知，保留最新的。默认 3；设为 0 表示不限制。",
+    "message": "超出上限时自动清理最早的通知并保留最新通知。默认为 3；设为 0 表示不限制。",
     "description": "插件设置细节说明"
   },
   "downloadToneSetting": {
-    "message": "下载提示音",
+    "message": "提示音",
     "description": "插件设置说明"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "下载通知保持可见",
+    "message": "保持通知常驻可见",
     "description": "插件设置说明"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "在用户激活或关闭通知之前，通知在屏幕上保持可见。Chrome 50 版本之后可用",
+    "message": "在您点击或手动关闭前，通知将一直保留在屏幕上（支持 Chrome 50 及以上版本）。",
     "description": "插件设置说明"
   },
   "shortcutSetting": {
@@ -376,15 +376,15 @@
     "description": "插件设置说明"
   },
   "openPopupSetting": {
-    "message": "激活该扩展程序",
+    "message": "打开下载面板",
     "description": "插件设置说明"
   },
   "openPopupDetailsSetting": {
-    "message": "请点击",
+    "message": "前往浏览器",
     "description": "插件设置细节说明"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "快捷键设置",
+    "message": "扩展快捷键设置",
     "description": "插件设置说明"
   },
   "syncSetting": {
@@ -392,27 +392,27 @@
     "description": "插件设置说明"
   },
   "pluginSyncSetting": {
-    "message": "同步插件设置",
+    "message": "同步扩展设置",
     "description": "插件设置说明"
   },
   "pluginSyncDetailsSetting": {
-    "message": "已登录谷歌账号时，可在不同的基于谷歌内核的浏览器之间同步插件设置",
+    "message": "登录浏览器账号后，可在不同 Chromium 内核浏览器之间自动同步您的扩展设置。",
     "description": "插件设置细节说明"
   },
   "notSyncSetting": {
-    "message": "该设置不会被同步",
+    "message": "此快捷键设置由浏览器本地管理，不会云同步",
     "description": "插件设置说明"
   },
   "themeTitle": {
-    "message": "主题",
+    "message": "外观与主题",
     "description": "主题标签页说明"
   },
   "themeAdaptation": {
-    "message": "主题自适应",
+    "message": "外观模式",
     "description": "主题标签页说明"
   },
   "themeAdaptationDescription": {
-    "message": "根据系统的颜色模式自适应显示亮色和暗黑主题，包含图标和下载面板。",
+    "message": "根据系统深浅色自动切换浅色与深色界面，覆盖工具栏图标、下载弹窗与设置页。",
     "description": "主题标签页说明"
   },
   "themeAdaptationOption1": {
@@ -420,67 +420,67 @@
     "description": "主题标签页说明"
   },
   "themeAdaptationOption2": {
-    "message": "亮色",
+    "message": "浅色",
     "description": "主题标签页说明"
   },
   "themeAdaptationOption3": {
-    "message": "暗黑",
+    "message": "深色",
     "description": "主题标签页说明"
   },
   "iconTitle": {
-    "message": "图标",
+    "message": "工具栏图标",
     "description": "主题标签页说明"
   },
   "iconColorSetting": {
-    "message": "自定义图标颜色",
+    "message": "默认图标颜色",
     "description": "主题标签页说明"
   },
   "iconDownloadingColorSetting": {
-    "message": "自定义图标下载动画颜色",
+    "message": "下载中图标颜色",
     "description": "主题标签页说明"
   },
   "downloadPanelTitle": {
-    "message": "下载面板",
+    "message": "下载弹窗",
     "description": "主题标签页说明"
   },
   "pageSize": {
-    "message": "页面大小（宽度、高度）",
+    "message": "弹窗尺寸（宽 × 高）",
     "description": "主题标签页说明"
   },
   "pageSizeDescription": {
-    "message": "控制下载面板的宽高",
+    "message": "调整下载弹窗宽度（380–800 px）与高度（300–600 px）",
     "description": "主题标签页说明"
   },
   "themeSystemTitle": {
-    "message": "主题设置 & 预览",
+    "message": "主题风格与实时预览",
     "description": "主题标签页说明"
   },
   "themeSystemDescription": {
-    "message": "选择主题系列后立即生效，下方预览区展示 Popup 的实际界面效果。",
+    "message": "切换主题预设后立即生效，下方预览区与真实弹窗界面保持同步。",
     "description": "主题标签页说明"
   },
   "themeSeriesLabel": {
-    "message": "主题列表",
+    "message": "主题预设",
     "description": "主题标签页说明"
   },
   "themePreviewModeAriaLabel": {
-    "message": "预览模式",
+    "message": "预览明暗模式",
     "description": "主题标签页说明"
   },
   "themeSeriesTerminalTitle": {
-    "message": "终端",
+    "message": "终端极客",
     "description": "主题标签页说明"
   },
   "themeSeriesTerminalDescription": {
-    "message": "终端极客风。高对比、偏工具化，适合想要“工程感”的界面。",
+    "message": "高对比度极客风格，锐利利落，适合偏爱工程质感的用户。",
     "description": "主题标签页说明"
   },
   "themeSeriesTerminalDarkLabel": {
-    "message": "终端暗色",
+    "message": "终端深色",
     "description": "主题标签页说明"
   },
   "themeSeriesTerminalLightLabel": {
-    "message": "终端亮色",
+    "message": "终端浅色",
     "description": "主题标签页说明"
   },
   "themeSeriesTerminalDarkBadge": {
@@ -492,11 +492,11 @@
     "description": "主题标签页说明"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "霓虹感、黑底、识别性强。",
+    "message": "深邃暗底搭配霓虹绿点缀，信息辨识度极高。",
     "description": "主题标签页说明"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "保留极客风，但更明亮克制。",
+    "message": "保留极客气息的同时更加明亮克制。",
     "description": "主题标签页说明"
   },
   "themeSeriesGithubTitle": {
@@ -504,15 +504,15 @@
     "description": "主题标签页说明"
   },
   "themeSeriesGithubDescription": {
-    "message": "开发者经典风。信息密度稳、专业感强，适合长期使用。",
+    "message": "开发者熟悉的经典界面比例与克制配色，适合高频日常使用。",
     "description": "主题标签页说明"
   },
   "themeSeriesGithubDarkLabel": {
-    "message": "GitHub 暗色",
+    "message": "GitHub 深色",
     "description": "主题标签页说明"
   },
   "themeSeriesGithubLightLabel": {
-    "message": "GitHub 亮色",
+    "message": "GitHub 浅色",
     "description": "主题标签页说明"
   },
   "themeSeriesGithubBadge": {
@@ -520,11 +520,11 @@
     "description": "主题标签页说明"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "沉稳、熟悉、偏生产力。",
+    "message": "沉稳内敛、辨识清晰，专注效率。",
     "description": "主题标签页说明"
   },
   "themeSeriesGithubLightNote": {
-    "message": "清爽、规整、接近平台化产品。",
+    "message": "干净利落、层级分明，接近原生开发平台观感。",
     "description": "主题标签页说明"
   },
   "themeSeriesClaudeTitle": {
@@ -532,43 +532,43 @@
     "description": "主题标签页说明"
   },
   "themeSeriesClaudeDescription": {
-    "message": "温暖优雅风。柔和米色系，适合更轻、更有呼吸感的视觉。",
+    "message": "温暖典雅的纸感米棕配色，视觉柔和舒展，久看不累。",
     "description": "主题标签页说明"
   },
   "themeSeriesClaudeDarkLabel": {
-    "message": "Claude 暗色",
+    "message": "Claude 深色",
     "description": "主题标签页说明"
   },
   "themeSeriesClaudeLightLabel": {
-    "message": "Claude 亮色",
+    "message": "Claude 浅色",
     "description": "主题标签页说明"
   },
   "themeSeriesClaudeBadge": {
-    "message": "温暖",
+    "message": "暖调",
     "description": "主题标签页说明"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "深暖棕色调，更有情绪表达。",
+    "message": "深暖咖棕基调，温柔沉静。",
     "description": "主题标签页说明"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "柔和纸感，观感更轻松。",
+    "message": "柔和温润的暖白纸感，阅读体验更轻松。",
     "description": "主题标签页说明"
   },
   "themeSeriesBasicTitle": {
-    "message": "基础",
+    "message": "基础简约",
     "description": "主题标签页说明"
   },
   "themeSeriesBasicDescription": {
-    "message": "简洁通用风。弱风格化，适合大众默认主题。",
+    "message": "干净克制的通用默认主题，自然融入各类浏览器外观。",
     "description": "主题标签页说明"
   },
   "themeSeriesBasicDarkLabel": {
-    "message": "基础暗色",
+    "message": "基础深色",
     "description": "主题标签页说明"
   },
   "themeSeriesBasicLightLabel": {
-    "message": "基础亮色",
+    "message": "基础浅色",
     "description": "主题标签页说明"
   },
   "themeSeriesBasicBadge": {
@@ -576,15 +576,15 @@
     "description": "主题标签页说明"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "低调、通用、适合夜间。",
+    "message": "低调柔和，夜间使用更护眼。",
     "description": "主题标签页说明"
   },
   "themeSeriesBasicLightNote": {
-    "message": "中性、干净、默认感强。",
+    "message": "中性素雅，贴近系统原生风格。",
     "description": "主题标签页说明"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "自定义主题，敬请期待！",
+    "message": "自定义主题功能敬请期待！",
     "description": "主题标签页说明"
   },
   "el_colorpicker_confirm": {
@@ -604,11 +604,11 @@
     "description": "清空列表 - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "觉得不错，去",
+    "message": "觉得好用的话，欢迎前往",
     "description": "关于标签页说明"
   },
   "pluginShopAbout": {
-    "message": "应用商店",
+    "message": "扩展商店",
     "description": "关于标签页说明"
   },
   "starAbout2": {
@@ -616,23 +616,23 @@
     "description": "关于标签页说明"
   },
   "downloadContextMenuContextsSetting": {
-    "message": "启用的右键菜单上下文",
+    "message": "启用的右键菜单类型",
     "description": "插件设置说明"
   },
   "downloadContextMenuContextsDescSetting": {
-    "message": "可按需只保留图片等上下文。例如仅勾选“图片”时，右键图片才显示下载菜单。",
+    "message": "可按需仅保留常用类型。例如只勾选「图片」时，仅在右键图片时显示下载入口。",
     "description": "插件设置细节说明"
   },
   "cancelAllConfirmMessage": {
-    "message": "确定取消全部 {} 个进行中的下载吗？未完成的下载进度将被丢弃。",
+    "message": "确定要取消全部 {} 个正在进行的下载吗？未完成的下载进度将被丢弃。",
     "description": "确认取消全部进行中下载的提示语"
   },
   "fileRoutingPrecedenceSetting": {
-    "message": "规则优先级",
+    "message": "规则匹配优先级",
     "description": "插件设置说明"
   },
   "fileRoutingPrecedenceDescription": {
-    "message": "当域名规则与后缀规则同时匹配时，按所选优先级决定保存文件夹。默认优先使用域名规则。",
+    "message": "当域名规则与后缀规则同时命中时，按所选优先级决定保存目录。默认优先使用域名规则。",
     "description": "插件设置细节说明"
   },
   "fileRoutingPrecedenceDomain": {
@@ -648,11 +648,11 @@
     "description": "插件设置说明"
   },
   "fileRoutingDomainRulesEmpty": {
-    "message": "暂无域名规则。添加后可将指定网站的下载保存到独立子文件夹。",
+    "message": "暂无域名规则。添加规则后，可将来自指定网站的下载自动归类到独立子文件夹。",
     "description": "空状态提示"
   },
   "fileRoutingDomainsLabel": {
-    "message": "域名",
+    "message": "来源域名",
     "description": "表格列标题"
   },
   "fileRoutingDomainsPlaceholder": {
@@ -664,23 +664,23 @@
     "description": "输入提示"
   },
   "downloadConfirmBeforeStartSetting": {
-    "message": "下载前确认",
+    "message": "开始下载前弹窗确认",
     "description": "插件设置说明"
   },
   "downloadConfirmBeforeStartDescSetting": {
-    "message": "开启后，由本扩展发起的下载（右键菜单、手动输入链接、重新下载）会先弹出确认。浏览器原生触发的下载不会中断，以免破坏一次性链接。默认关闭。",
+    "message": "开启后，通过本扩展发起的下载（右键菜单、手动新建、重试下载）会先确认再开始；浏览器直接触发的下载不受影响，避免破坏一次性防盗链。默认关闭。",
     "description": "插件设置细节说明"
   },
   "downloadConfirmChooseFolderSetting": {
-    "message": "开始下载时选择保存位置",
+    "message": "每次下载时选择保存位置",
     "description": "插件设置说明"
   },
   "downloadConfirmChooseFolderDescSetting": {
-    "message": "对本扩展发起的下载使用浏览器“另存为”对话框（saveAs）。这与 Edge/Chrome 的“每次下载都询问我该做些什么”无关，扩展无法绑定该系统选项。",
+    "message": "对本扩展发起的下载调起浏览器「另存为」窗口（saveAs）。该选项独立于 Chrome/Edge 系统设置的「下载前询问保存位置」。",
     "description": "插件设置细节说明"
   },
   "downloadConfirmTitle": {
-    "message": "确认下载",
+    "message": "确认开始下载",
     "description": "开始下载前的二次确认标题"
   },
   "downloadConfirmMessage": {
@@ -692,7 +692,7 @@
     "description": "开始下载前的二次确认按钮"
   },
   "downloadConfirmNotificationTitle": {
-    "message": "确认下载",
+    "message": "确认开始下载",
     "description": "右键菜单下载确认通知标题"
   },
   "downloadConfirmNotificationConfirm": {
@@ -704,19 +704,43 @@
     "description": "取消待下载通知按钮"
   },
   "popupHeaderButtonsSetting": {
-    "message": "显示弹窗顶部操作按钮",
+    "message": "显示弹窗顶部快捷按钮",
     "description": "是否在弹窗首行显示其余快捷操作按钮"
   },
   "popupHeaderButtonsDescSetting": {
-    "message": "关闭后仅保留搜索框和设置按钮，隐藏其余快捷操作按钮",
+    "message": "关闭后仅保留搜索框与设置按钮，隐藏其余顶部快捷按钮。",
     "description": "关闭后仅保留搜索框和设置按钮说明"
   },
   "popupHeaderCustomButtonsSetting": {
-    "message": "自定义显示的顶部按钮",
+    "message": "自定义顶部按钮与顺序",
     "description": "自定义弹窗首行显示的按钮"
   },
   "popupHeaderCustomButtonsDescSetting": {
-    "message": "点击可单独控制显示与隐藏，拖动可调整顺序（搜索框与设置按钮固定显示）",
+    "message": "点击可单独控制显示与隐藏，拖动可调整排列顺序（搜索框与设置按钮固定显示）。",
     "description": "自定义弹窗首行按钮说明"
+  },
+  "contextMenuDownloadLink": {
+    "message": "下载链接",
+    "description": "Context menu item to download a link"
+  },
+  "contextMenuDownloadImage": {
+    "message": "下载图片",
+    "description": "Context menu item to download an image"
+  },
+  "contextMenuDownloadAudio": {
+    "message": "下载音频",
+    "description": "Context menu item to download audio"
+  },
+  "contextMenuDownloadVideo": {
+    "message": "下载视频",
+    "description": "Context menu item to download a video"
+  },
+  "lightThemeTooltip": {
+    "message": "浅色主题",
+    "description": "Tooltip for light mode toolbar icon color"
+  },
+  "darkThemeTooltip": {
+    "message": "深色主题",
+    "description": "Tooltip for dark mode toolbar icon color"
   }
 }

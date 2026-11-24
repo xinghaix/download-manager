@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "extDesc": {
-    "message": "Kelola file yang diunduh dengan mudah",
+    "message": "Pengelola unduhan browser yang ringan dan rapi",
     "description": "Extension description"
   },
   "settingsTitle": {
@@ -16,23 +16,23 @@
     "description": "Some information about the plugin"
   },
   "second": {
-    "message": "Sisa {} detik",
+    "message": "{} dtk tersisa",
     "description": "remaining time display"
   },
   "minute": {
-    "message": "Sisa {} menit",
+    "message": "{} mnt tersisa",
     "description": "remaining time display"
   },
   "hour": {
-    "message": "Sisa {} jam",
+    "message": "{} jam tersisa",
     "description": "remaining time display"
   },
   "day": {
-    "message": "Sisa {} hari",
+    "message": "{} hr tersisa",
     "description": "remaining time display"
   },
   "closeTooltip": {
-    "message": "Berhenti menampilkan tooltip teks",
+    "message": "Sembunyikan tooltip tombol",
     "description": "on the download management page, when the mouse is moved over the button, the text prompt box stops showing"
   },
   "newDownload": {
@@ -40,11 +40,11 @@
     "description": "new download"
   },
   "newDownloadPlaceholder": {
-    "message": "Masukkan tautan unduhan. Tekan Enter untuk mengunduh",
+    "message": "Tempel URL unduhan lalu tekan Enter",
     "description": "Please enter the download link"
   },
   "clearAll": {
-    "message": "Kosongkan daftar",
+    "message": "Bersihkan daftar",
     "description": "Clear button dropdown menu"
   },
   "deleteAll": {
@@ -52,15 +52,15 @@
     "description": "Clear button dropdown menu"
   },
   "clearFailed": {
-    "message": "Bersihkan unduhan gagal",
+    "message": "Bersihkan yang gagal",
     "description": "Clear button dropdown menu"
   },
   "clearAbsent": {
-    "message": "Bersihkan file yang tidak ada",
+    "message": "Bersihkan file yang hilang",
     "description": "Clear button dropdown menu"
   },
   "clearCompleted": {
-    "message": "Bersihkan unduhan selesai",
+    "message": "Bersihkan yang selesai",
     "description": "Clear button dropdown menu"
   },
   "openDownloadFolder": {
@@ -72,11 +72,11 @@
     "description": "open plugin settings in a new tab"
   },
   "openHome": {
-    "message": "Buka halaman unduhan",
+    "message": "Buka halaman Unduhan browser",
     "description": "Open the browser's default download page in a new tab"
   },
   "openFileInFolder": {
-    "message": "Buka folder",
+    "message": "Tampilkan di folder",
     "description": "open file in folder"
   },
   "openFile": {
@@ -88,11 +88,11 @@
     "description": "pause download"
   },
   "resume": {
-    "message": "Lanjutkan unduhan",
+    "message": "Lanjutkan",
     "description": "resume downloading a suspended file"
   },
   "batchDownloadActions": {
-    "message": "Tindakan unduhan batch",
+    "message": "Tindakan massal",
     "description": "Tooltip tindakan batch"
   },
   "pauseAll": {
@@ -112,19 +112,19 @@
     "description": "delete file from disk"
   },
   "deleteConfirmTitle": {
-    "message": "Konfirmasi hapus dari disk",
+    "message": "Hapus dari disk?",
     "description": "Confirmation title before deleting files from disk"
   },
   "deleteConfirmFileMessage": {
-    "message": "“{}” akan dihapus permanen dari disk. Tindakan ini tidak dapat dibatalkan.",
+    "message": "Hapus permanen “{}” dari disk? Tindakan ini tidak dapat dibatalkan.",
     "description": "Confirmation message before deleting one file from disk"
   },
   "deleteConfirmAllMessage": {
-    "message": "{} item tidak aktif akan diproses: file yang ada akan dihapus dari disk dan catatan yang hilang akan dibersihkan. Tindakan ini tidak dapat dibatalkan.",
+    "message": "Proses {} item nonaktif: hapus file yang ada secara permanen dari disk dan bersihkan catatan yang hilang? Tidak dapat dibatalkan.",
     "description": "Confirmation message before deleting all files from disk"
   },
   "deleteConfirmButton": {
-    "message": "Konfirmasi hapus",
+    "message": "Hapus",
     "description": "Confirmation button before deleting files from disk"
   },
   "retry": {
@@ -136,15 +136,15 @@
     "description": "The file may harm your computer"
   },
   "dangerActionRequiredDescription": {
-    "message": "Chrome memerlukan konfirmasi Anda sebelum menyimpan file ini",
+    "message": "Konfirmasi diperlukan untuk menyimpan file ini",
     "description": "Dangerous download needs user confirmation"
   },
   "dangerScanningDescription": {
-    "message": "Memeriksa keamanan unduhan",
+    "message": "Memeriksa keamanan unduhan…",
     "description": "Dangerous download scanning message"
   },
   "dangerBlockedDescription": {
-    "message": "Chrome memblokir unduhan ini",
+    "message": "Unduhan diblokir demi keamanan",
     "description": "Dangerous download blocked message"
   },
   "dangerOpenAction": {
@@ -176,23 +176,23 @@
     "description": "context download prefix menus display"
   },
   "link": {
-    "message": "tautan",
+    "message": "Tautan",
     "description": "context download menus display"
   },
   "image": {
-    "message": "gambar",
+    "message": "Gambar",
     "description": "context download menus display"
   },
   "audio": {
-    "message": "audio",
+    "message": "Audio",
     "description": "context download menus display"
   },
   "video": {
-    "message": "video",
+    "message": "Video",
     "description": "context download menus display"
   },
   "deleteNotification": {
-    "message": "Hapus notifikasi",
+    "message": "Tutup",
     "description": "Delete notification button"
   },
   "downloadCompletedNotification": {
@@ -208,11 +208,11 @@
     "description": "Download notification"
   },
   "downloadInProgress": {
-    "message": "Downloading",
+    "message": "Mengunduh",
     "description": "Download in-progress state"
   },
   "openFolderNotification": {
-    "message": "Buka folder",
+    "message": "Tampilkan di folder",
     "description": "Download completion notification open folder button"
   },
   "downloadSetting": {
@@ -220,43 +220,43 @@
     "description": "plugin setting instructions"
   },
   "leftClickFileSetting": {
-    "message": "Buka file saat nama file diklik kiri",
+    "message": "Klik kiri nama file untuk membuka file",
     "description": "plugin setting instructions"
   },
   "rightClickFileSetting": {
-    "message": "Salin ke papan klip saat nama file diklik kanan",
+    "message": "Klik kanan nama file untuk menyalin ke papan klip",
     "description": "plugin setting instructions"
   },
   "leftClickUrlSetting": {
-    "message": "Buka tautan unduhan di halaman baru dengan klik kiri",
+    "message": "Klik kiri tautan untuk membuka di tab baru",
     "description": "plugin setting instructions"
   },
   "rightClickUrlSetting": {
-    "message": "Salin tautan unduhan ke papan klip dengan klik kanan",
+    "message": "Klik kanan tautan untuk menyalin ke papan klip",
     "description": "plugin setting instructions"
   },
   "showTooltipSetting": {
-    "message": "Tampilkan tips saat kursor diarahkan ke tombol",
+    "message": "Tampilkan tooltip saat mengarahkan kursor ke tombol",
     "description": "plugin setting instructions"
   },
   "enableAnimation": {
-    "message": "Aktifkan animasi masuk dan keluar file",
+    "message": "Aktifkan animasi daftar item",
     "description": "plugin setting instructions"
   },
   "showDownloadProgressSetting": {
-    "message": "Show download progress",
+    "message": "Tampilkan progres unduhan",
     "description": "Plugin setting description"
   },
   "showDownloadProgressDescSetting": {
-    "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
+    "message": "Menampilkan progres, kecepatan, dan sisa waktu di popup. Hanya unduhan aktif yang terlihat di layar yang dipantau; nonaktifkan untuk mengurangi beban CPU saat mengunduh banyak file.",
     "description": "Plugin setting detail description"
   },
   "deleteFileConfirmSetting": {
-    "message": "Konfirmasi sebelum menghapus file",
+    "message": "Konfirmasi sebelum menghapus dari disk",
     "description": "Deskripsi pengaturan plugin"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Tampilkan dialog konfirmasi sebelum menghapus satu file dari disk. Jika dinonaktifkan, satu file langsung dihapus dan tidak dapat dibatalkan (Hapus semua tetap meminta konfirmasi).",
+    "message": "Tampilkan dialog konfirmasi sebelum menghapus satu file dari disk. Jika dimatikan, file langsung dihapus permanen (“Hapus semua” tetap meminta konfirmasi).",
     "description": "Deskripsi detail pengaturan plugin"
   },
   "contextMenus": {
@@ -264,31 +264,31 @@
     "description": "plugin setting instructions"
   },
   "downloadContextMenusSetting": {
-    "message": "Menu unduhan",
+    "message": "Tampilkan opsi unduhan di menu klik kanan",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Tampilkan item unduhan di menu konteks halaman. Anda juga dapat memilih konteks yang diaktifkan.",
+    "message": "Menambahkan pintasan unduhan ke menu klik kanan halaman web dan memungkinkan pemilihan jenis target.",
     "description": "Deskripsi detail"
   },
   "fileRoutingSetting": {
-    "message": "Unduh menurut jenis file",
+    "message": "Pengelompokan folder otomatis",
     "description": "Plugin settings description"
   },
   "fileRoutingEnableSetting": {
-    "message": "Aktifkan unduh menurut jenis file",
+    "message": "Aktifkan pengelompokan folder otomatis",
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Menyimpan unduhan ke subfolder di folder Unduhan default berdasarkan ekstensi file atau domain sumber. Dinonaktifkan secara default. Aturan domain didahulukan secara default.",
+    "message": "Menyimpan unduhan otomatis ke subfolder di dalam folder Unduhan berdasarkan ekstensi file atau domain sumber (nonaktif secara default). Aturan domain diprioritaskan secara default.",
     "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
-    "message": "Aturan klasifikasi",
+    "message": "Aturan ekstensi",
     "description": "Plugin settings description"
   },
   "fileRoutingFolderLabel": {
-    "message": "Folder",
+    "message": "Subfolder",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsLabel": {
@@ -304,11 +304,11 @@
     "description": "Accessible label for the file routing rule toggle"
   },
   "fileRoutingFolderPlaceholder": {
-    "message": "Contoh: Images atau Documents/PDF",
+    "message": "mis. Images atau Documents/PDF",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsPlaceholder": {
-    "message": "Contoh: jpg, png, webp",
+    "message": "mis. jpg, png, webp",
     "description": "Plugin settings description"
   },
   "fileRoutingAddRule": {
@@ -324,7 +324,7 @@
     "description": "Accessible label for the file routing rule delete button"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "Hapus aturan klasifikasi ini?",
+    "message": "Hapus aturan pengelompokan ini?",
     "description": "Second confirmation before deleting a file routing rule"
   },
   "notificationSetting": {
@@ -332,11 +332,11 @@
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting": {
-    "message": "Notifikasi unduhan",
+    "message": "Notifikasi desktop",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting1": {
-    "message": "Mulai",
+    "message": "Dimulai",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting2": {
@@ -348,43 +348,43 @@
     "description": "plugin setting instructions"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "Durasi notifikasi unduhan (detik)",
+    "message": "Durasi notifikasi (detik)",
     "description": "plugin setting instructions"
   },
   "downloadNotificationMaxCountSetting": {
-    "message": "Batas notifikasi bertumpuk",
+    "message": "Maks. notifikasi sekaligus",
     "description": "Deskripsi pengaturan"
   },
   "downloadNotificationMaxCountDescSetting": {
-    "message": "Jika melebihi batas, notifikasi tertua dihapus dan yang terbaru dipertahankan. Default 3; 0 = tanpa batas.",
+    "message": "Menutup notifikasi terlama saat batas tercapai. Default: 3; isi 0 untuk tanpa batas.",
     "description": "Deskripsi detail"
   },
   "downloadToneSetting": {
-    "message": "Suara unduhan",
+    "message": "Suara notifikasi",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "Biarkan notifikasi unduhan tetap terlihat",
+    "message": "Biarkan notifikasi tetap terlihat",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "Notifikasi tetap terlihat sampai pengguna membuka atau menutupnya. Tersedia sejak Chrome 50",
+    "message": "Notifikasi tetap di layar hingga diklik atau ditutup (Chrome 50+).",
     "description": "plugin setting instructions"
   },
   "shortcutSetting": {
-    "message": "Pintasan",
+    "message": "Pintasan keyboard",
     "description": "plugin setting instructions"
   },
   "openPopupSetting": {
-    "message": "Aktifkan ekstensi ini",
+    "message": "Buka panel unduhan",
     "description": "plugin setting instructions"
   },
   "openPopupDetailsSetting": {
-    "message": "Klik",
+    "message": "Atur melalui",
     "description": "plugin setting details instructions"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "Pengaturan pintasan",
+    "message": "Pintasan ekstensi",
     "description": "plugin setting instructions"
   },
   "syncSetting": {
@@ -396,23 +396,23 @@
     "description": "plugin setting instructions"
   },
   "pluginSyncDetailsSetting": {
-    "message": "Jika Anda sudah masuk ke Akun Google, pengaturan ekstensi dapat disinkronkan antar browser berbasis Chromium",
+    "message": "Menyinkronkan pengaturan Anda secara otomatis antar-browser Chromium saat masuk ke akun browser.",
     "description": "plugin setting details instructions"
   },
   "notSyncSetting": {
-    "message": "Pengaturan ini tidak akan disinkronkan",
+    "message": "Pengaturan ini disimpan secara lokal dan tidak disinkronkan",
     "description": "plugin setting instructions"
   },
   "themeTitle": {
-    "message": "Tema",
+    "message": "Tampilan",
     "description": "Theme Tab Description"
   },
   "themeAdaptation": {
-    "message": "Tema adaptif",
+    "message": "Mode warna",
     "description": "Theme Tab Description"
   },
   "themeAdaptationDescription": {
-    "message": "Menyesuaikan tema terang dan gelap secara otomatis mengikuti mode warna sistem, termasuk ikon dan panel unduhan.",
+    "message": "Menyesuaikan tema terang atau gelap secara otomatis untuk ikon toolbar, panel unduhan, dan halaman pengaturan mengikuti sistem.",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption1": {
@@ -428,15 +428,15 @@
     "description": "Theme Tab Description"
   },
   "iconTitle": {
-    "message": "Ikon",
+    "message": "Ikon toolbar",
     "description": "Theme Tab Description"
   },
   "iconColorSetting": {
-    "message": "Sesuaikan warna ikon",
+    "message": "Warna ikon normal",
     "description": "Theme Tab Description"
   },
   "iconDownloadingColorSetting": {
-    "message": "Sesuaikan warna animasi unduhan ikon",
+    "message": "Warna ikon saat mengunduh",
     "description": "Theme Tab Description"
   },
   "downloadPanelTitle": {
@@ -444,23 +444,23 @@
     "description": "Theme Tab Description"
   },
   "pageSize": {
-    "message": "Ukuran halaman (lebar, tinggi)",
+    "message": "Ukuran panel (lebar × tinggi)",
     "description": "Theme Tab Description"
   },
   "pageSizeDescription": {
-    "message": "Mengatur lebar dan tinggi panel unduhan",
+    "message": "Atur lebar (380–800 px) dan tinggi (300–600 px) panel popup",
     "description": "Theme Tab Description"
   },
   "themeSystemTitle": {
-    "message": "Pengaturan dan pratinjau tema",
+    "message": "Preset tema & pratinjau langsung",
     "description": "Theme Tab Description"
   },
   "themeSystemDescription": {
-    "message": "Tema langsung diterapkan setelah Anda memilih seri. Area pratinjau di bawah menampilkan tampilan Popup sebenarnya.",
+    "message": "Perubahan langsung diterapkan. Pratinjau di bawah menampilkan tampilan popup sebenarnya.",
     "description": "Theme Tab Description"
   },
   "themeSeriesLabel": {
-    "message": "Daftar tema",
+    "message": "Seri tema",
     "description": "Theme Tab Description"
   },
   "themePreviewModeAriaLabel": {
@@ -472,15 +472,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDescription": {
-    "message": "Gaya terminal untuk pengguna teknis. Kontras tinggi dan terasa seperti alat kerja.",
+    "message": "Gaya teknis berkontras tinggi dengan tampilan rapi.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkLabel": {
-    "message": "Terminal gelap",
+    "message": "Terminal Gelap",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightLabel": {
-    "message": "Terminal terang",
+    "message": "Terminal Terang",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkBadge": {
@@ -492,11 +492,11 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "Nuansa neon, latar hitam, mudah dikenali.",
+    "message": "Aksen cerah di latar gelap dengan keterbacaan tajam.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "Tetap bergaya teknis, tetapi lebih terang dan terkendali.",
+    "message": "Nuansa terminal dalam palet terang yang seimbang.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubTitle": {
@@ -504,27 +504,27 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDescription": {
-    "message": "Gaya klasik untuk developer. Padat, stabil, dan profesional untuk penggunaan jangka panjang.",
+    "message": "Gaya klasik pengembang dengan kontras nyaman untuk kerja harian.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkLabel": {
-    "message": "GitHub gelap",
+    "message": "GitHub Gelap",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightLabel": {
-    "message": "GitHub terang",
+    "message": "GitHub Terang",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubBadge": {
-    "message": "Developer",
+    "message": "Pengembang",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "Tenang, familier, dan berorientasi produktivitas.",
+    "message": "Tenang, familier, dan mendukung fokus kerja.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightNote": {
-    "message": "Bersih, tertata, dan terasa seperti produk platform.",
+    "message": "Permukaan bersih dan teratur ala platform modern.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeTitle": {
@@ -532,15 +532,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDescription": {
-    "message": "Gaya hangat dan elegan. Nuansa beige lembut untuk antarmuka yang lebih ringan dan lega.",
+    "message": "Palet hangat dan elegan bernuansa netral lembut agar mata nyaman.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkLabel": {
-    "message": "Claude gelap",
+    "message": "Claude Gelap",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightLabel": {
-    "message": "Claude terang",
+    "message": "Claude Terang",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeBadge": {
@@ -548,11 +548,11 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "Cokelat hangat yang dalam dengan suasana lebih kuat.",
+    "message": "Nuansa cokelat hangat yang dalam dengan kontras halus.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "Rasa seperti kertas lembut, lebih nyaman dilihat.",
+    "message": "Kesan kertas lembut untuk kenyamanan membaca.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicTitle": {
@@ -560,15 +560,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDescription": {
-    "message": "Gaya sederhana dan universal. Tidak terlalu menonjol, cocok sebagai tema default.",
+    "message": "Tampilan bersih dan universal yang menyatu dengan berbagai tema browser.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkLabel": {
-    "message": "Dasar gelap",
+    "message": "Dasar Gelap",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightLabel": {
-    "message": "Dasar terang",
+    "message": "Dasar Terang",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicBadge": {
@@ -576,15 +576,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "Tenang, umum, dan cocok untuk malam hari.",
+    "message": "Sederhana, netral, dan nyaman dipakai malam hari.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightNote": {
-    "message": "Netral, bersih, dan terasa seperti bawaan.",
+    "message": "Segar, bersih, dan dekat dengan UI bawaan browser.",
     "description": "Theme Tab Description"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "Tema khusus segera hadir!",
+    "message": "Tema kustom segera hadir!",
     "description": "Theme Tab Description"
   },
   "el_colorpicker_confirm": {
@@ -596,7 +596,7 @@
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_popconfirm_confirmButtonText": {
-    "message": "OK",
+    "message": "Konfirmasi",
     "description": "Clear list - Element-UI PopConfirm"
   },
   "el_popconfirm_cancelButtonText": {
@@ -604,7 +604,7 @@
     "description": "Clear list - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "Suka ekstensi ini? Kunjungi",
+    "message": "Suka dengan ekstensi ini? Kunjungi",
     "description": "about tab description"
   },
   "pluginShopAbout": {
@@ -612,19 +612,19 @@
     "description": "about tab description"
   },
   "starAbout2": {
-    "message": "dan beri nilai",
+    "message": "untuk memberi rating.",
     "description": "about tab description"
   },
   "downloadContextMenuContextsSetting": {
-    "message": "Konteks menu konteks yang diaktifkan",
+    "message": "Target menu klik kanan yang aktif",
     "description": "Deskripsi pengaturan"
   },
   "downloadContextMenuContextsDescSetting": {
-    "message": "Simpan hanya konteks yang Anda butuhkan. Misalnya, pilih hanya Gambar agar item muncul saat mengeklik kanan gambar.",
+    "message": "Pilih elemen yang menampilkan menu unduhan (mis. pilih hanya Gambar agar hanya muncul di gambar).",
     "description": "Deskripsi detail"
   },
   "cancelAllConfirmMessage": {
-    "message": "Batalkan semua {} unduhan yang sedang berjalan? Progres yang belum selesai akan hilang.",
+    "message": "Batalkan semua {} unduhan yang sedang berjalan? Progres yang belum selesai akan dibuang.",
     "description": "Confirm message for cancel all active downloads"
   },
   "fileRoutingPrecedenceSetting": {
@@ -632,7 +632,7 @@
     "description": "Plugin setting description"
   },
   "fileRoutingPrecedenceDescription": {
-    "message": "Jika aturan domain dan ekstensi sama-sama cocok, prioritas yang dipilih menentukan folder. Aturan domain diutamakan secara default.",
+    "message": "Menentukan aturan yang diprioritaskan jika domain dan ekstensi sama-sama cocok. Domain diprioritaskan secara default.",
     "description": "Plugin setting detail description"
   },
   "fileRoutingPrecedenceDomain": {
@@ -644,11 +644,11 @@
     "description": "Plugin setting option"
   },
   "fileRoutingDomainRulesSetting": {
-    "message": "Aturan klasifikasi domain",
+    "message": "Aturan domain",
     "description": "Plugin setting description"
   },
   "fileRoutingDomainRulesEmpty": {
-    "message": "Belum ada aturan domain. Tambahkan aturan untuk menyimpan unduhan dari situs tertentu ke subfolder sendiri.",
+    "message": "Belum ada aturan domain. Tambahkan aturan untuk menyimpan unduhan dari situs tertentu ke subfolder khusus.",
     "description": "Empty state hint"
   },
   "fileRoutingDomainsLabel": {
@@ -668,15 +668,15 @@
     "description": "Plugin setting description"
   },
   "downloadConfirmBeforeStartDescSetting": {
-    "message": "Jika diaktifkan, unduhan yang dimulai ekstensi ini (menu konteks, URL manual, atau coba lagi) meminta konfirmasi dulu. Unduhan bawaan peramban tidak diinterupsi agar tautan sekali pakai tidak rusak. Default nonaktif.",
+    "message": "Meminta konfirmasi sebelum unduhan dari ekstensi dimulai (menu klik kanan, URL baru, atau coba lagi). Unduhan bawaan browser tidak terganggu.",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmChooseFolderSetting": {
-    "message": "Pilih folder saat memulai unduhan",
+    "message": "Tanyakan lokasi simpan saat memulai",
     "description": "Plugin setting description"
   },
   "downloadConfirmChooseFolderDescSetting": {
-    "message": "Menggunakan dialog Simpan sebagai (saveAs) untuk unduhan ekstensi ini. Terpisah dari opsi Edge/Chrome “Tanyakan apa yang harus dilakukan”, yang tidak bisa dikontrol ekstensi.",
+    "message": "Membuka dialog “Simpan sebagai” (saveAs) untuk unduhan yang dimulai dari ekstensi ini, terpisah dari pengaturan Chrome/Edge.",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmTitle": {
@@ -704,19 +704,43 @@
     "description": "Notification button to cancel a pending download"
   },
   "popupHeaderButtonsSetting": {
-    "message": "Tampilkan tombol bilah alat popup",
+    "message": "Tampilkan tombol pintasan di bilah atas",
     "description": "Tampilkan tombol pintasan di baris atas popup"
   },
   "popupHeaderButtonsDescSetting": {
-    "message": "Saat dinonaktifkan, hanya kotak pencarian dan tombol pengaturan yang tetap terlihat",
+    "message": "Jika dimatikan, hanya kotak pencarian dan tombol Pengaturan yang tetap terlihat.",
     "description": "Deskripsi popupHeaderButtonsSetting"
   },
   "popupHeaderCustomButtonsSetting": {
-    "message": "Sesuaikan tombol yang terlihat",
+    "message": "Sesuaikan tombol & urutan bilah atas",
     "description": "Pilih tombol yang ditampilkan di header popup"
   },
   "popupHeaderCustomButtonsDescSetting": {
-    "message": "Klik untuk menampilkan atau menyembunyikan tombol, seret untuk mengatur ulang urutan (Pencarian dan Pengaturan tetap disematkan)",
+    "message": "Klik untuk menampilkan atau menyembunyikan tombol, seret untuk mengatur urutan (Pencarian dan Pengaturan tetap disematkan).",
     "description": "Deskripsi popupHeaderCustomButtonsSetting"
+  },
+  "contextMenuDownloadLink": {
+    "message": "Unduh tautan",
+    "description": "Context menu item to download a link"
+  },
+  "contextMenuDownloadImage": {
+    "message": "Unduh gambar",
+    "description": "Context menu item to download an image"
+  },
+  "contextMenuDownloadAudio": {
+    "message": "Unduh audio",
+    "description": "Context menu item to download audio"
+  },
+  "contextMenuDownloadVideo": {
+    "message": "Unduh video",
+    "description": "Context menu item to download a video"
+  },
+  "lightThemeTooltip": {
+    "message": "Tema terang",
+    "description": "Tooltip for light mode toolbar icon color"
+  },
+  "darkThemeTooltip": {
+    "message": "Tema gelap",
+    "description": "Tooltip for dark mode toolbar icon color"
   }
 }

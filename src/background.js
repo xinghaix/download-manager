@@ -1519,11 +1519,22 @@ async function createDownloadContextMenus() {
       })
     })
 
+    const contextMenuTitleKeyMap = {
+      link: 'contextMenuDownloadLink',
+      image: 'contextMenuDownloadImage',
+      audio: 'contextMenuDownloadAudio',
+      video: 'contextMenuDownloadVideo'
+    }
+
     await Promise.all(menus.map((menu) => {
+      const titleKey = contextMenuTitleKeyMap[menu]
+      const title = (titleKey && common.i18data[titleKey])
+        ? common.i18data[titleKey]
+        : common.i18data.prefixMenus + common.i18data[menu]
       return new Promise((resolve) => {
         chrome.contextMenus.create({
           id: 'download-' + menu,
-          title: common.i18data.prefixMenus + common.i18data[menu],
+          title,
           contexts: [menu]
         }, () => {
           if (chrome.runtime.lastError) {

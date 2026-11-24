@@ -4,7 +4,7 @@
     "description": "擴充功能名稱"
   },
   "extDesc": {
-    "message": "方便管理下載的檔案",
+    "message": "簡潔高效的瀏覽器下載管理擴充功能",
     "description": "擴充功能描述"
   },
   "settingsTitle": {
@@ -16,23 +16,23 @@
     "description": "關於擴充功能的一些額外的資訊"
   },
   "second": {
-    "message": "剩餘{}秒",
+    "message": "剩餘 {} 秒",
     "description": "剩餘時間顯示"
   },
   "minute": {
-    "message": "剩餘{}分鐘",
+    "message": "剩餘 {} 分鐘",
     "description": "剩餘時間顯示"
   },
   "hour": {
-    "message": "剩餘{}小時",
+    "message": "剩餘 {} 小時",
     "description": "剩餘時間顯示"
   },
   "day": {
-    "message": "剩餘{}天",
+    "message": "剩餘 {} 天",
     "description": "剩餘時間顯示"
   },
   "closeTooltip": {
-    "message": "停止顯示文字提示框",
+    "message": "關閉按鈕懸浮提示",
     "description": "在下載管理頁面上滑鼠移動到按鈕上時，停止顯示文字提示框"
   },
   "newDownload": {
@@ -40,7 +40,7 @@
     "description": "新增下載檔案"
   },
   "newDownloadPlaceholder": {
-    "message": "請輸入下載連結! Enter 鍵下載檔案",
+    "message": "請輸入下載連結，按 Enter 開始下載",
     "description": "請輸入下載連結"
   },
   "clearAll": {
@@ -48,19 +48,19 @@
     "description": "清除按鈕下拉選單"
   },
   "deleteAll": {
-    "message": "從磁碟刪除所有",
+    "message": "從磁碟刪除全部",
     "description": "清除按鈕下拉選單"
   },
   "clearFailed": {
-    "message": "清除下載失敗",
+    "message": "清除下載失敗項目",
     "description": "清除按鈕下拉選單"
   },
   "clearAbsent": {
-    "message": "清除檔案不存在",
+    "message": "清除不存在的檔案",
     "description": "清除按鈕下拉選單"
   },
   "clearCompleted": {
-    "message": "清除下載完成",
+    "message": "清除已完成項目",
     "description": "清除按鈕下拉選單"
   },
   "openDownloadFolder": {
@@ -72,11 +72,11 @@
     "description": "在新標籤頁開啟擴充功能設定"
   },
   "openHome": {
-    "message": "開啟下載頁",
+    "message": "開啟瀏覽器下載頁",
     "description": "在新標籤頁開啟瀏覽器預設下載頁"
   },
   "openFileInFolder": {
-    "message": "開啟資料夾",
+    "message": "在資料夾中顯示",
     "description": "在資料夾中開啟檔案"
   },
   "openFile": {
@@ -88,11 +88,11 @@
     "description": "暫停下載"
   },
   "resume": {
-    "message": "恢復下載",
+    "message": "繼續下載",
     "description": "恢復下載處在暫停中的檔案"
   },
   "batchDownloadActions": {
-    "message": "批量下載操作",
+    "message": "批次操作",
     "description": "彈窗批量操作按鈕提示"
   },
   "pauseAll": {
@@ -116,11 +116,11 @@
     "description": "從磁碟刪除檔案前的再次確認標題"
   },
   "deleteConfirmFileMessage": {
-    "message": "將從磁碟永久刪除“{}”，此操作無法復原。",
+    "message": "確定要從磁碟永久刪除「{}」嗎？此操作無法復原。",
     "description": "從磁碟刪除單個檔案前的再次確認內容"
   },
   "deleteConfirmAllMessage": {
-    "message": "將處理 {} 個非下載中項目：從磁碟刪除存在的檔案，並清除不存在的記錄。此操作無法復原。",
+    "message": "即將處理 {} 個非下載中項目：從磁碟刪除仍存在的檔案，並清除已遺失的紀錄。此操作無法復原。",
     "description": "從磁碟刪除全部檔案前的再次確認內容"
   },
   "deleteConfirmButton": {
@@ -136,19 +136,19 @@
     "description": "此檔案可能會損害您的電腦"
   },
   "dangerActionRequiredDescription": {
-    "message": "Chrome 需要確認後才能儲存此檔案",
+    "message": "需要您的確認才能儲存此檔案",
     "description": "Dangerous download needs user confirmation"
   },
   "dangerScanningDescription": {
-    "message": "正在進行安全檢查，請稍候",
+    "message": "正在進行安全掃描，請稍候…",
     "description": "Dangerous download scanning message"
   },
   "dangerBlockedDescription": {
-    "message": "Chrome 已封鎖此下載",
+    "message": "基於安全考量，此下載已被封鎖",
     "description": "Dangerous download blocked message"
   },
   "dangerOpenAction": {
-    "message": "處理",
+    "message": "檢視詳情",
     "description": "Open dangerous download review"
   },
   "dangerDiscard": {
@@ -172,7 +172,7 @@
     "description": "已經複製到剪貼簿"
   },
   "prefixMenus": {
-    "message": "下載該",
+    "message": "下載此",
     "description": "右鍵下載選單淺前綴顯示"
   },
   "link": {
@@ -192,7 +192,7 @@
     "description": "右鍵下載選單顯示"
   },
   "deleteNotification": {
-    "message": "刪除通知",
+    "message": "關閉通知",
     "description": "刪除通知按鈕"
   },
   "downloadCompletedNotification": {
@@ -204,7 +204,7 @@
     "description": "下載通知"
   },
   "downloadWarnNotification": {
-    "message": "下載警告",
+    "message": "下載安全警告",
     "description": "下載通知"
   },
   "downloadInProgress": {
@@ -212,7 +212,7 @@
     "description": "下載進行中狀態"
   },
   "openFolderNotification": {
-    "message": "開啟資料夾",
+    "message": "開啟所在資料夾",
     "description": "下載完成通知開啟資料夾按鈕"
   },
   "downloadSetting": {
@@ -220,27 +220,27 @@
     "description": "擴充功能設定說明"
   },
   "leftClickFileSetting": {
-    "message": "滑鼠左鍵點選檔名時開啟檔案",
+    "message": "左鍵點擊檔名時開啟檔案",
     "description": "擴充功能設定說明"
   },
   "rightClickFileSetting": {
-    "message": "滑鼠右鍵點選檔名時複製到剪貼簿",
+    "message": "右鍵點擊檔名時複製到剪貼簿",
     "description": "擴充功能設定說明"
   },
   "leftClickUrlSetting": {
-    "message": "滑鼠左鍵點選下載連結時可在新分頁開啟",
+    "message": "左鍵點擊下載連結時在新分頁開啟",
     "description": "擴充功能設定說明"
   },
   "rightClickUrlSetting": {
-    "message": "滑鼠右鍵點選下載連結時複製到剪貼簿",
+    "message": "右鍵點擊下載連結時複製到剪貼簿",
     "description": "擴充功能設定說明"
   },
   "showTooltipSetting": {
-    "message": "滑鼠移動到按鈕上時顯示提示資訊",
+    "message": "滑鼠懸停按鈕時顯示提示文字",
     "description": "擴充功能設定說明"
   },
   "enableAnimation": {
-    "message": "開啟檔案移入移出動畫",
+    "message": "開啟清單項目過場動畫",
     "description": "擴充功能設定說明"
   },
   "showDownloadProgressSetting": {
@@ -248,15 +248,15 @@
     "description": "插件設定說明"
   },
   "showDownloadProgressDescSetting": {
-    "message": "在彈窗中顯示下載進度、速度和剩餘時間。開啟後僅輪詢目前可視區域內正在下載的檔案；關閉後不再輪詢計算進度，可降低大量下載時的資源占用。",
+    "message": "在彈窗中顯示下載進度、即時速度與剩餘時間。開啟時僅輪詢可視區域內進行中的下載；關閉後可降低大量同時下載時的資源佔用。",
     "description": "插件設定細節說明"
   },
   "deleteFileConfirmSetting": {
-    "message": "刪除檔案前確認",
+    "message": "從磁碟刪除檔案前確認",
     "description": "插件設置說明"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "從磁碟刪除單個檔案前彈出確認對話框。關閉後刪除單個檔案將立即執行且無法復原（\"從磁碟刪除所有\"仍會二次確認）。",
+    "message": "從磁碟刪除單一檔案前顯示確認視窗。關閉後將立即刪除且無法復原（「從磁碟刪除全部」仍會再次確認）。",
     "description": "插件設置細節說明"
   },
   "contextMenus": {
@@ -264,31 +264,31 @@
     "description": "擴充功能設定說明"
   },
   "downloadContextMenusSetting": {
-    "message": "下載選單",
+    "message": "啟用網頁右鍵下載選單",
     "description": "擴充功能設定說明"
   },
   "downloadContextMenusDescSetting": {
-    "message": "在網頁右鍵選單中顯示下載入口。可進一步選擇啟用的內容類型。",
+    "message": "在網頁右鍵選單加入下載捷徑，並可依需求選擇要顯示的內容類型。",
     "description": "插件設置細節說明"
   },
   "fileRoutingSetting": {
-    "message": "檔案分類下載",
+    "message": "檔案自動分類",
     "description": "擴充功能設定說明"
   },
   "fileRoutingEnableSetting": {
-    "message": "啟用檔案分類下載",
+    "message": "啟用檔案自動分類儲存",
     "description": "擴充功能設定說明"
   },
   "fileRoutingDescription": {
-    "message": "根據檔案副檔名或來源網域，將下載檔案儲存到預設下載目錄下的指定子資料夾。此功能預設關閉。網域規則預設優先於副檔名規則。",
+    "message": "依據來源網域或副檔名，自動將下載儲存至預設下載目錄下的指定子資料夾（預設關閉）。預設優先套用網域規則。",
     "description": "插件設置細節說明"
   },
   "fileRoutingRulesSetting": {
-    "message": "分類規則",
+    "message": "副檔名分類規則",
     "description": "擴充功能設定說明"
   },
   "fileRoutingFolderLabel": {
-    "message": "資料夾",
+    "message": "子資料夾",
     "description": "擴充功能設定說明"
   },
   "fileRoutingExtensionsLabel": {
@@ -300,7 +300,7 @@
     "description": "擴充功能設定說明"
   },
   "fileRoutingRuleEnabledLabel": {
-    "message": "啟用或停用規則",
+    "message": "啟用或停用此規則",
     "description": "檔案分類規則啟停控制項的無障礙標籤"
   },
   "fileRoutingFolderPlaceholder": {
@@ -316,7 +316,7 @@
     "description": "擴充功能設定說明"
   },
   "fileRoutingResetRules": {
-    "message": "恢復預設",
+    "message": "重設預設值",
     "description": "擴充功能設定說明"
   },
   "fileRoutingDeleteRule": {
@@ -324,7 +324,7 @@
     "description": "檔案分類規則刪除按鈕的無障礙標籤"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "確定要刪除此分類規則？",
+    "message": "確認刪除此分類規則嗎？",
     "description": "刪除檔案分類規則前的二次確認內容"
   },
   "notificationSetting": {
@@ -332,7 +332,7 @@
     "description": "擴充功能設定說明"
   },
   "downloadNotificationSetting": {
-    "message": "下載通知",
+    "message": "桌面通知",
     "description": "擴充功能設定說明"
   },
   "downloadNotificationSetting1": {
@@ -348,7 +348,7 @@
     "description": "擴充功能設定說明"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "下載通知保留時間（秒）",
+    "message": "通知顯示時間（秒）",
     "description": "擴充功能設定說明"
   },
   "downloadNotificationMaxCountSetting": {
@@ -356,35 +356,35 @@
     "description": "插件設置說明"
   },
   "downloadNotificationMaxCountDescSetting": {
-    "message": "超過上限時清除最早的通知，保留最新的。預設 3；設為 0 表示不限制。",
+    "message": "超過上限時自動清除最早的通知並保留最新通知。預設為 3；設為 0 表示不限制。",
     "description": "插件設置細節說明"
   },
   "downloadToneSetting": {
-    "message": "下載提示音",
+    "message": "提示音效",
     "description": "擴充功能設定說明"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "下載通知保持可見",
+    "message": "保持通知常駐顯示",
     "description": "擴充功能設定說明"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "在使用者啟用或關閉通知之前，通知在螢幕上保持可見。Chrome 50 版之後可用",
+    "message": "在您點擊或手動關閉前，通知將持續留在畫面上（支援 Chrome 50 及以上版本）。",
     "description": "擴充功能設定說明"
   },
   "shortcutSetting": {
-    "message": "快捷鍵",
+    "message": "快速鍵",
     "description": "擴充功能設定說明"
   },
   "openPopupSetting": {
-    "message": "啟用此擴充功能",
+    "message": "開啟下載面板",
     "description": "擴充功能設定說明"
   },
   "openPopupDetailsSetting": {
-    "message": "請點選",
+    "message": "前往瀏覽器",
     "description": "擴充功能設定細節說明"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "快捷鍵設定",
+    "message": "擴充功能快速鍵設定",
     "description": "擴充功能設定說明"
   },
   "syncSetting": {
@@ -396,23 +396,23 @@
     "description": "擴充功能設定說明"
   },
   "pluginSyncDetailsSetting": {
-    "message": "已登入 Google 帳號時，可在不同的基於 Google 核心的瀏覽器之間同步擴充功能設定",
+    "message": "登入瀏覽器帳號後，即可在不同 Chromium 核心瀏覽器之間自動同步您的擴充功能設定。",
     "description": "擴充功能設定細節說明"
   },
   "notSyncSetting": {
-    "message": "此設定不會被同步",
+    "message": "此快速鍵設定由瀏覽器本機管理，不會進行雲端同步",
     "description": "擴充功能設定說明"
   },
   "themeTitle": {
-    "message": "主題",
+    "message": "外觀與主題",
     "description": "主題標籤頁說明"
   },
   "themeAdaptation": {
-    "message": "主題自適應",
+    "message": "外觀模式",
     "description": "主題標籤頁說明"
   },
   "themeAdaptationDescription": {
-    "message": "根據系統的顏色模式自適應顯示亮色和暗黑主題，包含圖示和下載面板。",
+    "message": "依系統明暗模式自動切換淺色與深色介面，涵蓋工具列圖示、下載彈窗與設定頁。",
     "description": "主題標籤頁說明"
   },
   "themeAdaptationOption1": {
@@ -420,67 +420,67 @@
     "description": "主題標籤頁說明"
   },
   "themeAdaptationOption2": {
-    "message": "亮色",
+    "message": "淺色",
     "description": "主題標籤頁說明"
   },
   "themeAdaptationOption3": {
-    "message": "暗黑",
+    "message": "深色",
     "description": "主題標籤頁說明"
   },
   "iconTitle": {
-    "message": "圖示",
+    "message": "工具列圖示",
     "description": "主題標籤頁說明"
   },
   "iconColorSetting": {
-    "message": "自定義圖示顏色",
+    "message": "預設圖示顏色",
     "description": "主題標籤頁說明"
   },
   "iconDownloadingColorSetting": {
-    "message": "自定義圖示下載動畫顏色",
+    "message": "下載中圖示顏色",
     "description": "主題標籤頁說明"
   },
   "downloadPanelTitle": {
-    "message": "下載面板",
+    "message": "下載彈窗",
     "description": "主題標籤頁說明"
   },
   "pageSize": {
-    "message": "頁面大小（寬度、高度）",
+    "message": "彈窗尺寸（寬 × 高）",
     "description": "主題標籤頁說明"
   },
   "pageSizeDescription": {
-    "message": "控制下載面板的寬高",
+    "message": "調整下載彈窗寬度（380–800 px）與高度（300–600 px）",
     "description": "主題標籤頁說明"
   },
   "themeSystemTitle": {
-    "message": "主題設定 & 預覽",
+    "message": "主題風格與即時預覽",
     "description": "主題標籤頁說明"
   },
   "themeSystemDescription": {
-    "message": "選擇主題系列後立即生效，下方預覽區展示 Popup 的實際介面效果。",
+    "message": "切換主題預設後立即生效，下方預覽區與實際彈窗介面保持同步。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesLabel": {
-    "message": "主題清單",
+    "message": "主題預設",
     "description": "主題標籤頁說明"
   },
   "themePreviewModeAriaLabel": {
-    "message": "預覽模式",
+    "message": "預覽明暗模式",
     "description": "主題標籤頁說明"
   },
   "themeSeriesTerminalTitle": {
-    "message": "終端",
+    "message": "終端極客",
     "description": "主題標籤頁說明"
   },
   "themeSeriesTerminalDescription": {
-    "message": "終端極客風。高對比、偏工具化，適合想要“工程感”的介面。",
+    "message": "高對比極客風格，俐落精準，適合偏好工程質感的介面。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesTerminalDarkLabel": {
-    "message": "終端暗色",
+    "message": "終端深色",
     "description": "主題標籤頁說明"
   },
   "themeSeriesTerminalLightLabel": {
-    "message": "終端亮色",
+    "message": "終端淺色",
     "description": "主題標籤頁說明"
   },
   "themeSeriesTerminalDarkBadge": {
@@ -492,11 +492,11 @@
     "description": "主題標籤頁說明"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "霓虹感、黑底、識別性強。",
+    "message": "深邃暗底搭配鮮明霓虹點綴，辨識度極高。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "保留極客風，但更明亮剋制。",
+    "message": "保留極客風格同時更加明亮克制。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesGithubTitle": {
@@ -504,15 +504,15 @@
     "description": "主題標籤頁說明"
   },
   "themeSeriesGithubDescription": {
-    "message": "開發者經典風。資訊密度穩、專業感強，適合長期使用。",
+    "message": "開發者熟悉的經典版面比例與配色，適合日常高效率使用。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesGithubDarkLabel": {
-    "message": "GitHub 暗色",
+    "message": "GitHub 深色",
     "description": "主題標籤頁說明"
   },
   "themeSeriesGithubLightLabel": {
-    "message": "GitHub 亮色",
+    "message": "GitHub 淺色",
     "description": "主題標籤頁說明"
   },
   "themeSeriesGithubBadge": {
@@ -520,11 +520,11 @@
     "description": "主題標籤頁說明"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "沉穩、熟悉、偏生產力。",
+    "message": "沉穩內斂、層次分明，專注生產力。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesGithubLightNote": {
-    "message": "清爽、規整、接近平台化產品。",
+    "message": "乾淨俐落、結構清楚，貼近開發平台風格。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesClaudeTitle": {
@@ -532,43 +532,43 @@
     "description": "主題標籤頁說明"
   },
   "themeSeriesClaudeDescription": {
-    "message": "溫暖優雅風。柔和米色系，適合更輕、更有呼吸感的視覺。",
+    "message": "溫潤典雅的紙感米棕調性，視覺柔和舒適、更有呼吸感。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesClaudeDarkLabel": {
-    "message": "Claude 暗色",
+    "message": "Claude 深色",
     "description": "主題標籤頁說明"
   },
   "themeSeriesClaudeLightLabel": {
-    "message": "Claude 亮色",
+    "message": "Claude 淺色",
     "description": "主題標籤頁說明"
   },
   "themeSeriesClaudeBadge": {
-    "message": "溫暖",
+    "message": "暖調",
     "description": "主題標籤頁說明"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "深暖棕色調，更有情緒表達。",
+    "message": "深暖咖棕基調，溫潤沉靜。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "柔和紙感，觀感更輕鬆。",
+    "message": "柔和溫潤的紙張質感，閱讀更輕鬆。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesBasicTitle": {
-    "message": "基礎",
+    "message": "基礎簡約",
     "description": "主題標籤頁說明"
   },
   "themeSeriesBasicDescription": {
-    "message": "簡潔通用風。弱風格化，適合大眾預設主題。",
+    "message": "簡潔通用的預設風格，自然融入各式瀏覽器外觀。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesBasicDarkLabel": {
-    "message": "基礎暗色",
+    "message": "基礎深色",
     "description": "主題標籤頁說明"
   },
   "themeSeriesBasicLightLabel": {
-    "message": "基礎亮色",
+    "message": "基礎淺色",
     "description": "主題標籤頁說明"
   },
   "themeSeriesBasicBadge": {
@@ -576,15 +576,15 @@
     "description": "主題標籤頁說明"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "低調、通用、適合夜間。",
+    "message": "低調柔和，夜間瀏覽更舒適。",
     "description": "主題標籤頁說明"
   },
   "themeSeriesBasicLightNote": {
-    "message": "中性、乾淨、預設感強。",
+    "message": "中性清爽，貼近瀏覽器原生風格。",
     "description": "主題標籤頁說明"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "自定義主題，敬請期待！",
+    "message": "自訂主題功能敬請期待！",
     "description": "主題標籤頁說明"
   },
   "el_colorpicker_confirm": {
@@ -592,7 +592,7 @@
     "description": "主題標籤頁說明 - Element-UI 顏色選擇器"
   },
   "el_colorpicker_clear": {
-    "message": "清空",
+    "message": "清除",
     "description": "主題標籤頁說明 - Element-UI 顏色選擇器"
   },
   "el_popconfirm_confirmButtonText": {
@@ -604,27 +604,27 @@
     "description": "清空清單 - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "覺得不錯，去",
+    "message": "覺得好用的話，歡迎前往",
     "description": "關於標籤頁說明"
   },
   "pluginShopAbout": {
-    "message": "應用程式商店",
+    "message": "擴充功能商店",
     "description": "關於標籤頁說明"
   },
   "starAbout2": {
-    "message": "評個分吧",
+    "message": "評分支持",
     "description": "關於標籤頁說明"
   },
   "downloadContextMenuContextsSetting": {
-    "message": "啟用的右鍵選單內容類型",
+    "message": "啟用的右鍵選單類型",
     "description": "插件設置說明"
   },
   "downloadContextMenuContextsDescSetting": {
-    "message": "可依需求只保留圖片等內容類型。例如僅勾選「圖片」時，右鍵圖片才會顯示下載選單。",
+    "message": "可依需求只保留常用類型。例如僅勾選「圖片」時，只在對圖片按右鍵時顯示下載選項。",
     "description": "插件設置細節說明"
   },
   "cancelAllConfirmMessage": {
-    "message": "確定取消全部 {} 個進行中的下載嗎？未完成的下載進度將會遺失。",
+    "message": "確定要取消全部 {} 個進行中的下載嗎？尚未完成的進度將會遺失。",
     "description": "確認取消全部進行中下載的提示語"
   },
   "fileRoutingPrecedenceSetting": {
@@ -648,11 +648,11 @@
     "description": "插件設置說明"
   },
   "fileRoutingDomainRulesEmpty": {
-    "message": "尚無網域規則。新增後可將指定網站的下載儲存到獨立子資料夾。",
+    "message": "尚無網域規則。新增規則後，可將來自特定網站的下載自動分類至獨立子資料夾。",
     "description": "空狀態提示"
   },
   "fileRoutingDomainsLabel": {
-    "message": "網域",
+    "message": "來源網域",
     "description": "表格列標題"
   },
   "fileRoutingDomainsPlaceholder": {
@@ -664,11 +664,11 @@
     "description": "輸入提示"
   },
   "downloadConfirmBeforeStartSetting": {
-    "message": "下載前確認",
+    "message": "開始下載前確認",
     "description": "外掛設定說明"
   },
   "downloadConfirmBeforeStartDescSetting": {
-    "message": "啟用後，由此外掛發起的下載（右鍵選單、手動輸入連結、重新下載）會先要求確認。瀏覽器原生觸發的下載不會中斷，以免破壞一次性連結。預設關閉。",
+    "message": "開啟後，由本擴充功能發起的下載（右鍵選單、手動新增、重新下載）會先詢問確認；瀏覽器直接觸發的下載不受影響，避免破壞一次性連結。預設關閉。",
     "description": "外掛設定細節說明"
   },
   "downloadConfirmChooseFolderSetting": {
@@ -676,7 +676,7 @@
     "description": "外掛設定說明"
   },
   "downloadConfirmChooseFolderDescSetting": {
-    "message": "對此外掛發起的下載使用瀏覽器「另存新檔」對話框（saveAs）。這與 Edge/Chrome 的「每次下載都詢問我該做些什麼」無關，外掛無法綁定該系統選項。",
+    "message": "對本擴充功能發起的下載開啟瀏覽器「另存新檔」對話方塊（saveAs）。此選項獨立於 Chrome/Edge 的「每次下載前詢問要如何處理」系統設定。",
     "description": "外掛設定細節說明"
   },
   "downloadConfirmTitle": {
@@ -684,7 +684,7 @@
     "description": "開始下載前的二次確認標題"
   },
   "downloadConfirmMessage": {
-    "message": "是否開始下載「{}」？",
+    "message": "確定要開始下載「{}」嗎？",
     "description": "開始下載前的二次確認內容；{} 為連結"
   },
   "downloadConfirmButton": {
@@ -704,19 +704,43 @@
     "description": "取消待下載通知按鈕"
   },
   "popupHeaderButtonsSetting": {
-    "message": "顯示彈窗頂部操作按鈕",
+    "message": "顯示彈窗頂部快捷按鈕",
     "description": "是否在彈窗首列顯示其餘快捷操作按鈕"
   },
   "popupHeaderButtonsDescSetting": {
-    "message": "關閉後僅保留搜尋框和設定按鈕，隱藏其餘快捷操作按鈕",
+    "message": "關閉後僅保留搜尋欄與設定按鈕，隱藏其餘快捷按鈕。",
     "description": "關閉後僅保留搜尋框和設定按鈕說明"
   },
   "popupHeaderCustomButtonsSetting": {
-    "message": "自訂顯示的頂部按鈕",
+    "message": "自訂頂部按鈕與順序",
     "description": "自訂彈窗首列顯示的按鈕"
   },
   "popupHeaderCustomButtonsDescSetting": {
-    "message": "點擊可單獨控制顯示與隱藏，拖曳可調整順序（搜尋框與設定按鈕固定顯示）",
+    "message": "點擊可單獨切換顯示與隱藏，拖曳可調整排列順序（搜尋欄與設定按鈕固定顯示）。",
     "description": "自訂彈窗首列按鈕說明"
+  },
+  "contextMenuDownloadLink": {
+    "message": "下載連結",
+    "description": "Context menu item to download a link"
+  },
+  "contextMenuDownloadImage": {
+    "message": "下載圖片",
+    "description": "Context menu item to download an image"
+  },
+  "contextMenuDownloadAudio": {
+    "message": "下載音訊",
+    "description": "Context menu item to download audio"
+  },
+  "contextMenuDownloadVideo": {
+    "message": "下載影片",
+    "description": "Context menu item to download a video"
+  },
+  "lightThemeTooltip": {
+    "message": "淺色主題",
+    "description": "Tooltip for light mode toolbar icon color"
+  },
+  "darkThemeTooltip": {
+    "message": "深色主題",
+    "description": "Tooltip for dark mode toolbar icon color"
   }
 }

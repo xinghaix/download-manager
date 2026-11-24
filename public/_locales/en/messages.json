@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "extDesc": {
-    "message": "Easy to manage downloaded files",
+    "message": "Clean and fast browser download manager",
     "description": "Extension description"
   },
   "settingsTitle": {
@@ -16,67 +16,67 @@
     "description": "Some information about the plugin"
   },
   "second": {
-    "message": "{} seconds left",
+    "message": "{}s left",
     "description": "remaining time display"
   },
   "minute": {
-    "message": "{} minutes left",
+    "message": "{}m left",
     "description": "remaining time display"
   },
   "hour": {
-    "message": "{} hours left",
+    "message": "{}h left",
     "description": "remaining time display"
   },
   "day": {
-    "message": "{} days left",
+    "message": "{}d left",
     "description": "remaining time display"
   },
   "closeTooltip": {
-    "message": "stop showing text prompt box",
+    "message": "Hide button tooltips",
     "description": "on the download management page, when the mouse is moved over the button, the text prompt box stops showing"
   },
   "newDownload": {
-    "message": "new download",
+    "message": "New download",
     "description": "new download"
   },
   "newDownloadPlaceholder": {
-    "message": "Please enter the download link! Press Enter to download file",
+    "message": "Paste a download URL and press Enter",
     "description": "Please enter the download link"
   },
   "clearAll": {
-    "message": "clear list",
+    "message": "Clear list",
     "description": "Clear button dropdown menu"
   },
   "deleteAll": {
-    "message": "delete all from disk",
+    "message": "Delete all from disk",
     "description": "Clear button dropdown menu"
   },
   "clearFailed": {
-    "message": "clear failed tasks",
+    "message": "Clear failed",
     "description": "Clear button dropdown menu"
   },
   "clearAbsent": {
-    "message": "clear absent tasks",
+    "message": "Clear missing files",
     "description": "Clear button dropdown menu"
   },
   "clearCompleted": {
-    "message": "clear completed tasks",
+    "message": "Clear completed",
     "description": "Clear button dropdown menu"
   },
   "openDownloadFolder": {
-    "message": "open download folder",
+    "message": "Open downloads folder",
     "description": "open the download folder in Explorer"
   },
   "openSettings": {
-    "message": "plugin settings",
+    "message": "Extension settings",
     "description": "open plugin settings in a new tab"
   },
   "openHome": {
-    "message": "Open downloads page",
+    "message": "Open browser Downloads page",
     "description": "Open the browser's default download page in a new tab"
   },
   "openFileInFolder": {
-    "message": "open folder",
+    "message": "Show in folder",
     "description": "open file in folder"
   },
   "openFile": {
@@ -84,15 +84,15 @@
     "description": "open file"
   },
   "pause": {
-    "message": "pause",
+    "message": "Pause",
     "description": "pause download"
   },
   "resume": {
-    "message": "resume download",
+    "message": "Resume",
     "description": "resume downloading a suspended file"
   },
   "batchDownloadActions": {
-    "message": "Batch download actions",
+    "message": "Batch actions",
     "description": "Popup batch action button tooltip"
   },
   "pauseAll": {
@@ -108,19 +108,19 @@
     "description": "Cancel all in-progress downloads"
   },
   "delete": {
-    "message": "delete from disk",
+    "message": "Delete from disk",
     "description": "delete file from disk"
   },
   "deleteConfirmTitle": {
-    "message": "Confirm disk deletion",
+    "message": "Delete from disk?",
     "description": "Confirmation title before deleting files from disk"
   },
   "deleteConfirmFileMessage": {
-    "message": "Permanently delete \"{}\" from disk. This cannot be undone.",
+    "message": "Permanently delete “{}” from disk? This cannot be undone.",
     "description": "Confirmation message before deleting one file from disk"
   },
   "deleteConfirmAllMessage": {
-    "message": "Process {} inactive items: delete existing files from disk and clear absent records. This cannot be undone.",
+    "message": "Process {} inactive items: delete existing files from disk and clear missing entries? This cannot be undone.",
     "description": "Confirmation message before deleting all files from disk"
   },
   "deleteConfirmButton": {
@@ -128,23 +128,23 @@
     "description": "Confirmation button before deleting files from disk"
   },
   "retry": {
-    "message": "retry",
+    "message": "Retry download",
     "description": "download again"
   },
   "dangerDescription": {
-    "message": "The file may harm your pc",
+    "message": "This file may harm your computer",
     "description": "The file may harm your computer"
   },
   "dangerActionRequiredDescription": {
-    "message": "Chrome needs your confirmation before saving this file",
+    "message": "Confirmation required before saving this file",
     "description": "Dangerous download needs user confirmation"
   },
   "dangerScanningDescription": {
-    "message": "Checking this download for safety",
+    "message": "Checking download safety…",
     "description": "Dangerous download scanning message"
   },
   "dangerBlockedDescription": {
-    "message": "Chrome blocked this download",
+    "message": "This download was blocked for security",
     "description": "Dangerous download blocked message"
   },
   "dangerOpenAction": {
@@ -160,43 +160,43 @@
     "description": "Cancel download of dangerous files"
   },
   "reserve": {
-    "message": "keep",
+    "message": "Keep",
     "description": "Keep dangerous files"
   },
   "erase": {
-    "message": "remove from list",
+    "message": "Remove from list",
     "description": "cancel download or clear file from list"
   },
   "copied": {
-    "message": "copied",
+    "message": "Copied",
     "description": "copied to clipboard"
   },
   "prefixMenus": {
-    "message": "Download the ",
+    "message": "Download ",
     "description": "context download prefix menus display"
   },
   "link": {
-    "message": "link",
+    "message": "Link",
     "description": "context download menus display"
   },
   "image": {
-    "message": "image",
+    "message": "Image",
     "description": "context download menus display"
   },
   "audio": {
-    "message": "audio",
+    "message": "Audio",
     "description": "context download menus display"
   },
   "video": {
-    "message": "video",
+    "message": "Video",
     "description": "context download menus display"
   },
   "deleteNotification": {
-    "message": "Delete Notification",
+    "message": "Dismiss",
     "description": "Delete notification button"
   },
   "downloadCompletedNotification": {
-    "message": "Download Completed",
+    "message": "Download complete",
     "description": "Download completion notification button"
   },
   "downloadStartedNotification": {
@@ -212,35 +212,35 @@
     "description": "Download in-progress state"
   },
   "openFolderNotification": {
-    "message": "Open folder",
+    "message": "Show in folder",
     "description": "Download completion notification open folder button"
   },
   "downloadSetting": {
-    "message": "Download",
+    "message": "Downloads",
     "description": "plugin setting instructions"
   },
   "leftClickFileSetting": {
-    "message": "Open the file when clicking the file name with the left mouse button",
+    "message": "Left-click file name to open file",
     "description": "plugin setting instructions"
   },
   "rightClickFileSetting": {
-    "message": "Copy to clipboard when right click on file name",
+    "message": "Right-click file name to copy to clipboard",
     "description": "plugin setting instructions"
   },
   "leftClickUrlSetting": {
-    "message": "Open the link when clicking the download link",
+    "message": "Left-click URL to open in a new tab",
     "description": "plugin setting instructions"
   },
   "rightClickUrlSetting": {
-    "message": "Copy to clipboard when right click on download link",
+    "message": "Right-click URL to copy to clipboard",
     "description": "plugin setting instructions"
   },
   "showTooltipSetting": {
-    "message": "Display a prompt message when the mouse moves over the button",
+    "message": "Show button tooltips on hover",
     "description": "plugin setting instructions"
   },
   "enableAnimation": {
-    "message": "Enable file moving in and out animation",
+    "message": "Enable list item animations",
     "description": "plugin setting instructions"
   },
   "showDownloadProgressSetting": {
@@ -248,47 +248,47 @@
     "description": "Plugin setting description"
   },
   "showDownloadProgressDescSetting": {
-    "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
+    "message": "Show progress, speed, and remaining time in the popup. Only active downloads visible in the viewport are polled; turn this off to reduce CPU usage during heavy downloads.",
     "description": "Plugin setting detail description"
   },
   "deleteFileConfirmSetting": {
-    "message": "Confirm before deleting files",
+    "message": "Confirm before deleting files from disk",
     "description": "Plugin setting description"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Show a confirmation dialog before deleting a file from disk. When disabled, single files are deleted immediately and cannot be undone (Delete all still asks for confirmation).",
+    "message": "Show a confirmation dialog before deleting a single file from disk. When disabled, single files are deleted immediately without undo (“Delete all from disk” always asks for confirmation).",
     "description": "Plugin setting detail description"
   },
   "contextMenus": {
-    "message": "Context menu",
+    "message": "Context menus",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusSetting": {
-    "message": "Download menu",
+    "message": "Show context menu items",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Show download items in the page context menu. You can further choose which contexts are enabled.",
+    "message": "Add download shortcuts to the browser page context menu and choose which item types to include.",
     "description": "Plugin setting detail description"
   },
   "fileRoutingSetting": {
-    "message": "File routing",
+    "message": "Auto folder routing",
     "description": "Plugin settings description"
   },
   "fileRoutingEnableSetting": {
-    "message": "Enable file routing",
+    "message": "Enable auto folder routing",
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Save downloads into subfolders under the default Downloads folder based on file extension or source domain. Disabled by default. Domain rules take precedence over extension rules by default.",
+    "message": "Automatically save downloads into subfolders under your default Downloads directory based on file extension or source domain (off by default). Domain rules take priority over extension rules unless changed.",
     "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
-    "message": "Routing rules",
+    "message": "Extension rules",
     "description": "Plugin settings description"
   },
   "fileRoutingFolderLabel": {
-    "message": "Folder",
+    "message": "Subfolder",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsLabel": {
@@ -300,15 +300,15 @@
     "description": "Plugin settings description"
   },
   "fileRoutingRuleEnabledLabel": {
-    "message": "Enable or disable rule",
+    "message": "Toggle rule",
     "description": "Accessible label for the file routing rule toggle"
   },
   "fileRoutingFolderPlaceholder": {
-    "message": "Example: Images or Documents/PDF",
+    "message": "e.g. Images or Documents/PDF",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsPlaceholder": {
-    "message": "Example: jpg, png, webp",
+    "message": "e.g. jpg, png, webp",
     "description": "Plugin settings description"
   },
   "fileRoutingAddRule": {
@@ -316,7 +316,7 @@
     "description": "Plugin settings description"
   },
   "fileRoutingResetRules": {
-    "message": "Restore defaults",
+    "message": "Reset defaults",
     "description": "Plugin settings description"
   },
   "fileRoutingDeleteRule": {
@@ -328,11 +328,11 @@
     "description": "Second confirmation before deleting a file routing rule"
   },
   "notificationSetting": {
-    "message": "Notification",
+    "message": "Notifications",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting": {
-    "message": "Download notification",
+    "message": "Desktop notifications",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting1": {
@@ -344,47 +344,47 @@
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting3": {
-    "message": "Warned",
+    "message": "Warning",
     "description": "plugin setting instructions"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "Download notification retention time (second)",
+    "message": "Notification duration (seconds)",
     "description": "plugin setting instructions"
   },
   "downloadNotificationMaxCountSetting": {
-    "message": "Max stacked notifications",
+    "message": "Max visible notifications",
     "description": "Plugin setting description"
   },
   "downloadNotificationMaxCountDescSetting": {
-    "message": "When the limit is exceeded, clear the oldest notifications and keep the newest. Default is 3; set to 0 for unlimited.",
+    "message": "Dismisses oldest notifications first when the limit is reached. Default: 3; set to 0 for unlimited.",
     "description": "Plugin setting detail description"
   },
   "downloadToneSetting": {
-    "message": "Download tone",
+    "message": "Notification sounds",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "Download notifications remain visible",
+    "message": "Keep notifications visible",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "Indicates that the notification should remain visible on screen until the user activates or dismisses the notification. Since Chrome 50.",
+    "message": "Keep notifications on screen until clicked or dismissed. Supported on Chrome 50+.",
     "description": "plugin setting instructions"
   },
   "shortcutSetting": {
-    "message": "Shortcut",
+    "message": "Keyboard shortcuts",
     "description": "plugin setting instructions"
   },
   "openPopupSetting": {
-    "message": "Activate the extension",
+    "message": "Open download panel",
     "description": "plugin setting instructions"
   },
   "openPopupDetailsSetting": {
-    "message": "Please click",
+    "message": "Manage shortcuts in browser",
     "description": "plugin setting details instructions"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "Shortcut Settings",
+    "message": "Extension shortcuts",
     "description": "plugin setting instructions"
   },
   "syncSetting": {
@@ -392,51 +392,51 @@
     "description": "plugin setting instructions"
   },
   "pluginSyncSetting": {
-    "message": "Sync plugin settings",
+    "message": "Sync extension settings",
     "description": "plugin setting instructions"
   },
   "pluginSyncDetailsSetting": {
-    "message": "When you have logged in to your Google account, you can synchronize plugin settings between different Google Kernel-based browsers",
+    "message": "Automatically sync extension settings across Chromium browsers when signed into your browser account.",
     "description": "plugin setting details instructions"
   },
   "notSyncSetting": {
-    "message": "This setting will not be synchronized",
+    "message": "This setting is stored locally and not synced",
     "description": "plugin setting instructions"
   },
   "themeTitle": {
-    "message": "Theme",
+    "message": "Appearance",
     "description": "Theme Tab Description"
   },
   "themeAdaptation": {
-    "message": "Theme adaptation",
+    "message": "Color mode",
     "description": "Theme Tab Description"
   },
   "themeAdaptationDescription": {
-    "message": "According to the color mode of the system, adaptively display bright and dark themes, including icons and download panel.",
+    "message": "Automatically match Light or Dark mode across the toolbar icon, download panel, and settings page based on your system appearance.",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption1": {
-    "message": "auto",
+    "message": "Auto",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption2": {
-    "message": "light",
+    "message": "Light",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption3": {
-    "message": "dark",
+    "message": "Dark",
     "description": "Theme Tab Description"
   },
   "iconTitle": {
-    "message": "Icon",
+    "message": "Toolbar icon",
     "description": "Theme Tab Description"
   },
   "iconColorSetting": {
-    "message": "Custom icon color",
+    "message": "Idle icon color",
     "description": "Theme Tab Description"
   },
   "iconDownloadingColorSetting": {
-    "message": "Custom icon download animation color",
+    "message": "Active download icon color",
     "description": "Theme Tab Description"
   },
   "downloadPanelTitle": {
@@ -444,27 +444,27 @@
     "description": "Theme Tab Description"
   },
   "pageSize": {
-    "message": "Page size (width, height)",
+    "message": "Panel dimensions (width × height)",
     "description": "Theme Tab Description"
   },
   "pageSizeDescription": {
-    "message": "Control the popup panel width and height.",
+    "message": "Set the popup panel width (380–800 px) and height (300–600 px).",
     "description": "Theme Tab Description"
   },
   "themeSystemTitle": {
-    "message": "Theme Setup & Preview",
+    "message": "Theme presets & live preview",
     "description": "Theme Tab Description"
   },
   "themeSystemDescription": {
-    "message": "Changes take effect immediately after selecting a theme series. The preview below shows the actual Popup UI.",
+    "message": "Changes apply immediately. The preview below matches the actual popup panel.",
     "description": "Theme Tab Description"
   },
   "themeSeriesLabel": {
-    "message": "Theme series",
+    "message": "Theme preset",
     "description": "Theme Tab Description"
   },
   "themePreviewModeAriaLabel": {
-    "message": "Preview mode",
+    "message": "Preview color mode",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalTitle": {
@@ -472,7 +472,7 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDescription": {
-    "message": "Terminal-inspired geek style. High contrast and tool-like, ideal for an engineering feel.",
+    "message": "High-contrast developer aesthetic crafted for a crisp, utility-first look.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkLabel": {
@@ -492,11 +492,11 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "Neon glow, dark background, highly recognizable.",
+    "message": "Vibrant accents on deep ink with sharp readability.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "Keeps the hacker vibe while feeling brighter and more restrained.",
+    "message": "Clean monospace energy in a bright, balanced palette.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubTitle": {
@@ -504,7 +504,7 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDescription": {
-    "message": "Developer-classic style. Steady information density and a strong professional feel, ideal for long-term use.",
+    "message": "Familiar developer workspace style with balanced contrast for everyday productivity.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkLabel": {
@@ -520,11 +520,11 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "Calm, familiar, and productivity-oriented.",
+    "message": "Composed, crisp, and built for focus.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightNote": {
-    "message": "Clean, orderly, and close to a platform-product feel.",
+    "message": "Clean surfaces with familiar GitHub polish.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeTitle": {
@@ -532,7 +532,7 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDescription": {
-    "message": "Warm and elegant. Soft beige tones for a lighter UI with more breathing room.",
+    "message": "Warm, editorial palette with soft neutral tones for relaxed reading.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkLabel": {
@@ -548,11 +548,11 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "Deep warm brown tones with more mood.",
+    "message": "Rich espresso warmth with gentle contrast.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "Soft paper-like feel with a more relaxed presentation.",
+    "message": "Soft parchment tones for effortless visual comfort.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicTitle": {
@@ -560,7 +560,7 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDescription": {
-    "message": "Clean and universal. Light on styling and suitable as the default theme for most users.",
+    "message": "Clean and understated default look that blends naturally with any browser theme.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkLabel": {
@@ -576,15 +576,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "Low-key, versatile, and comfortable at night.",
+    "message": "Minimal, neutral, and easy on the eyes at night.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightNote": {
-    "message": "Neutral, clean, and close to the default browser feel.",
+    "message": "Crisp, clean, and close to native browser UI.",
     "description": "Theme Tab Description"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "Custom theme, stay tuned!",
+    "message": "Custom themes coming soon!",
     "description": "Theme Tab Description"
   },
   "el_colorpicker_confirm": {
@@ -596,7 +596,7 @@
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_popconfirm_confirmButtonText": {
-    "message": "OK",
+    "message": "Confirm",
     "description": "Clear list - Element-UI PopConfirm"
   },
   "el_popconfirm_cancelButtonText": {
@@ -604,35 +604,35 @@
     "description": "Clear list - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "If you like this plugin, please go to the",
+    "message": "Enjoying this extension? Visit the",
     "description": "about tab description"
   },
   "pluginShopAbout": {
-    "message": "app store",
+    "message": "extension store",
     "description": "about tab description"
   },
   "starAbout2": {
-    "message": "and rate it",
+    "message": "to leave a rating.",
     "description": "about tab description"
   },
   "downloadContextMenuContextsSetting": {
-    "message": "Enabled context menu contexts",
+    "message": "Enabled context menu targets",
     "description": "Plugin setting description"
   },
   "downloadContextMenuContextsDescSetting": {
-    "message": "Keep only the contexts you need. For example, select Image only to show the download item when right-clicking images.",
+    "message": "Choose which right-click targets show download actions (for example, enable Image only if you only want it on images).",
     "description": "Plugin setting detail description"
   },
   "cancelAllConfirmMessage": {
-    "message": "Cancel all {} active downloads? Unfinished download progress will be lost.",
+    "message": "Cancel all {} in-progress downloads? Unfinished progress will be discarded.",
     "description": "Confirm message for cancel all active downloads"
   },
   "fileRoutingPrecedenceSetting": {
-    "message": "Rule precedence",
+    "message": "Rule priority",
     "description": "Plugin setting description"
   },
   "fileRoutingPrecedenceDescription": {
-    "message": "When both a domain rule and an extension rule match, use the selected precedence to choose the folder. Domain rules are preferred by default.",
+    "message": "Choose which rule wins when both a domain rule and an extension rule match. Domain rules take priority by default.",
     "description": "Plugin setting detail description"
   },
   "fileRoutingPrecedenceDomain": {
@@ -644,11 +644,11 @@
     "description": "Plugin setting option"
   },
   "fileRoutingDomainRulesSetting": {
-    "message": "Domain routing rules",
+    "message": "Domain rules",
     "description": "Plugin setting description"
   },
   "fileRoutingDomainRulesEmpty": {
-    "message": "No domain rules yet. Add rules to save downloads from specific sites into their own subfolders.",
+    "message": "No domain rules yet. Add one to organize downloads from specific websites into subfolders.",
     "description": "Empty state hint"
   },
   "fileRoutingDomainsLabel": {
@@ -664,19 +664,19 @@
     "description": "Input placeholder"
   },
   "downloadConfirmBeforeStartSetting": {
-    "message": "Confirm before starting a download",
+    "message": "Confirm before downloading",
     "description": "Plugin setting description"
   },
   "downloadConfirmBeforeStartDescSetting": {
-    "message": "When enabled, downloads started by this extension (context menu, new download URL, or retry) ask for confirmation first. Browser-native downloads are not interrupted, to avoid breaking one-time links. Default is off.",
+    "message": "Ask for confirmation before starting downloads triggered by this extension (context menu, new download URL, or retry). Native browser downloads are left untouched to avoid breaking one-time links.",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmChooseFolderSetting": {
-    "message": "Ask where to save when starting a download",
+    "message": "Ask where to save each download",
     "description": "Plugin setting description"
   },
   "downloadConfirmChooseFolderDescSetting": {
-    "message": "Uses the browser save dialog (saveAs) for downloads started by this extension. This is separate from Edge/Chrome “Ask what to do with each download”, which extensions cannot control.",
+    "message": "Open the browser “Save as” dialog for downloads started by this extension. Separate from Chrome/Edge's built-in “Ask where to save each file” setting.",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmTitle": {
@@ -704,19 +704,43 @@
     "description": "Notification button to cancel a pending download"
   },
   "popupHeaderButtonsSetting": {
-    "message": "Show popup toolbar buttons",
+    "message": "Show popup toolbar shortcut buttons",
     "description": "Toggle optional shortcut buttons in popup header"
   },
   "popupHeaderButtonsDescSetting": {
-    "message": "When disabled, only the search box and settings button remain visible",
+    "message": "When turned off, only the search box and Settings button remain visible.",
     "description": "Description for popupHeaderButtonsSetting"
   },
   "popupHeaderCustomButtonsSetting": {
-    "message": "Customize visible toolbar buttons",
+    "message": "Customize popup toolbar buttons",
     "description": "Choose which buttons appear in the popup header"
   },
   "popupHeaderCustomButtonsDescSetting": {
-    "message": "Click to show or hide each button, drag to reorder (Search and Settings stay pinned)",
+    "message": "Click to show or hide a button; drag to reorder (Search and Settings stay pinned).",
     "description": "Description for popupHeaderCustomButtonsSetting"
+  },
+  "contextMenuDownloadLink": {
+    "message": "Download link",
+    "description": "Context menu item to download a link"
+  },
+  "contextMenuDownloadImage": {
+    "message": "Download image",
+    "description": "Context menu item to download an image"
+  },
+  "contextMenuDownloadAudio": {
+    "message": "Download audio",
+    "description": "Context menu item to download audio"
+  },
+  "contextMenuDownloadVideo": {
+    "message": "Download video",
+    "description": "Context menu item to download a video"
+  },
+  "lightThemeTooltip": {
+    "message": "Light mode",
+    "description": "Tooltip for light mode toolbar icon color"
+  },
+  "darkThemeTooltip": {
+    "message": "Dark mode",
+    "description": "Tooltip for dark mode toolbar icon color"
   }
 }

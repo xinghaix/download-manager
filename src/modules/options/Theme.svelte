@@ -525,14 +525,14 @@
             <label
               class="color-picker"
               class:color={theme === 'light' || theme === 'auto'}
-              onmouseenter={(e) => showTooltip(e, i18data.themeAdaptationOption2 + i18data.themeTitle)}
+              onmouseenter={(e) => showTooltip(e, i18data.lightThemeTooltip)}
               onmouseleave={hideTooltip}
             >
               <span class="color-swatch" style:background-color={iconColor.icon_color.light}></span>
               <input
                 type="color"
                 class="color-native-input"
-                aria-label={i18data.iconColorSetting + ' ' + i18data.themeAdaptationOption2}
+                aria-label={i18data.iconColorSetting + ' - ' + i18data.lightThemeTooltip}
                 value={iconColor.icon_color.light}
                 onchange={(e) => setIconColor(e.currentTarget.value, 'icon_color', 'light')}
               />
@@ -540,14 +540,14 @@
             <label
               class="color-picker"
               class:color={theme === 'dark' || theme === 'auto'}
-              onmouseenter={(e) => showTooltip(e, i18data.themeAdaptationOption3 + i18data.themeTitle)}
+              onmouseenter={(e) => showTooltip(e, i18data.darkThemeTooltip)}
               onmouseleave={hideTooltip}
             >
               <span class="color-swatch" style:background-color={iconColor.icon_color.dark}></span>
               <input
                 type="color"
                 class="color-native-input"
-                aria-label={i18data.iconColorSetting + ' ' + i18data.themeAdaptationOption3}
+                aria-label={i18data.iconColorSetting + ' - ' + i18data.darkThemeTooltip}
                 value={iconColor.icon_color.dark}
                 onchange={(e) => setIconColor(e.currentTarget.value, 'icon_color', 'dark')}
               />
@@ -563,14 +563,14 @@
             <label
               class="color-picker"
               class:color={theme === 'light' || theme === 'auto'}
-              onmouseenter={(e) => showTooltip(e, i18data.themeAdaptationOption2 + i18data.themeTitle)}
+              onmouseenter={(e) => showTooltip(e, i18data.lightThemeTooltip)}
               onmouseleave={hideTooltip}
             >
               <span class="color-swatch" style:background-color={iconColor.icon_downloading_color.light}></span>
               <input
                 type="color"
                 class="color-native-input"
-                aria-label={i18data.iconDownloadingColorSetting + ' ' + i18data.themeAdaptationOption2}
+                aria-label={i18data.iconDownloadingColorSetting + ' - ' + i18data.lightThemeTooltip}
                 value={iconColor.icon_downloading_color.light}
                 onchange={(e) => setIconColor(e.currentTarget.value, 'icon_downloading_color', 'light')}
               />
@@ -578,14 +578,14 @@
             <label
               class="color-picker"
               class:color={theme === 'dark' || theme === 'auto'}
-              onmouseenter={(e) => showTooltip(e, i18data.themeAdaptationOption3 + i18data.themeTitle)}
+              onmouseenter={(e) => showTooltip(e, i18data.darkThemeTooltip)}
               onmouseleave={hideTooltip}
             >
               <span class="color-swatch" style:background-color={iconColor.icon_downloading_color.dark}></span>
               <input
                 type="color"
                 class="color-native-input"
-                aria-label={i18data.iconDownloadingColorSetting + ' ' + i18data.themeAdaptationOption3}
+                aria-label={i18data.iconDownloadingColorSetting + ' - ' + i18data.darkThemeTooltip}
                 value={iconColor.icon_downloading_color.dark}
                 onchange={(e) => setIconColor(e.currentTarget.value, 'icon_downloading_color', 'dark')}
               />

@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "extDesc": {
-    "message": "İndirilen dosyaları kolayca yönetin",
+    "message": "Tarayıcınız için sade ve hızlı indirme yöneticisi",
     "description": "Extension description"
   },
   "settingsTitle": {
@@ -16,15 +16,15 @@
     "description": "Some information about the plugin"
   },
   "second": {
-    "message": "{} saniye kaldı",
+    "message": "{} sn kaldı",
     "description": "remaining time display"
   },
   "minute": {
-    "message": "{} dakika kaldı",
+    "message": "{} dk kaldı",
     "description": "remaining time display"
   },
   "hour": {
-    "message": "{} saat kaldı",
+    "message": "{} sa kaldı",
     "description": "remaining time display"
   },
   "day": {
@@ -32,7 +32,7 @@
     "description": "remaining time display"
   },
   "closeTooltip": {
-    "message": "Metin ipuçlarını göstermeyi durdur",
+    "message": "Düğme ipuçlarını gizle",
     "description": "on the download management page, when the mouse is moved over the button, the text prompt box stops showing"
   },
   "newDownload": {
@@ -40,7 +40,7 @@
     "description": "new download"
   },
   "newDownloadPlaceholder": {
-    "message": "İndirme bağlantısını girin. İndirmek için Enter’a basın",
+    "message": "İndirme bağlantısını yapıştırıp Enter'a basın",
     "description": "Please enter the download link"
   },
   "clearAll": {
@@ -52,7 +52,7 @@
     "description": "Clear button dropdown menu"
   },
   "clearFailed": {
-    "message": "Başarısız indirmeleri temizle",
+    "message": "Başarısızları temizle",
     "description": "Clear button dropdown menu"
   },
   "clearAbsent": {
@@ -60,7 +60,7 @@
     "description": "Clear button dropdown menu"
   },
   "clearCompleted": {
-    "message": "Tamamlanan indirmeleri temizle",
+    "message": "Tamamlananları temizle",
     "description": "Clear button dropdown menu"
   },
   "openDownloadFolder": {
@@ -72,11 +72,11 @@
     "description": "open plugin settings in a new tab"
   },
   "openHome": {
-    "message": "İndirmeler sayfasını aç",
+    "message": "Tarayıcı indirmeler sayfasını aç",
     "description": "Open the browser's default download page in a new tab"
   },
   "openFileInFolder": {
-    "message": "Klasörü aç",
+    "message": "Klasörde göster",
     "description": "open file in folder"
   },
   "openFile": {
@@ -88,11 +88,11 @@
     "description": "pause download"
   },
   "resume": {
-    "message": "İndirmeyi sürdür",
+    "message": "Sürdür",
     "description": "resume downloading a suspended file"
   },
   "batchDownloadActions": {
-    "message": "Toplu indirme işlemleri",
+    "message": "Toplu işlemler",
     "description": "Toplu işlemler ipucu"
   },
   "pauseAll": {
@@ -112,19 +112,19 @@
     "description": "delete file from disk"
   },
   "deleteConfirmTitle": {
-    "message": "Diskten silmeyi onayla",
+    "message": "Diskten silinsin mi?",
     "description": "Confirmation title before deleting files from disk"
   },
   "deleteConfirmFileMessage": {
-    "message": "“{}” diskten kalıcı olarak silinecek. Bu işlem geri alınamaz.",
+    "message": "“{}” dosyasını diskten kalıcı olarak silmek istiyor musunuz? Bu işlem geri alınamaz.",
     "description": "Confirmation message before deleting one file from disk"
   },
   "deleteConfirmAllMessage": {
-    "message": "{} etkin olmayan öğe işlenecek: var olan dosyalar diskten silinecek, eksik kayıtlar temizlenecek. Bu işlem geri alınamaz.",
+    "message": "Etkin olmayan {} öğe işlensin mi: mevcut dosyalar diskten kalıcı olarak silinecek ve eksik kayıtlar temizlenecektir. Geri alınamaz.",
     "description": "Confirmation message before deleting all files from disk"
   },
   "deleteConfirmButton": {
-    "message": "Silmeyi onayla",
+    "message": "Sil",
     "description": "Confirmation button before deleting files from disk"
   },
   "retry": {
@@ -136,15 +136,15 @@
     "description": "The file may harm your computer"
   },
   "dangerActionRequiredDescription": {
-    "message": "Chrome bu dosyayı kaydetmeden önce onayınızı ister",
+    "message": "Bu dosyayı kaydetmek için onayınız gerekiyor",
     "description": "Dangerous download needs user confirmation"
   },
   "dangerScanningDescription": {
-    "message": "İndirmenin güvenliği denetleniyor",
+    "message": "Güvenlik taraması yapılıyor…",
     "description": "Dangerous download scanning message"
   },
   "dangerBlockedDescription": {
-    "message": "Chrome bu indirmeyi engelledi",
+    "message": "Bu indirme güvenlik nedeniyle engellendi",
     "description": "Dangerous download blocked message"
   },
   "dangerOpenAction": {
@@ -152,7 +152,7 @@
     "description": "Open dangerous download review"
   },
   "dangerDiscard": {
-    "message": "Vazgeç",
+    "message": "Sil",
     "description": "Discard dangerous download"
   },
   "cancel": {
@@ -160,7 +160,7 @@
     "description": "Cancel download of dangerous files"
   },
   "reserve": {
-    "message": "Sakla",
+    "message": "Koru",
     "description": "Keep dangerous files"
   },
   "erase": {
@@ -176,23 +176,23 @@
     "description": "context download prefix menus display"
   },
   "link": {
-    "message": "bağlantı",
+    "message": "Bağlantı",
     "description": "context download menus display"
   },
   "image": {
-    "message": "görsel",
+    "message": "Resim",
     "description": "context download menus display"
   },
   "audio": {
-    "message": "ses",
+    "message": "Ses",
     "description": "context download menus display"
   },
   "video": {
-    "message": "video",
+    "message": "Video",
     "description": "context download menus display"
   },
   "deleteNotification": {
-    "message": "Bildirimi sil",
+    "message": "Kapat",
     "description": "Delete notification button"
   },
   "downloadCompletedNotification": {
@@ -208,87 +208,87 @@
     "description": "Download notification"
   },
   "downloadInProgress": {
-    "message": "Downloading",
+    "message": "İndiriliyor",
     "description": "Download in-progress state"
   },
   "openFolderNotification": {
-    "message": "Klasörü aç",
+    "message": "Klasörde göster",
     "description": "Download completion notification open folder button"
   },
   "downloadSetting": {
-    "message": "İndirme",
+    "message": "İndirmeler",
     "description": "plugin setting instructions"
   },
   "leftClickFileSetting": {
-    "message": "Dosya adına sol tıklayınca dosyayı aç",
+    "message": "Dosyayı açmak için dosya adına sol tıklayın",
     "description": "plugin setting instructions"
   },
   "rightClickFileSetting": {
-    "message": "Dosya adına sağ tıklayınca panoya kopyala",
+    "message": "Panoya kopyalamak için dosya adına sağ tıklayın",
     "description": "plugin setting instructions"
   },
   "leftClickUrlSetting": {
-    "message": "İndirme bağlantısına sol tıklayınca yeni sayfada aç",
+    "message": "Yeni sekmede açmak için bağlantıya sol tıklayın",
     "description": "plugin setting instructions"
   },
   "rightClickUrlSetting": {
-    "message": "İndirme bağlantısına sağ tıklayınca panoya kopyala",
+    "message": "Panoya kopyalamak için bağlantıya sağ tıklayın",
     "description": "plugin setting instructions"
   },
   "showTooltipSetting": {
-    "message": "Düğmelerin üzerine gelince ipuçlarını göster",
+    "message": "Düğmelerin üzerine gelindiğinde ipucu göster",
     "description": "plugin setting instructions"
   },
   "enableAnimation": {
-    "message": "Dosya giriş ve çıkış animasyonlarını aç",
+    "message": "Liste geçiş animasyonlarını etkinleştir",
     "description": "plugin setting instructions"
   },
   "showDownloadProgressSetting": {
-    "message": "Show download progress",
+    "message": "İndirme ilerlemesini göster",
     "description": "Plugin setting description"
   },
   "showDownloadProgressDescSetting": {
-    "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
+    "message": "Açılır pencerede ilerleme, hız ve kalan süreyi gösterir. Yalnızca görünür aktif indirmeler sorgulanır; çok sayıda indirmede CPU kullanımını azaltmak için kapatabilirsiniz.",
     "description": "Plugin setting detail description"
   },
   "deleteFileConfirmSetting": {
-    "message": "Dosyaları silmeden önce onayla",
+    "message": "Diskten silmeden önce onay iste",
     "description": "Eklenti ayarı açıklaması"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Diskten tek bir dosyayı silmeden önce onay iletişim kutusu göster. Devre dışı bırakıldığında tekil dosyalar hemen silinir ve geri alınamaz (Tümünü sil seçeneği yine onay ister).",
+    "message": "Tek bir dosyayı diskten silmeden önce onay kutusu gösterir. Kapatıldığında dosyalar geri alınamadan hemen silinir (“Tümünü diskten sil” her zaman sorar).",
     "description": "Ayarın ayrıntılı açıklaması"
   },
   "contextMenus": {
-    "message": "Bağlam menüsü",
+    "message": "Sağ tık menüsü",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusSetting": {
-    "message": "İndirme menüsü",
+    "message": "Sağ tık menüsünde indirme seçeneklerini göster",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Sayfa bağlam menüsünde indirme öğelerini göster. Etkin bağlamları ayrıca seçebilirsiniz.",
+    "message": "Sayfa sağ tık menüsüne indirme kısayolları ekler ve hangi öğe türlerinin görüneceğini seçmenizi sağlar.",
     "description": "Ayrıntılı açıklama"
   },
   "fileRoutingSetting": {
-    "message": "Dosya türüne göre indirme",
+    "message": "Otomatik klasör yönlendirme",
     "description": "Plugin settings description"
   },
   "fileRoutingEnableSetting": {
-    "message": "Dosya türüne göre indirmeyi etkinleştir",
+    "message": "Otomatik yönlendirmeyi etkinleştir",
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "İndirmeleri dosya uzantısı veya kaynak etki alanına göre varsayılan İndirilenler klasörünün alt klasörlerine kaydeder. Varsayılan olarak kapalıdır. Etki alanı kuralları varsayılan olarak uzantı kurallarından önce gelir.",
+    "message": "İndirilenleri dosya uzantısına veya kaynak alan adına göre varsayılan İndirilenler klasörü altındaki alt klasörlere kaydeder (varsayılan kapalı). Alan adı kuralları önceliklidir.",
     "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
-    "message": "Sınıflandırma kuralları",
+    "message": "Uzantı kuralları",
     "description": "Plugin settings description"
   },
   "fileRoutingFolderLabel": {
-    "message": "Klasör",
+    "message": "Alt klasör",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsLabel": {
@@ -304,11 +304,11 @@
     "description": "Accessible label for the file routing rule toggle"
   },
   "fileRoutingFolderPlaceholder": {
-    "message": "Örnek: Images veya Documents/PDF",
+    "message": "ör. Images veya Documents/PDF",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsPlaceholder": {
-    "message": "Örnek: jpg, png, webp",
+    "message": "ör. jpg, png, webp",
     "description": "Plugin settings description"
   },
   "fileRoutingAddRule": {
@@ -324,7 +324,7 @@
     "description": "Accessible label for the file routing rule delete button"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "Bu sınıflandırma kuralı silinsin mi?",
+    "message": "Bu yönlendirme kuralı silinsin mi?",
     "description": "Second confirmation before deleting a file routing rule"
   },
   "notificationSetting": {
@@ -332,15 +332,15 @@
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting": {
-    "message": "İndirme bildirimleri",
+    "message": "Masaüstü bildirimleri",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting1": {
-    "message": "Başlangıç",
+    "message": "Başladı",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting2": {
-    "message": "Tamamlanma",
+    "message": "Tamamlandı",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting3": {
@@ -348,43 +348,43 @@
     "description": "plugin setting instructions"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "İndirme bildirimi görünme süresi (saniye)",
+    "message": "Bildirim süresi (saniye)",
     "description": "plugin setting instructions"
   },
   "downloadNotificationMaxCountSetting": {
-    "message": "Maks. yığılmış bildirim sayısı",
+    "message": "Aynı anda en fazla bildirim",
     "description": "Ayar açıklaması"
   },
   "downloadNotificationMaxCountDescSetting": {
-    "message": "Sınır aşıldığında en eski bildirimler silinir, en yeniler tutulur. Varsayılan 3; 0 = sınırsız.",
+    "message": "Sınır aşıldığında en eski bildirimler kapatılır. Varsayılan: 3; sınırsız için 0 yazın.",
     "description": "Ayrıntılı açıklama"
   },
   "downloadToneSetting": {
-    "message": "İndirme sesi",
+    "message": "Bildirim sesleri",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "İndirme bildirimlerini görünür tut",
+    "message": "Bildirimleri ekranda sabit tut",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "Bildirim, kullanıcı açana veya kapatana kadar ekranda görünür kalır. Chrome 50 ve sonrasında kullanılabilir",
+    "message": "Tıklanana veya kapatılana kadar bildirimi ekranda tutar (Chrome 50+).",
     "description": "plugin setting instructions"
   },
   "shortcutSetting": {
-    "message": "Klavye kısayolu",
+    "message": "Klavye kısayolları",
     "description": "plugin setting instructions"
   },
   "openPopupSetting": {
-    "message": "Bu uzantıyı etkinleştir",
+    "message": "İndirme panelini aç",
     "description": "plugin setting instructions"
   },
   "openPopupDetailsSetting": {
-    "message": "Lütfen tıklayın:",
+    "message": "Tarayıcıdan yönet:",
     "description": "plugin setting details instructions"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "Kısayol ayarları",
+    "message": "Uzantı kısayolları",
     "description": "plugin setting instructions"
   },
   "syncSetting": {
@@ -396,23 +396,23 @@
     "description": "plugin setting instructions"
   },
   "pluginSyncDetailsSetting": {
-    "message": "Google hesabınızda oturum açtıysanız, uzantı ayarlarını Chromium tabanlı tarayıcılar arasında senkronize edebilirsiniz",
+    "message": "Tarayıcı hesabınızda oturum açtığınızda ayarlarınızı Chromium tabanlı tarayıcılar arasında otomatik senkronize eder.",
     "description": "plugin setting details instructions"
   },
   "notSyncSetting": {
-    "message": "Bu ayar senkronize edilmeyecek",
+    "message": "Bu ayar yerel olarak saklanır ve senkronize edilmez",
     "description": "plugin setting instructions"
   },
   "themeTitle": {
-    "message": "Tema",
+    "message": "Görünüm",
     "description": "Theme Tab Description"
   },
   "themeAdaptation": {
-    "message": "Uyarlanabilir tema",
+    "message": "Renk modu",
     "description": "Theme Tab Description"
   },
   "themeAdaptationDescription": {
-    "message": "Açık ve koyu temaları sistem renk moduna göre otomatik olarak uyarlar; simge ve indirme paneli de dahildir.",
+    "message": "Sistem görünümüne göre araç çubuğu simgesini, indirme panelini ve ayarlar sayfasını otomatik olarak açık veya koyu temaya uyarlar.",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption1": {
@@ -428,15 +428,15 @@
     "description": "Theme Tab Description"
   },
   "iconTitle": {
-    "message": "Simge",
+    "message": "Araç çubuğu simgesi",
     "description": "Theme Tab Description"
   },
   "iconColorSetting": {
-    "message": "Simge rengini özelleştir",
+    "message": "Normal simge rengi",
     "description": "Theme Tab Description"
   },
   "iconDownloadingColorSetting": {
-    "message": "Simge indirme animasyonu rengini özelleştir",
+    "message": "İndirirken simge rengi",
     "description": "Theme Tab Description"
   },
   "downloadPanelTitle": {
@@ -444,23 +444,23 @@
     "description": "Theme Tab Description"
   },
   "pageSize": {
-    "message": "Sayfa boyutu (genişlik, yükseklik)",
+    "message": "Panel boyutu (genişlik × yükseklik)",
     "description": "Theme Tab Description"
   },
   "pageSizeDescription": {
-    "message": "İndirme panelinin genişliğini ve yüksekliğini kontrol eder",
+    "message": "Açılır pencere genişliğini (380–800 px) ve yüksekliğini (300–600 px) ayarlayın",
     "description": "Theme Tab Description"
   },
   "themeSystemTitle": {
-    "message": "Tema ayarı ve önizleme",
+    "message": "Tema önayarları ve canlı önizleme",
     "description": "Theme Tab Description"
   },
   "themeSystemDescription": {
-    "message": "Bir tema serisi seçildiğinde hemen uygulanır. Aşağıdaki önizleme alanı Popup’ın gerçek görünümünü gösterir.",
+    "message": "Seçilen tema anında uygulanır. Aşağıdaki önizleme gerçek pencereyi yansıtır.",
     "description": "Theme Tab Description"
   },
   "themeSeriesLabel": {
-    "message": "Tema listesi",
+    "message": "Tema serisi",
     "description": "Theme Tab Description"
   },
   "themePreviewModeAriaLabel": {
@@ -472,15 +472,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDescription": {
-    "message": "Terminal geek tarzı. Yüksek kontrastlı ve araç odaklı, mühendislik hissi veren bir arayüz.",
+    "message": "Net ve yüksek kontrastlı mühendis odaklı görünüm.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkLabel": {
-    "message": "Terminal koyu",
+    "message": "Terminal Koyu",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightLabel": {
-    "message": "Terminal açık",
+    "message": "Terminal Açık",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkBadge": {
@@ -488,15 +488,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightBadge": {
-    "message": "Temiz CLI",
+    "message": "Sade CLI",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "Neon hissi, siyah zemin ve güçlü ayırt edilebilirlik.",
+    "message": "Koyu zemin üzerinde canlı vurgularla yüksek okunabilirlik.",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "Geek havasını korur, ama daha aydınlık ve ölçülüdür.",
+    "message": "Aydınlık ve dengeli bir tonda konsol hissi.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubTitle": {
@@ -504,15 +504,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDescription": {
-    "message": "Geliştiriciler için klasik stil. Bilgi yoğunluğu dengeli, profesyonel ve uzun süreli kullanıma uygun.",
+    "message": "Günlük çalışma düzenine uygun, dengeli geliştirici stili.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkLabel": {
-    "message": "GitHub koyu",
+    "message": "GitHub Koyu",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightLabel": {
-    "message": "GitHub açık",
+    "message": "GitHub Açık",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubBadge": {
@@ -520,11 +520,11 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "Sakin, tanıdık ve üretkenliğe odaklı.",
+    "message": "Sakin, tanıdık ve üretkenlik odaklı.",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightNote": {
-    "message": "Temiz, düzenli ve platform ürünü hissine yakın.",
+    "message": "Temiz yüzeyler ve düzenli platform görünümü.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeTitle": {
@@ -532,15 +532,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDescription": {
-    "message": "Sıcak ve zarif stil. Daha hafif ve ferah bir arayüz için yumuşak bej tonları.",
+    "message": "Göz yormayan yumuşak nötr tonlarla sıcak ve zarif görünüm.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkLabel": {
-    "message": "Claude koyu",
+    "message": "Claude Koyu",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightLabel": {
-    "message": "Claude açık",
+    "message": "Claude Açık",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeBadge": {
@@ -548,11 +548,11 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "Daha atmosferik, derin sıcak kahverengi tonlar.",
+    "message": "Yumuşak kontrastlı zengin kahve tonları.",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "Yumuşak kâğıt hissi, göze daha rahat.",
+    "message": "Rahat okuma için yumuşak kâğıt dokusu.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicTitle": {
@@ -560,15 +560,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDescription": {
-    "message": "Basit ve genel stil. Az karakterli, varsayılan tema için uygundur.",
+    "message": "Her tarayıcı görünümüne doğal uyum sağlayan sade varsayılan tema.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkLabel": {
-    "message": "Temel koyu",
+    "message": "Temel Koyu",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightLabel": {
-    "message": "Temel açık",
+    "message": "Temel Açık",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicBadge": {
@@ -576,15 +576,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "Sade, genel kullanıma uygun ve gece için ideal.",
+    "message": "Sade, nötr ve gece kullanımı için rahat.",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightNote": {
-    "message": "Nötr, temiz ve güçlü bir varsayılan hissi verir.",
+    "message": "Ferah, net ve tarayıcıyla tam uyumlu.",
     "description": "Theme Tab Description"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "Özel temalar yakında!",
+    "message": "Özel temalar yakında geliyor!",
     "description": "Theme Tab Description"
   },
   "el_colorpicker_confirm": {
@@ -596,7 +596,7 @@
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_popconfirm_confirmButtonText": {
-    "message": "Tamam",
+    "message": "Onayla",
     "description": "Clear list - Element-UI PopConfirm"
   },
   "el_popconfirm_cancelButtonText": {
@@ -604,27 +604,27 @@
     "description": "Clear list - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "Beğendiyseniz",
+    "message": "Uzantıyı beğendiniz mi?",
     "description": "about tab description"
   },
   "pluginShopAbout": {
-    "message": "uzantı mağazasına",
+    "message": "Uzantı mağazasını",
     "description": "about tab description"
   },
   "starAbout2": {
-    "message": "gidip puan verebilirsiniz",
+    "message": "ziyaret ederek puan verebilirsiniz.",
     "description": "about tab description"
   },
   "downloadContextMenuContextsSetting": {
-    "message": "Etkin bağlam menüsü bağlamları",
+    "message": "Etkin sağ tık hedefleri",
     "description": "Ayar açıklaması"
   },
   "downloadContextMenuContextsDescSetting": {
-    "message": "Yalnızca ihtiyacınız olan bağlamları tutun. Örneğin yalnızca Görüntü seçerseniz, öğe yalnızca görsellere sağ tıklayınca görünür.",
+    "message": "Yalnızca istediğiniz öğeler için indirme menüsünü gösterin (ör. sadece Resim seçilirse yalnızca resimlerde görünür).",
     "description": "Ayrıntılı açıklama"
   },
   "cancelAllConfirmMessage": {
-    "message": "Devam eden {} indirmenin tümü iptal edilsin mi? Tamamlanmamış ilerleme kaybolacaktır.",
+    "message": "Devam eden {} indirmenin tümü iptal edilsin mi? Tamamlanmamış ilerleme silinecektir.",
     "description": "Confirm message for cancel all active downloads"
   },
   "fileRoutingPrecedenceSetting": {
@@ -632,11 +632,11 @@
     "description": "Plugin setting description"
   },
   "fileRoutingPrecedenceDescription": {
-    "message": "Hem etki alanı hem uzantı kuralı eşleştiğinde seçilen öncelik klasörü belirler. Varsayılan olarak etki alanı kuralları tercih edilir.",
+    "message": "Hem alan adı hem uzantı kuralı eşleştiğinde hangisinin uygulanacağını seçin. Varsayılan: önce alan adı.",
     "description": "Plugin setting detail description"
   },
   "fileRoutingPrecedenceDomain": {
-    "message": "Önce etki alanı",
+    "message": "Önce alan adı",
     "description": "Plugin setting option"
   },
   "fileRoutingPrecedenceExtension": {
@@ -644,39 +644,39 @@
     "description": "Plugin setting option"
   },
   "fileRoutingDomainRulesSetting": {
-    "message": "Etki alanı sınıflandırma kuralları",
+    "message": "Alan adı kuralları",
     "description": "Plugin setting description"
   },
   "fileRoutingDomainRulesEmpty": {
-    "message": "Henüz etki alanı kuralı yok. Belirli sitelerden indirmeleri kendi alt klasörlerine kaydetmek için kural ekleyin.",
+    "message": "Henüz alan adı kuralı yok. Belirli sitelerden gelen indirmeleri ayrı klasörlere kaydetmek için kural ekleyin.",
     "description": "Empty state hint"
   },
   "fileRoutingDomainsLabel": {
-    "message": "Etki alanları",
+    "message": "Alan adları",
     "description": "Table column header"
   },
   "fileRoutingDomainsPlaceholder": {
-    "message": "örn. github.com, gist.github.com",
+    "message": "ör. github.com, gist.github.com",
     "description": "Input placeholder"
   },
   "fileRoutingDomainFolderPlaceholder": {
-    "message": "örn. GitHub veya Sites/GitHub",
+    "message": "ör. GitHub veya Sites/GitHub",
     "description": "Input placeholder"
   },
   "downloadConfirmBeforeStartSetting": {
-    "message": "İndirmeden önce onayla",
+    "message": "İndirmeden önce onay iste",
     "description": "Plugin setting description"
   },
   "downloadConfirmBeforeStartDescSetting": {
-    "message": "Etkinleştirildiğinde, bu uzantının başlattığı indirmeler (bağlam menüsü, elle URL veya yeniden dene) önce onay ister. Tarayıcının yerel indirmeleri kesilmez; tek kullanımlık bağlantılar bozulmasın diye. Varsayılan kapalıdır.",
+    "message": "Bu uzantıdan başlatılan indirmelerde (sağ tık menüsü, yeni URL, yeniden dene) başlamadan önce onay ister. Tarayıcının normal indirmelerine dokunulmaz.",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmChooseFolderSetting": {
-    "message": "İndirme başlarken klasör seç",
+    "message": "Başlarken kayıt konumunu sor",
     "description": "Plugin setting description"
   },
   "downloadConfirmChooseFolderDescSetting": {
-    "message": "Bu uzantının indirmelerinde tarayıcı Farklı kaydet (saveAs) penceresini kullanır. Edge/Chrome “Ne yapılacağını sor” ayarından bağımsızdır ve uzantı onu kontrol edemez.",
+    "message": "Uzantı üzerinden başlatılan indirmelerde “Farklı kaydet” penceresini (saveAs) açar; Chrome/Edge sistem ayarından bağımsızdır.",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmTitle": {
@@ -684,7 +684,7 @@
     "description": "Confirmation title before starting a download"
   },
   "downloadConfirmMessage": {
-    "message": "“{}” indirmesi başlatılsın mı?",
+    "message": "“{}” indirilmeye başlansın mı?",
     "description": "Confirmation message before starting a download; {} is the URL"
   },
   "downloadConfirmButton": {
@@ -704,19 +704,43 @@
     "description": "Notification button to cancel a pending download"
   },
   "popupHeaderButtonsSetting": {
-    "message": "Açılır pencere araç çubuğu düğmelerini göster",
+    "message": "Üst araç çubuğu kısayol düğmelerini göster",
     "description": "Açılır pencere üst satırındaki kısayol düğmelerini göster"
   },
   "popupHeaderButtonsDescSetting": {
-    "message": "Devre dışı bırakıldığında yalnızca arama kutusu ve ayarlar düğmesi görünür kalır",
+    "message": "Kapatıldığında yalnızca arama kutusu ve Ayarlar düğmesi görünür kalır.",
     "description": "popupHeaderButtonsSetting açıklaması"
   },
   "popupHeaderCustomButtonsSetting": {
-    "message": "Görünür araç çubuğu düğmelerini özelleştir",
+    "message": "Görünür düğmeleri ve sırayı özelleştir",
     "description": "Üst satırda hangi düğmelerin görüneceğini seçin"
   },
   "popupHeaderCustomButtonsDescSetting": {
-    "message": "Her düğmeyi göstermek veya gizlemek için tıklayın, yeniden sıralamak için sürükleyin (Arama ve Ayarlar sabit kalır)",
+    "message": "Her düğmeyi göstermek veya gizlemek için tıklayın, sıralamak için sürükleyin (Arama ve Ayarlar sabit kalır).",
     "description": "popupHeaderCustomButtonsSetting açıklaması"
+  },
+  "contextMenuDownloadLink": {
+    "message": "Bağlantıyı indir",
+    "description": "Context menu item to download a link"
+  },
+  "contextMenuDownloadImage": {
+    "message": "Resmi indir",
+    "description": "Context menu item to download an image"
+  },
+  "contextMenuDownloadAudio": {
+    "message": "Sesi indir",
+    "description": "Context menu item to download audio"
+  },
+  "contextMenuDownloadVideo": {
+    "message": "Videoyu indir",
+    "description": "Context menu item to download a video"
+  },
+  "lightThemeTooltip": {
+    "message": "Açık tema",
+    "description": "Tooltip for light mode toolbar icon color"
+  },
+  "darkThemeTooltip": {
+    "message": "Koyu tema",
+    "description": "Tooltip for dark mode toolbar icon color"
   }
 }

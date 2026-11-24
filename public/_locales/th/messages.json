@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "extDesc": {
-    "message": "จัดการไฟล์ที่ดาวน์โหลดได้อย่างสะดวก",
+    "message": "ตัวจัดการดาวน์โหลดบนเบราว์เซอร์ที่สะอาดตาและรวดเร็ว",
     "description": "Extension description"
   },
   "settingsTitle": {
@@ -32,7 +32,7 @@
     "description": "remaining time display"
   },
   "closeTooltip": {
-    "message": "หยุดแสดงคำแนะนำแบบข้อความ",
+    "message": "ซ่อนคำแนะนำปุ่ม",
     "description": "on the download management page, when the mouse is moved over the button, the text prompt box stops showing"
   },
   "newDownload": {
@@ -40,7 +40,7 @@
     "description": "new download"
   },
   "newDownloadPlaceholder": {
-    "message": "ใส่ลิงก์ดาวน์โหลด แล้วกด Enter เพื่อดาวน์โหลด",
+    "message": "วางลิงก์ดาวน์โหลดแล้วกด Enter",
     "description": "Please enter the download link"
   },
   "clearAll": {
@@ -48,19 +48,19 @@
     "description": "Clear button dropdown menu"
   },
   "deleteAll": {
-    "message": "ลบทั้งหมดจากดิสก์",
+    "message": "ลบทั้งหมดออกจากดิสก์",
     "description": "Clear button dropdown menu"
   },
   "clearFailed": {
-    "message": "ล้างรายการที่ดาวน์โหลดไม่สำเร็จ",
+    "message": "ล้างรายการที่ล้มเหลว",
     "description": "Clear button dropdown menu"
   },
   "clearAbsent": {
-    "message": "ล้างไฟล์ที่ไม่มีอยู่",
+    "message": "ล้างไฟล์ที่หายไป",
     "description": "Clear button dropdown menu"
   },
   "clearCompleted": {
-    "message": "ล้างรายการที่ดาวน์โหลดเสร็จแล้ว",
+    "message": "ล้างรายการที่เสร็จสิ้น",
     "description": "Clear button dropdown menu"
   },
   "openDownloadFolder": {
@@ -72,11 +72,11 @@
     "description": "open plugin settings in a new tab"
   },
   "openHome": {
-    "message": "เปิดหน้าดาวน์โหลด",
+    "message": "เปิดหน้าดาวน์โหลดของเบราว์เซอร์",
     "description": "Open the browser's default download page in a new tab"
   },
   "openFileInFolder": {
-    "message": "เปิดโฟลเดอร์",
+    "message": "แสดงในโฟลเดอร์",
     "description": "open file in folder"
   },
   "openFile": {
@@ -88,11 +88,11 @@
     "description": "pause download"
   },
   "resume": {
-    "message": "ดาวน์โหลดต่อ",
+    "message": "ทำต่อ",
     "description": "resume downloading a suspended file"
   },
   "batchDownloadActions": {
-    "message": "การดำเนินการดาวน์โหลดแบบชุด",
+    "message": "จัดการทั้งหมด",
     "description": "คำแนะนำปุ่มการดำเนินการแบบชุด"
   },
   "pauseAll": {
@@ -100,7 +100,7 @@
     "description": "หยุดชั่วคราวการดาวน์โหลดที่กำลังดำเนินการทั้งหมด"
   },
   "resumeAll": {
-    "message": "ดำเนินการต่อทั้งหมด",
+    "message": "ทำต่อทั้งหมด",
     "description": "ดำเนินการต่อการดาวน์โหลดที่หยุดชั่วคราวทั้งหมด"
   },
   "cancelAll": {
@@ -108,27 +108,27 @@
     "description": "ยกเลิกการดาวน์โหลดที่กำลังดำเนินการทั้งหมด"
   },
   "delete": {
-    "message": "ลบจากดิสก์",
+    "message": "ลบออกจากดิสก์",
     "description": "delete file from disk"
   },
   "deleteConfirmTitle": {
-    "message": "ยืนยันการลบจากดิสก์",
+    "message": "ลบออกจากดิสก์หรือไม่?",
     "description": "Confirmation title before deleting files from disk"
   },
   "deleteConfirmFileMessage": {
-    "message": "“{}” จะถูกลบถาวรจากดิสก์ การดำเนินการนี้ไม่สามารถย้อนกลับได้",
+    "message": "ต้องการลบ “{}” ออกจากดิสก์ถาวรหรือไม่? การดำเนินการนี้ไม่สามารถย้อนกลับได้",
     "description": "Confirmation message before deleting one file from disk"
   },
   "deleteConfirmAllMessage": {
-    "message": "จะประมวลผลรายการที่ไม่ได้กำลังดาวน์โหลด {} รายการ: ลบไฟล์ที่มีอยู่จากดิสก์ และล้างบันทึกของไฟล์ที่ไม่มีอยู่ การดำเนินการนี้ไม่สามารถย้อนกลับได้",
+    "message": "จัดการรายการที่ไม่ได้กำลังดาวน์โหลด {} รายการ: ลบไฟล์ที่มีอยู่ออกจากดิสก์ถาวร และล้างรายการที่หายไปหรือไม่? ไม่สามารถย้อนกลับได้",
     "description": "Confirmation message before deleting all files from disk"
   },
   "deleteConfirmButton": {
-    "message": "ยืนยันการลบ",
+    "message": "ลบ",
     "description": "Confirmation button before deleting files from disk"
   },
   "retry": {
-    "message": "ดาวน์โหลดอีกครั้ง",
+    "message": "ดาวน์โหลดซ้ำ",
     "description": "download again"
   },
   "dangerDescription": {
@@ -136,15 +136,15 @@
     "description": "The file may harm your computer"
   },
   "dangerActionRequiredDescription": {
-    "message": "Chrome ต้องการการยืนยันก่อนบันทึกไฟล์นี้",
+    "message": "ต้องได้รับการยืนยันก่อนบันทึกไฟล์นี้",
     "description": "Dangerous download needs user confirmation"
   },
   "dangerScanningDescription": {
-    "message": "กำลังตรวจสอบความปลอดภัยของการดาวน์โหลด",
+    "message": "กำลังตรวจสอบความปลอดภัยของไฟล์…",
     "description": "Dangerous download scanning message"
   },
   "dangerBlockedDescription": {
-    "message": "Chrome บล็อกการดาวน์โหลดนี้แล้ว",
+    "message": "การดาวน์โหลดนี้ถูกบล็อกเพื่อความปลอดภัย",
     "description": "Dangerous download blocked message"
   },
   "dangerOpenAction": {
@@ -152,7 +152,7 @@
     "description": "Open dangerous download review"
   },
   "dangerDiscard": {
-    "message": "ทิ้ง",
+    "message": "ละทิ้ง",
     "description": "Discard dangerous download"
   },
   "cancel": {
@@ -164,7 +164,7 @@
     "description": "Keep dangerous files"
   },
   "erase": {
-    "message": "ลบออกจากรายการ",
+    "message": "นำออกจากรายการ",
     "description": "cancel download or clear file from list"
   },
   "copied": {
@@ -192,11 +192,11 @@
     "description": "context download menus display"
   },
   "deleteNotification": {
-    "message": "ลบการแจ้งเตือน",
+    "message": "ปิด",
     "description": "Delete notification button"
   },
   "downloadCompletedNotification": {
-    "message": "ดาวน์โหลดเสร็จแล้ว",
+    "message": "ดาวน์โหลดเสร็จสิ้น",
     "description": "Download completion notification button"
   },
   "downloadStartedNotification": {
@@ -208,11 +208,11 @@
     "description": "Download notification"
   },
   "downloadInProgress": {
-    "message": "Downloading",
+    "message": "กำลังดาวน์โหลด",
     "description": "Download in-progress state"
   },
   "openFolderNotification": {
-    "message": "เปิดโฟลเดอร์",
+    "message": "แสดงในโฟลเดอร์",
     "description": "Download completion notification open folder button"
   },
   "downloadSetting": {
@@ -220,75 +220,75 @@
     "description": "plugin setting instructions"
   },
   "leftClickFileSetting": {
-    "message": "เปิดไฟล์เมื่อคลิกซ้ายที่ชื่อไฟล์",
+    "message": "คลิกซ้ายที่ชื่อไฟล์เพื่อเปิดไฟล์",
     "description": "plugin setting instructions"
   },
   "rightClickFileSetting": {
-    "message": "คัดลอกไปยังคลิปบอร์ดเมื่อคลิกขวาที่ชื่อไฟล์",
+    "message": "คลิกขวาที่ชื่อไฟล์เพื่อคัดลอกไปยังคลิปบอร์ด",
     "description": "plugin setting instructions"
   },
   "leftClickUrlSetting": {
-    "message": "เปิดลิงก์ดาวน์โหลดในหน้าใหม่เมื่อคลิกซ้าย",
+    "message": "คลิกซ้ายที่ลิงก์เพื่อเปิดในแท็บใหม่",
     "description": "plugin setting instructions"
   },
   "rightClickUrlSetting": {
-    "message": "คัดลอกลิงก์ดาวน์โหลดไปยังคลิปบอร์ดเมื่อคลิกขวา",
+    "message": "คลิกขวาที่ลิงก์เพื่อคัดลอกไปยังคลิปบอร์ด",
     "description": "plugin setting instructions"
   },
   "showTooltipSetting": {
-    "message": "แสดงคำแนะนำเมื่อเลื่อนเมาส์ไปบนปุ่ม",
+    "message": "แสดงคำแนะนำเมื่อเลื่อนเมาส์เหนือปุ่ม",
     "description": "plugin setting instructions"
   },
   "enableAnimation": {
-    "message": "เปิดแอนิเมชันเมื่อไฟล์เข้าและออกจากรายการ",
+    "message": "เปิดใช้แอนิเมชันรายการ",
     "description": "plugin setting instructions"
   },
   "showDownloadProgressSetting": {
-    "message": "Show download progress",
+    "message": "แสดงความคืบหน้าการดาวน์โหลด",
     "description": "Plugin setting description"
   },
   "showDownloadProgressDescSetting": {
-    "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
+    "message": "แสดงความคืบหน้า ความเร็ว และเวลาที่เหลือในป๊อปอัป โดยติดตามเฉพาะรายการที่แสดงอยู่บนหน้าจอ ปิดไว้เพื่อลดภาระซีพียูเมื่อดาวน์โหลดจำนวนมาก",
     "description": "Plugin setting detail description"
   },
   "deleteFileConfirmSetting": {
-    "message": "ยืนยันก่อนลบไฟล์",
+    "message": "ยืนยันก่อนลบไฟล์ออกจากดิสก์",
     "description": "คำอธิบายการตั้งค่าปลั๊กอิน"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "แสดงกล่องโต้ตอบยืนยันก่อนลบไฟล์ออกจากดิสก์ หากปิดใช้งาน ไฟล์เดี่ยวจะถูกลบทันทีและไม่สามารถยกเลิกได้ (ลบทั้งหมดยังคงถามยืนยัน)",
+    "message": "แสดงหน้าต่างยืนยันก่อนลบไฟล์เดี่ยวออกจากดิสก์ หากปิดไว้ไฟล์จะถูกลบทันทีโดยย้อนกลับไม่ได้ (ลบทั้งหมดยังคงถามยืนยันเสมอ)",
     "description": "คำอธิบายรายละเอียดการตั้งค่า"
   },
   "contextMenus": {
-    "message": "เมนูบริบท",
+    "message": "เมนูคลิกขวา",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusSetting": {
-    "message": "เมนูดาวน์โหลด",
+    "message": "แสดงตัวเลือกดาวน์โหลดในเมนูคลิกขวา",
     "description": "plugin setting instructions"
   },
   "downloadContextMenusDescSetting": {
-    "message": "แสดงรายการดาวน์โหลดในเมนูคลิกขวาของหน้า คุณสามารถเลือกประเภทบริบทที่เปิดใช้งานเพิ่มเติมได้",
+    "message": "เพิ่มทางลัดดาวน์โหลดในเมนูคลิกขวาของหน้าเว็บ และเลือกประเภทเป้าหมายที่ต้องการแสดงได้",
     "description": "คำอธิบายรายละเอียด"
   },
   "fileRoutingSetting": {
-    "message": "ดาวน์โหลดตามประเภทไฟล์",
+    "message": "จัดเก็บแยกโฟลเดอร์อัตโนมัติ",
     "description": "Plugin settings description"
   },
   "fileRoutingEnableSetting": {
-    "message": "เปิดดาวน์โหลดตามประเภทไฟล์",
+    "message": "เปิดใช้งานการจัดเก็บแยกโฟลเดอร์",
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "บันทึกการดาวน์โหลดลงโฟลเดอร์ย่อยในโฟลเดอร์ดาวน์โหลดเริ่มต้นตามนามสกุลไฟล์หรือโดเมนต้นทาง ปิดใช้งานตามค่าเริ่มต้น กฎโดเมนมีลำดับความสำคัญเหนือกฎนามสกุลตามค่าเริ่มต้น",
+    "message": "บันทึกไฟล์ที่ดาวน์โหลดไปยังโฟลเดอร์ย่อยภายในโฟลเดอร์ดาวน์โหลดโดยอัตโนมัติตามนามสกุลไฟล์หรือโดเมนต้นทาง (ปิดอยู่โดยค่าเริ่มต้น) โดยค่าเริ่มต้นจะให้ความสำคัญกับกฎโดเมนก่อน",
     "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
-    "message": "กฎการจัดหมวดหมู่",
+    "message": "กฎตามนามสกุลไฟล์",
     "description": "Plugin settings description"
   },
   "fileRoutingFolderLabel": {
-    "message": "โฟลเดอร์",
+    "message": "โฟลเดอร์ย่อย",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsLabel": {
@@ -300,15 +300,15 @@
     "description": "Plugin settings description"
   },
   "fileRoutingRuleEnabledLabel": {
-    "message": "เปิดหรือปิดกฎ",
+    "message": "เปิดหรือปิดใช้งานกฎ",
     "description": "Accessible label for the file routing rule toggle"
   },
   "fileRoutingFolderPlaceholder": {
-    "message": "ตัวอย่าง: Images หรือ Documents/PDF",
+    "message": "เช่น Images หรือ Documents/PDF",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsPlaceholder": {
-    "message": "ตัวอย่าง: jpg, png, webp",
+    "message": "เช่น jpg, png, webp",
     "description": "Plugin settings description"
   },
   "fileRoutingAddRule": {
@@ -324,7 +324,7 @@
     "description": "Accessible label for the file routing rule delete button"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "ลบกฎการจัดหมวดหมู่นี้หรือไม่",
+    "message": "ต้องการลบกฎนี้หรือไม่?",
     "description": "Second confirmation before deleting a file routing rule"
   },
   "notificationSetting": {
@@ -332,7 +332,7 @@
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting": {
-    "message": "การแจ้งเตือนการดาวน์โหลด",
+    "message": "การแจ้งเตือนเดสก์ท็อป",
     "description": "plugin setting instructions"
   },
   "downloadNotificationSetting1": {
@@ -348,27 +348,27 @@
     "description": "plugin setting instructions"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "เวลาคงอยู่ของการแจ้งเตือนดาวน์โหลด (วินาที)",
+    "message": "ระยะเวลาแสดงการแจ้งเตือน (วินาที)",
     "description": "plugin setting instructions"
   },
   "downloadNotificationMaxCountSetting": {
-    "message": "จำนวนการแจ้งเตือนซ้อนสูงสุด",
+    "message": "จำนวนการแจ้งเตือนสูงสุดพร้อมกัน",
     "description": "คำอธิบายการตั้งค่า"
   },
   "downloadNotificationMaxCountDescSetting": {
-    "message": "เมื่อเกินขีดจำกัด จะลบการแจ้งเตือนที่เก่าที่สุดและเก็บอันใหม่สุด ค่าเริ่มต้น 3; 0 = ไม่จำกัด",
+    "message": "เมื่อเกินขีดจำกัดจะลบรายการเก่าสุดก่อน ค่าเริ่มต้น: 3 (ตั้งเป็น 0 หากไม่จำกัด)",
     "description": "คำอธิบายรายละเอียด"
   },
   "downloadToneSetting": {
-    "message": "เสียงแจ้งเตือนดาวน์โหลด",
+    "message": "เสียงแจ้งเตือน",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "ให้การแจ้งเตือนดาวน์โหลดยังคงแสดงอยู่",
+    "message": "แสดงการแจ้งเตือนค้างไว้",
     "description": "plugin setting instructions"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "การแจ้งเตือนจะคงอยู่บนหน้าจอจนกว่าผู้ใช้จะเปิดหรือปิด ใช้ได้ตั้งแต่ Chrome 50 เป็นต้นไป",
+    "message": "แสดงการแจ้งเตือนบนหน้าจอจนกว่าคุณจะคลิกหรือปิดด้วยตนเอง (รองรับ Chrome 50+)",
     "description": "plugin setting instructions"
   },
   "shortcutSetting": {
@@ -376,19 +376,19 @@
     "description": "plugin setting instructions"
   },
   "openPopupSetting": {
-    "message": "เปิดใช้งานส่วนขยายนี้",
+    "message": "เปิดแผงดาวน์โหลด",
     "description": "plugin setting instructions"
   },
   "openPopupDetailsSetting": {
-    "message": "โปรดคลิก",
+    "message": "จัดการได้ใน",
     "description": "plugin setting details instructions"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "การตั้งค่าแป้นพิมพ์ลัด",
+    "message": "ทางลัดส่วนขยาย",
     "description": "plugin setting instructions"
   },
   "syncSetting": {
-    "message": "ซิงค์",
+    "message": "การซิงค์",
     "description": "plugin setting instructions"
   },
   "pluginSyncSetting": {
@@ -396,23 +396,23 @@
     "description": "plugin setting instructions"
   },
   "pluginSyncDetailsSetting": {
-    "message": "เมื่อลงชื่อเข้าใช้บัญชี Google แล้ว คุณสามารถซิงค์การตั้งค่าส่วนขยายระหว่างเบราว์เซอร์ที่ใช้ Chromium ได้",
+    "message": "ซิงค์การตั้งค่าของคุณข้ามเบราว์เซอร์ Chromium โดยอัตโนมัติเมื่อลงชื่อเข้าใช้บัญชีเบราว์เซอร์",
     "description": "plugin setting details instructions"
   },
   "notSyncSetting": {
-    "message": "การตั้งค่านี้จะไม่ถูกซิงค์",
+    "message": "การตั้งค่านี้เก็บไว้ในเครื่องเท่านั้นและไม่ถูกซิงค์",
     "description": "plugin setting instructions"
   },
   "themeTitle": {
-    "message": "ธีม",
+    "message": "รูปลักษณ์",
     "description": "Theme Tab Description"
   },
   "themeAdaptation": {
-    "message": "ธีมปรับตามระบบ",
+    "message": "โหมดสี",
     "description": "Theme Tab Description"
   },
   "themeAdaptationDescription": {
-    "message": "ปรับธีมสว่างและมืดตามโหมดสีของระบบโดยอัตโนมัติ รวมถึงไอคอนและแผงดาวน์โหลด",
+    "message": "ปรับธีมสว่างหรือมืดโดยอัตโนมัติสำหรับไอคอนแถบเครื่องมือ แผงดาวน์โหลด และหน้าการตั้งค่าตามระบบ",
     "description": "Theme Tab Description"
   },
   "themeAdaptationOption1": {
@@ -428,15 +428,15 @@
     "description": "Theme Tab Description"
   },
   "iconTitle": {
-    "message": "ไอคอน",
+    "message": "ไอคอนแถบเครื่องมือ",
     "description": "Theme Tab Description"
   },
   "iconColorSetting": {
-    "message": "ปรับสีไอคอน",
+    "message": "สีไอคอนปกติ",
     "description": "Theme Tab Description"
   },
   "iconDownloadingColorSetting": {
-    "message": "ปรับสีแอนิเมชันดาวน์โหลดของไอคอน",
+    "message": "สีไอคอนขณะดาวน์โหลด",
     "description": "Theme Tab Description"
   },
   "downloadPanelTitle": {
@@ -444,23 +444,23 @@
     "description": "Theme Tab Description"
   },
   "pageSize": {
-    "message": "ขนาดหน้า (กว้าง, สูง)",
+    "message": "ขนาดหน้าต่าง (กว้าง × สูง)",
     "description": "Theme Tab Description"
   },
   "pageSizeDescription": {
-    "message": "ควบคุมความกว้างและความสูงของแผงดาวน์โหลด",
+    "message": "ปรับความกว้าง (380–800 px) และความสูง (300–600 px) ของป๊อปอัป",
     "description": "Theme Tab Description"
   },
   "themeSystemTitle": {
-    "message": "ตั้งค่าและดูตัวอย่างธีม",
+    "message": "ชุดธีมและตัวอย่างแบบเรียลไทม์",
     "description": "Theme Tab Description"
   },
   "themeSystemDescription": {
-    "message": "ธีมจะมีผลทันทีหลังจากเลือกชุดธีม พื้นที่ตัวอย่างด้านล่างจะแสดงหน้าตาจริงของ Popup",
+    "message": "การเปลี่ยนธีมมีผลทันที ตัวอย่างด้านล่างแสดงหน้าตาจริงของป๊อปอัป",
     "description": "Theme Tab Description"
   },
   "themeSeriesLabel": {
-    "message": "รายการธีม",
+    "message": "ชุดธีม",
     "description": "Theme Tab Description"
   },
   "themePreviewModeAriaLabel": {
@@ -468,19 +468,19 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalTitle": {
-    "message": "เทอร์มินัล",
+    "message": "Terminal",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDescription": {
-    "message": "สไตล์เทอร์มินัลสำหรับสายเทคนิค คอนทราสต์สูงและเน้นความเป็นเครื่องมือ ให้ความรู้สึกเชิงวิศวกรรม",
+    "message": "สไตล์วิศวกรคอนทราสต์สูง คมชัด เน้นการใช้งานจริง",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkLabel": {
-    "message": "เทอร์มินัลมืด",
+    "message": "Terminal มืด",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightLabel": {
-    "message": "เทอร์มินัลสว่าง",
+    "message": "Terminal สว่าง",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkBadge": {
@@ -488,15 +488,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightBadge": {
-    "message": "CLI เรียบสะอาด",
+    "message": "CLI สะอาดตา",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "กลิ่นอายนีออน พื้นหลังดำ และแยกแยะชัดเจน",
+    "message": "สีเด่นบนพื้นหลังเข้ม อ่านชัดทุกตัวอักษร",
     "description": "Theme Tab Description"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "ยังคงความเป็นสายเทคนิค แต่สว่างและสุขุมกว่า",
+    "message": "กลิ่นอายเทอร์มินัลในโทนสว่างที่ดูสุภาพ",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubTitle": {
@@ -504,7 +504,7 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDescription": {
-    "message": "สไตล์คลาสสิกสำหรับนักพัฒนา หนาแน่นพอดี เสถียร และดูเป็นมืออาชีพ เหมาะกับการใช้งานระยะยาว",
+    "message": "สไตล์คลาสสิกสำหรับนักพัฒนา คอนทราสต์พอเหมาะ ใช้งานได้ยาวนาน",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkLabel": {
@@ -520,11 +520,11 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "นิ่ง คุ้นเคย และเน้นประสิทธิภาพการทำงาน",
+    "message": "สุขุม คุ้นเคย และเน้นประสิทธิภาพการทำงาน",
     "description": "Theme Tab Description"
   },
   "themeSeriesGithubLightNote": {
-    "message": "สะอาด เป็นระเบียบ และให้ความรู้สึกเหมือนผลิตภัณฑ์แพลตฟอร์ม",
+    "message": "พื้นผิวสะอาดตา เป็นระเบียบแบบแพลตฟอร์มสมัยใหม่",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeTitle": {
@@ -532,7 +532,7 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDescription": {
-    "message": "สไตล์อบอุ่นและสง่างาม โทนเบจอ่อนทำให้อินเทอร์เฟซดูเบาและมีพื้นที่หายใจมากขึ้น",
+    "message": "โทนสีอบอุ่นสบายตา ด้วยเฉดสีกลางที่นุ่มนวลอ่านง่าย",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkLabel": {
@@ -544,15 +544,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeBadge": {
-    "message": "อบอุ่น",
+    "message": "โทนอุ่น",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "โทนน้ำตาลอบอุ่นลึก ให้บรรยากาศมากขึ้น",
+    "message": "โทนน้ำตาลเข้มอบอุ่นพร้อมคอนทราสต์ที่นุ่มนวล",
     "description": "Theme Tab Description"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "ให้ความรู้สึกคล้ายกระดาษนุ่ม สบายตากว่า",
+    "message": "สัมผัสเหมือนกระดาษนุ่มนวล ถนอมสายตา",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicTitle": {
@@ -560,15 +560,15 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDescription": {
-    "message": "สไตล์เรียบง่ายและใช้ได้ทั่วไป ไม่เน้นลวดลาย เหมาะเป็นธีมเริ่มต้น",
+    "message": "เรียบง่ายและสากล เข้ากับธีมเบราว์เซอร์ได้ทุกแบบ",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkLabel": {
-    "message": "พื้นฐานมืด",
+    "message": "พื้นฐาน มืด",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightLabel": {
-    "message": "พื้นฐานสว่าง",
+    "message": "พื้นฐาน สว่าง",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicBadge": {
@@ -576,11 +576,11 @@
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "เรียบ ใช้ได้ทั่วไป และเหมาะกับเวลากลางคืน",
+    "message": "เรียบหรู เป็นกลาง สบายตาในเวลากลางคืน",
     "description": "Theme Tab Description"
   },
   "themeSeriesBasicLightNote": {
-    "message": "เป็นกลาง สะอาด และให้ความรู้สึกค่าเริ่มต้นชัดเจน",
+    "message": "โปร่งสะอาด ใกล้เคียงหน้าตาพื้นฐานของเบราว์เซอร์",
     "description": "Theme Tab Description"
   },
   "downloadPanelThemeCustomDescription": {
@@ -596,7 +596,7 @@
     "description": "Theme Tab Description - Element-UI colorPicker"
   },
   "el_popconfirm_confirmButtonText": {
-    "message": "ตกลง",
+    "message": "ยืนยัน",
     "description": "Clear list - Element-UI PopConfirm"
   },
   "el_popconfirm_cancelButtonText": {
@@ -604,7 +604,7 @@
     "description": "Clear list - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "ถ้าถูกใจ ไปที่",
+    "message": "ชอบส่วนขยายนี้ไหม? แวะไปที่",
     "description": "about tab description"
   },
   "pluginShopAbout": {
@@ -612,19 +612,19 @@
     "description": "about tab description"
   },
   "starAbout2": {
-    "message": "แล้วให้คะแนนกันนะ",
+    "message": "เพื่อให้คะแนนรีวิวได้นะ",
     "description": "about tab description"
   },
   "downloadContextMenuContextsSetting": {
-    "message": "บริบทเมนูคลิกขวาที่เปิดใช้งาน",
+    "message": "ประเภทเมนูคลิกขวาที่เปิดใช้งาน",
     "description": "คำอธิบายการตั้งค่า"
   },
   "downloadContextMenuContextsDescSetting": {
-    "message": "เก็บเฉพาะบริบทที่ต้องการ เช่น เลือกเฉพาะรูปภาพ เพื่อให้รายการแสดงเมื่อคลิกขวาที่รูปภาพเท่านั้น",
+    "message": "เลือกแสดงเฉพาะเป้าหมายที่ต้องการ (เช่น เลือกเฉพาะ รูปภาพ เพื่อให้แสดงเฉพาะเมื่อคลิกขวาที่รูปภาพ)",
     "description": "คำอธิบายรายละเอียด"
   },
   "cancelAllConfirmMessage": {
-    "message": "ยกเลิกการดาวน์โหลดที่กำลังทำอยู่ทั้งหมด {} รายการหรือไม่? ความคืบหน้าที่ยังไม่เสร็จจะหายไป",
+    "message": "ยกเลิกการดาวน์โหลดที่กำลังดำเนินการทั้งหมด {} รายการหรือไม่? ความคืบหน้าที่ยังไม่เสร็จจะหายไป",
     "description": "Confirm message for cancel all active downloads"
   },
   "fileRoutingPrecedenceSetting": {
@@ -632,7 +632,7 @@
     "description": "Plugin setting description"
   },
   "fileRoutingPrecedenceDescription": {
-    "message": "เมื่อกฎโดเมนและนามสกุลตรงกันทั้งคู่ ให้ใช้ลำดับความสำคัญที่เลือกเพื่อเลือกโฟลเดอร์ ค่าเริ่มต้นให้ความสำคัญกับกฎโดเมน",
+    "message": "เลือกว่ากฎใดมีผลก่อนเมื่อตรงทั้งโดเมนและนามสกุล ค่าเริ่มต้นให้โดเมนมาก่อน",
     "description": "Plugin setting detail description"
   },
   "fileRoutingPrecedenceDomain": {
@@ -644,11 +644,11 @@
     "description": "Plugin setting option"
   },
   "fileRoutingDomainRulesSetting": {
-    "message": "กฎการจัดประเภทตามโดเมน",
+    "message": "กฎตามโดเมน",
     "description": "Plugin setting description"
   },
   "fileRoutingDomainRulesEmpty": {
-    "message": "ยังไม่มีกฎโดเมน เพิ่มกฎเพื่อบันทึกการดาวน์โหลดจากเว็บไซต์เฉพาะลงในโฟลเดอร์ย่อยของตัวเอง",
+    "message": "ยังไม่มีกฎโดเมน เพิ่มกฎเพื่อบันทึกไฟล์จากเว็บไซต์ที่กำหนดไว้ในโฟลเดอร์ย่อยแยกต่างหาก",
     "description": "Empty state hint"
   },
   "fileRoutingDomainsLabel": {
@@ -668,15 +668,15 @@
     "description": "Plugin setting description"
   },
   "downloadConfirmBeforeStartDescSetting": {
-    "message": "เมื่อเปิดใช้ การดาวน์โหลดที่เริ่มโดยส่วนขยายนี้ (เมนูคลิกขวา, URL ด้วยตนเอง หรือลองใหม่) จะถามยืนยันก่อน ไม่ขัดจังหวะการดาวน์โหลดของเบราว์เซอร์เอง เพื่อไม่ให้ลิงก์ใช้ครั้งเดียวเสียหาย ค่าเริ่มต้นคือปิด",
+    "message": "ถามยืนยันก่อนเริ่มการดาวน์โหลดจากส่วนขยายนี้ (เมนูคลิกขวา ลิงก์ใหม่ หรือลองใหม่) โดยไม่รบกวนการดาวน์โหลดปกติของเบราว์เซอร์",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmChooseFolderSetting": {
-    "message": "เลือกโฟลเดอร์เมื่อเริ่มดาวน์โหลด",
+    "message": "ถามตำแหน่งบันทึกทุกครั้งที่เริ่ม",
     "description": "Plugin setting description"
   },
   "downloadConfirmChooseFolderDescSetting": {
-    "message": "ใช้กล่องโต้ตอบบันทึกเป็น (saveAs) สำหรับการดาวน์โหลดของส่วนขยายนี้ แยกจากตัวเลือก Edge/Chrome “ถามว่าจะทำอะไร” ซึ่งส่วนขยายควบคุมไม่ได้",
+    "message": "เปิดหน้าต่าง “บันทึกเป็น” (saveAs) สำหรับการดาวน์โหลดที่เริ่มจากส่วนขยายนี้ แยกจากตัวเลือกของระบบใน Chrome/Edge",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmTitle": {
@@ -704,19 +704,43 @@
     "description": "Notification button to cancel a pending download"
   },
   "popupHeaderButtonsSetting": {
-    "message": "แสดงปุ่มแถบเครื่องมือด้านบน",
+    "message": "แสดงปุ่มทางลัดบนแถบด้านบนป๊อปอัป",
     "description": "ตั้งค่าการแสดงปุ่มทางลัดในแถวบนของป๊อปอัป"
   },
   "popupHeaderButtonsDescSetting": {
-    "message": "เมื่อปิดใช้งาน จะแสดงเฉพาะช่องค้นหาและปุ่มตั้งค่าเท่านั้น",
+    "message": "เมื่อปิดใช้งาน จะแสดงเฉพาะช่องค้นหาและปุ่มการตั้งค่าเท่านั้น",
     "description": "คำอธิบาย popupHeaderButtonsSetting"
   },
   "popupHeaderCustomButtonsSetting": {
-    "message": "ปรับแต่งปุ่มที่แสดงด้านบน",
+    "message": "ปรับแต่งปุ่มที่แสดงและลำดับด้านบน",
     "description": "เลือกเปิดหรือซ่อนปุ่มทางลัดแต่ละปุ่ม"
   },
   "popupHeaderCustomButtonsDescSetting": {
-    "message": "คลิกเพื่อแสดงหรือซ่อนแต่ละปุ่ม ลากเพื่อจัดลำดับใหม่ (ช่องค้นหาและตั้งค่าจะแสดงคงที่)",
+    "message": "คลิกเพื่อแสดงหรือซ่อนแต่ละปุ่ม ลากเพื่อจัดเรียงลำดับใหม่ (ช่องค้นหาและตั้งค่าจะแสดงคงที่)",
     "description": "คำอธิบาย popupHeaderCustomButtonsSetting"
+  },
+  "contextMenuDownloadLink": {
+    "message": "ดาวน์โหลดลิงก์",
+    "description": "Context menu item to download a link"
+  },
+  "contextMenuDownloadImage": {
+    "message": "ดาวน์โหลดรูปภาพ",
+    "description": "Context menu item to download an image"
+  },
+  "contextMenuDownloadAudio": {
+    "message": "ดาวน์โหลดเสียง",
+    "description": "Context menu item to download audio"
+  },
+  "contextMenuDownloadVideo": {
+    "message": "ดาวน์โหลดวิดีโอ",
+    "description": "Context menu item to download a video"
+  },
+  "lightThemeTooltip": {
+    "message": "ธีมสว่าง",
+    "description": "Tooltip for light mode toolbar icon color"
+  },
+  "darkThemeTooltip": {
+    "message": "ธีมมืด",
+    "description": "Tooltip for dark mode toolbar icon color"
   }
 }

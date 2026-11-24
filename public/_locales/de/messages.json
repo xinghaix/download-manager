@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Download Manager",
+    "message": "Download-Manager",
     "description": "Modul namen"
   },
   "extDesc": {
-    "message": "Downloads zu verwalten",
+    "message": "Übersichtlicher und schneller Download-Manager für den Browser",
     "description": "Modul beschreiben"
   },
   "settingsTitle": {
@@ -16,67 +16,67 @@
     "description": "Einige zusätzliche informationen zum modul"
   },
   "second": {
-    "message": "noch{}sec",
+    "message": "Noch {} Sek.",
     "description": "Restzeit angezeigt."
   },
   "minute": {
-    "message": "noch{}min",
+    "message": "Noch {} Min.",
     "description": "Restzeit angezeigt."
   },
   "hour": {
-    "message": "noch{}hour",
+    "message": "Noch {} Std.",
     "description": "Restzeit angezeigt."
   },
   "day": {
-    "message": "noch{}day",
+    "message": "Noch {} Tage",
     "description": "Restzeit angezeigt."
   },
   "closeTooltip": {
-    "message": "Zeigen sie keine texteingaben mehr an",
+    "message": "Schaltflächen-Tooltips ausblenden",
     "description": "Eingabefelder werden angehalten, wenn die maus über die seite lädt"
   },
   "newDownload": {
-    "message": "Neu.",
+    "message": "Neuer Download",
     "description": "Neue downloads starten"
   },
   "newDownloadPlaceholder": {
-    "message": "Bitte geben sie den link ein! Enter Datei laden",
+    "message": "Download-Link einfügen und Enter drücken",
     "description": "Bitte geben sie den link ein"
   },
   "clearAll": {
-    "message": "! Liste",
+    "message": "Liste leeren",
     "description": "Dropdown-Menü der Schaltfläche löschen"
   },
   "deleteAll": {
-    "message": "Löschen Sie alle von der Festplatte",
+    "message": "Alle von Festplatte löschen",
     "description": "Dropdown-Menü der Schaltfläche löschen"
   },
   "clearFailed": {
-    "message": "Download konnte nicht gelöscht werden",
+    "message": "Fehlgeschlagene entfernen",
     "description": "Dropdown-Menü der Schaltfläche löschen"
   },
   "clearAbsent": {
-    "message": "Datei löschen existiert nicht",
+    "message": "Fehlende Dateien entfernen",
     "description": "Dropdown-Menü der Schaltfläche löschen"
   },
   "clearCompleted": {
-    "message": "Abgeschlossene Downloads löschen",
+    "message": "Abgeschlossene entfernen",
     "description": "Dropdown-Menü der Schaltfläche löschen"
   },
   "openDownloadFolder": {
-    "message": "Lade den ordner ab.",
+    "message": "Download-Ordner öffnen",
     "description": "Öffnen sie den ordner für die downloads im ressourcen"
   },
   "openSettings": {
-    "message": "Modul die",
+    "message": "Erweiterungseinstellungen",
     "description": "Einrichten, um ein modul auf der neuen karteikarte zu öffnen"
   },
   "openHome": {
-    "message": "Download-Seite öffnen",
+    "message": "Browser-Downloads öffnen",
     "description": "Öffnen Sie die Standard-Download-Seite des Browsers in einem neuen Tab"
   },
   "openFileInFolder": {
-    "message": "Ordner öffnen",
+    "message": "Im Ordner anzeigen",
     "description": "Den Downloadordner öffnen"
   },
   "openFile": {
@@ -84,7 +84,7 @@
     "description": "Die Datei öffnen"
   },
   "pause": {
-    "message": "Pause",
+    "message": "Pausieren",
     "description": "Download pausieren"
   },
   "resume": {
@@ -92,7 +92,7 @@
     "description": "Den Download fortsetzen"
   },
   "batchDownloadActions": {
-    "message": "Batch-Download-Aktionen",
+    "message": "Stapelaktionen",
     "description": "Tooltip für Batch-Aktionen"
   },
   "pauseAll": {
@@ -108,19 +108,19 @@
     "description": "Alle laufenden Downloads abbrechen"
   },
   "delete": {
-    "message": "Löschen",
+    "message": "Von Festplatte löschen",
     "description": "Datei löschen"
   },
   "deleteConfirmTitle": {
-    "message": "Löschen bestätigen",
+    "message": "Datei von Festplatte löschen?",
     "description": "Confirmation title before deleting files from disk"
   },
   "deleteConfirmFileMessage": {
-    "message": "\"{}\" dauerhaft vom Datenträger löschen. Dies kann nicht rückgängig gemacht werden.",
+    "message": "„{}“ dauerhaft von der Festplatte löschen? Dies kann nicht rückgängig gemacht werden.",
     "description": "Confirmation message before deleting one file from disk"
   },
   "deleteConfirmAllMessage": {
-    "message": "{} inaktive Einträge verarbeiten: vorhandene Dateien vom Datenträger löschen und fehlende Einträge entfernen. Dies kann nicht rückgängig gemacht werden.",
+    "message": "{} inaktive Einträge verarbeiten: vorhandene Dateien dauerhaft von der Festplatte löschen und fehlende Einträge entfernen? Nicht widerrufbar.",
     "description": "Confirmation message before deleting all files from disk"
   },
   "deleteConfirmButton": {
@@ -128,23 +128,23 @@
     "description": "Confirmation button before deleting files from disk"
   },
   "retry": {
-    "message": "Wiederholen",
+    "message": "Erneut herunterladen",
     "description": "Den Download erneuern"
   },
   "dangerDescription": {
-    "message": "Schädliche Datei",
+    "message": "Diese Datei kann Ihrem Computer schaden",
     "description": "Diese Datei ist potentiell schädlich"
   },
   "dangerActionRequiredDescription": {
-    "message": "Chrome braucht Ihre Bestätigung zum Speichern",
+    "message": "Bestätigung zum Speichern erforderlich",
     "description": "Dangerous download needs user confirmation"
   },
   "dangerScanningDescription": {
-    "message": "Sicherheitsprüfung läuft",
+    "message": "Sicherheitsprüfung läuft…",
     "description": "Dangerous download scanning message"
   },
   "dangerBlockedDescription": {
-    "message": "Chrome hat diesen Download blockiert",
+    "message": "Aus Sicherheitsgründen blockiert",
     "description": "Dangerous download blocked message"
   },
   "dangerOpenAction": {
@@ -164,7 +164,7 @@
     "description": "Potentiell dchädliche Datei behalten"
   },
   "erase": {
-    "message": "Aus der Liste entfernen",
+    "message": "Aus Liste entfernen",
     "description": "Den Download aus der Liste entfernen"
   },
   "copied": {
@@ -172,7 +172,7 @@
     "description": "In die Zwischenablage kopiert"
   },
   "prefixMenus": {
-    "message": "LLaden Sie die ",
+    "message": "Herunterladen: ",
     "description": "Kontext -playback anzeigen der menüs ups"
   },
   "link": {
@@ -192,7 +192,7 @@
     "description": "Kontext-herunterladen zum anzeigen"
   },
   "deleteNotification": {
-    "message": "Gelöscht.",
+    "message": "Schließen",
     "description": "Knopf löschen"
   },
   "downloadCompletedNotification": {
@@ -204,59 +204,59 @@
     "description": "Der Download wurde gestartet"
   },
   "downloadWarnNotification": {
-    "message": "Warnung",
+    "message": "Download-Warnung",
     "description": "Benachrichtigung herunterladen"
   },
   "downloadInProgress": {
-    "message": "Downloading",
+    "message": "Wird heruntergeladen",
     "description": "Download in-progress state"
   },
   "openFolderNotification": {
-    "message": "Ordner öffnen",
+    "message": "Im Ordner öffnen",
     "description": "Ordner öffnen zur eingabe der botschaft"
   },
   "downloadSetting": {
-    "message": "Download",
+    "message": "Downloads",
     "description": "Modul einrichten -beschreibung"
   },
   "leftClickFileSetting": {
-    "message": "Datei mit Linksklick auf den Namen öffnen",
+    "message": "Linksklick auf Dateinamen öffnet die Datei",
     "description": "Modul einrichten -beschreibung"
   },
   "rightClickFileSetting": {
-    "message": "Datei mit Rechtsklick auf den Namen kopieren",
+    "message": "Rechtsklick auf Dateinamen kopiert in Zwischenablage",
     "description": "Modul einrichten -beschreibung"
   },
   "leftClickUrlSetting": {
-    "message": "Bei Linksklick auf den Link, dem Link in einer neuen Seite folgen",
+    "message": "Linksklick auf Download-Link öffnet neuen Tab",
     "description": "Modul einrichten -beschreibung"
   },
   "rightClickUrlSetting": {
-    "message": "Bei Rechtsklick auf den Link, wird der Link in die Zwischenablage gelegt",
+    "message": "Rechtsklick auf Download-Link kopiert in Zwischenablage",
     "description": "Modul einrichten -beschreibung"
   },
   "showTooltipSetting": {
-    "message": "Tooltips anzeigen",
+    "message": "Tooltips beim Überfahren von Schaltflächen anzeigen",
     "description": "Modul einrichten -beschreibung"
   },
   "enableAnimation": {
-    "message": "Animationen aktivieren",
+    "message": "Listen-Animationen aktivieren",
     "description": "Modul einrichten -beschreibung"
   },
   "showDownloadProgressSetting": {
-    "message": "Show download progress",
+    "message": "Download-Fortschritt anzeigen",
     "description": "Plugin setting description"
   },
   "showDownloadProgressDescSetting": {
-    "message": "Show progress, speed, and time remaining in the popup. When enabled, only in-progress downloads currently visible in the popup are polled. Turn it off to stop progress polling and reduce resource usage when many downloads are active.",
+    "message": "Zeigt Fortschritt, Geschwindigkeit und Restzeit im Popup an. Es werden nur aktuell sichtbare Downloads abgefragt; deaktivieren Sie diese Option, um bei vielen gleichzeitigen Downloads CPU-Last zu sparen.",
     "description": "Plugin setting detail description"
   },
   "deleteFileConfirmSetting": {
-    "message": "Vor dem Löschen bestätigen",
+    "message": "Vor dem Löschen von der Festplatte bestätigen",
     "description": "Plugin-Einstellungsbeschreibung"
   },
   "deleteFileConfirmDescSetting": {
-    "message": "Vor dem Löschen einer einzelnen Datei von der Festplatte einen Bestätigungsdialog anzeigen. Wenn deaktiviert, werden einzelne Dateien sofort gelöscht und können nicht rückgängig gemacht werden („Alle löschen“ fragt weiterhin nach).",
+    "message": "Zeigt vor dem Löschen einer einzelnen Datei einen Bestätigungsdialog an. Bei Deaktivierung wird sofort unwiderruflich gelöscht („Alle löschen“ fragt immer nach).",
     "description": "Detaillierte Plugin-Einstellungsbeschreibung"
   },
   "contextMenus": {
@@ -264,31 +264,31 @@
     "description": "Modul einrichten -beschreibung"
   },
   "downloadContextMenusSetting": {
-    "message": "Im Download Menü aktivieren",
+    "message": "Download-Einträge im Kontextmenü anzeigen",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadContextMenusDescSetting": {
-    "message": "Download-Einträge im Kontextmenü der Seite anzeigen. Sie können die aktivierten Kontexte weiter auswählen.",
+    "message": "Fügt dem Seitenkontextmenü Download-Aktionen hinzu und lässt Sie die gewünschten Elementtypen auswählen.",
     "description": "Detaillierte Beschreibung"
   },
   "fileRoutingSetting": {
-    "message": "Dateisortierung",
+    "message": "Automatische Ordnerzuweisung",
     "description": "Plugin settings description"
   },
   "fileRoutingEnableSetting": {
-    "message": "Dateisortierung aktivieren",
+    "message": "Automatische Ordnerzuweisung aktivieren",
     "description": "Plugin settings description"
   },
   "fileRoutingDescription": {
-    "message": "Laden Sie Downloads basierend auf Dateierweiterung oder Quelldomain in Unterordner im Standard-Downloadordner. Standardmäßig deaktiviert. Domainregeln haben standardmäßig Vorrang vor Erweiterungsregeln.",
+    "message": "Speichert Downloads je nach Dateiendung oder Quelldomain automatisch in Unterordnern des Standard-Download-Ordners (standardmäßig aus). Domain-Regeln haben standardmäßig Vorrang.",
     "description": "Plugin setting detail description"
   },
   "fileRoutingRulesSetting": {
-    "message": "Sortierregeln",
+    "message": "Endungsregeln",
     "description": "Plugin settings description"
   },
   "fileRoutingFolderLabel": {
-    "message": "Ordner",
+    "message": "Unterordner",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsLabel": {
@@ -304,11 +304,11 @@
     "description": "Accessible label for the file routing rule toggle"
   },
   "fileRoutingFolderPlaceholder": {
-    "message": "Beispiel: Images oder Documents/PDF",
+    "message": "z. B. Images oder Documents/PDF",
     "description": "Plugin settings description"
   },
   "fileRoutingExtensionsPlaceholder": {
-    "message": "Beispiel: jpg, png, webp",
+    "message": "z. B. jpg, png, webp",
     "description": "Plugin settings description"
   },
   "fileRoutingAddRule": {
@@ -324,7 +324,7 @@
     "description": "Accessible label for the file routing rule delete button"
   },
   "fileRoutingDeleteRuleConfirm": {
-    "message": "Diese Routing-Regel löschen?",
+    "message": "Diese Sortierregel wirklich löschen?",
     "description": "Second confirmation before deleting a file routing rule"
   },
   "notificationSetting": {
@@ -332,15 +332,15 @@
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationSetting": {
-    "message": "Dowload-Benachrichtigungen",
+    "message": "Desktop-Benachrichtigungen",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationSetting1": {
-    "message": "Begonnen",
+    "message": "Gestartet",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationSetting2": {
-    "message": "Abgeschlossen",
+    "message": "Fertig",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationSetting3": {
@@ -348,75 +348,75 @@
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationReservedTimeSetting": {
-    "message": "Anzeigedauer von Download-Benachrichtigungen (Sekunden)",
+    "message": "Anzeigedauer (Sekunden)",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationMaxCountSetting": {
-    "message": "Max. gestapelte Benachrichtigungen",
+    "message": "Max. gleichzeitige Benachrichtigungen",
     "description": "Plugin-Einstellungsbeschreibung"
   },
   "downloadNotificationMaxCountDescSetting": {
-    "message": "Bei Überschreitung werden die ältesten Benachrichtigungen gelöscht und die neuesten behalten. Standard ist 3; 0 bedeutet unbegrenzt.",
+    "message": "Bei Überschreitung werden älteste Benachrichtigungen zuerst entfernt. Standard: 3; 0 = unbegrenzt.",
     "description": "Detaillierte Beschreibung"
   },
   "downloadToneSetting": {
-    "message": "Erinnerung herunterladen",
+    "message": "Hinweistöne",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationRemainVisibleSetting": {
-    "message": "Download-Benachrichtigungen bleiben sichtbar",
+    "message": "Benachrichtigungen dauerhaft anzeigen",
     "description": "Modul einrichten -beschreibung"
   },
   "downloadNotificationRemainVisibleDescSetting": {
-    "message": "Die Benachrichtigung bleibt auf dem Bildschirm sichtbar, bis der Benutzer die Benachrichtigung aktiviert oder deaktiviert. Verfügbar ab Chrome 50",
+    "message": "Bleibt sichtbar, bis sie angeklickt oder geschlossen wird (ab Chrome 50).",
     "description": "Modul einrichten -beschreibung"
   },
   "shortcutSetting": {
-    "message": "Tastaturkürzel",
+    "message": "Tastenkürzel",
     "description": "Modul einrichten -beschreibung"
   },
   "openPopupSetting": {
-    "message": "Startet das Zusatzprogramm",
+    "message": "Download-Panel öffnen",
     "description": "Modul einrichten -beschreibung"
   },
   "openPopupDetailsSetting": {
-    "message": "Hier klicken",
+    "message": "Verwalten unter",
     "description": "Modul einrichten -beschreibung"
   },
   "chromePluginShortcutDescSetting": {
-    "message": "Tastenkombination einschalten",
+    "message": "Erweiterungskürzel",
     "description": "Modul einrichten -beschreibung"
   },
   "syncSetting": {
-    "message": "Sync Einstellungen",
+    "message": "Synchronisierung",
     "description": "Modul einrichten -beschreibung"
   },
   "pluginSyncSetting": {
-    "message": "Synchronisation einschalten",
+    "message": "Einstellungen synchronisieren",
     "description": "Modul einrichten -beschreibung"
   },
   "pluginSyncDetailsSetting": {
-    "message": "Wenn Sie einen Google Account haben können Sie die Einstellungen synchronisieren",
+    "message": "Synchronisiert Einstellungen automatisch über Ihr Browser-Konto zwischen Chromium-Browsern.",
     "description": "Eine genaue beschreibung der modul einstellungen"
   },
   "notSyncSetting": {
-    "message": "Diese Einstellung wird nicht synchronisiert",
+    "message": "Diese Einstellung wird lokal gespeichert und nicht synchronisiert",
     "description": "Modul einrichten -beschreibung"
   },
   "themeTitle": {
-    "message": "Aussehen",
+    "message": "Erscheinungsbild",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeAdaptation": {
-    "message": "Themenanpassung",
+    "message": "Farbmodus",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeAdaptationDescription": {
-    "message": "Zeigen Sie je nach Farbmodus des Systems adaptiv helle und dunkle Themen an, einschließlich Symbole und Download-Bereich.",
+    "message": "Passt Symbolleisten-Symbol, Download-Panel und Einstellungsseite automatisch an das helle oder dunkle Systemdesign an.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeAdaptationOption1": {
-    "message": "Automatisch",
+    "message": "Auto",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeAdaptationOption2": {
@@ -428,39 +428,39 @@
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "iconTitle": {
-    "message": "Symbole",
+    "message": "Symbolleiste",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "iconColorSetting": {
-    "message": "Definierte Farben für Symbole",
+    "message": "Standard-Symbolfarbe",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "iconDownloadingColorSetting": {
-    "message": "Benutzerdefinierte Symbol Download Animation Farbe",
+    "message": "Symbolfarbe während des Downloads",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "downloadPanelTitle": {
-    "message": "Panel herunterladen",
+    "message": "Download-Panel",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "pageSize": {
-    "message": "Seitengröße (Breite, Höhe)",
+    "message": "Panel-Größe (Breite × Höhe)",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "pageSizeDescription": {
-    "message": "Steuert Breite und Höhe des Download-Panels.",
+    "message": "Legt Breite (380–800 px) und Höhe (300–600 px) des Popups fest",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSystemTitle": {
-    "message": "Themeneinstellungen & Vorschau",
+    "message": "Design-Vorlagen & Live-Vorschau",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSystemDescription": {
-    "message": "Nach Auswahl einer Themenreihe wird sie sofort angewendet. Die Vorschau unten zeigt die tatsächliche Popup-Oberfläche.",
+    "message": "Änderungen werden sofort übernommen. Die Vorschau zeigt das echte Popup-Layout.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesLabel": {
-    "message": "Themenreihe",
+    "message": "Design-Serie",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themePreviewModeAriaLabel": {
@@ -472,7 +472,7 @@
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesTerminalDescription": {
-    "message": "Terminal-inspirierter Geek-Stil. Hoher Kontrast und werkzeugartig, ideal für einen technischen Look.",
+    "message": "Kontrastreicher Entwickler-Look mit klarem Fokus auf Funktionalität.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesTerminalDarkLabel": {
@@ -488,15 +488,15 @@
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesTerminalLightBadge": {
-    "message": "Klare CLI",
+    "message": "Klarer CLI",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesTerminalDarkNote": {
-    "message": "Neonwirkung, dunkler Hintergrund, hohe Wiedererkennbarkeit.",
+    "message": "Leuchtende Akzente auf dunklem Grund für beste Lesbarkeit.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesTerminalLightNote": {
-    "message": "Behält den Geek-Stil, wirkt aber heller und zurückhaltender.",
+    "message": "Prägnanter Werkzeug-Charakter in heller, ruhiger Palette.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesGithubTitle": {
@@ -504,7 +504,7 @@
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesGithubDescription": {
-    "message": "Klassischer Entwicklerstil. Ausgewogene Informationsdichte und professioneller Eindruck, ideal für den täglichen Einsatz.",
+    "message": "Vertrauter Entwickler-Stil mit ausgewogener Informationsdichte.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesGithubDarkLabel": {
@@ -520,11 +520,11 @@
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesGithubDarkNote": {
-    "message": "Ruhig, vertraut und produktivitätsorientiert.",
+    "message": "Sachlich, vertraut und produktivitätsorientiert.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesGithubLightNote": {
-    "message": "Klar, ordentlich und nah an einer Plattform-Oberfläche.",
+    "message": "Aufgeräumt, klar und nah an modernen Web-Plattformen.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesClaudeTitle": {
@@ -532,7 +532,7 @@
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesClaudeDescription": {
-    "message": "Warm und elegant. Weiche Beigetöne für eine leichtere Oberfläche mit mehr Luft.",
+    "message": "Warme, elegante Papier- und Beigetöne für ein entspanntes Lesegefühl.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesClaudeDarkLabel": {
@@ -548,27 +548,27 @@
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesClaudeDarkNote": {
-    "message": "Tief warme Brauntöne mit stärkerer Stimmung.",
+    "message": "Tiefe, warme Brauntöne mit angenehmem Kontrast.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesClaudeLightNote": {
-    "message": "Weiche Papieroptik für einen entspannteren Eindruck.",
+    "message": "Sanfte Papieroptik für ermüdungsfreies Arbeiten.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesBasicTitle": {
-    "message": "Basis",
+    "message": "Standard",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesBasicDescription": {
-    "message": "Schlicht und universell. Wenig stilisiert und gut als Standardthema geeignet.",
+    "message": "Schlichtes, universelles Design, das sich nahtlos in den Browser einfügt.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesBasicDarkLabel": {
-    "message": "Basis Dunkel",
+    "message": "Standard Dunkel",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesBasicLightLabel": {
-    "message": "Basis Hell",
+    "message": "Standard Hell",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesBasicBadge": {
@@ -576,15 +576,15 @@
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesBasicDarkNote": {
-    "message": "Dezent, vielseitig und angenehm bei Nacht.",
+    "message": "Dezent und angenehm für die Augen bei Nacht.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "themeSeriesBasicLightNote": {
-    "message": "Neutral, sauber und mit starkem Standardgefühl.",
+    "message": "Neutral, sauber und nah am nativen Browser-Look.",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "downloadPanelThemeCustomDescription": {
-    "message": "Benutzerdefiniertes Thema, bleiben Sie dran!",
+    "message": "Eigene Designs folgen in Kürze!",
     "description": "Das fach design erscheint auf der vorderseite"
   },
   "el_colorpicker_confirm": {
@@ -592,39 +592,39 @@
     "description": "Das fach design erscheint auf der vorderseite - Element-UI Der farbwähler."
   },
   "el_colorpicker_clear": {
-    "message": "Clear",
+    "message": "Leeren",
     "description": "Das fach design erscheint auf der vorderseite - Element-UI Der farbwähler."
   },
   "el_popconfirm_confirmButtonText": {
-    "message": "OK",
+    "message": "Bestätigen",
     "description": "Liste löschen - Element-UI PopConfirm"
   },
   "el_popconfirm_cancelButtonText": {
-    "message": "Cancel",
+    "message": "Abbrechen",
     "description": "Liste löschen - Element-UI PopConfirm"
   },
   "starAbout1": {
-    "message": "If you like this plugin, please go to the",
+    "message": "Gefällt Ihnen diese Erweiterung? Besuchen Sie den",
     "description": "Dazu die karteikarten"
   },
   "pluginShopAbout": {
-    "message": "App Store",
+    "message": "Erweiterungsstore",
     "description": "Dazu die karteikarten"
   },
   "starAbout2": {
-    "message": "and rate it!",
+    "message": "und bewerten Sie uns.",
     "description": "Dazu die karteikarten"
   },
   "downloadContextMenuContextsSetting": {
-    "message": "Aktivierte Kontextmenü-Kontexte",
+    "message": "Aktive Kontextmenü-Typen",
     "description": "Einstellungsbeschreibung"
   },
   "downloadContextMenuContextsDescSetting": {
-    "message": "Behalten Sie nur die benötigten Kontexte. Wählen Sie z. B. nur „Bild“, damit der Download-Eintrag nur beim Rechtsklick auf Bilder erscheint.",
+    "message": "Wählen Sie nur benötigte Ziele aus (z. B. nur „Bild“, damit der Eintrag ausschließlich bei Bildern erscheint).",
     "description": "Detaillierte Beschreibung"
   },
   "cancelAllConfirmMessage": {
-    "message": "Alle {} laufenden Downloads abbrechen? Nicht abgeschlossener Fortschritt geht verloren.",
+    "message": "Alle {} laufenden Downloads abbrechen? Unvollständiger Fortschritt geht verloren.",
     "description": "Confirm message for cancel all active downloads"
   },
   "fileRoutingPrecedenceSetting": {
@@ -632,7 +632,7 @@
     "description": "Plugin setting description"
   },
   "fileRoutingPrecedenceDescription": {
-    "message": "Wenn sowohl eine Domain- als auch eine Erweiterungsregel zutrifft, bestimmt die gewählte Priorität den Ordner. Domainregeln haben standardmäßig Vorrang.",
+    "message": "Legt fest, welche Regel Vorrang hat, wenn sowohl Domain- als auch Endungsregeln zutreffen. Standard: Domain zuerst.",
     "description": "Plugin setting detail description"
   },
   "fileRoutingPrecedenceDomain": {
@@ -640,15 +640,15 @@
     "description": "Plugin setting option"
   },
   "fileRoutingPrecedenceExtension": {
-    "message": "Erweiterung zuerst",
+    "message": "Endung zuerst",
     "description": "Plugin setting option"
   },
   "fileRoutingDomainRulesSetting": {
-    "message": "Domain-Klassifizierungsregeln",
+    "message": "Domainregeln",
     "description": "Plugin setting description"
   },
   "fileRoutingDomainRulesEmpty": {
-    "message": "Noch keine Domainregeln. Fügen Sie Regeln hinzu, um Downloads bestimmter Websites in eigene Unterordner zu speichern.",
+    "message": "Noch keine Domainregeln vorhanden. Fügen Sie Regeln hinzu, um Downloads bestimmter Websites automatisch in eigene Unterordner zu sortieren.",
     "description": "Empty state hint"
   },
   "fileRoutingDomainsLabel": {
@@ -664,19 +664,19 @@
     "description": "Input placeholder"
   },
   "downloadConfirmBeforeStartSetting": {
-    "message": "Vor dem Download bestätigen",
+    "message": "Vor Download-Start bestätigen",
     "description": "Plugin setting description"
   },
   "downloadConfirmBeforeStartDescSetting": {
-    "message": "Wenn aktiviert, fragen Downloads dieser Erweiterung (Kontextmenü, neue URL, erneut laden) zuerst nach Bestätigung. Browser-eigene Downloads werden nicht unterbrochen, um Einmal-Links nicht zu zerstören. Standard: aus.",
+    "message": "Fragt vor Downloads durch diese Erweiterung (Kontextmenü, neue URL, Wiederholung) nach Bestätigung. Browser-native Downloads bleiben unberührt.",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmChooseFolderSetting": {
-    "message": "Speicherort beim Start wählen",
+    "message": "Speicherort vor dem Start abfragen",
     "description": "Plugin setting description"
   },
   "downloadConfirmChooseFolderDescSetting": {
-    "message": "Verwendet den Speichern-unter-Dialog (saveAs) für Downloads dieser Erweiterung. Unabhängig von Edge/Chrome „Bei jedem Download nachfragen“, das Erweiterungen nicht steuern können.",
+    "message": "Öffnet für Downloads dieser Erweiterung den „Speichern unter“-Dialog (saveAs). Unabhängig von der Browser-Systemeinstellung.",
     "description": "Plugin setting detail description"
   },
   "downloadConfirmTitle": {
@@ -704,19 +704,43 @@
     "description": "Notification button to cancel a pending download"
   },
   "popupHeaderButtonsSetting": {
-    "message": "Popup-Symbolleisten-Schaltflächen anzeigen",
+    "message": "Schnellschaltflächen im Popup anzeigen",
     "description": "Optionale Schnellzugriffsschaltflächen in der Popup-Kopfzeile anzeigen"
   },
   "popupHeaderButtonsDescSetting": {
-    "message": "Wenn deaktiviert, bleiben nur das Suchfeld und die Einstellungen-Schaltfläche sichtbar",
+    "message": "Bei Deaktivierung bleiben nur das Suchfeld und die Einstellungen-Schaltfläche sichtbar.",
     "description": "Beschreibung für popupHeaderButtonsSetting"
   },
   "popupHeaderCustomButtonsSetting": {
-    "message": "Sichtbare Symbolleisten-Schaltflächen anpassen",
+    "message": "Sichtbare Schaltflächen & Reihenfolge anpassen",
     "description": "Sichtbare Schaltflächen in der Popup-Kopfzeile auswählen"
   },
   "popupHeaderCustomButtonsDescSetting": {
-    "message": "Klicken zum Ein-/Ausblenden, ziehen zum Neuanordnen (Suche und Einstellungen bleiben fixiert)",
+    "message": "Klicken zum Ein-/Ausblenden, ziehen zum Sortieren (Suche und Einstellungen bleiben fixiert).",
     "description": "Beschreibung für popupHeaderCustomButtonsSetting"
+  },
+  "contextMenuDownloadLink": {
+    "message": "Link herunterladen",
+    "description": "Context menu item to download a link"
+  },
+  "contextMenuDownloadImage": {
+    "message": "Bild herunterladen",
+    "description": "Context menu item to download an image"
+  },
+  "contextMenuDownloadAudio": {
+    "message": "Audio herunterladen",
+    "description": "Context menu item to download audio"
+  },
+  "contextMenuDownloadVideo": {
+    "message": "Video herunterladen",
+    "description": "Context menu item to download a video"
+  },
+  "lightThemeTooltip": {
+    "message": "Helles Design",
+    "description": "Tooltip for light mode toolbar icon color"
+  },
+  "darkThemeTooltip": {
+    "message": "Dunkles Design",
+    "description": "Tooltip for dark mode toolbar icon color"
   }
 }
