@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "Anuluj",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "Pokaż przyciski paska narzędzi",
+    "description": "Wyświetlanie opcjonalnych przycisków w nagłówku okna"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "Po wyłączeniu widoczne pozostaną tylko pole wyszukiwania i przycisk ustawień",
+    "description": "Opis dla popupHeaderButtonsSetting"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "Dostosuj widoczne przyciski",
+    "description": "Wybierz przyciski wyświetlane w górnym pasku"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "Kliknij, aby pokazać lub ukryć przycisk, przeciągnij, aby zmienić kolejność (Szukaj i Ustawienia są zawsze przypięte)",
+    "description": "Opis dla popupHeaderCustomButtonsSetting"
   }
 }

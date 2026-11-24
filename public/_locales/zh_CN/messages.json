@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "取消",
     "description": "取消待下载通知按钮"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "显示弹窗顶部操作按钮",
+    "description": "是否在弹窗首行显示其余快捷操作按钮"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "关闭后仅保留搜索框和设置按钮，隐藏其余快捷操作按钮",
+    "description": "关闭后仅保留搜索框和设置按钮说明"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "自定义显示的顶部按钮",
+    "description": "自定义弹窗首行显示的按钮"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "点击可单独控制显示与隐藏，拖动可调整顺序（搜索框与设置按钮固定显示）",
+    "description": "自定义弹窗首行按钮说明"
   }
 }

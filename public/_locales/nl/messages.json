@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "Annuleren",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "Werkbalkknoppen in pop-up tonen",
+    "description": "Snelkoppelingsknoppen in de koptekst van de pop-up tonen"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "Indien uitgeschakeld blijven alleen het zoekvak en de instellingenknop zichtbaar",
+    "description": "Beschrijving voor popupHeaderButtonsSetting"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "Zichtbare werkbalkknoppen aanpassen",
+    "description": "Kies welke knoppen in de pop-upkoptekst worden getoond"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "Klik om elke knop te tonen of te verbergen, sleep om de volgorde te wijzigen (Zoeken en Instellingen blijven vast)",
+    "description": "Beschrijving voor popupHeaderCustomButtonsSetting"
   }
 }

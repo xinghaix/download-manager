@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "Cancel",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "Show popup toolbar buttons",
+    "description": "Toggle optional shortcut buttons in popup header"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "When disabled, only the search box and settings button remain visible",
+    "description": "Description for popupHeaderButtonsSetting"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "Customize visible toolbar buttons",
+    "description": "Choose which buttons appear in the popup header"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "Click to show or hide each button, drag to reorder (Search and Settings stay pinned)",
+    "description": "Description for popupHeaderCustomButtonsSetting"
   }
 }

@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "İptal",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "Açılır pencere araç çubuğu düğmelerini göster",
+    "description": "Açılır pencere üst satırındaki kısayol düğmelerini göster"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "Devre dışı bırakıldığında yalnızca arama kutusu ve ayarlar düğmesi görünür kalır",
+    "description": "popupHeaderButtonsSetting açıklaması"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "Görünür araç çubuğu düğmelerini özelleştir",
+    "description": "Üst satırda hangi düğmelerin görüneceğini seçin"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "Her düğmeyi göstermek veya gizlemek için tıklayın, yeniden sıralamak için sürükleyin (Arama ve Ayarlar sabit kalır)",
+    "description": "popupHeaderCustomButtonsSetting açıklaması"
   }
 }

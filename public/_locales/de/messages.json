@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "Abbrechen",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "Popup-Symbolleisten-Schaltflächen anzeigen",
+    "description": "Optionale Schnellzugriffsschaltflächen in der Popup-Kopfzeile anzeigen"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "Wenn deaktiviert, bleiben nur das Suchfeld und die Einstellungen-Schaltfläche sichtbar",
+    "description": "Beschreibung für popupHeaderButtonsSetting"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "Sichtbare Symbolleisten-Schaltflächen anpassen",
+    "description": "Sichtbare Schaltflächen in der Popup-Kopfzeile auswählen"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "Klicken zum Ein-/Ausblenden, ziehen zum Neuanordnen (Suche und Einstellungen bleiben fixiert)",
+    "description": "Beschreibung für popupHeaderCustomButtonsSetting"
   }
 }

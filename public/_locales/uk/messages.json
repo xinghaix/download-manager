@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "Скасувати",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "Показувати кнопки верхньої панелі",
+    "description": "Відображення додаткових кнопок у шапці спливаючого вікна"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "Якщо вимкнено, видимими залишаються лише рядок пошуку та кнопка налаштувань",
+    "description": "Опис popupHeaderButtonsSetting"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "Налаштувати видимі кнопки",
+    "description": "Вибір кнопок, що відображаються у верхній панелі"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "Натисніть, щоб показати або приховати кнопку, перетягніть для зміни порядку (Пошук і Налаштування закріплені завжди)",
+    "description": "Опис popupHeaderCustomButtonsSetting"
   }
 }

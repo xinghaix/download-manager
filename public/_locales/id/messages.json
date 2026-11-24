@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "Batal",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "Tampilkan tombol bilah alat popup",
+    "description": "Tampilkan tombol pintasan di baris atas popup"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "Saat dinonaktifkan, hanya kotak pencarian dan tombol pengaturan yang tetap terlihat",
+    "description": "Deskripsi popupHeaderButtonsSetting"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "Sesuaikan tombol yang terlihat",
+    "description": "Pilih tombol yang ditampilkan di header popup"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "Klik untuk menampilkan atau menyembunyikan tombol, seret untuk mengatur ulang urutan (Pencarian dan Pengaturan tetap disematkan)",
+    "description": "Deskripsi popupHeaderCustomButtonsSetting"
   }
 }

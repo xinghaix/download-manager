@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "Cancelar",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "Mostrar botões da barra superior",
+    "description": "Exibir botões de atalho no cabeçalho do pop-up"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "Quando desativado, apenas a caixa de pesquisa e o botão de configurações permanecem visíveis",
+    "description": "Descrição de popupHeaderButtonsSetting"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "Personalizar botões visíveis",
+    "description": "Escolher quais botões aparecem na barra superior"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "Clique para mostrar ou ocultar cada botão, arraste para reordenar (Pesquisa e Configurações permanecem fixos)",
+    "description": "Descrição de popupHeaderCustomButtonsSetting"
   }
 }

@@ -276,6 +276,10 @@ const common = {
     this.i18data.downloadConfirmNotificationTitle = this.loadI18nMessage('downloadConfirmNotificationTitle')
     this.i18data.downloadConfirmNotificationConfirm = this.loadI18nMessage('downloadConfirmNotificationConfirm')
     this.i18data.downloadConfirmNotificationCancel = this.loadI18nMessage('downloadConfirmNotificationCancel')
+    this.i18data.popupHeaderButtonsSetting = this.loadI18nMessage('popupHeaderButtonsSetting')
+    this.i18data.popupHeaderButtonsDescSetting = this.loadI18nMessage('popupHeaderButtonsDescSetting')
+    this.i18data.popupHeaderCustomButtonsSetting = this.loadI18nMessage('popupHeaderCustomButtonsSetting')
+    this.i18data.popupHeaderCustomButtonsDescSetting = this.loadI18nMessage('popupHeaderCustomButtonsDescSetting')
 
     // options settings 上下文菜单
     this.i18data.contextMenus = this.loadI18nMessage('contextMenus')

@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "Hủy",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "Hiển thị các nút thanh công cụ cửa sổ bật lên",
+    "description": "Hiển thị các nút thao tác nhanh ở hàng đầu tiên"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "Khi tắt, chỉ giữ lại ô tìm kiếm và nút cài đặt, ẩn các nút thao tác nhanh khác",
+    "description": "Mô tả popupHeaderButtonsSetting"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "Tùy chỉnh các nút hiển thị ở hàng đầu",
+    "description": "Chọn hiển thị hoặc ẩn từng nút thao tác nhanh"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "Nhấp để bật hoặc tắt từng nút, kéo để sắp xếp lại thứ tự (Tìm kiếm và Cài đặt luôn cố định)",
+    "description": "Mô tả popupHeaderCustomButtonsSetting"
   }
 }

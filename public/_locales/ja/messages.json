@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "キャンセル",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "ポップアップ上部ボタンを表示",
+    "description": "ポップアップ上部のショートカットボタンを表示するか設定"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "オフにすると検索欄と設定ボタンのみが固定表示され、他のショートカットボタンを非表示にします",
+    "description": "popupHeaderButtonsSettingの説明"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "表示する上部ボタンをカスタマイズ",
+    "description": "各ボタンの表示・非表示を個別に設定"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "クリックで表示・非表示を切り替え、ドラッグで並び替えできます（検索と設定は常に固定）",
+    "description": "popupHeaderCustomButtonsSettingの説明"
   }
 }

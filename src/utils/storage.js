@@ -5,6 +5,7 @@ import {
   cloneDefaultDownloadFileRoutingRules,
   DEFAULT_DOWNLOAD_ROUTING_PRECEDENCE
 } from './downloadFileRouting.js'
+import { POPUP_HEADER_BUTTON_KEYS } from './popupHeaderButtons.js'
 
 const LOCAL_STORAGE_PREFIX = '__download_manager__'
 const CONFIG_KEYS = [
@@ -40,7 +41,10 @@ const CONFIG_KEYS = [
   'download_routing_precedence',
   'ui_theme',
   'ui_theme_series',
-  'system_theme'
+  'system_theme',
+  'popup_header_buttons_visible',
+  'popup_header_buttons',
+  'popup_header_buttons_order'
 ]
 
 function hasChromeStorage() {
@@ -129,6 +133,23 @@ function sessionRemoveKeys(keys) {
   })
 }
 
+let cachedSyncPreference = null
+let syncPreferencePromise = null
+let syncListenerRegistered = false
+
+function ensureSyncPreferenceListener() {
+  if (syncListenerRegistered || !hasChromeStorage() || !chrome.storage.onChanged) {
+    return
+  }
+  syncListenerRegistered = true
+  chrome.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName === 'sync' && changes && Object.prototype.hasOwnProperty.call(changes, 'sync')) {
+      const next = changes.sync.newValue
+      cachedSyncPreference = typeof next === 'boolean' ? next : true
+    }
+  })
+}
+
 const storage = {
   getConfigKeys() {
     return [...CONFIG_KEYS]
@@ -140,21 +161,37 @@ const storage = {
       return Promise.resolve(typeof localSync === 'boolean' ? localSync : true)
     }
 
-    return new Promise(resolve => {
+    ensureSyncPreferenceListener()
+    if (typeof cachedSyncPreference === 'boolean') {
+      return Promise.resolve(cachedSyncPreference)
+    }
+
+    if (syncPreferencePromise) {
+      return syncPreferencePromise
+    }
+
+    syncPreferencePromise = new Promise(resolve => {
       chrome.storage.sync.get(['sync'], result => {
-        resolve(typeof result.sync === 'boolean' ? result.sync : true)
+        const value = result && typeof result.sync === 'boolean' ? result.sync : true
+        cachedSyncPreference = value
+        syncPreferencePromise = null
+        resolve(value)
       })
     })
+    return syncPreferencePromise
   },
 
   setSyncPreference(value) {
+    const normalized = Boolean(value)
     if (!hasChromeStorage()) {
-      localSet('sync', value)
+      localSet('sync', normalized)
       return Promise.resolve()
     }
 
+    ensureSyncPreferenceListener()
+    cachedSyncPreference = normalized
     return new Promise(resolve => {
-      chrome.storage.sync.set({ sync: value }, () => resolve())
+      chrome.storage.sync.set({ sync: normalized }, () => resolve())
     })
   },
 
@@ -329,66 +366,76 @@ const storage = {
   },
 
   async defaultSettings() {
-    // 插件设置默认启用同步
     await this.setDefaultIfNull('sync', true)
-    // 主题 - 主题自适应
-    await this.setDefaultIfNull('theme', 'auto')
 
-    // 主题 - 图标默认颜色
-    // 为了解决之前存储的是字符串类型，这里提前设置下
-    let iconColor = await this.get('icon_color')
-    if (iconColor === null
-      || typeof iconColor === 'undefined'
-      || typeof iconColor === 'string') {
-      await this.set('icon_color', {
-        'light': '#000000',
-        'dark': '#989898'
-      })
-    }
-    // 主题 - 下载中图标默认颜色
-    let iconDownloadingColor = await this.get('icon_downloading_color')
-    if (iconDownloadingColor === null
-      || typeof iconDownloadingColor === 'undefined'
-      || typeof iconDownloadingColor === 'string') {
-      this.set('icon_downloading_color', {
-        'light': '#00d032',
-        'dark': '#ffa500'
-      })
+    const currentValues = await this.getMany(CONFIG_KEYS)
+    const defaults = {
+      theme: 'auto',
+      download_panel_theme: 'light',
+      download_panel_page_size: { width: 400, height: 420 },
+      close_tooltip: true,
+      left_click_file: true,
+      right_click_file: true,
+      left_click_url: true,
+      right_click_url: true,
+      enable_animation: false,
+      show_download_progress: true,
+      delete_file_confirm: true,
+      download_confirm_before_start: false,
+      download_confirm_choose_folder: false,
+      download_started_notification: false,
+      download_completed_notification: false,
+      download_warning_notification: false,
+      download_started_tone: false,
+      download_completed_tone: false,
+      download_notification_reserved_time: 10,
+      download_notification_max_count: 3,
+      download_notification_remain_visible: false,
+      download_warning_tone: false,
+      download_context_menus: true,
+      download_context_menu_contexts: ['link', 'image', 'audio', 'video'],
+      download_file_routing_enabled: false,
+      download_file_routing_rules: cloneDefaultDownloadFileRoutingRules(),
+      download_domain_routing_rules: cloneDefaultDownloadDomainRoutingRules(),
+      download_routing_precedence: DEFAULT_DOWNLOAD_ROUTING_PRECEDENCE,
+      popup_header_buttons_visible: true,
+      popup_header_buttons: [...POPUP_HEADER_BUTTON_KEYS],
+      popup_header_buttons_order: [...POPUP_HEADER_BUTTON_KEYS]
     }
 
-    // 主题 - 下载面板主题，默认为亮色
-    await this.setDefaultIfNull('download_panel_theme', 'light')
-    await this.setDefaultIfNull('download_panel_page_size', { width: 400, height: 420 })
-    // 设置 - 下载 - 插件设置默认不展示提示信息
-    await this.setDefaultIfNull('close_tooltip', true)
-    await this.setDefaultIfNull('left_click_file', true)
-    await this.setDefaultIfNull('right_click_file', true)
-    await this.setDefaultIfNull('left_click_url', true)
-    await this.setDefaultIfNull('right_click_url', true)
-    await this.setDefaultIfNull('enable_animation', false)
-    await this.setDefaultIfNull('show_download_progress', true)
-    // 删除文件前确认，默认开启（与当前始终确认行为一致）
-    await this.setDefaultIfNull('delete_file_confirm', true)
-    await this.setDefaultIfNull('download_confirm_before_start', false)
-    await this.setDefaultIfNull('download_confirm_choose_folder', false)
-    await this.setDefaultIfNull('download_started_notification', false)
-    await this.setDefaultIfNull('download_completed_notification', false)
-    await this.setDefaultIfNull('download_warning_notification', false)
-    await this.setDefaultIfNull('download_started_tone', false)
-    await this.setDefaultIfNull('download_completed_tone', false)
-    await this.setDefaultIfNull('download_notification_reserved_time', 10)
-    // 同时显示的通知上限，超出时清除最早的，保留最新的
-    await this.setDefaultIfNull('download_notification_max_count', 3)
-    await this.setDefaultIfNull('download_notification_remain_visible', false)
-    await this.setDefaultIfNull('download_warning_tone', false)
-    // 插件默认创建下载文件上下文菜单
-    await this.setDefaultIfNull('download_context_menus', true)
-    await this.setDefaultIfNull('download_context_menu_contexts', ['link', 'image', 'audio', 'video'])
-    // 文件分类下载默认关闭
-    await this.setDefaultIfNull('download_file_routing_enabled', false)
-    await this.setDefaultIfNull('download_file_routing_rules', cloneDefaultDownloadFileRoutingRules())
-    await this.setDefaultIfNull('download_domain_routing_rules', cloneDefaultDownloadDomainRoutingRules())
-    await this.setDefaultIfNull('download_routing_precedence', DEFAULT_DOWNLOAD_ROUTING_PRECEDENCE)
+    const toWrite = {}
+
+    const iconColor = currentValues.icon_color
+    if (iconColor === null || typeof iconColor === 'undefined' || typeof iconColor === 'string') {
+      toWrite.icon_color = {
+        light: '#000000',
+        dark: '#989898'
+      }
+    }
+
+    const iconDownloadingColor = currentValues.icon_downloading_color
+    if (
+      iconDownloadingColor === null ||
+      typeof iconDownloadingColor === 'undefined' ||
+      typeof iconDownloadingColor === 'string'
+    ) {
+      toWrite.icon_downloading_color = {
+        light: '#00d032',
+        dark: '#ffa500'
+      }
+    }
+
+    Object.entries(defaults).forEach(([key, defaultValue]) => {
+      const existing = currentValues[key]
+      if (existing === null || typeof existing === 'undefined') {
+        toWrite[key] = defaultValue
+      }
+    })
+
+    if (Object.keys(toWrite).length > 0) {
+      const isSync = await this.getSyncPreference()
+      await this.setManyToArea(toWrite, isSync)
+    }
   }
 
 }

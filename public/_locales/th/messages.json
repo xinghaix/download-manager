@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "ยกเลิก",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "แสดงปุ่มแถบเครื่องมือด้านบน",
+    "description": "ตั้งค่าการแสดงปุ่มทางลัดในแถวบนของป๊อปอัป"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "เมื่อปิดใช้งาน จะแสดงเฉพาะช่องค้นหาและปุ่มตั้งค่าเท่านั้น",
+    "description": "คำอธิบาย popupHeaderButtonsSetting"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "ปรับแต่งปุ่มที่แสดงด้านบน",
+    "description": "เลือกเปิดหรือซ่อนปุ่มทางลัดแต่ละปุ่ม"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "คลิกเพื่อแสดงหรือซ่อนแต่ละปุ่ม ลากเพื่อจัดลำดับใหม่ (ช่องค้นหาและตั้งค่าจะแสดงคงที่)",
+    "description": "คำอธิบาย popupHeaderCustomButtonsSetting"
   }
 }

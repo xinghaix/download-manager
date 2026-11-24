@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "Отмена",
     "description": "Notification button to cancel a pending download"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "Показывать кнопки верхней панели",
+    "description": "Отображение дополнительных кнопок в шапке всплывающего окна"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "Если выключено, остаются видны только строка поиска и кнопка настроек",
+    "description": "Описание для popupHeaderButtonsSetting"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "Настроить видимые кнопки",
+    "description": "Выбор отображаемых кнопок в верхней панели"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "Нажмите, чтобы показать или скрыть кнопку, перетащите для изменения порядка (Поиск и Настройки закреплены всегда)",
+    "description": "Описание для popupHeaderCustomButtonsSetting"
   }
 }

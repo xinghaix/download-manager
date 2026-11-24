@@ -702,5 +702,21 @@
   "downloadConfirmNotificationCancel": {
     "message": "取消",
     "description": "取消待下載通知按鈕"
+  },
+  "popupHeaderButtonsSetting": {
+    "message": "顯示彈窗頂部操作按鈕",
+    "description": "是否在彈窗首列顯示其餘快捷操作按鈕"
+  },
+  "popupHeaderButtonsDescSetting": {
+    "message": "關閉後僅保留搜尋框和設定按鈕，隱藏其餘快捷操作按鈕",
+    "description": "關閉後僅保留搜尋框和設定按鈕說明"
+  },
+  "popupHeaderCustomButtonsSetting": {
+    "message": "自訂顯示的頂部按鈕",
+    "description": "自訂彈窗首列顯示的按鈕"
+  },
+  "popupHeaderCustomButtonsDescSetting": {
+    "message": "點擊可單獨控制顯示與隱藏，拖曳可調整順序（搜尋框與設定按鈕固定顯示）",
+    "description": "自訂彈窗首列按鈕說明"
   }
 }
