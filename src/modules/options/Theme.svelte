@@ -966,7 +966,7 @@
     font-size: 12px;
     font-family: inherit;
     font-variant-numeric: tabular-nums;
-    color: var(--opt-text-secondary, #4b5563);
+    color: var(--opt-text-primary, #1f2937);
     background-color: var(--opt-control-bg, #ffffff);
     border: 1px solid var(--opt-control-border, #d5dce6);
     border-radius: var(--opt-radius-control, 6px);
@@ -1057,7 +1057,7 @@
     padding: 0 24px 0 8px;
     font-size: 12px;
     font-family: inherit;
-    color: var(--opt-text-secondary, #4b5563);
+    color: var(--opt-text-primary, #1f2937);
     background-color: var(--opt-control-bg, #ffffff);
     border: 1px solid var(--opt-control-border, #d5dce6);
     border-radius: var(--opt-radius-control, 6px);
@@ -1242,7 +1242,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--header-search-color);
+    color: var(--header-icon-color);
   }
 
   .popup-header-operator {
@@ -1319,7 +1319,8 @@
 
   .popup-preview .file.is-hovered .content-operator-wrapper,
   .popup-preview .file:hover .content-operator-wrapper {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
   }
 
   .popup-preview .file .icon {
@@ -1359,7 +1360,7 @@
     display: block;
     height: 20px;
     line-height: 20px;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 13px;
     color: var(--content-file-filename-color);
     white-space: nowrap;
@@ -1371,7 +1372,8 @@
     display: block;
     height: 20px;
     line-height: 20px;
-    font-size: 13px;
+    font-size: var(--content-file-url-font-size, 12px);
+    font-family: var(--content-file-meta-font-family, inherit);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1382,13 +1384,14 @@
     width: 100%;
     height: 25px;
     display: table;
+    font-family: var(--content-file-meta-font-family, inherit);
     font-variant-numeric: tabular-nums;
     color: var(--content-file-muted-color, var(--content-file-content-color));
   }
 
   .popup-preview .file .info .small-size {
     transition: none;
-    font-size: 12px;
+    font-size: var(--content-file-info-font-size, 11.5px);
   }
 
   .popup-preview .file .info .cell {
@@ -1424,10 +1427,9 @@
 
   .popup-preview .file .content-operator-wrapper {
     position: absolute;
-    top: 0;
+    top: 5px;
     right: 8px;
-    height: 30px;
-    line-height: 38px;
+    height: 24px;
     padding-left: 18px;
     background-image: linear-gradient(90deg, transparent 0, var(--file-surface-color) 24%);
     z-index: 1;
@@ -1436,7 +1438,6 @@
 
   .popup-preview .file .content-operator {
     position: relative;
-    float: right;
     display: inline-flex;
     align-items: center;
     height: 100%;

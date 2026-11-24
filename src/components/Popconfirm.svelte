@@ -163,20 +163,21 @@
 
   .dm-popconfirm-btn.cancel {
     background: transparent;
-    color: var(--opt-accent, #409eff);
+    color: var(--opt-text-secondary, #4b5563);
   }
 
   .dm-popconfirm-btn.cancel:hover {
-    background: var(--opt-accent-soft, #ecf5ff);
+    background: var(--opt-surface-hover, #f3f6fb);
+    color: var(--opt-text-primary, #1f2937);
   }
 
   .dm-popconfirm-btn.danger {
-    background: var(--opt-danger, #f56c6c);
+    background: #dc2626;
     color: #ffffff;
   }
 
   .dm-popconfirm-btn.danger:hover {
-    background: var(--opt-danger-hover, #f78989);
+    background: #b91c1c;
   }
 
   @media (prefers-reduced-motion: reduce) {

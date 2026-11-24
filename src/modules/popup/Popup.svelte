@@ -1707,7 +1707,7 @@
       <button type="button" class="dropdown-item" role="menuitem" onclick={() => clearDropdownCommand('clearAll')}>
         {i18data.clearAll}
       </button>
-      <button type="button" class="dropdown-item" role="menuitem" onclick={() => clearDropdownCommand('deleteAll')}>
+      <button type="button" class="dropdown-item is-danger" role="menuitem" onclick={() => clearDropdownCommand('deleteAll')}>
         {i18data.deleteAll}
       </button>
       <button type="button" class="dropdown-item" role="menuitem" onclick={() => clearDropdownCommand('clearFailed')}>
@@ -1753,7 +1753,7 @@
       <div class="dropdown-divider" role="separator"></div>
       <button
         type="button"
-        class="dropdown-item"
+        class="dropdown-item is-danger"
         class:is-disabled={!hasCancelableDownloads}
         disabled={!hasCancelableDownloads}
         role="menuitem"
@@ -1946,7 +1946,7 @@
     justify-content: center;
     margin-left: 4px;
     font-size: 14px;
-    color: var(--header-search-color);
+    color: var(--header-icon-color);
     flex-shrink: 0;
   }
 
@@ -2172,10 +2172,10 @@
     border-radius: 5px;
     background: transparent;
     text-align: left;
-    line-height: 28px;
-    padding: 0 10px;
+    line-height: 30px;
+    padding: 0 11px;
     margin: 0;
-    font-size: 12px;
+    font-size: 13px;
     font-family: inherit;
     white-space: nowrap;
     cursor: pointer;
@@ -2188,6 +2188,16 @@
   .dropdown-item:not(.is-disabled):focus-visible {
     background-color: var(--header-dropdown-menu-item-hover-background-color);
     color: var(--header-dropdown-menu-item-hover-color);
+  }
+
+  .dropdown-item.is-danger {
+    color: var(--header-dropdown-menu-item-danger-color, #d93025);
+  }
+
+  .dropdown-item.is-danger:not(.is-disabled):hover,
+  .dropdown-item.is-danger:not(.is-disabled):focus-visible {
+    background-color: var(--header-dropdown-menu-item-danger-hover-background-color, rgba(217, 48, 37, 0.08));
+    color: var(--header-dropdown-menu-item-danger-color, #d93025);
   }
 
   .dropdown-item.is-disabled {
@@ -2295,7 +2305,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    color: var(--delete-confirm-danger-color, #d93025);
+    color: var(--delete-confirm-danger-color, var(--header-dropdown-menu-item-danger-color, #d93025));
     background-color: var(--delete-confirm-danger-background-color, rgba(217, 48, 37, .10));
   }
 
@@ -2304,14 +2314,14 @@
     line-height: 20px;
     font-size: 14px;
     font-weight: 600;
-    color: var(--content-file-filename-color);
+    color: var(--popover-color);
   }
 
   .delete-confirm-content p {
     margin: 0;
     line-height: 18px;
     font-size: 12px;
-    color: var(--popover-color);
+    color: var(--content-file-url-color, var(--popover-color));
     word-break: break-word;
   }
 
@@ -2341,7 +2351,7 @@
   }
 
   .delete-confirm-button.secondary:hover {
-    color: var(--header-icon-hover-color);
+    color: var(--popover-color);
     background-color: rgba(127, 127, 127, .12);
   }
 
@@ -2358,17 +2368,17 @@
 
   .delete-confirm-button.primary {
     color: #fff;
-    border-color: var(--download-confirm-primary-color, #409eff);
-    background-color: var(--download-confirm-primary-color, #409eff);
+    border-color: var(--download-confirm-primary-color, #1d6fe2);
+    background-color: var(--download-confirm-primary-color, #1d6fe2);
   }
 
   .delete-confirm-button.primary:hover {
-    border-color: var(--download-confirm-primary-hover-color, #337ecc);
-    background-color: var(--download-confirm-primary-hover-color, #337ecc);
+    border-color: var(--download-confirm-primary-hover-color, #155ec4);
+    background-color: var(--download-confirm-primary-hover-color, #155ec4);
   }
 
   .download-confirm-icon {
-    color: var(--download-confirm-primary-color, #409eff);
+    color: var(--download-confirm-primary-color, var(--content-file-filename-color, #1d6fe2));
     background-color: var(--download-confirm-primary-background-color, rgba(64, 158, 255, .12));
   }
 

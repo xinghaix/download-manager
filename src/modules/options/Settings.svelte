@@ -1956,7 +1956,7 @@
     border-radius: var(--opt-radius-control, 6px);
     font-size: 12px;
     font-family: inherit;
-    color: var(--opt-text-secondary, #4b5563);
+    color: var(--opt-text-primary, #1f2937);
     background-color: var(--opt-control-bg, #ffffff);
     box-shadow: 0 0 0 1px var(--opt-control-border, #d5dce6) inset;
     outline: none;
@@ -1997,7 +1997,7 @@
     font-size: 12px;
     font-family: inherit;
     font-variant-numeric: tabular-nums;
-    color: var(--opt-text-secondary, #4b5563);
+    color: var(--opt-text-primary, #1f2937);
     background-color: var(--opt-control-bg, #ffffff);
     outline: none;
     box-sizing: border-box;

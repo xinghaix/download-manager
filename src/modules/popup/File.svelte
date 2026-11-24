@@ -666,7 +666,7 @@
     display: block;
     height: 20px;
     line-height: 20px;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 13px;
     color: var(--content-file-filename-color);
     white-space: nowrap;
@@ -689,7 +689,8 @@
     display: block;
     height: 20px;
     line-height: 20px;
-    font-size: 13px;
+    font-size: var(--content-file-url-font-size, 12px);
+    font-family: var(--content-file-meta-font-family, inherit);
     color: var(--content-file-url-color, var(--content-file-color));
     white-space: nowrap;
     overflow: hidden;
@@ -705,19 +706,20 @@
     width: 100%;
     height: 25px;
     display: table;
+    font-family: var(--content-file-meta-font-family, inherit);
     font-variant-numeric: tabular-nums;
     color: var(--content-file-muted-color, var(--content-file-content-color));
   }
 
   .file .info .small-size {
     transition: none;
-    font-size: 12px;
+    font-size: var(--content-file-info-font-size, 11.5px);
   }
 
   .file.gray .file-url,
   .file.gray .info {
     color: var(--content-file-filename-gray-color);
-    opacity: .72;
+    opacity: .84;
   }
 
   /* 已下载的大小 */
@@ -766,7 +768,7 @@
   .file .info .danger .description {
     display: block;
     overflow: hidden;
-    color: var(--content-file-danger-color, #d93025);
+    color: var(--content-file-danger-color, var(--header-dropdown-menu-item-danger-color, #d93025));
     line-height: 16px;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -794,7 +796,7 @@
   }
 
   .file .info .danger .accept {
-    color: var(--content-file-danger-accept-color, #1a73e8);
+    color: var(--content-file-danger-accept-color, var(--content-file-filename-color, #1d6fe2));
     background-color: var(--content-file-danger-accept-background-color, var(--content-file-background-color, #fff));
     border-color: var(--content-file-danger-accept-border-color, var(--content-file-border-color, #dadce0));
     margin-right: -4px;
@@ -808,10 +810,9 @@
   /* 内容栏 操作按钮 父元素 */
   .file .content-operator-wrapper {
     position: absolute;
-    top: 0;
+    top: 5px;
     right: 8px;
-    height: 30px;
-    line-height: 38px;
+    height: 24px;
     padding-left: 18px;
     background-image: linear-gradient(90deg, transparent 0, var(--file-surface-color) 24%);
     z-index: 1;
@@ -819,12 +820,12 @@
   }
 
   .file:hover .content-operator-wrapper {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
   }
 
   .file .content-operator {
     position: relative;
-    float: right;
     display: inline-flex;
     align-items: center;
     height: 100%;

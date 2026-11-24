@@ -225,7 +225,7 @@
     background: transparent;
     font-size: 12px;
     font-family: inherit;
-    color: var(--opt-text-secondary, #606266);
+    color: var(--opt-text-primary, #1f2937);
   }
 
   .dm-tag-field::placeholder {

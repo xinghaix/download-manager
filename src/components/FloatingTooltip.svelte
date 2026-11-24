@@ -92,6 +92,7 @@
     z-index: 2000;
     padding: 5px 8px;
     border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 11px;
     line-height: 1.3;
     color: var(--tooltip-color, #ffffff);
